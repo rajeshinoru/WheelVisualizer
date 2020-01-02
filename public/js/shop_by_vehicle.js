@@ -1,0 +1,283 @@
+
+// Year based filters for Makes 
+ $(document).on('change','.Year,.Make,.Model',function(){
+ 	var changeBy = $(this).attr('name');
+ 	var year = $('.Year').val();
+ 	var make = $('.Make').val();
+ 	var model = $('.Model').val();
+ 	var driverbody = $('.DriveBody').val();
+ 	filters(year,make,model,driverbody,changeBy);
+ });
+ $(document).ready(function(){
+ 	var year = $('.Year').val();
+ 	var make = $('.Make').val();
+ 	var model = $('.Model').val();
+ 	var driverbody = $('.DriveBody').val();
+ 	filters(year,make,model,driverbody);
+ });
+function filters(year='',make='',model='',driverbody='',changeBy=''){
+
+	$.ajax({
+	  	method: "GET",
+ 	 	url: '/vehicledetails',
+ 	 	data: { year:year,make:make,model:model,changeBy:changeBy}
+	}).done(function(data) { 
+		
+		$('.DriveBody').empty().append('<option disabled selected>Select Drive/Body</option>');  
+		
+		if(changeBy == '' || changeBy == 'year' || changeBy == 'make' ){
+			$('.Model').empty().append('<option disabled selected>Select Model</option>');    
+		}
+		if(changeBy == '' || changeBy == 'year'){
+			$('.Make').empty().append('<option disabled selected>Select Make</option>'); 
+		}
+
+		if(changeBy == ''){
+			data.data['make'].map(function(value,key){
+					isSelected =(value.make == make)?'selected':'';
+	    			$('.Make').append('<option value="'+value.make+'" '+isSelected+'>'+value.make+'</option>');
+			});
+			data.data['model'].map(function(value,key){
+					isSelected =(value.model == model)?'selected':'';
+	    			$('.Model').append('<option value="'+value.model+'" '+isSelected+'>'+value.model+'</option>');
+			});
+			data.data['driverbody'].map(function(value,key){
+					isSelected =(value.vif == driverbody)?'selected':'';
+	    			$('.DriveBody').append('<option value="'+value.vif+'"'+isSelected+'>'+value.whls+' '+value.drs+' '+value.body+'</option>');
+			});
+		}else{ 
+			data.data.map(function(value,key){
+				if(changeBy == 'year'){
+	    			$('.Make').append('<option value="'+value.make+'">'+value.make+'</option>');
+				}
+				if(changeBy == 'make'){
+	    			$('.Model').append('<option value="'+value.model+'">'+value.model+'</option>');
+				}
+				if(changeBy == 'model'){
+	    			$('.DriveBody').append('<option value="'+value.vif+'">'+value.whls+' '+value.drs+' '+value.body+'</option>');
+				}
+			}); 
+		}
+		$('.Make').trigger("chosen:updated");
+		$('.Model').trigger("chosen:updated");
+		$('.DriveBody').trigger("chosen:updated");
+  	}).fail(function( msg ) {
+    	alert( "fails");
+  	}); 
+}
+
+//  Driver / Body change your car 
+ $('.DriveBody').on('change',function(){ 
+ 	var car_id = $(this).val();  
+	if(car_id != ''){
+ 	 	updateParamsToUrl('car_id',btoa(car_id));
+ 	}
+ });
+
+// wheeldiameter based filters for wheels
+ $('.wheeldiameter').on('click',function(){ 
+ 	var diameter = $(this).val();	
+	if(diameter != ''){
+ 	 	updateParamsToUrl('diameter',diameter);
+ 	}
+ });
+
+// wheeldwidth based filters for wheels
+ $('.wheelwidth').on('click',function(){ 
+ 	var width = $(this).val();
+ 	if(width != ''){
+ 	 	updateParamsToUrl('width',width);
+ 	}
+ });
+
+// brand based filters for wheels
+ $('.brand').on('click',function(){ 
+ 	var brand = $(this).val(); 	
+ 	if(brand != ''){
+ 	 	updateParamsToUrl('brand',brand);
+ 	}
+ });
+
+
+// change the cars by selected color
+ $('.car_color').on('click',function(){ 
+ 	var vif = $(this).attr('data-vif');
+ 	var code = $(this).attr('data-code'); 
+ 	$('.color-selected').removeClass('color-selected');
+ 	$(this).addClass('color-selected');
+ 	$('.car_color[data-code='+code+']').addClass('color-selected');
+	$.ajax({
+	  	method: "GET",
+ 	 	url: '/selectCarByColor',
+ 	 	data: { vif:vif, code:code }
+	}).done(function(data) { 
+		if(data.data != null){
+			$('.car_image_'+vif).attr('src',data.data.image);
+		}
+  	}).fail(function( msg ) {
+    	alert( "fails");
+  	}); 
+ });
+ 
+// Global Search by wheels name in 
+ $('.header-search-btn').on('click',function(){ 
+ 	var search = $('#header-search-input').val();
+ 	if(search != ''){
+ 	 	updateParamsToUrl('search',search);
+ 	}
+ });
+
+
+
+ // Common  Function to change the params values in the current url
+ function updateParamsToUrl(paramKey,paramValue){
+ 	var nextUrl=window.location.origin+window.location.pathname;
+
+ 	var params = getUrlVars();  //Get all the query params as an ARRAY
+ 	
+ 	var size = Object.keys(params).length; 
+ 	var i=0;
+ 	if(size == 0){
+ 		window.location.href = window.location.href+"?"+paramKey+"="+paramValue;
+ 	}else{
+ 		nextUrl+='?'; // ? for started to attach the query string to url
+ 		
+ 		params[paramKey] = paramValue;
+
+ 		// This is for search,selection by any one of ways => BRAND or SEARCH Keyword
+ 		if(paramKey == 'search' && params['brand'] != undefined){
+ 			params['brand']='';
+ 		}
+ 		if(paramKey == 'brand' && params['search'] != undefined){
+ 			params['search']='';
+ 		}
+
+ 		// Attach the query params to the nextURL 
+		$.each( params, function( key, value ) { 
+			if(value != ''){
+				if(i == size){
+			  		nextUrl+=key+'='+value;
+				}else{
+			  		nextUrl+=key+'='+value+'&';
+				}
+			}
+
+			i++;
+		});
+		window.location.href = nextUrl;
+ 	}
+ }
+
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		    vars[key] = value;
+		});
+		return vars;
+	}
+
+ 
+	// Wheel Diameter Zoom In and Zoom Out  
+
+	$('.diameter-up').click(function(){ 
+		var key = $(this).attr('data-id'); 
+			var $front = $("#image-diameter-front-"+key);
+			var $back = $("#image-diameter-back-"+key);
+
+			var frontWidth = parseInt($front.width());
+			var frontHeight = parseInt($front.height());
+
+			if(frontHeight  >= 80  && frontHeight  <= 500 ){
+
+				var backWidth = frontHeight * (3/4) ; //parseInt($back.width());
+				var backHeight = frontHeight * (3/4) ;//parseInt($back.height());
+
+				var frontMarginTop = parseInt($front.css('margin').replace('px',''));
+				frontMarginTop = parseInt(frontMarginTop - 10) + 'px';
+
+				var backMarginTop = parseInt($back.css('margin').replace('px',''));
+				backMarginTop = parseInt(backMarginTop - 7) + 'px';
+
+				$front.width(parseInt(frontHeight + 20 )+'px');
+				$front.height(parseInt(frontHeight + 20 )+'px');
+				$front.css('margin',frontMarginTop);
+				$back.width(parseInt(backWidth + 15 )+'px');
+				$back.height(parseInt(backHeight + 15 )+'px');
+				$back.css('margin',backMarginTop);
+
+			}
+    });
+    $('.diameter-down').click(function(){ 
+
+			var key = $(this).attr('data-id'); 
+			var $front = $("#image-diameter-front-"+key);
+			var $back = $("#image-diameter-back-"+key);
+
+			var frontWidth = parseInt($front.width());
+			var frontHeight = parseInt($front.height());
+
+			var backWidth = frontHeight * (3/4) ; //parseInt($back.width());
+			var backHeight = frontHeight * (3/4) ;//parseInt($back.height());
+
+			
+			var frontMarginTop = parseInt($front.css('margin').replace('px',''));
+			
+			if(frontMarginTop == -10){
+				frontWidth-=16;
+				frontHeight-=16;
+			}
+			// console.log(frontWidth,frontHeight,frontMarginTop)
+
+			if(frontMarginTop == -10){
+				frontMarginTop = parseInt(frontMarginTop + 10) + 'px';
+				$front.css('margin',frontMarginTop);
+				$front.css('width','80px');
+				$front.css('height','');
+				// console.log($front);
+			}
+			else{
+				if( parseInt(frontHeight - 20 )  > 80 ){
+					$front.width(parseInt(frontHeight - 20 )+'px');
+					$front.height(parseInt(frontHeight - 20 )+'px');
+					frontMarginTop = parseInt(frontMarginTop + 10) + 'px';
+					$front.css('margin',frontMarginTop);
+				}
+			}
+
+			var backMarginTop = parseInt($back.css('margin').replace('px',''));
+			
+			if(backMarginTop == -7){
+				backWidth-=4;
+				backHeight-=4;
+			}
+
+			if(backMarginTop == -7){
+				backMarginTop = parseInt(backMarginTop + 7) + 'px';
+				$back.css('margin',backMarginTop);
+				$back.css('width','65px');
+				$back.css('height','');
+				// console.log($front);
+			}
+			else{
+				if( parseInt(backHeight - 15 )  > 65 ){
+					$back.width(parseInt(backHeight - 15 )+'px');
+					$back.height(parseInt(backHeight - 15 )+'px');
+					backMarginTop = parseInt(backMarginTop + 7) + 'px';
+					$back.css('margin',backMarginTop);
+				}
+			}
+			
+			// if(backMarginTop == -7){
+			// 	backWidth-=4;
+			// 	backHeight-=4;
+			// }
+
+			// if(backMarginTop < 0){
+
+			// 	backMarginTop = parseInt(backMarginTop + 7) + 'px';
+			// 	$back.width(parseInt(backWidth - 15 )+'px');
+			// 	$back.height(parseInt(backHeight - 15 )+'px');
+			// 	$back.css('margin',backMarginTop);
+			// }
+
+   	});

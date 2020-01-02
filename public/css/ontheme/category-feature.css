@@ -1,0 +1,117 @@
+.ot-category-featured {
+	background: #ffffff;
+	border: 1px solid #eaeaea;
+	border-radius: 10px;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px; 
+	-khtml-border-radius: 10px;
+	margin: 0 0 30px;
+	float: left;
+	position: relative;
+	width: 100%;
+}
+.ot-category-featured .otfcat-items {
+  float: left;
+  width: 100%;
+}
+.ot-category-featured .category-feature.ot-carousel {
+  margin: 0;
+  width: auto;
+}
+.ot-category-featured .item {
+	border-right: 1px solid #eaeaea;
+	float: left;
+	width: 100%;
+}
+.ot-category-featured .content {
+  float: left;
+  width: 100%;
+}
+.ot-category-featured .image {
+    float: right;
+	padding: 0;
+}
+.ot-category-featured .image a {
+  display: inline-block;
+  float: right;
+  overflow: hidden;
+  position: relative;
+}
+.ot-category-featured .image a img {
+  width: 100%;
+}
+.ot-category-featured .caption {
+	float: left;
+	padding: 20px;
+	text-align: center;
+	position: relative;
+	width: 100%;
+}
+.ot-category-featured .caption::after {
+	border-top: 1px solid #e5e5e5;
+	content: "";
+	left: 0;
+	margin: 0 auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 250px;
+}
+.ot-category-featured .caption .cat-title > h4 {
+  	margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.ot-category-featured .content .cat-title a {
+	color: #333333;
+	font: 400 16px/18px "Poppins",Helvetica,sans-serif;
+	letter-spacing: 0.3px;
+	margin: 0;
+	text-transform: capitalize;
+	white-space: nowrap;
+}
+.ot-category-featured .content:hover .cat-title a {
+	color: #2874f0;
+}
+.ot-category-featured .caption .cat-sub {
+  float: left;
+  display: none;
+  width: 100%;
+}
+.ot-category-featured .caption .cat-sub ul {
+	margin-top: 10px;
+}
+.ot-category-featured .cat-sub li {
+  list-style: outside none none;
+}
+.ot-category-featured .caption .cat-sub li a {
+  border-radius: 0;
+  -moz-border-radius: 0; 
+-webkit-border-radius: 0; 
+-khtml-border-radius: 0;
+  border: medium none;
+  color: #777777;
+  font: 400 13px/24px "roboto",Helvetica,sans-serif;
+  letter-spacing: 0.6px;
+  padding: 0 0 0 10px;
+  position: relative;
+  text-transform: capitalize;
+}
+.ot-category-featured .caption .cat-sub li a:hover {
+	color: #000000;
+}
+.ot-category-featured .caption .cat-sub li a::before {
+  content: ".";
+  font-size: 29px;
+  left: 0;
+  position: absolute;
+  top: -10px;
+}
+@media (max-width: 480px) {
+.ot-category-featured .otfcat-items {
+	margin: 0;
+}
+.ot-category-featured .caption {
+	padding: 20px 10px;
+}
+}
