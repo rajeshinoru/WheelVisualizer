@@ -109,7 +109,7 @@
         <div class="col-sm-6 search-bar">
           <div class="search">
               <div id="header-search" class="input-group">
-                  <input type="text" name="search" value="{{@Request::get('search')}}" id="header-search-input" placeholder="Search" class="form-control input-lg" />
+                  <input type="text" name="search" value="{{json_decode(base64_decode(@Request::get('search')))}}" id="header-search-input" placeholder="Search" class="form-control input-lg" />
                   <span class="input-group-btn"><button type="button" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Search</button></span>
               </div>
 <!--               <select class="form-control chosen-select Make" name="make">
@@ -141,7 +141,7 @@
                     <ul class="dropdown-menu nav-dropdown">
                       <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li> 
                       @forelse(wheelbrands() as $brand)
-                      <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{$brand->brand}}">{{$brand->brand}}</a></li>
+                      <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}">{{$brand->brand}}</a></li>
                       @empty 
                       @endforelse
                     </ul>

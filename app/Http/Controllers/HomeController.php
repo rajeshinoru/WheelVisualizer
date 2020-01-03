@@ -42,41 +42,46 @@ class HomeController extends Controller
             $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->get(); 
 
             $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style'); 
- 
+    
             if(isset($request->brand) && $request->brand)
-                $Wheels = $Wheels->where('brand',$request->brand);
+                // dd(json_decode(base64_decode($request->brand)));
+                 // $Wheels = $Wheels->where('brand',$request->brand);
+                $Wheels = $Wheels->whereIn('brand',json_decode(base64_decode($request->brand)));
 
             if(isset($request->diameter) && $request->diameter)
-                $Wheels = $Wheels->where('wheeldiameter',$request->diameter);
+                // $Wheels = $Wheels->where('wheeldiameter',$request->diameter);
+                $Wheels = $Wheels->whereIn('wheeldiameter',json_decode(base64_decode($request->diameter)));
+                // dd(json_decode(base64_decode($request->diameter)));
 
             if(isset($request->width) && $request->width)
-                $Wheels = $Wheels->where('wheelwidth',$request->width);
+                $Wheels = $Wheels->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
 
             if(isset($request->search))
-                $Wheels = $Wheels->where('brand', 'LIKE', '%'.$request->search.'%'); 
+                $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%'); 
 
 
             $Wheels = $Wheels->inRandomOrder()->paginate(9); 
-            
+            // dd($Wheels);
             ///Brand with count
             $brands = Wheel::select('brand', \DB::raw('count(*) as total'))->groupBy('brand')->get()->sortBy('brand'); 
 
             ///wheeldiameter with count 
             if(isset($request->brand) && $request->brand)
-                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->wherebrand($request->brand)->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
+                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))
+            ->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
             else 
                 $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter'); 
 
             ///wheelwidth with count  
             if(isset($request->brand) && $request->brand)
-                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->wherebrand($request->brand)->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
+                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
             else
                 $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
 
             ///Color based cars 
             if(isset($request->car_id) && $request->car_id){
 
-                $car_id = base64_decode($request->car_id); 
+                $car_id = json_decode(base64_decode($request->car_id)); 
 
                 $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($car_id)
                 ->with(['CarViflist' => function($query) {
@@ -86,7 +91,7 @@ class HomeController extends Controller
 
             }else
                 $car_images = ''; 
-
+                
             return view('wheels',compact('years','Wheels','car_images','brands','wheeldiameter','wheelwidth')); 
             
         }catch(ModelNotFoundException $notfound){
@@ -109,8 +114,11 @@ class HomeController extends Controller
                 $allData['model'] = $data = $viflist->select('model')->distinct('model')->whereyr($request->year)->wheremake($request->make)->get();
 
             // Model change  or Loading Filter
-            if(isset($request->year) && isset($request->make) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == '')
-                $allData['driverbody'] = $data = $viflist->select('vif','body','drs','whls')->whereyr($request->year)->wheremake($request->make)->wheremodel($request->model)->get()->unique('body','drs','whls');
+            if(isset($request->year) && isset($request->make) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == ''){
+                $data = $viflist->select('vif','body','drs','whls')->whereyr($request->year)->wheremake($request->make)->wheremodel($request->model)->get()->unique('body','drs','whls')->toArray();
+                $dummy = array_values($data);
+                $allData['driverbody'] = $data = $dummy;
+            }
             
             if($request->changeBy == ''){    
                 return response()->json(['data' => $allData]);

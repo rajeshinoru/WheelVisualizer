@@ -45,7 +45,7 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
 					isSelected =(value.vif == driverbody)?'selected':'';
 	    			$('.DriveBody').append('<option value="'+value.vif+'"'+isSelected+'>'+value.whls+' '+value.drs+' '+value.body+'</option>');
 			});
-		}else{ 
+		}else{
 			data.data.map(function(value,key){
 				if(changeBy == 'year'){
 	    			$('.Make').append('<option value="'+value.make+'">'+value.make+'</option>');
@@ -70,32 +70,54 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
  $('.DriveBody').on('change',function(){ 
  	var car_id = $(this).val();  
 	if(car_id != ''){
- 	 	updateParamsToUrl('car_id',btoa(car_id));
+ 	 	updateParamsToUrl('car_id',car_id);
  	}
  });
 
 // wheeldiameter based filters for wheels
  $('.wheeldiameter').on('click',function(){ 
- 	var diameter = $(this).val();	
+ 	// var diameter = $(this).val();	
+
+ 	var diameter = $('.wheeldiameter:checked').map(function(){
+      return $(this).val();
+    }).get();
+
 	if(diameter != ''){
  	 	updateParamsToUrl('diameter',diameter);
+ 	}else{
+ 		removeParamsFromUrl('diameter');
  	}
  });
 
 // wheeldwidth based filters for wheels
  $('.wheelwidth').on('click',function(){ 
- 	var width = $(this).val();
+
+ 	var width = $('.wheelwidth:checked').map(function(){
+      return $(this).val();
+    }).get(); 
+
+
  	if(width != ''){
  	 	updateParamsToUrl('width',width);
+ 	}else{
+ 		removeParamsFromUrl('width');
  	}
  });
 
 // brand based filters for wheels
  $('.brand').on('click',function(){ 
- 	var brand = $(this).val(); 	
+ 	// var brand = $(this).val(); 	
+
+ 	var brand = $('.brand:checked').map(function(){
+      return $(this).val();
+    }).get();
+
  	if(brand != ''){
  	 	updateParamsToUrl('brand',brand);
+ 	}else{
+ 		removeParamsFromUrl('brand');
  	}
+
  });
 
 
@@ -124,6 +146,8 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
  	var search = $('#header-search-input').val();
  	if(search != ''){
  	 	updateParamsToUrl('search',search);
+ 	}else{
+ 		removeParamsFromUrl('search');
  	}
  });
 
@@ -131,6 +155,9 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
 
  // Common  Function to change the params values in the current url
  function updateParamsToUrl(paramKey,paramValue){
+
+ 	paramValue = window.btoa(JSON.stringify(paramValue));
+
  	var nextUrl=window.location.origin+window.location.pathname;
 
  	var params = getUrlVars();  //Get all the query params as an ARRAY
@@ -140,9 +167,57 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
  	if(size == 0){
  		window.location.href = window.location.href+"?"+paramKey+"="+paramValue;
  	}else{
+
  		nextUrl+='?'; // ? for started to attach the query string to url
  		
  		params[paramKey] = paramValue;
+
+ 		// This is for search,selection by any one of ways => BRAND or SEARCH Keyword
+ 		if(paramKey == 'search' && params['brand'] != undefined){
+ 			params['brand']='';
+ 		}
+ 		if(paramKey == 'brand' && params['search'] != undefined){
+ 			params['search']='';
+ 		}
+
+		if(paramKey == 'brand'){
+ 			params['width']='';
+ 			params['diameter']='';
+		}
+
+ 		// Attach the query params to the nextURL 
+		$.each( params, function( key, value ) { 
+			if(value != ''){
+				if(i == size){
+			  		nextUrl+=key+'='+value;
+				}else{
+			  		nextUrl+=key+'='+value+'&';
+				}
+			}
+
+			i++;
+		});
+
+
+		window.location.href = nextUrl;
+ 	}
+ }
+
+
+ // Common  Function to change the params values in the current url
+ function removeParamsFromUrl(paramKey){
+
+
+ 	var nextUrl=window.location.origin+window.location.pathname;
+
+ 	var params = getUrlVars();  //Get all the query params as an ARRAY
+ 	params[paramKey]='';
+ 	var size = Object.keys(params).length; 
+ 	var i=0;
+ 	if(size == 0){
+ 		window.location.href = window.location.origin+window.location.pathname;
+ 	}else{
+ 		nextUrl+='?'; // ? for started to attach the query string to url
 
  		// This is for search,selection by any one of ways => BRAND or SEARCH Keyword
  		if(paramKey == 'search' && params['brand'] != undefined){
@@ -164,10 +239,10 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
 
 			i++;
 		});
+
 		window.location.href = nextUrl;
  	}
  }
-
 	function getUrlVars() {
 		var vars = {};
 		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -226,7 +301,7 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
 				frontWidth-=16;
 				frontHeight-=16;
 			}
-			// console.log(frontWidth,frontHeight,frontMarginTop)
+
 
 			if(frontMarginTop == -10){
 				frontMarginTop = parseInt(frontMarginTop + 10) + 'px';
@@ -256,7 +331,7 @@ function filters(year='',make='',model='',driverbody='',changeBy=''){
 				$back.css('margin',backMarginTop);
 				$back.css('width','65px');
 				$back.css('height','');
-				// console.log($front);
+
 			}
 			else{
 				if( parseInt(backHeight - 15 )  > 65 ){

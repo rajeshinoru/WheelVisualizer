@@ -98,8 +98,8 @@
     width: 80px;
     position: absolute;
     content: '';
-    top: 44.8%;
-    left: 39.1%;
+    top: 44.7%;
+    left: 39.2%;
     bottom: 149%;
     right: 0;
     transform: perspective(0px) rotateY(41deg);
@@ -160,7 +160,7 @@
         <div class="container pro">
             <div class="row">
                 <div class="col-sm-12 sub-head">
-                    <h1>{{@Request::get('brand')}} Wheels</h1></div>
+                    <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1></div>
             </div>
             <div class="row main-pro">
                 <div class="col-sm-3">
@@ -239,11 +239,12 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheeldiameter as $diameter)
-                                                    <li><input type="radio" name="wheeldiameter" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" @if(@Request::get('diameter') == $diameter->wheeldiameter) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}  
+                                                    <li><input type="checkbox" name="wheeldiameter[]" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" 
+        @if(in_array($diameter->wheeldiameter,json_decode(base64_decode(@Request::get('diameter')?:''))?:[])) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}  
                                                     </li>
                                                     @empty
-                                                    <li><input type="radio" name="wheeldiameter" value=""> 13</li>
-                                                    <li><input type="radio" name="wheeldiameter" value=""> 20</li> 
+                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 13</li>
+                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 20</li> 
                                                     @endforelse 
                                                 </ul>
                                             </div>
@@ -261,10 +262,11 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheelwidth as $width)
-                                                    <li><input type="radio" name="wheelwidth" class="wheelwidth" value="{{$width->wheelwidth}}" @if(@Request::get('width') == $width->wheelwidth) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
+                                                    <li><input type="checkbox" name="wheelwidth[]" class="wheelwidth" value="{{$width->wheelwidth}}" 
+        @if(in_array($width->wheelwidth,json_decode(base64_decode(@Request::get('width')?:''))?:[])) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
                                                     @empty
-                                                    <li><input type="radio" name="wheelwidth" value=""> 7</li>
-                                                    <li><input type="radio" name="wheelwidth" value=""> 8</li> 
+                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 7</li>
+                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li> 
                                                     @endforelse 
                                                 </ul>
                                             </div>
@@ -282,11 +284,12 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($brands as $brand)
-                                                    <li><input type="radio" name="brand" class="brand" value="{{$brand->brand}}" @if(@Request::get('brand') == $brand->brand) checked @endif> {{$brand->brand.'('.$brand->total.')'}} 
+                                                    <li><input type="checkbox" name="brand[]" class="brand" value="{{$brand->brand}}" 
+        @if(in_array($brand->brand,json_decode(base64_decode(@Request::get('brand')?:''))?:[])) checked @endif> {{$brand->brand.'('.$brand->total.')'}} 
                                                     </li>
                                                     @empty
-                                                    <li><input type="radio" name="brand" value=""> 7</li>
-                                                    <li><input type="radio" name="brand" value=""> 8</li> 
+                                                    <li><input type="checkbox" name="brand[]" value=""> 7</li>
+                                                    <li><input type="checkbox" name="brand[]" value=""> 8</li> 
                                                     @endforelse 
                                                 </ul>
                                             </div>
@@ -373,7 +376,7 @@
                                                 <span class="price-tax">Ex Tax: $85.00</span>
                                             </div> -->
                                             @if($car_images)
-                                            <button class="btn btn-primary {{(file_exists(front_back_path($wheel->image)))?'':'disabled'}}" data-toggle="modal" data-target="#myModal{{$key}}" >See On Your Car</button>
+                                            <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}}  data-target="#myModal{{$key}}" >See On Your Car</button>
                                             @endif
                                         </div>
                                         <div class="button-group">
