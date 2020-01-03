@@ -101,7 +101,7 @@
         <div class="col-sm-6 logo">
           <div class="header">
               <div id="logo">
-                  <a href=""><img src="image/logo.png" title="Your Store" alt="Your Store" class="img-responsive" /></a>
+                  <a href="{{url('/')}}"><img src="image/logo.png" title="Your Store" alt="Your Store" class="img-responsive" /></a>
               </div>
           </div>
         </div>
