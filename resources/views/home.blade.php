@@ -1,11 +1,10 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
 
+@section('shop_by_vehicle_css') 
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+@endsection
 
-<style>
-.slick-slide img {
-  height: auto !important;
-}
-</style>
+@section('content')   
 
     <div class="header-content-title">
     </div>
@@ -325,59 +324,9 @@
         </div>
 
 
-</div> 
+</div>    
+@endsection
 
-
-
-    <style>
-    .carousel-control 			 { width:  4%; }
-    .carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
-    @media (max-width: 767px) {
-    	.carousel-inner .active.left { left: -100%; }
-    	.carousel-inner .next        { left:  100%; }
-    	.carousel-inner .prev		 { left: -100%; }
-    	.active > div { display:none; }
-    	.active > div:first-child { display:block; }
-
-    }
-    @media (min-width: 767px) and (max-width: 992px ) {
-    	.carousel-inner .active.left { left: -50%; }
-    	.carousel-inner .next        { left:  50%; }
-    	.carousel-inner .prev		 { left: -50%; }
-    	.active > div { display:none; }
-    	.active > div:first-child { display:block; }
-    	.active > div:first-child + div { display:block; }
-    }
-    @media (min-width: 992px ) {
-    	.carousel-inner .active.left { left: -25%; }
-    	.carousel-inner .next        { left:  25%; }
-    	.carousel-inner .prev		 { left: -25%; }
-    }
-    #special-product {
-        padding: 50px 0px !important;
-    }
-    </style>
-
-
-
-
-      <script>
-      $('.carousel[data-type="multi"] .item').each(function(){
-        var next = $(this).next();
-        if (!next.length) {
-          next = $(this).siblings(':first');
-        }
-        next.children(':first-child').clone().appendTo($(this));
-
-        for (var i=0;i<2;i++) {
-          next=next.next();
-          if (!next.length) {
-          	next = $(this).siblings(':first');
-        	}
-
-          next.children(':first-child').clone().appendTo($(this));
-        }
-      });
-      </script>
-
+@section('shop_by_vehicle_scripts') 
+    <script src="{{ asset('js/wheels.js') }}"></script>
 @endsection
