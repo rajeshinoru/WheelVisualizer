@@ -150,7 +150,7 @@
 
                                     <div class="thumb-description">
                                         <div class="caption">
-                                            <h4><a href="{{route('wheels')}}?brand={{$wheel->brand}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
+                                            <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($wheel->brand)))}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
                                             <!-- <h6><a href="">Accessories</a></h6> -->
                                             <!-- <div class="rating">
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
@@ -225,7 +225,7 @@
 
                                     <div class="thumb-description">
                                         <div class="caption">
-                                            <h4><a href="{{route('wheels')}}?brand={{$branddetail['brand']}}">{{$branddetail['style'] }} <br> {{'Diameter : '.$branddetail['wheeldiameter']}}</a></h4> 
+                                            <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">{{$branddetail['style'] }} <br> {{'Diameter : '.$branddetail['wheeldiameter']}}</a></h4> 
                                         </div>
                                         <div class="button-group">
                                             <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -281,7 +281,7 @@
                         @foreach($brandImages as $branddetail)
                         <div class="col-sm-4 news-pro">
                             <div class="col-sm-6 news-img"><img src="{{asset($branddetail['image'])}}" style="width: 100%;"></div>
-                            <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{$branddetail['brand']}}">
+                            <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">
                                 <h2 class="news-title"><b>{{$branddetail['style']}}</b></h2> 
                                 <h2 class="news-title">{{'Diameter : '.$branddetail['wheeldiameter']}}</h2> </a>
                             </div>
