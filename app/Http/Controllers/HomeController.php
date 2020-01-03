@@ -43,7 +43,7 @@ class HomeController extends Controller
 
             $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style'); 
     
-            if(isset($request->brand) && $request->brand)
+            if(isset($request->brand) && $request->brand) 
                 $Wheels = $Wheels->whereIn('brand',json_decode(base64_decode($request->brand)));
 
             if(isset($request->diameter) && $request->diameter)

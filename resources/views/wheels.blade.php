@@ -325,7 +325,7 @@
                     @foreach($brandImages as $branddetail)
                     <div class="col-sm-4 news-pro">
                         <div class="col-sm-6 news-img"><img src="{{asset($branddetail['image'])}}" style="width: 100%;"></div>
-                        <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{$branddetail['brand']}}">
+                        <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">
                                 <h2 class="news-title"><b>{{$branddetail['style']}}</b></h2>
                                 <h2 class="news-title">{{'Diameter : '.$branddetail['wheeldiameter']}}</h2>
                             </a>

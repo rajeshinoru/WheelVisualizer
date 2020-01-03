@@ -94,7 +94,7 @@
                     <div class="col-sm-6">
                         <ul class="list-unstyled foot-left">
                             @foreach($brandnames as $name)
-                            <li><a href="{{route('wheels')}}?brand={{$name['brand']}}">{{$name['style']}}</a></li> 
+                            <li><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($name['brand'])))}}">{{$name['style']}}</a></li> 
                             @endforeach
                         </ul>
                     </div>
