@@ -44,14 +44,10 @@ class HomeController extends Controller
             $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style'); 
     
             if(isset($request->brand) && $request->brand)
-                // dd(json_decode(base64_decode($request->brand)));
-                 // $Wheels = $Wheels->where('brand',$request->brand);
                 $Wheels = $Wheels->whereIn('brand',json_decode(base64_decode($request->brand)));
 
             if(isset($request->diameter) && $request->diameter)
-                // $Wheels = $Wheels->where('wheeldiameter',$request->diameter);
                 $Wheels = $Wheels->whereIn('wheeldiameter',json_decode(base64_decode($request->diameter)));
-                // dd(json_decode(base64_decode($request->diameter)));
 
             if(isset($request->width) && $request->width)
                 $Wheels = $Wheels->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
@@ -61,7 +57,6 @@ class HomeController extends Controller
 
 
             $Wheels = $Wheels->inRandomOrder()->paginate(9); 
-            // dd($Wheels);
             ///Brand with count
             $brands = Wheel::select('brand', \DB::raw('count(*) as total'))->groupBy('brand')->get()->sortBy('brand'); 
 
