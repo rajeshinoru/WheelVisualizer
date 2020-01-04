@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
 @endsection 
 @section('content')  
-
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -156,14 +155,14 @@
                         <div class="product-layouts">
                             <div class="product-thumb transition">
                                 <div class="image">
-                                    <img class="image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
-                                    <img class="image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="lazyload blur-up image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="lazyload blur-up image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
                                     <div class="sale-icon"><a>Sale</a></div>
                                 </div>
 
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4><a href="{{route('wheels')}}?brand={{$wheel->brand}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
+                                        <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($wheel->brand)))}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
                                         <!-- <h6><a href="">Accessories</a></h6> -->
                                         <!-- <div class="rating">
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
@@ -368,12 +367,11 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 @section('shop_by_vehicle_scripts') 
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('js/shop_by_vehicle.js') }}"></script>
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script> 
     <script src="{{ asset('js/wheels.js') }}"></script>  
+
 @endsection 

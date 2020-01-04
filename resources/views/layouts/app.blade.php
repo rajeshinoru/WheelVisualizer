@@ -30,6 +30,7 @@
 <body>
     <main>
 
+        <div class="se-pre-con"></div>
         <section>
             <div class="container-fluid home-page">
               @include('include.header')
@@ -37,10 +38,11 @@
                 @include('include.brands')
                 @include('include.footer')
             </div>
+
         </section>
     </main>
     <!-- Main End -->
-    <!-- Javascript Start -->
+    <!-- Javascript Start --> 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -53,9 +55,13 @@
     <script src="{{ asset('js/swiper.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     
-
-    
-
+    <script type="text/javascript">
+        // Wait for window load
+        $(window).load(function() {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+    </script>
 
     @yield('shop_by_vehicle_scripts')
 
