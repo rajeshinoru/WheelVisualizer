@@ -190,9 +190,11 @@
                                         <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
                                             <span title="Add to compare">Add to compare</span>
                                         </button>
-                                        <button class="btn-quickview" type="button" title="Quick View" onclick="ot_quickview.ajaxView('index2ebe.html?route=product/product&amp;product_id=46')"> <i class="fa fa-eye"></i>
+                                        <a href="{{asset(@$wheel->image)}}" target="_blank">
+                                        <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
                                             <span>Quick View</span>
                                         </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
