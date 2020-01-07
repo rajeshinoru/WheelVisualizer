@@ -155,8 +155,8 @@
                         <div class="product-layouts">
                             <div class="product-thumb transition">
                                 <div class="image">
-                                    <img class="lazyload blur-up image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
-                                    <img class="lazyload blur-up image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
                                     <div class="sale-icon"><a>Sale</a></div>
                                 </div>
 
@@ -190,11 +190,11 @@
                                         <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
                                             <span title="Add to compare">Add to compare</span>
                                         </button>
-                                        <a href="{{asset(@$wheel->image)}}" target="_blank">
+                                        
                                         <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
                                             <span>Quick View</span>
                                         </button>
-                                        </a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -373,7 +373,7 @@
 @section('shop_by_vehicle_scripts') 
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('js/shop_by_vehicle.js') }}"></script>
+    <script src="{{ asset('js/popImg.js') }}"></script>
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script> 
     <script src="{{ asset('js/wheels.js') }}"></script>  
-
 @endsection 
