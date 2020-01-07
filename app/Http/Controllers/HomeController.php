@@ -53,8 +53,7 @@ class HomeController extends Controller
                 $Wheels = $Wheels->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
 
             if(isset($request->search))
-                $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%'); 
-
+                $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
 
             $Wheels = $Wheels->inRandomOrder()->paginate(9); 
             ///Brand with count
@@ -62,8 +61,7 @@ class HomeController extends Controller
 
             ///wheeldiameter with count 
             if(isset($request->brand) && $request->brand)
-                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))
-            ->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
+                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
             else 
                 $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter'); 
 
@@ -131,7 +129,7 @@ class HomeController extends Controller
     public function selectCarByColor(Request $request)
     { 
         try{
-            
+            ///// Based On Car color 
             $data = CarImage::select('image','car_id')->wherecar_id($request->vif)->wherecolor_code($request->code)->first();
             return response()->json(['data' => $data]);
 
