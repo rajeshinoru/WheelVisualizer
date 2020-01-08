@@ -155,8 +155,8 @@
                         <div class="product-layouts">
                             <div class="product-thumb transition">
                                 <div class="image">
-                                    <img class="image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
-                                    <img class="image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="wheelImage image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="wheelImage image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
                                     <div class="sale-icon"><a>Sale</a></div>
                                 </div>
 
@@ -325,13 +325,14 @@
                 <div class="row">
                     @foreach($brandImages as $branddetail)
                     <div class="col-sm-4 news-pro">
-                        <div class="col-sm-6 news-img"><img src="{{asset($branddetail['image'])}}" style="width: 100%;"></div>
+                        <div class="col-sm-6 news-img"><img class="wheelImage" src="{{asset($branddetail['image'])}}" style="width: 100%;"></div>
                         <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">
                                 <h2 class="news-title"><b>{{$branddetail['style']}}</b></h2>
                                 <h2 class="news-title">{{'Diameter : '.$branddetail['wheeldiameter']}}</h2>
                             </a>
                         </div>
                     </div>
+                    
                     @endforeach
                 </div>
             </div>
