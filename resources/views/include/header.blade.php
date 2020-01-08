@@ -139,10 +139,10 @@
                 <ul class="nav navbar-nav navbar">
                   <li class="dropdown-nav"><a title="WHEELS" href="{{route('forms')}}" class="dropdown-toggle" data-toggle="dropdown">WHEELS <span class="caret"></span></a>
                     <ul class="dropdown-menu nav-dropdown">
-                      <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li> 
+                      <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                       @forelse(wheelbrands() as $brand)
                       <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}">{{$brand->brand}}</a></li>
-                      @empty 
+                      @empty
                       @endforelse
                     </ul>
                   </li>
@@ -167,4 +167,3 @@
     </nav>
 
 </header>
-

@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('js/jquery/magnific/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('js/jquery/datetimepicker/bootstrap-datetimepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('js/font-awesome/css/font-awesome.min.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('js/font-awesome/css/font-awesome.min.css') }}">
 
-    
+
     @yield('styles')
     @yield('shop_by_vehicle_css')
 </head>
@@ -42,7 +42,7 @@
         </section>
     </main>
     <!-- Main End -->
-    <!-- Javascript Start --> 
+    <!-- Javascript Start -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -54,7 +54,7 @@
     <script src="{{ asset('js/swiper.js') }}"></script>
     <script src="{{ asset('js/swiper.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    
+
     <script type="text/javascript">
         // Wait for window load
         $(window).load(function() {

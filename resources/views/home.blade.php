@@ -1,10 +1,10 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 
-@section('shop_by_vehicle_css') 
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+@section('shop_by_vehicle_css')
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 @endsection
 
-@section('content')   
+@section('content')
 
     <div class="header-content-title">
     </div>
@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <br>  
+    <br>
     <!-- BAnner Down Sestion Start -->
     <section id="produst">
         <div class="container">
@@ -131,7 +131,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </aside> 
+                        </aside>
                     </div>
 
                 </div>--}}
@@ -163,7 +163,7 @@
                                             <!-- <div class="price">
                                                 <span class="price-new">$104.00</span> <span class="price-old">$1,202.00</span>
                                                 <span class="price-tax">Ex Tax: $85.00</span>
-                                            </div> --> 
+                                            </div> -->
                                         </div>
                                         <div class="button-group">
                                             <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -189,7 +189,7 @@
                         {{$Wheels->appends(['page' => @Request::get('page')])->links()}}
 
                     </div>
-                    <br> 
+                    <br>
                 </div>
             </div>
         </div>
@@ -209,7 +209,7 @@
                 <a class="left fa fa-chevron-left btn btn-success" href="#myCarousel" data-slide="prev"></a>
                 <a class="right fa fa-chevron-right btn btn-success" href="#myCarousel" data-slide="next"></a>
               </div>
-          <div class="carousel-inner"> 
+          <div class="carousel-inner">
             @forelse(wheelbrands($arraysplit=4) as $key1 => $brandImages)
 
             <div class="item {{$key1==0? 'active' : ''}}">
@@ -225,7 +225,7 @@
 
                                     <div class="thumb-description">
                                         <div class="caption">
-                                            <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">{{$branddetail['style'] }} <br> {{'Diameter : '.$branddetail['wheeldiameter']}}</a></h4> 
+                                            <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">{{$branddetail['style'] }} <br> {{'Diameter : '.$branddetail['wheeldiameter']}}</a></h4>
                                         </div>
                                         <div class="button-group">
                                             <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -248,8 +248,8 @@
                               @endforeach
                </div>
               @endforeach
-            
-              
+
+
           </div>
         </div>
         </div>
@@ -274,7 +274,7 @@
         </div>
         <div id="carousel-example2" class="carousel slide hidden-xs" data-ride="carousel">
             <!-- Wrapper for slides -->
-            <div class="carousel-inner"> 
+            <div class="carousel-inner">
                  @forelse(wheelbrands($arraysplit=3) as $key => $brandImages)
                 <div class="item {{$key==0? 'active' : ''}}">
                     <div class="row">
@@ -282,13 +282,13 @@
                         <div class="col-sm-4 news-pro">
                             <div class="col-sm-6 news-img"><img src="{{asset($branddetail['image'])}}" style="width: 100%;"></div>
                             <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">
-                                <h2 class="news-title"><b>{{$branddetail['style']}}</b></h2> 
+                                <h2 class="news-title"><b>{{$branddetail['style']}}</b></h2>
                                 <h2 class="news-title">{{'Diameter : '.$branddetail['wheeldiameter']}}</h2> </a>
                             </div>
                         </div>
-                        @endforeach 
+                        @endforeach
                     </div>
-                </div> 
+                </div>
                 @empty
                 <div class="item active">
                     <div class="row">
@@ -318,15 +318,142 @@
                 </div>
 
                     </div>
-                </div> 
+                </div>
                 @endforelse
             </div>
         </div>
+</div>
 
 
-</div>    
+
+
+
+<!-- New Latest News Start -->
+<section id="special-product">
+    <div class="container">
+        <div class="col-sm-12 sub-head">
+            <h1>Latest News New</h1>
+        </div>
+        <div class="col-md-12">
+            <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel2">
+                <div class="controls pull-right hidden-xs">
+                    <a class="left fa fa-chevron-left btn btn-success" href="#myCarousel2" data-slide="prev"></a>
+                    <a class="right fa fa-chevron-right btn btn-success" href="#myCarousel2" data-slide="next"></a>
+                </div>
+                <div class="carousel-inner">
+
+                    <div class="item">
+                        <div class="col-sm-4 news-pro">
+                          <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                          <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                          <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                          <h2 class="news-title">Diameter : 12</h2> </a>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 news-pro">
+                          <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                          <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                          <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                          <h2 class="news-title">Diameter : 12</h2> </a>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 news-pro">
+                          <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                          <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                          <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                          <h2 class="news-title">Diameter : 12</h2> </a>
+                          </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item active left">
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="item  next left">
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="item">
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 news-pro">
+                        <div class="col-sm-6 news-img"><img src="http://127.0.0.1:8000/storage/wheels/Ultra_HunterTruck_C_R_UL1956416475_12.jpg" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="http://127.0.0.1:8000/wheels?brand=WyJVbHRyYSJd">
+                        <h2 class="news-title"><b>Ultra HunterTruck</b></h2>
+                        <h2 class="news-title">Diameter : 12</h2> </a>
+                        </div>
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- New Latest News End -->
+
+
+
+
 @endsection
 
-@section('shop_by_vehicle_scripts') 
+@section('shop_by_vehicle_scripts')
     <script src="{{ asset('js/wheels.js') }}"></script>
 @endsection
