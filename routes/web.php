@@ -10,13 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index'); 
 
 
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
-Route::get('/fold-fil', 'HomeController@fold_fil');
+Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');
 Route::get('/wheels', 'HomeController@wheels')->name('wheels');
 Route::get('/csvuplaod', 'HomeController@csv_upload')->name('csvuplaod');
@@ -24,7 +24,8 @@ Route::get('/csvuplaodcolor', 'HomeController@csv_upload_color')->name('csvuplao
 Route::get('/wheels-data', 'HomeController@wheels')->name('wheels_data');
 Route::get('/carimages', 'HomeController@carimages')->name('carimages');
 Route::get('/wheelsNameChange', 'HomeController@wheelsNameChange')->name('wheelsNameChange');
-Route::get('/notFoundCars', 'HomeController@notFoundCars')->name('notFoundCars');
+Route::get('/notFoundCars', 'HomeController@notFoundCars')->name('notFoundCars'); 
+Route::get('/fold-fil', 'HomeController@fold_fil');
 
 Route::resource('wheel', 'WheelController');
 

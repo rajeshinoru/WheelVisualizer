@@ -6,13 +6,16 @@
 <div class="row">
   <div class="col-sm-8">
     <div class="col-sm-4">
-    <h1 class="text-right">NEWSLETTER</h1>
+    <h1 class="text-right">Enquiry</h1>
     </div>
     <div class="col-sm-8">
       <div class="search footer-search">
           <div id="header-search" class="input-group">
-              <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg">
-              <span class="input-group-btn"><button type="button" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Submit</button></span>
+
+            <form action="{{route('newsletter')}}" method="get">
+              <input type="email" name="email" value="" placeholder="Enter email" class="form-control input-lg">
+              <span class="input-group-btn"><button type="submit" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Submit</button></span>
+              </form>
           </div>
       </div>
     </div>

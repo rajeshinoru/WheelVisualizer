@@ -36,6 +36,15 @@ class HomeController extends Controller
     {
         return view('forms');
     }
+    public function chekcr()
+    {
+        return view('chekcr');
+    }
+    public function newsletter()
+    {
+        $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
+        return view('forms',compact('Wheels')); 
+    }
     public function wheels(Request $request)
     {
         try{ 
