@@ -11,6 +11,7 @@
     <div class="col-sm-8">
       <div class="search footer-search">
           <div id="header-search" class="input-group">
+
             <form action="{{route('newsletter')}}" method="get">
               <input type="email" name="email" value="" placeholder="Enter email" class="form-control input-lg">
               <span class="input-group-btn"><button type="submit" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Submit</button></span>

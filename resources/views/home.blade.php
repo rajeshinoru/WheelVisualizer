@@ -259,7 +259,7 @@
 <!-- New Product End -->
 
 @include('include.latestproducts')
-
+                  
 @endsection
 
 @section('shop_by_vehicle_scripts')

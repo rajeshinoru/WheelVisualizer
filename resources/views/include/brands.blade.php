@@ -12,3 +12,6 @@
           <div class="slide"><img src="{{asset('/storage/brands/e.png')}}"></div> 
        </section>
     </div>
+
+
+    <script src="{{ asset('js/slick.js') }}"></script>

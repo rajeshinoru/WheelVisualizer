@@ -32,9 +32,7 @@
         margin: 30px auto;
     }
 
-    .col-sm-8.model-car img {
-        width: 100% !important;
-    }
+    
 
     .model-car {
         font-size: 15px !important;
@@ -139,4 +137,48 @@
 
     border-radius: 0% !important;
 
+}
+
+.car_image_12993
+{
+    width: 152% !important;
+}
+
+@media screen and (max-width: 767px)
+{
+    .modal-dialog
+    {
+        width: 100% !important;
+        margin: 0% auto !important;
+    }
+    .car_image_12993 
+    {
+        width: 100% !important;
+    }
+    #myModal3,#myModal0 
+    {
+        padding-right: 0px !important;
+    }
+    .front img {
+        width: 50px;
+        position: absolute;
+        content: '';
+        top: 33.33%;
+        left: 39.3%;
+        bottom: 0px;
+        right: 0;
+        transform: perspective(0px) rotateY(34deg);
+        object-fit: scale-down;
+    }
+    .back img {
+        width: 45px;
+        position: absolute;
+        content: '';
+        top: 32%;
+        left: 71.9%;
+        bottom: 0;
+        right: 0;
+        transform: perspective(382px) rotateY(54deg);
+        object-fit: scale-down;
+    }
 }

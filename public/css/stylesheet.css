@@ -5178,7 +5178,7 @@ fieldset[disabled] .btn-primary:hover {
 
 .btn-success {
   color: #000;
-background: transparent;
+background: transparent !important;
 border: 1px solid #000;
 margin: 10px 5px !important;
 }
@@ -6033,7 +6033,7 @@ h2.price {
     }
     .navbar-nav {
         margin: 0;
-        padding: 10px 20px;
+        padding: 0px 0px;
     }
     #menu .nav li.dropdown > a,
     #menu .nav > li.dropdown > span {
@@ -8792,4 +8792,80 @@ display: none;
 .nav > li > a
 {
     font-size: 12px !important;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 0px;
+    z-index: 999999;
+  }
+  #myHeader {
+      background:#000 !important;
+  }
+
+/* Header Style Start */
+  .row.new-nav {
+    background:#000 !important;
+}
+.navbar-brand { position: relative; z-index: 2; }
+.navbar{margin-bottom: 0px !important;}
+.navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; }
+.navbar .navbar-collapse { position: relative; }
+.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
+.navbar-toggle .icon-bar
+{
+  background: #000 !important;
+}
+.navbar-toggle
+{
+  background-color: #fff !important;
+  margin-right:25px !important;
+}
+.navbar-toggle
+{
+  border-radius:3px !important;
+}
+.btn.btn-inverse.btn-block.btn-lg
+{
+  padding:15px 15px !important;
+}
+.fa-shopping-cart::before
+{
+  font-size: 18px !important;
+  padding-left: 10px !important;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #333 !important;
+    color:#fff !important;
+    transition: 1s all;
+}
+.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
+.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
+.navbar.navbar-inverse .nav-collapse { background-color: #222; }
+.navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
+.nav-collapse>li { float: right; }
+.navbar-nav > li > a{color:#fff !important;}
+.col-sm-8.nav-bar {
+    padding: 0px 0px !important;
+}
+@media screen and (max-width: 767px) {
+    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; }
+
+    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
+    .navbar .nav-collapse .navbar-form { margin: 0; }
+    .nav-collapse>li { float: none; }
+    .btn.btn-inverse.btn-block.btn-lg
+    {
+        display: none !important;
+    }
+}
+
+/* Header Style End */
+@media screen and (max-width: 767px)
+{
+    .nav.navbar-nav.navbar {
+        text-align: center !important;
+    }
 }
