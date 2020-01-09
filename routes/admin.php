@@ -5,8 +5,16 @@ Route::get('/home', function () {
     $users[] = Auth::guard()->user();
     $users[] = Auth::guard('admin')->user();
 
-    //dd($users);
+    // dd($users);
 
     return view('admin.home');
 })->name('home');
 
+
+
+Route::get('/', function () {
+    return view('admin.home');
+})->name('home');
+
+
+Route::resource('user', 'Resource\UserResource');
