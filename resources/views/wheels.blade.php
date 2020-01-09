@@ -225,7 +225,7 @@
                                 <div class="modal-body">
                                     <div class="row main-model-body">
                                         <div class="col-sm-8 model-car">
-                                            <img class="car_image_{{$car_images->car_id}} " src="{{asset($car_images->image)}}" style="width: 152% !important;">
+                                            <img class="car_image_{{$car_images->car_id}} " src="{{asset($car_images->image)}}" style="">
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
                                         <div class="car-wheel">
@@ -376,4 +376,5 @@
     <script src="{{ asset('js/popImg.js') }}"></script>
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script> 
     <script src="{{ asset('js/wheels.js') }}"></script>  
+    <script src="{{ asset('js/slick.js') }}"></script>
 @endsection 

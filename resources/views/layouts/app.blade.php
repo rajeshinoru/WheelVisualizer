@@ -137,7 +137,7 @@
         galleryTop.controller.control = galleryThumbs;
         galleryThumbs.controller.control = galleryTop;
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script> -->
     <script>
     $(document).ready(function(){
     $('.customer-logos').slick({
