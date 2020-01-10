@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 
 Route::resource('user', 'Resource\UserResource');
+Route::resource('wheel', 'Resource\WheelResource');
 
 
 Route::get('/setting', 'SettingsController@index')->name('settings.index'); 

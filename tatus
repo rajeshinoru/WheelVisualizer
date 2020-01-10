@@ -1,0 +1,49 @@
+[1mdiff --git a/resources/views/admin/include/header.blade.php b/resources/views/admin/include/header.blade.php[m
+[1mindex 2e77f0a..ec2e4b4 100644[m
+[1m--- a/resources/views/admin/include/header.blade.php[m
+[1m+++ b/resources/views/admin/include/header.blade.php[m
+[36m@@ -259,12 +259,12 @@[m
+                                         </div>[m
+                                     </div>[m
+                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">[m
+[31m-                                        <ul class="breadcome-menu">[m
+[32m+[m[32m                                      <!--   <ul class="breadcome-menu">[m
+                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>[m
+                                             </li>[m
+                                             <li><span class="bread-blod">Dashboard</span>[m
+                                             </li>[m
+[31m-                                        </ul>[m
+[32m+[m[32m                                        </ul> -->[m
+                                     </div>[m
+                                 </div>[m
+                             </div>[m
+[1mdiff --git a/resources/views/admin/include/sidebar.blade.php b/resources/views/admin/include/sidebar.blade.php[m
+[1mindex 1067640..69e7b09 100644[m
+[1m--- a/resources/views/admin/include/sidebar.blade.php[m
+[1m+++ b/resources/views/admin/include/sidebar.blade.php[m
+[36m@@ -25,6 +25,13 @@[m
+                                 <li><a title="Add Professor" href="{{url('admin/home')}}"><span class="mini-sub-pro">Add User</span></a></li>[m
+                             </ul>[m
+                         </li>[m
+[32m+[m[32m                        <li>[m
+[32m+[m[32m                            <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-star icon-wrap"></span> <span class="mini-click-non">Wheels</span></a>[m
+[32m+[m[32m                            <ul class="submenu-angle" aria-expanded="false">[m
+[32m+[m[32m                                <li><a title="All Professors" href="{{url('admin/wheel')}}"><span class="mini-sub-pro">Wheels List</span></a></li>[m
+[32m+[m[32m                                <!-- <li><a title="Add Professor" href="{{url('admin/home')}}"><span class="mini-sub-pro">Add Wheel</span></a></li> -->[m
+[32m+[m[32m                            </ul>[m
+[32m+[m[32m                        </li>[m
+                         <li>[m
+                             <a title="Landing Page" href="{{url('admin/setting')}}" aria-expanded="false"><span class="educate-icon educate-settings icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Settings</span></a>[m
+                         </li>[m
+[1mdiff --git a/routes/admin.php b/routes/admin.php[m
+[1mindex 9965023..44fd812 100644[m
+[1m--- a/routes/admin.php[m
+[1m+++ b/routes/admin.php[m
+[36m@@ -18,6 +18,7 @@[m [mRoute::get('/', function () {[m
+ [m
+ [m
+ Route::resource('user', 'Resource\UserResource');[m
+[32m+[m[32mRoute::resource('wheel', 'Resource\WheelResource');[m
+ [m
+ [m
+ Route::get('/setting', 'SettingsController@index')->name('settings.index'); [m
