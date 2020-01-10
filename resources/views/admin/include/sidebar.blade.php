@@ -18,15 +18,15 @@
 
                             </ul>
                         </li>
-<!--                         <li>
-                            <a title="Landing Page" href="" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Event</span></a>
-                        </li> -->
                         <li>
                             <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Users</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Professors" href="{{url('admin/user')}}"><span class="mini-sub-pro">All Users</span></a></li>
                                 <li><a title="Add Professor" href="{{url('admin/home')}}"><span class="mini-sub-pro">Add User</span></a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a title="Landing Page" href="{{url('admin/setting')}}" aria-expanded="false"><span class="educate-icon educate-settings icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Settings</span></a>
                         </li>
 
                     </ul>

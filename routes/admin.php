@@ -18,3 +18,7 @@ Route::get('/', function () {
 
 
 Route::resource('user', 'Resource\UserResource');
+
+
+Route::get('/setting', 'SettingsController@index')->name('settings.index'); 
+Route::post('/setting/store', 'SettingsController@store')->name('settings.store'); 
