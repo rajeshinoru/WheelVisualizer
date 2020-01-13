@@ -72,19 +72,19 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="review-content-section">
                                                                 <div id="dropzone1" class="pro-ad">
-                                                                    <form action="{{url('/admin/user/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" novalidate="novalidate" method="POST">
+                                                                    <form action="{{url('/admin/user/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST">
                                                                         {{@csrf_field()}}
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="fname">First Name</label>
-                                                                                    <input name="fname" type="text" class="form-control" placeholder="First Name" value="">
+                                                                                    <input name="fname" type="text" class="form-control" placeholder="First Name" value="" required="">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="lname">Last Name</label>
-                                                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" value="">
+                                                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" value="" required="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -98,14 +98,14 @@
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="fname">Email</label>
-                                                                                    <input name="email"  type="email" class="form-control" placeholder="Email " value="">
+                                                                                    <input name="email"  type="email" class="form-control" placeholder="Email " value="" required="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-12">
                                                                                 <div class="payment-adress">
-                                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
 
                                                                                 </div>
                                                                             </div>
