@@ -58,7 +58,13 @@ class WheelResource extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            
+            $wheel = Wheel::find($id);
+            return response()->json(['status' => true,'data'=>$wheel]); 
+        } catch (Exception $e) {
+            return response()->json(['status' => fasle,'data'=>$wheel]); 
+        }
     }
 
     /**

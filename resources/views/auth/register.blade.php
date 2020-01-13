@@ -260,16 +260,30 @@
             {{csrf_field()}}
               <div class="form-group">
                   <label>
-                      <p class="label-txt">@lang('user.register.name')</p>
-                      <input type="text" class="input" name="name" required value="{{ old('name') }}">
+                      <p class="label-txt">@lang('user.register.fname')</p>
+                      <input type="text" class="input" name="fname" required value="{{ old('fname') }}">
                       <div class="line-box">
                           <div class="line"></div>
                       </div>
                   </label>
               </div>
-              @if ($errors->has('name'))
+              @if ($errors->has('fname'))
                   <span class="help-block">
-                      <strong>{{ $errors->first('name') }}</strong>
+                      <strong>{{ $errors->first('fname') }}</strong>
+                  </span>
+              @endif
+              <div class="form-group">
+                  <label>
+                      <p class="label-txt">@lang('user.register.lname')</p>
+                      <input type="text" class="input" name="lname" required value="{{ old('lname') }}">
+                      <div class="line-box">
+                          <div class="line"></div>
+                      </div>
+                  </label>
+              </div>
+              @if ($errors->has('lname'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('lname') }}</strong>
                   </span>
               @endif
               <div class="form-group">

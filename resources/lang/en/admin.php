@@ -23,14 +23,7 @@ return [
         'no_account' => 'Dont have an Account?',
         'login' => 'Login',
     ],
-    'register' => [
-        'password_confirmation' => 'Confirm Password', 
-        'i_agree' => ' I agree to the Terms and Conditions', 
-        'register' => 'Register', 
-        'name' => 'Name', 
-        'fname' => 'First Name', 
-        'lname' => 'Last Name', 
-        'have_account' => 'Do you have an Account?', 
+    'error' => [
+        'something' => 'Something went wrong!!', 
     ]
-
 ];

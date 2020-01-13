@@ -94,7 +94,29 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
+.modal-dialog.admin-form {
+    width: 80% !important;
+}
+.modal-dialog.admin-form label {
+    float: left !important;
+}
+.close {
+    background: transparent !important;
+    border: transparent !important;
+    color: #000 !important;
+}
+.admin-form .btn.btn-default
+{
+  color:#fff !important;
+}
+@media (max-width: 767px)
+{
+  .modal-dialog.admin-form
+  {
+    width: 100% !important;
+    margin: 0px 0px !important;
+  }
+}
 
 
 

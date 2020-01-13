@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Resource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Hash;
 class UserResource extends Controller
 {
     /**
@@ -35,8 +36,14 @@ class UserResource extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        $user  = User::create([
+            'name' => $request->fname." ".$request->lname,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'password' => Hash::make('123456'),
+        ]);
+        return back()->with('flash_success','Successfully Created');
     }
 
     /**
