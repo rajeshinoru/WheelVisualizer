@@ -57,7 +57,7 @@
         ============================================ -->
     <link rel="stylesheet" href="/admin/css/style.css">
 
-    <link rel="stylesheet" href="/admin/css/chosen.min.css">
+    <link rel="stylesheet" href="/admin/css/select2.min.css">
     <!-- responsive CSS
         ============================================ -->
     <link rel="stylesheet" href="/admin/css/responsive.css">
@@ -178,7 +178,7 @@
         ============================================ -->
     <!-- <script src="/admin/js/tawk-chat.js"></script> -->
 
-    <script src="/admin/js/chosen.min.js"></script> 
+    <script src="/admin/js/select2.min.js"></script> 
 
     @yield('custom_scripts')
 

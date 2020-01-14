@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="year">Brand</label>
+                                <label for="year">Year</label>
                                 <select class="form-control select2 Year" name="year">
                                     <option value="" selected>Select Year</option>
                                     @for($y=date('Y');$y>=1980;$y--)
@@ -99,17 +99,61 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="lname">Mobile</label>
-                                <input type="text" name="mobile" class="form-control" placeholder="" value="">
+                                <label for="lname">Part Number</label>
+                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="fname">Email</label>
-                                <input name="email"  type="email" class="form-control" placeholder="Email " value="" required="">
+                                <label for="fname">Style</label>
+                                <input type="text"  name="style" class="form-control" placeholder="Style " value="" required="">
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="lname">Diameter</label>
+                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="fname">Width</label>
+                                <input type="text"  name="wheelwidth" class="form-control" placeholder="Width " value="" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label for="fname">Wheel Image</label>
+                            <br>
+                            <div class="form-group alert-up-pd">
+                                <div class="dz-message needsclick download-custom">
+                                    <i class="fa fa-download edudropnone" aria-hidden="true"></i>
+                                    <h2 class="edudropnone">Drop image here or click to upload.</h2>
+                                    <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
+                                    </p>
+                                    <input name="imageico" class="hd-pro-img" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label for="fname">Front Back Image</label>
+                            <br>
+                            <div class="form-group alert-up-pd">
+                                <div class="dz-message needsclick download-custom">
+                                    <i class="fa fa-download edudropnone" aria-hidden="true"></i>
+                                    <h2 class="edudropnone">Drop image here or click to upload.</h2>
+                                    <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
+                                    </p>
+                                    <input name="imageico" class="hd-pro-img" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="payment-adress">

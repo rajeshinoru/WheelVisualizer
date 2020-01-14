@@ -37,7 +37,7 @@ class WheelResource extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
