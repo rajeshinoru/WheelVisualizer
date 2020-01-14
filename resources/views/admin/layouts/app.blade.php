@@ -56,9 +56,28 @@
     <!-- style CSS
         ============================================ -->
     <link rel="stylesheet" href="/admin/css/style.css">
+
+    <link rel="stylesheet" href="/admin/css/chosen.min.css">
     <!-- responsive CSS
         ============================================ -->
     <link rel="stylesheet" href="/admin/css/responsive.css">
+
+<style type="text/css">
+  .select2-container .select2-selection--single{height:34px !important;}
+  .select2-container--default .select2-selection--single{border: 1px solid #ccc !important;border-radius: 0px !important;}
+  .select2.select2-container.select2-container--default{margin: 10px 0px !important;width: 100% !important;}
+  .select2-selection__arrow{display: none !important;}
+  .select2-dropdown.select2-dropdown--below{margin: 0px 10px !important;width: 340px !important;}
+  .panel-heading{background:#000;color:#fff !important;cursor: pointer;font: 500 14px/25px "Poppins", Helvetica, sans-serif;margin: 0;
+      padding: 11px 15px;position: relative;text-transform: uppercase;text-align: left;border-radius: 0px;}
+  .menu-category{background: #ccc !important;}
+  .select2{padding: 0px 10px !important;}
+  @media (max-width: 767px)
+  {
+    .select2-dropdown.select2-dropdown--below{margin: 0px 10px !important;width: 480px !important;}
+  }
+</style>
+
     <!-- modernizr JS
         ============================================ -->
     <script src="/admin/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -158,6 +177,16 @@
     <!-- tawk chat JS
         ============================================ -->
     <!-- <script src="/admin/js/tawk-chat.js"></script> -->
+
+    <script src="/admin/js/chosen.min.js"></script> 
+
+    @yield('custom_scripts')
+
+    <script type="text/javascript">
+        
+      $('.select2').select2();
+      
+    </script>
 </body>
 
 </html>

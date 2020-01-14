@@ -14,8 +14,9 @@ class WheelResource extends Controller
      */
     public function index()
     {
-        $wheels = Wheel::select('part_no','brand','style','image','wheeltype','wheeldiameter','wheelwidth')->inRandomOrder()->paginate(10); ;
-        return view('admin.wheel.index',compact('wheels'));
+        $wheels = Wheel::select('part_no','brand','style','image','wheeltype','wheeldiameter','wheelwidth')->inRandomOrder()->paginate(10); 
+        $brands = Wheel::select('brand')->distinct('brand')->get();
+        return view('admin.wheel.index',compact('wheels','brands'));
     }
 
     /**

@@ -66,53 +66,63 @@
                                             </ul>
                                             <div id="myTabContent" class="tab-content custom-product-edit">
                                                 <div class="product-tab-list tab-pane fade active in" id="description2">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="review-content-section">
-                                                                <div id="dropzone1" class="pro-ad">
-                                                                    <form action="{{url('/admin/wheel/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST">
-                                                                        {{@csrf_field()}}
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="fname">First Name</label>
-                                                                                    <input name="fname" type="text" class="form-control" placeholder="First Name" value="" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="lname">Last Name</label>
-                                                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" value="" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="lname">Mobile</label>
-                                                                                    <input type="text" name="mobile" class="form-control" placeholder="(+91) Mobile Number " value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="fname">Email</label>
-                                                                                    <input name="email"  type="email" class="form-control" placeholder="Email " value="" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-12">
-                                                                                <div class="payment-adress">
-                                                                                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="review-content-section">
+            <div id="dropzone1" class="pro-ad">
+                <form action="{{url('/admin/wheel/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST">
+                    {{@csrf_field()}}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="year">Brand</label>
+                                <select class="form-control select2 Year" name="year">
+                                    <option value="" selected>Select Year</option>
+                                    @for($y=date('Y');$y>=1980;$y--)
+                                    <option value="{{$y}}">{{$y}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="brand">Brand</label>
+                                <select class="form-control select2 Brand" name="brand">
+                                    <option selected>Select Brand</option>
+                                    @foreach(@$brands as $key => $brand)
+                                    <option value="{{$brand->brand}}">{{$brand->brand}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="lname">Mobile</label>
+                                <input type="text" name="mobile" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="fname">Email</label>
+                                <input name="email"  type="email" class="form-control" placeholder="Email " value="" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="payment-adress">
+                                <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
                                                 </div>
                                             </div>
                                         </div>
