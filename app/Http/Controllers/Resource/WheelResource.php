@@ -17,7 +17,7 @@ class WheelResource extends Controller
      */
     public function index()
     {
-        $wheels = Wheel::select('part_no','brand','style','image','wheeltype','wheeldiameter','wheelwidth')->inRandomOrder()->paginate(10); 
+        $wheels = Wheel::select('id','part_no','brand','style','image','wheeltype','wheeldiameter','wheelwidth')->inRandomOrder()->paginate(10); 
         $brands = Wheel::select('brand')->distinct('brand')->get();
         return view('admin.wheel.index',compact('wheels','brands'));
     }
@@ -53,7 +53,7 @@ class WheelResource extends Controller
             'front_back_image' => 'required|mimes:png|max:5242880', 
         ]);
         try{  
-            
+
             $imagename = $request->image->getClientOriginalName();  
             $split_name = explode('.', $imagename);
             $front_back_image = $split_name[0].'.png';
@@ -68,9 +68,9 @@ class WheelResource extends Controller
                 'style' => $request->style, 
                 'wheeldiameter' => $request->wheeldiameter, 
                 'wheelwidth' => $request->wheelwidth, 
-                'image' => $imagename,
-                'frontimage' => $front_back_image,
-                'rearimage' => $front_back_image
+                'image' => '/storage/wheels'.$imagename,
+                'frontimage' => '/storage/wheels/front_back'.$front_back_image,
+                'rearimage' => '/storage/wheels/front_back'.$front_back_image
             ]);
             return back()->with('flash_success','Wheel Added successfully');
         }catch(Exception $e){
@@ -115,7 +115,46 @@ class WheelResource extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $this->validate($request, [
+            'year' => 'required|max:255',
+            'brand' => 'required|max:255', 
+            'finish' => 'required|max:255',
+            'part_no' => 'required|unique:wheels,part_no',
+            'style' => 'required|max:255',
+            'wheeldiameter' => 'required|max:255',
+            'wheelwidth' => 'required|max:255',
+            // 'image' => 'required|mimes:jpg,png|max:5242880', 
+            // 'front_back_image' => 'required|mimes:png|max:5242880', 
+        ]);
+        try{  
+            if($request->hasFile('image') && $request->hasFile('front_back_image') ){
+                $imagename = $request->image->getClientOriginalName();  
+                $split_name = explode('.', $imagename);
+                $front_back_image = $split_name[0].'.png';
+                $request->image->move(public_path('/storage/wheels'), $imagename);
+                $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image);  
+            }
+
+            $wheel  = Wheel::whereid($id)->first();
+            $wheel->year = $request->year;
+            $wheel->brand = $request->brand;
+            $wheel->finish = $request->finish; 
+            $wheel->part_no = $request->part_no; 
+            $wheel->style = $request->style; 
+            $wheel->wheeldiameter = $request->wheeldiameter; 
+            $wheel->wheelwidth = $request->wheelwidth;  
+            if($request->hasFile('image') && $request->hasFile('front_back_image') ){
+                $wheel->image = $imagename;
+                $wheel->frontimage = $front_back_image;
+                $wheel->rearimage = $front_back_image;
+            }
+            $wheel->save(); 
+
+            return back()->with('flash_success','Wheel Updated successfully');
+        }catch(Exception $e){
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
