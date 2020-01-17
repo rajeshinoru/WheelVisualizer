@@ -68,9 +68,9 @@ class WheelResource extends Controller
                 'style' => $request->style, 
                 'wheeldiameter' => $request->wheeldiameter, 
                 'wheelwidth' => $request->wheelwidth, 
-                'image' => '/storage/wheels'.$imagename,
-                'frontimage' => '/storage/wheels/front_back'.$front_back_image,
-                'rearimage' => '/storage/wheels/front_back'.$front_back_image
+                'image' => 'storage/wheels'.$imagename,
+                'frontimage' => 'storage/wheels/front_back'.$front_back_image,
+                'rearimage' => 'storage/wheels/front_back'.$front_back_image
             ]);
             return back()->with('flash_success','Wheel Added successfully');
         }catch(Exception $e){
