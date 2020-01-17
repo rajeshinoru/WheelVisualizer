@@ -117,7 +117,7 @@ class WheelResource extends Controller
      */
     public function update(Request $request, $id)
     { 
-        dd($request->all());
+        // dd($request->all());
         $this->validate($request, [
             // 'year' => 'required|max:255',
             'brand' => 'required|max:255', 
