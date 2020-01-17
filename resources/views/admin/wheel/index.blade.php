@@ -70,29 +70,35 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="review-content-section">
             <div id="dropzone1" class="pro-ad">
-                <form action="{{url('/admin/wheel/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST">
+                <form action="{{url('/admin/wheel/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
                     {{@csrf_field()}}
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="year">Year</label>
-                                <select class="form-control select2 Year" name="year">
-                                    <option value="" selected>Select Year</option>
+                                <select class="form-control select2 Year" name="year" required="">
+                                    <option >Select Year</option>
                                     @for($y=date('Y');$y>=1980;$y--)
-                                    <option value="{{$y}}">{{$y}}</option>
+                                    <option value="{{$y}}" @if(old('year') == $y) selected @endif >{{$y}}</option>
                                     @endfor
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="brand">Brand</label>
-                                <select class="form-control select2 Brand" name="brand">
-                                    <option selected>Select Brand</option>
+                                <select class="form-control select2 Brand" name="brand" required="">
+                                    <option >Select Brand</option>
                                     @foreach(@$brands as $key => $brand)
-                                    <option value="{{$brand->brand}}">{{$brand->brand}}</option>
+                                    <option value="{{$brand->brand}}" @if(old('brand') == $brand->brand) selected @endif>{{$brand->brand}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="fname">Finish</label>
+                                <input type="text" name="finish" class="form-control" placeholder="Finish"  required="" value="{{old('finish')}}">
                             </div>
                         </div>
                     </div>
@@ -100,13 +106,13 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="lname">Part Number</label>
-                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="">
+                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{old('part_no')}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="fname">Style</label>
-                                <input type="text"  name="style" class="form-control" placeholder="Style " value="" required="">
+                                <input type="text"  name="style" class="form-control" placeholder="Style "  value="{{old('style')}}" required="">
                             </div>
                         </div>
                     </div>
@@ -114,13 +120,13 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="lname">Diameter</label>
-                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="">
+                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{old('wheeldiameter')}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="fname">Width</label>
-                                <input type="text"  name="wheelwidth" class="form-control" placeholder="Width " value="" required="">
+                                <input type="text"  name="wheelwidth" class="form-control" placeholder="Width " value="{{old('wheelwidth')}}" required="">
                             </div>
                         </div>
                     </div>
@@ -128,28 +134,14 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="fname">Wheel Image</label>
                             <br>
-                            <div class="form-group alert-up-pd">
-                                <div class="dz-message needsclick download-custom">
-                                    <i class="fa fa-download edudropnone" aria-hidden="true"></i>
-                                    <h2 class="edudropnone">Drop image here or click to upload.</h2>
-                                    <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
-                                    </p>
-                                    <input name="imageico" class="hd-pro-img" type="text" />
-                                </div>
-                            </div>
+                            
+                                <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('image')}}">  
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="fname">Front Back Image</label>
-                            <br>
-                            <div class="form-group alert-up-pd">
-                                <div class="dz-message needsclick download-custom">
-                                    <i class="fa fa-download edudropnone" aria-hidden="true"></i>
-                                    <h2 class="edudropnone">Drop image here or click to upload.</h2>
-                                    <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
-                                    </p>
-                                    <input name="imageico" class="hd-pro-img" type="text" />
-                                </div>
-                            </div>
+                            <br> 
+                                <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('front_back_image')}}">  
+                                <br> 
                         </div>
                     </div>
 

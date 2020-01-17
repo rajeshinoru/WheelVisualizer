@@ -61,6 +61,7 @@
     <!-- responsive CSS
         ============================================ -->
     <link rel="stylesheet" href="/admin/css/responsive.css">
+    <link rel="stylesheet" href="/admin/css/dropify.min.css">
 
 <style type="text/css">
   .select2-container .select2-selection--single{height:34px !important;}
@@ -98,6 +99,7 @@
         </div>
 
         @include('admin.include.header')
+        @include('common.notify')
 
                 @yield('content')
 
@@ -179,6 +181,18 @@
     <!-- <script src="/admin/js/tawk-chat.js"></script> -->
 
     <script src="/admin/js/select2.min.js"></script> 
+    <script type="text/javascript" src="/admin/js/dropify.min.js"></script>
+    <script type="text/javascript">
+      $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop a file here or click',
+                'replace': 'Drag and drop or click to replace',
+                'remove':  'Remove',
+                'error':   'Ooops, something wrong happended.'
+            }
+        }); 
+    </script>
+
 
     @yield('custom_scripts')
 

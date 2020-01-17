@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Resource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Wheel;
+use Exception;
+use Illuminate\Support\Facades\Storage;
+
 class WheelResource extends Controller
 {
     /**
@@ -37,7 +40,42 @@ class WheelResource extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->all());
+        $this->validate($request, [
+            'year' => 'required|max:255',
+            'brand' => 'required|max:255', 
+            'finish' => 'required|max:255',
+            'part_no' => 'required|unique:wheels,part_no',
+            'style' => 'required|max:255',
+            'wheeldiameter' => 'required|max:255',
+            'wheelwidth' => 'required|max:255',
+            'image' => 'required|mimes:jpg,png|max:5242880', 
+            'front_back_image' => 'required|mimes:png|max:5242880', 
+        ]);
+        try{  
+            
+            $imagename = $request->image->getClientOriginalName();  
+            $split_name = explode('.', $imagename);
+            $front_back_image = $split_name[0].'.png';
+            $request->image->move(public_path('/storage/wheels'), $imagename);
+            $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image);  
+
+            $wheel  = Wheel::create([
+                'year' => $request->year,
+                'brand' => $request->brand,
+                'finish' => $request->finish, 
+                'part_no' => $request->part_no, 
+                'style' => $request->style, 
+                'wheeldiameter' => $request->wheeldiameter, 
+                'wheelwidth' => $request->wheelwidth, 
+                'image' => $imagename,
+                'frontimage' => $front_back_image,
+                'rearimage' => $front_back_image
+            ]);
+            return back()->with('flash_success','Wheel Added successfully');
+        }catch(Exception $e){
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
