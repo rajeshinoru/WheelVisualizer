@@ -35,8 +35,7 @@
                                         <td>{{@$wheel->wheeldiameter}}</td>
                                         <td>{{@$wheel->wheelwidth}}</td>
                                         <td>
-                                            <a data-toggle="modal" data-target="#myModal{{@$key}}">Edit Wheel</a>
-                                            <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                            <button data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> s
                                             <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
