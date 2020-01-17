@@ -35,23 +35,26 @@
                                         <td>{{@$wheel->wheeldiameter}}</td>
                                         <td>{{@$wheel->wheelwidth}}</td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> s
-                                            <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <button class="btn btn-default look-a-like" data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                            <form action="{{ route('admin.wheel.destroy', $wheel->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                 
+                                                <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button> 
+                                            </form> 
                                         </td>
                                     </tr>
 
                                      <!--  Edit Model Start-->
                     <div class="modal fade" id="myModal{{@$key}}" role="dialog">
-                        <div class="modal-dialog admin-form">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Update Wheel Information</h4>
-                                </div>
-                                <div class="modal-body">
+                         
+                                <div class="modal-body admin-form">
                                     <!-- New Model Content Start -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    </div>
+                                        
                                         <div class="product-payment-inner-st">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             <ul id="myTabedu1" class="tab-review-design">
                                                 <li class="active"><a href="#description2">Update Basic Details</a></li>
                                             </ul>
@@ -160,6 +163,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    </div>
                                     </div>
 
                                     <!-- New Model Content End -->

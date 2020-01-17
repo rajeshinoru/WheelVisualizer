@@ -169,6 +169,13 @@ class WheelResource extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        try {
+            Wheel::find($id)->delete();
+            return back()->with('flash_sucess', 'Wheel deleted successfully');
+        } 
+        catch (Exception $e) {
+            return back()->with('flash_error', 'Wheel Not Found');
+        }
     }
 }
