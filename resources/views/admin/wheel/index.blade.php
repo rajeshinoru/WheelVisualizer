@@ -1,7 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('content')
+<style type="text/css">
+    
 
+.edit_modal{
+    margin: 6%;
+    padding:20px;
+}
+
+</style>
         <div class="product-status mg-b-15">
             <div class="container-fluid">
                 <div class="row">
@@ -30,7 +38,7 @@
                                         <td>{{@$wheel->part_no}}</td>
                                         <td>{{@$wheel->brand}}</td>
                                         <td>{{@$wheel->style}}</td>
-                                        <td><img src="{{asset(@$wheel->image)}}" width="100px" height="100px"></td>
+                                        <td><img class="wheelImage" src="{{asset(@$wheel->image)}}" width="100px" height="100px"></td>
                                         <td>{{@$wheel->wheeltype}}</td>
                                         <td>{{@$wheel->wheeldiameter}}</td>
                                         <td>{{@$wheel->wheelwidth}}</td>
@@ -44,22 +52,19 @@
                                             </form> 
                                         </td>
                                     </tr>
-
                                      <!--  Edit Model Start-->
                     <div class="modal fade" id="myModal{{@$key}}" role="dialog">
                          
                                 <div class="modal-body admin-form">
                                     <!-- New Model Content Start -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    </div>
                                         
-                                        <div class="product-payment-inner-st">
+                                        <div class="product-payment-inner-st edit_modal">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             <ul id="myTabedu1" class="tab-review-design">
                                                 <li class="active"><a href="#description2">Update Basic Details</a></li>
                                             </ul>
                                             <div id="myTabContent" class="tab-content custom-product-edit">
-                                                <div class="product-tab-list tab-pane fade active in" id="description2">
+                                                <div class="product-tab-list tab-pane fade active in " id="description2">
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="review-content-section">
@@ -68,17 +73,6 @@
                     {{@csrf_field()}}
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="row">
-                        {{--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="year">Year</label>
-                                <select class="form-control select2 Year" name="year" required="">
-                                    <option >Select Year</option>
-                                    @for($y=date('Y');$y>=1980;$y--)
-                                    <option value="{{$y}}" @if(@$wheel->year == $y) selected @endif >{{$y}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>--}}
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="brand">Brand</label>
@@ -90,12 +84,6 @@
                                 </select>
                             </div>
                         </div>
-                        {{--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="fname">Finish</label>
-                                <input type="text" name="finish" class="form-control" placeholder="Finish"  required="" value="{{@$wheel->finish}}">
-                            </div>
-                        </div>--}}
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="fname">Type</label>
@@ -134,8 +122,6 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="fname">Wheel Image</label>
-                            <br>
-                            
                                 <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{asset(@$wheel->image)}}">  
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -165,8 +151,6 @@
                                         </div>
                                     </div>
                                     </div>
-                                    </div>
-
                                     <!-- New Model Content End -->
                                     @empty                                   
                                     <tr>
@@ -308,4 +292,16 @@
                 </div>
             </div>
         </div>
+@endsection
+@section('custom_scripts')
+<script type="text/javascript">
+    
+
+$(function(){ 
+  $(".wheelImage").popImg(); 
+})
+
+
+
+</script>
 @endsection

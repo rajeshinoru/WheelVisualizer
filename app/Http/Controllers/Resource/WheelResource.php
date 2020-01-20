@@ -57,6 +57,7 @@ class WheelResource extends Controller
 
             $imagename = $request->image->getClientOriginalName();  
             $split_name = explode('.', $imagename);
+
             $front_back_image = $split_name[0].'.png';
             $request->image->move(public_path('/storage/wheels'), $imagename);
             $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image);  
@@ -116,8 +117,7 @@ class WheelResource extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
-        // dd($request->all());
+    {  
         $this->validate($request, [
             // 'year' => 'required|max:255',
             'brand' => 'required|max:255', 
