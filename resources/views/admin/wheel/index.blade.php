@@ -3,7 +3,9 @@
 @section('content')
 <style type="text/css">
     
-
+.req{ 
+   color:red;
+}
 .edit_modal{
     margin: 6%;
     padding:20px;
@@ -75,9 +77,9 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="brand">Brand</label>
+                                <label for="brand">Brand <span class="req">*</span></label>
                                 <select class="form-control select2 Brand" name="brand" required="">
-                                    <option >Select Brand</option>
+                                    <option value="" >Select Brand</option>
                                     @foreach(@$brands as $key => $brand)
                                     <option value="{{$brand->brand}}" @if(@$wheel->brand == $brand->brand) selected @endif>{{$brand->brand}}</option>
                                     @endforeach
@@ -86,7 +88,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="fname">Type</label>
+                                <label for="fname">Type <span class="req">*</span></label>
                                 <input type="text" name="wheeltype" class="form-control" placeholder="Type"  required="" value="{{@$wheel->wheeltype}}">
                             </div>
                         </div>
@@ -94,13 +96,13 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="lname">Part Number</label>
-                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{@$wheel->part_no}}">
+                                <label for="lname">Part Number <span class="req">*</span></label>
+                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{@$wheel->part_no}}" required="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="fname">Style</label>
+                                <label for="fname">Style <span class="req">*</span></label>
                                 <input type="text"  name="style" class="form-control" placeholder="Style "  value="{{@$wheel->style}}" required="">
                             </div>
                         </div> 
@@ -108,30 +110,93 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="lname">Diameter</label>
-                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{@$wheel->wheeldiameter}}">
+                                <label for="lname">Diameter <span class="req">*</span></label>
+                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{@$wheel->wheeldiameter}}" required="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="fname">Width</label>
+                                <label for="fname">Width <span class="req">*</span></label>
                                 <input type="text"  name="wheelwidth" class="form-control" placeholder="Width " value="{{@$wheel->wheelwidth}}" required="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="finish">Finish <span class="req">*</span></label>
+                                <input type="text" name="finish" class="form-control" placeholder="Finish" value="{{@$wheel->finish}}" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="hub">Hub</label>
+                                <input type="number"  name="hub" class="form-control" placeholder="Hub "  value="{{@$wheel->hub}}">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Wheel Image</label>
-                                <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{asset(@$wheel->image)}}">  
+                            <label for="fname">Wheel Image <span class="req">*</span></label>
+                                <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{asset(@$wheel->image)}}" required="">  
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Front Back Image</label>
+                            <label for="fname">Front Back Image <span class="req">*</span></label>
                             <br> 
-                                <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp"  data-default-file="{{asset(front_back_path(@$wheel->image))}}">  
+                                <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp"  data-default-file="{{asset(front_back_path(@$wheel->image))}}" required="">  
                                 <br> 
                         </div>
                     </div>
 
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="boldpattern1">Bold Pattern1 </label>
+                                <input type="number" name="boldpattern1" class="form-control" placeholder="Pattern 1" value="{{@$wheel->boldpattern1}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="boldpattern2">Bold Pattern2</label>
+                                <input type="number" name="boldpattern2" class="form-control" placeholder="Pattern 2" value="{{@$wheel->boldpattern2}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="boldpattern3">Bold Pattern3</label>
+                                <input type="number" name="boldpattern3" class="form-control" placeholder="Pattern 3" value="{{@$wheel->boldpattern3}}">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="simpleoffset">Simple Offset</label> 
+                                <select class="form-control select2" name="simpleoffset">
+                                    <option value="">Select Offset</option>
+                                    <option value="High" {{(@$wheel->simpleoffset == 'High')?'selected':''}}>High</option>
+                                    <option value="Low" {{(@$wheel->simpleoffset == 'Low')?'selected':''}}>Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="offset1">Offset 1</label>
+                                <input type="number" name="offset1" class="form-control" placeholder="Offset 1" value="{{@$wheel->offset1}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="offset2">Offset 2</label>
+                                <input type="number" name="offset2" class="form-control" placeholder="Offset 2" value="{{@$wheel->offset2}}">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -186,22 +251,11 @@
                 <form action="{{url('/admin/wheel/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
                     {{@csrf_field()}}
                     <div class="row">
-                        {{--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="year">Year</label>
-                                <select class="form-control select2 Year" name="year" required="">
-                                    <option >Select Year</option>
-                                    @for($y=date('Y');$y>=1980;$y--)
-                                    <option value="{{$y}}" @if(old('year') == $y) selected @endif >{{$y}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>--}}
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="brand">Brand</label>
+                                <label for="brand">Brand <span class="req">*</span></label>
                                 <select class="form-control select2 Brand" name="brand" required="">
-                                    <option >Select Brand</option>
+                                    <option value="">Select Brand</option>
                                     @foreach(@$brands as $key => $brand)
                                     <option value="{{$brand->brand}}" @if(old('brand') == $brand->brand) selected @endif>{{$brand->brand}}</option>
                                     @endforeach
@@ -210,7 +264,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="fname">Type</label>
+                                <label for="fname">Type <span class="req">*</span></label>
                                 <input type="text" name="wheeltype" class="form-control" placeholder="Type"  required="" value="{{old('wheeltype')}}">
                             </div>
                         </div>
@@ -218,40 +272,56 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="lname">Part Number</label>
-                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{old('part_no')}}">
+                                <label for="lname">Part Number <span class="req">*</span></label>
+                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{old('part_no')}}" required="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="fname">Style</label>
+                                <label for="fname">Style <span class="req">*</span></label>
                                 <input type="text"  name="style" class="form-control" placeholder="Style "  value="{{old('style')}}" required="">
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="lname">Diameter</label>
-                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{old('wheeldiameter')}}">
+                                <label for="finish">Finish <span class="req">*</span></label>
+                                <input type="text" name="finish" class="form-control" placeholder="Finish" value="{{old('finish')}}" required="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label for="fname">Width</label>
-                                <input type="text"  name="wheelwidth" class="form-control" placeholder="Width " value="{{old('wheelwidth')}}" required="">
+                                <label for="hub">Hub</label>
+                                <input type="number"  name="hub" class="form-control" placeholder="Hub "  value="{{old('hub')}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="wheeldiameter">Diameter <span class="req">*</span></label>
+                                <input type="number" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{old('wheeldiameter')}}" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="wheelwidth">Width <span class="req">*</span></label>
+                                <input type="number"  name="wheelwidth" class="form-control" placeholder="Width " value="{{old('wheelwidth')}}" required="">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Wheel Image</label>
+                            <label for="fname">Wheel Image <span class="req">*</span></label>
                             <br>
                             
                                 <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('image')}}">  
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Front Back Image</label>
+                            <label for="fname">Front Back Image <span class="req">*</span></label>
                             <br> 
                                 <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('front_back_image')}}">  
                                 <br> 
@@ -259,6 +329,53 @@
                     </div>
 
 
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="boldpattern1">Bold Pattern1</label>
+                                <input type="number" name="boldpattern1" class="form-control" placeholder="Pattern 1" value="{{old('boldpattern1')}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="boldpattern2">Bold Pattern2</label>
+                                <input type="number" name="boldpattern2" class="form-control" placeholder="Pattern 2" value="{{old('boldpattern2')}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="boldpattern3">Bold Pattern3</label>
+                                <input type="number" name="boldpattern3" class="form-control" placeholder="Pattern 3" value="{{old('boldpattern3')}}">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="simpleoffset">Simple Offset</label> 
+                                <select class="form-control select2" name="simpleoffset">
+                                    <option value="">Select Offset</option>
+                                    <option value="High">High</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="offset1">Offset 1</label>
+                                <input type="number" name="offset1" class="form-control" placeholder="Offset 1" value="{{old('offset1')}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="offset2">Offset 2</label>
+                                <input type="number" name="offset2" class="form-control" placeholder="Offset 2" value="{{old('offset2')}}">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="payment-adress">

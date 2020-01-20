@@ -17,7 +17,7 @@ class WheelResource extends Controller
      */
     public function index()
     {
-        $wheels = Wheel::select('id','part_no','brand','style','image','wheeltype','wheeldiameter','wheelwidth')->paginate(10); 
+        $wheels = Wheel::paginate(10); 
         $brands = Wheel::select('brand')->distinct('brand')->get();
         return view('admin.wheel.index',compact('wheels','brands'));
     }
@@ -40,14 +40,13 @@ class WheelResource extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd($request->all()); 
         $this->validate($request, [
-            // 'year' => 'required|max:255',
             'brand' => 'required|max:255', 
             'wheeltype' => 'required|max:255',
             'part_no' => 'required|unique:wheels,part_no',
             'style' => 'required|max:255',
-            'wheeltype' => 'required|max:255',
+            'finish' => 'required|max:255',
             'wheeldiameter' => 'required|max:255',
             'wheelwidth' => 'required|max:255',
             'image' => 'required|mimes:jpg,png|max:5242880', 
@@ -61,20 +60,12 @@ class WheelResource extends Controller
             $front_back_image = $split_name[0].'.png';
             $request->image->move(public_path('/storage/wheels'), $imagename);
             $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image);  
+            $wheel = Wheel::create($request->all());
+            $wheel->image = 'storage/wheels/'.$imagename;
+            $wheel->frontimage = 'storage/wheels/front_back/'.$front_back_image;
+            $wheel->rearimage = 'storage/wheels/front_back/'.$front_back_image;
+            $wheel->save();
 
-            $wheel  = Wheel::create([
-                // 'year' => $request->year,
-                'brand' => $request->brand,
-                'wheeltype' => $request->wheeltype, 
-                'part_no' => $request->part_no, 
-                'style' => $request->style, 
-                'wheeltype' => $request->wheeltype, 
-                'wheeldiameter' => $request->wheeldiameter, 
-                'wheelwidth' => $request->wheelwidth, 
-                'image' => 'storage/wheels/'.$imagename,
-                'frontimage' => 'storage/wheels/front_back/'.$front_back_image,
-                'rearimage' => 'storage/wheels/front_back/'.$front_back_image
-            ]);
             return back()->with('flash_success','Wheel Added successfully');
         }catch(Exception $e){
             return back()->with('flash_error',$e->getMessage());
@@ -122,37 +113,31 @@ class WheelResource extends Controller
             // 'year' => 'required|max:255',
             'brand' => 'required|max:255', 
             'wheeltype' => 'required|max:255',
-            'part_no' => 'required|max:255',
+            'part_no' => 'required',
             'style' => 'required|max:255',
-            'wheeltype' => 'required|max:255',
+            'finish' => 'required|max:255',
             'wheeldiameter' => 'required|max:255',
             'wheelwidth' => 'required|max:255',
             // 'image' => 'required|mimes:jpg,png|max:5242880', 
             // 'front_back_image' => 'required|mimes:png|max:5242880', 
+            // 'image' => 'required|mimes:jpg,png|max:5242880', 
+            // 'front_back_image' => 'required|mimes:png|max:5242880', 
         ]);
-        try{  
+        try{   
+            $data = request()->except(['_token','_method']);
+            $wheel = Wheel::whereid($id)->first();
+            $wheel->update($data);
             if($request->hasFile('image') && $request->hasFile('front_back_image') ){
                 $imagename = $request->image->getClientOriginalName();  
                 $split_name = explode('.', $imagename);
                 $front_back_image = $split_name[0].'.png';
                 $request->image->move(public_path('/storage/wheels'), $imagename);
-                $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image);  
-            }
+                $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image); 
 
-            $wheel  = Wheel::whereid($id)->first();
-            // $wheel->year = $request->year;
-            $wheel->brand = $request->brand;
-            $wheel->wheeltype = $request->wheeltype; 
-            $wheel->part_no = $request->part_no; 
-            $wheel->style = $request->style; 
-            $wheel->wheeltype = $request->wheeltype; 
-            $wheel->wheeldiameter = $request->wheeldiameter; 
-            $wheel->wheelwidth = $request->wheelwidth;  
-            if($request->hasFile('image') && $request->hasFile('front_back_image') ){
-                $wheel->image = $imagename;
-                $wheel->frontimage = $front_back_image;
-                $wheel->rearimage = $front_back_image;
-            }
+                $wheel->image = 'storage/wheels/'.$imagename;
+                $wheel->frontimage = 'storage/wheels/front_back/'.$front_back_image;
+                $wheel->rearimage = 'storage/wheels/front_back/'.$front_back_image; 
+            } 
             $wheel->save(); 
 
             return back()->with('flash_success','Wheel Updated successfully');
