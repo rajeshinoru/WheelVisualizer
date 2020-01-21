@@ -28,8 +28,13 @@
                         <li>
                             <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-star icon-wrap"></span> <span class="mini-click-non">Wheels</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Professors" href="{{url('admin/wheel')}}"><span class="mini-sub-pro">Wheels List</span></a></li>
-                                <!-- <li><a title="Add Professor" href="{{url('admin/home')}}"><span class="mini-sub-pro">Add Wheel</span></a></li> -->
+                                <li><a title="All Professors" href="{{url('admin/wheel')}}"><span class="mini-sub-pro">Wheels List</span></a></li> 
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-menu icon-wrap"></span> <span class="mini-click-non">Cars</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Cars" href="{{url('admin/car')}}"><span class="mini-sub-pro">Cars List</span></a></li> 
                             </ul>
                         </li>
                         <li>

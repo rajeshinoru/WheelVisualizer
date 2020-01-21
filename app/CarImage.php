@@ -25,4 +25,8 @@ class CarImage extends Model
 	public function CarColor(){
 		return $this->hasMany('App\CarColor','vif','car_id');
 	}
+
+	public function scopeCarColor(){
+		return $this->hasMany('App\CarColor','vif','car_id');
+	}
 }

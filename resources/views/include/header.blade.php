@@ -21,12 +21,17 @@
             <div class="header-tops">
                 <div id="top-links" class="nav pull-right">
                     <ul class="list-inline">
+                        @if(@Auth::user()=='')
+                        <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
+                        <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
+                        @else
                         <li class="header-phone pull-left">
                             <form action="{{ url('/logout') }}" method="POST">
                                 {{csrf_field()}}
                                 <button type="submit"><i class="fa fa-sign-out"></i> Sign out</button>
                             </form>
                         </li>
+                        @endif
                         <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li>
                     </ul>
                 </div>
