@@ -215,7 +215,7 @@
                                     <!-- New Model Content End -->
                                     @empty                                   
                                     <tr>
-                                        <td colspan="5">No Users found</td>
+                                        <td colspan="5">No Car Images found</td>
                                     </tr>
                                     @endforelse
                                 </table>
