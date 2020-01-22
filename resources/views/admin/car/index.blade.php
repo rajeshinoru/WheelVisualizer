@@ -265,14 +265,30 @@
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                 <div class="review-content-section">
                                                                     <div id="dropzone1" class="pro-ad">
+
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="brand">Year <span class="req">*</span></label>
-                                                                                    <select class="form-control select2" name="year" required="">
+                                                                                    <label for="vif">VIF Number <span class="req">*</span></label>
+                                                                                    <input type="number" name="vif" class="form-control" placeholder="VIF Series Number" value="{{old('vif')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="date_delivered">Deliver Date <span class="req">*</span></label>
+                                                                                    <input type="date" name="date_delivered" class="form-control" placeholder="VIF Series Number" value="{{old('date_delivered')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="yr">Year <span class="req">*</span></label>
+                                                                                    <select class="form-control select2" name="yr" required="">
                                                                                         <option value="">Select Year</option>
                                                                                         @for(@$yr=date('Y');$yr >=2000;$yr--)
-                                                                                        <option value="{{$yr}}" @if(old('year')==$yr) selected @endif>{{$yr}}</option>
+                                                                                        <option value="{{$yr}}" @if(old('yr')==$yr) selected @endif>{{$yr}}</option>
                                                                                         @endfor
                                                                                     </select>
                                                                                 </div>
@@ -382,19 +398,40 @@
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                 <div class="review-content-section">
         <div id="dropzone1" class="pro-ad upload-section">
-            <a class="btn btn-success add-upload">Add Upload</a>
-            <a class="btn btn-danger remove-upload">Remove Upload</a>
+
+            <div class="row">
+                <a class="btn btn-success add-upload">Add New</a>
+                <a class="btn btn-danger remove-upload">Remove One</a>
+            </div>
             <div class="row fixed-upload-file">
+
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label for="cc">CC <span class="req">*</span></label>
-                        <input type="text" name="cc" class="form-control" placeholder="Enter CC" value="{{old('cc')}}" required="">
+                        <input type="text" name="cc[]" class="form-control" placeholder="Enter CC" value="{{old('cc')}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="color_code">Color Code <span class="req">*</span></label>
+                        <input type="text" name="color_code[]" class="form-control" placeholder="Color Code " value="{{old('color_code')}}" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evoxcode">Evox Code <span class="req">*</span></label>
+                        <input type="text" name="evoxcode[]" class="form-control" placeholder="Color Code " value="{{old('evoxcode')}}" required="">
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
-                        <label for="color_code">Color Code <span class="req">*</span></label>
-                        <input type="text" name="color_code" class="form-control" placeholder="Color Code " value="{{old('color_code')}}" required="">
+                        <label for="name">Full Name <span class="req">*</span></label>
+                        <input type="text" name="name[]" class="form-control" placeholder="Full name" value="{{old('name')}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="simple">Simple Name <span class="req">*</span></label>
+                        <input type="text" name="simple[]" class="form-control" placeholder="Simple Name " value="{{old('simple')}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="rgb1">RGB Color <span class="req">*</span></label>
+                        <input type="text" name="rgb1[]" class="form-control" placeholder="RGB Color Code" value="{{old('rgb1')}}" required="">
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -451,7 +488,16 @@
         $(clonedDiv).addClass('dynamic-upload-file');
         // $(clonedDiv).find('.car_image').removeClass('dropify');
         // $(clonedDiv).find('.car_image').addClass('dropify');
-        $(this).parent('.upload-section').append(clonedDiv);
+        console.log($(clonedDiv).find('.dropify'))
+        var drDestroy = $(clonedDiv).find('.dropify').dropify();
+        drDestroy = drDestroy.data('dropify') 
+        if ($(clonedDiv).find('.dropify').isDropified()) {
+            $(clonedDiv).find('.dropify').destroy();
+        } else {
+            $(clonedDiv).find('.dropify').init();
+        }
+
+        $('.upload-section').append(clonedDiv);
     });
     $('.remove-upload').click(function(){
         $('.upload-section').find('.dynamic-upload-file').last().remove();

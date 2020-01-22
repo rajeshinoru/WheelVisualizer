@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Wheel;
 use App\CarImage;
+use App\CarColor;
 use App\Viflist;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -13,13 +14,14 @@ use Illuminate\Support\Facades\Storage;
 class CarResource extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
-        $cars = Viflist::with('CarImages')->paginate(10); 
+        $cars = Viflist::has('CarImages')->orderBy('id','DESC')->paginate(10); 
+        // $cars = Viflist::with('CarImages')->paginate(10);
         $brands = Wheel::select('brand')->distinct('brand')->get();
         $makes = Viflist::select('make')->distinct('make')->get();
         $models = Viflist::select('model')->distinct('model')->get();
@@ -47,7 +49,61 @@ class CarResource extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        try{  
+
+        $this->validate($request, [
+            'vif' => 'required|max:255|unique:viflists,vif', 
+            'yr' => 'required|max:255',
+            'make' => 'required|max:255',
+            'model' => 'required|max:255',
+            'trim' => 'required|max:255',
+            'whls' => 'required|max:255',
+            'body' => 'required|max:255',
+            'drs' => 'required|max:255',
+            'vin' => 'required|max:255',
+            'org' => 'required|max:255',
+            'send' => 'required|max:255',
+            'cc.*' => 'required|max:255',
+            'color_code.*' => 'required|max:255',
+            'evoxcode.*' => 'required|max:255',
+            'name.*' => 'required|max:255',
+            'simple.*' => 'required|max:255',
+            'rgb1.*' => 'required|max:255',
+            'car_image.*' => 'required|mimes:jpg,png|max:5242880',
+        ]);
+            $viflist = Viflist::create($request->all());
+
+            foreach ($request->car_image as $key => $image) {
+                $ext = $request->car_image[$key]->getClientOriginalExtension();
+                $image_full_name = $request->vif.'_'.$request->cc[$key].'_032_'.$request->color_code[$key].'.'.$ext;
+                $request->car_image[$key]->move(public_path('/storage/cars'), $image_full_name);
+                $image_stored_path = '/storage/cars/'.$image_full_name;
+                
+                // Create a new record for the car images 
+                $car_image = CarImage::create([
+                    'car_id' => $request->vif,
+                    'cc' => $request->cc[$key],
+                    'color_code' => $request->color_code[$key],
+                    'image' => $image_stored_path,
+                ]);
+
+                // Create a new record for the car colors 
+                $car_color = CarColor::create([
+                    'vif' => $request->vif,
+                    'code' => $request->color_code[$key],
+                    'evoxcode' => $request->evoxcode[$key],
+                    'name' => $request->name[$key],
+                    'rgb1' => $request->rgb1[$key],
+                    'simple' => $request->simple[$key],
+                ]);
+            }
+
+            return back()->with('flash_success','Car Added successfully');
+        }catch(Exception $e){
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**

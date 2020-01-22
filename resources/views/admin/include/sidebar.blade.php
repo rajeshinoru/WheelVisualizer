@@ -8,7 +8,7 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        <li class="active">
+                        <li>
                             <a class="has-arrow" href="index.html">
                                    <span class="educate-icon educate-home icon-wrap"></span>
                                    <span class="mini-click-non">Home</span>
@@ -28,7 +28,7 @@
                         <li>
                             <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-star icon-wrap"></span> <span class="mini-click-non">Wheels</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Professors" href="{{url('admin/wheel')}}"><span class="mini-sub-pro">Wheels List</span></a></li> 
+                                <li><a title="Wheels List" href="{{url('admin/wheel')}}"><span class="mini-sub-pro">Wheels List</span></a></li> 
                             </ul>
                         </li>
                         <li>
