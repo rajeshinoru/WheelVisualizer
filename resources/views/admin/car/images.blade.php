@@ -50,169 +50,84 @@
                                             </form> 
                                         </td>
                                     </tr>
-                                     <!--  Edit Model Start-->
-                    <div class="modal fade" id="myModal{{@$key}}" role="dialog">
-                         
+                            <!--  Edit Model Start-->
+                            <div class="modal fade" id="myModal{{@$key}}" role="dialog">
+
                                 <div class="modal-body admin-form">
                                     <!-- New Model Content Start -->
-                                        
                                         <div class="product-payment-inner-st edit_modal">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <ul id="myTabedu1" class="tab-review-design">
-                                                <li class="active"><a href="#description2">Update Basic Details</a></li>
-                                            </ul>
-                                            <div id="myTabContent" class="tab-content custom-product-edit">
-                                                <div class="product-tab-list tab-pane fade active in " id="description2">
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="review-content-section">
-            <div id="dropzone1" class="pro-ad">
-                <form action="{{route('admin.wheel.update',@$car->id)}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
-                    {{@csrf_field()}}
-                    <input type="hidden" name="_method" value="PATCH">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="brand">Brand <span class="req">*</span></label>
-                                <select class="form-control select2 Brand" name="brand" required="">
-                                    <option value="" >Select Brand</option>
-                                    @foreach(@$brands as $key => $brand)
-                                    <option value="{{$brand->brand}}" @if(@$car->brand == $brand->brand) selected @endif>{{$brand->brand}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="fname">Type <span class="req">*</span></label>
-                                <input type="text" name="wheeltype" class="form-control" placeholder="Type"  required="" value="{{@$car->wheeltype}}">
-                            </div>
-                        </div>
+                                            <form action="{{route('admin.car.images.update',@$car->id)}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
+                                                {{@csrf_field()}}
+                                                {{@method_field('PATCH')}}
+                                                <ul id="myTabedu1" class="tab-review-design">
+                                                    <li class="active"><a href="#description2">Update Car Image Details</a></li>
+                                                </ul>
+                                                <div id="myTabContent" class="tab-content custom-product-edit">
+                                                    <div class="product-tab-list tab-pane fade active in" id="description2">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="review-content-section">
+        <div id="dropzone1" class="pro-ad upload-section">
+            <div class="row fixed-upload-file">
+                <?php $car_color = @$car->CarColor->where('code',@$car->color_code)->first(); ?>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="cc">CC <span class="req">*</span></label>
+                        <input type="text" name="cc" class="form-control" placeholder="Enter CC" value="{{$car->cc}}" required="">
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="lname">Part Number <span class="req">*</span></label>
-                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{@$car->part_no}}" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="fname">Style <span class="req">*</span></label>
-                                <input type="text"  name="style" class="form-control" placeholder="Style "  value="{{@$car->style}}" required="">
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="lname">Diameter <span class="req">*</span></label>
-                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{@$car->wheeldiameter}}" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="fname">Width <span class="req">*</span></label>
-                                <input type="text"  name="wheelwidth" class="form-control" placeholder="Width " value="{{@$car->wheelwidth}}" required="">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="color_code">Color Code <span class="req">*</span></label>
+                        <input type="text" name="color_code" class="form-control" placeholder="Color Code " value="{{$car->color_code}}" required="">
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="finish">Finish <span class="req">*</span></label>
-                                <input type="text" name="finish" class="form-control" placeholder="Finish" value="{{@$car->finish}}" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="hub">Hub</label>
-                                <input type="number"  name="hub" class="form-control" placeholder="Hub "  value="{{@$car->hub}}">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="evoxcode">Evox Code <span class="req">*</span></label>
+                        <input type="text" name="evoxcode" class="form-control" placeholder="Color Code " value="{{@$car_color->evoxcode}}" required="">
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Car Image <span class="req">*</span></label>
-                                <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{asset(@$car->image)}}" required="">  
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Front Back Image <span class="req">*</span></label>
-                            <br> 
-                                <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp"  data-default-file="{{asset(front_back_path(@$car->image))}}" required="">  
-                                <br> 
-                        </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="req">*</span></label>
+                        <input type="text" name="name" class="form-control" placeholder="Full name" value="{{@$car_color->name}}" required="">
                     </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="boldpattern1">Bold Pattern1 </label>
-                                <input type="number" name="boldpattern1" class="form-control" placeholder="Pattern 1" value="{{@$car->boldpattern1}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="boldpattern2">Bold Pattern2</label>
-                                <input type="number" name="boldpattern2" class="form-control" placeholder="Pattern 2" value="{{@$car->boldpattern2}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="boldpattern3">Bold Pattern3</label>
-                                <input type="number" name="boldpattern3" class="form-control" placeholder="Pattern 3" value="{{@$car->boldpattern3}}">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="simple">Simple Name <span class="req">*</span></label>
+                        <input type="text" name="simple" class="form-control" placeholder="Simple Name " value="{{@$car_color->simple}}" required="">
                     </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="simpleoffset">Simple Offset</label> 
-                                <select class="form-control select2" name="simpleoffset">
-                                    <option value="">Select Offset</option>
-                                    <option value="High" {{(@$car->simpleoffset == 'High')?'selected':''}}>High</option>
-                                    <option value="Low" {{(@$car->simpleoffset == 'Low')?'selected':''}}>Low</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="offset1">Offset 1</label>
-                                <input type="number" name="offset1" class="form-control" placeholder="Offset 1" value="{{@$car->offset1}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="offset2">Offset 2</label>
-                                <input type="number" name="offset2" class="form-control" placeholder="Offset 2" value="{{@$car->offset2}}">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="rgb1">RGB Color <span class="req">*</span></label>
+                        <input type="text" name="rgb1" class="form-control" placeholder="RGB Color Code" value="{{@$car_color->rgb1}}" required="">
                     </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <label for="fname">Upload Image <span class="req">*</span></label>
                     <br>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="payment-adress">
-                                <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    <input type="file" accept="image/*" name="car_image" class="car_image dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{asset($car->image)}}">
+                    <br>
+                </div>
             </div>
+            <br>
         </div>
-    </div>
-</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="payment-adress">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Update">
+
+                        <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
+                    </div>
+                </div>
+            </div>
+                                            </form>
                                         </div>
-                                    </div>
-                                    </div>
-                                    <!-- New Model Content End -->
+                                </div>
+                            </div>
+                            <!-- New Model Content End -->
                                     @empty                                   
                                     <tr>
                                         <td colspan="5">No Car Images found</td>
@@ -235,161 +150,81 @@
                                     <!-- New Model Content Start -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="product-payment-inner-st">
-                                            <ul id="myTabedu1" class="tab-review-design">
-                                                <li class="active"><a href="#description2">Basic Details</a></li>
-                                            </ul>
-                                            <div id="myTabContent" class="tab-content custom-product-edit">
-                                                <div class="product-tab-list tab-pane fade active in" id="description2">
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="review-content-section">
-            <div id="dropzone1" class="pro-ad">
-                <form action="{{url('/admin/wheel/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
-                    {{@csrf_field()}}
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="brand">Brand <span class="req">*</span></label>
-                                <select class="form-control select2 Brand" name="brand" required="">
-                                    <option value="">Select Brand</option>
-                                    @foreach(@$brands as $key => $brand)
-                                    <option value="{{$brand->brand}}" @if(old('brand') == $brand->brand) selected @endif>{{$brand->brand}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="fname">Type <span class="req">*</span></label>
-                                <input type="text" name="wheeltype" class="form-control" placeholder="Type"  required="" value="{{old('wheeltype')}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="lname">Part Number <span class="req">*</span></label>
-                                <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{old('part_no')}}" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="fname">Style <span class="req">*</span></label>
-                                <input type="text"  name="style" class="form-control" placeholder="Style "  value="{{old('style')}}" required="">
-                            </div>
-                        </div>
-                    </div>
+                                            <form action="{{ route('admin.car.images.store', $vif->id) }}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
+                                                {{@csrf_field()}}
+                                                <input type="hidden" name="vif" value="{{$vif->vif}}">
+                                                <ul id="myTabedu1" class="tab-review-design">
+                                                    <li class="active"><a href="#description2">Car Images</a></li>
+                                                </ul>
+                                                <div id="myTabContent" class="tab-content custom-product-edit">
+                                                    <div class="product-tab-list tab-pane fade active in" id="description2">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="review-content-section">
+        <div id="dropzone1" class="pro-ad upload-section">
 
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="finish">Finish <span class="req">*</span></label>
-                                <input type="text" name="finish" class="form-control" placeholder="Finish" value="{{old('finish')}}" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="hub">Hub</label>
-                                <input type="number"  name="hub" class="form-control" placeholder="Hub "  value="{{old('hub')}}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="wheeldiameter">Diameter <span class="req">*</span></label>
-                                <input type="number" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{old('wheeldiameter')}}" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="wheelwidth">Width <span class="req">*</span></label>
-                                <input type="number"  name="wheelwidth" class="form-control" placeholder="Width " value="{{old('wheelwidth')}}" required="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Car Image <span class="req">*</span></label>
-                            <br>
-                            
-                                <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('image')}}">  
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label for="fname">Front Back Image <span class="req">*</span></label>
-                            <br> 
-                                <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('front_back_image')}}">  
-                                <br> 
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="boldpattern1">Bold Pattern1</label>
-                                <input type="number" name="boldpattern1" class="form-control" placeholder="Pattern 1" value="{{old('boldpattern1')}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="boldpattern2">Bold Pattern2</label>
-                                <input type="number" name="boldpattern2" class="form-control" placeholder="Pattern 2" value="{{old('boldpattern2')}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="boldpattern3">Bold Pattern3</label>
-                                <input type="number" name="boldpattern3" class="form-control" placeholder="Pattern 3" value="{{old('boldpattern3')}}">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="simpleoffset">Simple Offset</label> 
-                                <select class="form-control select2" name="simpleoffset">
-                                    <option value="">Select Offset</option>
-                                    <option value="High">High</option>
-                                    <option value="Low">Low</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="offset1">Offset 1</label>
-                                <input type="number" name="offset1" class="form-control" placeholder="Offset 1" value="{{old('offset1')}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="offset2">Offset 2</label>
-                                <input type="number" name="offset2" class="form-control" placeholder="Offset 2" value="{{old('offset2')}}">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="payment-adress">
-                                <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div class="row">
+                <a class="btn btn-success add-upload">Add New</a>
+                <a class="btn btn-danger remove-upload">Remove One</a>
             </div>
+            <div class="row fixed-upload-file">
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="cc">CC <span class="req">*</span></label>
+                        <input type="text" name="cc[]" class="form-control" placeholder="Enter CC" value="{{old('cc')}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="color_code">Color Code <span class="req">*</span></label>
+                        <input type="text" name="color_code[]" class="form-control" placeholder="Color Code " value="{{old('color_code')}}" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evoxcode">Evox Code <span class="req">*</span></label>
+                        <input type="text" name="evoxcode[]" class="form-control" placeholder="Color Code " value="{{old('evoxcode')}}" required="">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="req">*</span></label>
+                        <input type="text" name="name[]" class="form-control" placeholder="Full name" value="{{old('name')}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="simple">Simple Name <span class="req">*</span></label>
+                        <input type="text" name="simple[]" class="form-control" placeholder="Simple Name " value="{{old('simple')}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="rgb1">RGB Color <span class="req">*</span></label>
+                        <input type="text" name="rgb1[]" class="form-control" placeholder="RGB Color Code" value="{{old('rgb1')}}" required="">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <label for="fname">Upload Image <span class="req">*</span></label>
+                    <br>
+                    <input type="file" accept="image/*" name="car_image[]" class="car_image dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('car_image')}}">
+                    <br>
+                </div>
+            </div>
+            <br>
         </div>
-    </div>
-</div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="payment-adress">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+
+                        <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
+                    </div>
+                </div>
+            </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
-
                                     <!-- New Model Content End -->
                                 </div>
                                 <div class="modal-footer">

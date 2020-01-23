@@ -211,74 +211,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <ul id="myTabedu1" class="tab-review-design">
-                                                    <li class="active"><a href="#description2">Car Images</a></li>
-                                                </ul>
-                                                <div id="myTabContent" class="tab-content custom-product-edit">
-                                                    <div class="product-tab-list tab-pane fade active in" id="description2">
-                                                        <div class="row">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                <div class="review-content-section">
-        <div id="dropzone1" class="pro-ad upload-section">
-
-            <div class="row">
-                <a class="btn btn-success add-upload">Add New</a>
-                <a class="btn btn-danger remove-upload">Remove One</a>
-            </div>
-            <div class="row fixed-upload-file">
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="cc">CC <span class="req">*</span></label>
-                        <input type="text" name="cc[]" class="form-control" placeholder="Enter CC" value="{{@$car->cc}}" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="color_code">Color Code <span class="req">*</span></label>
-                        <input type="text" name="color_code[]" class="form-control" placeholder="Color Code " value="{{@$car->color_code}}" required="">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="evoxcode">Evox Code <span class="req">*</span></label>
-                        <input type="text" name="evoxcode[]" class="form-control" placeholder="Color Code " value="{{@$car->evoxcode}}" required="">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="name">Full Name <span class="req">*</span></label>
-                        <input type="text" name="name[]" class="form-control" placeholder="Full name" value="{{@$car->name}}" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="simple">Simple Name <span class="req">*</span></label>
-                        <input type="text" name="simple[]" class="form-control" placeholder="Simple Name " value="{{@$car->simple}}" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="rgb1">RGB Color <span class="req">*</span></label>
-                        <input type="text" name="rgb1[]" class="form-control" placeholder="RGB Color Code" value="{{@$car->rgb1}}" required="">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <label for="fname">Upload Image <span class="req">*</span></label>
-                    <br>
-                    <input type="file" accept="image/*" name="car_image[]" class="car_image dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('car_image')}}">
-                    <br>
-                </div>
-            </div>
-            <br>
-        </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="payment-adress">
-                        <input type="submit" class="disabled btn btn-primary waves-effect waves-light" value="Submit">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Update">
 
+                        <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
                     </div>
                 </div>
             </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </form>
                                         </div>
                                 </div>
@@ -499,8 +441,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="payment-adress">
-                        <input type="submit" class="disabled btn btn-primary waves-effect waves-light" value="Submit">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
 
+                        <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
                     </div>
                 </div>
             </div>

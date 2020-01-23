@@ -29,4 +29,7 @@ class Viflist extends Model
 	public function CarImages(){
 		return $this->hasMany('App\CarImage','car_id','vif');
 	}
+	public function CarColors(){
+		return $this->hasMany('App\CarColor','vif','vif');
+	}
 }
