@@ -61,7 +61,7 @@
                                 </td>
                                 <td>
                                     <button class="btn btn-default look-a-like" data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <form action="{{ route('admin.wheel.destroy', $car->id) }}" method="POST">
+                                    <form action="{{ route('admin.car.destroy', $car->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE">
 
@@ -74,135 +74,134 @@
 
                                 <div class="modal-body admin-form">
                                     <!-- New Model Content Start -->
-                                        <div class="product-payment-inner-st edit_modal">
-                                            <form action="{{route('admin.car.update',@$car->id)}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
-                                                {{@csrf_field()}}
-                                                {{@method_field('PATCH')}}
-                                                <ul id="myTabedu1" class="tab-review-design">
-                                                    <li class="active"><a href="#description2">Basic Details</a></li>
-                                                </ul>
-                                                <div id="myTabContent" class="tab-content custom-product-edit">
-                                                    <div class="product-tab-list tab-pane fade active in" id="description2">
-                                                        <div class="row">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                <div class="review-content-section">
-                                                                    <div id="dropzone1" class="pro-ad">
+                                    <div class="product-payment-inner-st edit_modal">
+                                        <form action="{{route('admin.car.update',@$car->id)}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
+                                            {{@csrf_field()}}
+                                            {{@method_field('PATCH')}}
+                                            <ul id="myTabedu1" class="tab-review-design">
+                                                <li class="active"><a href="#description2">Basic Details</a></li>
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                                <div class="product-tab-list tab-pane fade active in" id="description2">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="review-content-section">
+                                                                <div id="dropzone1" class="pro-ad">
 
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="vif">VIF Number <span class="req">*</span></label>
-                                                                                    <input type="number" name="vif" class="form-control" placeholder="VIF Series Number" value="{{@$car->vif}}" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="date_delivered">Deliver Date <span class="req">*</span></label>
-                                                                                    <input type="date" name="date_delivered" class="form-control" placeholder="VIF Series Number" value="{{@$car->date_delivered}}" required="">
-                                                                                </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="vif">VIF Number <span class="req">*</span></label>
+                                                                                <input type="number" name="vif" class="form-control" placeholder="VIF Series Number" value="{{@$car->vif}}" required="">
                                                                             </div>
                                                                         </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="date_delivered">Deliver Date <span class="req">*</span></label>
+                                                                                <input type="date" name="date_delivered" class="form-control" placeholder="VIF Series Number" value="{{@$car->date_delivered}}" required="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="yr">Year <span class="req">*</span></label>
-                                                                                    <select class="form-control select2" name="yr" required="">
-                                                                                        <option value="">Select Year</option>
-                                                                                        @for(@$yr=date('Y');$yr >=2000;$yr--)
-                                                                                        <option value="{{$yr}}" @if(@$car->yr==$yr) selected @endif>{{$yr}}</option>
-                                                                                        @endfor
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="make">Make <span class="req">*</span></label>
-                                                                                    <select class="form-control select2 Make" name="make" required="">
-                                                                                        <option value="">Select Make</option>
-                                                                                        @foreach(@$makes as $key => $make)
-                                                                                        <option value="{{$make->make}}" @if(@$car->make==$make->make) selected @endif>{{$make->make}}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="yr">Year <span class="req">*</span></label>
+                                                                                <select class="form-control select2" name="yr" required="">
+                                                                                    <option value="">Select Year</option>
+                                                                                    @for(@$yr=date('Y');$yr >=2000;$yr--)
+                                                                                    <option value="{{$yr}}" @if(@$car->yr==$yr) selected @endif>{{$yr}}</option>
+                                                                                    @endfor
+                                                                                </select>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="model">Model <span class="req">*</span></label>
-                                                                                    <select class="form-control select2" name="model" required="">
-                                                                                        <option value="">Select Model</option>
-                                                                                        @foreach(@$models as $key => $model)
-                                                                                        <option value="{{$model->model}}" @if(@$car->model==$model->model) selected @endif >{{$model->model}}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="trim">Trim <span class="req">*</span></label>
-                                                                                    <select class="form-control select2" name="trim" required="">
-                                                                                        <option value="" selected="">Select Trim</option>
-                                                                                        @foreach(@$trims as $key => $trim)
-                                                                                        <option value="{{$trim->trim}}" @if(@$car->trim==$trim->trim ) selected @endif >{{$trim->trim}}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="make">Make <span class="req">*</span></label>
+                                                                                <select class="form-control select2 Make" name="make" required="">
+                                                                                    <option value="">Select Make</option>
+                                                                                    @foreach(@$makes as $key => $make)
+                                                                                    <option value="{{$make->make}}" @if(@$car->make==$make->make) selected @endif>{{$make->make}}</option>
+                                                                                    @endforeach
+                                                                                </select>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="model">Model <span class="req">*</span></label>
+                                                                                <select class="form-control select2" name="model" required="">
+                                                                                    <option value="">Select Model</option>
+                                                                                    @foreach(@$models as $key => $model)
+                                                                                    <option value="{{$model->model}}" @if(@$car->model==$model->model) selected @endif >{{$model->model}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="trim">Trim <span class="req">*</span></label>
+                                                                                <select class="form-control select2" name="trim" required="">
+                                                                                    <option value="" selected="">Select Trim</option>
+                                                                                    @foreach(@$trims as $key => $trim)
+                                                                                    <option value="{{$trim->trim}}" @if(@$car->trim==$trim->trim ) selected @endif >{{$trim->trim}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="whls">Wheels <span class="req">*</span></label>
-                                                                                    <select class="form-control select2" name="whls" required="">
-                                                                                        <option value="">Select Wheels</option>
-                                                                                        @foreach(@$wheels as $key => $whls)
-                                                                                        <option value="{{$whls->whls}}" @if(@$car->whls==$whls->whls) selected @endif >{{$whls->whls}}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="body">Body <span class="req">*</span></label>
-                                                                                    <select class="form-control select2" name="body" required="">
-                                                                                        <option value="" selected="">Select Body</option>
-                                                                                        @foreach(@$bodies as $key => $body)
-                                                                                        <option value="{{$body->body}}" @if(@$car->body==$body->body ) selected @endif >{{$body->body}}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="whls">Wheels <span class="req">*</span></label>
+                                                                                <select class="form-control select2" name="whls" required="">
+                                                                                    <option value="">Select Wheels</option>
+                                                                                    @foreach(@$wheels as $key => $whls)
+                                                                                    <option value="{{$whls->whls}}" @if(@$car->whls==$whls->whls) selected @endif >{{$whls->whls}}</option>
+                                                                                    @endforeach
+                                                                                </select>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="body">Body <span class="req">*</span></label>
+                                                                                <select class="form-control select2" name="body" required="">
+                                                                                    <option value="" selected="">Select Body</option>
+                                                                                    @foreach(@$bodies as $key => $body)
+                                                                                    <option value="{{$body->body}}" @if(@$car->body==$body->body ) selected @endif >{{$body->body}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="drs">DRS <span class="req">*</span></label>
-                                                                                    <input type="number" name="drs" class="form-control" placeholder="DRS" value="{{@$car->drs}}" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="vin">VIN <span class="req">*</span></label>
-                                                                                    <input type="text" name="vin" class="form-control" placeholder="VIN " value="{{@$car->vin}}" required="">
-                                                                                </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="drs">DRS <span class="req">*</span></label>
+                                                                                <input type="number" name="drs" class="form-control" placeholder="DRS" value="{{@$car->drs}}" required="">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="org">Org </label>
-                                                                                    <input type="text" name="org" class="form-control" placeholder="Org" value="{{@$car->org}}">
-                                                                                </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="vin">VIN <span class="req">*</span></label>
+                                                                                <input type="text" name="vin" class="form-control" placeholder="VIN " value="{{@$car->vin}}" required="">
                                                                             </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="send">Send <span class="req">*</span></label>
-                                                                                    <input type="text" name="send" class="form-control" placeholder="Send " value="{{@$car->send}}" required="">
-                                                                                </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="org">Org </label>
+                                                                                <input type="text" name="org" class="form-control" placeholder="Org" value="{{@$car->org}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <label for="send">Send <span class="req">*</span></label>
+                                                                                <input type="text" name="send" class="form-control" placeholder="Send " value="{{@$car->send}}" required="">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -211,18 +210,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="payment-adress">
-                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Update">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress">
+                                                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Update">
 
-                        <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
-                    </div>
-                </div>
-            </div>
-                                            </form>
-                                        </div>
+                                                        <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             <!-- New Model Content End -->
@@ -391,62 +391,62 @@
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                 <div class="review-content-section">
-        <div id="dropzone1" class="pro-ad upload-section">
+                                                                    <div id="dropzone1" class="pro-ad upload-section">
 
-            <div class="row">
-                <a class="btn btn-success add-upload">Add New</a>
-                <a class="btn btn-danger remove-upload">Remove One</a>
-            </div>
-            <div class="row fixed-upload-file">
+                                                                        <div class="row">
+                                                                            <a class="btn btn-success add-upload">Add New</a>
+                                                                            <a class="btn btn-danger remove-upload">Remove One</a>
+                                                                        </div>
+                                                                        <div class="row fixed-upload-file">
 
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="cc">CC <span class="req">*</span></label>
-                        <input type="text" name="cc[]" class="form-control" placeholder="Enter CC" value="{{old('cc')}}" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="color_code">Color Code <span class="req">*</span></label>
-                        <input type="text" name="color_code[]" class="form-control" placeholder="Color Code " value="{{old('color_code')}}" required="">
-                    </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="cc">CC <span class="req">*</span></label>
+                                                                                    <input type="text" name="cc[]" class="form-control" placeholder="Enter CC" value="{{old('cc')}}" required="">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="color_code">Color Code <span class="req">*</span></label>
+                                                                                    <input type="text" name="color_code[]" class="form-control" placeholder="Color Code " value="{{old('color_code')}}" required="">
+                                                                                </div>
 
-                    <div class="form-group">
-                        <label for="evoxcode">Evox Code <span class="req">*</span></label>
-                        <input type="text" name="evoxcode[]" class="form-control" placeholder="Color Code " value="{{old('evoxcode')}}" required="">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="name">Full Name <span class="req">*</span></label>
-                        <input type="text" name="name[]" class="form-control" placeholder="Full name" value="{{old('name')}}" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="simple">Simple Name <span class="req">*</span></label>
-                        <input type="text" name="simple[]" class="form-control" placeholder="Simple Name " value="{{old('simple')}}" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="rgb1">RGB Color <span class="req">*</span></label>
-                        <input type="text" name="rgb1[]" class="form-control" placeholder="RGB Color Code" value="{{old('rgb1')}}" required="">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <label for="fname">Upload Image <span class="req">*</span></label>
-                    <br>
-                    <input type="file" accept="image/*" name="car_image[]" class="car_image dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('car_image')}}">
-                    <br>
-                </div>
-            </div>
-            <br>
-        </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="evoxcode">Evox Code <span class="req">*</span></label>
+                                                                                    <input type="text" name="evoxcode[]" class="form-control" placeholder="Color Code " value="{{old('evoxcode')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="name">Full Name <span class="req">*</span></label>
+                                                                                    <input type="text" name="name[]" class="form-control" placeholder="Full name" value="{{old('name')}}" required="">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="simple">Simple Name <span class="req">*</span></label>
+                                                                                    <input type="text" name="simple[]" class="form-control" placeholder="Simple Name " value="{{old('simple')}}" required="">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="rgb1">RGB Color <span class="req">*</span></label>
+                                                                                    <input type="text" name="rgb1[]" class="form-control" placeholder="RGB Color Code" value="{{old('rgb1')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="fname">Upload Image <span class="req">*</span></label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="car_image[]" class="car_image dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('car_image')}}">
+                                                                                <br>
+                                                                            </div>
+                                                                        </div>
+                                                                        <br>
+                                                                    </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="payment-adress">
-                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="payment-adress">
+                                                                                <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
 
-                        <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
-                    </div>
-                </div>
-            </div>
+                                                                                <input type="reset" class="btn btn-primary waves-effect waves-light" data-dismiss="modal" value="Cancel">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -477,7 +477,7 @@
         $(".wheelImage").popImg();
     })
 
-    $('.add-upload').click(function(){
+    $('.add-upload').click(function() {
         var clonedDiv = $('.fixed-upload-file').clone();
         $(clonedDiv).removeClass('fixed-upload-file');
         $(clonedDiv).addClass('dynamic-upload-file');
@@ -485,7 +485,7 @@
         // $(clonedDiv).find('.car_image').addClass('dropify');
         console.log($(clonedDiv).find('.dropify'))
         var drDestroy = $(clonedDiv).find('.dropify').dropify();
-        drDestroy = drDestroy.data('dropify') 
+        drDestroy = drDestroy.data('dropify')
         if ($(clonedDiv).find('.dropify').isDropified()) {
             $(clonedDiv).find('.dropify').destroy();
         } else {
@@ -494,7 +494,7 @@
 
         $('.upload-section').append(clonedDiv);
     });
-    $('.remove-upload').click(function(){
+    $('.remove-upload').click(function() {
         $('.upload-section').find('.dynamic-upload-file').last().remove();
     });
 </script>

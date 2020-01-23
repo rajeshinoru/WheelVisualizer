@@ -20,8 +20,8 @@ class CarResource extends Controller
     */
     public function index()
     {
-        $cars = Viflist::has('CarImages')->orderBy('id','DESC')->paginate(10); 
-        // $cars = Viflist::with('CarImages')->paginate(10);
+        // $cars = Viflist::has('CarImages')->orderBy('id','DESC')->paginate(10); 
+        $cars = Viflist::with('CarImages')->paginate(10);
         $brands = Wheel::select('brand')->distinct('brand')->get();
         $makes = Viflist::select('make')->distinct('make')->get();
         $models = Viflist::select('model')->distinct('model')->get();
@@ -177,7 +177,27 @@ class CarResource extends Controller
      */
     public function destroy($id)
     {
-        //
+     
+        try {
+
+            $viflist = Viflist::find($id); 
+
+            foreach ($viflist->CarImages as $key => $car) {
+
+                if(file_exists(url($car->image))){
+                    unlink(url($car->image));
+                }
+                $car->delete();
+            }
+            CarColor::where('vif',$viflist->vif)->delete();
+
+            $viflist->delete();
+            return back()->with('flash_sucess', 'Car deleted successfully');
+        } 
+        catch (Exception $e) {
+
+            return back()->with('flash_error', 'Car Not Found');
+        }   
     }
 
     /**
@@ -268,11 +288,13 @@ class CarResource extends Controller
         try{  
                 $car = CarImage::find($id);
                 $car_color = CarColor::where('code',$car->color_code)->where('vif',$car->car_id)->first(); 
-                
+
                 if($request->hasFile('car_image')){
 
                     //Remove the existing image in the folder
-                    unlink(asset($car->image));
+                    if(file_exists(public_path($car->image))){
+                        unlink(public_path($car->image));
+                    }
 
                     $ext = $request->car_image->getClientOriginalExtension();
                     $image_full_name = $car->car_id.'_'.$request->cc.'_032_'.$request->color_code.'.'.$ext;
@@ -306,4 +328,29 @@ class CarResource extends Controller
             return back()->with('flash_error',$e->getMessage());
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyCarImages($id)
+    {
+     
+        try {
+            $car_image = CarImage::find($id);
+            if(file_exists(url($car_image->image))){
+                unlink(url($car_image->image));
+            }
+            CarColor::where('vif',$car_image->car_id)->where('code',$car_image->color_code)->delete();
+            $car_image->delete();
+
+            return back()->with('flash_sucess', 'Car Images deleted successfully');
+        } 
+        catch (Exception $e) {
+            return back()->with('flash_error', 'Car Images Not Found');
+        }   
+    }
+
 }
