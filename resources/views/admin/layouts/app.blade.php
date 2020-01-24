@@ -39,6 +39,10 @@
     <!-- educate icon CSS
         ============================================ -->
     <link rel="stylesheet" href="{{ asset('/admin/css/educate-custon-icon.css') }}">
+
+    <!-- dropzone CSS
+        ============================================ -->
+    <link rel="stylesheet" href="{{ asset('/admin/css/dropzone/dropzone.css') }}">
     <!-- morrisjs CSS
         ============================================ -->
     <link rel="stylesheet" href="{{ asset('/admin/css/morrisjs/morris.css') }}">
@@ -155,6 +159,11 @@
         ============================================ -->
     <script src="{{asset('/admin/js/metisMenu/metisMenu.min.js')}}"></script>
     <script src="{{asset('/admin/js/metisMenu/metisMenu-active.js')}}"></script>
+
+    <!-- dropzone JS
+        ============================================ -->
+    <script src="{{asset('/admin/js/dropzone/dropzone.js')}}"></script> 
+
     <!-- morrisjs JS
         ============================================ -->
     <script src="{{asset('/admin/js/morrisjs/raphael-min.js')}}"></script>
