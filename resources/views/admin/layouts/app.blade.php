@@ -42,7 +42,7 @@
 
     <!-- dropzone CSS
         ============================================ -->
-    <link rel="stylesheet" href="{{ asset('/admin/css/dropzone/dropzone.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('/admin/css/dropzone/dropzone.css') }}"> -->
     <!-- morrisjs CSS
         ============================================ -->
     <link rel="stylesheet" href="{{ asset('/admin/css/morrisjs/morris.css') }}">
@@ -162,7 +162,7 @@
 
     <!-- dropzone JS
         ============================================ -->
-    <script src="{{asset('/admin/js/dropzone/dropzone.js')}}"></script> 
+    <!-- <script src="{{asset('/admin/js/dropzone/dropzone.js')}}"></script>  -->
 
     <!-- morrisjs JS
         ============================================ -->
