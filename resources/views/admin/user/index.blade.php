@@ -9,7 +9,7 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>Users List</h4>
                     <div class="add-product">
-                        <a data-toggle="modal" data-target="#myModal">Add User</a>
+                        <!-- <a data-toggle="modal" data-target="#myModal">Add User</a> -->
                     </div>
                     <div class="asset-inner">
                         <table>
@@ -19,19 +19,19 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Created At</th>
-                                    <th>Setting</th>
+                                    <!-- <th>Setting</th> -->
                                 </tr>
                             </thead>
                             @forelse(@$users as $key => $user)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->created_at}}</td>
-                                <td>
+                                <td>{{@$user->name}}</td>
+                                <td>{{@$user->email}}</td>
+                                <td>{{@$user->created_at}}</td>
+<!--                                 <td>
                                     <button data-toggle="tooltip" title="Edit" class="pd-setting-ed user_edit" data-value="{{@$user->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                     <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
+                                </td> -->
                             </tr>
                             @empty
                             <tr>
@@ -45,7 +45,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Created At</th>
-                                    <th>Setting</th>
+                                    <!-- <th>Setting</th> -->
                                 </tr>
                             </tfoot>
                         </table>
@@ -148,4 +148,18 @@
         </div>
     </div>
 </div>
+{{-- <script type="text/javascript">
+    $('dropify').dropify({
+    tpl: {
+        wrap:            '<div class="dropify-wrapper"></div>',
+        loader:          '<div class="dropify-loader"></div>',
+        message:         '<div class="dropify-message"><span class="file-icon" /> <p>{{ default }}</p></div>',
+        preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">{{ replace }}</p></div></div></div>',
+        filename:        '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
+        clearButton:     '<button type="button" class="dropify-clear">{{ remove }}</button>',
+        errorLine:       '<p class="dropify-error">{{ error }}</p>',
+        errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
+    },
+});
+</script> --}}
 @endsection

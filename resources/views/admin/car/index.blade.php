@@ -498,19 +498,9 @@
         var clonedDiv = $('.fixed-upload-file').clone();
         $(clonedDiv).removeClass('fixed-upload-file');
         $(clonedDiv).addClass('dynamic-upload-file');
-        // $(clonedDiv).find('.car_image').removeClass('dropify');
-        // $(clonedDiv).find('.car_image').addClass('dropify');
-        console.log($(clonedDiv).find('.dropify'))
-        var drDestroy = $(clonedDiv).find('.dropify').dropify();
-        drDestroy = drDestroy.data('dropify')
-        if ($(clonedDiv).find('.dropify').isDropified()) {
-            $(clonedDiv).find('.dropify').destroy();
-        } else {
-            $(clonedDiv).find('.dropify').init();
-        }
-
         $('.upload-section').append(clonedDiv);
     });
+    
     $('.remove-upload').click(function() {
         $('.upload-section').find('.dynamic-upload-file').last().remove();
     });

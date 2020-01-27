@@ -416,6 +416,9 @@
 <script type="text/javascript">
     $(function() {
         $(".wheelImage").popImg();
-    })
+    });
+
+
+    
 </script>
 @endsection
