@@ -22,23 +22,22 @@
                     </div>
                     <div class="asset-inner">
                         <table>
-                            <tr>
-                                <th> S.No</th>
-                                <!--                                   <th>org </th>
-                                        <th>send </th> -->
-                                <th>Year </th>
-                                <th>Make </th>
-                                <th>Model </th>
-                                <th>Trim </th>
-                                <th>DRS </th>
-                                <th>Body </th>
-                                <!-- <th>cab </th> -->
-                                <th>Wheels </th>
-                                <th>VIN </th>
-                                <th>Delivered Date </th>
-                                <th>View Images</th>
-                                <th> Actions</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th> S.No</th>
+                                    <th>Year </th>
+                                    <th>Make </th>
+                                    <th>Model </th>
+                                    <th>Trim </th>
+                                    <th>DRS </th>
+                                    <th>Body </th>
+                                    <th>Wheels </th>
+                                    <th>VIN </th>
+                                    <th>Delivered Date </th>
+                                    <th>View Images</th>
+                                    <th> Actions</th>
+                                </tr>
+                            </thead>
                             @forelse(@$cars as $key => $car)
                             <tr>
                                 <td>{{@$key+1}}</td>
@@ -60,11 +59,11 @@
                                     <a class="btn btn-default look-a-like" href="{{url('admin/car/images')}}/{{@$car->id}}">View</a>
                                 </td>
                                 <td>
-                                    <button class="btn btn-default look-a-like" data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                     <form action="{{ route('admin.car.destroy', $car->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE">
 
+                                        <button class="btn btn-default look-a-like" data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
@@ -231,6 +230,24 @@
                                 <td colspan="5">No Cars found</td>
                             </tr>
                             @endforelse
+
+                            <tfoot>
+                                <tr>
+
+                                    <th> S.No</th>
+                                    <th>Year </th>
+                                    <th>Make </th>
+                                    <th>Model </th>
+                                    <th>Trim </th>
+                                    <th>DRS </th>
+                                    <th>Body </th>
+                                    <th>Wheels </th>
+                                    <th>VIN </th>
+                                    <th>Delivered Date </th>
+                                    <th>View Images</th>
+                                    <th> Actions</th>
+                                </tr>
+                            </tfoot>
                         </table>
 
                         {{$cars->appends(['diameter' => @Request::get('diameter'),'width' => @Request::get('width'),'brand' => @Request::get('brand'),'car_id' => @Request::get('car_id'),'page' => @Request::get('page')])->links()}}

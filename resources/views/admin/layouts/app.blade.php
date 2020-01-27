@@ -67,21 +67,63 @@
     <link rel="stylesheet" href="{{ asset('/admin/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('/admin/css/dropify.min.css') }}">
 
-<style type="text/css">
-  .select2-container .select2-selection--single{height:34px !important;}
-  .select2-container--default .select2-selection--single{border: 1px solid #ccc !important;border-radius: 0px !important;}
-  .select2.select2-container.select2-container--default{margin: 10px 0px !important;width: 100% !important;}
-  .select2-selection__arrow{display: none !important;}
-  .select2-dropdown.select2-dropdown--below{margin: 0px 10px !important;width: 340px !important;}
-  .panel-heading{background:#000;color:#fff !important;cursor: pointer;font: 500 14px/25px "Poppins", Helvetica, sans-serif;margin: 0;
-      padding: 11px 15px;position: relative;text-transform: uppercase;text-align: left;border-radius: 0px;}
-  .menu-category{background: #ccc !important;}
-  .select2{padding: 0px 10px !important;}
-  @media (max-width: 767px)
-  {
-    .select2-dropdown.select2-dropdown--below{margin: 0px 10px !important;width: 480px !important;}
-  }
-</style>
+    <!-- DataTable CSS -->
+
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('/admin/DataTables/datatables.min.css') }}" />
+
+    <style type="text/css">
+        .select2-container .select2-selection--single {
+            height: 34px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #ccc !important;
+            border-radius: 0px !important;
+        }
+
+        .select2.select2-container.select2-container--default {
+            margin: 10px 0px !important;
+            width: 100% !important;
+        }
+
+        .select2-selection__arrow {
+            display: none !important;
+        }
+
+        .select2-dropdown.select2-dropdown--below {
+            margin: 0px 10px !important;
+            width: 340px !important;
+        }
+
+        .panel-heading {
+            background: #000;
+            color: #fff !important;
+            cursor: pointer;
+            font: 500 14px/25px "Poppins", Helvetica, sans-serif;
+            margin: 0;
+            padding: 11px 15px;
+            position: relative;
+            text-transform: uppercase;
+            text-align: left;
+            border-radius: 0px;
+        }
+
+        .menu-category {
+            background: #ccc !important;
+        }
+
+        .select2 {
+            padding: 0px 10px !important;
+        }
+
+        @media (max-width: 767px) {
+            .select2-dropdown.select2-dropdown--below {
+                margin: 0px 10px !important;
+                width: 480px !important;
+            }
+        }
+    </style>
 
     <!-- modernizr JS
         ============================================ -->
@@ -96,7 +138,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href=""><img class="main-logo" src="{{asset('/admin/img/logo/logo.png')}}"  alt=""/></a>
+                        <a href=""><img class="main-logo" src="{{asset('/admin/img/logo/logo.png')}}" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -105,7 +147,7 @@
         @include('admin.include.header')
         @include('common.notify')
 
-                @yield('content')
+        @yield('content')
 
         <div class="footer-copyright-area">
             <div class="container-fluid">
@@ -189,30 +231,43 @@
 
     <script src="{{ asset('js/popImg.js') }}"></script>
 
+    <!-- DataTable JS -->
+    <script type="text/javascript" src="{{asset('/admin/DataTables/datatables.min.js')}}"></script>
+
     <!-- tawk chat JS
         ============================================ -->
     <!-- <script src="{{asset('/admin/js/tawk-chat.js">')}}</script> -->
 
-    <script src="{{asset('/admin/js/select2.min.js')}}"></script> 
+    <script src="{{asset('/admin/js/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('/admin/js/dropify.min.js')}}"></script>
     <script type="text/javascript">
-      $('.dropify').dropify({
+        $('.dropify').dropify({
             messages: {
                 'default': 'Drag and drop a file here or click',
                 'replace': 'Drag and drop or click to replace',
-                'remove':  'Remove',
-                'error':   'Ooops, something wrong happended.'
+                'remove': 'Remove',
+                'error': 'Ooops, something wrong happended.'
             }
-        }); 
+        });
     </script>
+
 
 
     @yield('custom_scripts')
 
     <script type="text/javascript">
-        
-      $('.select2').select2();
-      
+        $(document).ready(function() {
+
+            $('.select2').select2();
+
+            var table = $('table').DataTable({
+                dom: 't' // This shows just the table
+            });
+
+            $('#data-table-search').on('keyup change', function() {
+                table.search($('#data-table-search').val()).draw();
+            });
+        });
     </script>
 </body>
 

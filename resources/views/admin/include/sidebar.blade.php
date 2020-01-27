@@ -14,7 +14,7 @@
                                    <span class="mini-click-non">Home</span>
                                 </a>
                             <ul class="submenu-angle" aria-expanded="true">
-                                <li><a title="Dashboard" href=""><span class="mini-sub-pro">Dashboard</span></a></li>
+                                <li><a title="Dashboard" href="{{url('/admin/home')}}"><span class="mini-sub-pro">Dashboard</span></a></li>
 
                             </ul>
                         </li>

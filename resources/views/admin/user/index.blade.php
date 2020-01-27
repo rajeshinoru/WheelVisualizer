@@ -13,13 +13,15 @@
                     </div>
                     <div class="asset-inner">
                         <table>
-                            <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Created At</th>
-                                <th>Setting</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Created At</th>
+                                    <th>Setting</th>
+                                </tr>
+                            </thead>
                             @forelse(@$users as $key => $user)
                             <tr>
                                 <td>{{$key+1}}</td>
@@ -36,6 +38,16 @@
                                 <td colspan="5">No Users found</td>
                             </tr>
                             @endforelse
+
+                            <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Created At</th>
+                                    <th>Setting</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <div class="custom-pagination">
@@ -98,7 +110,7 @@
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="fname">Email</label>
-                                                                                    <input name="email"  type="email" class="form-control" placeholder="Email " value="" required="">
+                                                                                    <input name="email" type="email" class="form-control" placeholder="Email " value="" required="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
