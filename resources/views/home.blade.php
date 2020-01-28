@@ -410,6 +410,16 @@
         {
             font-size:10px !important;
         }
+        .dropdown-menu.multi-colum-nav {
+
+            width: 100% !important;
+            background:
+
+            #000 !important;
+            border: none !important;
+            text-align: center;
+
+        }
     }
 </style>
 <div class="banner-search">
@@ -487,6 +497,18 @@
 
         <div class="asItems wheels">
             <ul class="gridList wheels suggested">
+
+                @forelse($Wheels as $key => $wheel)
+                
+                <?php if($key == count($Wheels)/2 ) break; ?>
+                <li class="gridItem homeapge1">
+                    <div class="homecelld">
+                        <a href=""><img  class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
+                    </div>
+                    <div class="homecelld" style="margin-top: 4px;"><b>{{$wheel->wheeldiameter}} Diameter</b></div>
+                </li>
+
+                @empty
                 <li class="gridItem homeapge1">
                     <div class="homecelld">
                         <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
@@ -523,10 +545,24 @@
                     </div>
                     <div class="homecelld" style="margin-top: 4px;"><b>26 inch Only $329</b></div>
                 </li>
+
+                @endforelse
             </ul>
         </div>
         <div class="asItems wheels">
             <ul class="gridList wheels suggested">
+
+                @forelse($Wheels as $key => $wheel)
+                
+                <?php if($key < count($Wheels)/2 ) continue; ?>
+                <li class="gridItem homeapge1">
+                    <div class="homecelld">
+                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
+                    </div>
+                    <div class="homecelld" style="margin-top: 4px;"><b>205/50R17 $45</b></div>
+                </li>
+
+                @empty
                 <li class="gridItem homeapge1">
                     <div class="homecelld">
                         <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
@@ -563,6 +599,7 @@
                     </div>
                     <div class="homecelld" style="margin-top: 4px;"><b>305/35R26 $125</b></div>
                 </li>
+                @endforelse
             </ul>
         </div>
     </div>
@@ -651,14 +688,14 @@
             <div class="footercustom-menu" align="center">
                 <div class="zfooterMenu">
                     <ul>
-                        <li><a href="/Custom_Wheels.cfm">Custom Wheels</a></li>
-                        <li><a href="/Discount_Tires.cfm">Discount Tires</a></li>
-                        <li><a href="/Wheel_and_Tire_information_links.cfm">Information Links</a></li>
-                        <li><a href="/Apply_for_Credit.cfm">Rims Financing</a></li>
-                        <li><a href="/Discounted_Wheel_Warehouse_Contact_us.cfm">Contact Us</a></li>
-                        <li><a href="/Discounted_Wheel_Warehouse__About_Us__Customer_Service.cfm">About Us</a></li>
-                        <li><a href="/wheels-search">Vehicle Search</a></li>
-                        <li><a href="/index.cfm">Home</a></li>
+                        <li><a href="">Custom Wheels</a></li>
+                        <li><a href="">Discount Tires</a></li>
+                        <li><a href="">Information Links</a></li>
+                        <li><a href="">Rims Financing</a></li>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Vehicle Search</a></li>
+                        <li><a href="">Home</a></li>
                     </ul>
                 </div>
             </div>

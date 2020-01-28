@@ -138,28 +138,28 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                                <label for="fname">Wheel Image <span class="req">*</span></label><br>
-                                                                                <img src="{{asset(@$wheel->image)}}" width="100%" height="100%">
-                                                                            </div>
-                                                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                                                <input type="file" accept="image/*" name="image" class="form-control form" > 
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                                <label for="fname">Front Back Image <span class="req">*</span></label><br>
-                                                                                <img src="{{asset(front_back_path(@$wheel->image))}}" width="100%" height="100%">
-                                                                            </div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label for="fname">Wheel Image <span class="req">*</span></label><br>
+            <img src="{{asset(@$wheel->image)}}" width="100%" height="100%">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <input type="file" accept="image/*" name="image" class="btn btn-primary form-control" > 
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label for="fname">Front Back Image <span class="req">*</span></label><br>
+            <img src="{{asset(front_back_path(@$wheel->image))}}" width="100%" height="100%">
+        </div>
 
-                                                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                                                <input type="file" accept="image/*" name="front_back_image" class="form-control form" > 
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <br>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <input type="file" accept="image/*" name="front_back_image" class="btn btn-primary form-control" > 
+        </div>
+    </div>
+</div>
+<br>
 
                                                                     <div class="row">
                                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -426,12 +426,12 @@
     $(function() {
         $(".wheelImage").popImg();
     });
-    // $(".form-control-file").click(function(){
-    //     // $new = $(this).clone().removeClass('dropify');
-    //     // $(this).after($new);
+// $(".form-control-file").click(function(){
+//     // $new = $(this).clone().removeClass('dropify');
+//     // $(this).after($new);
 
-    //   $(this).parent().closest('.dropify-wrapper').find('.hidden-file-input').click();
-    // });
+//   $(this).parent().closest('.dropify-wrapper').find('.hidden-file-input').click();
+// });
 
     
 </script>
