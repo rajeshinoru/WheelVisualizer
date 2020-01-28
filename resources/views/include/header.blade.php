@@ -45,7 +45,7 @@
             <div class="col-sm-6 logo">
                 <div class="header">
                     <div id="logo">
-                        <a href="{{url('/')}}"><img src="image/logo.png" title="Your Store" alt="Your Store" class="img-responsive" /></a>
+                        <a href="{{url('/')}}"><img src="image/Logo/Logo-Demo-5.png" title="Your Store" alt="Your Store" class="img-responsive" /></a>
                     </div>
                 </div>
             </div>
@@ -64,6 +64,58 @@
         </div>
     </div>
 
+
+
+<style>
+.dropdown-menu.multi-colum-nav {
+    width: 1200px !important;
+    background:#000 !important;
+    border: none !important;
+}
+.row.tire-nav {
+    padding: 0px 0px !important;
+    margin: 0px 0px !important;
+}
+.dropdown-menu.multi-colum-nav li a {
+    font-size: 12px !important;
+}
+.col-sm-3.one-nav ul {
+    list-style-type: none !important;
+}
+.col-sm-3.one-nav ul li {
+    padding: 5px 0px !important;
+    border-bottom: 1px solid #ffffff24 !important;
+}
+.col-sm-3.one-nav h5 {
+    color:#ccc !important;
+    font-weight: 600;
+    font-size: 15px !important;
+    text-transform: uppercase;
+}
+.col-sm-3.see-more {
+    text-align: center !important;
+}
+.more a {
+    color: #fff !important;
+    font-size: 12px !important;
+}
+.more
+{
+    padding:10px 0px !important;
+}
+.more:hover a {
+    color: red !important;
+}
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus
+{
+    color: red !important;
+}
+.dropdown-tire:hover .dropdown-menu.multi-colum-nav {
+    display: block !important;
+}
+</style>
+
+
     <nav id="myHeader" class="new-navbar">
         <div class="container">
             <div class="container">
@@ -76,10 +128,10 @@
                     </button>
                 </div>
                 <div class="row new-nav">
-                    <div class="col-sm-8 nav-bar">
+                    <div class="col-sm-9 nav-bar">
                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
                             <ul class="nav navbar-nav navbar">
-                                <li class="dropdown-nav"><a title="WHEELS" href="{{route('forms')}}" class="dropdown-toggle" data-toggle="dropdown">WHEELS <span class="caret"></span></a>
+                                <li class="dropdown-nav"><a title="WHEELS" href="{{route('forms')}}" class="dropdown-toggle" data-toggle="dropdown">DISCOUNT WHEELS <span class="caret"></span></a>
                                     <ul class="dropdown-menu nav-dropdown">
                                         <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                         @forelse(wheelbrands() as $brand)
@@ -87,18 +139,73 @@
                                         @empty @endforelse
                                     </ul>
                                 </li>
-                                <li class=""><a href="">TIRES</a></li>
-                                <li class=""><a href="">SUSPENSION</a></li>
-                                <li class=""><a href="">ACCESSORIES</a></li>
-                                <li class=""><a href="">PERFORMANCE</a></li>
-                                <li class=""><a href="">SERVICES</a></li>
-                                <li class=""><a href="">GALLERY</a></li>
-                                <li class=""><a href="">BUILDERS</a></li>
+
+                                <!-- New Nav Start -->
+                                <li class="dropdown-tire"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT TIRES <span class="caret"></span></a>
+                                    <ul class="dropdown-menu multi-colum-nav">
+                                        <div class="row tire-nav">
+                                            <div class="col-sm-3 one-nav">
+                                                <ul class="item">
+                                                    <li><h5>Shop</h5></li>
+                                                    <li><a href="">By Vehicle</a></li>
+                                                    <li><a href="">By Size</a></li>
+                                                    <li><a href="">By Wheel Diameter</a></li>
+                                                    <li><a href="">Tire & Wheel Packages</a></li>
+                                                </ul>
+
+                                                <ul class="item">
+                                                <li><h5>Winter / Snow</h5></li>
+                                                <li><a href="" target="_self">Winter / Snow Tire </a></li>
+                                                <li><a href="" target="_self">Winter / Snow Tires </a></li>
+                                                </ul>
+
+                                            </div>
+                                            <div class="col-sm-3 one-nav">
+                                                <ul class="item">
+                                                    <li><h5>Find</h5></li>
+                                                    <li><a href="" target="_self">By Brand</a></li>
+                                                    <li><a href="" target="_self">By Brand Winter / Snow</a></li>
+                                                    <li><a href="" target="_self">By Tire Category</a></li>
+                                                    <li><a href="" target="_self">Michelin Track Connect</a></li>
+                                                </ul>
+
+                                                <ul class="item">
+                                                <li class="hideSubmenu">
+                                                    <h5>Maintain</h5></li>
+                                                    <li class="hideSubmenu"><a href="" target="_self">Tire Rack Garage App</a></li>
+                                                    <li class="hideSubmenu"><a href="" target="_self">Tire &amp; Wheel Owner's Manual</a></li>
+                                                </ul>
+
+                                            </div>
+                                            <div class="col-sm-3 one-nav">
+                                                <ul class="item"><li>
+                                                <h5>Learn</h5></li>
+                                                    <li><a href="" target="_self">Test Results</a></li>
+                                                    <li><a href="" target="_self">Tire Ratings Charts &amp; Reviews</a></li>
+                                                    <li><a href="" target="_self">Tire Road Hazard Protection</a></li>
+                                                    <li><a href="" target="_self">Tire Tech</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3 see-more">
+                                                <img src="image/product.png">
+                                                <p class="more"><a href="">See More >></a></p>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                <!-- New Nav End -->
+
+                                <li class=""><a href="">INFORMATION</a></li>
+                                <li class=""><a href="">RIMS FINANCING</a></li>
+                                <li class=""><a href="">WHEEL VISUALIZER</a></li>
+                                <li class=""><a href="">ABOUT</a></li>
+                                <li class=""><a href="">CONTACT</a></li>
                                 <li class=""><a href="">ENQUIRY</a></li>
+                                
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <button type="button" class="btn btn-inverse btn-block btn-lg"><i class="fa fa-shopping-cart"></i>
                             <span class="cart-heading">Cart</span>
                             <span id="cart-total">0</span>

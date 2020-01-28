@@ -1,4 +1,4 @@
- <div class="container">
+ <div class="container brand-logo">
        <section class="customer-logos slider">
           <div class="slide"><img src="{{asset('/storage/brands/a.png')}}"></div>
           <div class="slide"><img src="{{asset('/storage/brands/b.png')}}"></div>
