@@ -51,7 +51,7 @@
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE">
 
-                                    <button class="btn btn-default look-a-like" data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <a class="btn btn-default look-a-like" data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
@@ -73,7 +73,7 @@
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                         <div class="review-content-section">
                                                             <div id="dropzone1" class="pro-ad">
-                                                                <form action="{{route('admin.wheel.update',@$wheel->id)}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
+                                                                <form action="{{route('admin.wheel.update',@$wheel->id)}}" class=""   method="POST" enctype="multipart/form-data">
                                                                     {{@csrf_field()}}
                                                                     <input type="hidden" name="_method" value="PATCH">
                                                                     <div class="row">
@@ -140,17 +140,26 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                            <label for="fname">Wheel Image <span class="req">*</span></label>
-                                                                            <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{asset(@$wheel->image)}}" required="">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="fname">Wheel Image <span class="req">*</span></label><br>
+                                                                                <img src="{{asset(@$wheel->image)}}" width="100%" height="100%">
+                                                                            </div>
+                                                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                                                <input type="file" accept="image/*" name="image" class="form-control form" > 
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                            <label for="fname">Front Back Image <span class="req">*</span></label>
-                                                                            <br>
-                                                                            <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp" data-default-file="{{asset(front_back_path(@$wheel->image))}}" required="">
-                                                                            <br>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="fname">Front Back Image <span class="req">*</span></label><br>
+                                                                                <img src="{{asset(front_back_path(@$wheel->image))}}" width="100%" height="100%">
+                                                                            </div>
+
+                                                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                                                <input type="file" accept="image/*" name="front_back_image" class="form-control form" > 
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-
+                                                                    <br>
 
                                                                     <div class="row">
                                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -325,7 +334,7 @@
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <label for="fname">Front Back Image <span class="req">*</span></label>
                                                                                 <br>
-                                                                                <input type="file" accept="image/*" name="front_back_image" class="dropify sform-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('front_back_image')}}">
+                                                                                <input type="file" accept="image/*" name="front_back_image" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('front_back_image')}}">
                                                                                 <br>
                                                                             </div>
                                                                         </div>
@@ -417,7 +426,12 @@
     $(function() {
         $(".wheelImage").popImg();
     });
+    // $(".form-control-file").click(function(){
+    //     // $new = $(this).clone().removeClass('dropify');
+    //     // $(this).after($new);
 
+    //   $(this).parent().closest('.dropify-wrapper').find('.hidden-file-input').click();
+    // });
 
     
 </script>

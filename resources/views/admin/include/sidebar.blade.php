@@ -9,7 +9,7 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="">
-                            <a class="has-arrow" href="index.html">
+                            <a class="has-arrow" href="{{url('/admin/home')}}">
                                    <span class="educate-icon educate-home icon-wrap"></span>
                                    <span class="mini-click-non">Home</span>
                                 </a>

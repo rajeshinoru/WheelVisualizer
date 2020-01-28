@@ -267,6 +267,16 @@
             $('#data-table-search').on('keyup change', function() {
                 table.search($('#data-table-search').val()).draw();
             });
+
+
+            /** add active class and stay opened when selected */
+            var url = window.location;
+            // for sidebar menu entirely but not cover treeview
+            var list = $('.metismenu li a').filter(function() {
+                 return this.href == url;
+            }).parents().closest('.metismenu li');
+            $(list).find('a').click();
+            $(list).addClass('active');
         });
     </script>
 </body>

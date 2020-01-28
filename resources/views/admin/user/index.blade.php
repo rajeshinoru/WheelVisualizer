@@ -29,7 +29,7 @@
                                 <td>{{@$user->email}}</td>
                                 <td>{{@$user->created_at}}</td>
 <!--                                 <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed user_edit" data-value="{{@$user->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <a data-toggle="tooltip" title="Edit" class="pd-setting-ed user_edit" data-value="{{@$user->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                     <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </td> -->
                             </tr>
