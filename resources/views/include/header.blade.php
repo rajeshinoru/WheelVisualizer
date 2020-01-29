@@ -64,56 +64,182 @@
         </div>
     </div>
 
+    <style>
+        .dropdown-menu.multi-colum-nav {
+            width: 1200px !important;
+            background: #000 !important;
+            border: none !important;
+        }
+        
+        .row.tire-nav {
+            padding: 0px 0px !important;
+            margin: 0px 0px !important;
+        }
+        
+        .dropdown-menu.multi-colum-nav li a {
+            font-size: 12px !important;
+        }
+        
+        .col-sm-3.one-nav ul {
+            list-style-type: none !important;
+        }
+        
+        .col-sm-3.one-nav ul li {
+            padding: 5px 0px !important;
+            border-bottom: 1px solid #ffffff24 !important;
+        }
+        
+        .col-sm-3.one-nav h5 {
+            color: #ccc !important;
+            font-weight: 600;
+            font-size: 15px !important;
+            text-transform: uppercase;
+        }
+        
+        .col-sm-3.see-more {
+            text-align: center !important;
+        }
+        
+        .more a {
+            color: #fff !important;
+            font-size: 12px !important;
+        }
+        
+        .more {
+            padding: 10px 0px !important;
+        }
+        
+        .more:hover a {
+            color: red !important;
+        }
+        
+        .dropdown-menu li > a:hover,
+        .dropdown-menu li > a:focus {
+            color: red !important;
+        }
+        
+        .dropdown-tire:hover .dropdown-menu.multi-colum-nav {
+            display: block !important;
+        }
+    </style>
+
+    <style>
+        .car-truck-head {
+            margin: 15px 0px !important;
+            font-size: 12px !important;
+            color: #fff !important;
+        }
+        
+        .col-sm-2.shop-vehicle-head h1 {
+            font-size: 12px !important;
+            color: #fff !important;
+            margin: 11px 0px !important;
+        }
+        
+        .vehicle-list {
+            margin: 0px 0px !important;
+        }
+        
+        .btn.vehicle {
+            background: #fff !important;
+            border-radius: 5px !important;
+            color: #222 !important;
+            font-size: 12px !important;
+        }
+        
+        .btn.vehicle-go {
+            background: #ccc !important;
+            border-radius: 5px !important;
+            color: #000 !important;
+            font-size: 12px !important;
+        }
+        
+        .col-sm-2.tire-menu ul {
+            list-style-type: none !important;
+        }
+        
+        .col-sm-2.tire-menu ul li {
+            color: #fff !important;
+            font-size: 12px !important;
+            padding: 5px 0px !important;
+            border-bottom: 1px solid #ffffff24 !important;
+        }
+        
+        .col-sm-2.tire-menu li a:hover {
+            color: red !important;
+        }
+        
+        .car-truck-head i {
+            font-size: 25px !important;
+            padding: 0px 5px !important;
+        }
+        
+        .dropdown-menu.multi-colum-nav {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .btn.vehicle {
+            padding: 7px 30px !important;
+        }
+        
+        .btn.vehicle-go {
+            padding: 7px 20px !important;
+        }
+        
+        .col-sm-12.tire-menu-list {
+            margin-bottom: 20px !important;
+        }
+        
+        @media (max-width: 767px) {
+            .car-truck-head {
+                line-height: 30px !important;
+            }
+            .btn.vehicle {
+                margin: 5px 0px !important;
+                font-size: 10px !important;
+            }
+        }
+    </style>
+
+
 
 
 <style>
-.dropdown-menu.multi-colum-nav {
-    width: 1200px !important;
-    background:#000 !important;
-    border: none !important;
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
 }
-.row.tire-nav {
-    padding: 0px 0px !important;
-    margin: 0px 0px !important;
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
-.dropdown-menu.multi-colum-nav li a {
-    font-size: 12px !important;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
-.col-sm-3.one-nav ul {
-    list-style-type: none !important;
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
-.col-sm-3.one-nav ul li {
-    padding: 5px 0px !important;
-    border-bottom: 1px solid #ffffff24 !important;
-}
-.col-sm-3.one-nav h5 {
-    color:#ccc !important;
-    font-weight: 600;
-    font-size: 15px !important;
-    text-transform: uppercase;
-}
-.col-sm-3.see-more {
-    text-align: center !important;
-}
-.more a {
-    color: #fff !important;
-    font-size: 12px !important;
-}
-.more
-{
-    padding:10px 0px !important;
-}
-.more:hover a {
-    color: red !important;
-}
-.dropdown-menu li > a:hover, .dropdown-menu li > a:focus
-{
-    color: red !important;
-}
-.dropdown-tire:hover .dropdown-menu.multi-colum-nav {
-    display: block !important;
-}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
+
+
 
 
     <nav id="myHeader" class="new-navbar">
@@ -143,54 +269,167 @@
                                 <!-- New Nav Start -->
                                 <li class="dropdown-tire"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT TIRES <span class="caret"></span></a>
                                     <ul class="dropdown-menu multi-colum-nav">
+                                        <!-- New Menu Today Start-->
                                         <div class="row tire-nav">
-                                            <div class="col-sm-3 one-nav">
-                                                <ul class="item">
-                                                    <li><h5>Shop</h5></li>
-                                                    <li><a href="">By Vehicle</a></li>
-                                                    <li><a href="">By Size</a></li>
-                                                    <li><a href="">By Wheel Diameter</a></li>
-                                                    <li><a href="">Tire & Wheel Packages</a></li>
-                                                </ul>
-
-                                                <ul class="item">
-                                                <li><h5>Winter / Snow</h5></li>
-                                                <li><a href="" target="_self">Winter / Snow Tire </a></li>
-                                                <li><a href="" target="_self">Winter / Snow Tires </a></li>
-                                                </ul>
-
-                                            </div>
-                                            <div class="col-sm-3 one-nav">
-                                                <ul class="item">
-                                                    <li><h5>Find</h5></li>
-                                                    <li><a href="" target="_self">By Brand</a></li>
-                                                    <li><a href="" target="_self">By Brand Winter / Snow</a></li>
-                                                    <li><a href="" target="_self">By Tire Category</a></li>
-                                                    <li><a href="" target="_self">Michelin Track Connect</a></li>
-                                                </ul>
-
-                                                <ul class="item">
-                                                <li class="hideSubmenu">
-                                                    <h5>Maintain</h5></li>
-                                                    <li class="hideSubmenu"><a href="" target="_self">Tire Rack Garage App</a></li>
-                                                    <li class="hideSubmenu"><a href="" target="_self">Tire &amp; Wheel Owner's Manual</a></li>
-                                                </ul>
-
-                                            </div>
-                                            <div class="col-sm-3 one-nav">
-                                                <ul class="item"><li>
-                                                <h5>Learn</h5></li>
-                                                    <li><a href="" target="_self">Test Results</a></li>
-                                                    <li><a href="" target="_self">Tire Ratings Charts &amp; Reviews</a></li>
-                                                    <li><a href="" target="_self">Tire Road Hazard Protection</a></li>
-                                                    <li><a href="" target="_self">Tire Tech</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3 see-more">
-                                                <img src="image/product.png">
-                                                <p class="more"><a href="">See More >></a></p>
+                                            <div class="col-sm-12">
+                                                <h1 class="car-truck-head">Shop by Passenger car and Light Truck <i class="fa fa-car" aria-hidden="true"></i> <i class="fa fa-truck" aria-hidden="true"></i></h1>
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-2 shop-vehicle-head">
+                                                    <h1>Shop By Vehicle</h1>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="vehicle-list">
+
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn vehicle">YEAR</button>
+                                                        <div class="dropdown-content">
+                                                            <a href="#">2019</a>
+                                                            <a href="#">2018</a>
+                                                            <a href="#">2017</a>
+                                                            <a href="#">2016</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn vehicle">MAKE</button>
+                                                        <div class="dropdown-content">
+                                                            <a href="#">2019</a>
+                                                            <a href="#">2018</a>
+                                                            <a href="#">2017</a>
+                                                            <a href="#">2016</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn vehicle">MODEL</button>
+                                                        <div class="dropdown-content">
+                                                            <a href="#">2019</a>
+                                                            <a href="#">2018</a>
+                                                            <a href="#">2017</a>
+                                                            <a href="#">2016</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn vehicle">TRIM</button>
+                                                        <div class="dropdown-content">
+                                                            <a href="#">2019</a>
+                                                            <a href="#">2018</a>
+                                                            <a href="#">2017</a>
+                                                            <a href="#">2016</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn vehicle">ZIP</button>
+                                                        <div class="dropdown-content">
+                                                            <a href="#">2019</a>
+                                                            <a href="#">2018</a>
+                                                            <a href="#">2017</a>
+                                                            <a href="#">2016</a>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tires')}}">GO</a></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-2 shop-vehicle-head">
+                                                    <h1>Shop By Vehicle Size</h1>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="vehicle-list">
+                                                        <button type="button" class="btn vehicle">225</button>
+                                                        <button type="button" class="btn vehicle">40</button>
+                                                        <button type="button" class="btn vehicle">18</button>
+                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tires')}}">GO</a></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-12 tire-menu-list">
+                                                <div class="col-sm-2 shop-vehicle-head">
+                                                    <h1>Shop By Vehicle Size</h1>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="vehicle-list">
+                                                        <div class="row">
+                                                            <div class="col-sm-2 tire-menu">
+                                                                <ul>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-2 tire-menu">
+                                                                <ul>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-2 tire-menu">
+                                                                <ul>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-2 tire-menu">
+                                                                <ul>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-2 tire-menu">
+                                                                <ul>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-2 tire-menu">
+                                                                <ul>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                    <li><a><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- New Menu Today End -->
+
                                     </ul>
                                 </li>
                                 <!-- New Nav End -->
@@ -201,7 +440,7 @@
                                 <li class=""><a href="">ABOUT</a></li>
                                 <li class=""><a href="">CONTACT</a></li>
                                 <li class=""><a href="">ENQUIRY</a></li>
-                                
+
                             </ul>
                         </div>
                     </div>

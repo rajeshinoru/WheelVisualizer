@@ -27,6 +27,10 @@ Route::get('/wheelsNameChange', 'HomeController@wheelsNameChange')->name('wheels
 Route::get('/notFoundCars', 'HomeController@notFoundCars')->name('notFoundCars'); 
 Route::get('/fold-fil', 'HomeController@fold_fil');
 
+Route::get('/Falken_Import', 'TyreController@Falken_Import');
+Route::get('/Falken_Detail_Import', 'TyreDetailController@Falken_Detail_Import');
+
+
 Route::resource('wheel', 'WheelController');
 
 Route::get('/vehicledetails', 'HomeController@vehicledetails')->name('vehicledetails');
