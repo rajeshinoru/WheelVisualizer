@@ -162,6 +162,13 @@
     });
     });
     </script>
+    
+    <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/shop_by_vehicle.js') }}"></script>
+    <script src="{{ asset('js/popImg.js') }}"></script>
+    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script> 
+    <script src="{{ asset('js/wheels.js') }}"></script>  
+    <script src="{{ asset('js/slick.js') }}"></script>
 </body>
 
 </html>

@@ -1,7 +1,8 @@
 <?php
 
 use App\Wheel; 
-
+use App\Viflist;
+use App\Tyre;
 
 //// All Wheel Brands
 function wheelbrands($splitarray = '') {
@@ -26,4 +27,15 @@ function front_back_path($imgPath){
 	}else{
 		return $imgPath;
 	}
+}
+
+function getMakeList(){
+
+        $make = Viflist::select('make')->distinct('make')->orderBy('make','Desc')->get(); 
+        return $make;
+}
+function getTyreCategoryList(){
+
+        $tyres = Tyre::select('category5')->distinct('category5')->orderBy('category5','Asc')->get(); 
+        return $tyres;
 }

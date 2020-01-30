@@ -21,20 +21,22 @@
                                     <div class="OT-panel-heading active">ACCESSORIES</div>
                                     <div class="menu-category-" style="display: block;">
                                         <ul class="dropmenu">
-                                           <li class="OT-Sub-List dropdown">
-                                                <select class="form-control chosen-select Year" name="year">
-                                                    <option value="" disabled selected>Select Year</option>
-                                                    @foreach($years as $data)
-                                                    <option value="{{$data->yr}}" {{(@$car_images->CarViflist)?((@$car_images->CarViflist->yr == $data->yr)?'selected':''):''}}
-                                                    >{{$data->yr}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </li>
                                             <li class="OT-Sub-List dropdown">
                                                 <select class="form-control chosen-select Make" name="make">
                                                     <option disabled selected>Select Make</option>
+
+                                                    @foreach(getMakeList() as $make)
+                                                        <option value="{{$make->make}}" {{(@$car_images->CarViflist)?((@$car_images->CarViflist->make == $make->make)?'selected':''):''}}
+                                                        >{{$make->make}}</option>
+                                                    @endforeach
+
+                                                </select>
+                                            </li>
+                                           <li class="OT-Sub-List dropdown">
+                                                <select class="form-control chosen-select Year" name="year">
+                                                    <option value="" disabled selected>Select Year</option>
                                                     @if(@$car_images->CarViflist)
-                                                    <option value="{{@$car_images->CarViflist->make}}" selected="">{{@$car_images->CarViflist->make}}</option>
+                                                    <option value="{{@$car_images->CarViflist->yr}}" selected="">{{@$car_images->CarViflist->yr}}</option>
                                                     @endif
                                                 </select>
                                             </li>
@@ -372,10 +374,10 @@
 </div>
 @endsection
 @section('shop_by_vehicle_scripts') 
-    <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
+<!--     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('js/shop_by_vehicle.js') }}"></script>
     <script src="{{ asset('js/popImg.js') }}"></script>
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script> 
     <script src="{{ asset('js/wheels.js') }}"></script>  
-    <script src="{{ asset('js/slick.js') }}"></script>
+    <script src="{{ asset('js/slick.js') }}"></script> -->
 @endsection 

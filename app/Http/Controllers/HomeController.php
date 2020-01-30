@@ -30,7 +30,9 @@ class HomeController extends Controller
     public function index()
     {  
         $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
-        return view('home',compact('Wheels'));
+        $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->limit(10)->get(); 
+
+        return view('home',compact('Wheels','years'));
     }
     public function forms()
     {
@@ -103,12 +105,12 @@ class HomeController extends Controller
         try{
             $viflist = new Viflist; 
 
-            // Year change or Loading filter
-            if(isset($request->year) && $request->changeBy == 'year' || $request->changeBy == '')
-                $allData['make'] = $data = $viflist->select('make')->distinct('make')->whereyr($request->year)->get();
+            // Make change or Loading filter
+            if(isset($request->make) && $request->changeBy == 'make' || $request->changeBy == '')
+                $allData['year'] = $data = $viflist->select('yr')->distinct('yr')->wheremake($request->make)->orderBy('yr','DESC')->get();
 
             // Make change  or Loading Filter
-            if(isset($request->year) && isset($request->make) && $request->changeBy == 'make' || $request->changeBy == '')
+            if(isset($request->make) && isset($request->year) && $request->changeBy == 'year' || $request->changeBy == '')
                 $allData['model'] = $data = $viflist->select('model')->distinct('model')->whereyr($request->year)->wheremake($request->make)->get();
 
             // Model change  or Loading Filter
@@ -117,7 +119,7 @@ class HomeController extends Controller
                 $dummy = array_values($data);
                 $allData['driverbody'] = $data = $dummy;
             }
-            
+            // dd($data);
             if($request->changeBy == ''){    
                 return response()->json(['data' => $allData]);
             }

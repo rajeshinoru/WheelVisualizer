@@ -1,22 +1,47 @@
+
 // Year based filters for Makes 
 $(document).on('change', '.Year,.Make,.Model', function() {
     var changeBy = $(this).attr('name');
-    var year = $('.Year').val();
+
     var make = $('.Make').val();
+    var year = $('.Year').val();
     var model = $('.Model').val();
-    var driverbody = $('.DriveBody').val();
+    var driverbody = $('.DriveBody').val(); 
+
+    $('.NavMake').val(make);
+    $('.NavYear').val(year);
+    $('.NavModel').val(model);
+    $('.NavDriveBody').val(driverbody); 
+
     filters(year, make, model, driverbody, changeBy);
 });
+$(document).on('change', '.NavMake,.NavYear,.NavModel', function() {
+    var changeBy = $(this).attr('name');
+
+    var make = $('.NavMake').val();
+    var year = $('.NavYear').val();
+    var model = $('.NavModel').val();
+    var driverbody = $('.NavDriveBody').val(); 
+
+
+    $('.Make').val(make);
+    $('.Year').val(year);
+    $('.Model').val(model);
+    $('.DriveBody').val(driverbody); 
+
+    filters(year, make, model, driverbody, changeBy);
+});
+
 $(document).ready(function() {
-    var year = $('.Year').val();
     var make = $('.Make').val();
+    var year = $('.Year').val();
     var model = $('.Model').val();
     var driverbody = $('.DriveBody').val();
     filters(year, make, model, driverbody);
 });
 
 function filters(year = '', make = '', model = '', driverbody = '', changeBy = '') {
-
+    console.log('CHANGEBY',changeBy);
     $.ajax({
         method: "GET",
         url: '/vehicledetails',
@@ -28,44 +53,50 @@ function filters(year = '', make = '', model = '', driverbody = '', changeBy = '
         }
     }).done(function(data) {
 
-        $('.DriveBody').empty().append('<option disabled selected>Select Drive/Body</option>');
+        $('.DriveBody,.NavDriveBody').empty().append('<option disabled selected>Select Drive/Body</option>');
 
         if (changeBy == '' || changeBy == 'year' || changeBy == 'make') {
-            $('.Model').empty().append('<option disabled selected>Select Model</option>');
+            $('.Model,.NavModel').empty().append('<option disabled selected>Select Model</option>');
         }
-        if (changeBy == '' || changeBy == 'year') {
-            $('.Make').empty().append('<option disabled selected>Select Make</option>');
+        if (changeBy == '' || changeBy == 'make') {
+            $('.Year,.NavYear').empty().append('<option disabled selected>Select Year</option>');
         }
 
         if (changeBy == '') {
-            data.data['make'].map(function(value, key) {
-                isSelected = (value.make == make) ? 'selected' : '';
-                $('.Make').append('<option value="' + value.make + '" ' + isSelected + '>' + value.make + '</option>');
+            data.data['year'].map(function(value, key) {
+                isSelected = (value.yr == year) ? 'selected' : '';
+                $('.Year,.NavYear').append('<option value="' + value.yr + '" ' + isSelected + '>' + value.yr + '</option>');
             });
             data.data['model'].map(function(value, key) {
                 isSelected = (value.model == model) ? 'selected' : '';
-                $('.Model').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
+                $('.Model,.NavModel').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
             });
             data.data['driverbody'].map(function(value, key) {
                 isSelected = (value.vif == driverbody) ? 'selected' : '';
-                $('.DriveBody').append('<option value="' + value.vif + '"' + isSelected + '>' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
+                $('.DriveBody,.NavDriveBody').append('<option value="' + value.vif + '"' + isSelected + '>' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
             });
         } else {
             data.data.map(function(value, key) {
-                if (changeBy == 'year') {
-                    $('.Make').append('<option value="' + value.make + '">' + value.make + '</option>');
-                }
                 if (changeBy == 'make') {
-                    $('.Model').append('<option value="' + value.model + '">' + value.model + '</option>');
+                    $('.Year,.NavYear').append('<option value="' + value.yr + '">' + value.yr + '</option>');
+                }
+                if (changeBy == 'year') {
+                    $('.Model,.NavModel').append('<option value="' + value.model + '">' + value.model + '</option>');
                 }
                 if (changeBy == 'model') {
-                    $('.DriveBody').append('<option value="' + value.vif + '">' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
+                    $('.DriveBody,.NavDriveBody').append('<option value="' + value.vif + '">' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
                 }
             });
         }
-        $('.Make').trigger("chosen:updated");
-        $('.Model').trigger("chosen:updated");
-        $('.DriveBody').trigger("chosen:updated");
+
+        if(make != null && changeBy !=''){
+
+            $('.Make,.NavMake').append('<option value="' + make + '" selected>' + make + '</option>');
+            $('.Make,.NavMake').trigger("chosen:updated");
+        }
+        $('.Year,.NavYear').trigger("chosen:updated");
+        $('.Model,.NavModel').trigger("chosen:updated");
+        $('.DriveBody,.NavDriveBody').trigger("chosen:updated");
     }).fail(function(msg) {
         alert("fails");
     });
