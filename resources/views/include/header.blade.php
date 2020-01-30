@@ -246,6 +246,14 @@
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
+
+
+
+        .car-truck-head img {
+            width: 40px !important;
+            margin: 0px 5px !important;
+        }
+
     </style>
 
 
@@ -281,7 +289,9 @@
                                         <!-- New Menu Today Start-->
                                         <div class="row tire-nav">
                                             <div class="col-sm-12">
-                                                <h1 class="car-truck-head">Shop by Passenger car and Light Truck <i class="fa fa-car" aria-hidden="true"></i> <i class="fa fa-truck" aria-hidden="true"></i></h1>
+                                                <h1 class="car-truck-head">Shop by Passenger car and Light Truck 
+                                                    <img src="image/car.svg" class="moving-car">
+                                                <img src="image/truck.svg" class="moving-truck"></h1>
                                             </div>
                                         </div>
 
@@ -339,7 +349,7 @@
                                                         </div>
 
 
-                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tires')}}">GO</a></button>
+                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tyres')}}">GO</a></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -380,7 +390,7 @@
                                                             </select>
                                                         </div>
 
-                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tires')}}">GO</a></button>
+                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tyres')}}">GO</a></button>
                                                     </div>
                                                 </div>
                                             </div>

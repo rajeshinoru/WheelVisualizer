@@ -30,6 +30,7 @@ Route::get('/fold-fil', 'HomeController@fold_fil');
 Route::get('/Falken_Import', 'TyreController@Falken_Import');
 Route::get('/Falken_Detail_Import', 'TyreDetailController@Falken_Detail_Import');
 
+Route::get('/tyres', 'TyreController@index')->name('tyres');
 
 Route::resource('wheel', 'WheelController');
 

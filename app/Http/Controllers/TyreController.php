@@ -14,7 +14,7 @@ class TyreController extends Controller
      */
     public function index()
     {
-        //
+        return view('tires');
     }
 
     /**
