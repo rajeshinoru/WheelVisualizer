@@ -129,15 +129,15 @@ class WheelResource extends Controller
             $wheel = Wheel::whereid($id)->first();
             $wheel->update($data);
             if($request->hasFile('image') && $request->hasFile('front_back_image') ){
-                // $imagename = $request->image->getClientOriginalName();  
-                // $split_name = explode('.', $imagename);
-                // $front_back_image = $split_name[0].'.png';
-                // $request->image->move(public_path('/storage/wheels'), $imagename);
-                // $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image); 
+                $imagename = $request->image->getClientOriginalName();  
+                $split_name = explode('.', $imagename);
+                $front_back_image = $split_name[0].'.png';
+                $request->image->move(public_path('/storage/wheels'), $imagename);
+                $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image); 
 
-                // $wheel->image = 'storage/wheels/'.$imagename;
-                // $wheel->frontimage = 'storage/wheels/front_back/'.$front_back_image;
-                // $wheel->rearimage = 'storage/wheels/front_back/'.$front_back_image; 
+                $wheel->image = 'storage/wheels/'.$imagename;
+                $wheel->frontimage = 'storage/wheels/front_back/'.$front_back_image;
+                $wheel->rearimage = 'storage/wheels/front_back/'.$front_back_image; 
             } 
             $wheel->save(); 
 

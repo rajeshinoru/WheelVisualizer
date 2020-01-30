@@ -29,13 +29,34 @@ function front_back_path($imgPath){
 	}
 }
 
+
 function getMakeList(){
 
         $make = Viflist::select('make')->distinct('make')->orderBy('make','Desc')->get(); 
         return $make;
 }
+
 function getTyreCategoryList(){
 
         $tyres = Tyre::select('category5')->distinct('category5')->orderBy('category5','Asc')->get(); 
         return $tyres;
+}
+
+function random_strings($length_of_string) 
+{ 
+  
+    // String of all alphanumeric character 
+    $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
+  
+    // Shufle the $str_result and returns substring 
+    // of specified length 
+    return substr(str_shuffle($str_result),  
+                       0, $length_of_string); 
+} 
+
+function upload_file($path,$image,$sting_length){
+	$imagename =random_strings($sting_length).'.png';
+    $image->getClientOriginalName();
+    $image->move(public_path($path),$imagename);
+    return $path.$imagename;
 }

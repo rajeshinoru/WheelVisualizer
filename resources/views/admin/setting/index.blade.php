@@ -11,20 +11,30 @@
                                 <!-- <li><a href="#reviews"> Acount Information</a></li> -->
                                 <!-- <li><a href="#INFORMATION">Social Information</a></li> -->
                             </ul>
+                           
+<!-- form class dropzone dropzone-custom -->
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form action="{{url('admin/setting/store')}}" class="dropzone dropzone-custom needsclick addcourse" method="POST" id="demo1-upload">
+                                                    <form action="{{url('admin/setting/store')}}" class=" needsclick addcourse" method="POST" id="demo1-upload"  enctype="multipart/form-data">
                                                         {{csrf_field()}}
                                                         <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="col-md-4">Site Logo</div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="form-group">
+                                                                            <input type="file" accept="image/*" name="site_logo" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{asset(Setting::get('site_logo'))}}">
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                     <div class="col-md-4">Site Title</div>
                                                                     <div class="col-md-8">
                                                                         <div class="form-group">
-                                                                            <input name="site_title" type="text" class="form-control" placeholder="Site Title">
+                                                                            <input name="site_title" type="text" class="form-control" placeholder="Site Title" value="{{Setting::get('site_title','')}}">
                                                                         </div>
                                                                     </div>
                                                             </div>
@@ -32,7 +42,7 @@
                                                                     <div class="col-md-4">Site Contact</div>
                                                                     <div class="col-md-8">
                                                                         <div class="form-group">
-                                                                            <input name="site_contact" type="text" class="form-control" placeholder="+91">
+                                                                            <input name="site_contact" type="text" class="form-control" placeholder="+91" value="{{Setting::get('site_contact','')}}">
                                                                         </div>
                                                                     </div>
                                                             </div>
@@ -40,7 +50,7 @@
                                                                     <div class="col-md-4">Site Email</div>
                                                                     <div class="col-md-8">
                                                                         <div class="form-group">
-                                                                            <input name="site_email" type="text" class="form-control" placeholder="Enter the email">
+                                                                            <input name="site_email" type="text" class="form-control" placeholder="Enter the email" value="{{Setting::get('site_email','')}}">
                                                                         </div>
                                                                     </div>
                                                             </div>
