@@ -45,7 +45,7 @@
             <div class="col-sm-6 logo">
                 <div class="header">
                     <div id="logo">
-                        <a href="{{url('/')}}"><img src="image/Logo/Logo-Demo-5.png" title="Your Store" alt="Your Store" class="img-responsive" /></a>
+                        <a href="{{url('/')}}"><img src="image/Logo/Logo-Demo-5.png" title="Discounted Wheel Warehouse" alt="Discounted Wheel Warehouse" class="img-responsive" /></a>
                     </div>
                 </div>
             </div>
@@ -253,6 +253,26 @@
             width: 40px !important;
             margin: 0px 5px !important;
         }
+        .moving-car 
+        {
+            animation: move 4s 1s infinite ease-in-out;
+        }
+        .moving-truck
+        {
+            animation: move 4s 1s infinite ease-in-out;
+        }
+        @keyframes move
+        {
+            0% 
+            {
+                transfrom: translateX(0);
+            }
+            100% 
+            {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
 
     </style>
 
@@ -291,7 +311,7 @@
                                             <div class="col-sm-12">
                                                 <h1 class="car-truck-head">Shop by Passenger car and Light Truck 
                                                     <img src="image/car.svg" class="moving-car">
-                                                <img src="image/truck.svg" class="moving-truck"></h1>
+                                                <img src="image/suv.svg" class="moving-truck"></h1>
                                             </div>
                                         </div>
 
@@ -301,56 +321,55 @@
                                                     <h1>Shop By Vehicle</h1>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    <div class="vehicle-list">
-                                                        <div class="dropdown">
-                                                            <select class="browser-default custom-select  NavMake " name="make">
-                                                                <option value ="">Select Make</option> 
-                                                                @foreach(getMakeList() as $key => $make)
-                                                                <option value="{{$make->make}}">{{$make->make}}</option>
-                                                                @endforeach
-                                                            </select>
+                                                    <form action="{{url('/setFiltersByVehicle')}}" method="POST">
+                                                        {{csrf_field()}}
+                                                        <div class="vehicle-list">
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select NavMake " name="make">
+                                                                    <option value ="">Select Make</option> 
+                                                                    @foreach(getVehicleMakeList() as $key => $make)
+                                                                    <option value="{{$make->make}}">{{$make->make}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select NavYear " name="year">
+                                                                    <option value="">Year</option>
+                                                                </select>
+                                                            </div>
+
+
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select NavModel " name="model">
+                                                                    <option value="">Model</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select NavSubmodel " name="submodel">
+                                                                    <option value="">Trim</option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="dropdown">
+                                                                <input required="" type="text" class="form-control"  name="zip" placeholder="Enter ZIP">
+                                                            </div>
+                                                        }
+    <!--                                                         <div class="dropdown">
+                                                                <select class="form-control browser-default custom-select">
+                                                                    <option selected>ZIP</option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                    <option value="3">Three</option>
+                                                                </select>
+                                                            </div> -->
+
+                                                            <a href="">
+                                                            <button type="submit" class="btn vehicle-go">GO</button>
+                                                            </a>
                                                         </div>
-
-                                                        <div class="dropdown">
-                                                            <select class="browser-default custom-select  NavYear ">
-                                                                <option selected>YEAR</option>
-                                                                @for($yr =date('Y');$yr>=1990;$yr-- )
-                                                                <option value="{{$yr}}">{{$yr}}</option>
-                                                                @endfor
-                                                            </select>
-                                                        </div>
-
-
-                                                        <div class="dropdown">
-                                                            <select class="browser-default custom-select NavModel ">
-                                                                <option selected>MODEL</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="dropdown">
-                                                            <select class="browser-default custom-select NavDriveBody ">
-                                                                <option selected>TRIM</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="dropdown">
-                                                            <select class="browser-default custom-select">
-                                                                <option selected>ZIP</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
-                                                            </select>
-                                                        </div>
-
-
-                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tyres')}}">GO</a></button>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -364,7 +383,7 @@
                                                     <div class="vehicle-list">
 
                                                         <div class="dropdown">
-                                                            <select class="browser-default custom-select">
+                                                            <select class="form-control browser-default custom-select">
                                                                 <option selected>220</option>
                                                                 <option value="1">225</option>
                                                                 <option value="2">100</option>
@@ -373,7 +392,7 @@
                                                         </div>
 
                                                         <div class="dropdown">
-                                                            <select class="browser-default custom-select">
+                                                            <select class="form-control browser-default custom-select">
                                                                 <option selected>220</option>
                                                                 <option value="1">225</option>
                                                                 <option value="2">100</option>
@@ -382,7 +401,7 @@
                                                         </div>
 
                                                         <div class="dropdown">
-                                                            <select class="browser-default custom-select">
+                                                            <select class="form-control browser-default custom-select">
                                                                 <option selected>220</option>
                                                                 <option value="1">225</option>
                                                                 <option value="2">100</option>

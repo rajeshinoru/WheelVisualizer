@@ -1,27 +1,37 @@
 
 // Year based filters for Makes 
-$(document).on('change', '.NavYear,.NavMake,.NavModel', function() {
+$(document).on('change', '.Year,.Make,.Model', function() {
     var changeBy = $(this).attr('name');
 
-    var make = $('.NavMake').val();
-    var year = $('.NavYear').val();
-    var model = $('.NavModel').val();
-    var submodel = $('.NavSubmodel').val();
-    NavFilters(year, make, model,submodel, changeBy);
+    var make = $('.Make').val();
+    var year = $('.Year').val();
+    var model = $('.Model').val();
+    var driverbody = $('.DriveBody').val(); 
+    filters(year, make, model, driverbody, changeBy);
+});
+$(document).on('change', '.NavMake', function() {
+    var changeBy = $(this).attr('name');
+
+    $('.Make').val(make);
+    $('.Year').val(year);
+    $('.Model').val(model);
+    $('.DriveBody').val(driverbody); 
+
+    filters(year, make, model, driverbody, changeBy);
 });
 
 $(document).ready(function() {
-    var make = $('.NavMake').val();
-    var year = $('.NavYear').val();
-    var model = $('.NavModel').val();
-    var submodel = $('.NavSubmodel').val();
-    NavFilters(year, make, model,submodel);
+    var make = $('.Make').val();
+    var year = $('.Year').val();
+    var model = $('.Model').val();
+    var driverbody = $('.DriveBody').val();
+    filters(year, make, model, driverbody);
 });
 
-function NavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
+function filters(year = '', make = '', model = '', driverbody = '', changeBy = '') {
     $.ajax({
         method: "GET",
-        url: '/getFiltersByVehicle',
+        url: '/vehicledetails',
         data: {
             year: year,
             make: make,
@@ -30,63 +40,50 @@ function NavFilters(year = '', make = '', model = '',submodel = '', changeBy = '
         }
     }).done(function(data) {
 
-        $('.NavSubmodel').empty().append('<option value="">Select Trim</option>');
+        $('.DriveBody').empty().append('<option disabled selected>Select Drive/Body</option>');
 
         if (changeBy == '' || changeBy == 'year' || changeBy == 'make') {
-            $('.NavModel').empty().append('<option value="">Select Model</option>');
+            $('.Model').empty().append('<option disabled selected>Select Model</option>');
         }
         if (changeBy == '' || changeBy == 'make') {
-            $('.NavYear').empty().append('<option value="">Select Year</option>');
+            $('.Year').empty().append('<option disabled selected>Select Year</option>');
         }
 
         if (changeBy == '') {
             data.data['year'].map(function(value, key) {
-                isSelected = (value.year == year) ? 'selected' : '';
-                $('.NavYear').append('<option value="' + value.year + '" ' + isSelected + '>' + value.year + '</option>');
+                isSelected = (value.yr == year) ? 'selected' : '';
+                $('.Year').append('<option value="' + value.yr + '" ' + isSelected + '>' + value.yr + '</option>');
             });
             data.data['model'].map(function(value, key) {
                 isSelected = (value.model == model) ? 'selected' : '';
-                $('.NavModel').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
+                $('.Model').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
             });
-            data.data['submodel'].map(function(value, key) {
-                isSelected = (value.submodel == submodel) ? 'selected' : '';
-                $('.NavSubmodel').append('<option value="' + value.submodel + '"' + isSelected + '>' + value.submodel  + '</option>');
+            data.data['driverbody'].map(function(value, key) {
+                isSelected = (value.vif == driverbody) ? 'selected' : '';
+                $('.DriveBody').append('<option value="' + value.vif + '"' + isSelected + '>' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
             });
         } else {
             data.data.map(function(value, key) {
                 if (changeBy == 'make') {
-                    $('.NavYear').append('<option value="' + value.year + '">' + value.year + '</option>');
+                    $('.Year').append('<option value="' + value.yr + '">' + value.yr + '</option>');
                 }
                 if (changeBy == 'year') {
-                    $('.NavModel').append('<option value="' + value.model + '">' + value.model + '</option>');
+                    $('.Model').append('<option value="' + value.model + '">' + value.model + '</option>');
                 }
                 if (changeBy == 'model') {
-                    $('.NavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
+                    $('.DriveBody').append('<option value="' + value.vif + '">' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
                 }
             });
         }
 
         if(make != null && changeBy !=''){
 
-            $('.NavMake').append('<option value="' + make + '" selected>' + make + '</option>');
-            // $('.NavMake').trigger("chosen:updated");
+            $('.Make').append('<option value="' + make + '" selected>' + make + '</option>');
+            $('.Make').trigger("chosen:updated");
         }
-
-        // $('.NavYear').trigger("chosen:updated");
-        // $('.NavModel').trigger("chosen:updated");
-        // $('.DriveBody').trigger("chosen:updated");
-        if (changeBy == 'make') {
-            $('.NavYear').focus();
-            $('.NavYear').childrens('option').show();
-        }
-        if (changeBy == 'year') {
-            $('.NavModel').focus();
-            $('.NavModel').childrens('option').show();
-        }
-        if (changeBy == 'model') {
-            $('.NavSubmodel').focus();
-            $('.NavSubmodel').childrens('option').show();
-        }
+        $('.Year').trigger("chosen:updated");
+        $('.Model').trigger("chosen:updated");
+        $('.DriveBody').trigger("chosen:updated");
     }).fail(function(msg) {
         alert("fails");
     });
