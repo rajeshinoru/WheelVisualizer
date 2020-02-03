@@ -66,7 +66,8 @@
                     <h2>Passenger Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($ptires as $key => $ptire)
+                @forelse($tires as $key => $ptire)
+                @if($ptire->plt != 'LT')
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -77,7 +78,7 @@
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type"><a href="">{{@$ptire->prod_title}} <br> Starting at: ${{@$ptire->TireDetails->sale_price}}</a></h4>
+                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prod_title}} <br> Starting at: ${{@$ptire->TireDetails->sale_price}}</a></h4>
                                     <br>
                                 </div>
                                 <div class="button-group">
@@ -98,6 +99,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 @empty
                 <div class="col-sm-2">
                     <div class="product-layouts">
@@ -270,7 +272,8 @@
                     <h2>Light Truck Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($lttires as $key => $lttire)
+                @forelse($tires as $key => $lttire)
+                @if($lttire->plt == 'LT')
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -281,7 +284,7 @@
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type"><a href="">{{@$lttire->prod_title}} <br> Starting at: ${{@$lttire->TireDetails->sale_price}}</a></h4>
+                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prod_title}} <br> Starting at: ${{@$lttire->TireDetails->sale_price}}</a></h4>
                                     <br>
                                 </div>
                                 <div class="button-group">
@@ -302,6 +305,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 @empty
                 <div class="col-sm-2">
                     <div class="product-layouts">
@@ -469,7 +473,8 @@
 
     </div>
 </section>
-@endsection @section('shop_by_vehicle_scripts')
+
+@include('include.latestproducts') @endsection @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
 
 @endsection

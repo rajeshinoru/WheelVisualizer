@@ -460,7 +460,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="tire-des">
-                                            <img src="{{url('image/tire/tire1.jpg')}}">
+                                            <img src="{{viewImage('/tires/'.@$tire->simple_image)}}">
                                         </div>
                                     </div>
 

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Tire;
+use App\ChassisModel;
 use Illuminate\Http\Request;
-
+use DB;
 class TireController extends Controller
 {
     /**
@@ -25,8 +26,11 @@ class TireController extends Controller
     public function list(Request $request,$tire_size='')
     { 
         $tires = Tire::with('TireDetails')->where('spec3','like', '%' . base64_decode($tire_size) . '%')->get();
+
+        $load_indexs = ChassisModel::where('tire_size',base64_decode($tire_size))->where('load_index','!=','NULL')->distinct('load_index')->pluck('load_index');
+        // dd($load_indexs);
         // dd($tires);
-        return view('tires_list',compact('tires'));
+        return view('tires_list',compact('tires','load_indexs'));
     }
 
     /**
@@ -48,11 +52,23 @@ class TireController extends Controller
      */
     public function brand(Request $request,$brand_name='')
     {
-        $tire = Tire::with('TireDetails')->where('category5',base64_decode($brand_name))->first();
-        $ptires = Tire::with('TireDetails')->where('category5',base64_decode($brand_name))->whereNotIn('plt',['LT'])->get();
-        $lttires = Tire::with('TireDetails')->where('category5',base64_decode($brand_name))->whereIn('plt',['LT'])->get();
-        // dd($tire);
-        return view('tire_brand',compact('tire','ptires','lttires'));
+
+        $imagesjpg = glob("storage/tires/*.jpg");
+        $imagespng = glob("storage/tires/*.png"); 
+        $images = array_merge($imagesjpg,$imagespng); 
+        // dd($images);
+        $tires=array();
+        foreach ($images as $key => $value) {
+
+            $path_remove = str_replace('storage/tires/','', $value); 
+            // dd($path_remove);
+            $test = Tire::with('TireDetails')->where('simple_image',$path_remove)->first();
+            if($test!=null){
+                $tires[] = $test;
+            }
+        }
+
+        return view('tire_brand',compact('tires'));
     }
     /**
      * Show the form for creating a new resource.

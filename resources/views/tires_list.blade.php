@@ -204,47 +204,13 @@
                                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                         <div class="panel-body">
                                             <ul style="display: block;">
-
+                                                @foreach(getTireCategoryList() as $key => $tire)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> 2009
+                                                            <input type="checkbox"> {{$tire->category5}}
                                                         </label>
                                                     </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2010
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2011
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2012
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2013
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2014
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2015
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2016
-                                                        </label>
-                                                    </span></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -259,6 +225,7 @@
                                 <h5 class="heading">Speed Rating</h5>
                                 <div class="car-list">
                                     <ul class="list-inline">
+                                        <!-- <li><a>2016</a></li>
                                         <li><a>2016</a></li>
                                         <li><a>2016</a></li>
                                         <li><a>2016</a></li>
@@ -266,8 +233,7 @@
                                         <li><a>2016</a></li>
                                         <li><a>2016</a></li>
                                         <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
+                                        <li><a>2016</a></li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -283,47 +249,13 @@
                                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                         <div class="panel-body">
                                             <ul style="display: block;">
-
+                                                @foreach(@$load_indexs as $key => $index)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> 2009
+                                                            <input type="checkbox"> {{$index}}
                                                         </label>
                                                     </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2010
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2011
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2012
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2013
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2014
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2015
-                                                        </label>
-                                                    </span></li>
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> 2016
-                                                        </label>
-                                                    </span></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
