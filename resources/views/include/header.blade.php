@@ -321,8 +321,7 @@
                                                     <h1>Shop By Vehicle</h1>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    <form action="{{url('/setFiltersByVehicle')}}" method="POST">
-                                                        {{csrf_field()}}
+                                                    <form action="{{url('/setFiltersByVehicle')}}">
                                                         <div class="vehicle-list">
                                                             <div class="dropdown">
                                                                 <select required="" class="form-control browser-default custom-select NavMake " name="make">
@@ -355,7 +354,6 @@
                                                             <div class="dropdown">
                                                                 <input required="" type="text" class="form-control"  name="zip" placeholder="Enter ZIP">
                                                             </div>
-                                                        }
     <!--                                                         <div class="dropdown">
                                                                 <select class="form-control browser-default custom-select">
                                                                     <option selected>ZIP</option>
@@ -409,7 +407,7 @@
                                                             </select>
                                                         </div>
 
-                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tyres')}}">GO</a></button>
+                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tires')}}">GO</a></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -425,8 +423,8 @@
                                                         <div class="row">
                                                             <div class="col-sm-2 tire-menu">
                                                                 <ul>
-                                                                    @foreach(getTyreCategoryList() as $key => $tyre)
-                                                                    <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tyre->category5}}</a></li>
+                                                                    @foreach(getTireCategoryList() as $key => $tire)
+                                                                    <li><a href="{{url('/tirebrand')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tire->category5}}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>

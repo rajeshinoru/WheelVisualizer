@@ -2,7 +2,7 @@
 
 use App\Wheel; 
 use App\Viflist;
-use App\Tyre;
+use App\Tire;
 use App\Vehicle;
 
 //// All Wheel Brands
@@ -29,7 +29,13 @@ function front_back_path($imgPath){
 		return $imgPath;
 	}
 }
+// Rim size to Wheel Diameter Conversion
+function getRimToWheelDiameter($rimSize=''){
 
+		$rim = explode('x', $rimSize);
+		$diameter = $rim[1]; 
+        return $diameter;
+}
 
 function getMakeList(){
 
@@ -37,10 +43,10 @@ function getMakeList(){
         return $make;
 }
 
-function getTyreCategoryList(){
+function getTireCategoryList(){
 
-        $tyres = Tyre::select('category5')->distinct('category5')->orderBy('category5','Asc')->get(); 
-        return $tyres;
+        $tires = Tire::select('category5')->distinct('category5')->orderBy('category5','Asc')->get(); 
+        return $tires;
 }
 function getVehicleMakeList(){
 

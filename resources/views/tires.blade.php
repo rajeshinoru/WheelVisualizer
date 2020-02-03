@@ -308,7 +308,7 @@
                 <div class="size-heading">
                     <h1>WHAT TIRE SIZE IS ON YOUR VEHICLE</h1>
                     <h2>FACTORY SIZES FOR :</h2>
-                    <h3>2019 ACURA ILX</h3>
+                    <h3>{{$vehicle->year_make_model_submodel}} {{$vehicle->dr_chassis_id}}</h3>
                 </div>
             </div>
         </div>
@@ -318,118 +318,42 @@
 
                 <div class="col-sm-2 size-search">
                     <div class="wrapper">
+<!--                         <button class="btn btn-primary">
+                            <a href="{{url('/tirelist')}}">
+                                <p>10"</p>215/45-17
+                            </a>
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </button> -->
+                        @foreach(@$chassis_models as $key => $model)
+
                         <button class="btn btn-primary">
-                            <a href="">
-                                <p>10"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>10"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>10"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>10"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>10"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+                            <a href="{{url('/tirelist')}}/{{base64_encode(@$model->tire_size)}}">
+                                <p>{{getRimToWheelDiameter(@$model->rim_size)}}"</p>{{@$model->p_lt}}{{@$model->tire_size}}
+                            </a>
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </button>
+                        @endforeach
                     </div>
                 </div>
-                <div class="col-sm-2 size-search">
+   <!--              <div class="col-sm-2 size-search">
                     <div class="wrapper">
                         <button class="btn btn-primary">
-                            <a href="">
+                            <a href="{{url('/tirelist')}}">
                                 <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
                         <button class="btn btn-primary">
-                            <a href="">
+                            <a href="{{url('/tirelist')}}">
                                 <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
                         <button class="btn btn-primary">
-                            <a href="">
+                            <a href="{{url('/tirelist')}}">
                                 <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
                         <button class="btn btn-primary">
-                            <a href="">
+                            <a href="{{url('/tirelist')}}">
                                 <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
                         <button class="btn btn-primary">
-                            <a href="">
+                            <a href="{{url('/tirelist')}}">
                                 <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
                     </div>
-                </div>
-                <div class="col-sm-2 size-search">
-                    <div class="wrapper">
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>14"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>14"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>14"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>14"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>14"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-                <div class="col-sm-2 size-search">
-                    <div class="wrapper">
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>16"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>16"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>16"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>16"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>16"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-                <div class="col-sm-2 size-search">
-                    <div class="wrapper">
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>20"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>20"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>20"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>20"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>20"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-                <div class="col-sm-2 size-search">
-                    <div class="wrapper">
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>17"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>17"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>17"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>17"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="">
-                                <p>17"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                    </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="col-sm-3 tire-banner">

@@ -27,11 +27,16 @@ Route::get('/wheelsNameChange', 'HomeController@wheelsNameChange')->name('wheels
 Route::get('/notFoundCars', 'HomeController@notFoundCars')->name('notFoundCars'); 
 Route::get('/fold-fil', 'HomeController@fold_fil');
 
-Route::get('/Falken_Import', 'TyreController@Falken_Import');
-Route::get('/Falken_Detail_Import', 'TyreDetailController@Falken_Detail_Import');
+Route::get('/Falken_Import', 'TireController@Falken_Import');
+Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
 Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
+Route::get('/Chassis_Import', 'ChassisController@Chassis_Import');
+Route::get('/ChassisModel_Import', 'ChassisModelController@ChassisModel_Import');
 
-Route::get('/tyres', 'TyreController@index')->name('tyres');
+Route::get('/tires', 'TireController@index')->name('tires');
+Route::get('/tirelist/{tire_size}', 'TireController@list')->name('tirelist');
+Route::get('/tireview', 'TireController@tireview')->name('tireview');
+Route::get('/tirebrand', 'TireController@brand')->name('tirebrand');
 
 Route::resource('wheel', 'WheelController');
 
@@ -39,7 +44,7 @@ Route::get('/vehicledetails', 'HomeController@vehicledetails')->name('vehicledet
 Route::get('/selectCarByColor', 'HomeController@selectCarByColor')->name('selectCarByColor');
 
 Route::get('/getFiltersByVehicle', 'VehicleController@getFiltersByVehicle')->name('getFiltersByVehicle');
-Route::post('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->name('setFiltersByVehicle');
+Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->name('setFiltersByVehicle');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');

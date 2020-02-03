@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vehicle;
+use App\ChassisModel;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -125,15 +126,16 @@ class VehicleController extends Controller
     public function setFiltersByVehicle(Request $request)
     {
         try{
-            $vehicles = Vehicle::select('vehicle_id','year','make','model','submodel','dr_chassis_id')
+            $vehicle = Vehicle::select('vehicle_id','year','make','model','submodel','dr_chassis_id','year_make_model_submodel')
             ->where('year',$request->year)
             ->where('make',$request->make)
             ->where('model',$request->model)
             ->where('submodel',$request->submodel)
-            ->get(); 
+            ->first(); 
             
-            // dd($vehicles);
-            return view('tires');
+            $chassis_models =ChassisModel::select('p_lt','tire_size','rim_size','chassis_id')->distinct('tire_size')->where('chassis_id',$vehicle->dr_chassis_id)->get(); 
+            // dd($chassis_models);
+            return view('tires',compact('vehicle','chassis_models'));
 
         }catch(ModelNotFoundException $notfound){
             return response()->json(['error' => $notfound->getMessage()]); 
@@ -143,7 +145,7 @@ class VehicleController extends Controller
     }
 
     public function Vehicle_Import(){
-         $in_file = public_path('/storage/tyres_data/vehicle.csv'); 
+         $in_file = public_path('/storage/tires_data/vehicle.csv'); 
 
         if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
         // $fw = fopen($out_file, "w");

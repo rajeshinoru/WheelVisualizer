@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TyreDetail extends Model
+class PlusSize extends Model
 {
     //
 }

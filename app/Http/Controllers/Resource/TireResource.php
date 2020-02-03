@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Resource;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Tyre;
+use App\Tire;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
-class TyreResource extends Controller
+class TireResource extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class TyreResource extends Controller
      */
     public function index()
     {
-        $wheels = Tyre::paginate(10); 
-        $brands = Tyre::select('brand')->distinct('brand')->get();
+        $wheels = Tire::paginate(10); 
+        $brands = Tire::select('brand')->distinct('brand')->get();
         return view('admin.wheel.index',compact('wheels','brands'));
     }
 
@@ -60,13 +60,13 @@ class TyreResource extends Controller
             $front_back_image = $split_name[0].'.png';
             $request->image->move(public_path('/storage/wheels'), $imagename);
             $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image);  
-            $wheel = Tyre::create($request->all());
+            $wheel = Tire::create($request->all());
             $wheel->image = 'storage/wheels/'.$imagename;
             $wheel->frontimage = 'storage/wheels/front_back/'.$front_back_image;
             $wheel->rearimage = 'storage/wheels/front_back/'.$front_back_image;
             $wheel->save();
 
-            return back()->with('flash_success','Tyre Added successfully');
+            return back()->with('flash_success','Tire Added successfully');
         }catch(Exception $e){
             return back()->with('flash_error',$e->getMessage());
         }
@@ -93,7 +93,7 @@ class TyreResource extends Controller
     {
         try {
             
-            $wheel = Tyre::find($id);
+            $wheel = Tire::find($id);
             return response()->json(['status' => true,'data'=>$wheel]); 
         } catch (Exception $e) {
             return response()->json(['status' => fasle,'data'=>$wheel]); 
@@ -126,7 +126,7 @@ class TyreResource extends Controller
         ]);
         try{   
             $data = request()->except(['_token','_method']);
-            $wheel = Tyre::whereid($id)->first();
+            $wheel = Tire::whereid($id)->first();
             $wheel->update($data);
             if($request->hasFile('image') && $request->hasFile('front_back_image') ){
                 // $imagename = $request->image->getClientOriginalName();  
@@ -141,7 +141,7 @@ class TyreResource extends Controller
             } 
             $wheel->save(); 
 
-            return back()->with('flash_success','Tyre Updated successfully');
+            return back()->with('flash_success','Tire Updated successfully');
         }catch(Exception $e){
             return back()->with('flash_error',$e->getMessage());
         }
@@ -157,11 +157,11 @@ class TyreResource extends Controller
     {
         
         try {
-            Tyre::find($id)->delete();
-            return back()->with('flash_sucess', 'Tyre deleted successfully');
+            Tire::find($id)->delete();
+            return back()->with('flash_sucess', 'Tire deleted successfully');
         } 
         catch (Exception $e) {
-            return back()->with('flash_error', 'Tyre Not Found');
+            return back()->with('flash_error', 'Tire Not Found');
         }
     }
 }
