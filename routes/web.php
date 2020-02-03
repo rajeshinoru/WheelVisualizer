@@ -35,8 +35,8 @@ Route::get('/ChassisModel_Import', 'ChassisModelController@ChassisModel_Import')
 
 Route::get('/tires', 'TireController@index')->name('tires');
 Route::get('/tirelist/{tire_size}', 'TireController@list')->name('tirelist');
-Route::get('/tireview', 'TireController@tireview')->name('tireview');
-Route::get('/tirebrand', 'TireController@brand')->name('tirebrand');
+Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
+Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 
 Route::resource('wheel', 'WheelController');
 

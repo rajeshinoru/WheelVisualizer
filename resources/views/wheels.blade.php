@@ -308,7 +308,7 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="row" style="display: none;">
         <div class="col-sm-12 sub-head">
             <h1>All Brand Wheels</h1>
         </div>
@@ -319,7 +319,7 @@
             </div>
         </div>
     </div>
-    <div id="carousel-example2" class="carousel slide hidden-xs" data-ride="carousel">
+    <div id="carousel-example2" class="carousel slide hidden-xs" data-ride="carousel" style="display: none;">
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             @forelse(wheelbrands($arraysplit=3) as $key => $brandImages)

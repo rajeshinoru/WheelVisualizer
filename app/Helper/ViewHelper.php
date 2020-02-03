@@ -29,6 +29,21 @@ function front_back_path($imgPath){
 		return $imgPath;
 	}
 }
+
+
+function ViewImage($url=''){
+	if($url != ''){
+		if(file_exists(public_path('/storage/'.$url))){
+			return asset('/storage/'.$url);
+		}else{
+			return asset('image/no_image.jpg');
+		}
+	}else{
+			return asset('image/no_image.jpg');
+	}
+
+}
+
 // Rim size to Wheel Diameter Conversion
 function getRimToWheelDiameter($rimSize=''){
 

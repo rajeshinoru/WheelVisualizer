@@ -45,7 +45,7 @@
             <div class="col-sm-6 logo">
                 <div class="header">
                     <div id="logo">
-                        <a href="{{url('/')}}"><img src="image/Logo/Logo-Demo-5.png" title="Discounted Wheel Warehouse" alt="Discounted Wheel Warehouse" class="img-responsive" /></a>
+                        <a href="{{url('/')}}"><img src="{{url('image/Logo/Logo-Demo-5.png')}}" title="Discounted Wheel Warehouse" alt="Discounted Wheel Warehouse" class="img-responsive" /></a>
                     </div>
                 </div>
             </div>
@@ -310,8 +310,8 @@
                                         <div class="row tire-nav">
                                             <div class="col-sm-12">
                                                 <h1 class="car-truck-head">Shop by Passenger car and Light Truck 
-                                                    <img src="image/car.svg" class="moving-car">
-                                                <img src="image/suv.svg" class="moving-truck"></h1>
+                                                    <img src="{{url('image/car.svg')}}" class="moving-car">
+                                                <img src="{{url('image/suv.svg')}}" class="moving-truck"></h1>
                                             </div>
                                         </div>
 
@@ -375,7 +375,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Vehicle Size</h1>
+                                                    <h1>Shop By Tire Size</h1>
                                                 </div>
                                                 <div class="col-sm-10">
                                                     <div class="vehicle-list">
@@ -423,8 +423,8 @@
                                                         <div class="row">
                                                             <div class="col-sm-2 tire-menu">
                                                                 <ul>
-                                                                    @foreach(getTireCategoryList() as $key => $tire)
-                                                                    <li><a href="{{url('/tirebrand')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tire->category5}}</a></li>
+                                                                    @foreach(getTireCategoryList() as $key => $tirebrand)
+                                                                    <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand->category5)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand->category5}}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>

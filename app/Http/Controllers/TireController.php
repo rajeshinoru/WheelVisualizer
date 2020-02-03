@@ -24,9 +24,9 @@ class TireController extends Controller
      */
     public function list(Request $request,$tire_size='')
     { 
-        $tires = Tire::where('spec3',base64_decode($tire_size))->get();
-        dd($tires);
-        return view('tires_list');
+        $tires = Tire::with('TireDetails')->where('spec3','like', '%' . base64_decode($tire_size) . '%')->get();
+        // dd($tires);
+        return view('tires_list',compact('tires'));
     }
 
     /**
@@ -34,9 +34,11 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tireview()
+    public function tireview(Request $request,$tire_id='')
     {
-        return view('tire_view');
+        $tire = Tire::with('TireDetails')->where('id',base64_decode($tire_id))->first();
+        // dd($tire);
+        return view('tire_view',compact('tire'));
     }
 
     /**
@@ -44,9 +46,13 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function brand()
+    public function brand(Request $request,$brand_name='')
     {
-        return view('tire_brand');
+        $tire = Tire::with('TireDetails')->where('category5',base64_decode($brand_name))->first();
+        $ptires = Tire::with('TireDetails')->where('category5',base64_decode($brand_name))->whereNotIn('plt',['LT'])->get();
+        $lttires = Tire::with('TireDetails')->where('category5',base64_decode($brand_name))->whereIn('plt',['LT'])->get();
+        // dd($tire);
+        return view('tire_brand',compact('tire','ptires','lttires'));
     }
     /**
      * Show the form for creating a new resource.
