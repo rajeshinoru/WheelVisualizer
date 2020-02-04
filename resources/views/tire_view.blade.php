@@ -338,7 +338,40 @@
         text-decoration: underline;
     }
 </style>
-</section>
+<style type="text/css">
+    .tire-des h1
+    {
+        font-size: 14px !important;
+        margin:0px;line-height: 30px;
+    }
+    .tire-des h2
+    {
+        font-size: 12px !important;
+        margin:0px;line-height: 30px;
+    }
+    .prograss-bar-head 
+    {
+        font-size: 12px;
+        text-align: left;
+        margin: 0px 0px !important;
+    }
+    .progress.pro-bar 
+    {
+        margin-bottom: 5px !important;
+        height: 15px !important;
+    }
+    .col-sm-6.tire-details img 
+    {
+        width: 100% !important;
+        height:300px;
+    }
+    .progress.pro-bar .progress-bar
+    {
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+</style>
 
 <section id="tires-des">
     <!-- Cart Start -->
@@ -353,8 +386,10 @@
             <div class="row">
                 <div class="col-sm-4 tire-img">
                     <div class="tire-des">
-                        <!-- <img src="{{url('image/tire/tire1.jpg')}}"> -->
-                        <div id="slider">
+                        <img src="{{url('image/tire/tire1.jpg')}}">
+                        <h1>Price for TIRE ONLY</h1>
+                        <h2>Rim depicted in image NOT INCLUDED</h2>
+                       <!--  <div id="slider">
                             <a class="lazyImage" href="{{url('image/cart/banner-1.jpg')}}" title=""></a>
                             <a class="lazyImage" href="{{url('image/cart/banner-2.jpg')}}" title=""></a>
                             <a class="lazyImage" href="{{url('image/cart/banner-3.jpg')}}" title=""></a>
@@ -368,7 +403,7 @@
                             <div class="thumb"><img src="{{url('image/cart/thumb1.jpg')}}" /></div>
                             <div class="thumb"><img src="{{url('image/cart/thumb1.jpg')}}" /></div>
                             <div class="thumb"><img src="{{url('image/cart/thumb1.jpg')}}" /></div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-sm-4 shop-details">
@@ -396,20 +431,20 @@
                     <table class="product-info">
                         <tbody>
                             <tr>
-                                <td>Fullway :</td>
+                                <td>{{@$tire->category5}}</td>
                                 <td class="product-info-value"><a href="">Size {{@$tire->spec3}}</a></td>
                             </tr>
                             <tr>
-                                <td>HP108 :</td>
-                                <td class="product-info-value">Speed Rating : W</td>
+                                <td>{{@$tire->spec1}}</td>
+                                <td class="product-info-value">Speed Rating :{{@$tire->csearch2}}</td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="product-info-value">Load Index : 91</td>
+                                <td class="product-info-value">Load Index : {{@$tire->csearch1}}</td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="product-info-value">UTQG : 380AA</td>
+                                <td class="product-info-value">UTQG : {{@$tire->csearch3}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -426,8 +461,47 @@
                     </div>
 
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 tir-des">
                     <!--  -->
+                    <div class="row">
+                        <div class="col-sm-6 tire-details">
+                            <img src="{{url('image/tire-zoom.png')}}">
+                        </div>
+                        <div class="col-sm-6">
+                            <h1 class="product-name">Manufacture Rating</h1>
+
+                                <p class="prograss-bar-head">Rating</p> 
+                                <div class="progress pro-bar">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                                    90%
+                                    </div>
+                                </div>
+                                <p class="prograss-bar-head">Rating</p> 
+                                <div class="progress pro-bar">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    70%
+                                    </div>
+                                </div> 
+                                <p class="prograss-bar-head">Rating</p> 
+                                <div class="progress pro-bar">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                                    50%
+                                    </div>
+                                </div> 
+                                <p class="prograss-bar-head">Rating</p> 
+                                <div class="progress pro-bar">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    70%
+                                    </div>
+                                </div> 
+                                <p class="prograss-bar-head">Rating</p> 
+                                <div class="progress pro-bar">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                                    90%
+                                    </div>
+                                </div> 
+                        </div>
+                    </div>
                     <!--  -->
                 </div>
             </div>
@@ -503,10 +577,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($diff_tires as $key => $dtire)
                     <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
+                        <td>{{@$dtire->spec3}}</td>
+                        <td>{{@$dtire->part_no}}</td>
+                        <td>{{@$dtire->spec4}}</td>
                         <td>W</td>
                         <td>91</td>
                         <td>-</td>
@@ -516,123 +591,7 @@
                             <button type="button" class="btn btn-default cart-2">Default</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
