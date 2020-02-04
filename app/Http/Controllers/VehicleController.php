@@ -135,7 +135,7 @@ class VehicleController extends Controller
             
             $chassis_models =ChassisModel::select('p_lt','tire_size','rim_size','chassis_id')->distinct('tire_size')->where('chassis_id',$vehicle->dr_chassis_id)->get(); 
             // dd($chassis_models);
-            return view('tires',compact('vehicle','chassis_models'));
+            return view('tire_size_list',compact('vehicle','chassis_models'));
 
         }catch(ModelNotFoundException $notfound){
             return response()->json(['error' => $notfound->getMessage()]); 

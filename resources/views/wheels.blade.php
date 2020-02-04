@@ -26,8 +26,8 @@
                                                     <option disabled selected>Select Make</option>
 
                                                     @foreach(getMakeList() as $make)
-                                                        <option value="{{$make->make}}" {{(@$car_images->CarViflist)?((@$car_images->CarViflist->make == $make->make)?'selected':''):''}}
-                                                        >{{$make->make}}</option>
+                                                        <option value="{{$make}}" {{(@$car_images->CarViflist)?((@$car_images->CarViflist->make == $make)?'selected':''):''}}
+                                                        >{{$make}}</option>
                                                     @endforeach
 
                                                 </select>

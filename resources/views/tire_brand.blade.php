@@ -66,19 +66,26 @@
                     <h2>Passenger Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires as $key => $ptire)
-                @if($ptire->plt != 'LT')
+                @forelse($tires->where('plt','') as $key => $ptire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$ptire->simple_image)}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$ptire->simple_image)}}" title="" alt="" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$ptire->simple_image)}}" title="{{@$ptire->prod_title}}" alt="{{@$ptire->prod_title}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$ptire->simple_image)}}" title="{{@$ptire->prod_title}}" alt="{{@$ptire->prod_title}}" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a>Sale</a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prod_title}} <br> Starting at: ${{@$ptire->TireDetails->sale_price}}</a></h4>
+                                    <h4 class="tire-type" title="{{@$ptire->prod_title}}">
+                                        <a href="{{url('/tireview')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prod_title}} <br>
+                                        @if(@$ptire->TireDetails->sale_price)
+                                        Starting at: ${{@$ptire->TireDetails->sale_price}}
+                                        @else
+                                        <br>
+                                        @endif
+                                        </a>
+                                    </h4>
                                     <br>
                                 </div>
                                 <div class="button-group">
@@ -99,167 +106,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
                 @empty
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire2.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire2.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire3.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire3.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 @endforelse
             </div>
 
@@ -272,19 +119,18 @@
                     <h2>Light Truck Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires as $key => $lttire)
-                @if($lttire->plt == 'LT')
+                @forelse($tires->where('plt','LT') as $key => $lttire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$lttire->simple_image)}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$lttire->simple_image)}}" title="" alt="" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$lttire->simple_image)}}" title="{{@$lttire->prod_title}}" alt="{{@$lttire->prod_title}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$lttire->simple_image)}}" title="{{@$lttire->prod_title}}" alt="{{@$lttire->prod_title}}" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a>Sale</a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prod_title}} <br> Starting at: ${{@$lttire->TireDetails->sale_price}}</a></h4>
+                                    <h4 class="tire-type" title="{{@$lttire->prod_title}}"><a href="{{url('/tireview')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prod_title}} <br> Starting at: ${{@$lttire->TireDetails->sale_price}}</a></h4>
                                     <br>
                                 </div>
                                 <div class="button-group">
@@ -305,167 +151,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
                 @empty
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire2.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire2.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire3.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire3.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{url('image/tire/tire4.jpg')}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="">Falken Tires Ziex ZE950 A/S <br> Starting at: $43.58</a></h4>
-                                    <br>
-                                </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 @endforelse
             </div>
 
@@ -474,7 +160,7 @@
     </div>
 </section>
 
-@include('include.latestproducts') @endsection @section('shop_by_vehicle_scripts')
-<script src="{{ asset('js/wheels.js') }}"></script>
+@endsection @section('shop_by_vehicle_scripts')
+<!-- <script src="{{ asset('js/wheels.js') }}"></script> -->
 
 @endsection

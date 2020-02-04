@@ -56,9 +56,6 @@
                         <input type="text" name="search" value="{{json_decode(base64_decode(@Request::get('search')))}}" id="header-search-input" placeholder="Search" class="form-control input-lg" />
                         <span class="input-group-btn"><button type="button" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Search</button></span>
                     </div>
-                    <!--               <select class="form-control chosen-select Make" name="make">
-                  <option disabled selected>Select Make</option>
-              </select> -->
                 </div>
             </div>
         </div>
@@ -153,7 +150,7 @@
             color: #000 !important;
             font-size: 12px !important;
             padding: 5px 20px !important;
-            height: 26px !important;
+            height: 34px !important;
         }
 
         .col-sm-2.tire-menu ul {
@@ -201,9 +198,6 @@
             }
         }
     </style>
-
-
-
 
     <style>
         .dropbtn {
@@ -253,31 +247,26 @@
             width: 40px !important;
             margin: 0px 5px !important;
         }
-        .moving-car 
-        {
+
+        .moving-car {
             animation: move 4s 1s infinite ease-in-out;
         }
-        .moving-truck
-        {
+
+        .moving-truck {
             animation: move 4s 1s infinite ease-in-out;
         }
-        @keyframes move
-        {
-            0% 
-            {
+
+        @keyframes move {
+            0% {
                 transfrom: translateX(0);
             }
-            100% 
-            {
+
+            100% {
                 transform: translateX(400px);
                 opacity: 0;
             }
         }
-
     </style>
-
-
-
 
     <nav id="myHeader" class="new-navbar">
         <div class="container">
@@ -294,7 +283,7 @@
                     <div class="col-sm-9 nav-bar">
                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
                             <ul class="nav navbar-nav navbar">
-                                <li class="dropdown-nav"><a title="WHEELS" href="{{route('forms')}}" class="dropdown-toggle" data-toggle="dropdown">DISCOUNT WHEELS <span class="caret"></span></a>
+                                <li class="dropdown-nav"><a title="WHEELS" href="{{route('wheels')}}" >DISCOUNT WHEELS <span class="caret"></span></a>
                                     <ul class="dropdown-menu nav-dropdown">
                                         <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                         @forelse(wheelbrands() as $brand)
@@ -304,14 +293,15 @@
                                 </li>
 
                                 <!-- New Nav Start -->
-                                <li class="dropdown-tire"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT TIRES <span class="caret"></span></a>
+                                <li class="dropdown-tire">
+                                    <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a>
                                     <ul class="dropdown-menu multi-colum-nav">
-                                        <!-- New Menu Today Start-->
+                                        <!-- New Menu Start-->
                                         <div class="row tire-nav">
                                             <div class="col-sm-12">
-                                                <h1 class="car-truck-head">Shop by Passenger car and Light Truck 
+                                                <h1 class="car-truck-head">Shop by Passenger Car and Light Truck
                                                     <img src="{{url('image/car.svg')}}" class="moving-car">
-                                                <img src="{{url('image/suv.svg')}}" class="moving-truck"></h1>
+                                                    <img src="{{url('image/suv.svg')}}" class="moving-truck"></h1>
                                             </div>
                                         </div>
 
@@ -324,37 +314,37 @@
                                                     <form action="{{url('/setFiltersByVehicle')}}">
                                                         <div class="vehicle-list">
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavMake " name="make">
-                                                                    <option value ="">Select Make</option> 
+                                                                <select required="" class="form-control browser-default custom-select NavMake" name="make">
+                                                                    <option value="">Select Make</option>
                                                                     @foreach(getVehicleMakeList() as $key => $make)
-                                                                    <option value="{{$make->make}}">{{$make->make}}</option>
+                                                                    <option value="{{$make}}">{{$make}}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavYear " name="year">
+                                                                <select required="" class="form-control browser-default custom-select NavYear" name="year">
                                                                     <option value="">Year</option>
                                                                 </select>
                                                             </div>
 
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavModel " name="model">
+                                                                <select required="" class="form-control browser-default custom-select NavModel" name="model">
                                                                     <option value="">Model</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavSubmodel " name="submodel">
+                                                                <select required="" class="form-control browser-default custom-select NavSubmodel" name="submodel">
                                                                     <option value="">Trim</option>
 
                                                                 </select>
                                                             </div>
                                                             <div class="dropdown">
-                                                                <input required="" type="text" class="form-control"  name="zip" placeholder="Enter ZIP">
+                                                                <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
                                                             </div>
-    <!--                                                         <div class="dropdown">
+                                                            <!--                                                         <div class="dropdown">
                                                                 <select class="form-control browser-default custom-select">
                                                                     <option selected>ZIP</option>
                                                                     <option value="1">One</option>
@@ -364,7 +354,7 @@
                                                             </div> -->
 
                                                             <a href="">
-                                                            <button type="submit" class="btn vehicle-go">GO</button>
+                                                                <button type="submit" class="btn vehicle-go">GO</button>
                                                             </a>
                                                         </div>
                                                     </form>
@@ -378,37 +368,34 @@
                                                     <h1>Shop By Tire Size</h1>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    <div class="vehicle-list">
+                                                    <form action="{{url('/setFiltersByTire')}}">
+                                                        <div class="vehicle-list">
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select NavWidth" name="width">
+                                                                    <option value="">Select Width</option>
+                                                                    @foreach(getTireWidthList() as $key => $tire)
+                                                                    <option value="{{$tire}}">{{$tire}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
 
-                                                        <div class="dropdown">
-                                                            <select class="form-control browser-default custom-select">
-                                                                <option selected>220</option>
-                                                                <option value="1">225</option>
-                                                                <option value="2">100</option>
-                                                                <option value="3">90</option>
-                                                            </select>
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select NavProfile" name="profile">
+                                                                    <option value="">Select Profile</option>
+                                                                </select>
+                                                            </div>
+
+
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select NavDiameter" name="diameter">
+                                                                    <option value="">Select Diameter</option>
+                                                                </select>
+                                                            </div>
+                                                            <a href="">
+                                                                <button type="submit" class="btn vehicle-go">GO</button>
+                                                            </a>
                                                         </div>
-
-                                                        <div class="dropdown">
-                                                            <select class="form-control browser-default custom-select">
-                                                                <option selected>220</option>
-                                                                <option value="1">225</option>
-                                                                <option value="2">100</option>
-                                                                <option value="3">90</option>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="dropdown">
-                                                            <select class="form-control browser-default custom-select">
-                                                                <option selected>220</option>
-                                                                <option value="1">225</option>
-                                                                <option value="2">100</option>
-                                                                <option value="3">90</option>
-                                                            </select>
-                                                        </div>
-
-                                                        <button type="button" class="btn vehicle-go"><a href="{{url('/tires')}}">GO</a></button>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -424,17 +411,17 @@
                                                             <div class="col-sm-2 tire-menu">
                                                                 <ul>
                                                                     @foreach(getTireCategoryList() as $key => $tirebrand)
-                                                                    <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand->category5)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand->category5}}</a></li>
+                                                                    <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>
-                                                         
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- New Menu Today End -->
+                                        <!-- New Menu End -->
 
                                     </ul>
                                 </li>

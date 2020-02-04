@@ -25,11 +25,15 @@ class TireController extends Controller
      */
     public function list(Request $request,$tire_size='')
     { 
-        $tires = Tire::with('TireDetails')->where('spec3','like', '%' . base64_decode($tire_size) . '%')->get();
+        $tires = Tire::select('simple_image','prod_title','category4','part_no','plt','xl','spec3')
+                ->where('spec3','like', '%' . base64_decode($tire_size) . '%')
+                ->with(['TireDetails' => function($q) {
+                    $q->select('part_no','price','sale_price');
+                }])
+                ->get()
+                ->unique('simple_image');
 
         $load_indexs = ChassisModel::where('tire_size',base64_decode($tire_size))->where('load_index','!=','NULL')->distinct('load_index')->pluck('load_index');
-        // dd($load_indexs);
-        // dd($tires);
         return view('tires_list',compact('tires','load_indexs'));
     }
 
@@ -40,8 +44,15 @@ class TireController extends Controller
      */
     public function tireview(Request $request,$tire_id='')
     {
-        $tire = Tire::with('TireDetails')->where('id',base64_decode($tire_id))->first();
-        // dd($tire);
+        $tire = Tire::select('simple_image','prod_title','category4','part_no','plt','xl','spec3')
+                ->where('id',base64_decode($tire_id))
+                ->with(['TireDetails' => function($q) {
+                    $q->select('part_no','price','sale_price');
+                },'ChassisModels' => function($q) {
+                    $q->select('tire_size','load_index','speed_index');
+                }])
+                ->first();
+
         return view('tire_view',compact('tire'));
     }
 
@@ -53,21 +64,13 @@ class TireController extends Controller
     public function brand(Request $request,$brand_name='')
     {
 
-        $imagesjpg = glob("storage/tires/*.jpg");
-        $imagespng = glob("storage/tires/*.png"); 
-        $images = array_merge($imagesjpg,$imagespng); 
-        // dd($images);
-        $tires=array();
-        foreach ($images as $key => $value) {
-
-            $path_remove = str_replace('storage/tires/','', $value); 
-            // dd($path_remove);
-            $test = Tire::with('TireDetails')->where('simple_image',$path_remove)->first();
-            if($test!=null){
-                $tires[] = $test;
-            }
-        }
-
+        $tires = Tire::select('id','simple_image','prod_title','category4','part_no','plt','xl')
+                ->where('category5',base64_decode($brand_name))
+                ->with(['TireDetails' => function($q) {
+                    $q->select('part_no','price','sale_price');
+                }])
+                ->get()
+                ->unique('simple_image');
         return view('tire_brand',compact('tires'));
     }
     /**
@@ -135,6 +138,65 @@ class TireController extends Controller
     {
         //
     }
+
+
+    /**
+     * Search the records by filters.
+     *
+     * @param  \App\Vehicle  $vehicle
+     * @return \Illuminate\Http\Response
+     */
+    public function getFiltersByTire(Request $request)
+    {
+        try{
+            $tire = new Tire;  
+
+            // Width change or Loading filter
+            if(isset($request->width) && $request->changeBy == 'width' || $request->changeBy == '')
+                $allData['profile'] = $data = $tire->select('category3 as profile')->distinct('category3')->wherecategory2($request->width)->orderBy('profile','DESC')->get();
+
+            // Profile change  or Loading Filter
+            if(isset($request->width) && isset($request->profile) && $request->changeBy == 'profile' || $request->changeBy == '')
+                $allData['diameter'] = $data = $tire->select('category4 as diameter')->distinct('category4')->where('category2',$request->width)->where('category3',$request->profile)->get();
+
+            if($request->changeBy == ''){    
+                return response()->json(['data' => $allData]);
+            }
+            return response()->json(['data' => $data]);
+
+        }catch(ModelNotFoundException $notfound){
+            return response()->json(['error' => $notfound->getMessage()]); 
+        }catch(Exception $error){
+            return response()->json(['error' => $error->getMessage()]); 
+        }
+    }
+    /**
+     * Search the records by filters.
+     *
+     * @param  \App\Vehicle  $vehicle
+     * @return \Illuminate\Http\Response
+     */
+    public function setFiltersByTire(Request $request)
+    {
+        try{
+            $tires = Tire::with('TireDetails')
+            ->where('category2',$request->width)
+            ->where('category3',$request->profile)
+            ->where('category4',$request->diameter)
+            ->get();  
+            $load_indexs = ChassisModel::where('load_index','!=','NULL')->distinct('load_index')->pluck('load_index');
+
+            return view('tires_list',compact('tires','load_indexs'));
+
+        }catch(ModelNotFoundException $notfound){
+            return response()->json(['error' => $notfound->getMessage()]); 
+        }catch(Exception $error){
+            return response()->json(['error' => $error->getMessage()]); 
+        }
+    }
+
+
+
     public function Falken_Import(){
          $in_file = public_path('/storage/tires_data/Falken-Export.csv'); 
 

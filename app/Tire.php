@@ -16,6 +16,9 @@ class Tire extends Model
     	return $this->hasOne('App\TireDetail','part_no','part_no');
     }
 
+    public function ChassisModels(){
+    	return $this->hasMany('App\ChassisModel','tire_size','spec3');
+    }
 	// public function CarColors(){
 	// 	return $this->hasMany('App\CarColor','vif','vif');
 	// }

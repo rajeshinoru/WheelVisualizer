@@ -318,12 +318,7 @@
 
                 <div class="col-sm-2 size-search">
                     <div class="wrapper">
-<!--                         <button class="btn btn-primary">
-                            <a href="{{url('/tirelist')}}">
-                                <p>10"</p>215/45-17
-                            </a>
-                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </button> -->
+
                         @foreach(@$chassis_models as $key => $model)
 
                         <button class="btn btn-primary">
@@ -335,25 +330,6 @@
                         @endforeach
                     </div>
                 </div>
-   <!--              <div class="col-sm-2 size-search">
-                    <div class="wrapper">
-                        <button class="btn btn-primary">
-                            <a href="{{url('/tirelist')}}">
-                                <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="{{url('/tirelist')}}">
-                                <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="{{url('/tirelist')}}">
-                                <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="{{url('/tirelist')}}">
-                                <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary">
-                            <a href="{{url('/tirelist')}}">
-                                <p>12"</p>215/45-17</a><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                    </div>
-                </div> -->
             </div>
 
             <div class="col-sm-3 tire-banner">
@@ -377,80 +353,7 @@
     </div>
 </section>
 
-<section id="footer-down">
-    <div class="container-fluid">
-        <div class="footerWrapper">
-            <div class="BottomSliderHome" align="center">
-                <a href=""><img src="image/foot-img.png" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="footer">
-
-    <div class="container">
-        <div class="social-nl">
-            <div align="center">
-                <div class="social2-nl">
-
-                    <div class="bbb-nl">
-                        <a target="_blank" href="">
-                            <img class="lazy" src="image/social-1.png" style="display: inline;" width="90" height="72"></a>
-                    </div>
-
-                    <div class="reseller-nl">
-                        <a href="">
-                            <img class="lazy" src="image/social-2.png" style="display: inline;" height="52"></a>
-                    </div>
-
-                    <div class="googlestore">
-                        <a target="_blank">
-                            <img class="lazy" src="image/social-3.png" style="display: inline;" width="150" height="61"></a>
-                    </div>
-
-                    <div class="sitelock-nl">
-                        <a target="_blank" href="">
-                            <img class="lazy" src="image/social-4.png" style="display: inline;" width="145" height="68"></a>
-                    </div>
-
-                    <div class="godaddy-nl">
-                        <a target="_blank" rel="noreferrer" href="">
-                            <img class="lazy" src="image/social-5.png" style="display: inline;" width="113" height="59"></a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div align="center">
-                <div class="footer-phone">Discounted Wheel Warehouse 1-800-901-6003</div>
-                <div class="main" style="font-size:small;margin: 10px 0px;">Contact Us <a href="mailto:sales@discountedwheelwarehouse.com">sales@discountedwheelwarehouse.com</a></div>
-            </div>
-            <div class="footercustom-menu" align="center">
-                <div class="zfooterMenu">
-                    <ul>
-                        <li><a href="/Custom_Wheels.cfm">Custom Wheels</a></li>
-                        <li><a href="/Discount_Tires.cfm">Discount Tires</a></li>
-                        <li><a href="/Wheel_and_Tire_information_links.cfm">Information Links</a></li>
-                        <li><a href="/Apply_for_Credit.cfm">Rims Financing</a></li>
-                        <li><a href="/Discounted_Wheel_Warehouse_Contact_us.cfm">Contact Us</a></li>
-                        <li><a href="/Discounted_Wheel_Warehouse__About_Us__Customer_Service.cfm">About Us</a></li>
-                        <li><a href="/wheels-search">Vehicle Search</a></li>
-                        <li><a href="/index.cfm">Home</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-ratings" align="center">
-                <h1><a href="">DiscountedWheelWarehouse.com has a ResellerRatings of 4.505/5 based on 8203 Reviews</a></h1>
-            </div>
-            <div class="copywright" align="center">copyright © 2020 Discounted Wheel Warehouse</div>
-
-        </div>
-    </div>
-</section>
-
-@include('include.latestproducts') @endsection @section('shop_by_vehicle_scripts')
+@endsection 
+@section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
 @endsection

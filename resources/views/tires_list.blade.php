@@ -207,7 +207,7 @@
                                                 @foreach(getTireCategoryList() as $key => $tire)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> {{$tire->category5}}
+                                                            <input type="checkbox"> {{$tire}}
                                                         </label>
                                                     </span></li>
                                                 @endforeach

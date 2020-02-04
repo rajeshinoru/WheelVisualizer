@@ -54,18 +54,25 @@ function getRimToWheelDiameter($rimSize=''){
 
 function getMakeList(){
 
-        $make = Viflist::select('make')->distinct('make')->orderBy('make','Asc')->get(); 
+        $make = Viflist::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make'); 
         return $make;
 }
 
 function getTireCategoryList(){
 
-        $tires = Tire::select('category5')->distinct('category5')->orderBy('category5','Asc')->get(); 
+        $tires = Tire::select('category5')->distinct('category5')->pluck('category5')->toArray(); 
+        sort($tires);
+        return $tires;
+}
+
+function getTireWidthList(){
+        $tires = Tire::select('category2')->distinct('category2')->pluck('category2')->toArray(); 
+        rsort($tires);
         return $tires;
 }
 function getVehicleMakeList(){
 
-        $make = Vehicle::select('make')->distinct('make')->orderBy('make','Asc')->get(); 
+        $make = Vehicle::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make');
         return $make;
 }
 
