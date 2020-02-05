@@ -33,21 +33,27 @@ Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
 Route::get('/Chassis_Import', 'ChassisController@Chassis_Import');
 Route::get('/ChassisModel_Import', 'ChassisModelController@ChassisModel_Import');
 
-Route::get('/tires', 'TireController@index')->name('tires');
-Route::get('/tirelist/{tire_size?}', 'TireController@list')->name('tirelist');
-Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
-Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
-
 Route::resource('wheel', 'WheelController');
 
 Route::get('/vehicledetails', 'HomeController@vehicledetails')->name('vehicledetails');
 Route::get('/selectCarByColor', 'HomeController@selectCarByColor')->name('selectCarByColor');
 
+
+// Filters By Vehicle Models
 Route::get('/getFiltersByVehicle', 'VehicleController@getFiltersByVehicle')->name('getFiltersByVehicle');
 Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->name('setFiltersByVehicle');
 
+
+// Filters By Tire sizes
 Route::get('/getFiltersByTire', 'TireController@getFiltersByTire')->name('getFiltersByTire');
 Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFiltersByTire');
+
+// Tires Module Routes
+Route::get('/tires', 'TireController@index')->name('tires');
+Route::get('/tirelist/{tire_size?}', 'TireController@list')->name('tirelist');
+Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
+Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
+
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');

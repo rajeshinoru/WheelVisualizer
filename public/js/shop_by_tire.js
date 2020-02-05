@@ -35,20 +35,20 @@ function NavTireFilters(width = '',profile = '', changeBy = '') {
 
         if (changeBy == '') {
             data.data['profile'].map(function(value, key) {
-                isSelected = (value.profile == profile) ? 'selected' : '';
-                $('.NavProfile').append('<option value="' + value.profile + '" ' + isSelected + '>' + value.profile + '</option>');
+                isSelected = (value.tireprofile == profile) ? 'selected' : '';
+                $('.NavProfile').append('<option value="' + value.tireprofile + '" ' + isSelected + '>' + value.tireprofile + '</option>');
             });
             data.data['diameter'].map(function(value, key) {
-                isSelected = (value.diameter == diameter) ? 'selected' : '';
-                $('.NavDiameter').append('<option value="' + value.diameter + '" ' + isSelected + '>' + value.diameter + '</option>');
+                isSelected = (value.tirediameter == diameter) ? 'selected' : '';
+                $('.NavDiameter').append('<option value="' + value.tirediameter + '" ' + isSelected + '>' + value.tirediameter + '</option>');
             });
         } else {
             data.data.map(function(value, key) {
                 if (changeBy == 'width') {
-                    $('.NavProfile').append('<option value="' + value.profile + '">' + value.profile + '</option>');
+                    $('.NavProfile').append('<option value="' + value.tireprofile + '">' + value.tireprofile + '</option>');
                 }
                 if (changeBy == 'profile') {
-                    $('.NavDiameter').append('<option value="' + value.diameter + '">' + value.diameter + '</option>');
+                    $('.NavDiameter').append('<option value="' + value.tirediameter + '">' + value.tirediameter + '</option>');
                 }
             });
         }

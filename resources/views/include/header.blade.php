@@ -410,7 +410,7 @@
                                                         <div class="row">
                                                             <div class="col-sm-2 tire-menu">
                                                                 <ul>
-                                                                    @foreach(getTireCategoryList() as $key => $tirebrand)
+                                                                    @foreach(getTireBrandList() as $key => $tirebrand)
                                                                     <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
                                                                     @endforeach
                                                                 </ul>

@@ -71,16 +71,16 @@
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$ptire->simple_image)}}" title="{{@$ptire->prod_title}}" alt="{{@$ptire->prod_title}}" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$ptire->simple_image)}}" title="{{@$ptire->prod_title}}" alt="{{@$ptire->prod_title}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$ptire->prodimage)}}" title="{{@$ptire->prodtitle}}" alt="{{@$ptire->prodtitle}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$ptire->prodimage)}}" title="{{@$ptire->prodtitle}}" alt="{{@$ptire->prodtitle}}" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a>Sale</a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type" title="{{@$ptire->prod_title}}">
-                                        <a href="{{url('/tireview')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prod_title}} <br>
-                                        @if(@$ptire->TireDetails->sale_price)
-                                        Starting at: ${{@$ptire->TireDetails->sale_price}}
+                                    <h4 class="tire-type" title="{{@$ptire->prodtitle}}">
+                                        <a href="{{url('/tireview')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}} <br>
+                                        @if(@$ptire->price)
+                                        Starting at: ${{@$ptire->price}}
                                         @else
                                         <br>
                                         @endif
@@ -124,13 +124,13 @@
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$lttire->simple_image)}}" title="{{@$lttire->prod_title}}" alt="{{@$lttire->prod_title}}" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$lttire->simple_image)}}" title="{{@$lttire->prod_title}}" alt="{{@$lttire->prod_title}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$lttire->prodimage)}}" title="{{@$lttire->prodtitle}}" alt="{{@$lttire->prodtitle}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$lttire->prodimage)}}" title="{{@$lttire->prodtitle}}" alt="{{@$lttire->prodtitle}}" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a>Sale</a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type" title="{{@$lttire->prod_title}}"><a href="{{url('/tireview')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prod_title}} <br> Starting at: ${{@$lttire->TireDetails->sale_price}}</a></h4>
+                                    <h4 class="tire-type" title="{{@$lttire->prodtitle}}"><a href="{{url('/tireview')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prodtitle}} <br> Starting at: ${{@$lttire->TireDetails->sale_price}}</a></h4>
                                     <br>
                                 </div>
                                 <div class="button-group">

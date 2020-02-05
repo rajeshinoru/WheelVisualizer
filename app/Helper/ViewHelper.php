@@ -58,15 +58,15 @@ function getMakeList(){
         return $make;
 }
 
-function getTireCategoryList(){
+function getTireBrandList(){
 
-        $tires = Tire::select('category5')->distinct('category5')->pluck('category5')->toArray(); 
+        $tires = Tire::select('prodbrand')->distinct('prodbrand')->pluck('prodbrand')->toArray(); 
         sort($tires);
         return $tires;
 }
 
 function getTireWidthList(){
-        $tires = Tire::select('category2')->distinct('category2')->pluck('category2')->toArray(); 
+        $tires = Tire::select('tirewidth')->distinct('tirewidth')->pluck('tirewidth')->toArray(); 
         rsort($tires);
         return $tires;
 }

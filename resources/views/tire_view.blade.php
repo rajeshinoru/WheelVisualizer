@@ -408,7 +408,7 @@
                 </div>
                 <div class="col-sm-4 shop-details">
 
-                    <h1 class="product-name">{{@$tire->prod_title}}</h1>
+                    <h1 class="product-name">{{@$tire->prodtitle}}</h1>
 
                     <div class="rating-section product-rating-status text-left">
                         <div class="rating">
