@@ -43,7 +43,7 @@ class TireController extends Controller
     public function tireview(Request $request,$tire_id='')
     {
         $tire = Tire::where('id',base64_decode($tire_id))->first();
-        $diff_tires =  Tire::where('tiresize','like', '%' . $tire->tiresize . '%')->get();
+        $diff_tires =  Tire::where('prodmodel',$tire->prodmodel)->get();
         return view('tire_view',compact('tire','diff_tires'));
     }
 
