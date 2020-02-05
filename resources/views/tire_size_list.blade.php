@@ -308,7 +308,7 @@
                 <div class="size-heading">
                     <h1>WHAT TIRE SIZE IS ON YOUR VEHICLE</h1>
                     <h2>FACTORY SIZES FOR :</h2>
-                    <h3>{{$vehicle->year_make_model_submodel}} {{$vehicle->dr_chassis_id}}</h3>
+                    <h3>{{$vehicle->year_make_model_submodel}}</h3>
                 </div>
             </div>
         </div>

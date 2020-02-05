@@ -43,7 +43,7 @@ class TireController extends Controller
     public function tireview(Request $request,$tire_id='')
     {
         $tire = Tire::where('id',base64_decode($tire_id))->first();
-        $diff_tires =  Tire::where('prodmodel',$tire->prodmodel)->get();
+        $diff_tires =  Tire::where('tiresize','like', '%' . $tire->tiresize . '%')->get();
         return view('tire_view',compact('tire','diff_tires'));
     }
 
@@ -167,14 +167,15 @@ class TireController extends Controller
     public function setFiltersByTire(Request $request)
     {
         try{
-            $tires = Tire::with('TireDetails')
-            ->where('category2',$request->width)
-            ->where('category3',$request->profile)
-            ->where('category4',$request->diameter)
+            $tires = Tire::where('tirewidth',$request->width)
+            ->where('tireprofile',$request->profile)
+            ->where('tirediameter',$request->diameter)
             ->get();  
-            $load_indexs = ChassisModel::where('load_index','!=','NULL')->distinct('load_index')->pluck('load_index');
+            $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->groupBy('loadindex')->get()->sortBy('loadindex');
+        
+            $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->groupBy('speedrating')->get()->sortBy('speedrating');
 
-            return view('tires_list',compact('tires','load_indexs'));
+            return view('tires_list',compact('tires','load_indexs','speedratings'));
 
         }catch(ModelNotFoundException $notfound){
             return response()->json(['error' => $notfound->getMessage()]); 

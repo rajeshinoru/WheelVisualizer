@@ -470,7 +470,24 @@
 
     @media (max-width: 767px) {}
 </style>
-</section>
+<style>
+.price-section h1 {
+    font-size: 14px !important;
+    text-align: center;
+    padding: 5px 0px !important;
+    margin: 0px 0px !important;
+    line-height:30px;
+}
+.price-section h2 {
+    font-size: 14px !important;
+    padding: 5px 0px !important;
+    margin: 0px 0px !important;
+    line-height:30px;
+}
+.reward-block {
+    text-align: center !important;
+}
+</style>
 
 <section id="tires-des">
     <!-- Cart Start -->
@@ -489,8 +506,7 @@
                         <h1>Price for TIRE ONLY</h1>
                         <h2>Rim depicted in image NOT INCLUDED</h2>
                     </div>
-                    <img src="{{url('image/social-1.png')}}">
-                    <img src="{{url('image/social-1.png')}}">
+                    <img src="{{url('image/'.@$tire->warranty)}}" width="70px" height="70px">
                 </div>
                 <div class="col-sm-3 shop-details">
                     <h1 class="product-name">{{@$tire->detailtitle}}</h1>
@@ -523,15 +539,29 @@
                                 <td></td>
                                 <td class="product-info-value">UTQG : {{@$tire->utqg}}</td>
                             </tr>
+                            <tr>
+                                <td></td>
+                                <td class="product-info-value">Part No : {{@$tire->partno}}</td>
+                            </tr>
 
                         </tbody>
                     </table>
-                    <div class="price-section">
-                        <span class="price-new">${{@$tire->price}}</span>
-                        <span class="price-old">${{@$tire->price2}}</span>
 
+                    <div class="price-section">
+                        <h1>Partno : <b>FT-28953792</b></h1>
+                        <h2>Original Price : <span class="price-old">${{@$tire->originalprice}}</span> 
+                            You Save : <span class="price-new2">${{(@$tire->originalprice - @$tire->price)}}</span>
+                        </h2> 
+                        <h1>Set of 4 : <span class="price-new2">${{@$tire->price * 4}}</span></h1>
+                        <h1>Your Price : <span class="price-new2">${{@$tire->price}}</span></h1>
                         <div class="reward-block">
-                            <button class="btn btn-info" type="button">See Price Details</button>
+                            @if(@$tire->saletype == 4)
+                            <button class="btn btn-info" type="button">See Price in Cart</button>
+                            @elseif(@$tire->saletype == 5)
+                            <button class="btn btn-info" type="button">Join DWW for Special Offers</button>
+                            @elseif(@$tire->saletype == 7)
+                            <button class="btn btn-info" type="button">See Price in Checkout</button>
+                            @endif
                         </div>
                     </div>
 
@@ -540,15 +570,21 @@
                         <label class="control-label" for="input-quantity">Qty</label>
                         <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
                         <input type="hidden" name="product_id" value="46">
-                        <button class="btn btn-info" type="button">Buy</button>
                         <button class="btn btn-info" type="button">Add to Cart</button>
+                        <button class="btn btn-info" type="button">FINANCE</button>
                     </div>
 
                     <div class="instock">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
-                                    <h1 class="instock-head">Availability: <b>In Stock</b></h1>
+                                    <h1 class="instock-head">Availability: 
+                                        @if(@$tire->qtyavail == 1)
+                                        <b>In Stock</b>
+                                        @else
+                                        <b>Low Stock - Call to Confirm</b>
+                                        @endif
+                                    </h1>
                                 </div>
                                 <div class="col-sm-6">
                                     <h1 class="instock-head animated pulse"><a href="" data-toggle="modal" data-target="#myModal">Shipping Quote</a></h1>
@@ -585,46 +621,46 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h1 class="product-name">Performance Ratings</h1>
-                            <p class="prograss-bar-head">Dry Handling:</p>
+                            <p class="prograss-bar-head">Dry Handling / Dry Traction/ Dry Performance :</p>
                             <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:90%">
-                                    90%
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->dry_performance}}%">
+                                    {{@$tire->dry_performance}}%
                                 </div>
                             </div>
-                            <p class="prograss-bar-head">Wet Breaking:</p>
+                            <p class="prograss-bar-head">Wet Braking/ Wet Traction/ Wet Performance :</p>
                             <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                    70%
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->wet_performance}}%">
+                                    {{@$tire->wet_performance}}%
                                 </div>
                             </div>
-                            <p class="prograss-bar-head">Tread Life:</p>
+                            <p class="prograss-bar-head">Tread Life/ Mileage/ Wear :</p>
                             <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-                                    50%
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->mileage_performance}}%">
+                                    {{@$tire->mileage_performance}}%
                                 </div>
                             </div>
                             <p class="prograss-bar-head">Ride Comfort:</p>
                             <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-                                    50%
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->ride_comfort}}%">
+                                    {{@$tire->ride_comfort}}%
                                 </div>
                             </div>
-                            <p class="prograss-bar-head">Quiet Ride:</p>
+                            <p class="prograss-bar-head">Quiet Ride/ Noise Comfort/ Quietness  :</p>
                             <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                    70%
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->quiet_ride}}%">
+                                    {{@$tire->quiet_ride}}%
                                 </div>
                             </div>
-                            <p class="prograss-bar-head">Winter Performance:</p>
+                            <p class="prograss-bar-head">Winter Performance/ Snow Traction/ Snow :</p>
                             <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                                    80%
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->winter_performance}}%">
+                                    {{@$tire->winter_performance}}%
                                 </div>
                             </div>
-                            <p class="prograss-bar-head">Fuel Efficiency:</p>
+                            <p class="prograss-bar-head">Fuel Efficiency / Eco:</p>
                             <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:90%">
-                                    90%
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->fuel_efficiency}}%">
+                                    {{@$tire->fuel_efficiency}}%
                                 </div>
                             </div>
                         </div>
@@ -717,12 +753,18 @@
                                 <div class="tab-pane fade in active" id="tab1default">
                                     <div class="col-sm-8">
                                         <div class="prod-headinghome">
-                                            <p>{{@$tire->metadesc}}</p>
+<br><b>Details</b>
+<!-- <br><b>Type</b>: {{@$tire->Passenger}} -->
+<br><p><b>Style</b>: {{@$tire->prodmodel}}</p>
+<!-- <br><b>Feature</b>: Exclusive silica compound. 3D canyon siping. Wide angled tread slot. Wide circumferential grooves -->
+<br><b>Description</b>:
+<br>
+<?php echo @$tire->proddesc ?>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="tire-des">
-                                            <img src="{{viewImage('/tires/'.@$tire->simple_image)}}">
+                                            <img src="{{viewImage('/tires/'.@$tire->prodimage)}}">
                                         </div>
                                     </div>
 
@@ -765,136 +807,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach(@$diff_tires as $key => $tire)
                     <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
+                        <td><a href="{{url('/tireview/'.base64_encode($tire->id))}}" >{{@$tire->tiresize}}</a></td>
+                        <td>{{@$tire->partno}}</td>
+                        <td>{{@$tire->utqg}}</td>
+                        <td>{{@$tire->speedrating}}</td>
+                        <td>{{@$tire->loadindex}}</td>
+                        <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td>
+                        <td>${{@$tire->price}}</td>
                         <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
+                            <button type="button" class="btn btn-default cart-1">Details</button>
+                            <button type="button" class="btn btn-default cart-2">Add</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>215/45ZR17</td>
-                        <td>Fullway Tires HP108</td>
-                        <td>380 AA</td>
-                        <td>W</td>
-                        <td>91</td>
-                        <td>-</td>
-                        <td>$37.85</td>
-                        <td>
-                            <button type="button" class="btn btn-default cart-1">Default</button>
-                            <button type="button" class="btn btn-default cart-2">Default</button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
