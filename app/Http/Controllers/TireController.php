@@ -25,12 +25,14 @@ class TireController extends Controller
      */
     public function list(Request $request,$tire_size='')
     { 
-        $tires = Tire::where('spec3','like', '%' . base64_decode($tire_size) . '%')
+        $tires = Tire::where('tiresize','like', '%' . base64_decode($tire_size) . '%')
                 ->get()
-                ->unique('prodimage');
-
-        $load_indexs = ChassisModel::where('tire_size',base64_decode($tire_size))->where('load_index','!=','NULL')->distinct('load_index')->pluck('load_index');
-        return view('tires_list',compact('tires','load_indexs'));
+                ->unique('prodmodel');
+        $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->where('tiresize','like', '%' . base64_decode($tire_size) . '%')->groupBy('loadindex')->get()->sortBy('loadindex');
+        
+        $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->where('tiresize','like', '%' . base64_decode($tire_size) . '%')->groupBy('speedrating')->get()->sortBy('speedrating');
+        
+        return view('tires_list',compact('tires','load_indexs','speedratings'));
     }
 
     /**
@@ -40,20 +42,8 @@ class TireController extends Controller
      */
     public function tireview(Request $request,$tire_id='')
     {
-        $tire = Tire::select('prodimage','prod_title','category4','category5','part_no','plt','xl','spec1','spec2','spec3','spec4','csearch1','csearch2','csearch3')
-                ->where('id',base64_decode($tire_id))
-                ->with(['TireDetails' => function($q) {
-                    $q->select('part_no','price','sale_price');
-                }])
-                ->first();
-        $diff_tires =  Tire::select('prodimage','prod_title','category4','category5','part_no','plt','xl','spec1','spec2','spec3','spec4','csearch1','csearch2','csearch3')
-                ->where('spec1',$tire->spec1)
-                ->where('spec2',$tire->spec2)
-                ->with(['TireDetails' => function($q) {
-                    $q->select('part_no','price','sale_price');
-                }])
-                ->get();
-                // dd($tire,$diff_tires);
+        $tire = Tire::where('id',base64_decode($tire_id))->first();
+        $diff_tires =  Tire::where('prodmodel',$tire->prodmodel)->get();
         return view('tire_view',compact('tire','diff_tires'));
     }
 

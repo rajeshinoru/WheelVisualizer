@@ -169,13 +169,19 @@
         display: none !important;
     }
 </style>
+<style type="text/css">
+    button.btn.speed {
+    background: #000 !important;
+    margin: 5px 0px !important;
+    }
+    button.btn.speed a
+    {
+      color: #fff !important;
+      font-size: 10px !important;
+    }
 
+</style>
 </section>
-
-
-
-
-
 <section id="tire-list">
     <div class="container">
         <div class="col-sm-3">
@@ -204,10 +210,10 @@
                                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                         <div class="panel-body">
                                             <ul style="display: block;">
-                                                @foreach(getTireCategoryList() as $key => $tire)
+                                                @foreach(@getTireBrandList() as $key => $brand)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> {{$tire}}
+                                                            <input type="checkbox"> {{$brand}}
                                                         </label>
                                                     </span></li>
                                                 @endforeach
@@ -224,17 +230,11 @@
                             <div class="widget-search">
                                 <h5 class="heading">Speed Rating</h5>
                                 <div class="car-list">
-                                    <ul class="list-inline">
-                                        <!-- <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li>
-                                        <li><a>2016</a></li> -->
-                                    </ul>
+                                        @foreach(@$speedratings as $key => $value)
+                                        <button class="btn speed" type="button">
+                                            <a href="">{{@$value->speedrating}} <!-- 130 mph --> ({{@$value->total}})</a>
+                                        </button>
+                                        @endforeach
                                 </div>
                             </div>
 
@@ -249,10 +249,10 @@
                                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                         <div class="panel-body">
                                             <ul style="display: block;">
-                                                @foreach(@$load_indexs as $key => $index)
+                                                @foreach(@$load_indexs as $key => $value)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> {{$index}}
+                                                            <input type="checkbox"> {{@$value->loadindex}} ( {{@$value->total}})
                                                         </label>
                                                     </span></li>
                                                 @endforeach
@@ -298,18 +298,18 @@
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('tires/'.$tire->simple_image)}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.$tire->simple_image)}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a>Sale</a></div>
+                                <img class="wheelImage image_thumb" src="{{viewImage('tires/'.$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                <div class="sale-icon"><a></a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
                                     <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode($tire->id)}}">
-                                            {{@$tire->prod_title}}<br>
+                                            {{@$tire->prodtitle}}<br>
                                             <br>
-                                            Size : {{@$tire->spec3}} <br>
-                                            <!-- Load : {{@$tire->TireDetails->part_no}}<br> -->
-                                            Sale Price : ${{@$tire->TireDetails->sale_price}}
+                                            Size : {{@$tire->tiresize}}<br>
+                                            Load : {{@$tire->loadindex}}    Speed:{{@$tire->speedrating}}<br>
+                                            <b>${{@$tire->price}}</b>
                                         </a></h4>
                                     <br>
                                 </div>
@@ -337,7 +337,6 @@
     </div>
 </section>
 
-@include('include.latestproducts') 
 @endsection 
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
