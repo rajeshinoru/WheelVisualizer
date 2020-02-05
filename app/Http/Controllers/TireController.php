@@ -25,7 +25,7 @@ class TireController extends Controller
      */
     public function list(Request $request,$tire_size='')
     { 
-        $tires = Tire::select('simple_image','prod_title','category4','part_no','plt','xl','spec3')
+        $tires = Tire::select('id','simple_image','prod_title','category4','part_no','plt','xl','spec3')
                 ->where('spec3','like', '%' . base64_decode($tire_size) . '%')
                 ->with(['TireDetails' => function($q) {
                     $q->select('part_no','price','sale_price');
@@ -44,7 +44,7 @@ class TireController extends Controller
      */
     public function tireview(Request $request,$tire_id='')
     {
-        $tire = Tire::select('simple_image','prod_title','category4','category5','part_no','plt','xl','spec1','spec2','spec3','csearch1','csearch2','csearch3')
+        $tire = Tire::select('simple_image','prod_title','category4','category5','part_no','plt','xl','spec1','spec2','spec3','spec4','csearch1','csearch2','csearch3')
                 ->where('id',base64_decode($tire_id))
                 ->with(['TireDetails' => function($q) {
                     $q->select('part_no','price','sale_price');

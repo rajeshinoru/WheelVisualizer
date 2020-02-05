@@ -444,7 +444,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="product-info-value">UTQG : {{@$tire->csearch3}}</td>
+                                <td class="product-info-value">UTQG : {{@$tire->spec4}}</td>
                             </tr>
                         </tbody>
                     </table>
