@@ -28,7 +28,7 @@
         border-radius: 2px;
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
-        background: #000;
+        background:#0e1661 !important;
     }
 
     .pTopCell {
@@ -136,11 +136,6 @@
     #button-cart {
         height: 43px !important;
     }
-
-    .btn-block {
-        width: auto !important;
-    }
-
     .rating {
         padding: 10px 0px !important;
     }
@@ -246,7 +241,6 @@
     .general_info .price-section {
         margin: 0 0 5px;
         padding-bottom: 10px;
-        border-bottom: 1px solid #dddddd !important;
     }
 
     .price-section span.price-new {
@@ -268,7 +262,6 @@
 
     .price-section {
         text-align: left !important;
-        border-bottom: 1px solid #ccc !important;
         padding: 15px 0px !important;
     }
 
@@ -281,7 +274,7 @@
     }
 
     #table-section thead {
-        background: #222 !important;
+        background: #0e1661 !important;
         color: #fff !important;
         font-size: 12px !important;
         font-weight: 100 !important;
@@ -418,11 +411,11 @@
     }
 
     .btn.btn-info {
-        background: #222 !important;
+        background: #ecb23d !important;
     }
 
     .btn.btn-info:hover {
-        background: #000 !important;
+        background: #ecb23d !important;
     }
 
     .reward-block {
@@ -487,8 +480,18 @@
 .reward-block {
     text-align: center !important;
 }
+.modal-dialog.tire-view .modal-header
+{
+    background: #0e1661 !important;
+}
+modal-dialog.tire-view h4
+{
+    font-weight: 700;
+    color:#fff;
+    font-size: 12px !important;
+}
 </style>
-
+</section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">

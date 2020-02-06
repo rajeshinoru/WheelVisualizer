@@ -53,6 +53,7 @@ Route::get('/tires', 'TireController@index')->name('tires');
 Route::get('/tirelist/{tire_size?}', 'TireController@list')->name('tirelist');
 Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
 Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
+Route::get('/tirebrandmodel', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
 
 Route::group(['prefix' => 'admin'], function () {
