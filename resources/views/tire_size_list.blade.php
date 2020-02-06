@@ -323,7 +323,8 @@
 
                         <button class="btn btn-primary">
                             <a href="{{url('/tirelist')}}/{{base64_encode(@$model->tire_size)}}">
-                                <p>{{getRimToWheelDiameter(@$model->rim_size)}}"</p>{{@$model->p_lt}}{{@$model->tire_size}}
+                                <p>{{getRimToWheelDiameter(@$model->rim_size)}}"</p>
+                                {{@$model->tire_size}}
                             </a>
                             <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                         </button>

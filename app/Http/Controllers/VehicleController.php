@@ -133,8 +133,11 @@ class VehicleController extends Controller
             ->where('submodel',$request->submodel)
             ->first(); 
             
-            $chassis_models =ChassisModel::select('p_lt','tire_size','rim_size','chassis_id')->where('chassis_id',$vehicle->dr_chassis_id)->get()->unique('tire_size'); 
-            
+            $chassis_models =ChassisModel::select('p_lt','tire_size','rim_size','chassis_id')
+                ->where('chassis_id',$vehicle->dr_chassis_id)
+                ->get()
+                ->unique('tire_size'); 
+
             return view('tire_size_list',compact('vehicle','chassis_models'));
 
         }catch(ModelNotFoundException $notfound){
