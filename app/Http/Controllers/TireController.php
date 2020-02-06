@@ -61,6 +61,13 @@ class TireController extends Controller
                 ->unique('prodtitle');
         return view('tire_brand',compact('tires'));
     }
+
+    public function tirebrandmodel(Request $request,$tire_id='1')
+    {
+        $tire = Tire::where('id',1)->first();
+        $diff_tires =  Tire::where('prodmodel',$tire->prodmodel)->get();
+        return view('tire_brand_model',compact('tire','diff_tires'));
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -41,11 +41,11 @@
 
     <div class="full-header">
         <div class="container">
-
+        <div class="row">
             <div class="col-sm-6 logo">
                 <div class="header">
                     <div id="logo">
-                        <a href="{{url('/')}}"><img src="{{url('image/Logo/Logo-Demo-5.png')}}" title="Discounted Wheel Warehouse" alt="Discounted Wheel Warehouse" class="img-responsive" /></a>
+                        <a href="{{url('/')}}"><img src="{{url('image/Logo/New-Logo.png')}}" title="Discounted Wheel Warehouse" alt="Discounted Wheel Warehouse" class="img-responsive" /></a>
                     </div>
                 </div>
             </div>
@@ -58,13 +58,14 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 
     <style>
         .dropdown-menu.multi-colum-nav {
             width: 1200px !important;
-            background: #000 !important;
+            background: #f4f4f4 !important;
             border: none !important;
         }
 
@@ -83,7 +84,7 @@
 
         .col-sm-3.one-nav ul li {
             padding: 5px 0px !important;
-            border-bottom: 1px solid #ffffff24 !important;
+            border-bottom: 1px solid #222 !important;
         }
 
         .col-sm-3.one-nav h5 {
@@ -112,7 +113,7 @@
 
         .dropdown-menu li>a:hover,
         .dropdown-menu li>a:focus {
-            color: red !important;
+            color:#ecb23d !important;
         }
 
         .dropdown-tire:hover .dropdown-menu.multi-colum-nav {
@@ -124,12 +125,12 @@
         .car-truck-head {
             margin: 15px 0px !important;
             font-size: 12px !important;
-            color: #fff !important;
+            color: #000 !important;
         }
 
         .col-sm-2.shop-vehicle-head h1 {
             font-size: 12px !important;
-            color: #fff !important;
+            color: #000 !important;
             margin: 11px 0px !important;
         }
 
@@ -143,11 +144,19 @@
             color: #222 !important;
             font-size: 12px !important;
         }
-
+        .dropdown-menu li > a
+        {
+            color:#000 !important;
+        }
+        .form-control
+        {
+            border: 1px solid #0e1661;
+            color:#000;
+        }
         .btn.vehicle-go {
-            background: #ccc !important;
+            background: #ecb23d !important;
             border-radius: 5px !important;
-            color: #000 !important;
+            color: #fff !important;
             font-size: 12px !important;
             padding: 5px 20px !important;
             height: 34px !important;
@@ -157,15 +166,16 @@
             list-style-type: none !important;
         }
 
-        .col-sm-2.tire-menu ul li {
-            color: #fff !important;
+        .col-sm-2.tire-menu ul li 
+        {
+            color: #000 !important;
             font-size: 12px !important;
             padding: 5px 0px !important;
-            border-bottom: 1px solid #ffffff24 !important;
+            border-bottom:1px solid #22222254 !important;
         }
 
         .col-sm-2.tire-menu li a:hover {
-            color: red !important;
+            color: #ecb23d !important;
         }
 
         .car-truck-head i {
@@ -242,7 +252,10 @@
         }
 
 
-
+        .navbar-collapse
+        {
+            padding:0px 0px !important;
+        }
         .car-truck-head img {
             width: 40px !important;
             margin: 0px 5px !important;
@@ -269,7 +282,7 @@
     </style>
 
     <nav id="myHeader" class="new-navbar">
-        <div class="container">
+        
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
@@ -280,14 +293,14 @@
                     </button>
                 </div>
                 <div class="row new-nav">
-                    <div class="col-sm-9 nav-bar">
+                    <div class="col-sm-10 nav-bar">
                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
                             <ul class="nav navbar-nav navbar">
                                 <li class="dropdown-nav"><a title="WHEELS" href="{{route('wheels')}}" >DISCOUNT WHEELS <span class="caret"></span></a>
                                     <ul class="dropdown-menu nav-dropdown">
                                         <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                         @forelse(wheelbrands() as $brand)
-                                        <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}">{{$brand->brand}}</a></li>
+                                        <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->brand}}</a></li>
                                         @empty @endforelse
                                     </ul>
                                 </li>
@@ -437,7 +450,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <button type="button" class="btn btn-inverse btn-block btn-lg"><i class="fa fa-shopping-cart"></i>
                             <span class="cart-heading">Cart</span>
                             <span id="cart-total">0</span>
@@ -445,7 +458,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+       
     </nav>
 
 </header>

@@ -36,12 +36,18 @@
         margin: 40px 0px !important;
     }
 
-    .footer-ratings h1 a {
-        color: #777777;
-        font-size: 14px !important;
-        line-height: 25px;
+    .footer-ratings h1 a 
+    {
+        color:#0e1661 !important;
+        font-size: 12px !important;
+        line-height:30px;
     }
-
+    .main
+    {
+        font-size: 12px;
+        color:#000;
+        line-height: 30px !important;
+    }
     .main a {
         color: #0e1661 !important;
     }
@@ -83,12 +89,19 @@
         margin: 0px 0px !important;
     }
 
-    .copywright {
-        padding: 10px 0;
-        margin-top: 5px;
-        color: #666;
+    .copywright 
+    {
+        padding: 15px 0 !important;
+        margin-top: 0px !important;
+        color: #0e1661 !important;
+        font-size: 12px !important;
     }
-
+    .footer-phone {
+    color: 
+    #0e1661 !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+}
 
 
 
@@ -204,7 +217,7 @@
         <div class="container">
             <div align="center">
                 <div class="footer-phone">Discounted Wheel Warehouse 1-800-901-6003</div>
-                <div class="main" style="font-size:small;margin: 10px 0px;">Contact Us <a href="">sales@discountedwheelwarehouse.com</a></div>
+                <div class="main">Contact Us <a href="">sales@discountedwheelwarehouse.com</a></div>
             </div>
             <div class="footercustom-menu" align="center">
                 <div class="zfooterMenu">
