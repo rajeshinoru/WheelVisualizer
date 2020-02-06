@@ -43,6 +43,18 @@ function ViewImage($url=''){
 	}
 
 }
+function ViewBenefitImage($url=''){
+	if($url != ''){
+		if(file_exists(public_path('/storage/tires/benefits/'.$url))){
+			return asset('/storage/tires/benefits/'.$url);
+		}else{
+			return asset('/storage/tires/benefits/Checkmark.png');
+		}
+	}else{
+			return asset('/storage/tires/benefits/Checkmark.png');
+	}
+
+}
 
 // Rim size to Wheel Diameter Conversion
 function getRimToWheelDiameter($rimSize=''){
@@ -77,7 +89,9 @@ function getVehicleMakeList(){
 }
 
 
-
+function embedYoutube($url){
+	return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$url);
+}
 
 function random_strings($length_of_string) 
 { 

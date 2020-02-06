@@ -108,7 +108,34 @@ $('.tirebrand').on('click', function() {
 
 });
 
+// brand based filters for wheels
+$('.tirespeedrating').on('click', function() {
+    // var brand = $(this).val();   
 
+    var speedrating = $(this).val();
+    if (speedrating != '') {
+        updateParamsToUrl('tirespeedrating', speedrating);
+    } else {
+        removeParamsFromUrl('tirespeedrating');
+    }
+
+});
+
+// brand based filters for wheels
+$('.tireloadindex').on('click', function() {
+    // var brand = $(this).val();   
+
+    var index = $('.tireloadindex:checked').map(function() {
+        return $(this).val();
+    }).get();
+
+    if (index != '') {
+        updateParamsToUrl('tireloadindex', index);
+    } else {
+        removeParamsFromUrl('tireloadindex');
+    }
+
+});
 
 // Common  Function to change the params values in the current url
 function updateParamsToUrl(paramKey, paramValue) {
@@ -130,17 +157,17 @@ function updateParamsToUrl(paramKey, paramValue) {
         params[paramKey] = paramValue;
 
         // This is for search,selection by any one of ways => BRAND or SEARCH Keyword
-        if (paramKey == 'search' && params['brand'] != undefined) {
-            params['brand'] = '';
-        }
-        if (paramKey == 'brand' && params['search'] != undefined) {
-            params['search'] = '';
-        }
+        // if (paramKey == 'search' && params['brand'] != undefined) {
+        //     params['brand'] = '';
+        // }
+        // if (paramKey == 'brand' && params['search'] != undefined) {
+        //     params['search'] = '';
+        // }
 
-        if (paramKey == 'brand') {
-            params['width'] = '';
-            params['diameter'] = '';
-        }
+        // if (paramKey == 'brand') {
+        //     params['width'] = '';
+        //     params['diameter'] = '';
+        // }
 
         // Attach the query params to the nextURL 
         $.each(params, function(key, value) {

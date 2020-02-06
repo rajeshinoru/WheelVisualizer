@@ -27,8 +27,8 @@
         margin-bottom: 1%;
         border-radius: 2px;
         -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        background:#0e1661 !important;
+        -webkit-border-radius: 2px; 
+        background: #000;
     }
 
     .pTopCell {
@@ -490,6 +490,43 @@ modal-dialog.tire-view h4
     color:#fff;
     font-size: 12px !important;
 }
+
+ .progress-title{   
+        font-size: 12px;    
+        color: #011627; 
+        margin:10px 0px !important; 
+        text-align:left !important; 
+    }   
+    .progress{  
+        height: 10px;   
+        background: #cbcbcb;    
+        border-radius: 0;   
+        box-shadow: none;   
+        margin-bottom: 0px; 
+        overflow: visible;  
+    }   
+    .progress .progress-bar{    
+        box-shadow: none;   
+        position: relative; 
+        -webkit-animation: animate-positive 2s; 
+        animation: animate-positive 2s; 
+    }   
+    .progress .progress-value{  
+        font-size: 12px;    
+        color: #000;    
+        position: absolute; 
+        top: 10px;  
+        right: 0;   
+    }   
+    @-webkit-keyframes animate-positive{    
+        0% { width: 0; }    
+    }   
+    @keyframes animate-positive{    
+        0% { width: 0; }    
+    }   
+
+
+
 </style>
 </section>
 <section id="tires-des">
@@ -619,49 +656,61 @@ modal-dialog.tire-view h4
                 <div class="col-sm-3 tir-des">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h1 class="product-name">Performance Ratings</h1>
-                            <p class="prograss-bar-head">Dry Handling / Dry Traction/ Dry Performance :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->dry_performance}}%">
-                                    {{@$tire->dry_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Wet Braking/ Wet Traction/ Wet Performance :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->wet_performance}}%">
-                                    {{@$tire->wet_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Tread Life/ Mileage/ Wear :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->mileage_performance}}%">
-                                    {{@$tire->mileage_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Ride Comfort:</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->ride_comfort}}%">
-                                    {{@$tire->ride_comfort}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Quiet Ride/ Noise Comfort/ Quietness  :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->quiet_ride}}%">
-                                    {{@$tire->quiet_ride}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Winter Performance/ Snow Traction/ Snow :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->winter_performance}}%">
-                                    {{@$tire->winter_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Fuel Efficiency / Eco:</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->fuel_efficiency}}%">
-                                    {{@$tire->fuel_efficiency}}%
-                                </div>
-                            </div>
+                          <h1 class="product-name">Performance Ratings</h1>
+
+                          <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->dry_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->dry_performance}}%</div>
+                              </div>
+                          </div>
+                          <br>
+
+                          <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->wet_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->wet_performance}}%</div>
+                              </div>
+                          </div>
+                          <br>
+                          <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->mileage_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->mileage_performance}}%</div>
+                              </div>
+                          </div>
+                          <br>
+
+                          <h3 class="progress-title">Ride Comfort:</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->ride_comfort}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->ride_comfort}}%</div>
+                              </div>
+                          </div>
+                          <br>
+                          <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->quiet_ride}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->quiet_ride}}%</div>
+                              </div>
+                          </div>
+                          <br>
+
+                          <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->winter_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->winter_performance}}%</div>
+                              </div>
+                          </div>
+                          <br>
+
+                          <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->fuel_efficiency}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->fuel_efficiency}}%</div>
+                              </div>
+                          </div>
+                          <br>
                         </div>
                     </div>
                 </div>
@@ -669,44 +718,44 @@ modal-dialog.tire-view h4
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/tire-zoom.png')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage1)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits1}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/tire-zoom.png')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage2)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">WIDE CIRCUMFERENTIAL</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits2}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/tire-zoom.png')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage3)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">3D CANYON SIPE TECHNOLOGY</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits3}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/tire-zoom.png')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage4)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">SCULPTURED GROOVE WALL</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits4}}</p>
                             </div>
                         </div>
                     </div>
@@ -721,10 +770,17 @@ modal-dialog.tire-view h4
     <div class="container">
         <div class="row youtube-video">
             <div class="col-sm-12 tire-video">
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=uobjGGIjV-Y')?>
+                </div>
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=TdR_KUfM1z0')?>
+                </div>
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=uobjGGIjV-Y')?>
+                </div>
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=TdR_KUfM1z0')?>
+                </div>
+<!--                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
+                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div> -->
             </div>
         </div>
     </div>

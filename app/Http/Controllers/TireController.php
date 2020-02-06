@@ -24,14 +24,34 @@ class TireController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function list(Request $request,$tire_size='')
-    { 
-        $tires = Tire::where('tiresize','like', '%' . base64_decode($tire_size) . '%')
-                ->get()
-                ->unique('prodmodel');
+    {
+ 
         $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->where('tiresize','like', '%' . base64_decode($tire_size) . '%')->groupBy('loadindex')->get()->sortBy('loadindex');
         
         $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->where('tiresize','like', '%' . base64_decode($tire_size) . '%')->groupBy('speedrating')->get()->sortBy('speedrating');
-        
+
+
+        $tire = new Tire;
+        if($request->has('tirebrand')){
+            if($request->tirebrand !=''){
+                $tire = $tire->whereIn('prodbrand',json_decode(base64_decode($request->tirebrand)));
+            }
+        }
+        if($request->has('tirespeedrating')){
+            if($request->tirespeedrating !=''){
+                $tire = $tire->where('speedrating',json_decode(base64_decode($request->tirespeedrating)));
+            }
+        }
+        if($request->has('tireloadindex')){
+            if($request->tireloadindex !=''){
+                $tire = $tire->whereIn('loadindex',json_decode(base64_decode($request->tireloadindex)));
+            }
+        }
+
+        $tires = $tire->select('prodimage','id','prodtitle','tiresize','loadindex','speedrating','price','prodmodel')
+                ->where('tiresize','like', '%' . base64_decode($tire_size) . '%')
+                ->get()
+                ->unique('prodmodel');
         return view('tires_list',compact('tires','load_indexs','speedratings'));
     }
 
@@ -42,8 +62,14 @@ class TireController extends Controller
      */
     public function tireview(Request $request,$tire_id='')
     {
-        $tire = Tire::where('id',base64_decode($tire_id))->first();
-        $diff_tires =  Tire::where('prodmodel',$tire->prodmodel)->get();
+        $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
+                'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
+                'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
+                'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4')
+                ->where('id',base64_decode($tire_id))->first();
+        $diff_tires =  Tire::select('warranty','tiresize',
+                'speedrating','loadindex','utqg','partno','price','prodmodel')
+                ->where('prodmodel',$tire->prodmodel)->get();
         return view('tire_view',compact('tire','diff_tires'));
     }
 
@@ -55,17 +81,18 @@ class TireController extends Controller
     public function brand(Request $request,$brand_name='')
     {
 
-        $tires = Tire::where('prodbrand',base64_decode($brand_name))
+        $tires = Tire::select('prodimage','prodtitle','prodmodel','price','id','prodbrand','detaildesctype')
+                ->where('prodbrand',base64_decode($brand_name))
                 ->orderBy('price','ASC')
                 ->get()
-                ->unique('prodtitle');
+                ->unique('prodmodel');
         $tire = $tires->first();
         return view('tire_brand',compact('tires','tire'));
     }
 
-    public function tirebrandmodel(Request $request,$tire_id='1')
+    public function tirebrandmodel(Request $request,$tire_id='')
     {
-        $tire = Tire::where('id',1)->first();
+        $tire = Tire::where('id',base64_decode($tire_id))->first();
         $diff_tires =  Tire::where('prodmodel',$tire->prodmodel)->get();
         return view('tire_brand_model',compact('tire','diff_tires'));
     }
@@ -175,10 +202,12 @@ class TireController extends Controller
     public function setFiltersByTire(Request $request)
     {
         try{
-            $tires = Tire::where('tirewidth',$request->width)
-            ->where('tireprofile',$request->profile)
-            ->where('tirediameter',$request->diameter)
-            ->get();  
+            $tires = Tire::select('prodimage','id','prodtitle','tiresize','loadindex','speedrating',
+                    'price','prodmodel','tirewidth','tireprofile','tirediameter')
+                    ->where('tirewidth',$request->width)
+                    ->where('tireprofile',$request->profile)
+                    ->where('tirediameter',$request->diameter)
+                    ->get();  
             $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->groupBy('loadindex')->get()->sortBy('loadindex');
         
             $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->groupBy('speedrating')->get()->sortBy('speedrating');

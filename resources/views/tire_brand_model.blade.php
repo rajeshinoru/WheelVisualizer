@@ -375,11 +375,11 @@
             <div class="row">
                 <div class="col-sm-3 tire-details">
                   <div class="prod-headinghome">
-                      <h2>ZIEX ZE950 A/S</h2>
-                      <p>Our warehouse has affordable Falken performance tires for all sorts of passenger vehicles, including coupes, sedans, crossovers, compact SUVs, and sport trucks. Our Falken lineup includes all-season Ziex and Sincera passenger tires for year-round tread life and versatile performance in rain, sun, or snow.</p>
-                      <img src="{{url('image/65K.png')}}">
-                      <img src="{{url('image/65K.png')}}">
-                      <img src="{{url('image/65K.png')}}">
+                      <h2>{{@$tire->prodmodel}}</h2>
+                      <p>{{@$tire->prodlandingdesc}}</p>
+                      <img src="{{url('image/'.@$tire->badge1)}}">
+                      <img src="{{url('image/'.@$tire->badge2)}}">
+                      <img src="{{url('image/'.@$tire->badge3)}}">
                   </div>
                 </div>
 
@@ -387,86 +387,83 @@
 
                   <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
-                      <img src="{{url('image/shop/Falken-ZIEX-ZE950-Front.png')}}">
+                      <img src="{{viewImage('tires/front_side/'.@$tire->prodimage1)}}">
                     </div>
                     <div id="menu1" class="tab-pane fade">
-                      <img src="{{url('image/shop/Falken-ZIEX-ZE950-Tread.png')}}">
+                      <img src="{{viewImage('tires/front_side/'.@$tire->prodimage2)}}">
                     </div>
                     <div id="menu2" class="tab-pane fade">
-                      <img src="{{url('image/shop/Falken-ZIEX-ZE950-Sidewall.png')}}">
+                      <img src="{{viewImage('tires/front_side/'.@$tire->prodimage3)}}">
                     </div>
                   </div>
 
                   <ul class="nav nav-tabs nav-img">
-                    <li class="active"><a data-toggle="tab" href="#home"><img src="{{url('image/shop/Falken-ZIEX-ZE950-Front.png')}}"></a></li>
-                    <li><a data-toggle="tab" href="#menu1"><img src="{{url('image/shop/Falken-ZIEX-ZE950-Tread.png')}}"></a></li>
-                    <li><a data-toggle="tab" href="#menu2"><img src="{{url('image/shop/Falken-ZIEX-ZE950-Sidewall.png')}}"></a></li>
+                    <li class="active"><a data-toggle="tab" href="#home"><img src="{{viewImage('tires/front_side/'.@$tire->prodimage1)}}"></a></li>
+                    <li><a data-toggle="tab" href="#menu1"><img src="{{viewImage('tires/front_side/'.@$tire->prodimage2)}}"></a></li>
+                    <li><a data-toggle="tab" href="#menu2"><img src="{{viewImage('tires/front_side/'.@$tire->prodimage3)}}"></a></li>
                   </ul>
 
                 </div>
+
 
                 <div class="col-sm-3 tir-des">
                     <div class="row">
                         <div class="col-sm-12">
                           <h1 class="product-name">Performance Ratings</h1>
-                          <h3 class="progress-title">HTML5</h3>
+
+                          <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:90%; background:#0e1661;">
-                                  <div class="progress-value">90%</div>
+                              <div class="progress-bar" style="width:{{@$tire->dry_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->dry_performance}}%</div>
                               </div>
                           </div>
+                          <br>
 
-                          <h3 class="progress-title">HTML5</h3>
+                          <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:30%; background:#0e1661;">
-                                  <div class="progress-value">30%</div>
+                              <div class="progress-bar" style="width:{{@$tire->wet_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->wet_performance}}%</div>
                               </div>
                           </div>
+                          <br>
+                          <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->mileage_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->mileage_performance}}%</div>
+                              </div>
+                          </div>
+                          <br>
 
+                          <h3 class="progress-title">Ride Comfort:</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->ride_comfort}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->ride_comfort}}%</div>
+                              </div>
+                          </div>
+                          <br>
+                          <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->quiet_ride}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->quiet_ride}}%</div>
+                              </div>
+                          </div>
+                          <br>
 
-                            <!-- <h1 class="product-name">Performance Ratings</h1>
-                            <p class="prograss-bar-head">Dry Handling / Dry Traction/ Dry Performance :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->dry_performance}}%">
-                                    {{@$tire->dry_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Wet Braking/ Wet Traction/ Wet Performance :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->wet_performance}}%">
-                                    {{@$tire->wet_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Tread Life/ Mileage/ Wear :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->mileage_performance}}%">
-                                    {{@$tire->mileage_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Ride Comfort:</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->ride_comfort}}%">
-                                    {{@$tire->ride_comfort}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Quiet Ride/ Noise Comfort/ Quietness :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->quiet_ride}}%">
-                                    {{@$tire->quiet_ride}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Winter Performance/ Snow Traction/ Snow :</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->winter_performance}}%">
-                                    {{@$tire->winter_performance}}%
-                                </div>
-                            </div>
-                            <p class="prograss-bar-head">Fuel Efficiency / Eco:</p>
-                            <div class="progress pro-bar">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{@$tire->fuel_efficiency}}%">
-                                    {{@$tire->fuel_efficiency}}%
-                                </div>
-                            </div> -->
+                          <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->winter_performance}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->winter_performance}}%</div>
+                              </div>
+                          </div>
+                          <br>
+
+                          <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->fuel_efficiency}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->fuel_efficiency}}%</div>
+                              </div>
+                          </div>
+                          <br>
                         </div>
                     </div>
                 </div>
@@ -474,44 +471,44 @@
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/shop/Wide-Angled-Tread.jpg')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage1)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits1}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/shop/Wide-Cicumferential-Grooves.jpg')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage2)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">WIDE CIRCUMFERENTIAL</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits2}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/shop/3D-Canyon-Sipes.jpg')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage3)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">3D CANYON SIPE TECHNOLOGY</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits3}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
-                                <img src="{{url('image/shop/Sculptured-Groove.jpg')}}">
+                                <img src="{{ViewBenefitImage(@$tire->benefitsimage4)}}">
                             </div>
                             <div class="col-sm-8 benifit-title">
-                                <h1 class="benifit-head">SCULPTURED GROOVE WALL</h1>
-                                <p>We offer a huge selection of rims and tires to suit your needs.</p>
+                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                <p>{{@$tire->benefits4}}</p>
                             </div>
                         </div>
                     </div>
@@ -526,10 +523,17 @@
     <div class="container">
         <div class="row youtube-video">
             <div class="col-sm-12 tire-video">
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=uobjGGIjV-Y')?>
+                </div>
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=TdR_KUfM1z0')?>
+                </div>
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=uobjGGIjV-Y')?>
+                </div>
+                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=TdR_KUfM1z0')?>
+                </div>
+<!--                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
+                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div> -->
             </div>
         </div>
     </div>
@@ -537,62 +541,6 @@
 
     </div>
     <!-- Cart End -->
-</section>
-
-<section id="demo-des">
-    <div class="container">
-        <div class="wheel-list-tab">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel with-nav-tabs panel-default">
-                        <div class="panel-heading">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab">Description</a></li>
-                                <li><a href="#tab2default" data-toggle="tab">Shipping Information</a></li>
-                                <li><a href="#tab3default" data-toggle="tab">Wheel and Tire Package</a></li>
-                            </ul>
-                        </div>
-                        <div class="panel-body">
-                            <div class="tab-content wheel-list-tab">
-                                <div class="tab-pane fade in active" id="tab1default">
-                                    <div class="col-sm-8">
-                                        <div class="prod-headinghome">
-                                            <br><b>Details</b>
-                                            <!-- <br><b>Type</b>: {{@$tire->Passenger}} -->
-                                            <br>
-                                            <p><b>Style</b>: {{@$tire->prodmodel}}</p>
-                                            <!-- <br><b>Feature</b>: Exclusive silica compound. 3D canyon siping. Wide angled tread slot. Wide circumferential grooves -->
-                                            <br><b>Description</b>:
-                                            <br>
-                                            <?php echo @$tire->proddesc ?>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="tire-des">
-                                            <img src="{{viewImage('/tires/'.@$tire->prodimage)}}">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="tab-pane fade" id="tab2default">
-                                    <div class="prod-headinghome">
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="tab3default">
-                                    <div class="prod-headinghome">
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section id="table-section">
@@ -622,7 +570,7 @@
                         <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td>
                         <td>${{@$tire->price}}</td>
                         <td>
-                            <button type="button" class="btn btn-default cart-1">Details</button>
+                            <a href="{{url('/tireview/'.base64_encode($tire->id))}}" class="btn btn-default cart-1">Details</a>
                             <button type="button" class="btn btn-default cart-2">Add</button>
                         </td>
                     </tr>

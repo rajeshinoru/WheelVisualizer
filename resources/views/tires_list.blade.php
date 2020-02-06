@@ -231,8 +231,12 @@
                                 <h5 class="heading">Speed Rating</h5>
                                 <div class="car-list">
                                         @foreach(@$speedratings as $key => $value)
-                                        <button class="btn speed" type="button">
-                                            <a href="">{{@$value->speedrating}} <!-- 130 mph --> ({{@$value->total}})</a>
+                                        <button class="btn {{(@$value->speedrating == 
+                                            json_decode(base64_decode(
+                                                @Request::get('tirespeedrating')?:''
+                                            ))
+                                            )?'btn-inverse ':''}} speed tirespeedrating" type="button" name="tirespeedrating[]" class="tirespeedrating" value="{{@$value->speedrating}}">
+                                            {{@$value->speedrating}} <!-- 130 mph --> ({{@$value->total}})
                                         </button>
                                         @endforeach
                                 </div>
@@ -252,7 +256,7 @@
                                                 @foreach(@$load_indexs as $key => $value)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> {{@$value->loadindex}} ( {{@$value->total}})
+                                                            <input type="checkbox" name="tireloadindex[]" class="tireloadindex" value="{{@$value->loadindex}}" @if(in_array($value->loadindex,json_decode(base64_decode(@Request::get('tireloadindex')?:''))?:[])) checked @endif > {{@$value->loadindex}} ( {{@$value->total}})
                                                         </label>
                                                     </span></li>
                                                 @endforeach
@@ -298,13 +302,13 @@
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('tires/'.$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a></a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode($tire->id)}}">
+                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}">
                                             {{@$tire->prodtitle}}<br>
                                             <br>
                                             Size : {{@$tire->tiresize}}<br>
