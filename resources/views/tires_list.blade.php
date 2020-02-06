@@ -202,18 +202,18 @@
                         <div class="wrapper center-block">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading active" role="tab" id="headingOne">
+                                    <div class="panel-heading " role="tab" id="headingOne">
                                         <h4 class="panel-title">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Shop By Brand</a>
                                         </h4>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                         <div class="panel-body">
                                             <ul style="display: block;">
                                                 @foreach(@getTireBrandList() as $key => $brand)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> {{$brand}}
+                                                            <input type="checkbox" class="tirebrand" name="tirebrand[]" value="{{$brand}}" @if(in_array($brand,json_decode(base64_decode(@Request::get('tirebrand')?:''))?:[])) checked @endif > {{$brand}}
                                                         </label>
                                                     </span></li>
                                                 @endforeach
@@ -246,7 +246,7 @@
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Load Index</a>
                                         </h4>
                                     </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                                         <div class="panel-body">
                                             <ul style="display: block;">
                                                 @foreach(@$load_indexs as $key => $value)
@@ -349,7 +349,7 @@
             range: true,
             min: 0,
             max: 500,
-            values: [35, 200],
+            values: [1, 200],
             slide: function(event, ui) {
                 $("#price").val("$" + ui.values[0] + " - $" + ui.values[1]);
             }

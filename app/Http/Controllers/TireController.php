@@ -59,7 +59,8 @@ class TireController extends Controller
                 ->orderBy('price','ASC')
                 ->get()
                 ->unique('prodtitle');
-        return view('tire_brand',compact('tires'));
+        $tire = $tires->first();
+        return view('tire_brand',compact('tires','tire'));
     }
     /**
      * Show the form for creating a new resource.

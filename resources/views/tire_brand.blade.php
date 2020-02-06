@@ -66,7 +66,7 @@
                     <h2>Passenger Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires->where('plt','') as $key => $ptire)
+                @forelse($tires->where('detaildesctype','Passenger') as $key => $ptire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -119,7 +119,7 @@
                     <h2>Light Truck Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires->where('plt','LT') as $key => $lttire)
+                @forelse($tires->where('detaildesctype','!=','Passenger') as $key => $lttire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
