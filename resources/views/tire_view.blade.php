@@ -539,16 +539,12 @@
                                 <td></td>
                                 <td class="product-info-value">UTQG : {{@$tire->utqg}}</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td class="product-info-value">Part No : {{@$tire->partno}}</td>
-                            </tr>
 
                         </tbody>
                     </table>
 
                     <div class="price-section">
-                        <h1>Partno : <b>FT-28953792</b></h1>
+                        <h1>Partno : <b>{{@$tire->partno}}</b></h1>
                         <h2>Original Price : <span class="price-old">${{@$tire->originalprice}}</span> 
                             You Save : <span class="price-new2">${{(@$tire->originalprice - @$tire->price)}}</span>
                         </h2> 
