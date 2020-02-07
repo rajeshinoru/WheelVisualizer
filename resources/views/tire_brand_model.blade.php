@@ -377,9 +377,15 @@
                   <div class="prod-headinghome">
                       <h2>{{@$tire->prodmodel}}</h2>
                       <p>{{@$tire->prodlandingdesc}}</p>
-                      <img src="{{url('image/'.@$tire->badge1)}}">
-                      <img src="{{url('image/'.@$tire->badge2)}}">
-                      <img src="{{url('image/'.@$tire->badge3)}}">
+                      @if(@$tire->badge1)
+                      <img src="{{viewImage('tires/badges/'.@$tire->badge1)}}">
+                      @endif
+                      @if(@$tire->badge2)
+                      <img src="{{viewImage('tires/badges/'.@$tire->badge2)}}">
+                      @endif
+                      @if(@$tire->badge3)
+                      <img src="{{viewImage('tires/badges/'.@$tire->badge3)}}">
+                      @endif
                   </div>
                 </div>
 
@@ -387,20 +393,20 @@
 
                   <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
-                      <img src="{{viewImage('tires/front_side/'.@$tire->prodimage1)}}">
+                      <img src="{{ViewProductImage(@$tire->prodimage1)}}">
                     </div>
                     <div id="menu1" class="tab-pane fade">
-                      <img src="{{viewImage('tires/front_side/'.@$tire->prodimage2)}}">
+                      <img src="{{ViewProductImage(@$tire->prodimage2)}}">
                     </div>
                     <div id="menu2" class="tab-pane fade">
-                      <img src="{{viewImage('tires/front_side/'.@$tire->prodimage3)}}">
+                      <img src="{{ViewProductImage(@$tire->prodimage3)}}">
                     </div>
                   </div>
 
                   <ul class="nav nav-tabs nav-img">
-                    <li class="active"><a data-toggle="tab" href="#home"><img src="{{viewImage('tires/front_side/'.@$tire->prodimage1)}}"></a></li>
-                    <li><a data-toggle="tab" href="#menu1"><img src="{{viewImage('tires/front_side/'.@$tire->prodimage2)}}"></a></li>
-                    <li><a data-toggle="tab" href="#menu2"><img src="{{viewImage('tires/front_side/'.@$tire->prodimage3)}}"></a></li>
+                    <li class="active"><a data-toggle="tab" href="#home"><img src="{{ViewProductImage(@$tire->prodimage1)}}"></a></li>
+                    <li><a data-toggle="tab" href="#menu1"><img src="{{ViewProductImage(@$tire->prodimage2)}}"></a></li>
+                    <li><a data-toggle="tab" href="#menu2"><img src="{{ViewProductImage(@$tire->prodimage3)}}"></a></li>
                   </ul>
 
                 </div>
@@ -554,7 +560,7 @@
                         <th>UTQG Rating</th>
                         <th>Speed Rating</th>
                         <th>Load Rating</th>
-                        <th>Warrant</th>
+                        <th>Warranty</th>
                         <th>Per Tire</th>
                         <th>Add To Cart</th>
                     </tr>
@@ -564,10 +570,11 @@
                     <tr>
                         <td><a href="{{url('/tireview/'.base64_encode($tire->id))}}">{{@$tire->tiresize}}</a></td>
                         <td>{{@$tire->partno}}</td>
-                        <td>{{@$tire->utqg}}</td>
-                        <td>{{@$tire->speedrating}}</td>
-                        <td>{{@$tire->loadindex}}</td>
-                        <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td>
+                        <td>{{@$tire->utqg?:'-'}}</td>
+                        <td>{{@$tire->speedrating?:'-'}}</td>
+                        <td>{{@$tire->loadindex?:'-'}}</td>
+                        <td>{{@$tire->warranty?:'-'}}</td>
+                        <!-- <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td> -->
                         <td>${{@$tire->price}}</td>
                         <td>
                             <a href="{{url('/tireview/'.base64_encode($tire->id))}}" class="btn btn-default cart-1">Details</a>

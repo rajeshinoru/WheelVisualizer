@@ -45,17 +45,28 @@ function ViewImage($url=''){
 }
 function ViewBenefitImage($url=''){
 	if($url != ''){
-		if(file_exists(public_path('/storage/tires/benefits/'.$url))){
-			return asset('/storage/tires/benefits/'.$url);
+		if(file_exists(public_path('/storage/tires/models/'.$url))){
+			return asset('/storage/tires/models/'.$url);
 		}else{
-			return asset('/storage/tires/benefits/Checkmark.png');
+			return asset('/storage/tires/models/Checkmark.png');
 		}
 	}else{
-			return asset('/storage/tires/benefits/Checkmark.png');
+			return asset('/storage/tires/models/Checkmark.png');
 	}
 
 }
+function ViewProductImage($url=''){
+	if($url != ''){
+		if(file_exists(public_path('/storage/tires/models/'.$url))){
+			return asset('/storage/tires/models/'.$url);
+		}else{
+			return asset('image/no_image.jpg');
+		}
+	}else{
+			return asset('image/no_image.jpg');
+	}
 
+}
 // Rim size to Wheel Diameter Conversion
 function getRimToWheelDiameter($rimSize=''){
 
