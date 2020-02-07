@@ -52,7 +52,12 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="prod-headinghome">
-                    <p>
+@if(@$tire->Brand)
+<p>
+   {{@$tire->Brand->manudesc}}
+</p>
+@else
+<p>
 Shop for Falken tires at wholesale prices at Discounted Wheel Warehouse! We sell low-priced, high-performing Falken tires for today's passenger car, crossover, SUV, and light truck owners. Designed with performance in mind, Falken tires deliver exceptional value for the everyday driver. We have the best bargain prices on UHP, all-season, and off-road Falken tires here at Discounted Wheel Warehouse.
 </p>
 <p>
@@ -61,9 +66,10 @@ Our warehouse has affordable Falken performance tires for all sorts of passenger
 <p>
 Falken tires are engineered with advanced performance technologies for the street, the track, or off the road. From rugged Wildpeak tires for SUVs and pickup trucks, to all-season performance Falken tires for passenger cars, all Falken tires deliver great quality at value prices. Save money on your next set of replacement tires, and get a set of affordable, reliable Falken tires at a discount from Discounted Wheel Warehouse!
                     </p>
+@endif
                 </div>
             </div>
-            <div class="col-sm-4 fal-logo"><img src="{{url('image/falken-logo.png')}}"></div>
+            <div class="col-sm-4 fal-logo"><img src="{{viewImage('tires/brands/'.@$tire->Brand->manulogo)}}"></div>
         </div>
     </div>
 

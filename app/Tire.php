@@ -98,6 +98,10 @@ class Tire extends Model
     public function ChassisModels(){
     	return $this->hasMany('App\ChassisModel','tire_size','spec3');
     }
+
+	public function Brand(){
+		return $this->hasOne('App\TireBrand','manufacturer','prodbrand');
+	}
 	// public function CarColors(){
 	// 	return $this->hasMany('App\CarColor','vif','vif');
 	// }

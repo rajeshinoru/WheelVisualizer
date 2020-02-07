@@ -528,7 +528,6 @@ modal-dialog.tire-view h4
 
 
 </style>
-</section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
@@ -546,7 +545,16 @@ modal-dialog.tire-view h4
                         <h1>Price for TIRE ONLY</h1>
                         <h2>Rim depicted in image NOT INCLUDED</h2>
                     </div>
-                    <img src="{{url('image/'.@$tire->warranty)}}" width="70px" height="70px">
+
+                      @if(@$tire->badge1)
+                      <img src="{{viewImage('tires/badges/'.@$tire->badge1)}}" width="70px" height="70px">
+                      @endif
+                      @if(@$tire->badge2)
+                      <img src="{{viewImage('tires/badges/'.@$tire->badge2)}}" width="70px" height="70px">
+                      @endif
+                      @if(@$tire->badge3)
+                      <img src="{{viewImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
+                      @endif
                 </div>
                 <div class="col-sm-3 shop-details">
                     <h1 class="product-name">{{@$tire->detailtitle}}</h1>
@@ -856,7 +864,7 @@ modal-dialog.tire-view h4
                         <th>UTQG Rating</th>
                         <th>Speed Rating</th>
                         <th>Load Rating</th>
-                        <th>Warrant</th>
+                        <th>Warranty</th>
                         <th>Per Tire</th>
                         <th>Add To Cart</th>
                     </tr>
@@ -866,10 +874,11 @@ modal-dialog.tire-view h4
                     <tr>
                         <td><a href="{{url('/tireview/'.base64_encode($tire->id))}}" >{{@$tire->tiresize}}</a></td>
                         <td>{{@$tire->partno}}</td>
-                        <td>{{@$tire->utqg}}</td>
-                        <td>{{@$tire->speedrating}}</td>
-                        <td>{{@$tire->loadindex}}</td>
-                        <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td>
+                        <td>{{@$tire->utqg?:'-'}}</td>
+                        <td>{{@$tire->speedrating?:'-'}}</td>
+                        <td>{{@$tire->loadindex?:'-'}}</td>
+                        <td>{{@$tire->warranty?:'-'}}</td>
+                        <!-- <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td> -->
                         <td>${{@$tire->price}}</td>
                         <td>
                             <button type="button" class="btn btn-default cart-1">Details</button>
