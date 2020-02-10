@@ -80,7 +80,11 @@ function getMakeList(){
         $make = Viflist::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make'); 
         return $make;
 }
+function getWheelBrandList(){
 
+        $brand = Wheel::select('brand')->distinct('brand')->orderBy('brand','Asc')->pluck('brand'); 
+        return $brand;
+}
 function getTireBrandList(){
 
         $tires = Tire::select('prodbrand')->distinct('prodbrand')->pluck('prodbrand')->toArray(); 
@@ -93,6 +97,12 @@ function getTireWidthList(){
         rsort($tires);
         return $tires;
 }
+function getWheelDiameterList(){
+        $wheels = Wheel::select('wheeldiameter')->distinct('wheeldiameter')->pluck('wheeldiameter')->toArray(); 
+        rsort($wheels);
+        return $wheels;
+}
+
 function getVehicleMakeList(){
 
         $make = Vehicle::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make');

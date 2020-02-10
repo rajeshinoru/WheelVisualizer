@@ -164,7 +164,9 @@
 
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($wheel->brand)))}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
+                                        <h4><a href="{{url('/wheelview')}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
+
+                                      <!--   <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($wheel->brand)))}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4> -->
                                         <!-- <h6><a href="">Accessories</a></h6> -->
                                         <!-- <div class="rating">
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
