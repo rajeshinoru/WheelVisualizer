@@ -105,12 +105,11 @@
         padding: 0px 0px !important;
     }
 
-    .listing-sidebar h5
-    {
+    .listing-sidebar h5 {
         font-size: 15px !important;
         line-height: 30px;
         font-family: oswald !important;
-        color:#000 !important;
+        color: #000 !important;
     }
 
     ul.list-group li {
@@ -157,8 +156,7 @@
         margin-bottom: 0px;
     }
 
-    .listing-sidebar #accordion .panel-title a
-    {
+    .listing-sidebar #accordion .panel-title a {
         color: #000 !important;
         font-size: 12px !important;
         font-family: oswald !important;
@@ -172,46 +170,49 @@
     }
 </style>
 <style type="text/css">
-    button.btn.speed
-    {
-    background:#0e1661 !important;
-    margin: 5px 0px !important;
+    button.btn.speed {
+        background: #0e1661 !important;
+        margin: 5px 0px !important;
     }
-    button.btn.speed a
-    {
-      color: #fff !important;
-      font-size: 10px !important;
-    }
-    .col-sm-8.vehicle-change p {
-    margin: 0px 0px !important;
-}
-.btn.vehicle-change {
-    background: #0e1661 !important;
-}
-.btn.vehicle-change a {
-    color:#fff !important;
-    font-family: oswald !important;
-    font-size: 14px !important;
-}
-.tire-list-change
-{
-  border:1px solid red;
-}
 
+    button.btn.speed a {
+        color: #fff !important;
+        font-size: 10px !important;
+    }
+
+    .col-sm-8.vehicle-change p {
+        margin: 0px 0px !important;
+    }
+
+    .btn.vehicle-change {
+        background: #0e1661 !important;
+    }
+
+    .btn.vehicle-change a {
+        color: #fff !important;
+        font-family: oswald !important;
+        font-size: 14px !important;
+    }
+
+    .tire-list-change {
+        border: 1px solid red;
+    }
 </style>
 </section>
 <section id="tire-list">
     <div class="container">
-      <!-- <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-12 tire-list-change">
               <div class="col-sm-8 vehicle-change"><p> Your selected vehicle: <b>2020 Acura RDX Base</b> OEM Tire Size: <b>235/55R19</b> </p></div>
               <div class="col-sm-2"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
             </div>
       </div> -->
 
-      <div class="wheel-list-tab">
+        <div class="wheel-list-tab">
             <div class="row">
-                <div class="col-md-8"><p> Your selected vehicle: <b>2020 Acura RDX Base</b> OEM Tire Size: <b>235/55R19</b> </p></div>
+                <div class="col-md-8">
+                    <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b> OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b> </p>
+                </div>
                 <div class="col-md-4"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
             </div>
         </div>
@@ -219,52 +220,52 @@
 
 
         <div class="row">
-        <div class="col-sm-3">
-            <!-- Side Start -->
-            <div class="listing-sidebar">
-                <div class="widget">
-                    <div class="widget-search">
-                        <div class="price-slide">
-                            <div class="price">
-                                <p><label for="price">Price range:</label>
-                                    <input type="text" id="price" style="border:0; color:#b9cd6d; font-weight:bold;">
-                                </p>
-                                <div id="slider-3"></div>
+            <div class="col-sm-3">
+                <!-- Side Start -->
+                <div class="listing-sidebar">
+                    <div class="widget">
+                        <div class="widget-search">
+                            <div class="price-slide">
+                                <div class="price">
+                                    <p><label for="price">Price range:</label>
+                                        <input type="text" id="price" style="border:0; color:#b9cd6d; font-weight:bold;">
+                                    </p>
+                                    <div id="slider-3"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="clearfix">
-                        <div class="wrapper center-block">
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading " role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Shop By Brand</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body">
-                                            <ul style="display: block;">
-                                                @foreach(@getTireBrandList() as $key => $brand)
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" class="tirebrand" name="tirebrand[]" value="{{$brand}}" @if(in_array($brand,json_decode(base64_decode(@Request::get('tirebrand')?:''))?:[])) checked @endif > {{$brand}}
-                                                        </label>
-                                                    </span></li>
-                                                @endforeach
-                                            </ul>
+                        <div class="clearfix">
+                            <div class="wrapper center-block">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading " role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Shop By Brand</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <ul style="display: block;">
+                                                    @foreach(@getTireBrandList() as $key => $brand)
+                                                    <li><span class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="tirebrand" name="tirebrand[]" value="{{$brand}}" @if(in_array($brand,json_decode(base64_decode(@Request::get('tirebrand')?:''))?:[])) checked @endif> {{$brand}}
+                                                            </label>
+                                                        </span></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
 
 
 
 
-                            <div class="widget-search">
-                                <h5 class="heading">Speed Rating</h5>
-                                <div class="car-list">
+                                <div class="widget-search">
+                                    <h5 class="heading">Speed Rating</h5>
+                                    <div class="car-list">
                                         @foreach(@$speedratings as $key => $value)
                                         <button class="btn {{(@$value->speedrating == 
                                             json_decode(base64_decode(
@@ -274,105 +275,105 @@
                                             {{@$value->speedrating}} <!-- 130 mph --> ({{@$value->total}})
                                         </button>
                                         @endforeach
-                                </div>
-                            </div>
-
-
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingTwo">
-                                        <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Load Index</a>
-                                        </h4>
                                     </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-                                        <div class="panel-body">
-                                            <ul style="display: block;">
-                                                @foreach(@$load_indexs as $key => $value)
-                                                <li><span class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="tireloadindex[]" class="tireloadindex" value="{{@$value->loadindex}}" @if(in_array($value->loadindex,json_decode(base64_decode(@Request::get('tireloadindex')?:''))?:[])) checked @endif > {{@$value->loadindex}} ( {{@$value->total}})
-                                                        </label>
-                                                    </span></li>
-                                                @endforeach
-                                            </ul>
+                                </div>
+
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Load Index</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">
+                                                <ul style="display: block;">
+                                                    @foreach(@$load_indexs as $key => $value)
+                                                    <li><span class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="tireloadindex[]" class="tireloadindex" value="{{@$value->loadindex}}" @if(in_array($value->loadindex,json_decode(base64_decode(@Request::get('tireloadindex')?:''))?:[])) checked @endif > {{@$value->loadindex}} ( {{@$value->total}})
+                                                            </label>
+                                                        </span></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="widget-banner">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="{{url('image/Banner.jpg')}}" alt="Los Angeles">
-                            </div>
-
-                            <div class="item">
-                                <img src="{{url('image/Banner-1')}}.jpg" alt="Chicago">
-                            </div>
-
-                            <div class="item">
-                                <img src="{{url('image/Banner-2')}}.jpg" alt="New York">
                             </div>
                         </div>
                     </div>
-                </div>
 
 
-            </div>
-            <!-- Side End -->
-        </div>
-        <div class="col-sm-9">
 
-            <div class="row">
-                @foreach($tires as $key =>$tire)
-                <div class="col-sm-3">
-                    <div class="product-layouts">
-                        <div class="product-thumb transition">
-                            <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
-                                <div class="sale-icon"><a></a></div>
-                            </div>
-                            <div class="thumb-description">
-                                <div class="caption">
-                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}">
-                                            {{@$tire->prodtitle}}<br>
-                                            <br>
-                                            Size : {{@$tire->tiresize}}<br>
-                                            Load : {{@$tire->loadindex}}    Speed:{{@$tire->speedrating}}<br>
-                                            <b>${{@$tire->price}}</b>
-                                        </a></h4>
-                                    <br>
+                    <div class="widget-banner">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="{{url('image/Banner.jpg')}}" alt="Los Angeles">
                                 </div>
-                                <div class="button-group">
-                                    <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                        <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                    </button>
-                                    <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                        <span title="Add to Wish List">Add to Wish List</span>
-                                    </button>
-                                    <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                        <span title="Add to compare">Add to compare</span>
-                                    </button>
-                                    <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                        <span>Quick View</span>
-                                    </button>
+
+                                <div class="item">
+                                    <img src="{{url('image/Banner-1')}}.jpg" alt="Chicago">
+                                </div>
+
+                                <div class="item">
+                                    <img src="{{url('image/Banner-2')}}.jpg" alt="New York">
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
-                @endforeach
+                <!-- Side End -->
             </div>
-        </div>
+            <div class="col-sm-9">
+
+                <div class="row">
+                    @foreach($tires as $key =>$tire)
+                    <div class="col-sm-3">
+                        <div class="product-layouts">
+                            <div class="product-thumb transition">
+                                <div class="image">
+                                    <img class="wheelImage image_thumb" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                    <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                    <div class="sale-icon"><a></a></div>
+                                </div>
+                                <div class="thumb-description">
+                                    <div class="caption">
+                                        <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}">
+                                                {{@$tire->prodtitle}}<br>
+                                                <br>
+                                                Size : {{@$tire->tiresize}}<br>
+                                                Load : {{@$tire->loadindex}} Speed:{{@$tire->speedrating}}<br>
+                                                <b>${{@$tire->price}}</b>
+                                            </a></h4>
+                                        <br>
+                                    </div>
+                                    <div class="button-group">
+                                        <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                            <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                        </button>
+                                        <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                            <span title="Add to Wish List">Add to Wish List</span>
+                                        </button>
+                                        <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                            <span title="Add to compare">Add to compare</span>
+                                        </button>
+                                        <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                            <span>Quick View</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </section>

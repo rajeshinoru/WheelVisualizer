@@ -177,7 +177,7 @@
             color: #000 !important;
             font-size: 12px !important;
             padding: 5px 0px !important;
-            border-bottom:1px solid #22222254 !important;
+            /*border-bottom:1px solid #22222254 !important;*/
         }
 
         .col-sm-12.tire-menu li a:hover {
@@ -185,7 +185,8 @@
         }
         .tire-dropdown-menu 
         {
-            column-count: 9;
+
+            column-count: 4;
         }
         .car-truck-head i {
             font-size: 25px !important;
@@ -436,33 +437,13 @@
                                                         <div class="row">
 
                                                             <div class="col-sm-12 tire-menu">
-                                                                <ul>
-                                                                    @foreach(getTireBrandList() as $key => $tirebrand)
-                                                                    <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
-                                                                    @endforeach
-                                                                </ul> 
-
                                                                 <ul class="tire-dropdown-menu">
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    @foreach(getTireBrandList() as $key => $tirebrand)
+                                                                    <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}">
+                                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{$tirebrand}}
+                                                                    </a></li>
+                                                                    @endforeach
                                                                 </ul>
-
                                                             </div>
                                                             
 

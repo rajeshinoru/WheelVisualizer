@@ -849,25 +849,23 @@
                     <div class="panel with-nav-tabs panel-default">
                         <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab">Description</a></li>
+                                <li class="active"><a href="#tab1default" data-toggle="tab" aria-expanded="true">Description</a></li>
                                 <li><a href="#tab2default" data-toggle="tab">Shipping Information</a></li>
                                 <li><a href="#tab3default" data-toggle="tab">Wheel and Tire Package</a></li>
                             </ul>
                         </div>
                         <div class="panel-body">
                             <div class="tab-content wheel-list-tab">
-                                <div class="tab-pane fade in active" id="tab1default">
+                                <div class="tab-pane fade active in " id="tab1default">
                                     <div class="col-sm-8">
                                         <div class="prod-headinghome">
                                             <br>
                                             <p><b>Details</b></p>
-                                            <br>
                                             <p><b>Type</b>: {{@$tire->detaildesctype}}</p>
                                             <p><b>Style</b>: {{@$tire->prodmodel}}</p>
                                             <p><b>Feature</b>: {{@$tire->detaildescfeatures}}</p>
-                                            <b>Description</b>:
-                                            <br>
-                                            <?php echo @$tire->proddesc ?>
+                                            <p><b>Description</b>:</p>
+                                            <p><?php echo @$tire->proddesc ?></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">

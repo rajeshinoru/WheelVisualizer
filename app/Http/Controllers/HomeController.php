@@ -324,9 +324,6 @@ class HomeController extends Controller
         return 'success';
     }
 
-
-
-
     function fold_fil(Request $request)
     {  
         try{ 
@@ -336,16 +333,6 @@ class HomeController extends Controller
             dd($e);
         }
     }
-
-
-
-
-
-
-
-
-
-
 
     public function tiredetailimages()
     {

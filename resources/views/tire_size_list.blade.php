@@ -200,7 +200,7 @@
                         @foreach(@$chassis_models as $key => $model)
 
                         <button class="btn btn-primary">
-                            <a href="{{url('/tirelist')}}/{{base64_encode(@$model->tire_size)}}">
+                            <a href="{{url('/tirelist')}}/{{base64_encode(@$model->id)}}/{{base64_encode(@$vehicle->vehicle_id)}}">
                                 <p>{{getRimToWheelDiameter(@$model->rim_size)}}"</p>
                                 {{@$model->tire_size}}
                             </a>

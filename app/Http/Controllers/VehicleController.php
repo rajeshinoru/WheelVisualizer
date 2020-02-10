@@ -133,7 +133,7 @@ class VehicleController extends Controller
             ->where('submodel',$request->submodel)
             ->first(); 
             
-            $chassis_models =ChassisModel::select('p_lt','tire_size','rim_size','chassis_id')
+            $chassis_models =ChassisModel::select('id','p_lt','tire_size','rim_size','chassis_id')
                 ->where('chassis_id',$vehicle->dr_chassis_id)
                 ->get()
                 ->unique('tire_size'); 

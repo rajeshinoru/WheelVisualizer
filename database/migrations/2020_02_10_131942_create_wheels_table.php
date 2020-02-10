@@ -13,6 +13,7 @@ class CreateWheelsTable extends Migration
      */
     public function up()
     {
+        Schema::rename('wheels', 'wheels_bkp1');
         Schema::create('wheels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('prodtitle')->nullable();
@@ -68,6 +69,8 @@ class CreateWheelsTable extends Migration
             $table->string('offset1')->nullable();
             $table->string('offset2')->nullable();
             $table->string('hubbore')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
             // $table->string('part_no')->nullable();
             // $table->string('brand')->nullable();
             // $table->string('style')->nullable();
