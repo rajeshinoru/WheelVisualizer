@@ -44,6 +44,21 @@ class HomeController extends Controller
         $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
         return view('forms',compact('Wheels')); 
     }
+    public function wheelview(Request $request,$tire_id=1)
+    {
+        $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
+        'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
+        'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
+        'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3')
+        ->where('id',$tire_id)
+        ->with(['Brand'])->first();
+$diff_tires =  Tire::select('id','warranty','tiresize',
+        'speedrating','loadindex','utqg','partno','price','prodmodel')
+        ->where('tiresize',$tire->tiresize)
+        ->with(['Brand'])
+        ->get();
+        return view('wheel_view',compact('tire','diff_tires'));
+    }
     public function wheels(Request $request)
     {
         try{ 

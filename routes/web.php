@@ -19,6 +19,7 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');
 Route::get('/wheels', 'HomeController@wheels')->name('wheels');
+Route::get('/wheelview/{tire_id?}', 'HomeController@wheelview')->name('wheelview');
 Route::get('/csvuplaod', 'HomeController@csv_upload')->name('csvuplaod');
 Route::get('/csvuplaodcolor', 'HomeController@csv_upload_color')->name('csvuplaodcolor');
 Route::get('/wheels-data', 'HomeController@wheels')->name('wheels_data');
