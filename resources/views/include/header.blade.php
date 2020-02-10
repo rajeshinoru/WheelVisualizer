@@ -345,7 +345,7 @@
                                                     <form action="{{url('/setFiltersByVehicle')}}">
                                                         <div class="vehicle-list">
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavMake" name="make">
+                                                                <select required="" class="form-control browser-default custom-select NavMake1" name="make">
                                                                     <option value="">Select Make</option>
                                                                     @foreach(getVehicleMakeList() as $key => $make)
                                                                     <option value="{{$make}}">{{$make}}</option>
@@ -354,20 +354,20 @@
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavYear" name="year">
+                                                                <select required="" class="form-control browser-default custom-select NavYear1" name="year">
                                                                     <option value="">Year</option>
                                                                 </select>
                                                             </div>
 
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavModel" name="model">
+                                                                <select required="" class="form-control browser-default custom-select NavModel1" name="model">
                                                                     <option value="">Model</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavSubmodel" name="submodel">
+                                                                <select required="" class="form-control browser-default custom-select NavSubmodel1" name="submodel">
                                                                     <option value="">Trim</option>
 
                                                                 </select>
