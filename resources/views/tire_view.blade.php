@@ -36,8 +36,9 @@
         width: 50%;
         color: #fff;
         text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
-        font-weight: 700;
-        font-size: 12px;
+        font-weight:100;
+        font-size: 14px;
+        font-family: oswald !important;
     }
 
     .pTopCell.Phone a {
@@ -50,10 +51,12 @@
         margin: 15px 0;
     }
 
-    .product-name {
-        font-size: 15px !important;
+    .product-name 
+    {
+        font-size: 14px !important;
+        font-family: oswald !important;
         text-align: left;
-        font-weight: 700 !important;
+        font-weight: 100 !important;
     }
 
     .product-info td {
@@ -62,7 +65,7 @@
         text-align: left;
         width: 200px !important;
         padding: 5px !important;
-        font-family: 'Roboto Condensed', sans-serif;
+        font-family:play !important;
         font-size: 12px;
     }
 
@@ -232,11 +235,20 @@
         background: #f5f5f5 !important;
     }
 
-    .prod-headinghome p {
+    .prod-headinghome p 
+    {
         margin: 10px 0px;
-        color: #121214;
-        font-size: .875em;
-        line-height: 25px;
+        color:#121214;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: play !important;
+    }
+    .prod-headinghome h1
+    {
+        font-family: oswald !important;
+        font-size: 15px !important;
+        font-weight: 100 !important;
+        color:#0e1661 !important;
     }
 
     .general_info .price-section {
@@ -263,7 +275,6 @@
 
     .price-section {
         text-align: left !important;
-        padding: 15px 0px !important;
     }
 
     .form-group.product-quantity {
@@ -279,6 +290,7 @@
         color: #fff !important;
         font-size: 12px !important;
         font-weight: 100 !important;
+        font-family: oswald !important;
     }
 
     .table.table-section {
@@ -294,6 +306,7 @@
         color: #fff !important;
         background: blue;
         font-size: 10px !important;
+        font-family:oswald !important;
     }
 
     .btn.btn-default.cart-2 {
@@ -301,6 +314,7 @@
         color: #fff !important;
         background: green;
         font-size: 10px !important;
+        font-family:oswald !important;
     }
 
     .table.table-section th {
@@ -312,6 +326,7 @@
         color: #000 !important;
         font-size: 12px !important;
         transition: 1s all;
+        font-family: play !important;
     }
 
     .table.table-section td:hover {
@@ -330,24 +345,21 @@
         text-decoration: underline;
     }
 
-    .tire-des h1 {
-        font-size: 14px !important;
-        margin: 0px;
-        line-height: 30px;
-    }
-
-    .tire-des h2 {
+    .tire-des h1,.tire-des h2 {
         font-size: 12px !important;
         margin: 0px;
         line-height: 30px;
+        font-family:oswald !important;
     }
 
-    .prograss-bar-head {
+    .prograss-bar-head 
+    {
         font-size: 10px;
         text-align: left;
         padding: 2px 0px !important;
         color: #0e1661 !important;
         margin: 0px 0px !important;
+        font-family:play !important;
     }
 
     .progress.pro-bar {
@@ -369,12 +381,14 @@
         width: 100% !important;
     }
 
-    .benifit-head {
-        font-size: 10px !important;
-        font-weight: 700 !important;
+    .benifit-head 
+    {
+        font-size: 12px !important;
+        font-weight: 100 !important;
         margin: 0px 0px !important;
         padding: 2px 0px;
         text-align: left;
+        font-family: oswald !important;
     }
 
     .row.tire-benifit {
@@ -382,18 +396,22 @@
     }
 
     .benifit-title p {
-        font-size: 10px !important;
+        font-size: 12px !important;
         text-align: left;
         line-height: 25px !important;
         margin: 0px 0px;
+        font-family: play !important;
     }
 
     .video img {
         width: 100% !important;
     }
 
-    .instock-head a {
-        color: red !important;
+    .instock-head a 
+    {
+        color:#ecb23d !important;
+        font-family: oswald !important;
+        font-size: 12px !important;
     }
 
     .youtube-video {
@@ -401,22 +419,26 @@
     }
 
     .instock-head {
-        font-size: 11px !important;
+        font-size: 12px !important;
         text-align: left;
         padding: 0px 0px !important;
         margin: 0px 0px !important;
+        font-family: play !important;
     }
 
     .video img {
         width: 100% !important;
     }
 
-    .btn.btn-info {
+    .btn.btn-info 
+    {
         background: #ecb23d !important;
+        font-family:oswald !important;
+        font-size:12px !important;
     }
 
     .btn.btn-info:hover {
-        background: #ecb23d !important;
+        background: #0e1661 !important;
     }
 
     .reward-block {
@@ -438,7 +460,17 @@
     .form-group.has-success.has-feedback {
         margin: 10px 0px !important;
     }
-
+    .col-sm-5.control-label 
+    {
+        color: #000 !important;
+        font-family: oswald !important;
+        font-size: 15px !important;
+    }
+    .modal-dialog.tire-view .modal-header
+    {
+        padding: 10px !important;
+        border-bottom:none;
+    }
     .animated {
         animation-duration: 2.5s;
         animation-fill-mode: both;
@@ -464,7 +496,7 @@
         animation-duration: 1s;
     }
 
-    @media (max-width: 767px) {}
+
 </style>
 <style>
     .price-section h1 {
@@ -903,6 +935,232 @@
             </table>
         </div>
     </div>
+</section>
+
+
+
+<section id="falken-info">
+    <div class="container">
+        <a href=""><img src="http://127.0.0.1:8000/image/Falken-Company-Info.jpg" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
+    </div>
+</section>
+
+<section id="fal-feature">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="product-layouts">
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <div class="sale-icon"><a>Sale</a></div>
+                        </div>
+                        <div class="thumb-description">
+                            <div class="caption">
+                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
+                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
+                                                                                        Starting at: $43.58
+                                                                                        </a>
+                                            </h4>
+                                <br>
+                            </div>
+                            <div class="button-group">
+                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                </button>
+                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                    <span title="Add to Wish List">Add to Wish List</span>
+                                </button>
+                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                    <span title="Add to compare">Add to compare</span>
+                                </button>
+                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                    <span>Quick View</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="product-layouts">
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <div class="sale-icon"><a>Sale</a></div>
+                        </div>
+                        <div class="thumb-description">
+                            <div class="caption">
+                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
+                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
+                                                                                        Starting at: $43.58
+                                                                                        </a>
+                                            </h4>
+                                <br>
+                            </div>
+                            <div class="button-group">
+                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                </button>
+                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                    <span title="Add to Wish List">Add to Wish List</span>
+                                </button>
+                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                    <span title="Add to compare">Add to compare</span>
+                                </button>
+                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                    <span>Quick View</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="product-layouts">
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <div class="sale-icon"><a>Sale</a></div>
+                        </div>
+                        <div class="thumb-description">
+                            <div class="caption">
+                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
+                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
+                                                                                        Starting at: $43.58
+                                                                                        </a>
+                                            </h4>
+                                <br>
+                            </div>
+                            <div class="button-group">
+                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                </button>
+                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                    <span title="Add to Wish List">Add to Wish List</span>
+                                </button>
+                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                    <span title="Add to compare">Add to compare</span>
+                                </button>
+                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                    <span>Quick View</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="product-layouts">
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <div class="sale-icon"><a>Sale</a></div>
+                        </div>
+                        <div class="thumb-description">
+                            <div class="caption">
+                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
+                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
+                                                                                        Starting at: $43.58
+                                                                                        </a>
+                                            </h4>
+                                <br>
+                            </div>
+                            <div class="button-group">
+                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                </button>
+                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                    <span title="Add to Wish List">Add to Wish List</span>
+                                </button>
+                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                    <span title="Add to compare">Add to compare</span>
+                                </button>
+                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                    <span>Quick View</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="product-layouts">
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <div class="sale-icon"><a>Sale</a></div>
+                        </div>
+                        <div class="thumb-description">
+                            <div class="caption">
+                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
+                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
+                                                                                        Starting at: $43.58
+                                                                                        </a>
+                                            </h4>
+                                <br>
+                            </div>
+                            <div class="button-group">
+                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                </button>
+                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                    <span title="Add to Wish List">Add to Wish List</span>
+                                </button>
+                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                    <span title="Add to compare">Add to compare</span>
+                                </button>
+                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                    <span>Quick View</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="product-layouts">
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
+                            <div class="sale-icon"><a>Sale</a></div>
+                        </div>
+                        <div class="thumb-description">
+                            <div class="caption">
+                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
+                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
+                                                                                        Starting at: $43.58
+                                                                                        </a>
+                                            </h4>
+                                <br>
+                            </div>
+                            <div class="button-group">
+                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                </button>
+                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                    <span title="Add to Wish List">Add to Wish List</span>
+                                </button>
+                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                    <span title="Add to compare">Add to compare</span>
+                                </button>
+                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                    <span>Quick View</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 
 @endsection @section('shop_by_vehicle_scripts')

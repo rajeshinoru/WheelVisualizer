@@ -50,10 +50,12 @@
         margin: 15px 0;
     }
 
-    .product-name {
-        font-size: 15px !important;
+    .product-name 
+    {
+        font-size: 14px !important;
+        font-family: oswald !important;
         text-align: left;
-        font-weight: 700 !important;
+        font-weight: 100 !important;
     }
 
 
@@ -69,7 +71,7 @@
     .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
     .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
         color: #fff !important;
-        background: #222 !important;
+        background: #ecb23d !important;
         border-color: transparent;
     }
 
@@ -140,6 +142,7 @@
         color: #fff !important;
         font-size: 12px !important;
         font-weight: 100 !important;
+        font-family: oswald !important;
     }
 
     .table.table-section {
@@ -155,6 +158,7 @@
         color: #fff !important;
         background: blue;
         font-size: 10px !important;
+        font-family:oswald !important;
     }
 
     .btn.btn-default.cart-2 {
@@ -162,6 +166,7 @@
         color: #fff !important;
         background: green;
         font-size: 10px !important;
+        font-family:oswald !important;
     }
 
     .table.table-section th {
@@ -173,6 +178,7 @@
         color: #000 !important;
         font-size: 12px !important;
         transition: 1s all;
+        font-family:play !important;
     }
 
     .table.table-section td:hover {
@@ -195,6 +201,7 @@
         color: #011627;
         margin:10px 0px !important;
         text-align:left !important;
+        font-family:play !important;
     }
     .progress{
         height: 10px;
@@ -216,6 +223,7 @@
         position: absolute;
         top: 10px;
         right: 0;
+        font-family:play !important;
     }
 
     @-webkit-keyframes animate-positive{
@@ -235,11 +243,12 @@
     }
 
     .benifit-head {
-        font-size: 10px !important;
-        font-weight: 700 !important;
+        font-size: 12px !important;
+        font-weight: 100 !important;
         margin: 0px 0px !important;
         padding: 2px 0px;
         text-align: left;
+        font-family: oswald !important;
     }
 
     .row.tire-benifit {
@@ -247,10 +256,11 @@
     }
 
     .benifit-title p {
-        font-size: 10px !important;
+        font-size: 12px !important;
         text-align: left;
         line-height: 25px !important;
         margin: 0px 0px;
+        font-family: play !important;
     }
 
     .video img {
@@ -266,10 +276,11 @@
         width: 100% !important;
     }
     .prod-headinghome p {
-        margin: 0px 0px;
+        margin: 10px 0px;
         color: #121214;
-        font-size: .875em;
-        line-height: 25px;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: play !important;
     }
     .prod-headinghome {
       text-align: left !important;
@@ -279,6 +290,7 @@
       font-size: 25px !important;
       font-weight: 700 !important;
       margin:10px 0px !important;
+      font-family: oswald !important;
     }
     .product-name
     {
@@ -330,6 +342,13 @@
   width: 100px;
   height:100px;
 }
+.prod-headinghome h1
+  {
+    font-family: oswald !important;
+    font-size: 15px !important;
+    font-weight: 100 !important;
+    color:#0e1661 !important;
+  }
 
 @media (max-width: 767px)
 {
@@ -548,6 +567,62 @@
     </div>
     <!-- Cart End -->
 </section>
+
+
+<section id="demo-des">
+    <div class="container">
+        <div class="wheel-list-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel with-nav-tabs panel-default">
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1default" data-toggle="tab">Description</a></li>
+                                <li><a href="#tab2default" data-toggle="tab">Shipping Information</a></li>
+                                <li><a href="#tab3default" data-toggle="tab">Wheel and Tire Package</a></li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content wheel-list-tab">
+                                <div class="tab-pane fade in active" id="tab1default">
+                                    <div class="col-sm-8">
+                                        <div class="prod-headinghome">
+                                        <h1><b>Details</b></h1>
+                                            <!-- <br><b>Type</b>: {{@$tire->Passenger}} -->
+                                            <p><b>Style</b>: {{@$tire->prodmodel}}</p>
+                                            <!-- <br><b>Feature</b>: Exclusive silica compound. 3D canyon siping. Wide angled tread slot. Wide circumferential grooves -->
+                                            <h1><b>Description</b>:</h1>
+                                            <?php echo @$tire->proddesc ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="tire-des">
+                                            <img src="{{viewImage('/tires/'.@$tire->prodimage)}}">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="tab2default">
+                                    <div class="prod-headinghome">
+                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab3default">
+                                    <div class="prod-headinghome">
+                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <section id="table-section">
     <div class="container">

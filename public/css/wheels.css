@@ -32,19 +32,21 @@
         margin: 30px auto;
     }
 
-    
-
-    .model-car {
-        font-size: 15px !important;
-        font-weight: 500 !important;
+    .model-car 
+    {
+        font-size: 12px !important;
+        font-family: oswald !important;
     }
 
-    .model-button {
+    .model-button 
+    {
         background: #000 !important;
         color: #fff !important;
         padding: 5px 10px !important;
         border-radius: 5px !important;
         font-size: 12px !important;
+        font-family: oswald !important;
+
     }
 
     .footer-para
