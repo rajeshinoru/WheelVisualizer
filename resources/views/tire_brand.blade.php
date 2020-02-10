@@ -10,11 +10,13 @@
         text-align: center;
     }
     
-    .prod-headinghome p {
+    .prod-headinghome p 
+    {
         margin: 10px 0px;
         color: #121214;
-        font-size: .875em;
-        line-height: 25px;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: play !important;
     }
     
     .product-thumb h4 {
@@ -27,6 +29,7 @@
     .title-heading h2 {
         font-size: 18px !important;
         margin: 20px 0px !important;
+        font-family: oswald !important;
     }
     
     .hometabled {

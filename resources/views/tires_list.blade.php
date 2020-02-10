@@ -105,11 +105,12 @@
         padding: 0px 0px !important;
     }
 
-    .listing-sidebar h5 {
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 24px;
+    .listing-sidebar h5
+    {
+        font-size: 15px !important;
+        line-height: 30px;
+        font-family: oswald !important;
+        color:#000 !important;
     }
 
     ul.list-group li {
@@ -156,10 +157,11 @@
         margin-bottom: 0px;
     }
 
-    .listing-sidebar #accordion .panel-title a {
+    .listing-sidebar #accordion .panel-title a
+    {
         color: #000 !important;
-        font-size: 13px !important;
-        font-weight: 600;
+        font-size: 12px !important;
+        font-family: oswald !important;
     }
 
     #special-product,
@@ -170,8 +172,9 @@
     }
 </style>
 <style type="text/css">
-    button.btn.speed {
-    background: #000 !important;
+    button.btn.speed
+    {
+    background:#0e1661 !important;
     margin: 5px 0px !important;
     }
     button.btn.speed a
@@ -179,11 +182,43 @@
       color: #fff !important;
       font-size: 10px !important;
     }
+    .col-sm-8.vehicle-change p {
+    margin: 0px 0px !important;
+}
+.btn.vehicle-change {
+    background: #0e1661 !important;
+}
+.btn.vehicle-change a {
+    color:#fff !important;
+    font-family: oswald !important;
+    font-size: 14px !important;
+}
+.tire-list-change
+{
+  border:1px solid red;
+}
 
 </style>
 </section>
 <section id="tire-list">
     <div class="container">
+      <!-- <div class="row">
+            <div class="col-sm-12 tire-list-change">
+              <div class="col-sm-8 vehicle-change"><p> Your selected vehicle: <b>2020 Acura RDX Base</b> OEM Tire Size: <b>235/55R19</b> </p></div>
+              <div class="col-sm-2"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
+            </div>
+      </div> -->
+
+      <div class="wheel-list-tab">
+            <div class="row">
+                <div class="col-md-8"><p> Your selected vehicle: <b>2020 Acura RDX Base</b> OEM Tire Size: <b>235/55R19</b> </p></div>
+                <div class="col-md-4"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
         <div class="col-sm-3">
             <!-- Side Start -->
             <div class="listing-sidebar">
@@ -334,10 +369,11 @@
                 @endforeach
             </div>
         </div>
+        </div>
     </div>
 </section>
 
-@endsection 
+@endsection
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
 

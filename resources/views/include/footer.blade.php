@@ -41,12 +41,14 @@
         color:#0e1661 !important;
         font-size: 12px !important;
         line-height:30px;
+        font-family: oswald !important;
     }
     .main
     {
-        font-size: 12px;
+        font-size: 12px !important;
         color:#000;
         line-height: 30px !important;
+        font-family: oswald !important;
     }
     .main a {
         color: #0e1661 !important;
@@ -54,24 +56,22 @@
 
     .zfooterMenu ul li a:hover {
         display: inline;
-        font-size: 11px;
-        color: #000;
-        font-weight: 700;
+        font-size: 12px;
+        color: #ecb23d;
+        font-family: oswald !important;
     }
 
-    .zfooterMenu ul li a {
+    .zfooterMenu ul li a 
+    {
         display: inline;
         text-decoration: none;
-        font-size: 11px;
+        font-size: 12px;
         color: #000;
-        font-weight: 700;
         padding: 2px 14px;
-        border-right: 1px solid #e0e0e0;
-    }
-
-    .zfooterMenu ul li {
-        border-left: 1px solid #e0e0e0 !important;
-    }
+        border-right:1px solid #0e1661 !important;
+        border-left: 1px solid #0e1661 !important;
+        font-family: oswald !important;
+        }
 
     .zfooterMenu ul li {
         position: relative;
@@ -92,15 +92,15 @@
     .copywright 
     {
         padding: 15px 0 !important;
-        margin-top: 0px !important;
         color: #0e1661 !important;
         font-size: 12px !important;
+        font-family: oswald !important;
     }
     .footer-phone {
-    color: 
-    #0e1661 !important;
-    font-size: 12px !important;
-    line-height: 30px !important;
+        color: #0e1661 !important;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: oswald !important;
 }
 
 
@@ -130,16 +130,7 @@
             display: block;
             padding-top: 15px;
         }
-
-        .zfooterMenu ul,
-        .zfooterMenu ul li {
-            border-left: none !important;
-        }
-
-        .zfooterMenu ul li a {
-            border-right: none;
-        }
-
+        
         .main a {
             font-size: 10px !important;
         }

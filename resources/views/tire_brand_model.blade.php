@@ -50,10 +50,12 @@
         margin: 15px 0;
     }
 
-    .product-name {
-        font-size: 15px !important;
+    .product-name 
+    {
+        font-size: 14px !important;
+        font-family: oswald !important;
         text-align: left;
-        font-weight: 700 !important;
+        font-weight: 100 !important;
     }
 
 
@@ -69,7 +71,7 @@
     .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
     .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
         color: #fff !important;
-        background: #222 !important;
+        background: #ecb23d !important;
         border-color: transparent;
     }
 
@@ -140,6 +142,7 @@
         color: #fff !important;
         font-size: 12px !important;
         font-weight: 100 !important;
+        font-family: oswald !important;
     }
 
     .table.table-section {
@@ -155,6 +158,7 @@
         color: #fff !important;
         background: blue;
         font-size: 10px !important;
+        font-family:oswald !important;
     }
 
     .btn.btn-default.cart-2 {
@@ -162,6 +166,7 @@
         color: #fff !important;
         background: green;
         font-size: 10px !important;
+        font-family:oswald !important;
     }
 
     .table.table-section th {
@@ -173,6 +178,7 @@
         color: #000 !important;
         font-size: 12px !important;
         transition: 1s all;
+        font-family:play !important;
     }
 
     .table.table-section td:hover {
@@ -195,6 +201,7 @@
         color: #011627;
         margin:10px 0px !important;
         text-align:left !important;
+        font-family:play !important;
     }
     .progress{
         height: 10px;
@@ -216,6 +223,7 @@
         position: absolute;
         top: 10px;
         right: 0;
+        font-family:play !important;
     }
 
     @-webkit-keyframes animate-positive{
@@ -235,11 +243,12 @@
     }
 
     .benifit-head {
-        font-size: 10px !important;
-        font-weight: 700 !important;
+        font-size: 12px !important;
+        font-weight: 100 !important;
         margin: 0px 0px !important;
         padding: 2px 0px;
         text-align: left;
+        font-family: oswald !important;
     }
 
     .row.tire-benifit {
@@ -247,10 +256,11 @@
     }
 
     .benifit-title p {
-        font-size: 10px !important;
+        font-size: 12px !important;
         text-align: left;
         line-height: 25px !important;
         margin: 0px 0px;
+        font-family: play !important;
     }
 
     .video img {
@@ -266,10 +276,11 @@
         width: 100% !important;
     }
     .prod-headinghome p {
-        margin: 0px 0px;
+        margin: 10px 0px;
         color: #121214;
-        font-size: .875em;
-        line-height: 25px;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: play !important;
     }
     .prod-headinghome {
       text-align: left !important;
@@ -279,6 +290,7 @@
       font-size: 25px !important;
       font-weight: 700 !important;
       margin:10px 0px !important;
+      font-family: oswald !important;
     }
     .product-name
     {
@@ -330,6 +342,13 @@
   width: 100px;
   height:100px;
 }
+.prod-headinghome h1
+  {
+    font-family: oswald !important;
+    font-size: 15px !important;
+    font-weight: 100 !important;
+    color:#0e1661 !important;
+  }
 
 @media (max-width: 767px)
 {
@@ -557,13 +576,11 @@
                                 <div class="tab-pane fade in active" id="tab1default">
                                     <div class="col-sm-8">
                                         <div class="prod-headinghome">
-                                            <br><b>Details</b>
+                                        <h1><b>Details</b></h1>
                                             <!-- <br><b>Type</b>: {{@$tire->Passenger}} -->
-                                            <br>
                                             <p><b>Style</b>: {{@$tire->prodmodel}}</p>
                                             <!-- <br><b>Feature</b>: Exclusive silica compound. 3D canyon siping. Wide angled tread slot. Wide circumferential grooves -->
-                                            <br><b>Description</b>:
-                                            <br>
+                                            <h1><b>Description</b>:</h1>
                                             <?php echo @$tire->proddesc ?>
                                         </div>
                                     </div>

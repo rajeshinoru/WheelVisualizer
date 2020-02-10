@@ -76,6 +76,7 @@
 
         .dropdown-menu.multi-colum-nav li a {
             font-size: 12px !important;
+            font-family: oswald !important;
         }
 
         .col-sm-3.one-nav ul {
@@ -126,12 +127,14 @@
             margin: 15px 0px !important;
             font-size: 12px !important;
             color: #000 !important;
+            font-family: oswald !important;
         }
 
         .col-sm-2.shop-vehicle-head h1 {
             font-size: 12px !important;
             color: #000 !important;
             margin: 11px 0px !important;
+            font-family: oswald !important;
         }
 
         .vehicle-list {
@@ -152,6 +155,8 @@
         {
             border: 1px solid #0e1661;
             color:#000;
+            font-family: play !important;
+            font-size: 12px !important;
         }
         .btn.vehicle-go {
             background: #ecb23d !important;
@@ -160,13 +165,14 @@
             font-size: 12px !important;
             padding: 5px 20px !important;
             height: 34px !important;
+            font-family: oswald !important;
         }
 
-        .col-sm-2.tire-menu ul {
+        .col-sm-12.tire-menu ul {
             list-style-type: none !important;
         }
 
-        .col-sm-2.tire-menu ul li 
+        .col-sm-12.tire-menu ul li 
         {
             color: #000 !important;
             font-size: 12px !important;
@@ -174,10 +180,13 @@
             border-bottom:1px solid #22222254 !important;
         }
 
-        .col-sm-2.tire-menu li a:hover {
+        .col-sm-12.tire-menu li a:hover {
             color: #ecb23d !important;
         }
-
+        .tire-dropdown-menu 
+        {
+            column-count: 9;
+        }
         .car-truck-head i {
             font-size: 25px !important;
             padding: 0px 5px !important;
@@ -421,13 +430,37 @@
                                                 <div class="col-sm-10">
                                                     <div class="vehicle-list">
                                                         <div class="row">
-                                                            <div class="col-sm-2 tire-menu">
+
+                                                            <div class="col-sm-12 tire-menu">
                                                                 <ul>
                                                                     @foreach(getTireBrandList() as $key => $tirebrand)
                                                                     <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
                                                                     @endforeach
+                                                                </ul> 
+
+                                                                <ul class="tire-dropdown-menu">
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
+                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
                                                                 </ul>
+
                                                             </div>
+                                                            
 
                                                         </div>
                                                     </div>

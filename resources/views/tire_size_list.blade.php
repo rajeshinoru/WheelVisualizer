@@ -2,102 +2,6 @@
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
 
 <style>
-    #footer-down {
-        border: 1px solid #ccc !important;
-        background: #fff !important;
-    }
-    
-    .bbb-nl,
-    .godaddy-nl,
-    .reseller-nl,
-    .sitelock-nl,
-    .socialicons-nl,
-    .verisign-nl {
-        display: table-cell;
-        vertical-align: middle;
-        width: 16%;
-        text-align: center;
-    }
-    
-    .social2-nl {
-        display: table;
-        vertical-align: middle;
-        position: relative;
-        width: 90%;
-        max-width: 1366px;
-    }
-    
-    .googlestore {
-        display: table-cell;
-        vertical-align: middle;
-        width: 16%;
-        text-align: center;
-    }
-    
-    .social-nl {
-        margin: 40px 0px !important;
-    }
-    
-    .footer-ratings h1 a {
-        color: #777777;
-        font-size: 14px !important;
-        line-height: 25px;
-    }
-    
-    .main a {
-        color: #0e1661 !important;
-    }
-    
-    .zfooterMenu ul li a:hover {
-        display: inline;
-        font-size: 11px;
-        color: #000;
-        font-weight: 700;
-    }
-    
-    .zfooterMenu ul li a {
-        display: inline;
-        text-decoration: none;
-        font-size: 11px;
-        color: #000;
-        font-weight: 700;
-        padding: 2px 14px;
-        border-right: 1px solid #e0e0e0;
-    }
-    
-    .zfooterMenu ul li {
-        border-left: 1px solid #e0e0e0 !important;
-    }
-    
-    .zfooterMenu ul li {
-        position: relative;
-        display: inline;
-    }
-    
-    .zfooterMenu ul {
-        margin: 5px 0;
-        padding: 0;
-        list-style-type: none;
-        border-left: 1px solid #e0e0e0;
-    }
-    
-    .footer-ratings h1 {
-        margin: 0px 0px !important;
-    }
-    
-    .copywright {
-        padding: 10px 0;
-        margin-top: 5px;
-        color: #666;
-    }
-    
-    #produst,
-    #special-product,
-    footer,
-    #bott,
-    .container.brand-logo {
-        display: none !important;
-    }
     
     .container-fluid.home-page {
         padding: 0px 0px !important;
@@ -114,16 +18,20 @@
     }
     
     .size-heading h1 {
-        font-size: 20px !important;
+        font-size: 18px !important;
+        font-family: oswald !important;
     }
     
     .size-heading h2 {
         font-size: 18px !important;
+        font-family: oswald !important;
     }
     
     .size-heading h3 {
-        font-size: 20px !important;
+        font-size: 18px !important;
+        font-family: oswald !important;
         font-weight: 700;
+        color: #0e1661 !important;
     }
     
     .fa.fa-exclamation-circle {
@@ -158,7 +66,7 @@
         margin: 5px 0px !important;
         background: #fff !important;
         color: #000 !important;
-        border: 1px solid #ccc !important;
+        border: 1px solid #ecb23d !important;
         font-size: 12px !important;
         border-radius: 0px !important;
         transition: 1s all;
@@ -189,7 +97,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: #222222d1 !important;
+        background:#ecb23d !important;
         -webkit-transform: scaleX(0);
         transform: scaleX(0);
         -webkit-transform-origin: 0 50%;
@@ -258,37 +166,7 @@
     }
     
     @media (max-width: 767px) {
-        .bbb-nl,
-        .godaddy-nl,
-        .reseller-nl,
-        .sitelock-nl,
-        .socialicons-nl,
-        .verisign-nl {
-            display: inline-block;
-            padding: 10px 50px;
-            width: auto;
-            text-align: center;
-        }
-        .googlestore {
-            vertical-align: middle;
-            width: 100% !important;
-            text-align: center;
-            display: inline-block;
-        }
-        .zfooterMenu ul li {
-            display: block;
-            padding-top: 15px;
-        }
-        .zfooterMenu ul,
-        .zfooterMenu ul li {
-            border-left: none !important;
-        }
-        .zfooterMenu ul li a {
-            border-right: none;
-        }
-        .main a {
-            font-size: 10px !important;
-        }
+        
         .dropdown-menu.multi-colum-nav {
             width: 100% !important;
             background: #000 !important;

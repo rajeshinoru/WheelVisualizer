@@ -92,6 +92,7 @@
         display: block;
         font-size: 12px !important;
         text-align: center;
+        font-family: oswald !important;
     }
     
     .wheel-list ul {
@@ -116,11 +117,9 @@
     }
     
     #heading h1 {
-        width: 100%;
-        font-size: medium;
-        font-family: open sans, Arial, sans-serif;
-        color: #121214;
-        font-weight: 500;
+        font-family: oswald;
+        color:#121214;
+        font-size: 18px !important;
         text-align: center;
     }
     
@@ -132,11 +131,14 @@
         text-align: center !important;
     }
     
-    .prod-headinghome p {
+    .prod-headinghome p 
+    {
         margin: 10px 0px;
         color: #121214;
         font-size: .875em;
-        line-height: 25px;
+        line-height:30px;
+        font-family: play !important;
+        font-size: 12px !important;
     }
     
     .col-sm-4.wheel-img {
@@ -172,10 +174,10 @@
     .pTopCell {
         display: table-cell;
         width: 50%;
-        color: #fff;
+        color:#fff;
         text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
-        font-weight: 700;
-        font-size: 16px;
+        font-size: 14px;
+        font-family: oswald !important;
     }
     
     .pTopCell.Phone a {
@@ -227,9 +229,12 @@
         padding: 5px;
     }
     
-    .homecelld b {
+    .homecelld b 
+    {
         color: #222 !important;
         font-size: 12px !important;
+        font-family: oswald !important;
+        font-weight: 100 !important;
     }
     
     .hometabled {
@@ -245,12 +250,10 @@
     }
     
     .prod-headinghome h2 {
-        width: 100%;
-        font-size: medium;
-        font-family: open sans, Arial, sans-serif;
         color:#0e1661 !important;
-        font-weight: 600 !important;
         text-align: center;
+        font-family: oswald !important;
+        font-size: 18px !important;
     }
     
     .prod-headinghome b {
@@ -270,13 +273,13 @@
         text-align: center;
     }
     
-    .prod-heading-center p {
-        color: #121214;
-        font-size: .875em;
-        line-height: 25px;
+    .prod-heading-center p 
+    {
+        color:#0e1661 !important;
+        font-size: 18px !important;
+        line-height: 30px !important;
+        font-family: oswald !important;
     }
-    
-    
     
     #produst,
     #special-product,
