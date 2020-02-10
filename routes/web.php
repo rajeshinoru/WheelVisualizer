@@ -26,6 +26,11 @@ Route::get('/carimages', 'HomeController@carimages')->name('carimages');
 Route::get('/wheelsNameChange', 'HomeController@wheelsNameChange')->name('wheelsNameChange');
 Route::get('/notFoundCars', 'HomeController@notFoundCars')->name('notFoundCars'); 
 Route::get('/fold-fil', 'HomeController@fold_fil');
+Route::get('/tiredetailimages', 'HomeController@tiredetailimages');
+
+
+
+
 
 Route::get('/Falken_Import', 'TireController@Falken_Import');
 Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
@@ -53,7 +58,7 @@ Route::get('/tires', 'TireController@index')->name('tires');
 Route::get('/tirelist/{tire_size?}', 'TireController@list')->name('tirelist');
 Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
 Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
-Route::get('/tirebrandmodel', 'TireController@tirebrandmodel')->name('tirebrandmodel');
+Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
 
 Route::group(['prefix' => 'admin'], function () {

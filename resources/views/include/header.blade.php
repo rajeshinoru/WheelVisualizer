@@ -413,6 +413,10 @@
                                                                     <option value="">Select Diameter</option>
                                                                 </select>
                                                             </div>
+
+                                                            <div class="dropdown">
+                                                                <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
+                                                            </div>
                                                             <a href="">
                                                                 <button type="submit" class="btn vehicle-go">GO</button>
                                                             </a>

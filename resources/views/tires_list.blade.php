@@ -237,18 +237,18 @@
                         <div class="wrapper center-block">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading active" role="tab" id="headingOne">
+                                    <div class="panel-heading " role="tab" id="headingOne">
                                         <h4 class="panel-title">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Shop By Brand</a>
                                         </h4>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                         <div class="panel-body">
                                             <ul style="display: block;">
                                                 @foreach(@getTireBrandList() as $key => $brand)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> {{$brand}}
+                                                            <input type="checkbox" class="tirebrand" name="tirebrand[]" value="{{$brand}}" @if(in_array($brand,json_decode(base64_decode(@Request::get('tirebrand')?:''))?:[])) checked @endif > {{$brand}}
                                                         </label>
                                                     </span></li>
                                                 @endforeach
@@ -266,8 +266,12 @@
                                 <h5 class="heading">Speed Rating</h5>
                                 <div class="car-list">
                                         @foreach(@$speedratings as $key => $value)
-                                        <button class="btn speed" type="button">
-                                            <a href="">{{@$value->speedrating}} <!-- 130 mph --> ({{@$value->total}})</a>
+                                        <button class="btn {{(@$value->speedrating == 
+                                            json_decode(base64_decode(
+                                                @Request::get('tirespeedrating')?:''
+                                            ))
+                                            )?'btn-inverse ':''}} speed tirespeedrating" type="button" name="tirespeedrating[]" class="tirespeedrating" value="{{@$value->speedrating}}">
+                                            {{@$value->speedrating}} <!-- 130 mph --> ({{@$value->total}})
                                         </button>
                                         @endforeach
                                 </div>
@@ -281,13 +285,13 @@
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Load Index</a>
                                         </h4>
                                     </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                                         <div class="panel-body">
                                             <ul style="display: block;">
                                                 @foreach(@$load_indexs as $key => $value)
                                                 <li><span class="checkbox">
                                                         <label>
-                                                            <input type="checkbox"> {{@$value->loadindex}} ( {{@$value->total}})
+                                                            <input type="checkbox" name="tireloadindex[]" class="tireloadindex" value="{{@$value->loadindex}}" @if(in_array($value->loadindex,json_decode(base64_decode(@Request::get('tireloadindex')?:''))?:[])) checked @endif > {{@$value->loadindex}} ( {{@$value->total}})
                                                         </label>
                                                     </span></li>
                                                 @endforeach
@@ -333,13 +337,13 @@
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('tires/'.$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a></a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode($tire->id)}}">
+                                    <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}">
                                             {{@$tire->prodtitle}}<br>
                                             <br>
                                             Size : {{@$tire->tiresize}}<br>
@@ -385,7 +389,7 @@
             range: true,
             min: 0,
             max: 500,
-            values: [35, 200],
+            values: [1, 200],
             slide: function(event, ui) {
                 $("#price").val("$" + ui.values[0] + " - $" + ui.values[1]);
             }

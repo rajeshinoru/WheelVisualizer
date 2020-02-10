@@ -8,6 +8,7 @@ use App\Btlist;
 use App\CarImage;
 use App\CarColour;
 use App\Wheel;
+use App\Tire;
 use Artisan;
 use Symfony\Component\Process\Process;
 class HomeController extends Controller
@@ -334,6 +335,62 @@ class HomeController extends Controller
         }catch(Exception $e){
             dd($e);
         }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function tiredetailimages()
+    {
+
+        $tireimages = glob("storage/tires/models/*/*");
+
+        $arr=array();
+        foreach ($tireimages as $key => $value) {
+
+            $folders= explode('/', $value);
+            if($folders[4] != 'Thumbs.db'){
+
+                Tire::where('benefitsimage1','like', '%' . $folders[4]. '%')->update([
+                    'benefitsimage1'=>$folders[3].'/'.$folders[4],
+                ]);
+
+                Tire::where('benefitsimage2','like', '%' . $folders[4]. '%')->update([
+                    'benefitsimage2'=>$folders[3].'/'.$folders[4],
+                ]);
+
+                Tire::where('benefitsimage3','like', '%' . $folders[4]. '%')->update([
+                    'benefitsimage3'=>$folders[3].'/'.$folders[4],
+                ]);
+
+                Tire::where('benefitsimage4','like', '%' . $folders[4]. '%')->update([
+                    'benefitsimage4'=>$folders[3].'/'.$folders[4],
+                ]);
+
+                Tire::where('prodimage1','like', '%' . $folders[4]. '%')->update([
+                    'prodimage1'=>$folders[3].'/'.$folders[4],
+                ]);
+
+                Tire::where('prodimage2','like', '%' . $folders[4]. '%')->update([
+                    'prodimage2'=>$folders[3].'/'.$folders[4],
+                ]);
+
+                Tire::where('prodimage3','like', '%' . $folders[4]. '%')->update([
+                    'prodimage3'=>$folders[3].'/'.$folders[4],
+                ]);
+                echo $folders[3].'/'.$folders[4]."<br>";
+            }
+        }
+        // dd($arr);
+
+        return 'success';
     }
 
 }

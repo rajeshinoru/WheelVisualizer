@@ -55,10 +55,24 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="prod-headinghome">
-                    <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+@if(@$tire->Brand)
+<p>
+   {{@$tire->Brand->manudesc}}
+</p>
+@else
+<p>
+Shop for Falken tires at wholesale prices at Discounted Wheel Warehouse! We sell low-priced, high-performing Falken tires for today's passenger car, crossover, SUV, and light truck owners. Designed with performance in mind, Falken tires deliver exceptional value for the everyday driver. We have the best bargain prices on UHP, all-season, and off-road Falken tires here at Discounted Wheel Warehouse.
+</p>
+<p>
+Our warehouse has affordable Falken performance tires for all sorts of passenger vehicles, including coupes, sedans, crossovers, compact SUVs, and sport trucks. Our Falken lineup includes all-season Ziex and Sincera passenger tires for year-round tread life and versatile performance in rain, sun, or snow. We sell Falken Azenis summer tires that deliver outstanding wet and dry handling capabilities for sports performance. We also stock a great selection of highway and all-terrain light truck tires from Falken's acclaimed Wildpeak tire series for resilient handling in both on-road and off-road applications. All Falken tires at Discounted Wheel Warehouse are sold at wholesale prices.
+</p>
+<p>
+Falken tires are engineered with advanced performance technologies for the street, the track, or off the road. From rugged Wildpeak tires for SUVs and pickup trucks, to all-season performance Falken tires for passenger cars, all Falken tires deliver great quality at value prices. Save money on your next set of replacement tires, and get a set of affordable, reliable Falken tires at a discount from Discounted Wheel Warehouse!
+                    </p>
+@endif
                 </div>
             </div>
-            <div class="col-sm-4 fal-logo"><img src="{{url('image/falken-logo.png')}}"></div>
+            <div class="col-sm-4 fal-logo"><img src="{{viewImage('tires/brands/'.@$tire->Brand->manulogo)}}"></div>
         </div>
     </div>
 
@@ -69,7 +83,7 @@
                     <h2>Passenger Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires->where('plt','') as $key => $ptire)
+                @forelse($tires->where('detaildesctype','Passenger') as $key => $ptire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -81,7 +95,7 @@
                             <div class="thumb-description">
                                 <div class="caption">
                                     <h4 class="tire-type" title="{{@$ptire->prodtitle}}">
-                                        <a href="{{url('/tireview')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}} <br>
+                                        <a href="{{url('/tirebrandmodel')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}} <br>
                                         @if(@$ptire->price)
                                         Starting at: ${{@$ptire->price}}
                                         @else
@@ -122,7 +136,7 @@
                     <h2>Light Truck Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires->where('plt','LT') as $key => $lttire)
+                @forelse($tires->where('detaildesctype','!=','Passenger') as $key => $lttire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -133,7 +147,7 @@
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type" title="{{@$lttire->prodtitle}}"><a href="{{url('/tireview')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prodtitle}} <br> Starting at: ${{@$lttire->TireDetails->sale_price}}</a></h4>
+                                    <h4 class="tire-type" title="{{@$lttire->prodtitle}}"><a href="{{url('/tirebrandmodel')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prodtitle}} <br> Starting at: ${{@$lttire->price}}</a></h4>
                                     <br>
                                 </div>
                                 <div class="button-group">
