@@ -70,7 +70,7 @@ class TireController extends Controller
                 ->with(['Brand'])->first();
         $diff_tires =  Tire::select('id','warranty','tiresize',
                 'speedrating','loadindex','utqg','partno','price','prodmodel')
-                ->where('prodmodel',$tire->prodmodel)
+                ->where('tiresize',$tire->tiresize)
                 ->with(['Brand'])
                 ->get();
         return view('tire_view',compact('tire','diff_tires'));
