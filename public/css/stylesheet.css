@@ -7080,13 +7080,9 @@ button {
     border-bottom:1px solid #22222254 !important;
 }
 
-
-
-
-
-.dropdown-menu.nav-dropdown {
-    column-count: 8;
-}
+/* .dropdown-menu.nav-dropdown {
+    column-count: 6;
+} */
 .product-thumb .image img,.product-thumb .image img.image_thumb_swap {
     width:200px !important;
 }
