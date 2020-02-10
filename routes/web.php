@@ -33,6 +33,7 @@ Route::get('/tiredetailimages', 'HomeController@tiredetailimages');
 
 
 
+Route::get('/Wheel_Import', 'WheelController@Wheel_Import');
 Route::get('/Falken_Import', 'TireController@Falken_Import');
 Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
 Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
