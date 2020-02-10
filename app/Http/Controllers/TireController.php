@@ -65,7 +65,7 @@ class TireController extends Controller
         $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
                 'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
                 'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
-                'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3')
+                'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3','detaildesctype','detaildescfeatures')
                 ->where('id',base64_decode($tire_id))
                 ->with(['Brand'])->first();
         $diff_tires =  Tire::select('id','warranty','tiresize',

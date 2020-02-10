@@ -27,7 +27,7 @@
         margin-bottom: 1%;
         border-radius: 2px;
         -moz-border-radius: 2px;
-        -webkit-border-radius: 2px; 
+        -webkit-border-radius: 2px;
         background: #000;
     }
 
@@ -136,6 +136,7 @@
     #button-cart {
         height: 43px !important;
     }
+
     .rating {
         padding: 10px 0px !important;
     }
@@ -149,48 +150,48 @@
         background: #f5f5f5;
     }
 
-    .with-nav-tabs.panel-default .nav-tabs > li > a,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+    .with-nav-tabs.panel-default .nav-tabs>li>a,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:focus {
         color: #777;
     }
 
-    .with-nav-tabs.panel-default .nav-tabs > .open > a,
-    .with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+    .with-nav-tabs.panel-default .nav-tabs>.open>a,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:focus,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:focus {
         color: #777;
         background-color: #ddd;
         border-color: transparent;
     }
 
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:focus {
         color: #555;
         background-color: #fff;
         border-color: #ddd;
         border-bottom-color: transparent;
     }
 
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu {
         background-color: #f5f5f5;
         border-color: #ddd;
     }
 
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a {
         color: #777;
     }
 
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a:focus {
         background-color: #ddd;
     }
 
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a:focus {
         color: #fff;
         background-color: #555;
     }
@@ -320,7 +321,7 @@
         cursor: pointer;
     }
 
-    .table > tbody > tr > td {
+    .table>tbody>tr>td {
         border: 1px solid #ddd;
     }
 
@@ -448,9 +449,11 @@
         0% {
             transform: scale(1);
         }
+
         50% {
             transform: scale(1.1);
         }
+
         100% {
             transform: scale(1);
         }
@@ -464,69 +467,77 @@
     @media (max-width: 767px) {}
 </style>
 <style>
-.price-section h1 {
-    font-size: 14px !important;
-    text-align: center;
-    padding: 5px 0px !important;
-    margin: 0px 0px !important;
-    line-height:30px;
-}
-.price-section h2 {
-    font-size: 14px !important;
-    padding: 5px 0px !important;
-    margin: 0px 0px !important;
-    line-height:30px;
-}
-.reward-block {
-    text-align: center !important;
-}
-.modal-dialog.tire-view .modal-header
-{
-    background: #0e1661 !important;
-}
-modal-dialog.tire-view h4
-{
-    font-weight: 700;
-    color:#fff;
-    font-size: 12px !important;
-}
+    .price-section h1 {
+        font-size: 14px !important;
+        text-align: center;
+        padding: 5px 0px !important;
+        margin: 0px 0px !important;
+        line-height: 30px;
+    }
 
- .progress-title{   
-        font-size: 12px;    
-        color: #011627; 
-        margin:10px 0px !important; 
-        text-align:left !important; 
-    }   
-    .progress{  
-        height: 10px;   
-        background: #cbcbcb;    
-        border-radius: 0;   
-        box-shadow: none;   
-        margin-bottom: 0px; 
-        overflow: visible;  
-    }   
-    .progress .progress-bar{    
-        box-shadow: none;   
-        position: relative; 
-        -webkit-animation: animate-positive 2s; 
-        animation: animate-positive 2s; 
-    }   
-    .progress .progress-value{  
-        font-size: 12px;    
-        color: #000;    
-        position: absolute; 
-        top: 10px;  
-        right: 0;   
-    }   
-    @-webkit-keyframes animate-positive{    
-        0% { width: 0; }    
-    }   
-    @keyframes animate-positive{    
-        0% { width: 0; }    
-    }   
+    .price-section h2 {
+        font-size: 14px !important;
+        padding: 5px 0px !important;
+        margin: 0px 0px !important;
+        line-height: 30px;
+    }
 
+    .reward-block {
+        text-align: center !important;
+    }
 
+    .modal-dialog.tire-view .modal-header {
+        background: #0e1661 !important;
+    }
 
+    modal-dialog.tire-view h4 {
+        font-weight: 700;
+        color: #fff;
+        font-size: 12px !important;
+    }
+
+    .progress-title {
+        font-size: 12px;
+        color: #011627;
+        margin: 10px 0px !important;
+        text-align: left !important;
+    }
+
+    .progress {
+        height: 10px;
+        background: #cbcbcb;
+        border-radius: 0;
+        box-shadow: none;
+        margin-bottom: 0px;
+        overflow: visible;
+    }
+
+    .progress .progress-bar {
+        box-shadow: none;
+        position: relative;
+        -webkit-animation: animate-positive 2s;
+        animation: animate-positive 2s;
+    }
+
+    .progress .progress-value {
+        font-size: 12px;
+        color: #000;
+        position: absolute;
+        top: 10px;
+        right: 0;
+    }
+
+    @-webkit-keyframes animate-positive {
+        0% {
+            width: 0;
+        }
+    }
+
+    @keyframes animate-positive {
+        0% {
+            width: 0;
+        }
+    }
 </style>
 <section id="tires-des">
     <!-- Cart Start -->
@@ -546,15 +557,15 @@ modal-dialog.tire-view h4
                         <h2>Rim depicted in image NOT INCLUDED</h2>
                     </div>
 
-                      @if(@$tire->badge1)
-                      <img src="{{viewImage('tires/badges/'.@$tire->badge1)}}" width="70px" height="70px">
-                      @endif
-                      @if(@$tire->badge2)
-                      <img src="{{viewImage('tires/badges/'.@$tire->badge2)}}" width="70px" height="70px">
-                      @endif
-                      @if(@$tire->badge3)
-                      <img src="{{viewImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
-                      @endif
+                    @if(@$tire->badge1)
+                    <img src="{{viewImage('tires/badges/'.@$tire->badge1)}}" width="70px" height="70px">
+                    @endif
+                    @if(@$tire->badge2)
+                    <img src="{{viewImage('tires/badges/'.@$tire->badge2)}}" width="70px" height="70px">
+                    @endif
+                    @if(@$tire->badge3)
+                    <img src="{{viewImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
+                    @endif
                 </div>
                 <div class="col-sm-3 shop-details">
                     <h1 class="product-name">{{@$tire->detailtitle}}</h1>
@@ -573,7 +584,7 @@ modal-dialog.tire-view h4
                         <tbody>
                             <tr>
                                 <td>{{@$tire->prodbrand}}</td>
-                                <td class="product-info-value"><a href="">Size      :   {{@$tire->tiresize}}</a></td>
+                                <td class="product-info-value"><a href="">Size : {{@$tire->tiresize}}</a></td>
                             </tr>
                             <tr>
                                 <td>{{@$tire->prodmodel}}</td>
@@ -593,9 +604,9 @@ modal-dialog.tire-view h4
 
                     <div class="price-section">
                         <h1>Partno : <b>{{@$tire->partno}}</b></h1>
-                        <h2>Original Price : <span class="price-old">${{@$tire->originalprice}}</span> 
+                        <h2>Original Price : <span class="price-old">${{@$tire->originalprice}}</span>
                             You Save : <span class="price-new2">${{(@$tire->originalprice - @$tire->price)}}</span>
-                        </h2> 
+                        </h2>
                         <h1>Set of 4 : <span class="price-new2">${{@$tire->price * 4}}</span></h1>
                         <h1>Your Price : <span class="price-new2">${{@$tire->price}}</span></h1>
                         <div class="reward-block">
@@ -622,7 +633,7 @@ modal-dialog.tire-view h4
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
-                                    <h1 class="instock-head">Availability: 
+                                    <h1 class="instock-head">Availability:
                                         @if(@$tire->qtyavail == 1)
                                         <b>In Stock</b>
                                         @else
@@ -664,61 +675,61 @@ modal-dialog.tire-view h4
                 <div class="col-sm-3 tir-des">
                     <div class="row">
                         <div class="col-sm-12">
-                          <h1 class="product-name">Performance Ratings</h1>
+                            <h1 class="product-name">Performance Ratings</h1>
 
-                          <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->dry_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->dry_performance}}%</div>
-                              </div>
-                          </div>
-                          <br>
+                            <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->dry_performance}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->dry_performance}}%</div>
+                                </div>
+                            </div>
+                            <br>
 
-                          <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->wet_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->wet_performance}}%</div>
-                              </div>
-                          </div>
-                          <br>
-                          <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->mileage_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->mileage_performance}}%</div>
-                              </div>
-                          </div>
-                          <br>
+                            <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->wet_performance}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->wet_performance}}%</div>
+                                </div>
+                            </div>
+                            <br>
+                            <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->mileage_performance}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->mileage_performance}}%</div>
+                                </div>
+                            </div>
+                            <br>
 
-                          <h3 class="progress-title">Ride Comfort:</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->ride_comfort}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->ride_comfort}}%</div>
-                              </div>
-                          </div>
-                          <br>
-                          <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->quiet_ride}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->quiet_ride}}%</div>
-                              </div>
-                          </div>
-                          <br>
+                            <h3 class="progress-title">Ride Comfort:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->ride_comfort}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->ride_comfort}}%</div>
+                                </div>
+                            </div>
+                            <br>
+                            <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->quiet_ride}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->quiet_ride}}%</div>
+                                </div>
+                            </div>
+                            <br>
 
-                          <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->winter_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->winter_performance}}%</div>
-                              </div>
-                          </div>
-                          <br>
+                            <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->winter_performance}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->winter_performance}}%</div>
+                                </div>
+                            </div>
+                            <br>
 
-                          <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->fuel_efficiency}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->fuel_efficiency}}%</div>
-                              </div>
-                          </div>
-                          <br>
+                            <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->fuel_efficiency}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->fuel_efficiency}}%</div>
+                                </div>
+                            </div>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -786,7 +797,7 @@ modal-dialog.tire-view h4
                 </div>
                 <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=TdR_KUfM1z0')?>
                 </div>
-<!--                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
+                <!--                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div> -->
             </div>
@@ -816,13 +827,15 @@ modal-dialog.tire-view h4
                                 <div class="tab-pane fade in active" id="tab1default">
                                     <div class="col-sm-8">
                                         <div class="prod-headinghome">
-<br><b>Details</b>
-<!-- <br><b>Type</b>: {{@$tire->Passenger}} -->
-<br><p><b>Style</b>: {{@$tire->prodmodel}}</p>
-<!-- <br><b>Feature</b>: Exclusive silica compound. 3D canyon siping. Wide angled tread slot. Wide circumferential grooves -->
-<br><b>Description</b>:
-<br>
-<?php echo @$tire->proddesc ?>
+                                            <br>
+                                            <p><b>Details</b></p>
+                                            <br>
+                                            <p><b>Type</b>: {{@$tire->detaildesctype}}</p>
+                                            <p><b>Style</b>: {{@$tire->prodmodel}}</p>
+                                            <p><b>Feature</b>: {{@$tire->detaildescfeatures}}</p>
+                                            <b>Description</b>:
+                                            <br>
+                                            <?php echo @$tire->proddesc ?>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -872,7 +885,7 @@ modal-dialog.tire-view h4
                 <tbody>
                     @foreach(@$diff_tires as $key => $tire)
                     <tr>
-                        <td><a href="{{url('/tireview/'.base64_encode($tire->id))}}" >{{@$tire->tiresize}}</a></td>
+                        <td><a href="{{url('/tireview/'.base64_encode($tire->id))}}">{{@$tire->tiresize}}</a></td>
                         <td>{{@$tire->partno}}</td>
                         <td>{{@$tire->utqg?:'-'}}</td>
                         <td>{{@$tire->speedrating?:'-'}}</td>
