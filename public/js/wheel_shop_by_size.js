@@ -2,65 +2,75 @@
 // Year based filters for Makes 
 $(document).on('change', '.WheelDiameter,.WheelWidth', function() {
     var changeBy = $(this).attr('name');
-    var width = $('.WheelDiameter').val();
-    var profile = $('.WheelWidth').val();
-    NavTireFilters(width, profile, changeBy);
+    var wheeldiameter = $('.WheelDiameter').val();
+    var wheelwidth = $('.WheelWidth').val();
+    var boltpattern = $('.BoltPattern').val();
+    WheelSizeFilters(wheeldiameter, wheelwidth,boltpattern, changeBy);
 });
 
 $(document).ready(function() {
-    var width = $('.WheelDiameter').val();
-    var profile = $('.WheelWidth').val();
-    NavTireFilters(width, profile);
+    var wheeldiameter = $('.WheelDiameter').val();
+    var wheelwidth = $('.WheelWidth').val();
+    var boltpattern = $('.BoltPattern').val();
+    WheelSizeFilters(wheeldiameter, wheelwidth,boltpattern);
 });
 
-function NavTireFilters(width = '',profile = '', changeBy = '') {
+function WheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern = '', changeBy = '') {
     $.ajax({
         method: "GET",
-        url: '/getFiltersByWheelSize',
+    url: '/getFiltersByWheelSize',
         data: {
-            width: width,
-            profile: profile,
+            wheeldiameter: wheeldiameter,
+            wheelwidth: wheelwidth,
+            boltpattern: boltpattern,
             changeBy: changeBy
         }
     }).done(function(data) {
 
-        $('.NavDiameter').empty().append('<option value="">Select Diameter</option>');
 
-        if (changeBy == '' || changeBy == 'profile' ) {
-            $('.NavDiameter').empty().append('<option value="">Select Diameter</option>');
+        if (changeBy == '' || changeBy == 'wheeldiameter') {
+            $('.WheelWidth').empty().append('<option value="">Select Width</option>');
         }
-        if (changeBy == '' || changeBy == 'width') {
-            $('.WheelWidth').empty().append('<option value="">Select Profile</option>');
+        if (changeBy == '' || changeBy == 'wheelwidth' || changeBy == 'wheeldiameter') {
+            $('.BoltPattern').empty().append('<option value="">Select BoltPattern</option>');
         }
-
+        if (changeBy == '' || changeBy == 'wheeldiameter'|| changeBy == 'wheelwidth'|| changeBy == 'boldpattern') {
+            $('.MinOffset').empty().append('<option value="">Selct MinOffset</option>');
+        }
         if (changeBy == '') {
-            data.data['profile'].map(function(value, key) {
-                isSelected = (value.tireprofile == profile) ? 'selected' : '';
-                $('.WheelWidth').append('<option value="' + value.tireprofile + '" ' + isSelected + '>' + value.tireprofile + '</option>');
+            data.data['wheelwidth'].map(function(value, key) {
+                isSelected = (value.wheelwidth == wheelwidth) ? 'selected' : '';
+                $('.WheelWidth').append('<option value="' + value.wheelwidth + '" ' + isSelected + '>' + value.wheelwidth + '</option>');
             });
-            data.data['diameter'].map(function(value, key) {
-                isSelected = (value.tirediameter == diameter) ? 'selected' : '';
-                $('.NavDiameter').append('<option value="' + value.tirediameter + '" ' + isSelected + '>' + value.tirediameter + '</option>');
+            data.data['wheeldiameter'].map(function(value, key) {
+                isSelected = (value.wheeldiameter == wheeldiameter) ? 'selected' : '';
+                $('.WheelDiameter').append('<option value="' + value.wheeldiameter + '" ' + isSelected + '>' + value.wheeldiameter + '</option>');
+            });
+            data.data['boltpattern'].map(function(value, key) {
+                isSelected = (value.boltpattern1 == boltpattern) ? 'selected' : '';
+                $('.BoltPattern').append('<option value="' + value.boltpattern1 + '" ' + isSelected + '>' + value.boltpattern1 + '</option>');
             });
         } else {
             data.data.map(function(value, key) {
-                if (changeBy == 'width') {
-                    $('.WheelWidth').append('<option value="' + value.tireprofile + '">' + value.tireprofile + '</option>');
+                if (changeBy == 'wheeldiameter') {
+                    $('.WheelWidth').append('<option value="' + value.wheelwidth + '">' + value.wheelwidth + '</option>');
                 }
-                if (changeBy == 'profile') {
-                    $('.NavDiameter').append('<option value="' + value.tirediameter + '">' + value.tirediameter + '</option>');
+                if (changeBy == 'wheelwidth') {
+                    // alert(value.boltpattern1)
+                    $('.BoltPattern').append('<option value="' + value.boltpattern1 + '">' + value.boltpattern1 + '</option>');
                 }
+
             });
         }
 
-        if(width != null && changeBy !=''){
+        if(wheeldiameter != null && changeBy !=''){
 
-            $('.WheelDiameter').append('<option value="' + width + '" selected>' + width + '</option>');
+            $('.WheelDiameter').append('<option value="' + wheeldiameter + '" selected>' + wheeldiameter + '</option>');
             // $('.WheelDiameter').trigger("chosen:updated");
         }
 
         // $('.WheelWidth').trigger("chosen:updated");
-        // $('.NavDiameter').trigger("chosen:updated");
+        // $('.WheelDiameter').trigger("chosen:updated");
 
     }).fail(function(msg) {
         alert("fails");

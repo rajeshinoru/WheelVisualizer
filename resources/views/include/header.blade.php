@@ -342,7 +342,6 @@
                                                     <h1>Shop By Vehicle</h1>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    <form action="{{url('/wheels')}}">
                                                         <div class="vehicle-list">
                                                             <div class="dropdown">
                                                                 <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
@@ -376,10 +375,9 @@
                                                                 <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
                                                             </div>
                                                             <a href="">
-                                                                <button type="submit" class="btn vehicle-go">GO</button>
+                                                                <button type="button" class="btn wheel_shop_by_vehicle vehicle-go">GO</button>
                                                             </a>
                                                         </div>
-                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -402,15 +400,15 @@
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select WheelWidth" name="width">
+                                                                <select required="" class="form-control browser-default custom-select WheelWidth" name="wheelwidth">
                                                                     <option value="">Select Width</option>
                                                                 </select>
                                                             </div>
 
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select BoldPattern" name="boldpattern">
-                                                                    <option value="">Select BoldPattern</option>
+                                                                <select required="" class="form-control browser-default custom-select BoltPattern" name="boltpattern">
+                                                                    <option value="">Select BoltPattern</option>
                                                                 </select>
                                                             </div>
 

@@ -6,7 +6,7 @@ $(document).on('change', '.WheelNavYear,.WheelNavMake,.WheelNavModel', function(
     var make = $('.WheelNavMake').val();
     var year = $('.WheelNavYear').val();
     var model = $('.WheelNavModel').val();
-    var driverbody = $('.WheelNavDriveBody').val(); 
+    var driverbody = $('.WheelNavDriveBody  ').val(); 
     WheelNavFilters(year, make, model, driverbody, changeBy);
 });
 // $(document).on('change', '.WheelMake', function() {
@@ -90,10 +90,11 @@ function WheelNavFilters(year = '', make = '', model = '', driverbody = '', chan
 }
 
 //  Driver / Body change your car 
-$('.WheelNavDriveBody').on('change', function() {
-    var car_id = $(this).val();
+$('.wheel_shop_by_vehicle').on('click', function() {
+    var car_id = $('.WheelNavDriveBody').val();
+    alert(window.location.origin+"/wheels?car_id=" + car_id);
     if (car_id != '') {
-        updateParamsToUrl('car_id', car_id);
+        window.location.href = window.location.origin+"/wheels?car_id=" + car_id;
     }
 });
 

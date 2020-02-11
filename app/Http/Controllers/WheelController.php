@@ -83,6 +83,29 @@ class WheelController extends Controller
         //
     }
 
+    public function getFiltersByWheelSize(Request $request){
+       try{
+            $wheel = new Wheel;  
+
+            // Diameter change or Loading filter
+            if(isset($request->wheeldiameter) && $request->changeBy == 'wheeldiameter' || $request->changeBy == '')
+                $allData['wheelwidth'] = $data = $wheel->select('wheelwidth')->distinct('wheelwidth')->wherewheeldiameter($request->wheeldiameter)->orderBy('wheelwidth','DESC')->get();
+
+            // Width change  or Loading Filter
+            if(isset($request->wheeldiameter) && isset($request->wheelwidth) && $request->changeBy == 'wheelwidth' || $request->changeBy == '')
+                $allData['boltpattern'] = $data = $wheel->select('boltpattern1')->distinct('boltpattern1')->where('wheelwidth',$request->wheelwidth)->where('wheeldiameter',$request->wheeldiameter)->get();
+
+            if($request->changeBy == ''){    
+                return response()->json(['data' => $allData]);
+            }
+            return response()->json(['data' => $data]);
+
+        }catch(ModelNotFoundException $notfound){
+            return response()->json(['error' => $notfound->getMessage()]); 
+        }catch(Exception $error){
+            return response()->json(['error' => $error->getMessage()]); 
+        }
+    }
     public function Wheel_Import(){
          // $in_file = public_path('/storage/tires_data/Falken-Export.csv'); 
          $in_file = public_path('/storage/tires_data/All_Wheels.csv'); 

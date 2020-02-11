@@ -52,7 +52,7 @@ class TireController extends Controller
         }
 
         $tires = $tire->select('prodimage','id','prodtitle','tiresize','loadindex','speedrating','price','prodmodel')
-                ->where('tiresize','like', '%' . $chassis_model->tire_size . '%')
+                ->where('tiresize','like', '%' . @$chassis_model->tire_size . '%')
                 ->get()
                 ->unique('prodmodel');
         return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings'));
