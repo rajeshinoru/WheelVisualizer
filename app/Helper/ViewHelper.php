@@ -7,15 +7,15 @@ use App\Vehicle;
 
 //// All Wheel Brands
 function wheelbrands($splitarray = '') {
-	$wheels = Wheel::select('brand');
+	$wheels = Wheel::select('prodbrand');
 	if($splitarray){
 		if($splitarray == 3 || $splitarray == 4)
-	 		$wheels = array_chunk($wheels->addSelect('image','style','wheeldiameter')->inRandomOrder()->take($splitarray*5)->get()->unique('brand')->toArray(), $splitarray); 
+	 		$wheels = array_chunk($wheels->addSelect('prodtitle','prodimage','wheeldiameter')->inRandomOrder()->take($splitarray*5)->get()->unique('prodbrand')->toArray(), $splitarray); 
 	 	else
-	 		$wheels = array_chunk($wheels->addSelect('brand','style')->inRandomOrder()->take(10)->get()->unique('brand')->toArray(), $splitarray); 
+	 		$wheels = array_chunk($wheels->addSelect('prodbrand')->inRandomOrder()->take(10)->get()->unique('prodbrand')->toArray(), $splitarray); 
 	}
  	else
-		$wheels = $wheels->get()->unique('brand');
+		$wheels = $wheels->get()->unique('prodbrand');
  	return $wheels; 
 } 
 

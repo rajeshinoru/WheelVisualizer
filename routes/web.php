@@ -55,6 +55,10 @@ Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->nam
 Route::get('/getFiltersByTire', 'TireController@getFiltersByTire')->name('getFiltersByTire');
 Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFiltersByTire');
 
+// Filters By Wheel sizes
+Route::get('/getFiltersByWheelSize', 'TireController@getFiltersByWheelSize')->name('getFiltersByWheelSize');
+Route::get('/setFiltersByWheelSize', 'TireController@setFiltersByWheelSize')->name('setFiltersByWheelSize');
+
 // Tires Module Routes
 Route::get('/tires', 'TireController@index')->name('tires');
 Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');

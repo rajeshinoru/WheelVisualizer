@@ -75,18 +75,18 @@ function NavFilters(year = '', make = '', model = '',submodel = '', changeBy = '
         // $('.NavYear').trigger("chosen:updated");
         // $('.NavModel').trigger("chosen:updated");
         // $('.DriveBody').trigger("chosen:updated");
-        if (changeBy == 'make') {
-            $('.NavYear').focus();
-            $('.NavYear').childrens('option').show();
-        }
-        if (changeBy == 'year') {
-            $('.NavModel').focus();
-            $('.NavModel').childrens('option').show();
-        }
-        if (changeBy == 'model') {
-            $('.NavSubmodel').focus();
-            $('.NavSubmodel').childrens('option').show();
-        }
+        // if (changeBy == 'make') {
+        //     $('.NavYear').focus();
+        //     $('.NavYear').childrens('option').show();
+        // }
+        // if (changeBy == 'year') {
+        //     $('.NavModel').focus();
+        //     $('.NavModel').childrens('option').show();
+        // }
+        // if (changeBy == 'model') {
+        //     $('.NavSubmodel').focus();
+        //     $('.NavSubmodel').childrens('option').show();
+        // }
     }).fail(function(msg) {
         alert("fails");
     });

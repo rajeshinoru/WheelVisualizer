@@ -27,7 +27,7 @@ class CreateWheelsTable extends Migration
             $table->string('prodheaderid')->nullable();
             $table->string('prodfooterid')->nullable();
             $table->string('prodinfoid')->nullable();
-            $table->string('proddesc')->nullable();
+            $table->longText('proddesc')->nullable();
             $table->string('wheeltype')->nullable();
             $table->string('duallyrear')->nullable();
             $table->double('wheeldiameter')->nullable();
@@ -54,7 +54,7 @@ class CreateWheelsTable extends Migration
             $table->string('shpcode')->nullable();
             $table->string('shpflatrate')->nullable();
             $table->string('partno_old')->nullable();
-            $table->string('metadesc')->nullable();
+            $table->longText('metadesc')->nullable();
             $table->string('qtyavail')->nullable();
             $table->string('proddetailid')->nullable();
             $table->string('productid')->nullable();

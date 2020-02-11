@@ -324,7 +324,7 @@
                                     <ul class="dropdown-menu nav-dropdown">
                                         <!-- <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                         @forelse(wheelbrands() as $brand)
-                                        <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->brand}}</a></li>
+                                        <li><a title="{{$brand->prodbrand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->prodbrand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->prodbrand}}</a></li>
                                         @empty @endforelse -->
 
                                         <!-- New Menu Start-->
@@ -342,10 +342,10 @@
                                                     <h1>Shop By Vehicle</h1>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    <form action="{{url('/setFiltersByVehicle')}}">
+                                                    <form action="{{url('/wheels')}}">
                                                         <div class="vehicle-list">
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavMake1" name="make">
+                                                                <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
                                                                     <option value="">Select Make</option>
                                                                     @foreach(getVehicleMakeList() as $key => $make)
                                                                     <option value="{{$make}}">{{$make}}</option>
@@ -354,21 +354,21 @@
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavYear1" name="year">
+                                                                <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
                                                                     <option value="">Year</option>
                                                                 </select>
                                                             </div>
 
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavModel1" name="model">
+                                                                <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
                                                                     <option value="">Model</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavSubmodel1" name="submodel">
-                                                                    <option value="">Trim</option>
+                                                                <select required="" class="form-control browser-default custom-select WheelNavDriveBody" name="drivebody">
+                                                                    <option value="">Drive Body</option>
 
                                                                 </select>
                                                             </div>
@@ -452,7 +452,7 @@
                                                                 <ul class="tire-dropdown-menu">
                                                                     <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                                                 @forelse(wheelbrands() as $brand)
-                                                                   <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->brand}}</a></li>
+                                                                   <li><a title="{{$brand->prodbrand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->prodbrand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->prodbrand}}</a></li>
                                                                 @empty @endforelse
                                                                 </ul>
 

@@ -9,16 +9,16 @@ $(document).on('change', '.Year,.Make,.Model', function() {
     var driverbody = $('.DriveBody').val(); 
     filters(year, make, model, driverbody, changeBy);
 });
-$(document).on('change', '.NavMake', function() {
-    var changeBy = $(this).attr('name');
+// $(document).on('change', '.NavMake', function() {
+//     var changeBy = $(this).attr('name');
 
-    $('.Make').val(make);
-    $('.Year').val(year);
-    $('.Model').val(model);
-    $('.DriveBody').val(driverbody); 
+//     $('.Make').val(make);
+//     $('.Year').val(year);
+//     $('.Model').val(model);
+//     $('.DriveBody').val(driverbody); 
 
-    filters(year, make, model, driverbody, changeBy);
-});
+//     filters(year, make, model, driverbody, changeBy);
+// });
 
 $(document).ready(function() {
     var make = $('.Make').val();
