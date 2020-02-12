@@ -116,6 +116,64 @@ $diff_tires =  Tire::select('id','warranty','tiresize',
             return response()->json(['error' => $error->getMessage()]); 
         }
     } 
+
+    public function wheelbrand(Request $request)
+    {
+        try{ 
+            $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->get(); 
+
+            $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style'); 
+    
+            if(isset($request->brand) && $request->brand) 
+                $Wheels = $Wheels->whereIn('brand',json_decode(base64_decode($request->brand)));
+
+            if(isset($request->diameter) && $request->diameter)
+                $Wheels = $Wheels->whereIn('wheeldiameter',json_decode(base64_decode($request->diameter)));
+
+            if(isset($request->width) && $request->width)
+                $Wheels = $Wheels->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
+
+            if(isset($request->search))
+                $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
+
+            $Wheels = $Wheels->inRandomOrder()->paginate(9); 
+            ///Brand with count
+            $brands = Wheel::select('brand', \DB::raw('count(*) as total'))->groupBy('brand')->get()->sortBy('brand'); 
+
+            ///wheeldiameter with count 
+            if(isset($request->brand) && $request->brand)
+                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
+            else 
+                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter'); 
+
+            ///wheelwidth with count  
+            if(isset($request->brand) && $request->brand)
+                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
+            else
+                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
+
+            ///Color based cars 
+            if(isset($request->car_id) && $request->car_id){
+
+                $car_id = json_decode(base64_decode($request->car_id)); 
+
+                $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($car_id)
+                ->with(['CarViflist' => function($query) {
+                    $query->select('vif', 'yr','make','model','body','drs','whls');
+
+                },'CarColor'])->first();
+
+            }else
+                $car_images = ''; 
+                
+            return view('wheelbrand',compact('years','Wheels','car_images','brands','wheeldiameter','wheelwidth')); 
+            
+        }catch(ModelNotFoundException $notfound){
+            return response()->json(['error' => $notfound->getMessage()]); 
+        }catch(Exception $error){
+            return response()->json(['error' => $error->getMessage()]); 
+        }
+    } 
     public function vehicledetails(Request $request)
     { 
         try{

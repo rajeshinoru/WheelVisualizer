@@ -155,6 +155,22 @@
     .tire-type a {
         font-size: 12px !important;
     }
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+        background: #ecb23d !important;
+        border: none !important;
+        padding: 8px 5px !important;
+        border-radius: 50% !important;
+        z-index:999;
+        width: 40px;
+        height: 40px;
+}
+#back-to-top:hover i {
+    top: 5px !important;
+}
 </style>
 
 
@@ -232,3 +248,33 @@
         </div>
     </div>
 </section>
+
+
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="" data-toggle="tooltip" data-placement="left">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+</a>
+
+
+
+<script>
+$(document).ready(function(){
+     $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+        
+        $('#back-to-top').tooltip('show');
+
+});
+</script>

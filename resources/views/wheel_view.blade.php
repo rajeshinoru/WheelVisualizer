@@ -322,7 +322,17 @@
         font-family: play !important;
         font-size: 12px !important;
     }
-    
+    .wheel-des .wheel-brand-img {
+        width: 75% !important;
+    }
+    .wheel-brand-img2
+    {
+        width: 70% !important;
+    }
+    .col-sm-9.wheel_view_list .tab-content
+    {
+        margin-bottom:0px !important;
+    }
     @media (max-width: 767px) {
         .row.wheel-view h1 {
             font-family: oswald !important;
@@ -349,8 +359,8 @@
                 <div class="col-sm-3 wheel-img">
                     <div class="wheel-des">
                         <img src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg">
-                        <h1>Price for TIRE ONLY</h1>
-                        <h2>Rim depicted in image NOT INCLUDED</h2>
+                        <h1>Lip Size Information</h1>
+                        <img src="image/wheel-brand.png" class="wheel-brand-img">
                     </div>
                 </div>
 
@@ -492,7 +502,7 @@
                         </div>
                         <div class="col-sm-4 wheel-View-but">
                             <div class="new-model-button">
-                                <img src="image/pay4.png">
+                                <img src="image/wheel-brand.png" class="wheel-brand-img2">
                                 <div class="wheel_view_ship">
                                     <button class="btn btn-info" type="button"><a>Shopping Cart</a></button>
                                 </div>

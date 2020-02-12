@@ -63,7 +63,7 @@
     </div>
 
     <style>
-        .dropdown-menu.multi-colum-nav 
+        .dropdown-menu.multi-colum-nav
         {
             width: 1200px !important;
             background: #f4f4f4 !important;
@@ -71,7 +71,7 @@
         }
         .dropdown-menu.nav-dropdown
         {
-            width: 1200px !important;
+            width: 1500px !important;
             background: #f4f4f4 !important;
             border: none !important;
         }
@@ -177,10 +177,10 @@
 
         .col-sm-12.tire-menu ul {
             list-style-type: none !important;
-            column-count:6;
+            column-count:7;
         }
 
-        .col-sm-12.tire-menu ul li 
+        .col-sm-12.tire-menu ul li
         {
             color: #000 !important;
             font-size: 12px !important;
@@ -191,7 +191,7 @@
         .col-sm-12.tire-menu li a:hover {
             color: #ecb23d !important;
         }
-        .tire-dropdown-menu 
+        .tire-dropdown-menu
         {
             column-count: 9;
         }
@@ -305,7 +305,7 @@
     </style>
 
     <nav id="myHeader" class="new-navbar">
-        
+
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
@@ -435,12 +435,12 @@
                                                         <div class="row">
 
                                                             <div class="col-sm-12 tire-menu">
-                                                                <ul>
+                                                                <ul class="tire-dropdown-menu">
                                                                 <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                                                 @forelse(wheelbrands() as $brand)
                                                                 <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->brand}}</a></li>
                                                                 @empty @endforelse
-                                                                </ul> 
+                                                                </ul>
 
                                                                 <!-- <ul class="tire-dropdown-menu">
                                                                     <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
@@ -464,7 +464,7 @@
                                                                 </ul> -->
 
                                                             </div>
-                                                            
+
 
                                                         </div>
                                                     </div>
@@ -594,9 +594,11 @@
                                                                     @foreach(getTireBrandList() as $key => $tirebrand)
                                                                     <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
                                                                     @endforeach
-                                                                </ul> 
+                                                                </ul>
 
                                                             </div>
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -626,7 +628,7 @@
                     </div>
                 </div>
             </div>
-       
+
     </nav>
 
 </header>
