@@ -19,8 +19,8 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');
 Route::get('/wheels', 'HomeController@wheels')->name('wheels');
-Route::get('/wheelview/{tire_id?}', 'HomeController@wheelview')->name('wheelview');
-Route::get('/wheelbrand/{tire_id?}', 'HomeController@wheelbrand')->name('wheelbrand');
+Route::get('/wheelview/{wheel_id?}', 'HomeController@wheelview')->name('wheelview');
+Route::get('/wheelbrand/{wheel_id?}', 'HomeController@wheelbrand')->name('wheelbrand');
 Route::get('/csvuplaod', 'HomeController@csv_upload')->name('csvuplaod');
 Route::get('/csvuplaodcolor', 'HomeController@csv_upload_color')->name('csvuplaodcolor');
 Route::get('/wheels-data', 'HomeController@wheels')->name('wheels_data');
@@ -58,7 +58,7 @@ Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFil
 
 // Filters By Wheel sizes
 Route::get('/getFiltersByWheelSize', 'WheelController@getFiltersByWheelSize')->name('getFiltersByWheelSize');
-Route::get('/setFiltersByWheelSize', 'WheelController@setFiltersByWheelSize')->name('setFiltersByWheelSize');
+// Route::get('/setFiltersByWheelSize', 'WheelController@setFiltersByWheelSize')->name('setFiltersByWheelSize');
 
 // Tires Module Routes
 Route::get('/tires', 'TireController@index')->name('tires');

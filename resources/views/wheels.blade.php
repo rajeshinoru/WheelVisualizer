@@ -3,6 +3,20 @@
 @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+<style>
+.col-sm-12.wheel-des p {
+    font-family: play !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #000 !important;
+    margin: 0px 0px !important;
+    text-align:justify;
+}
+.wheel-des
+{
+    padding: 20px 20px !important;
+}
+</style>
 @endsection 
 @section('content')  
 <!-- BAnner Down Sestion Start -->
@@ -11,7 +25,14 @@
         <div class="row">
             <div class="col-sm-12 sub-head">
                 <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1>
-            </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-12 wheel-des">
+                    @forelse(@$branddesc as $desc)
+                    <p>{!! @$desc->proddesc !!}</p>
+                    @empty
+                    @endforelse
+                </div>
             <div class="row main-pro">
                 <div class="col-sm-3">
                     <div class="header-bottom col-sm-12">
@@ -164,7 +185,7 @@
 
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4><a href="{{url('/wheelview')}}">{{@$wheel->prodtitle}} <br> {{'Diameter : '.@$wheel->wheeldiameter}}</a></h4>
+                                        <h4><a href="{{url('/wheelview',$wheel->id)}}">{{@$wheel->prodtitle}} <br> {{'Diameter : '.@$wheel->wheeldiameter}}</a></h4>
 
                                       <!--   <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array(@$wheel->prodbrand)))}}">{{@$wheel->prodtitle}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4> -->
                                         <!-- <h6><a href="">Accessories</a></h6> -->
@@ -305,6 +326,7 @@
                     {{$Wheels->appends(['diameter' => @Request::get('diameter'),'width' => @Request::get('width'),'brand' => @Request::get('brand'),'car_id' => @Request::get('car_id'),'page' => @Request::get('page')])->links()}}
                 </div>
             </div>
+        </div> 
         </div> 
     </section>   
 

@@ -95,6 +95,14 @@ class WheelController extends Controller
             if(isset($request->wheeldiameter) && isset($request->wheelwidth) && $request->changeBy == 'wheelwidth' || $request->changeBy == '')
                 $allData['boltpattern'] = $data = $wheel->select('boltpattern1')->distinct('boltpattern1')->where('wheelwidth',$request->wheelwidth)->where('wheeldiameter',$request->wheeldiameter)->get();
 
+            // boltpattern change  or Loading Filter
+            if(isset($request->wheeldiameter) && isset($request->wheelwidth) && isset($request->boltpattern) && $request->changeBy == 'boltpattern' || $request->changeBy == '')
+                $allData['minoffset'] = $data = $wheel->select('offset1')->distinct('offset1')->where('wheelwidth',$request->wheelwidth)->where('boltpattern1',$request->boltpattern)->where('wheeldiameter',$request->wheeldiameter)->get();
+
+            // minoffset change  or Loading Filter
+            if(isset($request->wheeldiameter) && isset($request->wheelwidth) && isset($request->boltpattern) && isset($request->minoffset) && isset($request->minoffset) && $request->changeBy == 'minoffset' || $request->changeBy == '')
+                $allData['maxoffset'] = $data = $wheel->select('offset2')->distinct('offset1')->where('wheelwidth',$request->wheelwidth)->where('boltpattern1',$request->boltpattern)->where('wheeldiameter',$request->wheeldiameter)->where('offset1',$request->minoffset)->get();
+
             if($request->changeBy == ''){    
                 return response()->json(['data' => $allData]);
             }

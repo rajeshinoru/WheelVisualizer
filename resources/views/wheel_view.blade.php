@@ -341,6 +341,11 @@
             line-height: 30px !important;
         }
     }
+    .activetab .nav-tabs li.active a
+    {
+        background-color: #ecb23d !important;
+        color: #ffff;
+    }
 </style>
 
 </section>
@@ -358,68 +363,68 @@
 
                 <div class="col-sm-3 wheel-img">
                     <div class="wheel-des">
-                        <img src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg">
+                        <img src="{{asset(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
                         <h1>Lip Size Information</h1>
-                        <img src="image/wheel-brand.png" class="wheel-brand-img">
+                        <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img">
                     </div>
                 </div>
 
                 <div class="col-sm-9 wheel_view_list">
                     <div class="row wheel-view">
-                        <h1>2 Crave Wheels No.33 22x9 Gloss Black with Machined Face 15mm Offset</h1>
+                        <h1>{{@$Wheel->prodtitle}}</h1>
                     </div>
-                    <div class="row">
+                    <div class="row activetab">
                         <div class="col-sm-4">
 
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#home">20</a></li>
-                                <li><a data-toggle="tab" href="#menu1">22</a></li>
+                                <li class="active"><a data-toggle="tab" href="#home">{{@$wheel->wheeldiameter}}</a></li>
+                                <!-- <li><a data-toggle="tab" href="#menu1">22</a></li> -->
                             </ul>
 
                             <div class="tab-content">
 
                                 <div id="home" class="tab-pane fade in active">
                                     <h2>Front & Rear</h2>
-                                    <div class="col-sm-12 wheel-view-select">
+                                    {{--<div class="col-sm-12 wheel-view-select">
                                         <select id="">
                                             <option value="">22X9 32mm</option>
                                             <option value="">22X9 30mm</option>
                                         </select>
-                                    </div>
+                                    </div>--}}
                                     <div class="table-responsive wheel_view">
                                         <table class="table">
                                             <tbody>
                                                 <tr>
                                                     <td>Size</td>
-                                                    <td>20x8.5</td>
+                                                    <td>{{@$wheel->width.'x'.@$wheel->height}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Finish</td>
-                                                    <td>Black</td>
+                                                    <td>{{@$wheel->prodfinish}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Offset</td>
-                                                    <td>40mm</td>
+                                                    <td>{{@$wheel->offset1.'mm'}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Hub Bore</td>
-                                                    <td>74.1mm</td>
+                                                    <td>{{@$wheel->hubbore.'mm'}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Brand</td>
-                                                    <td>Helo</td>
+                                                    <td>{{@$wheel->prodbrand}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Name</td>
-                                                    <td>HE915</td>
+                                                    <td>{{@explode('-',@$wheel->partno)[0]}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>PN</td>
-                                                    <td>HE91528517340</td>
+                                                    <td>{{@$wheel->partno}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Bolt Pattern</td>
-                                                    <td>Fits 5x114 and 5x120 bolt patterns</td>
+                                                    <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$wheel->boltpattern1.' '.@$wheel->boltpattern2.' '.@$wheel->boltpattern3}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -428,46 +433,46 @@
 
                                 <div id="menu1" class="tab-pane fade">
                                     <h2>Front & Rear</h2>
-                                    <div class="col-sm-12 wheel-view-select">
+                                    {{--<div class="col-sm-12 wheel-view-select">
                                         <select id="">
                                             <option value="">22X9 32mm</option>
                                             <option value="">22X9 30mm</option>
                                         </select>
-                                    </div>
+                                    </div>--}}
                                     <div class="table-responsive wheel_view">
                                         <table class="table">
                                             <tbody>
                                                 <tr>
                                                     <td>Size</td>
-                                                    <td>20x8.5</td>
+                                                    <td>{{@$wheel->width.'x'.@$wheel->height}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Finish</td>
-                                                    <td>Black</td>
+                                                    <td>{{@$wheel->prodfinish}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Offset</td>
-                                                    <td>40mm</td>
+                                                    <td>{{@$wheel->offset1.'mm'}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Hub Bore</td>
-                                                    <td>74.1mm</td>
+                                                    <td>{{@$wheel->hubbore.'mm'}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Brand</td>
-                                                    <td>Helo</td>
+                                                    <td>{{@$wheel->prodbrand}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Name</td>
-                                                    <td>HE915</td>
+                                                    <td>{{@explode('-',@$wheel->partno)[0]}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>PN</td>
-                                                    <td>HE91528517340</td>
+                                                    <td>{{@$wheel->partno}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Bolt Pattern</td>
-                                                    <td>Fits 5x114 and 5x120 bolt patterns</td>
+                                                    <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$wheel->boltpattern1.' '.@$wheel->boltpattern2.' '.@$wheel->boltpattern3}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -478,31 +483,31 @@
 
                         </div>
                         <div class="col-sm-4">
-                            <img src="image/pay4.png">
-                            <img src="image/pay5.png">
+                            <img src="{{url('image/pay4.png')}}">
+                            <img src="{{url('image/pay5.png')}}">
                             <!--  -->
                             <div class="price-section">
-                                <h2>Original Price : <span class="price-old">$422.55</span> 
-                                You Save : <span class="price-new2">$109.55</span>
+                                <h2>Original Price : <span class="price-old">${{@$wheel->saleprice ?? 0}}</span> 
+                                You Save : <span class="price-new2">$0</span>
                             </h2>
-                                <p>Set of 4 : <span class="price-new2">$1252</span></p>
-                                <p>Your Price : <span class="price-new2">$313</span></p>
+                                <p>Set of 4 : <span class="price-new2">${{@$wheel->price*4}}</span></p>
+                                <p>Your Price : <span class="price-new2">${{@$wheel->price}}</span></p>
                                 <p>Starting at $15/mo with </p>
                                 <div class="form-head">
                                     <div class="form-group product-quantity">
                                         <label class="control-label" for="input-quantity">Qty</label>
-                                        <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
+                                        <input type="text" name="quantity" value="{{@$wheel->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
                                         <input type="hidden" name="product_id" value="46">
                                         <button class="btn btn-info" type="button">Add to Cart</button>
                                     </div>
                                 </div>
-                                <h1 class="instock-head">Availability:<b>In Stock</b></h1>
+                                <h1 class="instock-head">Availability:<b>{{@$wheel->qtyavail ? 'In Stock' : 'Out Of Stock' }}</b></h1>
                             </div>
                             <!--  -->
                         </div>
                         <div class="col-sm-4 wheel-View-but">
                             <div class="new-model-button">
-                                <img src="image/wheel-brand.png" class="wheel-brand-img2">
+                                <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img2">
                                 <div class="wheel_view_ship">
                                     <button class="btn btn-info" type="button"><a>Shopping Cart</a></button>
                                 </div>
