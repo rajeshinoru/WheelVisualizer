@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tire;
 use App\ChassisModel;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use DB;
 class TireController extends Controller
@@ -23,14 +24,16 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list(Request $request,$tire_size='')
+    public function list(Request $request,$chassis_model_id='',$vehicle_id='')
     {
- 
+        
         $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->groupBy('loadindex')->get()->sortBy('loadindex');
-        // ->where('tiresize','like', '%' . base64_decode($tire_size) . '%')
+        // ->where('tiresize','like', '%' . base64_decode($chassis_model_id) . '%')
         $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->groupBy('speedrating')->get()->sortBy('speedrating');
 
-
+        $chassis_model = ChassisModel::find(base64_decode($chassis_model_id));
+        $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first();
+        // dd($vehicle);
         $tire = new Tire;
         if($request->has('tirebrand')){
             if($request->tirebrand !=''){
@@ -49,10 +52,10 @@ class TireController extends Controller
         }
 
         $tires = $tire->select('prodimage','id','prodtitle','tiresize','loadindex','speedrating','price','prodmodel')
-                ->where('tiresize','like', '%' . base64_decode($tire_size) . '%')
+                ->where('tiresize','like', '%' . @$chassis_model->tire_size . '%')
                 ->get()
                 ->unique('prodmodel');
-        return view('tires_list',compact('tires','load_indexs','speedratings'));
+        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings'));
     }
 
     /**
@@ -65,7 +68,7 @@ class TireController extends Controller
         $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
                 'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
                 'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
-                'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3')
+                'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3','detaildesctype','detaildescfeatures')
                 ->where('id',base64_decode($tire_id))
                 ->with(['Brand'])->first();
         $diff_tires =  Tire::select('id','warranty','tiresize',

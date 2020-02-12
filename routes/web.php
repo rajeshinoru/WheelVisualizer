@@ -34,6 +34,7 @@ Route::get('/tiredetailimages', 'HomeController@tiredetailimages');
 
 
 
+Route::get('/Wheel_Import', 'WheelController@Wheel_Import');
 Route::get('/Falken_Import', 'TireController@Falken_Import');
 Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
 Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
@@ -55,9 +56,13 @@ Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->nam
 Route::get('/getFiltersByTire', 'TireController@getFiltersByTire')->name('getFiltersByTire');
 Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFiltersByTire');
 
+// Filters By Wheel sizes
+Route::get('/getFiltersByWheelSize', 'WheelController@getFiltersByWheelSize')->name('getFiltersByWheelSize');
+Route::get('/setFiltersByWheelSize', 'WheelController@setFiltersByWheelSize')->name('setFiltersByWheelSize');
+
 // Tires Module Routes
 Route::get('/tires', 'TireController@index')->name('tires');
-Route::get('/tirelist/{tire_size?}', 'TireController@list')->name('tirelist');
+Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
 Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
 Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');

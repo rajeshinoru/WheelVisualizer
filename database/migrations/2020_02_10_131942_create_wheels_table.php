@@ -13,6 +13,7 @@ class CreateWheelsTable extends Migration
      */
     public function up()
     {
+        Schema::rename('wheels', 'wheels_bkp1');
         Schema::create('wheels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('prodtitle')->nullable();
@@ -27,7 +28,7 @@ class CreateWheelsTable extends Migration
             $table->string('prodheaderid')->nullable();
             $table->string('prodfooterid')->nullable();
             $table->string('prodinfoid')->nullable();
-            $table->longText('proddesc')->nullable();
+            $table->string('proddesc')->nullable();
             $table->string('wheeltype')->nullable();
             $table->string('duallyrear')->nullable();
             $table->double('wheeldiameter')->nullable();
@@ -54,7 +55,7 @@ class CreateWheelsTable extends Migration
             $table->string('shpcode')->nullable();
             $table->string('shpflatrate')->nullable();
             $table->string('partno_old')->nullable();
-            $table->longText('metadesc')->nullable();
+            $table->string('metadesc')->nullable();
             $table->string('qtyavail')->nullable();
             $table->string('proddetailid')->nullable();
             $table->string('productid')->nullable();
@@ -68,6 +69,8 @@ class CreateWheelsTable extends Migration
             $table->string('offset1')->nullable();
             $table->string('offset2')->nullable();
             $table->string('hubbore')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
             // $table->string('part_no')->nullable();
             // $table->string('brand')->nullable();
             // $table->string('style')->nullable();

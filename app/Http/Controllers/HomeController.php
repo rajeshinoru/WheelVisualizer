@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {  
-        $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
+        $Wheels = Wheel::select('prodtitle','prodbrand','prodimage','wheeldiameter','wheelwidth')->inRandomOrder()->paginate(12); ;
         $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->limit(10)->get(); 
 
         return view('home',compact('Wheels','years'));
@@ -52,7 +52,7 @@ class HomeController extends Controller
         'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3')
         ->where('id',$tire_id)
         ->with(['Brand'])->first();
-$diff_tires =  Tire::select('id','warranty','tiresize',
+        $diff_tires =  Tire::select('id','warranty','tiresize',
         'speedrating','loadindex','utqg','partno','price','prodmodel')
         ->where('tiresize',$tire->tiresize)
         ->with(['Brand'])
@@ -64,10 +64,10 @@ $diff_tires =  Tire::select('id','warranty','tiresize',
         try{ 
             $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->get(); 
 
-            $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style'); 
+            $Wheels = Wheel::select('prodbrand','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish'); 
     
             if(isset($request->brand) && $request->brand) 
-                $Wheels = $Wheels->whereIn('brand',json_decode(base64_decode($request->brand)));
+                $Wheels = $Wheels->whereIn('prodbrand',json_decode(base64_decode($request->brand)));
 
             if(isset($request->diameter) && $request->diameter)
                 $Wheels = $Wheels->whereIn('wheeldiameter',json_decode(base64_decode($request->diameter)));
@@ -76,21 +76,22 @@ $diff_tires =  Tire::select('id','warranty','tiresize',
                 $Wheels = $Wheels->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
 
             if(isset($request->search))
-                $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
+                $Wheels = $Wheels->where('prodbrand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
 
+            // $Wheels = $Wheels->inRandomOrder()->get()->unique('prodfinish');
             $Wheels = $Wheels->inRandomOrder()->paginate(9); 
             ///Brand with count
-            $brands = Wheel::select('brand', \DB::raw('count(*) as total'))->groupBy('brand')->get()->sortBy('brand'); 
+            $brands = Wheel::select('prodbrand', \DB::raw('count(*) as total'))->groupBy('prodbrand')->get()->sortBy('prodbrand'); 
 
             ///wheeldiameter with count 
             if(isset($request->brand) && $request->brand)
-                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
+                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('prodbrand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
             else 
                 $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter'); 
 
             ///wheelwidth with count  
             if(isset($request->brand) && $request->brand)
-                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
+                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('prodbrand',json_decode(base64_decode($request->brand)))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
             else
                 $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
 
@@ -397,9 +398,6 @@ $diff_tires =  Tire::select('id','warranty','tiresize',
         return 'success';
     }
 
-
-
-
     function fold_fil(Request $request)
     {  
         try{ 
@@ -409,16 +407,6 @@ $diff_tires =  Tire::select('id','warranty','tiresize',
             dd($e);
         }
     }
-
-
-
-
-
-
-
-
-
-
 
     public function tiredetailimages()
     {

@@ -185,7 +185,7 @@
             color: #000 !important;
             font-size: 12px !important;
             padding: 5px 0px !important;
-            border-bottom:1px solid #22222254 !important;
+            /*border-bottom:1px solid #22222254 !important;*/
         }
 
         .col-sm-12.tire-menu li a:hover {
@@ -193,7 +193,8 @@
         }
         .tire-dropdown-menu
         {
-            column-count: 9;
+
+            column-count: 4;
         }
         .car-truck-head i {
             font-size: 25px !important;
@@ -323,7 +324,7 @@
                                     <ul class="dropdown-menu nav-dropdown">
                                         <!-- <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                         @forelse(wheelbrands() as $brand)
-                                        <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->brand}}</a></li>
+                                        <li><a title="{{$brand->prodbrand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->prodbrand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->prodbrand}}</a></li>
                                         @empty @endforelse -->
 
                                         <!-- New Menu Start-->
@@ -338,13 +339,12 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Wheel</h1>
+                                                    <h1>Shop By Vehicle</h1>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    <form action="{{url('/setFiltersByVehicle')}}">
                                                         <div class="vehicle-list">
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavMake" name="make">
+                                                                <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
                                                                     <option value="">Select Make</option>
                                                                     @foreach(getVehicleMakeList() as $key => $make)
                                                                     <option value="{{$make}}">{{$make}}</option>
@@ -353,21 +353,21 @@
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavYear" name="year">
+                                                                <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
                                                                     <option value="">Year</option>
                                                                 </select>
                                                             </div>
 
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavModel" name="model">
+                                                                <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
                                                                     <option value="">Model</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavSubmodel" name="submodel">
-                                                                    <option value="">Trim</option>
+                                                                <select required="" class="form-control browser-default custom-select WheelNavDriveBody" name="drivebody">
+                                                                    <option value="">Drive Body</option>
 
                                                                 </select>
                                                             </div>
@@ -375,10 +375,9 @@
                                                                 <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
                                                             </div>
                                                             <a href="">
-                                                                <button type="submit" class="btn vehicle-go">GO</button>
+                                                                <button type="button" class="btn wheel_shop_by_vehicle vehicle-go">GO</button>
                                                             </a>
                                                         </div>
-                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -389,27 +388,38 @@
                                                     <h1>Shop By Wheel Size</h1>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    <form action="{{url('/setFiltersByTire')}}">
+                                                    <form action="{{url('/')}}">
                                                         <div class="vehicle-list">
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavWidth" name="width">
-                                                                    <option value="">Select Width</option>
-                                                                    @foreach(getTireWidthList() as $key => $tire)
-                                                                    <option value="{{$tire}}">{{$tire}}</option>
+                                                                <select required="" class="form-control browser-default custom-select WheelDiameter" name="wheeldiameter">
+                                                                    <option value="">Select Diameter</option>
+                                                                    @foreach(getWheelDiameterList() as $key => $diameter)
+                                                                    <option value="{{$diameter}}">{{$diameter}}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavProfile" name="profile">
-                                                                    <option value="">Select Profile</option>
+                                                                <select required="" class="form-control browser-default custom-select WheelWidth" name="wheelwidth">
+                                                                    <option value="">Select Width</option>
                                                                 </select>
                                                             </div>
 
 
                                                             <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavDiameter" name="diameter">
-                                                                    <option value="">Select Diameter</option>
+                                                                <select required="" class="form-control browser-default custom-select BoltPattern" name="boltpattern">
+                                                                    <option value="">Select BoltPattern</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select MinOffset" name="minoffset">
+                                                                    <option value="">Select MinOffset</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="dropdown">
+                                                                <select required="" class="form-control browser-default custom-select MaxOffset" name="maxoffset">
+                                                                    <option value="">Select MaxOffset</option>
                                                                 </select>
                                                             </div>
 
@@ -435,34 +445,15 @@
                                                         <div class="row">
 
                                                             <div class="col-sm-12 tire-menu">
+
+                                                               
                                                                 <ul class="tire-dropdown-menu">
-                                                                <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
+                                                                    <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
+
                                                                 @forelse(wheelbrands() as $brand)
-                                                                <li><a title="{{$brand->brand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->brand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->brand}}</a></li>
+                                                                   <li><a title="{{$brand->prodbrand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->prodbrand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->prodbrand}}</a></li>
                                                                 @empty @endforelse
                                                                 </ul>
-
-                                                                <!-- <ul class="tire-dropdown-menu">
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Tire</a></li>
-                                                                </ul> -->
-
                                                             </div>
 
 

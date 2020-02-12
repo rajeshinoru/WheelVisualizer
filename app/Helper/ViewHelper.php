@@ -7,15 +7,15 @@ use App\Vehicle;
 
 //// All Wheel Brands
 function wheelbrands($splitarray = '') {
-	$wheels = Wheel::select('brand');
+	$wheels = Wheel::select('prodbrand');
 	if($splitarray){
 		if($splitarray == 3 || $splitarray == 4)
-	 		$wheels = array_chunk($wheels->addSelect('image','style','wheeldiameter')->inRandomOrder()->take($splitarray*5)->get()->unique('brand')->toArray(), $splitarray); 
+	 		$wheels = array_chunk($wheels->addSelect('prodtitle','prodimage','wheeldiameter')->inRandomOrder()->take($splitarray*5)->get()->unique('prodbrand')->toArray(), $splitarray); 
 	 	else
-	 		$wheels = array_chunk($wheels->addSelect('brand','style')->inRandomOrder()->take(10)->get()->unique('brand')->toArray(), $splitarray); 
+	 		$wheels = array_chunk($wheels->addSelect('prodbrand')->inRandomOrder()->take(10)->get()->unique('prodbrand')->toArray(), $splitarray); 
 	}
  	else
-		$wheels = $wheels->get()->unique('brand');
+		$wheels = $wheels->get()->unique('prodbrand');
  	return $wheels; 
 } 
 
@@ -80,7 +80,11 @@ function getMakeList(){
         $make = Viflist::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make'); 
         return $make;
 }
+function getWheelBrandList(){
 
+        $brand = Wheel::select('brand')->distinct('brand')->orderBy('brand','Asc')->pluck('brand'); 
+        return $brand;
+}
 function getTireBrandList(){
 
         $tires = Tire::select('prodbrand')->distinct('prodbrand')->pluck('prodbrand')->toArray(); 
@@ -93,6 +97,12 @@ function getTireWidthList(){
         rsort($tires);
         return $tires;
 }
+function getWheelDiameterList(){
+        $wheels = Wheel::select('wheeldiameter')->distinct('wheeldiameter')->pluck('wheeldiameter')->toArray(); 
+        rsort($wheels);
+        return $wheels;
+}
+
 function getVehicleMakeList(){
 
         $make = Vehicle::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make');
