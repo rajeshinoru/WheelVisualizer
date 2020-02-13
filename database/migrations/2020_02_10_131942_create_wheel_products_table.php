@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWheelsTable extends Migration
+class CreateWheelProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateWheelsTable extends Migration
      */
     public function up()
     {
-        Schema::rename('wheels', 'wheels_bkp1');
-        Schema::create('wheels', function (Blueprint $table) {
+
+        Schema::create('wheel_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('prodtitle')->nullable();
             $table->string('prodbrand')->nullable();
@@ -96,6 +96,6 @@ class CreateWheelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wheels');
+        Schema::dropIfExists('wheel_products');
     }
 }

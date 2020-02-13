@@ -419,7 +419,7 @@
                 <?php if($key == count($Wheels)/2 ) break; ?>
                 <li class="gridItem homeapge1">
                     <div class="homecelld">
-                        <a href=""><img  class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->prodimage)}}" style="display: inline;" width="150" height="150"></a>
+                        <a href=""><img  class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
                     </div>
                     <div class="homecelld" style="margin-top: 4px;"><b>{{$wheel->wheeldiameter}} Diameter</b></div>
                 </li>
@@ -473,7 +473,7 @@
                 <?php if($key < count($Wheels)/2 ) continue; ?>
                 <li class="gridItem homeapge1">
                     <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->prodimage)}}" style="display: inline;" width="150" height="150"></a>
+                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
                     </div>
                     <div class="homecelld" style="margin-top: 4px;"><b>205/50R17 $45</b></div>
                 </li>
@@ -614,14 +614,14 @@
                         <div class="product-layouts">
                             <div class="product-thumb transition">
                                 <div class="image">
-                                    <img class="image_thumb" src="{{asset($wheel->prodimage)}}" title="{{$wheel->prodbrand}}" alt="{{$wheel->prodbrand}}">
-                                    <img class="image_thumb_swap" src="{{asset($wheel->prodimage)}}" title="{{$wheel->prodbrand}}" alt="{{$wheel->prodbrand}}">
+                                    <img class="image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
                                     <div class="sale-icon"><a>Sale</a></div>
                                 </div>
 
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($wheel->prodbrand)))}}">{{$wheel->prodtitle}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
+                                        <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($wheel->brand)))}}">{{$wheel->prodtitle}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4>
                                         <!-- <h6><a href="">Accessories</a></h6> -->
                                         <!-- <div class="rating">
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
@@ -685,14 +685,14 @@
                             <div class="product-layouts">
                                 <div class="product-thumb transition">
                                     <div class="image">
-                                        <img class="image_thumb" src="{{asset($branddetail['prodimage'])}}" title="{{$branddetail['prodbrand']}}" alt="{{$branddetail['prodbrand']}}">
-                                        <img class="image_thumb_swap" src="{{asset($branddetail['prodimage'])}}" title="{{$branddetail['prodbrand']}}" alt="{{$branddetail['prodbrand']}}">
+                                        <img class="image_thumb" src="{{asset($branddetail['image'])}}" title="{{$branddetail['brand']}}" alt="{{$branddetail['brand']}}">
+                                        <img class="image_thumb_swap" src="{{asset($branddetail['image'])}}" title="{{$branddetail['brand']}}" alt="{{$branddetail['brand']}}">
                                         <div class="sale-icon"><a>Sale</a></div>
                                     </div>
 
                                     <div class="thumb-description">
                                         <div class="caption">
-                                            <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['prodbrand'])))}}">{{@$branddetail['prodtitle'] }} <br> {{'Diameter : '.$branddetail['wheeldiameter']}}</a></h4>
+                                            <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">{{@$branddetail['prodtitle'] }} <br> {{'Diameter : '.$branddetail['wheeldiameter']}}</a></h4>
                                         </div>
                                         <div class="button-group">
                                             <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>

@@ -41,36 +41,35 @@
 
     <div class="full-header">
         <div class="container">
-        <div class="row">
-            <div class="col-sm-6 logo">
-                <div class="header">
-                    <div id="logo">
-                        <a href="{{url('/')}}"><img src="{{url('image/Logo/New-Logo.png')}}" title="Discounted Wheel Warehouse" alt="Discounted Wheel Warehouse" class="img-responsive" /></a>
+            <div class="row">
+                <div class="col-sm-6 logo">
+                    <div class="header">
+                        <div id="logo">
+                            <a href="{{url('/')}}"><img src="{{url('image/Logo/New-Logo.png')}}" title="Discounted Wheel Warehouse" alt="Discounted Wheel Warehouse" class="img-responsive" /></a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-sm-6 search-bar">
-                <div class="search">
-                    <div id="header-search" class="input-group">
-                        <input type="text" name="search" value="{{json_decode(base64_decode(@Request::get('search')))}}" id="header-search-input" placeholder="Search" class="form-control input-lg" />
-                        <span class="input-group-btn"><button type="button" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Search</button></span>
+                <div class="col-sm-6 search-bar">
+                    <div class="search">
+                        <div id="header-search" class="input-group">
+                            <input type="text" name="search" value="{{json_decode(base64_decode(@Request::get('search')))}}" id="header-search-input" placeholder="Search" class="form-control input-lg" />
+                            <span class="input-group-btn"><button type="button" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Search</button></span>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
 
     <style>
-        .dropdown-menu.multi-colum-nav
-        {
+        .dropdown-menu.multi-colum-nav {
             width: 1200px !important;
             background: #f4f4f4 !important;
             border: none !important;
         }
-        .dropdown-menu.nav-dropdown
-        {
+
+        .dropdown-menu.nav-dropdown {
             width: 1500px !important;
             background: #f4f4f4 !important;
             border: none !important;
@@ -121,7 +120,7 @@
 
         .dropdown-menu li>a:hover,
         .dropdown-menu li>a:focus {
-            color:#ecb23d !important;
+            color: #ecb23d !important;
         }
 
         .dropdown-tire:hover .dropdown-menu.multi-colum-nav {
@@ -154,17 +153,18 @@
             color: #222 !important;
             font-size: 12px !important;
         }
-        .dropdown-menu li > a
-        {
-            color:#000 !important;
+
+        .dropdown-menu li>a {
+            color: #000 !important;
         }
-        .form-control
-        {
+
+        .form-control {
             border: 1px solid #0e1661;
-            color:#000;
+            color: #000;
             font-family: play !important;
             font-size: 12px !important;
         }
+
         .btn.vehicle-go {
             background: #ecb23d !important;
             border-radius: 5px !important;
@@ -177,11 +177,10 @@
 
         .col-sm-12.tire-menu ul {
             list-style-type: none !important;
-            column-count:7;
+            column-count: 7;
         }
 
-        .col-sm-12.tire-menu ul li
-        {
+        .col-sm-12.tire-menu ul li {
             color: #000 !important;
             font-size: 12px !important;
             padding: 5px 0px !important;
@@ -191,11 +190,12 @@
         .col-sm-12.tire-menu li a:hover {
             color: #ecb23d !important;
         }
-        .tire-dropdown-menu
-        {
+
+        .tire-dropdown-menu {
 
             column-count: 4;
         }
+
         .car-truck-head i {
             font-size: 25px !important;
             padding: 0px 5px !important;
@@ -270,10 +270,10 @@
         }
 
 
-        .navbar-collapse
-        {
-            padding:0px 0px !important;
+        .navbar-collapse {
+            padding: 0px 0px !important;
         }
+
         .car-truck-head img {
             width: 40px !important;
             margin: 0px 5px !important;
@@ -297,328 +297,328 @@
                 opacity: 0;
             }
         }
-        .dropdown-menu.nav-dropdown .col-sm-12.tire-menu
-        {
+
+        .dropdown-menu.nav-dropdown .col-sm-12.tire-menu {
             overflow-y: scroll;
-            overflow-x:hidden;
+            overflow-x: hidden;
             height: 500px;
-         }
+        }
     </style>
 
     <nav id="myHeader" class="new-navbar">
 
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="row new-nav">
-                    <div class="col-sm-10 nav-bar">
-                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar">
-                                <li class="dropdown-nav"><a title="WHEELS" href="{{route('wheels')}}" >DISCOUNT WHEELS <span class="caret"></span></a>
-                                    <ul class="dropdown-menu nav-dropdown">
-                                        <!-- <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="row new-nav">
+                <div class="col-sm-10 nav-bar">
+                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar">
+                            <li class="dropdown-nav"><a title="WHEELS" href="{{route('wheelproducts')}}">DISCOUNT WHEELS <span class="caret"></span></a>
+                                <ul class="dropdown-menu nav-dropdown">
+                                    <!-- <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
                                         @forelse(wheelbrands() as $brand)
                                         <li><a title="{{$brand->prodbrand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->prodbrand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->prodbrand}}</a></li>
                                         @empty @endforelse -->
 
-                                        <!-- New Menu Start-->
-                                        <div class="row tire-nav">
-                                            <div class="col-sm-12">
-                                                <h1 class="car-truck-head">Shop by Passenger Car and Light Truck
-                                                    <img src="{{url('image/car.svg')}}" class="moving-car">
-                                                    <img src="{{url('image/suv.svg')}}" class="moving-truck"></h1>
-                                            </div>
+                                    <!-- New Menu Start-->
+                                    <div class="row tire-nav">
+                                        <div class="col-sm-12">
+                                            <h1 class="car-truck-head">Shop by Passenger Car and Light Truck
+                                                <img src="{{url('image/car.svg')}}" class="moving-car">
+                                                <img src="{{url('image/suv.svg')}}" class="moving-truck"></h1>
                                         </div>
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Vehicle</h1>
-                                                </div>
-                                                <div class="col-sm-10">
-                                                        <div class="vehicle-list">
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
-                                                                    <option value="">Select Make</option>
-                                                                    @foreach(getVehicleMakeList() as $key => $make)
-                                                                    <option value="{{$make}}">{{$make}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
-                                                                    <option value="">Year</option>
-                                                                </select>
-                                                            </div>
-
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
-                                                                    <option value="">Model</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select WheelNavDriveBody" name="drivebody">
-                                                                    <option value="">Drive Body</option>
-
-                                                                </select>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                            </div>
-                                                            <a href="">
-                                                                <button type="button" class="btn wheel_shop_by_vehicle vehicle-go">GO</button>
-                                                            </a>
-                                                        </div>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-2 shop-vehicle-head">
+                                                <h1>Shop By Vehicle</h1>
                                             </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Wheel Size</h1>
-                                                </div>
-                                                <div class="col-sm-10">
-                                                    <form action="{{url('/')}}">
-                                                        <div class="vehicle-list">
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select WheelDiameter" name="wheeldiameter">
-                                                                    <option value="">Select Diameter</option>
-                                                                    @foreach(getWheelDiameterList() as $key => $diameter)
-                                                                    <option value="{{$diameter}}">{{$diameter}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="vehicle-list">
+                                                    <div class="dropdown">
+                                                        <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
+                                                            <option value="">Select Make</option>
+                                                            @foreach(getVehicleMakeList() as $key => $make)
+                                                            <option value="{{$make}}">{{$make}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
 
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select WheelWidth" name="wheelwidth">
-                                                                    <option value="">Select Width</option>
-                                                                </select>
-                                                            </div>
+                                                    <div class="dropdown">
+                                                        <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
+                                                            <option value="">Year</option>
+                                                        </select>
+                                                    </div>
 
 
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select BoltPattern" name="boltpattern">
-                                                                    <option value="">Select BoltPattern</option>
-                                                                </select>
-                                                            </div>
+                                                    <div class="dropdown">
+                                                        <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
+                                                            <option value="">Model</option>
+                                                        </select>
+                                                    </div>
 
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select MinOffset" name="minoffset">
-                                                                    <option value="">Select MinOffset</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select MaxOffset" name="maxoffset">
-                                                                    <option value="">Select MaxOffset</option>
-                                                                </select>
-                                                            </div>
+                                                    <div class="dropdown">
+                                                        <select required="" class="form-control browser-default custom-select WheelNavDriveBody" name="drivebody">
+                                                            <option value="">Drive Body</option>
 
-                                                            <div class="dropdown">
-                                                                <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                            </div>
-                                                            <a href="">
-                                                                <button type="submit" class="btn vehicle-go">GO</button>
-                                                            </a>
-                                                        </div>
-                                                    </form>
+                                                        </select>
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
+                                                    </div>
+                                                    <a href="">
+                                                        <button type="button" class="btn wheel_shop_by_vehicle vehicle-go">GO</button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-sm-12 tire-menu-list">
-                                                <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Brand</h1>
-                                                </div>
-                                                <div class="col-sm-10">
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-2 shop-vehicle-head">
+                                                <h1>Shop By Wheel Size</h1>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <form action="{{url('/')}}">
                                                     <div class="vehicle-list">
-                                                        <div class="row">
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select WheelDiameter" name="wheeldiameter">
+                                                                <option value="">Select Diameter</option>
+                                                                @foreach(getWheelDiameterList() as $key => $diameter)
+                                                                <option value="{{$diameter}}">{{$diameter}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
 
-                                                            <div class="col-sm-12 tire-menu">
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select WheelWidth" name="wheelwidth">
+                                                                <option value="">Select Width</option>
+                                                            </select>
+                                                        </div>
 
-                                                               
-                                                                <ul class="tire-dropdown-menu">
-                                                                    <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
 
-                                                                @forelse(wheelbrands() as $brand)
-                                                                   <li><a title="{{$brand->prodbrand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->prodbrand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->prodbrand}}</a></li>
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select BoltPattern" name="boltpattern">
+                                                                <option value="">Select BoltPattern</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select MinOffset" name="minoffset">
+                                                                <option value="">Select MinOffset</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select MaxOffset" name="maxoffset">
+                                                                <option value="">Select MaxOffset</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="dropdown">
+                                                            <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
+                                                        </div>
+                                                        <a href="">
+                                                            <button type="submit" class="btn vehicle-go">GO</button>
+                                                        </a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12 tire-menu-list">
+                                            <div class="col-sm-2 shop-vehicle-head">
+                                                <h1>Shop By Brand</h1>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="vehicle-list">
+                                                    <div class="row">
+
+                                                        <div class="col-sm-12 tire-menu">
+
+
+                                                            <ul class="tire-dropdown-menu">
+                                                                <li><a title="ALL" href="{{route('wheelproducts')}}">ALL</a></li>
+
+                                                                @forelse(getWheelBrandList() as $brand)
+                                                                <li><a title="{{$brand}}" href="{{route('wheelproducts')}}?brand={{base64_encode(json_encode(array($brand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand}}</a></li>
                                                                 @empty @endforelse
-                                                                </ul>
-                                                            </div>
-
-
+                                                            </ul>
                                                         </div>
+
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- New Menu End -->
+                                    </div>
+                                    <!-- New Menu End -->
 
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
 
-                                <!-- New Nav Start -->
-                                <li class="dropdown-tire">
-                                    <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a>
-                                    <ul class="dropdown-menu multi-colum-nav">
-                                        <!-- New Menu Start-->
-                                        <div class="row tire-nav">
-                                            <div class="col-sm-12">
-                                                <h1 class="car-truck-head">Shop by Passenger Car and Light Truck
-                                                    <img src="{{url('image/car.svg')}}" class="moving-car">
-                                                    <img src="{{url('image/suv.svg')}}" class="moving-truck"></h1>
-                                            </div>
+                            <!-- New Nav Start -->
+                            <li class="dropdown-tire">
+                                <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a>
+                                <ul class="dropdown-menu multi-colum-nav">
+                                    <!-- New Menu Start-->
+                                    <div class="row tire-nav">
+                                        <div class="col-sm-12">
+                                            <h1 class="car-truck-head">Shop by Passenger Car and Light Truck
+                                                <img src="{{url('image/car.svg')}}" class="moving-car">
+                                                <img src="{{url('image/suv.svg')}}" class="moving-truck"></h1>
                                         </div>
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Vehicle</h1>
-                                                </div>
-                                                <div class="col-sm-10">
-                                                    <form action="{{url('/setFiltersByVehicle')}}">
-                                                        <div class="vehicle-list">
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavMake" name="make">
-                                                                    <option value="">Select Make</option>
-                                                                    @foreach(getVehicleMakeList() as $key => $make)
-                                                                    <option value="{{$make}}">{{$make}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavYear" name="year">
-                                                                    <option value="">Year</option>
-                                                                </select>
-                                                            </div>
-
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavModel" name="model">
-                                                                    <option value="">Model</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavSubmodel" name="submodel">
-                                                                    <option value="">Trim</option>
-
-                                                                </select>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                            </div>
-
-                                                            <a href="">
-                                                                <button type="submit" class="btn vehicle-go">GO</button>
-                                                            </a>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-2 shop-vehicle-head">
+                                                <h1>Shop By Vehicle</h1>
                                             </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Tire Size</h1>
-                                                </div>
-                                                <div class="col-sm-10">
-                                                    <form action="{{url('/setFiltersByTire')}}">
-                                                        <div class="vehicle-list">
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavWidth" name="width">
-                                                                    <option value="">Select Width</option>
-                                                                    @foreach(getTireWidthList() as $key => $tire)
-                                                                    <option value="{{$tire}}">{{$tire}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavProfile" name="profile">
-                                                                    <option value="">Select Profile</option>
-                                                                </select>
-                                                            </div>
-
-
-                                                            <div class="dropdown">
-                                                                <select required="" class="form-control browser-default custom-select NavDiameter" name="diameter">
-                                                                    <option value="">Select Diameter</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="dropdown">
-                                                                <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                            </div>
-                                                            <a href="">
-                                                                <button type="submit" class="btn vehicle-go">GO</button>
-                                                            </a>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-sm-12 tire-menu-list">
-                                                <div class="col-sm-2 shop-vehicle-head">
-                                                    <h1>Shop By Brand</h1>
-                                                </div>
-                                                <div class="col-sm-10">
+                                            <div class="col-sm-10">
+                                                <form action="{{url('/setFiltersByVehicle')}}">
                                                     <div class="vehicle-list">
-                                                        <div class="row">
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select NavMake" name="make">
+                                                                <option value="">Select Make</option>
+                                                                @foreach(getVehicleMakeList() as $key => $make)
+                                                                <option value="{{$make}}">{{$make}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
 
-                                                            <div class="col-sm-12 tire-menu">
-                                                                <ul>
-                                                                    @foreach(getTireBrandList() as $key => $tirebrand)
-                                                                    <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
-                                                                    @endforeach
-                                                                </ul>
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select NavYear" name="year">
+                                                                <option value="">Year</option>
+                                                            </select>
+                                                        </div>
 
-                                                            </div>
 
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select NavModel" name="model">
+                                                                <option value="">Model</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select NavSubmodel" name="submodel">
+                                                                <option value="">Trim</option>
+
+                                                            </select>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
+                                                        </div>
+
+                                                        <a href="">
+                                                            <button type="submit" class="btn vehicle-go">GO</button>
+                                                        </a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-2 shop-vehicle-head">
+                                                <h1>Shop By Tire Size</h1>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <form action="{{url('/setFiltersByTire')}}">
+                                                    <div class="vehicle-list">
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select NavWidth" name="width">
+                                                                <option value="">Select Width</option>
+                                                                @foreach(getTireWidthList() as $key => $tire)
+                                                                <option value="{{$tire}}">{{$tire}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select NavProfile" name="profile">
+                                                                <option value="">Select Profile</option>
+                                                            </select>
+                                                        </div>
+
+
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select NavDiameter" name="diameter">
+                                                                <option value="">Select Diameter</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="dropdown">
+                                                            <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
+                                                        </div>
+                                                        <a href="">
+                                                            <button type="submit" class="btn vehicle-go">GO</button>
+                                                        </a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12 tire-menu-list">
+                                            <div class="col-sm-2 shop-vehicle-head">
+                                                <h1>Shop By Brand</h1>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="vehicle-list">
+                                                    <div class="row">
+
+                                                        <div class="col-sm-12 tire-menu">
+                                                            <ul>
+                                                                @foreach(getTireBrandList() as $key => $tirebrand)
+                                                                <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
+                                                                @endforeach
+                                                            </ul>
 
                                                         </div>
+
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- New Menu End -->
+                                    </div>
+                                    <!-- New Menu End -->
 
-                                    </ul>
-                                </li>
-                                <!-- New Nav End -->
+                                </ul>
+                            </li>
+                            <!-- New Nav End -->
 
-                                <li class=""><a href="">INFORMATION</a></li>
-                                <li class=""><a href="">RIMS FINANCING</a></li>
-                                <li class=""><a href="">WHEEL VISUALIZER</a></li>
-                                <li class=""><a href="">ABOUT</a></li>
-                                <li class=""><a href="">CONTACT</a></li>
-                                <li class=""><a href="">ENQUIRY</a></li>
+                            <li class=""><a href="">INFORMATION</a></li>
+                            <li class=""><a href="">RIMS FINANCING</a></li>
+                            <li class=""><a href="{{url('/wheels')}}">WHEEL VISUALIZER</a></li>
+                            <li class=""><a href="">ABOUT</a></li>
+                            <li class=""><a href="">CONTACT</a></li>
+                            <li class=""><a href="">ENQUIRY</a></li>
 
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <button type="button" class="btn btn-inverse btn-block btn-lg"><i class="fa fa-shopping-cart"></i>
-                            <span class="cart-heading">Cart</span>
-                            <span id="cart-total">0</span>
-                        </button>
+                        </ul>
                     </div>
                 </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-inverse btn-block btn-lg"><i class="fa fa-shopping-cart"></i>
+                        <span class="cart-heading">Cart</span>
+                        <span id="cart-total">0</span>
+                    </button>
+                </div>
             </div>
+        </div>
 
     </nav>
 
