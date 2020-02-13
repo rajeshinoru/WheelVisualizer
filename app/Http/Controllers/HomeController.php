@@ -9,6 +9,7 @@ use App\CarImage;
 use App\CarColour;
 use App\Wheel;
 use App\Tire;
+use App\WheelProduct;
 use Artisan;
 use Symfony\Component\Process\Process;
 class HomeController extends Controller
@@ -44,7 +45,7 @@ class HomeController extends Controller
         $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
         return view('forms',compact('Wheels')); 
     }
-    public function wheelview(Request $request,$wheel_id=1)
+    public function wheelview(Request $request,$wheel_id='')
     {
         // $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
         // 'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
@@ -58,7 +59,8 @@ class HomeController extends Controller
         // ->with(['Brand'])
         // ->get();
 
-        $wheel = Wheel::select('prodbrand','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart')->whereid($wheel_id)->first();  
+        $wheel = WheelProduct::select('prodbrand','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart')->whereid($wheel_id)->first();  
+        // dd($wheel);
         return view('wheel_view',compact('wheel'));
     }
     public function wheels(Request $request)

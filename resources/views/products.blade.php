@@ -26,6 +26,14 @@
             <div class="col-sm-12 sub-head">
                 <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1>
             </div> 
+            <div class="row">
+                <div class="col-sm-12 wheel-des">
+                    @forelse(@$branddesc as $desc)
+                    <p>{!! @$desc->proddesc !!}</p>
+                    @empty
+                    @endforelse
+                </div>
+            </div>
             <div class="row main-pro">
                 <div class="col-sm-3">
                     <div class="header-bottom col-sm-12">
@@ -122,9 +130,9 @@
 
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($product->prodbrand)))}}">{{$product->prodtitle}} 
+                                        <h4><a href="{{url('/wheelview',$product->id)}}">{{$product->prodtitle}} 
                                             <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
-                                            <br> {{'PN : '.$product->partno}} 
+                                            <!-- <br> {{'PN : '.$product->partno}}  -->
                                         </a></h4>
                                         <!-- <h6><a href="">Accessories</a></h6> -->
                                         <!-- <div class="rating">

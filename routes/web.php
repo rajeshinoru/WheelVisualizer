@@ -52,13 +52,7 @@ Route::get('/getFiltersByVehicle', 'VehicleController@getFiltersByVehicle')->nam
 Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->name('setFiltersByVehicle');
 
 
-// Filters By Tire sizes
-Route::get('/getFiltersByTire', 'TireController@getFiltersByTire')->name('getFiltersByTire');
-Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFiltersByTire');
 
-// Filters By Wheel sizes
-Route::get('/getFiltersByWheelSize', 'WheelController@getFiltersByWheelSize')->name('getFiltersByWheelSize');
-// Route::get('/setFiltersByWheelSize', 'WheelController@setFiltersByWheelSize')->name('setFiltersByWheelSize');
 
 // Tires Module Routes
 Route::get('/tires', 'TireController@index')->name('tires');
@@ -67,13 +61,23 @@ Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
 Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
+
+// Filters By Tire sizes
+Route::get('/getFiltersByTire', 'TireController@getFiltersByTire')->name('getFiltersByTire');
+Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFiltersByTire');
+
+
+
 // Wheel Product Module Routes
 Route::get('/wheelproducts', 'WheelProductController@index')->name('wheelproducts');
-Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
-Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
-Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
-Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
+// Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
+// Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
+// Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
+// Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
+// Filters By Wheel sizes
+Route::get('/getFiltersByProductWheelSize', 'WheelProductController@getFiltersByProductWheelSize')->name('getFiltersByProductWheelSize');
+Route::get('/setFiltersByProductWheelSize', 'WheelProductController@index')->name('setFiltersByProductWheelSize');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');

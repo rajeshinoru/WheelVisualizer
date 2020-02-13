@@ -388,10 +388,11 @@
                                                 <h1>Shop By Wheel Size</h1>
                                             </div>
                                             <div class="col-sm-10">
-                                                <form action="{{url('/')}}">
+                                                <form action="{{url('/setFiltersByProductWheelSize')}}">
+                                                    <input type="hidden" name="flag" value="searchByWheel">
                                                     <div class="vehicle-list">
                                                         <div class="dropdown">
-                                                            <select required="" class="form-control browser-default custom-select WheelDiameter" name="wheeldiameter">
+                                                            <select required="" class="form-control browser-default custom-select ProductWheelDiameter" name="wheeldiameter">
                                                                 <option value="">Select Diameter</option>
                                                                 @foreach(getWheelDiameterList() as $key => $diameter)
                                                                 <option value="{{$diameter}}">{{$diameter}}</option>
@@ -400,7 +401,7 @@
                                                         </div>
 
                                                         <div class="dropdown">
-                                                            <select required="" class="form-control browser-default custom-select WheelWidth" name="wheelwidth">
+                                                            <select required="" class="form-control browser-default custom-select ProductWheelWidth" name="wheelwidth">
                                                                 <option value="">Select Width</option>
                                                             </select>
                                                         </div>

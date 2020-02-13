@@ -169,8 +169,8 @@
     <script src="{{ asset('js/shop_by_tire.js') }}"></script>
 
 
-<!--     <script src="{{ asset('js/wheel_shop_by_vehicle.js') }}"></script>
-    <script src="{{ asset('js/wheel_shop_by_size.js') }}"></script> -->
+    <!-- <script src="{{ asset('js/wheel_shop_by_vehicle.js') }}"></script> -->
+    <script src="{{ asset('js/product_shop_by_size.js') }}"></script>
 </body>
 
 </html>
