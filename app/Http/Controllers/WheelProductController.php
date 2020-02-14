@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\WheelProduct;
 use App\Viflist;
+use App\Vehicle;
 use App\Wheel;
 use App\CarImage;
+use App\Chassis;
+use App\ChassisModel;
 use Illuminate\Http\Request;
 
 class WheelProductController extends Controller
@@ -26,7 +29,7 @@ class WheelProductController extends Controller
              $branddesc = [];
 
             // Search By Wheels Size in products
-            if(isset($request->flag) && $request->flag == 'searchByWheel'){
+            if(isset($request->flag) && $request->flag == 'searchByWheelSize'){
                     // dd($request->all());
                 if(isset($request->wheeldiameter) && $request->wheeldiameter) 
                     $products = $products->where('wheeldiameter',$request->wheeldiameter);
@@ -42,21 +45,34 @@ class WheelProductController extends Controller
 
                 if(isset($request->wheeldiameter) && $request->wheeldiameter) 
                     $products = $products->where('offset2',$request->maxoffset);
+            }elseif(isset($request->flag) && $request->flag == 'searchByVehicle'){
+
+                $vehicle = Vehicle::select('vehicle_id','year','make','model','submodel','dr_chassis_id','dr_model_id','year_make_model_submodel','sort_by_vehicle_type')
+                            ->where('year',$request->year)
+                            ->where('make',$request->make)
+                            ->where('model',$request->model)
+                            ->where('submodel',$request->submodel)
+                            ->first(); 
+                $chassis =Chassis::where('chassis_id',$vehicle->dr_chassis_id)->first();
+                $chassis_models =ChassisModel::where('chassis_id',$vehicle->dr_chassis_id)->where('model_id',$vehicle->dr_model_id)
+                    ->first();
+
+
             }else{
 
-            if(isset($request->brand) && $request->brand) {
-                $products = $products->whereIn('prodbrand',json_decode(base64_decode($request->brand)));
-                $branddesc = WheelProduct::select('proddesc','prodbrand')->whereIn('prodbrand',json_decode(base64_decode($request->brand)))->get()->unique('prodbrand');
-            }
-            
-            if(isset($request->diameter) && $request->diameter)
-                $products = $products->whereIn('wheeldiameter',json_decode(base64_decode($request->diameter)));
+                    if(isset($request->brand) && $request->brand) {
+                        $products = $products->whereIn('prodbrand',json_decode(base64_decode($request->brand)));
+                        $branddesc = WheelProduct::select('proddesc','prodbrand')->whereIn('prodbrand',json_decode(base64_decode($request->brand)))->get()->unique('prodbrand');
+                    }
+                    
+                    if(isset($request->diameter) && $request->diameter)
+                        $products = $products->whereIn('wheeldiameter',json_decode(base64_decode($request->diameter)));
 
-            if(isset($request->width) && $request->width)
-                $products = $products->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
+                    if(isset($request->width) && $request->width)
+                        $products = $products->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
 
-            if(isset($request->search))
-                $products = $products->where('prodbrand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
+                    if(isset($request->search))
+                        $products = $products->where('prodbrand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
 
             }
 
@@ -154,6 +170,14 @@ class WheelProductController extends Controller
         //
     }
 
+    public function wheelproductview(Request $request,$product_id='')
+    {
+
+        $wheel = WheelProduct::select('prodbrand','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart')->whereid($product_id)->first();  
+        
+
+        return view('wheel_view',compact('wheel'));
+    }
 
     public function getFiltersByProductWheelSize(Request $request){
        try{
@@ -187,49 +211,71 @@ class WheelProductController extends Controller
         }
     }
 
-    public function setFiltersByProductWheelSize(Request $request){
+    // public function setFiltersByProductWheelSize(Request $request){
 
-        try{ 
+    //     try{ 
 
 
-            $products = WheelProduct::select('prodbrand','prodfinish','prodimage','wheeldiameter','wheelwidth','prodtitle','price','partno'); 
+    //         $products = WheelProduct::select('prodbrand','prodfinish','prodimage','wheeldiameter','wheelwidth','prodtitle','price','partno'); 
     
-            if(isset($request->brand) && $request->brand) 
-                $products = $products->whereIn('prodbrand',$request->brand);
+    //         if(isset($request->brand) && $request->brand) 
+    //             $products = $products->whereIn('prodbrand',$request->brand);
 
-            if(isset($request->diameter) && $request->diameter)
-                $products = $products->whereIn('wheeldiameter',$request->diameter);
+    //         if(isset($request->diameter) && $request->diameter)
+    //             $products = $products->whereIn('wheeldiameter',$request->diameter);
 
-            if(isset($request->width) && $request->width)
-                $products = $products->whereIn('wheelwidth',$request->width);
+    //         if(isset($request->width) && $request->width)
+    //             $products = $products->whereIn('wheelwidth',$request->width);
 
-            if(isset($request->search))
-                $products = $products->where('prodbrand', 'LIKE', '%'.$request->search.'%');  
-            $products = $products->orderBy('price','ASC')
-                                    // ->orderBy('prodfinish','ASC')
-                                    ->paginate(9); 
+    //         if(isset($request->search))
+    //             $products = $products->where('prodbrand', 'LIKE', '%'.$request->search.'%');  
+    //         $products = $products->orderBy('price','ASC')
+    //                                 // ->orderBy('prodfinish','ASC')
+    //                                 ->paginate(9); 
             
-            ///Brand with count
-            $brands = WheelProduct::select('prodbrand', \DB::raw('count(*) as total'))->groupBy('prodbrand')->get()->sortBy('prodbrand'); 
+    //         ///Brand with count
+    //         $brands = WheelProduct::select('prodbrand', \DB::raw('count(*) as total'))->groupBy('prodbrand')->get()->sortBy('prodbrand'); 
 
-            ///wheeldiameter with count 
-            if(isset($request->brand) && $request->brand)
-                $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('prodbrand',$request->brand)->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
-            else 
-                $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter'); 
+    //         ///wheeldiameter with count 
+    //         if(isset($request->brand) && $request->brand)
+    //             $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('prodbrand',$request->brand)->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
+    //         else 
+    //             $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter'); 
 
-            ///wheelwidth with count  
-            if(isset($request->brand) && $request->brand)
-                $wheelwidth = WheelProduct::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('prodbrand',$request->brand)->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
-            else
-                $wheelwidth = WheelProduct::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
+    //         ///wheelwidth with count  
+    //         if(isset($request->brand) && $request->brand)
+    //             $wheelwidth = WheelProduct::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('prodbrand',$request->brand)->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
+    //         else
+    //             $wheelwidth = WheelProduct::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
 
-            return view('products',compact('products','brands','wheeldiameter','wheelwidth')); 
+    //         return view('products',compact('products','brands','wheeldiameter','wheelwidth')); 
             
-        }catch(ModelNotFoundException $notfound){
-            return response()->json(['error' => $notfound->getMessage()]); 
-        }catch(Exception $error){
-            return response()->json(['error' => $error->getMessage()]); 
-        }
-    }
+    //     }catch(ModelNotFoundException $notfound){
+    //         return response()->json(['error' => $notfound->getMessage()]); 
+    //     }catch(Exception $error){
+    //         return response()->json(['error' => $error->getMessage()]); 
+    //     }
+    // }
+    
+    // public function setFiltersByProductVehicle(Request $request)
+    // {
+    //     try{
+    //         $vehicle = Vehicle::select('vehicle_id','year','make','model','submodel','dr_chassis_id','dr_model_id','year_make_model_submodel','sort_by_vehicle_type')
+    //         ->where('year',$request->year)
+    //         ->where('make',$request->make)
+    //         ->where('model',$request->model)
+    //         ->where('submodel',$request->submodel)
+    //         ->first(); 
+    //         $chassis_models =ChassisModel::where('chassis_id',$vehicle->dr_chassis_id)->where('model_id',$vehicle->dr_model_id)
+    //             ->first();
+    //             // ->unique('tire_size'); 
+
+    //         return view('products',compact('vehicle','chassis_models'));
+
+    //     }catch(ModelNotFoundException $notfound){
+    //         return response()->json(['error' => $notfound->getMessage()]); 
+    //     }catch(Exception $error){
+    //         return response()->json(['error' => $error->getMessage()]); 
+    //     }
+    // }
 }

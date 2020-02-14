@@ -71,13 +71,15 @@ Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFil
 // Wheel Product Module Routes
 Route::get('/wheelproducts', 'WheelProductController@index')->name('wheelproducts');
 // Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
-// Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
+
+Route::get('/wheelproductview/{product_id?}', 'WheelProductController@wheelproductview')->name('wheelproductview');
 // Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 // Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
 // Filters By Wheel sizes
 Route::get('/getFiltersByProductWheelSize', 'WheelProductController@getFiltersByProductWheelSize')->name('getFiltersByProductWheelSize');
 Route::get('/setFiltersByProductWheelSize', 'WheelProductController@index')->name('setFiltersByProductWheelSize');
+Route::get('/setFiltersByProductVehicle', 'WheelProductController@index')->name('setFiltersByProductVehicle');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');

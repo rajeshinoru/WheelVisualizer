@@ -343,6 +343,9 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <div class="vehicle-list">
+
+                                                <form action="{{url('/setFiltersByProductVehicle')}}">
+                                                    <input type="hidden" name="flag" value="searchByVehicle">
                                                     <div class="dropdown">
                                                         <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
                                                             <option value="">Select Make</option>
@@ -366,8 +369,8 @@
                                                     </div>
 
                                                     <div class="dropdown">
-                                                        <select required="" class="form-control browser-default custom-select WheelNavDriveBody" name="drivebody">
-                                                            <option value="">Drive Body</option>
+                                                        <select required="" class="form-control browser-default custom-select WheelNavSubmodel" name="submodel">
+                                                            <option value="">Trim</option>
 
                                                         </select>
                                                     </div>
@@ -375,8 +378,9 @@
                                                         <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
                                                     </div>
                                                     <a href="">
-                                                        <button type="button" class="btn wheel_shop_by_vehicle vehicle-go">GO</button>
+                                                        <button type="submit" class="btn vehicle-go">GO</button>
                                                     </a>
+                                                </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -389,7 +393,7 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <form action="{{url('/setFiltersByProductWheelSize')}}">
-                                                    <input type="hidden" name="flag" value="searchByWheel">
+                                                    <input type="hidden" name="flag" value="searchByWheelSize">
                                                     <div class="vehicle-list">
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select ProductWheelDiameter" name="wheeldiameter">

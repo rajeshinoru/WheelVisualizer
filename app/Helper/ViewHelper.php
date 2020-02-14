@@ -96,7 +96,7 @@ function getTireWidthList(){
 }
 
 
-// Discount Wheels - Products
+//***************************** Discount Wheels - Products Starts*************************************//
 
 // -------------> Shop By Size 
 function getWheelDiameterList(){
@@ -112,16 +112,25 @@ function getWheelBrandList(){
 }
 function ViewWheelProductImage($url=''){
 	if($url != ''){
-		if(file_exists(public_path($url))){
-			return asset($url);
+		$wheel_products_url="/storage/wheel_products/".$url;
+		$misc_url="/storage/misc_images/".$url;
+		if(file_exists(public_path($wheel_products_url))){
+			return asset($wheel_products_url);
 		}else{
-			return asset('image/no_image.jpg');
+			if(file_exists(public_path($misc_url))){
+				return asset($misc_url);
+			}else{
+				return asset('image/no_image.jpg');
+			}
 		}
 	}else{
 			return asset('image/no_image.jpg');
 	}
 
 }
+
+//***************************** Discount Wheels - Products Ends*************************************//
+
 
 function getVehicleMakeList(){
 

@@ -6,32 +6,22 @@ $(document).on('change', '.WheelNavYear,.WheelNavMake,.WheelNavModel', function(
     var make = $('.WheelNavMake').val();
     var year = $('.WheelNavYear').val();
     var model = $('.WheelNavModel').val();
-    var driverbody = $('.WheelNavDriveBody  ').val(); 
-    WheelNavFilters(year, make, model, driverbody, changeBy);
+    var submodel = $('.WheelNavSubmodel').val();
+    WheelNavFilters(year, make, model,submodel, changeBy);
 });
-// $(document).on('change', '.WheelMake', function() {
-//     var changeBy = $(this).attr('name');
-
-//     $('.WheelNavMake').val(make);
-//     $('.WheelNavYear').val(year);
-//     $('.WheelNavModel').val(model);
-//     $('.WheelNavDriveBody').val(driverbody); 
-
-//     filters(year, make, model, driverbody, changeBy);
-// });
 
 $(document).ready(function() {
     var make = $('.WheelNavMake').val();
     var year = $('.WheelNavYear').val();
     var model = $('.WheelNavModel').val();
-    var driverbody = $('.WheelNavDriveBody').val();
-    WheelNavFilters(year, make, model, driverbody);
+    var submodel = $('.WheelNavSubmodel').val();
+    WheelNavFilters(year, make, model,submodel);
 });
 
-function WheelNavFilters(year = '', make = '', model = '', driverbody = '', changeBy = '') {
+function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
     $.ajax({
         method: "GET",
-        url: '/vehicledetails',
+        url: '/getFiltersByVehicle',
         data: {
             year: year,
             make: make,
@@ -40,38 +30,38 @@ function WheelNavFilters(year = '', make = '', model = '', driverbody = '', chan
         }
     }).done(function(data) {
 
-        $('.WheelNavDriveBody').empty().append('<option disabled selected>Select Drive/Body</option>');
+        $('.WheelNavSubmodel').empty().append('<option value="">Select Trim</option>');
 
         if (changeBy == '' || changeBy == 'year' || changeBy == 'make') {
-            $('.WheelNavModel').empty().append('<option disabled selected>Select Model</option>');
+            $('.WheelNavModel').empty().append('<option value="">Select Model</option>');
         }
         if (changeBy == '' || changeBy == 'make') {
-            $('.WheelNavYear').empty().append('<option disabled selected>Select Year</option>');
+            $('.WheelNavYear').empty().append('<option value="">Select Year</option>');
         }
 
         if (changeBy == '') {
             data.data['year'].map(function(value, key) {
-                isSelected = (value.yr == year) ? 'selected' : '';
-                $('.WheelNavYear').append('<option value="' + value.yr + '" ' + isSelected + '>' + value.yr + '</option>');
+                isSelected = (value.year == year) ? 'selected' : '';
+                $('.WheelNavYear').append('<option value="' + value.year + '" ' + isSelected + '>' + value.year + '</option>');
             });
             data.data['model'].map(function(value, key) {
                 isSelected = (value.model == model) ? 'selected' : '';
                 $('.WheelNavModel').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
             });
-            data.data['driverbody'].map(function(value, key) {
-                isSelected = (value.vif == driverbody) ? 'selected' : '';
-                $('.WheelNavDriveBody').append('<option value="' + value.vif + '"' + isSelected + '>' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
+            data.data['submodel'].map(function(value, key) {
+                isSelected = (value.submodel == submodel) ? 'selected' : '';
+                $('.WheelNavSubmodel').append('<option value="' + value.submodel + '"' + isSelected + '>' + value.submodel  + '</option>');
             });
         } else {
             data.data.map(function(value, key) {
                 if (changeBy == 'make') {
-                    $('.WheelNavYear').append('<option value="' + value.yr + '">' + value.yr + '</option>');
+                    $('.WheelNavYear').append('<option value="' + value.year + '">' + value.year + '</option>');
                 }
                 if (changeBy == 'year') {
                     $('.WheelNavModel').append('<option value="' + value.model + '">' + value.model + '</option>');
                 }
                 if (changeBy == 'model') {
-                    $('.WheelNavDriveBody').append('<option value="' + value.vif + '">' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
+                    $('.WheelNavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
                 }
             });
         }
@@ -79,27 +69,28 @@ function WheelNavFilters(year = '', make = '', model = '', driverbody = '', chan
         if(make != null && changeBy !=''){
 
             $('.WheelNavMake').append('<option value="' + make + '" selected>' + make + '</option>');
-            $('.WheelNavMake').trigger("chosen:updated");
+            // $('.WheelNavMake').trigger("chosen:updated");
         }
-        $('.WheelNavYear').trigger("chosen:updated");
-        $('.WheelNavModel').trigger("chosen:updated");
-        $('.WheelNavDriveBody').trigger("chosen:updated");
+
+        // $('.WheelNavYear').trigger("chosen:updated");
+        // $('.WheelNavModel').trigger("chosen:updated");
+        // $('.DriveBody').trigger("chosen:updated");
+        // if (changeBy == 'make') {
+        //     $('.WheelNavYear').focus();
+        //     $('.WheelNavYear').childrens('option').show();
+        // }
+        // if (changeBy == 'year') {
+        //     $('.WheelNavModel').focus();
+        //     $('.WheelNavModel').childrens('option').show();
+        // }
+        // if (changeBy == 'model') {
+        //     $('.WheelNavSubmodel').focus();
+        //     $('.WheelNavSubmodel').childrens('option').show();
+        // }
     }).fail(function(msg) {
         alert("fails");
     });
 }
-
-//  Driver / Body change your car 
-$('.wheel_shop_by_vehicle').on('click', function() {
-    var car_id = $('.WheelNavDriveBody').val();
-    alert(window.location.origin+"/wheels?car_id=" + car_id);
-    if (car_id != '') {
-        window.location.href = window.location.origin+"/wheels?car_id=" + car_id;
-    }
-});
-
-
-
 
 // Common  Function to change the params values in the current url
 function updateParamsToUrl(paramKey, paramValue) {
@@ -121,17 +112,17 @@ function updateParamsToUrl(paramKey, paramValue) {
         params[paramKey] = paramValue;
 
         // This is for search,selection by any one of ways => BRAND or SEARCH Keyword
-        if (paramKey == 'search' && params['brand'] != undefined) {
-            params['brand'] = '';
-        }
-        if (paramKey == 'brand' && params['search'] != undefined) {
-            params['search'] = '';
-        }
+        // if (paramKey == 'search' && params['brand'] != undefined) {
+        //     params['brand'] = '';
+        // }
+        // if (paramKey == 'brand' && params['search'] != undefined) {
+        //     params['search'] = '';
+        // }
 
-        if (paramKey == 'brand') {
-            params['width'] = '';
-            params['diameter'] = '';
-        }
+        // if (paramKey == 'brand') {
+        //     params['width'] = '';
+        //     params['diameter'] = '';
+        // }
 
         // Attach the query params to the nextURL 
         $.each(params, function(key, value) {
@@ -199,4 +190,3 @@ function getUrlVars() {
     });
     return vars;
 }
-

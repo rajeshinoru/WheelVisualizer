@@ -5,7 +5,7 @@
     .hometabled {
         margin: 25px 0px !important;
     }
-    
+
     .hometabled {
         display: table;
         text-align: center;
@@ -19,7 +19,7 @@
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
     }
-    
+
     .pTopBar {
         display: table;
         width: 100%;
@@ -30,7 +30,7 @@
         -webkit-border-radius: 2px;
         background: #0e1661 !important;
     }
-    
+
     .pTopCell {
         display: table-cell;
         width: 50%;
@@ -40,72 +40,72 @@
         font-size: 14px;
         font-family: oswald !important;
     }
-    
+
     .pTopCell.Phone a {
         color: #fff;
         text-decoration: none;
         font-size: 12px;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li > a,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li>a,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:focus {
         color: #777;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > .open > a,
-    .with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>.open>a,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:focus,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:focus {
         color: #777;
         background-color: #ddd;
         border-color: transparent;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:focus {
         color: #555;
         background-color: #fff;
         border-color: #ddd;
         border-bottom-color: transparent;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu {
         background-color: #f5f5f5;
         border-color: #ddd;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a {
         color: #777;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a:focus {
         background-color: #ddd;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a:focus {
         color: #fff;
         background-color: #555;
     }
-    
+
     .tab-content.wheel-list-tab {
         margin-bottom: 0px !important;
     }
-    
+
     .tab-content.wheel-list-tab .browser-default.custom-select {
         margin: 0px 30px !important;
         padding: 4px 40px !important;
     }
-    
+
     #fal-feature {
         padding: 40px 0px !important;
     }
-    
+
     .wheel-des h1,
     .wheel-des h2 {
         font-size: 12px !important;
@@ -113,7 +113,7 @@
         line-height: 30px;
         font-family: oswald !important;
     }
-    
+
     .prod-headinghome p {
         margin: 10px 0px;
         color: #121214;
@@ -121,30 +121,30 @@
         line-height: 30px !important;
         font-family: play !important;
     }
-    
+
     .prod-headinghome h1 {
         font-family: oswald !important;
         font-size: 15px !important;
         font-weight: 100 !important;
         color: #0e1661 !important;
     }
-    
+
     .row.wheel-view h1 {
         font-family: oswald !important;
         font-size: 18px !important;
         text-align: left;
         line-height: 30px !important;
     }
-    
+
     .row.wheel-view h1:hover {
         text-decoration: underline !important;
         color: #0e1661 !important;
     }
-    
+
     .wheel-des img {
         width: 100% !important;
     }
-    
+
     #home h2,
     #menu1 h2 {
         margin: 0px 0px !important;
@@ -155,55 +155,56 @@
         border-bottom: 1px solid #ccc !important;
         padding: 10px 0px !important;
     }
-    
+
     tbody tr {
         text-align: left;
     }
-    
-    .table > tbody > tr > td {
+
+    .table>tbody>tr>td {
         border-top: none !important;
         color: #000 !important;
     }
-    
+
     td {
         font-size: 12px !important;
         font-family: play !important;
         padding: 5px 0px !important;
     }
-    
+
     .table {
         margin-bottom: 0px !important;
     }
-    
+
     .nav.nav-tabs li a:hover {
         background: transparent !important;
         color: #000 !important;
         border: none;
     }
-    
+
     .nav.nav-tabs li a {
         border: none;
     }
-    
-    .nav > li > a:focus,
-    .nav > li > a:hover {
+
+    .nav>li>a:focus,
+    .nav>li>a:hover {
         text-decoration: none;
         background: none !important;
         color: #000 !important;
         transition: none !important;
         border: none !important;
     }
-    
+
     .nav.nav-tabs .tab-content {
         margin-bottom: 0px !important;
         padding: 0px 0px !important;
     }
+
     /* .nav-tabs > li > a
-{
-    border-bottom: 1px solid #0e1661 !important;
-    transition: none !important;
-} */
-    
+    {
+        border-bottom: 1px solid #0e1661 !important;
+        transition: none !important;
+    } */
+
     .price-section h2 {
         font-size: 12px !important;
         text-align: center;
@@ -212,7 +213,7 @@
         line-height: 30px;
         font-family: play !important;
     }
-    
+
     .price-section p {
         font-size: 12px !important;
         text-align: center;
@@ -222,16 +223,16 @@
         font-family: play !important;
         color: #000 !important;
     }
-    
+
     .price-section span.price-old {
         text-decoration: line-through;
         margin: 0 10px 0 0;
     }
-    
+
     .btn.btn-info {
         background: #ecb23d !important;
     }
-    
+
     .product-quantity #input-quantity {
         border: 1px solid #eaeaea;
         font-size: 14px;
@@ -242,97 +243,99 @@
         text-align: center;
         width: 50px;
     }
-    
+
     .instock-head {
         font-size: 12px !important;
         margin: 0px;
         line-height: 30px;
         font-family: oswald !important;
     }
-    
+
     .form-group.product-quantity {
         text-align: left;
     }
-    
+
     .form-head {
         float: left;
     }
-    
+
     .wheel_view.table-responsive {
         min-height: auto !important;
         overflow-x: visible !important;
     }
-    
+
     #demo-des {
         background: #f5f5f5 !important;
         padding: 40px 0px !important;
     }
-    
+
     .wheel-view-select {
         text-align: left;
         padding: 10px 0px !important;
     }
-    
+
     .wheel_view_ship .btn.btn-info {
         margin: 10px 0px !important;
         width: 136px !important;
         border-radius: 2px !important;
     }
-    
-    .col-sm-9.wheel_view_list.nav-tabs > li.active {
+
+    .col-sm-9.wheel_view_list.nav-tabs>li.active {
         border-bottom: 1px solid #000;
     }
-    
-    .nav > li > a:focus,
-    .nav > li > a:hover {
+
+    .nav>li>a:focus,
+    .nav>li>a:hover {
         text-decoration: none;
         background-color: #ecb23d !important;
         color: #fff !important;
         transition: 1s all;
     }
-    
+
     .col-sm-4.wheel-View-but {
         margin: 10px 0px !important;
     }
-    
+
     .new-model-button {
         border: 1px solid #eaeaea;
         padding: 15px;
         margin: 0px 0px !important;
     }
-    
+
     .wheel_view_ship .btn:hover {
         background: #000 !important;
     }
-    
+
     .wheel_view_ship .btn a {
         color: #fff !important;
         font-family: oswald !important;
         font-size: 12px !important;
     }
-    
+
     .btn.btn-info {
         font-size: 12px !important;
         font-family: oswald !important;
     }
-    
+
     .col-sm-12.wheel-view-select select {
         height: 30px !important;
         width: 150px !important;
         font-family: play !important;
         font-size: 12px !important;
     }
+
     .wheel-des .wheel-brand-img {
         width: 75% !important;
     }
-    .wheel-brand-img2
-    {
+
+    .wheel-brand-img2 {
         width: 70% !important;
     }
-    .col-sm-9.wheel_view_list .tab-content
-    {
-        margin-bottom:0px !important;
+
+    .col-sm-9.wheel_view_list .tab-content {
+        margin-bottom: 0px !important;
     }
+
     @media (max-width: 767px) {
         .row.wheel-view h1 {
             font-family: oswald !important;
@@ -341,14 +344,13 @@
             line-height: 30px !important;
         }
     }
-    .activetab .nav-tabs li.active a
-    {
+
+    .activetab .nav-tabs li.active a {
         background-color: #ecb23d !important;
         color: #ffff;
     }
 </style>
 
-</section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
@@ -363,7 +365,7 @@
 
                 <div class="col-sm-3 wheel-img">
                     <div class="wheel-des">
-                        <img src="{{asset(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
+                        <img src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
                         <h1>Lip Size Information</h1>
                         <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img">
                     </div>
@@ -371,7 +373,7 @@
 
                 <div class="col-sm-9 wheel_view_list">
                     <div class="row wheel-view">
-                        <h1>{{@$Wheel->prodtitle}}</h1>
+                        <h1>{{@$wheel->detailtitle}}</h1>
                     </div>
                     <div class="row activetab">
                         <div class="col-sm-4">
@@ -487,9 +489,9 @@
                             <img src="{{url('image/pay5.png')}}">
                             <!--  -->
                             <div class="price-section">
-                                <h2>Original Price : <span class="price-old">${{@$wheel->saleprice ?? 0}}</span> 
-                                You Save : <span class="price-new2">$0</span>
-                            </h2>
+                                <h2>Original Price : <span class="price-old">${{@$wheel->saleprice ?? 0}}</span>
+                                    You Save : <span class="price-new2">$0</span>
+                                </h2>
                                 <p>Set of 4 : <span class="price-new2">${{@$wheel->price*4}}</span></p>
                                 <p>Your Price : <span class="price-new2">${{@$wheel->price}}</span></p>
                                 <p>Starting at $15/mo with </p>
@@ -607,10 +609,10 @@
                         <div class="thumb-description">
                             <div class="caption">
                                 <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
+                                    <a href="">Falken Tires Ziex ZE950 A/S <br>
+                                        Starting at: $43.58
+                                    </a>
+                                </h4>
                                 <br>
                             </div>
                             <div class="button-group">
@@ -642,10 +644,10 @@
                         <div class="thumb-description">
                             <div class="caption">
                                 <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
+                                    <a href="">Falken Tires Ziex ZE950 A/S <br>
+                                        Starting at: $43.58
+                                    </a>
+                                </h4>
                                 <br>
                             </div>
                             <div class="button-group">
@@ -677,10 +679,10 @@
                         <div class="thumb-description">
                             <div class="caption">
                                 <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
+                                    <a href="">Falken Tires Ziex ZE950 A/S <br>
+                                        Starting at: $43.58
+                                    </a>
+                                </h4>
                                 <br>
                             </div>
                             <div class="button-group">
@@ -712,10 +714,10 @@
                         <div class="thumb-description">
                             <div class="caption">
                                 <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
+                                    <a href="">Falken Tires Ziex ZE950 A/S <br>
+                                        Starting at: $43.58
+                                    </a>
+                                </h4>
                                 <br>
                             </div>
                             <div class="button-group">
@@ -747,10 +749,10 @@
                         <div class="thumb-description">
                             <div class="caption">
                                 <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
+                                    <a href="">Falken Tires Ziex ZE950 A/S <br>
+                                        Starting at: $43.58
+                                    </a>
+                                </h4>
                                 <br>
                             </div>
                             <div class="button-group">
@@ -782,7 +784,7 @@
                         <div class="thumb-description">
                             <div class="caption">
                                 <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S"><a href="">Falken Tires Ziex ZE950 A/S <br>
-                                Starting at: $43.58</a></h4>
+                                        Starting at: $43.58</a></h4>
                                 <br>
                             </div>
                             <div class="button-group">
@@ -805,10 +807,9 @@
             </div>
         </div>
     </div>
-
 </section>
 
-@endsection @section('shop_by_vehicle_scripts')
+@endsection 
+@section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
-
 @endsection
