@@ -145,7 +145,7 @@
         width: 100% !important;
     }
 
-    .wheel-diameter-tabs h2{
+    .wheel-diameter-tabs h2 {
         margin: 0px 0px !important;
         font-family: oswald !important;
         color: #0e1661 !important;
@@ -375,7 +375,7 @@
                         <h1>{{@$wheel->detailtitle}}</h1>
                     </div>
                     <div class="row activetab">
-                        <div class="col-sm-4">
+                        <div class="col-sm-8">
                             <ul class="nav nav-tabs">
                                 @foreach(@$products as $key => $product)
 
@@ -386,83 +386,87 @@
                             <div class="tab-content">
 
                                 @foreach(@$products as $key1 => $product)
+
                                 <div id="{{@$product->partno}}" class="wheel-diameter-tabs tab-pane fade {{($key1 ==0 )?'active in ':''}}">
-                                    <h2>Front & Rear</h2>
-                                    {{--<div class="col-sm-12 wheel-view-select">
+
+                                    <div class="col-sm-6">
+                                        <h2>Front & Rear</h2>
+                                        {{--<div class="col-sm-12 wheel-view-select">
                                         <select id="">
                                             <option value="">22X9 32mm</option>
                                             <option value="">22X9 30mm</option>
                                         </select>
                                     </div>--}}
-                                    <div class="table-responsive wheel_view">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Size</td>
-                                                    <td>{{@$product->width.'x'.@$product->height}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Finish</td>
-                                                    <td>{{@$product->prodfinish}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Offset</td>
-                                                    <td>{{@$product->offset1.'mm'}}
-                                                        @if(@$product->offset2 != 'NULL' && @$product->offset2 != '')
+                                        <div class="table-responsive wheel_view">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Size</td>
+                                                        <td>{{@$product->width.'x'.@$product->height}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Finish</td>
+                                                        <td>{{@$product->prodfinish}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Offset</td>
+                                                        <td>{{@$product->offset1.'mm'}}
+                                                            @if(@$product->offset2 != 'NULL' && @$product->offset2 != '')
                                                             to {{@$product->offset2.'mm'}}
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Hub Bore</td>
-                                                    <td>{{@$product->hubbore?@$product->hubbore.'mm':''}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Brand</td>
-                                                    <td>{{@$product->prodbrand}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>{{@$product->prodmodel}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>PN</td>
-                                                    <td>{{@$product->partno}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Bolt Pattern</td>
-                                                    <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$product->boltpattern1.' '.@$product->boltpattern2.' '.@$product->boltpattern3}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hub Bore</td>
+                                                        <td>{{@$product->hubbore?@$product->hubbore.'mm':''}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Brand</td>
+                                                        <td>{{@$product->prodbrand}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>{{@$product->prodmodel}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PN</td>
+                                                        <td>{{@$product->partno}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Bolt Pattern</td>
+                                                        <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$product->boltpattern1.' '.@$product->boltpattern2.' '.@$product->boltpattern3}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="{{url('image/pay4.png')}}">
+                                        <img src="{{url('image/pay5.png')}}">
+                                        <!--  -->
+                                        <div class="price-section">
+                                            <h2>Original Price : <span class="price-old">${{@$product->saleprice ?? 0}}</span>
+                                                You Save : <span class="price-new2">$0</span>
+                                            </h2>
+                                            <p>Set of 4 : <span class="price-new2">${{@$product->price*4}}</span></p>
+                                            <p>Your Price : <span class="price-new2">${{@$product->price}}</span></p>
+                                            <!-- <p>Starting at $15/mo with </p> -->
+                                            <div class="form-head">
+                                                <div class="form-group product-quantity">
+                                                    <label class="control-label" for="input-quantity">Qty</label>
+                                                    <input type="text" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
+                                                    <input type="hidden" name="product_id" value="46">
+                                                    <button class="btn btn-info" type="button">Add to Cart</button>
+                                                </div>
+                                            </div>
+                                            <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Out Of Stock' }}</b></h1>
+                                        </div>
+                                        <!--  -->
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
 
-                        </div>
-                        <div class="col-sm-4">
-                            <img src="{{url('image/pay4.png')}}">
-                            <img src="{{url('image/pay5.png')}}">
-                            <!--  -->
-                            <div class="price-section">
-                                <h2>Original Price : <span class="price-old">${{@$wheel->saleprice ?? 0}}</span>
-                                    You Save : <span class="price-new2">$0</span>
-                                </h2>
-                                <p>Set of 4 : <span class="price-new2">${{@$wheel->price*4}}</span></p>
-                                <p>Your Price : <span class="price-new2">${{@$wheel->price}}</span></p>
-                                <p>Starting at $15/mo with </p>
-                                <div class="form-head">
-                                    <div class="form-group product-quantity">
-                                        <label class="control-label" for="input-quantity">Qty</label>
-                                        <input type="text" name="quantity" value="{{@$wheel->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
-                                        <input type="hidden" name="product_id" value="46">
-                                        <button class="btn btn-info" type="button">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <h1 class="instock-head">Availability:<b>{{@$wheel->qtyavail ? 'In Stock' : 'Out Of Stock' }}</b></h1>
-                            </div>
-                            <!--  -->
                         </div>
                         <div class="col-sm-4 wheel-View-but">
                             <div class="new-model-button">
@@ -553,37 +557,37 @@
         <div class="row">
             @foreach(@$similar_products->take(6) as $product)
             <div class="col-sm-2">
-                        <div class="product-layouts">
-                            <div class="product-thumb transition">
-                                <div class="image">
-                                    <img class="wheelImage image_thumb" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
-                                    <img class="wheelImage image_thumb_swap" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
-                                    <div class="sale-icon"><a>Sale</a></div>
-                                </div>
+                <div class="product-layouts">
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <img class="wheelImage image_thumb" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
+                            <img class="wheelImage image_thumb_swap" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
+                            <div class="sale-icon"><a>Sale</a></div>
+                        </div>
 
-                                <div class="thumb-description">
-                                    <div class="caption">
-                                        <h4><a href="{{url('/wheelproductview',$product->id)}}" title="{{$product->prodtitle}}">{{$product->prodtitle}} 
-                                            <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
-                                            <!-- <br> {{'PN : '.$product->partno}}  -->
-                                        </a></h4>
-                                        <!-- <h6><a href="">Accessories</a></h6> -->
-                                        <!-- <div class="rating">
+                        <div class="thumb-description">
+                            <div class="caption">
+                                <h4><a href="{{url('/wheelproductview',$product->id)}}" title="{{$product->prodtitle}}">{{$product->prodtitle}}
+                                        <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
+                                        <!-- <br> {{'PN : '.$product->partno}}  -->
+                                    </a></h4>
+                                <!-- <h6><a href="">Accessories</a></h6> -->
+                                <!-- <div class="rating">
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                                 <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
                                             </div> -->
-                                        <br>
-                                        <div class="price">
-                                                <span class="price-new">${{@$product->price}}</span> 
-                                                <!-- <span class="price-old">$1,202.00</span> -->
-                                                <!-- <span class="price-tax">Ex Tax: $85.00</span> -->
-                                            </div>
+                                <br>
+                                <div class="price">
+                                    <span class="price-new">${{@$product->price}}</span>
+                                    <!-- <span class="price-old">$1,202.00</span> -->
+                                    <!-- <span class="price-tax">Ex Tax: $85.00</span> -->
+                                </div>
 
-                                    </div>
-<!--                                     <div class="button-group">
+                            </div>
+                            <!--                                     <div class="button-group">
                                         <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
                                             <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
                                         </button>
@@ -599,16 +603,16 @@
                                         </button>
                                         
                                     </div> -->
-                                </div>
-                            </div>
                         </div>
+                    </div>
+                </div>
             </div>
             @endforeach
         </div>
     </div>
 </section>
 
-@endsection 
+@endsection
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
 @endsection
