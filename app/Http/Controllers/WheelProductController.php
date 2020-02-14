@@ -172,11 +172,14 @@ class WheelProductController extends Controller
 
     public function wheelproductview(Request $request,$product_id='')
     {
+        $wheel = WheelProduct::where('id',$product_id)->first(); 
 
-        $wheel = WheelProduct::select('prodbrand','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart')->whereid($product_id)->first();  
-        
-
-        return view('wheel_view',compact('wheel'));
+        $wheelproducts = WheelProduct::select('prodbrand','prodmodel','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart','proddesc');
+ 
+        $products = $wheelproducts->where('prodbrand',$wheel->prodbrand)->where('prodmodel',$wheel->prodmodel)->where('prodimage',$wheel->prodimage)->where('prodfinish',$wheel->prodfinish)->get()->unique('wheeldiameter');
+        $similar_products = WheelProduct::select('prodbrand','prodmodel','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart','proddesc')->where('prodbrand',$wheel->prodbrand)->get()->unique('prodtitle');
+        // dd($products);
+        return view('wheel_view',compact('wheel','products','similar_products'));
     }
 
     public function getFiltersByProductWheelSize(Request $request){

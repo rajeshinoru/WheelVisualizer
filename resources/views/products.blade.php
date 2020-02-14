@@ -130,7 +130,7 @@
 
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4><a href="{{url('/wheelview',$product->id)}}">{{$product->prodtitle}} 
+                                        <h4><a href="{{url('/wheelproductview',$product->id)}}">{{$product->prodtitle}} 
                                             <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
                                             <!-- <br> {{'PN : '.$product->partno}}  -->
                                         </a></h4>

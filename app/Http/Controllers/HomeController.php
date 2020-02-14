@@ -47,21 +47,15 @@ class HomeController extends Controller
     }
     public function wheelview(Request $request,$wheel_id='')
     {
-        // $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
-        // 'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
-        // 'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
-        // 'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3')
-        // ->where('id',$tire_id)
-        // ->with(['Brand'])->first();
-        // $diff_tires =  Tire::select('id','warranty','tiresize',
-        // 'speedrating','loadindex','utqg','partno','price','prodmodel')
-        // ->where('tiresize',$tire->tiresize)
-        // ->with(['Brand'])
-        // ->get();
 
-        $wheel = WheelProduct::select('prodbrand','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart')->whereid($wheel_id)->first();  
-        // dd($wheel);
-        return view('wheel_view',compact('wheel'));
+        $wheel = WheelProduct::where('id',$product_id)->first(); 
+
+        $wheelproducts = WheelProduct::select('prodbrand','prodmodel','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart','proddesc');
+ 
+        $products = $wheelproducts->where('prodbrand',$wheel->prodbrand)->where('prodmodel',$wheel->prodmodel)->where('prodimage',$wheel->prodimage)->where('prodfinish',$wheel->prodfinish)->get()->unique('wheeldiameter');
+        $similar_products = WheelProduct::select('prodbrand','prodmodel','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart','proddesc')->where('prodbrand',$wheel->prodbrand)->get()->unique('prodtitle');
+        // dd($products);
+        return view('wheel_view',compact('wheel','products','similar_products'));
     }
     public function wheels(Request $request)
     {
