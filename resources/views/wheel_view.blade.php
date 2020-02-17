@@ -372,13 +372,13 @@
 
                 <div class="col-sm-9 wheel_view_list">
                     <div class="row wheel-view">
-                        <h1>{{@$wheel->detailtitle}}</h1>
+                        <h1 class="wheel_detail_title">{{@$wheel->detailtitle}}</h1>
                     </div>
                     <div class="row activetab">
                         <div class="col-sm-8">
-                            <ul class="nav nav-tabs ">
+                            <ul class="nav nav-tabs">
                                 @foreach(@$products as $key => $product)
-                                <li class="{{($key ==0 )?'active':''}}"><a data-toggle="tab" href="#{{@$product->partno}}" >{{@$product->wheeldiameter}}</a></li>
+                                <li class="{{($key ==0 )?'active':''}}"><a class="wheel_diameter_tab" data-toggle="tab" href="#{{@$product->partno}}" data-value="{{@$product->detailtitle}}" >{{@$product->wheeldiameter}}</a></li>
                                 @endforeach
                             </ul>
 
@@ -390,18 +390,18 @@
 
                                     <div class="col-sm-6">
                                         <h2>Front & Rear</h2>
-                                        <div class="col-sm-12 wheel-view-select">
+          <!--                               <div class="col-sm-12 wheel-view-select">
                                             <select id="">
                                                 <option value="">22X9 32mm</option>
                                                 <option value="">22X9 30mm</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div class="table-responsive wheel_view">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>Size</td>
-                                                        <td>{{@$product->wheeldiameter.'x'.@$product->width}}</td>
+                                                        <td>{{@$product->wheeldiameter.'x'.@$product->wheelwidth}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Finish</td>
@@ -433,7 +433,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Bolt Pattern</td>
-                                                        <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$product->boltpattern1.' '.@$product->boltpattern2.' '.@$product->boltpattern3}}</td>
+                                                        <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$product->boltpattern1.' AND '.@$product->boltpattern2}} Bolt Patterns</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -610,8 +610,13 @@
         </div>
     </div>
 </section>
-
 @endsection
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
+
+<script type="text/javascript">
+$('.wheel_diameter_tab').click(function(){
+    $('.wheel_detail_title').text($(this).attr('data-value'));
+})
+</script>
 @endsection

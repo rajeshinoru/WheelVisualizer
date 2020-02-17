@@ -221,7 +221,7 @@ class WheelProductController extends Controller
     {
         $wheel = WheelProduct::where('id', $product_id)->first();
 
-        $wheelproducts = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc');
+        $wheelproducts = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc');
 
         $products = $wheelproducts->where('prodbrand', $wheel->prodbrand)
             ->where('prodmodel', $wheel->prodmodel)
@@ -229,7 +229,8 @@ class WheelProductController extends Controller
             ->where('prodfinish', $wheel->prodfinish)
             ->get()
             ->unique('wheeldiameter');
-        $similar_products = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc')->where('prodbrand', $wheel->prodbrand)
+        $similar_products = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc')
+            ->where('prodbrand', $wheel->prodbrand)
             ->get()
             ->unique('prodtitle');
         // dd($products);
