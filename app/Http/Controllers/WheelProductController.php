@@ -72,10 +72,14 @@ class WheelProductController extends Controller
                     $str = '';
                 }
 
-                $boltpattern = str_replace("x", "", $str);
-
-                $products = $products->where('boltpattern1', $boltpattern);
-                $products = $products->where('wheeltype', $vehicle->wheel_type);
+                $boltpattern = str_replace("x", "", $str)?:'Blank5';
+                // dd($boltpattern,$vehicle->wheel_type);
+                if($boltpattern !=''){
+                    $products = $products->where('boltpattern1', $boltpattern);
+                }
+                $typeArray = explode(',', $vehicle->wheel_type);
+                // dd($typeArray);
+                $products = $products->whereIn('wheeltype', $typeArray);
                 // $products = $products->where('rf_lc', $vehicle->rf_lc);
                 // dd($vehicle);
             }

@@ -145,7 +145,7 @@
                                             </div> -->
                                             <br>
                                             <div class="price">
-                                                <span class="price-new">${{@$product->price}}</span>
+                                                <span class="price-new">Starting at : ${{@$product->price}}</span>
                                                 <!-- <span class="price-old">$1,202.00</span> -->
                                                 <!-- <span class="price-tax">Ex Tax: $85.00</span> -->
                                             </div>

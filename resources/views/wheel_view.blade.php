@@ -372,7 +372,7 @@
 
                 <div class="col-sm-9 wheel_view_list">
                     <div class="row wheel-view">
-                        <h1 class="wheel_detail_title">{{@$wheel->detailtitle}}</h1>
+                        <h1 class="wheel_detail_title">{{@$products[0]->detailtitle}}</h1>
                     </div>
                     <div class="row activetab">
                         <div class="col-sm-8">
@@ -399,10 +399,23 @@
                                         <div class="table-responsive wheel_view">
                                             <table class="table">
                                                 <tbody>
+                                                    @if(@$product->offset1 != null && @$product->offset2 != null)
+
+                                                    <tr>
+                                                        <td colspan="2">
+                                            <select>
+                                                <option value="">{{@$product->wheeldiameter.'x'.@$product->wheelwidth}} {{@$product->offset1.'mm'}}</option>
+                                                <option value="">{{@$product->wheeldiameter.'x'.@$product->wheelwidth}} {{@$product->offset2.'mm'}}</option>
+                                            </select>
+                                                        </td>
+                                                    </tr>
+
+                                                    @else
                                                     <tr>
                                                         <td>Size</td>
                                                         <td>{{@$product->wheeldiameter.'x'.@$product->wheelwidth}}</td>
                                                     </tr>
+                                                    @endif
                                                     <tr>
                                                         <td>Finish</td>
                                                         <td>{{@$product->prodfinish}}</td>
@@ -616,7 +629,10 @@
 
 <script type="text/javascript">
 $('.wheel_diameter_tab').click(function(){
-    $('.wheel_detail_title').text($(this).attr('data-value'));
+    console.log(this);
+    // if($(this).closest('li').hasClass('active')){
+        $('.wheel_detail_title').text($(this).attr('data-value'));
+    // }
 })
 </script>
 @endsection
