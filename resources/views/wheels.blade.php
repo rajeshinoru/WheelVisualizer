@@ -2,9 +2,26 @@
 
 @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
+
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 @endsection
 @section('content')
+
+<style>
+.col-sm-12.wheel-des p {
+    font-family: play !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #000 !important;
+    margin: 0px 0px !important;
+    text-align:justify;
+}
+.wheel-des
+{
+    padding: 20px 20px !important;
+}
+</style>
+
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -135,7 +152,7 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($brands as $brand)
-                                                    <li><input type="checkbox" name="brand[]" class="brand" value="{{$brand->prodbrand}}" @if(in_array($brand->prodbrand,json_decode(base64_decode(@Request::get('brand')?:''))?:[])) checked @endif> {{$brand->prodbrand.'('.$brand->total.')'}}
+                                                    <li><input type="checkbox" name="brand[]" class="brand" value="{{$brand->brand}}" @if(in_array($brand->brand,json_decode(base64_decode(@Request::get('brand')?:''))?:[])) checked @endif> {{$brand->brand.'('.$brand->total.')'}}
                                                     </li>
                                                     @empty
                                                     <li><input type="checkbox" name="brand[]" value=""> 7</li>
@@ -160,16 +177,14 @@
                         <div class="product-layouts">
                             <div class="product-thumb transition">
                                 <div class="image">
-                                    <img class="wheelImage image_thumb" src="{{asset(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
-                                    <img class="wheelImage image_thumb_swap" src="{{asset(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
+                                    <img class="wheelImage image_thumb" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
+                                    <img class="wheelImage image_thumb_swap" src="{{asset($wheel->image)}}" title="{{$wheel->brand}}" alt="{{$wheel->brand}}">
                                     <div class="sale-icon"><a>Sale</a></div>
                                 </div>
 
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4><a href="{{url('/wheelview')}}">{{@$wheel->prodtitle}} <br> {{'Diameter : '.@$wheel->wheeldiameter}}</a></h4>
-
-                                      <!--   <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array(@$wheel->prodbrand)))}}">{{@$wheel->prodtitle}} <br> {{'Diameter : '.$wheel->wheeldiameter}}</a></h4> -->
+                                        <h4><a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($wheel->brand)))}}">{{$wheel->style}} <br> {{'Diameter : '.$wheel->wheeldiameter}} </a></h4>
                                         <!-- <h6><a href="">Accessories</a></h6> -->
                                         <!-- <div class="rating">
                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
@@ -184,7 +199,7 @@
                                                 <span class="price-tax">Ex Tax: $85.00</span>
                                             </div> -->
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path(@$wheel->prodimage)))?'disabled':''}}" {{(!file_exists(front_back_path(@$wheel->prodimage)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}">See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}">See On Your Car</button>
                                         @endif
                                     </div>
                                     <div class="button-group">
@@ -234,13 +249,13 @@
                                         <div class="col-sm-8 model-car">
                                             <img class="car_image_{{$car_images->car_id}} " src="{{asset($car_images->image)}}" style="">
                                         </div>
-                                        @if(file_exists(front_back_path(@$wheel->prodimage)))
+                                        @if(file_exists(front_back_path($wheel->image)))
                                         <div class="car-wheel">
                                             <div class="front">
-                                                <img src="{{front_back_path(@$wheel->prodimage)}}" id="image-diameter-front-{{$key}}">
+                                                <img src="{{front_back_path($wheel->image)}}" id="image-diameter-front-{{$key}}">
                                             </div>
                                             <div class="back">
-                                                <img src="{{front_back_path(@$wheel->prodimage)}}" id="image-diameter-back-{{$key}}">
+                                                <img src="{{front_back_path($wheel->image)}}" id="image-diameter-back-{{$key}}">
                                             </div>
                                         </div>
                                         @endif
@@ -339,10 +354,10 @@
                 <div class="row">
                     @foreach($brandImages as $branddetail)
                     <div class="col-sm-4 news-pro">
-                        <div class="col-sm-6 news-img"><img class="wheelImage" src="{{asset(@$branddetail['prodimage'])}}" style="width: 100%;"></div>
-                        <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array(@$branddetail['prodbrand'])))}}">
-                                <h2 class="news-title"><b>{{@$branddetail['prodtitle']}}</b></h2>
-                                <h2 class="news-title">{{'Diameter : '.@$branddetail['wheeldiameter']}}</h2>
+                        <div class="col-sm-6 news-img"><img class="wheelImage" src="{{asset($branddetail['image'])}}" style="width: 100%;"></div>
+                        <div class="col-sm-6"> <a href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($branddetail['brand'])))}}">
+                                <h2 class="news-title"><b>{{$branddetail['style']}}</b></h2>
+                                <h2 class="news-title">{{'Diameter : '.$branddetail['wheeldiameter']}}</h2>
                             </a>
                         </div>
                     </div>

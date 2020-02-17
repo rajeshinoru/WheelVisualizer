@@ -5,7 +5,7 @@
     .hometabled {
         margin: 25px 0px !important;
     }
-    
+
     .hometabled {
         display: table;
         text-align: center;
@@ -19,7 +19,7 @@
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
     }
-    
+
     .pTopBar {
         display: table;
         width: 100%;
@@ -30,7 +30,7 @@
         -webkit-border-radius: 2px;
         background: #0e1661 !important;
     }
-    
+
     .pTopCell {
         display: table-cell;
         width: 50%;
@@ -40,72 +40,72 @@
         font-size: 14px;
         font-family: oswald !important;
     }
-    
+
     .pTopCell.Phone a {
         color: #fff;
         text-decoration: none;
         font-size: 12px;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li > a,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li>a,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:focus {
         color: #777;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > .open > a,
-    .with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>.open>a,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>.open>a:focus,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li>a:focus {
         color: #777;
         background-color: #ddd;
         border-color: transparent;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.active>a:focus {
         color: #555;
         background-color: #fff;
         border-color: #ddd;
         border-bottom-color: transparent;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu {
         background-color: #f5f5f5;
         border-color: #ddd;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a {
         color: #777;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>li>a:focus {
         background-color: #ddd;
     }
-    
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a:hover,
+    .with-nav-tabs.panel-default .nav-tabs>li.dropdown .dropdown-menu>.active>a:focus {
         color: #fff;
         background-color: #555;
     }
-    
+
     .tab-content.wheel-list-tab {
         margin-bottom: 0px !important;
     }
-    
+
     .tab-content.wheel-list-tab .browser-default.custom-select {
         margin: 0px 30px !important;
         padding: 4px 40px !important;
     }
-    
+
     #fal-feature {
         padding: 40px 0px !important;
     }
-    
+
     .wheel-des h1,
     .wheel-des h2 {
         font-size: 12px !important;
@@ -113,7 +113,7 @@
         line-height: 30px;
         font-family: oswald !important;
     }
-    
+
     .prod-headinghome p {
         margin: 10px 0px;
         color: #121214;
@@ -121,32 +121,31 @@
         line-height: 30px !important;
         font-family: play !important;
     }
-    
+
     .prod-headinghome h1 {
         font-family: oswald !important;
         font-size: 15px !important;
         font-weight: 100 !important;
         color: #0e1661 !important;
     }
-    
+
     .row.wheel-view h1 {
         font-family: oswald !important;
         font-size: 18px !important;
         text-align: left;
         line-height: 30px !important;
     }
-    
+
     .row.wheel-view h1:hover {
         text-decoration: underline !important;
         color: #0e1661 !important;
     }
-    
+
     .wheel-des img {
         width: 100% !important;
     }
-    
-    #home h2,
-    #menu1 h2 {
+
+    .wheel-diameter-tabs h2 {
         margin: 0px 0px !important;
         font-family: oswald !important;
         color: #0e1661 !important;
@@ -155,55 +154,56 @@
         border-bottom: 1px solid #ccc !important;
         padding: 10px 0px !important;
     }
-    
+
     tbody tr {
         text-align: left;
     }
-    
-    .table > tbody > tr > td {
+
+    .table>tbody>tr>td {
         border-top: none !important;
         color: #000 !important;
     }
-    
+
     td {
         font-size: 12px !important;
         font-family: play !important;
         padding: 5px 0px !important;
     }
-    
+
     .table {
         margin-bottom: 0px !important;
     }
-    
+
     .nav.nav-tabs li a:hover {
         background: transparent !important;
         color: #000 !important;
         border: none;
     }
-    
+
     .nav.nav-tabs li a {
         border: none;
     }
-    
-    .nav > li > a:focus,
-    .nav > li > a:hover {
+
+    .nav>li>a:focus,
+    .nav>li>a:hover {
         text-decoration: none;
         background: none !important;
         color: #000 !important;
         transition: none !important;
         border: none !important;
     }
-    
+
     .nav.nav-tabs .tab-content {
         margin-bottom: 0px !important;
         padding: 0px 0px !important;
     }
+
     /* .nav-tabs > li > a
-{
-    border-bottom: 1px solid #0e1661 !important;
-    transition: none !important;
-} */
-    
+    {
+        border-bottom: 1px solid #0e1661 !important;
+        transition: none !important;
+    } */
+
     .price-section h2 {
         font-size: 12px !important;
         text-align: center;
@@ -212,7 +212,7 @@
         line-height: 30px;
         font-family: play !important;
     }
-    
+
     .price-section p {
         font-size: 12px !important;
         text-align: center;
@@ -222,16 +222,16 @@
         font-family: play !important;
         color: #000 !important;
     }
-    
+
     .price-section span.price-old {
         text-decoration: line-through;
         margin: 0 10px 0 0;
     }
-    
+
     .btn.btn-info {
         background: #ecb23d !important;
     }
-    
+
     .product-quantity #input-quantity {
         border: 1px solid #eaeaea;
         font-size: 14px;
@@ -242,97 +242,99 @@
         text-align: center;
         width: 50px;
     }
-    
+
     .instock-head {
         font-size: 12px !important;
         margin: 0px;
         line-height: 30px;
         font-family: oswald !important;
     }
-    
+
     .form-group.product-quantity {
         text-align: left;
     }
-    
+
     .form-head {
         float: left;
     }
-    
+
     .wheel_view.table-responsive {
         min-height: auto !important;
         overflow-x: visible !important;
     }
-    
+
     #demo-des {
         background: #f5f5f5 !important;
         padding: 40px 0px !important;
     }
-    
+
     .wheel-view-select {
         text-align: left;
         padding: 10px 0px !important;
     }
-    
+
     .wheel_view_ship .btn.btn-info {
         margin: 10px 0px !important;
         width: 136px !important;
         border-radius: 2px !important;
     }
-    
-    .col-sm-9.wheel_view_list.nav-tabs > li.active {
+
+    .col-sm-9.wheel_view_list.nav-tabs>li.active {
         border-bottom: 1px solid #000;
     }
-    
-    .nav > li > a:focus,
-    .nav > li > a:hover {
+
+    .nav>li>a:focus,
+    .nav>li>a:hover {
         text-decoration: none;
         background-color: #ecb23d !important;
         color: #fff !important;
         transition: 1s all;
     }
-    
+
     .col-sm-4.wheel-View-but {
         margin: 10px 0px !important;
     }
-    
+
     .new-model-button {
         border: 1px solid #eaeaea;
         padding: 15px;
         margin: 0px 0px !important;
     }
-    
+
     .wheel_view_ship .btn:hover {
         background: #000 !important;
     }
-    
+
     .wheel_view_ship .btn a {
         color: #fff !important;
         font-family: oswald !important;
         font-size: 12px !important;
     }
-    
+
     .btn.btn-info {
         font-size: 12px !important;
         font-family: oswald !important;
     }
-    
+
     .col-sm-12.wheel-view-select select {
         height: 30px !important;
         width: 150px !important;
         font-family: play !important;
         font-size: 12px !important;
     }
+
     .wheel-des .wheel-brand-img {
         width: 75% !important;
     }
-    .wheel-brand-img2
-    {
+
+    .wheel-brand-img2 {
         width: 70% !important;
     }
-    .col-sm-9.wheel_view_list .tab-content
-    {
-        margin-bottom:0px !important;
+
+    .col-sm-9.wheel_view_list .tab-content {
+        margin-bottom: 0px !important;
     }
+
     @media (max-width: 767px) {
         .row.wheel-view h1 {
             font-family: oswald !important;
@@ -341,9 +343,13 @@
             line-height: 30px !important;
         }
     }
+
+    .activetab .nav-tabs li.active a {
+        background-color: #ecb23d !important;
+        color: #ffff;
+    }
 </style>
 
-</section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
@@ -358,151 +364,113 @@
 
                 <div class="col-sm-3 wheel-img">
                     <div class="wheel-des">
-                        <img src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg">
+                        <img src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
                         <h1>Lip Size Information</h1>
-                        <img src="image/wheel-brand.png" class="wheel-brand-img">
+                        <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img">
                     </div>
                 </div>
 
                 <div class="col-sm-9 wheel_view_list">
                     <div class="row wheel-view">
-                        <h1>2 Crave Wheels No.33 22x9 Gloss Black with Machined Face 15mm Offset</h1>
+                        <h1>{{@$wheel->detailtitle}}</h1>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-
+                    <div class="row activetab">
+                        <div class="col-sm-8">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#home">20</a></li>
-                                <li><a data-toggle="tab" href="#menu1">22</a></li>
+                                @foreach(@$products as $key => $product)
+
+                                <li class="{{($key ==0 )?'active':''}}"><a data-toggle="tab" href="#{{@$product->partno}}">{{@$product->wheeldiameter}}</a></li>
+                                @endforeach
                             </ul>
 
                             <div class="tab-content">
 
-                                <div id="home" class="tab-pane fade in active">
-                                    <h2>Front & Rear</h2>
-                                    <div class="col-sm-12 wheel-view-select">
+                                @foreach(@$products as $key1 => $product)
+
+                                <div id="{{@$product->partno}}" class="wheel-diameter-tabs tab-pane fade {{($key1 ==0 )?'active in ':''}}">
+
+                                    <div class="col-sm-6">
+                                        <h2>Front & Rear</h2>
+                                        {{--<div class="col-sm-12 wheel-view-select">
                                         <select id="">
                                             <option value="">22X9 32mm</option>
                                             <option value="">22X9 30mm</option>
                                         </select>
+                                    </div>--}}
+                                        <div class="table-responsive wheel_view">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Size</td>
+                                                        <td>{{@$product->width.'x'.@$product->height}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Finish</td>
+                                                        <td>{{@$product->prodfinish}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Offset</td>
+                                                        <td>{{@$product->offset1.'mm'}}
+                                                            @if(@$product->offset2 != 'NULL' && @$product->offset2 != '')
+                                                            to {{@$product->offset2.'mm'}}
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hub Bore</td>
+                                                        <td>{{@$product->hubbore?@$product->hubbore.'mm':''}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Brand</td>
+                                                        <td>{{@$product->prodbrand}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>{{@$product->prodmodel}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PN</td>
+                                                        <td>{{@$product->partno}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Bolt Pattern</td>
+                                                        <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$product->boltpattern1.' '.@$product->boltpattern2.' '.@$product->boltpattern3}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div class="table-responsive wheel_view">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Size</td>
-                                                    <td>20x8.5</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Finish</td>
-                                                    <td>Black</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Offset</td>
-                                                    <td>40mm</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Hub Bore</td>
-                                                    <td>74.1mm</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Brand</td>
-                                                    <td>Helo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>HE915</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>PN</td>
-                                                    <td>HE91528517340</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Bolt Pattern</td>
-                                                    <td>Fits 5x114 and 5x120 bolt patterns</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div id="menu1" class="tab-pane fade">
-                                    <h2>Front & Rear</h2>
-                                    <div class="col-sm-12 wheel-view-select">
-                                        <select id="">
-                                            <option value="">22X9 32mm</option>
-                                            <option value="">22X9 30mm</option>
-                                        </select>
-                                    </div>
-                                    <div class="table-responsive wheel_view">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Size</td>
-                                                    <td>20x8.5</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Finish</td>
-                                                    <td>Black</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Offset</td>
-                                                    <td>40mm</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Hub Bore</td>
-                                                    <td>74.1mm</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Brand</td>
-                                                    <td>Helo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>HE915</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>PN</td>
-                                                    <td>HE91528517340</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Bolt Pattern</td>
-                                                    <td>Fits 5x114 and 5x120 bolt patterns</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="col-sm-6">
+                                        <img src="{{url('image/pay4.png')}}">
+                                        <img src="{{url('image/pay5.png')}}">
+                                        <!--  -->
+                                        <div class="price-section">
+                                            <h2>Original Price : <span class="price-old">${{@$product->saleprice ?? 0}}</span>
+                                                You Save : <span class="price-new2">$0</span>
+                                            </h2>
+                                            <p>Set of 4 : <span class="price-new2">${{@$product->price*4}}</span></p>
+                                            <p>Your Price : <span class="price-new2">${{@$product->price}}</span></p>
+                                            <!-- <p>Starting at $15/mo with </p> -->
+                                            <div class="form-head">
+                                                <div class="form-group product-quantity">
+                                                    <label class="control-label" for="input-quantity">Qty</label>
+                                                    <input type="text" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
+                                                    <input type="hidden" name="product_id" value="46">
+                                                    <button class="btn btn-info" type="button">Add to Cart</button>
+                                                </div>
+                                            </div>
+                                            <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Out Of Stock' }}</b></h1>
+                                        </div>
+                                        <!--  -->
                                     </div>
                                 </div>
-
+                                @endforeach
                             </div>
 
-                        </div>
-                        <div class="col-sm-4">
-                            <img src="image/pay4.png">
-                            <img src="image/pay5.png">
-                            <!--  -->
-                            <div class="price-section">
-                                <h2>Original Price : <span class="price-old">$422.55</span> 
-                                You Save : <span class="price-new2">$109.55</span>
-                            </h2>
-                                <p>Set of 4 : <span class="price-new2">$1252</span></p>
-                                <p>Your Price : <span class="price-new2">$313</span></p>
-                                <p>Starting at $15/mo with </p>
-                                <div class="form-head">
-                                    <div class="form-group product-quantity">
-                                        <label class="control-label" for="input-quantity">Qty</label>
-                                        <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
-                                        <input type="hidden" name="product_id" value="46">
-                                        <button class="btn btn-info" type="button">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <h1 class="instock-head">Availability:<b>In Stock</b></h1>
-                            </div>
-                            <!--  -->
                         </div>
                         <div class="col-sm-4 wheel-View-but">
                             <div class="new-model-button">
-                                <img src="image/wheel-brand.png" class="wheel-brand-img2">
+                                <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img2">
                                 <div class="wheel_view_ship">
                                     <button class="btn btn-info" type="button"><a>Shopping Cart</a></button>
                                 </div>
@@ -546,17 +514,13 @@
                                 <div class="tab-pane fade in active" id="tab1default">
                                     <div class="col-sm-8">
                                         <div class="prod-headinghome">
-                                            <h1><b>Details</b></h1>
-                                            <!-- <br><b>Type</b>: {{@$tire->Passenger}} -->
-                                            <p><b>Style</b>: {{@$tire->prodmodel}}</p>
-                                            <!-- <br><b>Feature</b>: Exclusive silica compound. 3D canyon siping. Wide angled tread slot. Wide circumferential grooves -->
-                                            <h1><b>Description</b>:</h1>
-                                            <?php echo @$tire->proddesc ?>
+                                            <br>
+                                            <p><?php echo @$wheel->proddesc ?></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="tire-des">
-                                            <img src="{{viewImage('/tires/'.@$tire->prodimage)}}">
+                                        <div class="wheel-des">
+                                            <img src="{{ViewWheelProductImage(@$wheel->prodimage)}}">
                                         </div>
                                     </div>
 
@@ -584,226 +548,71 @@
 
 <section id="falken-info">
     <div class="container">
-        <a href=""><img src="image/wheel-Company-Info.jpg" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
+        <a href=""><img src="{{url('image/wheel-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
     </div>
 </section>
 
 <section id="fal-feature">
     <div class="container">
         <div class="row">
+            @foreach(@$similar_products->take(6) as $product)
             <div class="col-sm-2">
                 <div class="product-layouts">
                     <div class="product-thumb transition">
                         <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
+                            <img class="wheelImage image_thumb_swap" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
                             <div class="sale-icon"><a>Sale</a></div>
                         </div>
+
                         <div class="thumb-description">
                             <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
+                                <h4><a href="{{url('/wheelproductview',$product->id)}}" title="{{$product->prodtitle}}">{{$product->prodtitle}}
+                                        <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
+                                        <!-- <br> {{'PN : '.$product->partno}}  -->
+                                    </a></h4>
+                                <!-- <h6><a href="">Accessories</a></h6> -->
+                                <!-- <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
+                                            </div> -->
                                 <br>
+                                <div class="price">
+                                    <span class="price-new">${{@$product->price}}</span>
+                                    <!-- <span class="price-old">$1,202.00</span> -->
+                                    <!-- <span class="price-tax">Ex Tax: $85.00</span> -->
+                                </div>
+
                             </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
+                            <!--                                     <div class="button-group">
+                                        <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                            <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                        </button>
+                                        <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                            <span title="Add to Wish List">Add to Wish List</span>
+                                        </button>
+                                        <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                            <span title="Add to compare">Add to compare</span>
+                                        </button>
+                                        
+                                        <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                            <span>Quick View</span>
+                                        </button>
+                                        
+                                    </div> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage/wheels/KOKO_Dacono_BM_KO9835845861_20.jpg" title="" alt="" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S"><a href="">Falken Tires Ziex ZE950 A/S <br>
-                                Starting at: $43.58</a></h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-
 </section>
 
-@endsection @section('shop_by_vehicle_scripts')
+@endsection
+@section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
-
 @endsection

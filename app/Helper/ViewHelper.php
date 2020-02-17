@@ -4,18 +4,19 @@ use App\Wheel;
 use App\Viflist;
 use App\Tire;
 use App\Vehicle;
+use App\WheelProduct;
 
 //// All Wheel Brands
 function wheelbrands($splitarray = '') {
-	$wheels = Wheel::select('prodbrand');
+	$wheels = Wheel::select('brand');
 	if($splitarray){
 		if($splitarray == 3 || $splitarray == 4)
-	 		$wheels = array_chunk($wheels->addSelect('prodtitle','prodimage','wheeldiameter')->inRandomOrder()->take($splitarray*5)->get()->unique('prodbrand')->toArray(), $splitarray); 
+	 		$wheels = array_chunk($wheels->addSelect('image','style','wheeldiameter')->inRandomOrder()->get()->unique('brand')->toArray(), $splitarray); 
 	 	else
-	 		$wheels = array_chunk($wheels->addSelect('prodbrand')->inRandomOrder()->take(10)->get()->unique('prodbrand')->toArray(), $splitarray); 
+	 		$wheels = array_chunk($wheels->addSelect('brand','style')->inRandomOrder()->take(10)->get()->unique('brand')->toArray(), $splitarray); 
 	}
  	else
-		$wheels = $wheels->get()->unique('prodbrand');
+		$wheels = $wheels->get()->unique('brand');
  	return $wheels; 
 } 
 
@@ -80,11 +81,7 @@ function getMakeList(){
         $make = Viflist::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make'); 
         return $make;
 }
-function getWheelBrandList(){
 
-        $brand = Wheel::select('brand')->distinct('brand')->orderBy('brand','Asc')->pluck('brand'); 
-        return $brand;
-}
 function getTireBrandList(){
 
         $tires = Tire::select('prodbrand')->distinct('prodbrand')->pluck('prodbrand')->toArray(); 
@@ -97,11 +94,43 @@ function getTireWidthList(){
         rsort($tires);
         return $tires;
 }
+
+
+//***************************** Discount Wheels - Products Starts*************************************//
+
+// -------------> Shop By Size 
 function getWheelDiameterList(){
-        $wheels = Wheel::select('wheeldiameter')->distinct('wheeldiameter')->pluck('wheeldiameter')->toArray(); 
+        $wheels = WheelProduct::select('wheeldiameter')->distinct('wheeldiameter')->pluck('wheeldiameter')->toArray(); 
         rsort($wheels);
         return $wheels;
 }
+// -------------> Shop By Brand 
+function getWheelBrandList(){
+
+        $brand = WheelProduct::select('prodbrand')->distinct('prodbrand')->orderBy('prodbrand','Asc')->pluck('prodbrand'); 
+        return $brand;
+}
+function ViewWheelProductImage($url=''){
+	if($url != ''){
+		$wheel_products_url="/storage/wheel_products/".$url;
+		$misc_url="/storage/misc_images/".$url;
+		if(file_exists(public_path($wheel_products_url))){
+			return asset($wheel_products_url);
+		}else{
+			if(file_exists(public_path($misc_url))){
+				return asset($misc_url);
+			}else{
+				return asset('image/no_image.jpg');
+			}
+		}
+	}else{
+			return asset('image/no_image.jpg');
+	}
+
+}
+
+//***************************** Discount Wheels - Products Ends*************************************//
+
 
 function getVehicleMakeList(){
 

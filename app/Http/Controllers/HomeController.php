@@ -9,6 +9,7 @@ use App\CarImage;
 use App\CarColour;
 use App\Wheel;
 use App\Tire;
+use App\WheelProduct;
 use Artisan;
 use Symfony\Component\Process\Process;
 class HomeController extends Controller
@@ -30,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {  
-        $Wheels = Wheel::select('prodtitle','prodbrand','prodimage','wheeldiameter','wheelwidth')->inRandomOrder()->paginate(12); ;
+        $Wheels = Wheel::select('brand', 'image', 'wheeldiameter', 'wheelwidth', 'style')->inRandomOrder()->paginate(12); ;
         $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->limit(10)->get(); 
 
         return view('home',compact('Wheels','years'));
@@ -44,30 +45,27 @@ class HomeController extends Controller
         $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
         return view('forms',compact('Wheels')); 
     }
-    public function wheelview(Request $request,$tire_id=1)
+    public function wheelview(Request $request,$wheel_id='')
     {
-        $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
-        'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
-        'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
-        'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3')
-        ->where('id',$tire_id)
-        ->with(['Brand'])->first();
-        $diff_tires =  Tire::select('id','warranty','tiresize',
-        'speedrating','loadindex','utqg','partno','price','prodmodel')
-        ->where('tiresize',$tire->tiresize)
-        ->with(['Brand'])
-        ->get();
-        return view('wheel_view',compact('tire','diff_tires'));
+
+        $wheel = WheelProduct::where('id',$product_id)->first(); 
+
+        $wheelproducts = WheelProduct::select('prodbrand','prodmodel','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart','proddesc');
+ 
+        $products = $wheelproducts->where('prodbrand',$wheel->prodbrand)->where('prodmodel',$wheel->prodmodel)->where('prodimage',$wheel->prodimage)->where('prodfinish',$wheel->prodfinish)->get()->unique('wheeldiameter');
+        $similar_products = WheelProduct::select('prodbrand','prodmodel','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish','boltpattern1','boltpattern2','boltpattern3','offset1','offset2','hubbore','width','height','partno','price','price2','saleprice','qtyavail','salestart','proddesc')->where('prodbrand',$wheel->prodbrand)->get()->unique('prodtitle');
+        // dd($products);
+        return view('wheel_view',compact('wheel','products','similar_products'));
     }
     public function wheels(Request $request)
     {
         try{ 
             $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->get(); 
 
-            $Wheels = Wheel::select('prodbrand','prodimage','wheeldiameter','wheelwidth','prodtitle','prodfinish'); 
+            $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style'); 
     
             if(isset($request->brand) && $request->brand) 
-                $Wheels = $Wheels->whereIn('prodbrand',json_decode(base64_decode($request->brand)));
+                $Wheels = $Wheels->whereIn('brand',json_decode(base64_decode($request->brand)));
 
             if(isset($request->diameter) && $request->diameter)
                 $Wheels = $Wheels->whereIn('wheeldiameter',json_decode(base64_decode($request->diameter)));
@@ -76,22 +74,21 @@ class HomeController extends Controller
                 $Wheels = $Wheels->whereIn('wheelwidth',json_decode(base64_decode($request->width)));
 
             if(isset($request->search))
-                $Wheels = $Wheels->where('prodbrand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
+                $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
 
-            // $Wheels = $Wheels->inRandomOrder()->get()->unique('prodfinish');
             $Wheels = $Wheels->inRandomOrder()->paginate(9); 
             ///Brand with count
-            $brands = Wheel::select('prodbrand', \DB::raw('count(*) as total'))->groupBy('prodbrand')->get()->sortBy('prodbrand'); 
+            $brands = Wheel::select('brand', \DB::raw('count(*) as total'))->groupBy('brand')->get()->sortBy('brand'); 
 
             ///wheeldiameter with count 
             if(isset($request->brand) && $request->brand)
-                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('prodbrand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
+                $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter');
             else 
                 $wheeldiameter = Wheel::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')->get()->sortBy('wheeldiameter'); 
 
             ///wheelwidth with count  
             if(isset($request->brand) && $request->brand)
-                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('prodbrand',json_decode(base64_decode($request->brand)))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
+                $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('brand',json_decode(base64_decode($request->brand)))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
             else
                 $wheelwidth = Wheel::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')->get()->sortBy('wheelwidth'); 
 
@@ -117,7 +114,37 @@ class HomeController extends Controller
             return response()->json(['error' => $error->getMessage()]); 
         }
     } 
+    public function vehicledetails(Request $request)
+    { 
+        try{
+            $viflist = new Viflist; 
 
+            // Make change or Loading filter
+            if(isset($request->make) && $request->changeBy == 'make' || $request->changeBy == '')
+                $allData['year'] = $data = $viflist->select('yr')->distinct('yr')->wheremake($request->make)->orderBy('yr','DESC')->get();
+
+            // Make change  or Loading Filter
+            if(isset($request->make) && isset($request->year) && $request->changeBy == 'year' || $request->changeBy == '')
+                $allData['model'] = $data = $viflist->select('model')->distinct('model')->whereyr($request->year)->wheremake($request->make)->get();
+
+            // Model change  or Loading Filter
+            if(isset($request->year) && isset($request->make) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == ''){
+                $data = $viflist->select('vif','body','drs','whls')->whereyr($request->year)->wheremake($request->make)->wheremodel($request->model)->get()->unique('body','drs','whls')->toArray();
+                $dummy = array_values($data);
+                $allData['driverbody'] = $data = $dummy;
+            }
+            // dd($data);
+            if($request->changeBy == ''){    
+                return response()->json(['data' => $allData]);
+            }
+            return response()->json(['data' => $data]);
+
+        }catch(ModelNotFoundException $notfound){
+            return response()->json(['error' => $notfound->getMessage()]); 
+        }catch(Exception $error){
+            return response()->json(['error' => $error->getMessage()]); 
+        }
+    }
     public function wheelbrand(Request $request)
     {
         try{ 
@@ -175,37 +202,37 @@ class HomeController extends Controller
             return response()->json(['error' => $error->getMessage()]); 
         }
     } 
-    public function vehicledetails(Request $request)
-    { 
-        try{
-            $viflist = new Viflist; 
+    // public function vehicledetails(Request $request)
+    // { 
+    //     try{
+    //         $viflist = new Viflist; 
 
-            // Make change or Loading filter
-            if(isset($request->make) && $request->changeBy == 'make' || $request->changeBy == '')
-                $allData['year'] = $data = $viflist->select('yr')->distinct('yr')->wheremake($request->make)->orderBy('yr','DESC')->get();
+    //         // Make change or Loading filter
+    //         if(isset($request->make) && $request->changeBy == 'make' || $request->changeBy == '')
+    //             $allData['year'] = $data = $viflist->select('yr')->distinct('yr')->wheremake($request->make)->orderBy('yr','DESC')->get();
 
-            // Make change  or Loading Filter
-            if(isset($request->make) && isset($request->year) && $request->changeBy == 'year' || $request->changeBy == '')
-                $allData['model'] = $data = $viflist->select('model')->distinct('model')->whereyr($request->year)->wheremake($request->make)->get();
+    //         // Make change  or Loading Filter
+    //         if(isset($request->make) && isset($request->year) && $request->changeBy == 'year' || $request->changeBy == '')
+    //             $allData['model'] = $data = $viflist->select('model')->distinct('model')->whereyr($request->year)->wheremake($request->make)->get();
 
-            // Model change  or Loading Filter
-            if(isset($request->year) && isset($request->make) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == ''){
-                $data = $viflist->select('vif','body','drs','whls')->whereyr($request->year)->wheremake($request->make)->wheremodel($request->model)->get()->unique('body','drs','whls')->toArray();
-                $dummy = array_values($data);
-                $allData['driverbody'] = $data = $dummy;
-            }
-            // dd($data);
-            if($request->changeBy == ''){    
-                return response()->json(['data' => $allData]);
-            }
-            return response()->json(['data' => $data]);
+    //         // Model change  or Loading Filter
+    //         if(isset($request->year) && isset($request->make) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == ''){
+    //             $data = $viflist->select('vif','body','drs','whls')->whereyr($request->year)->wheremake($request->make)->wheremodel($request->model)->get()->unique('body','drs','whls')->toArray();
+    //             $dummy = array_values($data);
+    //             $allData['driverbody'] = $data = $dummy;
+    //         }
+    //         // dd($data);
+    //         if($request->changeBy == ''){    
+    //             return response()->json(['data' => $allData]);
+    //         }
+    //         return response()->json(['data' => $data]);
 
-        }catch(ModelNotFoundException $notfound){
-            return response()->json(['error' => $notfound->getMessage()]); 
-        }catch(Exception $error){
-            return response()->json(['error' => $error->getMessage()]); 
-        }
-    }
+    //     }catch(ModelNotFoundException $notfound){
+    //         return response()->json(['error' => $notfound->getMessage()]); 
+    //     }catch(Exception $error){
+    //         return response()->json(['error' => $error->getMessage()]); 
+    //     }
+    // }
 
     // Select the cars by vif and color code
     public function selectCarByColor(Request $request)
