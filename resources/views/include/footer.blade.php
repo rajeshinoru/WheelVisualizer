@@ -250,9 +250,7 @@
 </section>
 
 
-<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="" data-toggle="tooltip" data-placement="left">
-    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-</a>
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
 
 
 

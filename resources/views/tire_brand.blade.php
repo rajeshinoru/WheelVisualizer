@@ -5,12 +5,12 @@
     #falken-des {
         padding: 40px 0px;
     }
-    
+
     .fal-logo {
         text-align: center;
     }
-    
-    .prod-headinghome p 
+
+    .prod-headinghome p
     {
         margin: 10px 0px;
         color: #121214;
@@ -18,20 +18,20 @@
         line-height: 30px !important;
         font-family: play !important;
     }
-    
+
     .product-thumb h4 {
         font: 400 12px/25px "roboto", Helvetica, sans-serif;
         margin: 5px 0 10px;
         overflow: hidden;
         padding: 0;
     }
-    
+
     .title-heading h2 {
         font-size: 18px !important;
         margin: 20px 0px !important;
         font-family: oswald !important;
     }
-    
+
     .hometabled {
         display: table;
         text-align: center;
@@ -41,7 +41,7 @@
         padding: .5%;
         border-radius: 2px !important;
     }
-    
+
     .col-sm-4.fal-logo img {
         padding: 10px 0px !important;
     }
@@ -53,7 +53,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <div class="prod-headinghome">
 @if(@$tire->Brand)
 <p>
@@ -72,7 +72,7 @@ Falken tires are engineered with advanced performance technologies for the stree
 @endif
                 </div>
             </div>
-            <div class="col-sm-4 fal-logo"><img src="{{viewImage('tires/brands/'.@$tire->Brand->manulogo)}}"></div>
+            <div class="col-sm-3 fal-logo"><img src="{{viewImage('tires/brands/'.@$tire->Brand->manulogo)}}"></div>
         </div>
     </div>
 

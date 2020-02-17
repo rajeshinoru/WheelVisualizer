@@ -164,7 +164,7 @@
     });
     });
     </script>
-    
+
     <script src="{{ asset('js/shop_by_vehicle.js') }}"></script>
     <script src="{{ asset('js/shop_by_tire.js') }}"></script>
 

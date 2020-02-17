@@ -53,7 +53,7 @@ a:hover {
 }
 legend {
     font-size: 18px;
-    padding: 7px 0px 
+    padding: 7px 0px
 }
 small, .small {
     font-size: 11px;
@@ -1224,6 +1224,9 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 .header-right-cms {
     float: right;
 }
+.header-phone.pull-right {
+    border-right: 1px solid #cccccc7a !important;
+}
 #currency .btn.dropdown-toggle, #language .btn.dropdown-toggle {
     padding: 10px 0;
     margin-right: 15px;
@@ -1321,7 +1324,7 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
     padding: 2px 10px;
 }
 #top-links .account-link-toggle a i.fa {
-    padding: 0 2px 
+    padding: 0 2px
 }
 .header-top-left .header-phone {
     margin: 0 10px;
@@ -1343,7 +1346,14 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 }
 #top-links > ul > li.header-phone {
     line-height: 20px;
-    padding-left: 0px;
+}
+.pull-right ul li
+{
+  border-right:1px solid #cccccc9e !important;
+}
+.pull-left ul li
+{
+  border-left:1px solid #cccccc9e !important;
 }
 .header-phone::before {
    /* background: rgba(0, 0, 0, 0) url("OnTheme/images/sprite.png") no-repeat scroll -34px -436px;
@@ -1755,8 +1765,11 @@ header .full-header {
     width: auto;
 }
 #logo img {
-    width: 21% !important;
-    padding: 11px 0px !important;
+  width: 25% !important;
+  padding: 12px 10px !important;
+}
+.pull-right {
+    float: right !important;
 }
 #header-search .btn-default {
     background: #000;
@@ -1821,7 +1834,7 @@ header .full-header {
         vertical-align: top;
    }
     #search .input-lg, #header-search .input-lg {
-        width: 200px !important;
+        width: 150px !important;
    }
     #header-search .form-control {
         height: 40px;
@@ -2817,7 +2830,7 @@ header {
     float: left;
     width: 100%;
     position: relative;
-    text-transform: capitalize 
+    text-transform: capitalize
 }
 #column-left .product-thumb .thumb-description, #column-right .product-thumb .thumb-description {
     padding: 0 15px;
@@ -3978,7 +3991,7 @@ footer .footer-column h5 {
     text-transform: capitalize;
 }
 .btn-block {
-    width: auto 
+    width: auto
 }
 .product-details #button-cart {
     background: #fed700;
@@ -4132,7 +4145,7 @@ footer .footer-column h5 {
 .product-layout, .product-layouts {
     border: 1px solid #eaeaea;
     padding: 15px;
-    margin:0px 0px !important;
+    margin:10px 0px !important;
 }
 .owl-item:last-child .product-layout, .owl-item:last-child .product-layouts {
     border-right: none;
@@ -5066,7 +5079,7 @@ h2.price {
    }
    .search
    {
-       margin:7px 0px !important;
+       margin:9px 0px !important;
    }
     .header-right-cms {
         float: right;
@@ -5202,6 +5215,14 @@ h2.price {
    }
     .product-images .additional-images-container {
         width: 400px;
+   }
+   .search
+   {
+       margin:21px 0px !important;
+   }
+   #search .input-lg, #header-search .input-lg
+   {
+     width:200px !important;
    }
 }
 @media (max-width: 480px) {
@@ -5413,6 +5434,7 @@ h2.price {
     -o-transform: rotateX(180deg);
     -ms-transform: rotateX(180deg);
 }
+
 @media(max-width:767px) {
     #otcmsheader {
         float: none;
@@ -6630,7 +6652,7 @@ input[type="radio"], input[type="checkbox"] {
     margin: 0 5px;
 }
 .search.footer-search {
-    margin: -6px 0px !important 
+    margin: -6px 0px !important
 }
 .col-sm-12.sub-head h1 {
     text-align: center !important;
@@ -7101,6 +7123,7 @@ button {
 .nav > li > a {
     font-size: 12px !important;
     font-family: oswald !important;
+    padding:15px 12px !important;
 }
 .sticky {
     position: fixed;
@@ -7206,16 +7229,38 @@ button {
 
 
 
-@media (max-width: 767px) 
+@media (max-width: 767px)
 {
-    .dropdown-nav:hover .nav-dropdown 
+    .dropdown-nav:hover .nav-dropdown
    {
         display:none;
    }
-    #logo img {
-        width: 30% !important;
+   #top-links > ul > li
+   {
+     text-align: center !important;
+     float: none !important;
+   }
+   #top .btn-link, #top-links li, #top-links a
+   {
+     font-size:10px !important;
+   }
+   #top-links,#top-links > ul
+   {
+     float:none !important;
+   }
+    #logo img
+    {
+        width: 35% !important;
         height:auto;
         float:left;
+   }
+   .pull-right ul li
+   {
+     border-right:none !important;
+   }
+   .pull-left ul li
+   {
+     border-left:none !important;
    }
    .col-sm-12.tire-menu ul
    {
@@ -7276,15 +7321,15 @@ button {
    {
         text-align: justify;
    }
-   .col-sm-4.wheel-img img 
+   .col-sm-4.wheel-img img
    {
         width: 100% !important;
     }
-    .col-sm-3.payments3-card img 
+    .col-sm-3.payments3-card img
     {
         height: 50px !important;
     }
-    .dropdown-tire:hover .dropdown-menu.multi-colum-nav 
+    .dropdown-tire:hover .dropdown-menu.multi-colum-nav
     {
         display: block !important;
         background: #f4f4f4 !important;
@@ -7344,6 +7389,45 @@ button {
     {
         margin-top: 0px !important;
     }
+    .prod-headinghome
+    {
+      text-align: center !important;
+    }
+    .nav-img > li > a
+    {
+      padding: 10px 5px !important;
+      border: none !important;
+    }
+    .col-sm-3.shop-details,.col-sm-3.tir-des
+    {
+      margin: 25px 0px !important;
+    }
+    .video img {
+      width: 100% !important;
+      padding: 10px 0px !important;
+    }
+    .benifit-title p,.benifit-head
+    {
+      text-align: center;
+    }
+    .col-sm-4.benifit img
+    {
+      width: 75% !important;
+      margin: 10px 0px !important;
+    }
+    .active > div {
+      display: unset !important;
+    }
+    .wheelImage.image_thumb_swap
+    {
+      cursor: zoom-out;
+      position: fixed;
+      width:100% !important;
+      height: auto !important;
+      left: 0% !important;
+      top: 30% !important;
+      z-index: 10000000;
+    }
 }
 
 
@@ -7365,7 +7449,7 @@ button {
    {
         text-align: justify;
    }
-   .col-sm-4.wheel-img img 
+   .col-sm-4.wheel-img img
    {
         width: 100% !important;
     }
@@ -7376,15 +7460,15 @@ button {
     {
         background: #fff;
     }
-    .col-sm-6.search-bar 
+    .col-sm-6.search-bar
     {
         float: right;
     }
-    .col-sm-6.logo 
+    .col-sm-6.logo
     {
         float: left;
     }
-    .btn.btn-inverse.btn-block.btn-lg 
+    .btn.btn-inverse.btn-block.btn-lg
     {
         display: none !important;
     }
@@ -7399,25 +7483,25 @@ button {
     {
         float:right;
     }
-    #logo img 
+    #logo img
     {
         width: 40% !important;
-        padding: 11px 0px !important;
+        padding: 12px 12px !important;
     }
     .search
     {
         margin: 13px 0;
     }
-    .col-sm-3.payments-card img,.col-sm-3.payments3-card img 
+    .col-sm-3.payments-card img,.col-sm-3.payments3-card img
     {
         width: 100% !important;
     }
-    .col-sm-3.payments-card img 
+    .col-sm-3.payments-card img
     {
         width: 160px !important;
         height: 30px !important;
     }
-    .nav.navbar-nav.navbar 
+    .nav.navbar-nav.navbar
     {
         text-align: center !important;
     }
@@ -7432,7 +7516,7 @@ button {
     /* .navbar-nav > li {
         float: none !important;
     } */
-    li.dropdown-tire:hover ul.dropdown-menu.multi-colum-nav 
+    li.dropdown-tire:hover ul.dropdown-menu.multi-colum-nav
     {
         display: block !important;
     }
@@ -7457,7 +7541,7 @@ button {
     {
         padding: 0px 0px !important;
     }
-    .product-thumb .button-group .btn-quickview i 
+    .product-thumb .button-group .btn-quickview i
     {
         background-position: 2px -134px;
     }
@@ -7466,7 +7550,7 @@ button {
         height: 25px;
         width:25px;
     }
-    .product-thumb .button-group .btn-compare i 
+    .product-thumb .button-group .btn-compare i
     {
         background-position: 0px -90px;
     }
@@ -7525,7 +7609,7 @@ button {
     {
         height:auto !important;
     }
-    .col-sm-2.size-search .btn.btn-primary 
+    .col-sm-2.size-search .btn.btn-primary
     {
         width: 150px !important;
     }
@@ -7551,5 +7635,15 @@ button {
 
 @media screen and (min-device-width: 960px) and (max-device-width: 1000px)
 {
-    
+
+}
+
+/* Tirebrand Page */
+.prod-headinghome p
+{
+  text-align: justify;
+}
+.fal-logo img
+{
+    margin: 95px 0px !important;
 }

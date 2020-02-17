@@ -2,7 +2,11 @@
 
 @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+@endsection
+@section('content')
+
 <style>
 .col-sm-12.wheel-des p {
     font-family: play !important;
@@ -17,15 +21,17 @@
     padding: 20px 20px !important;
 }
 </style>
-@endsection 
-@section('content')  
+
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
         <div class="row">
             <div class="col-sm-12 sub-head">
                 <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1>
-            </div> 
+            </div>
+        </div>
+
+
             <div class="row main-pro">
                 <div class="col-sm-3">
                     <div class="header-bottom col-sm-12">
@@ -62,7 +68,7 @@
                                                     @endif
                                                 </select>
                                             </li>
-                                            
+
                                             <li class="OT-Sub-List dropdown">
                                                 <select class="form-control chosen-select DriveBody" name="drivebody">
                                                     <option disabled selected>Select Drive/Body</option>
@@ -71,7 +77,7 @@
                                                     @endif
                                                 </select>
                                             </li>
-                                            {{--<li class="OT-Sub-List dropdown"> 
+                                            {{--<li class="OT-Sub-List dropdown">
                                                 <select class="form-control chosen-select SubModel" name="subodel">
                                                     <option disabled selected>Select Sub Model</option>
                                                 </select>
@@ -84,11 +90,11 @@
 
                                     </ul>
                                 </div>
-                            </div> 
+                            </div>
                         </aside>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="price-heading">SIZE</div> 
+                                <div class="price-heading">SIZE</div>
                                 <!--  -->
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <div class="panel panel-default">
@@ -103,12 +109,12 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheeldiameter as $diameter)
-                                                    <li><input type="checkbox" name="wheeldiameter[]" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" @if(in_array($diameter->wheeldiameter,json_decode(base64_decode(@Request::get('diameter')?:''))?:[])) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}  
+                                                    <li><input type="checkbox" name="wheeldiameter[]" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" @if(in_array($diameter->wheeldiameter,json_decode(base64_decode(@Request::get('diameter')?:''))?:[])) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}
                                                     </li>
                                                     @empty
                                                     <li><input type="checkbox" name="wheeldiameter[]" value=""> 13</li>
-                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 20</li> 
-                                                    @endforelse 
+                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 20</li>
+                                                    @endforelse
                                                 </ul>
                                             </div>
                                         </div>
@@ -128,10 +134,10 @@
                                                     <li><input type="checkbox" name="wheelwidth[]" class="wheelwidth" value="{{$width->wheelwidth}}" @if(in_array($width->wheelwidth,json_decode(base64_decode(@Request::get('width')?:''))?:[])) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
                                                     @empty
                                                     <li><input type="checkbox" name="wheelwidth[]" value=""> 7</li>
-                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li> 
-                                                    @endforelse 
+                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li>
+                                                    @endforelse
                                                 </ul>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="panel panel-default">
@@ -156,10 +162,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
-                        </div> 
-                    </div>   
+                        </div>
+                    </div>
                 </div>
 
 
@@ -206,11 +212,11 @@
                                         <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
                                             <span title="Add to compare">Add to compare</span>
                                         </button>
-                                        
+
                                         <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
                                             <span>Quick View</span>
                                         </button>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -317,8 +323,15 @@
                     {{$Wheels->appends(['diameter' => @Request::get('diameter'),'width' => @Request::get('width'),'brand' => @Request::get('brand'),'car_id' => @Request::get('car_id'),'page' => @Request::get('page')])->links()}}
                 </div>
             </div>
-        </div> 
-    </section>   
+        </div>
+      </div>
+      </div>
+    </section>
+
+
+
+
+
 
 <div class="container">
 
@@ -348,7 +361,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     @endforeach
                 </div>
             </div>
@@ -387,11 +400,11 @@
     </div>
 </div>
 @endsection
-@section('shop_by_vehicle_scripts') 
+@section('shop_by_vehicle_scripts')
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('js/shop_by_wheel.js') }}"></script>
     <script src="{{ asset('js/popImg.js') }}"></script>
-    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script> 
-    <script src="{{ asset('js/wheels.js') }}"></script>  
+    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('js/wheels.js') }}"></script>
     <script src="{{ asset('js/slick.js') }}"></script>
-@endsection 
+@endsection

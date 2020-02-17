@@ -1,25 +1,17 @@
 <header>
-    <nav id="top">
-        <div class="container">
-            <div class="header-top">
-                <div class="header-left-cms">
-                    <aside id="header-left">
-                        <div class="html-content">
-                            <div id="top-links" class="nav pull-left">
-                                <ul class="list-inline">
-                                    <li class="header-phone pull-left"><a href=""><i class="fa fa-phone"></i><span>123456789</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </aside>
-
-                </div>
-
+<nav id="top">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="top-links" class="pull-left">
+                    <ul class="list-inline">
+                        <li class="header-phone pull-left"><a href=""><i class="fa fa-phone"></i><span>123456789</span></a></li>
+                        <li class="header-phone pull-left"><a href=""><i class="fa fa-envelope-o"></i><span>sales@discountedwheelwarehouse.com</span></a></li>
+                    </ul>
             </div>
-
-            <div class="header-tops">
-                <div id="top-links" class="nav pull-right">
+        </div>
+        <div class="col-sm-6">
+                <div id="top-links" class="pull-right">
                     <ul class="list-inline">
                         @if(@Auth::user()=='')
                         <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
@@ -35,9 +27,12 @@
                         <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li>
                     </ul>
                 </div>
-            </div>
         </div>
-    </nav>
+    </div>
+</div>
+</nav>
+
+
 
     <div class="full-header">
         <div class="container">
@@ -63,14 +58,16 @@
     </div>
 
     <style>
-        .dropdown-menu.multi-colum-nav {
-            width: 1200px !important;
+
+        .dropdown-menu.multi-colum-nav
+        {
+            width:1334px !important;
             background: #f4f4f4 !important;
             border: none !important;
         }
-
-        .dropdown-menu.nav-dropdown {
-            width: 1500px !important;
+        .dropdown-menu.nav-dropdown
+        {
+            width:1470px !important;
             background: #f4f4f4 !important;
             border: none !important;
         }
@@ -305,7 +302,9 @@
         }
     </style>
 
-    <nav id="myHeader" class="new-navbar">
+
+
+    <div id="myHeader" class="new-navbar">
 
         <div class="container">
             <div class="navbar-header">
@@ -409,7 +408,6 @@
                                                                 <option value="">Select Width</option>
                                                             </select>
                                                         </div>
-
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select BoltPattern" name="boltpattern">
@@ -625,23 +623,29 @@
             </div>
         </div>
 
-    </nav>
+    </div>
 
 </header>
 
 <!-- New Fixed Nav Start -->
 
 <script>
-    window.onscroll = function() {
+    window.onscroll = function()
+    {
         myFunction()
     };
     var header = document.getElementById("myHeader");
     var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
+    function myFunction()
+    {
+        // if (window.pageYOffset > sticky)
+        if($(document).scrollTop() > 120)
+        {
             header.classList.add("sticky");
-        } else {
+        }
+        else
+        {
             header.classList.remove("sticky");
         }
     }
