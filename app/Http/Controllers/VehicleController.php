@@ -104,7 +104,7 @@ class VehicleController extends Controller
 
             // Model change  or Loading Filter
             if(isset($request->make) && isset($request->year) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == '')
-                $allData['model'] = $data = $vehicle->select('submodel')->distinct('submodel')->where('year',$request->year)->wheremake($request->make)->wheremodel($request->model)->get();
+                $allData['submodel'] = $data = $vehicle->select('submodel')->distinct('submodel')->where('year',$request->year)->wheremake($request->make)->wheremodel($request->model)->get();
 
             if($request->changeBy == ''){    
                 return response()->json(['data' => $allData]);

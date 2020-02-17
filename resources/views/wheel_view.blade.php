@@ -376,10 +376,9 @@
                     </div>
                     <div class="row activetab">
                         <div class="col-sm-8">
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs ">
                                 @foreach(@$products as $key => $product)
-
-                                <li class="{{($key ==0 )?'active':''}}"><a data-toggle="tab" href="#{{@$product->partno}}">{{@$product->wheeldiameter}}</a></li>
+                                <li class="{{($key ==0 )?'active':''}}"><a data-toggle="tab" href="#{{@$product->partno}}" >{{@$product->wheeldiameter}}</a></li>
                                 @endforeach
                             </ul>
 
@@ -391,18 +390,18 @@
 
                                     <div class="col-sm-6">
                                         <h2>Front & Rear</h2>
-                                        {{--<div class="col-sm-12 wheel-view-select">
-                                        <select id="">
-                                            <option value="">22X9 32mm</option>
-                                            <option value="">22X9 30mm</option>
-                                        </select>
-                                    </div>--}}
+                                        <div class="col-sm-12 wheel-view-select">
+                                            <select id="">
+                                                <option value="">22X9 32mm</option>
+                                                <option value="">22X9 30mm</option>
+                                            </select>
+                                        </div>
                                         <div class="table-responsive wheel_view">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>Size</td>
-                                                        <td>{{@$product->width.'x'.@$product->height}}</td>
+                                                        <td>{{@$product->wheeldiameter.'x'.@$product->width}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Finish</td>

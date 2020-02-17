@@ -9,18 +9,18 @@ $(document).on('change', '.ProductWheelDiameter,.ProductWheelWidth,.BoltPattern,
     ProductWheelSizeFilters(wheeldiameter, wheelwidth,boltpattern, minoffset,changeBy);
 });
 
-$(document).ready(function() {
-    var wheeldiameter = $('.ProductWheelDiameter').val();
-    var wheelwidth = $('.ProductWheelWidth').val();
-    var boltpattern = $('.BoltPattern').val();
-    var minoffset = $('.MinOffset').val();
-    ProductWheelSizeFilters(wheeldiameter, wheelwidth,boltpattern,minoffset);
-});
+// $(document).ready(function() {
+//     var wheeldiameter = $('.ProductWheelDiameter').val();
+//     var wheelwidth = $('.ProductWheelWidth').val();
+//     var boltpattern = $('.BoltPattern').val();
+//     var minoffset = $('.MinOffset').val();
+//     ProductWheelSizeFilters(wheeldiameter, wheelwidth,boltpattern,minoffset);
+// });
 
 function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern = '',minoffset = '', changeBy = '') { 
     
 
-    console.log(wheeldiameter, wheelwidth,boltpattern, minoffset,changeBy);
+    // console.log(wheeldiameter, wheelwidth,boltpattern, minoffset,changeBy);
     $.ajax({
         method: "GET",
     url: '/getFiltersByProductWheelSize',
@@ -33,7 +33,7 @@ function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern 
         }
     }).done(function(data) {
 
-        console.log(data);
+        // console.log(data);
         if (changeBy == '' || changeBy == 'wheeldiameter') {
             $('.ProductWheelWidth').empty().append('<option value="">Select Width</option>');
         }
@@ -46,7 +46,7 @@ function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern 
         if (changeBy == '' || changeBy == 'wheeldiameter'|| changeBy == 'wheelwidth'|| changeBy == 'boldpattern'|| changeBy == 'minoffset') {
             $('.MaxOffset').empty().append('<option value="">Selct MaxOffset</option>');
         }
-                    console.log('changeBy',changeBy);
+                    // console.log('changeBy',changeBy);
         if (changeBy == '') {
             data.data['wheelwidth'].map(function(value, key) {
                 isSelected = (value.wheelwidth == wheelwidth) ? 'selected' : '';
@@ -69,7 +69,7 @@ function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern 
                 $('.MaxOffset').append('<option value="' + value.offset2 + '" ' + isSelected + '>' + value.offset2 + '</option>');
             });
         } else {
-            console.log(data.data)
+            // console.log(data.data)
             data.data.map(function(value, key) {
                 if (changeBy == 'wheeldiameter') {
                     $('.ProductWheelWidth').append('<option value="' + value.wheelwidth + '">' + value.wheelwidth + '</option>');

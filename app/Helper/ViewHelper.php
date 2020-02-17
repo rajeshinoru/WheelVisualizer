@@ -6,6 +6,29 @@ use App\Tire;
 use App\Vehicle;
 use App\WheelProduct;
 
+use Illuminate\Http\Request;
+
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+
+function MakeCustomPaginator($data,$request,$per_page=9){
+	$total=count($data);
+	$per_page = 9;
+	$current_page = $request->input("page") ?? 1;
+
+	$starting_point = ($current_page * $per_page) - $per_page;
+
+	$data = array_slice($data, $starting_point, $per_page, true);
+
+	$data = new Paginator($data, $total, $per_page, $current_page, [
+		'path' => $request->url(),
+		'query' => $request->query(),
+	]);
+	return  $data;
+}
+
+
+
+
 //// All Wheel Brands
 function wheelbrands($splitarray = '') {
 	$wheels = Wheel::select('brand');

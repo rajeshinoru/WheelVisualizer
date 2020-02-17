@@ -10,13 +10,13 @@ $(document).on('change', '.NavYear,.NavMake,.NavModel', function() {
     NavFilters(year, make, model,submodel, changeBy);
 });
 
-$(document).ready(function() {
-    var make = $('.NavMake').val();
-    var year = $('.NavYear').val();
-    var model = $('.NavModel').val();
-    var submodel = $('.NavSubmodel').val();
-    NavFilters(year, make, model,submodel);
-});
+// $(document).ready(function() {
+//     var make = $('.NavMake').val();
+//     var year = $('.NavYear').val();
+//     var model = $('.NavModel').val();
+//     var submodel = $('.NavSubmodel').val();
+//     NavFilters(year, make, model,submodel);
+// });
 
 function NavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
     $.ajax({

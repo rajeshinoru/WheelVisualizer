@@ -10,13 +10,13 @@ $(document).on('change', '.WheelNavYear,.WheelNavMake,.WheelNavModel', function(
     WheelNavFilters(year, make, model,submodel, changeBy);
 });
 
-$(document).ready(function() {
-    var make = $('.WheelNavMake').val();
-    var year = $('.WheelNavYear').val();
-    var model = $('.WheelNavModel').val();
-    var submodel = $('.WheelNavSubmodel').val();
-    WheelNavFilters(year, make, model,submodel);
-});
+// $(document).ready(function() {
+//     var make = $('.WheelNavMake').val();
+//     var year = $('.WheelNavYear').val();
+//     var model = $('.WheelNavModel').val();
+//     var submodel = $('.WheelNavSubmodel').val();
+//     WheelNavFilters(year, make, model,submodel);
+// });
 
 function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
     $.ajax({

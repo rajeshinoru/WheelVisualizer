@@ -20,13 +20,13 @@ $(document).on('change', '.Year,.Make,.Model', function() {
 //     filters(year, make, model, driverbody, changeBy);
 // });
 
-$(document).ready(function() {
-    var make = $('.Make').val();
-    var year = $('.Year').val();
-    var model = $('.Model').val();
-    var driverbody = $('.DriveBody').val();
-    filters(year, make, model, driverbody);
-});
+// $(document).ready(function() {
+//     var make = $('.Make').val();
+//     var year = $('.Year').val();
+//     var model = $('.Model').val();
+//     var driverbody = $('.DriveBody').val();
+//     filters(year, make, model, driverbody);
+// });
 
 function filters(year = '', make = '', model = '', driverbody = '', changeBy = '') {
     $.ajax({
