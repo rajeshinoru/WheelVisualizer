@@ -50,7 +50,7 @@
         margin: 15px 0;
     }
 
-    .product-name 
+    .product-name
     {
         font-size: 14px !important;
         font-family: oswald !important;
@@ -308,8 +308,7 @@
 }
 .shop-details .tab-pane img
 {
-  width: 100px !important;
-  height: 150px !important;
+  height: 250px !important;
 }
 .nav-img > li > a
 {
@@ -341,47 +340,19 @@
 {
   width: 100px;
   height:100px;
+  padding: 5px 12px !important;
+  border:5px solid #0e166196 !important;
+}
+.nav-img :hover img {
+    border: 5px solid #ecb23d70 !important;
 }
 .prod-headinghome h1
   {
     font-family: oswald !important;
     font-size: 15px !important;
     font-weight: 100 !important;
-    color:#0e1661 !important;
   }
 
-@media (max-width: 767px)
-{
-  .prod-headinghome
-  {
-    text-align: center !important;
-  }
-  .nav-img > li > a
-  {
-    padding: 10px 5px !important;
-    border: none !important;
-  }
-  .col-sm-3.shop-details,.col-sm-3.tir-des
-  {
-    margin: 25px 0px !important;
-  }
-  .video img {
-    width: 100% !important;
-    padding: 10px 0px !important;
-  }
-  .benifit-title p,.benifit-head
-  {
-    text-align: center;
-  }
-  .col-sm-4.benifit img
-  {
-    width: 75% !important;
-    margin: 10px 0px !important;
-  }
-  .active > div {
-    display: unset !important;
-  }
-}
 </style>
 
 </section>
@@ -663,7 +634,10 @@
     </div>
 </section>
 
+
+
 @endsection @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
+
 
 @endsection

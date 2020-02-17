@@ -78,13 +78,13 @@
 <br>
 <!-- New Design Start -->
 <style>
-    .container.ban-ser {
-        border: 1px solid #eaeaea;
+    .ban-ser {
+        border:1px solid #ddd9d9 !important;
     }
     
     .wheel-list {
         column-width: 15em;
-        padding: 10px 0px !important;
+        padding: 10px 15px !important;
     }
     
     .wheel-list li a {
@@ -339,8 +339,8 @@
     }
 </style>
 <div class="banner-search">
-    <div class="container ban-ser">
-        <div class="wheel-list">
+    <div class="container">
+        <div class="wheel-list ban-ser">
             <ul>
                 <li><a href="">17 inch Specials</a></li>
                 <li><a href="">18 inch Specials</a></li>
