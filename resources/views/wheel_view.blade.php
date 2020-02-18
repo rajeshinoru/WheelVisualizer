@@ -37,8 +37,8 @@
         color: #fff;
         text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
         font-weight: 100;
-        font-size: 14px;
-        font-family: oswald !important;
+        font-size: 12px;
+        font-family: Montserrat !important;
     }
 
     .pTopCell.Phone a {
@@ -111,7 +111,7 @@
         font-size: 12px !important;
         margin: 0px;
         line-height: 30px;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
 
     .prod-headinghome p {
@@ -119,7 +119,7 @@
         color: #121214;
         font-size: 12px !important;
         line-height: 30px !important;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
 
     .prod-headinghome h1 {
@@ -130,10 +130,11 @@
     }
 
     .row.wheel-view h1 {
-        font-family: oswald !important;
-        font-size: 18px !important;
+        font-family: Montserrat !important;
+        font-size: 15px !important;
         text-align: left;
         line-height: 30px !important;
+        color: #000 !important;
     }
 
     .row.wheel-view h1:hover {
@@ -147,7 +148,7 @@
 
     .wheel-diameter-tabs h2 {
         margin: 0px 0px !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         color: #0e1661 !important;
         font-size: 14px !important;
         text-align: left;
@@ -166,7 +167,7 @@
 
     td {
         font-size: 12px !important;
-        font-family: play !important;
+        font-family: Poppins !important;
         padding: 5px 0px !important;
     }
 
@@ -210,7 +211,7 @@
         padding: 5px 0px !important;
         margin: 0px 0px !important;
         line-height: 30px;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
 
     .price-section p {
@@ -219,7 +220,7 @@
         padding: 5px 0px !important;
         margin: 0px 0px !important;
         line-height: 30px;
-        font-family: play !important;
+        font-family: Poppins !important;
         color: #000 !important;
     }
 
@@ -247,7 +248,7 @@
         font-size: 12px !important;
         margin: 0px;
         line-height: 30px;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
 
     .form-group.product-quantity {
@@ -307,19 +308,19 @@
 
     .wheel_view_ship .btn a {
         color: #fff !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         font-size: 12px !important;
     }
 
     .btn.btn-info {
         font-size: 12px !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
 
     .col-sm-12.wheel-view-select select {
         height: 30px !important;
         width: 150px !important;
-        font-family: play !important;
+        font-family: Poppins !important;
         font-size: 12px !important;
     }
 
@@ -337,7 +338,7 @@
 
     @media (max-width: 767px) {
         .row.wheel-view h1 {
-            font-family: oswald !important;
+            font-family: Montserrat !important;
             font-size: 16px !important;
             text-align: center;
             line-height: 30px !important;
@@ -349,7 +350,7 @@
         color: #ffff;
     }
 </style>
-
+</section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
@@ -609,11 +610,11 @@
                                         <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
                                             <span title="Add to compare">Add to compare</span>
                                         </button>
-                                        
+
                                         <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
                                             <span>Quick View</span>
                                         </button>
-                                        
+
                                     </div> -->
                         </div>
                     </div>

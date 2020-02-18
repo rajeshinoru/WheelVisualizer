@@ -81,26 +81,26 @@
     .ban-ser {
         border:1px solid #ddd9d9 !important;
     }
-    
+
     .wheel-list {
         column-width: 15em;
         padding: 10px 15px !important;
     }
-    
+
     .wheel-list li a {
         color: #474646;
         display: block;
         font-size: 12px !important;
         text-align: center;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
-    
+
     .wheel-list ul {
         margin: 0;
         padding: 0;
         list-style-type: none;
     }
-    
+
     .wheel-list li {
         padding: 3px;
         margin: 3px;
@@ -111,41 +111,41 @@
         background-color: #fff;
         border-radius: 2px !important;
     }
-    
+
     .wheel-list ul li:first-child {
         margin-top: 0;
     }
-    
+
     #heading h1 {
-        font-family: oswald;
+        font-family: Montserrat;
         color:#121214;
         font-size: 18px !important;
         text-align: center;
+        font-weight: 700 !important;
     }
-    
+
     .col-sm-3.payments3-card img {
         width: 100% !important;
     }
-    
+
     .col-sm-3.payments-card {
         text-align: center !important;
     }
-    
-    .prod-headinghome p 
+
+    .prod-headinghome p
     {
         margin: 10px 0px;
         color: #121214;
-        font-size: .875em;
         line-height:30px;
-        font-family: play !important;
+        font-family: poppins !important;
         font-size: 12px !important;
     }
-    
+
     .col-sm-4.wheel-img {
         text-align: center !important;
     }
     /* pro Start */
-    
+
     .hometabled {
         display: table;
         text-align: center;
@@ -159,7 +159,7 @@
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
     }
-    
+
     .pTopBar {
         display: table;
         width: 100%;
@@ -170,25 +170,25 @@
         -webkit-border-radius: 2px;
         background:#0e1661 !important;
     }
-    
+
     .pTopCell {
         display: table-cell;
         width: 50%;
         color:#fff;
         text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
-        font-size: 14px;
-        font-family: oswald !important;
+        font-size: 12px;
+        font-family: Montserrat !important;
     }
-    
+
     .pTopCell.Phone a {
         color: #fff;
         text-decoration: none;
     }
-    
+
     .asItems {
         border: 0px;
     }
-    
+
     .asItems {
         padding: 0;
         padding-top: 0px;
@@ -204,23 +204,23 @@
         box-shadow: 0 0 3px rgba(0, 0, 0, .125);
         font-family: open sans, Arial, sans-serif;
     }
-    
+
     .asItems {
         text-align: center;
         font-family: open sans, Arial, sans-serif;
     }
-    
+
     .gridList {
         margin: 0 auto;
         padding: 0;
         width: auto;
         display: table;
     }
-    
+
     .homeapge1 {
         height: 190px !important;
     }
-    
+
     .gridItem {
         display: inline-block;
         width: 210px;
@@ -228,42 +228,44 @@
         height: 250px;
         padding: 5px;
     }
-    
-    .homecelld b 
+
+    .homecelld b
     {
         color: #222 !important;
         font-size: 12px !important;
-        font-family: oswald !important;
-        font-weight: 100 !important;
+        font-family: Montserrat !important;
     }
-    
+
     .hometabled {
         margin: 25px 0px !important;
     }
-    
+
     .gridList.wheels.suggested .gridItem homeapge1 {
         height: 180px;
     }
-    
+
     .asItems {
         border: 0px;
     }
-    
+
     .prod-headinghome h2 {
         color:#0e1661 !important;
         text-align: center;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         font-size: 18px !important;
+        font-weight: 700 !important;
     }
-    
+
     .prod-headinghome b {
         color: #0e1661 !important;
+        font-family: Montserrat !important;
+        font-size: 12px !important;
     }
-    
+
     .prod-heading-center {
         text-align: center;
     }
-    
+
     .prod-headinghome h3 {
         width: 100%;
         font-size: medium;
@@ -272,15 +274,16 @@
         font-weight: 600 !important;
         text-align: center;
     }
-    
-    .prod-heading-center p 
+
+    .prod-heading-center p
     {
         color:#0e1661 !important;
-        font-size: 18px !important;
+        font-size: 15px !important;
         line-height: 30px !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
+        font-weight: 700 !important;
     }
-    
+
     #produst,
     #special-product,
     footer,
@@ -295,7 +298,7 @@
 
     @media (max-width: 767px)
     {
-        .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl 
+        .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl
         {
             display: inline-block;
             padding: 10px 50px;
@@ -309,7 +312,7 @@
             text-align: center;
             display: inline-block;
         }
-        .zfooterMenu ul li 
+        .zfooterMenu ul li
         {
             display: block;
             padding-top: 15px;
@@ -415,7 +418,7 @@
             <ul class="gridList wheels suggested">
 
                 @forelse($Wheels as $key => $wheel)
-                
+
                 <?php if($key == count($Wheels)/2 ) break; ?>
                 <li class="gridItem homeapge1">
                     <div class="homecelld">
@@ -469,7 +472,7 @@
             <ul class="gridList wheels suggested">
 
                 @forelse($Wheels as $key => $wheel)
-                
+
                 <?php if($key < count($Wheels)/2 ) continue; ?>
                 <li class="gridItem homeapge1">
                     <div class="homecelld">

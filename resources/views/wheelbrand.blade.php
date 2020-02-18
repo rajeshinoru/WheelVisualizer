@@ -2,19 +2,25 @@
 
 @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
-@endsection 
-@section('content')  
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+@endsection
+@section('content')
 <!-- BAnner Down Sestion Start -->
 
 <style>
 .col-sm-12.wheel-des p {
-    font-family: play !important;
+    font-family: poppins !important;
     font-size: 12px !important;
     line-height: 30px !important;
     color: #000 !important;
     margin: 0px 0px !important;
     text-align:justify;
+}
+.col-sm-12.wheel-des b a
+{
+  font-size: 12px !important;
+  font-family: Montserrat !important;
+  color: #0e1661 !important;
 }
 .wheel-des
 {
@@ -28,10 +34,10 @@
         <div class="row">
             <div class="col-sm-12 sub-head">
                 <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1>
-            </div> 
+            </div>
             <div class="row">
                 <div class="col-sm-12 wheel-des">
-                    <p>Here at Discounted Wheel Warehouse, we stock a vast selection of stylish rims and wheels from 2 Crave, one of the trendiest manufacturers of aftermarket wheels. With a variety of sleek, eye-catching designs, 2 Crave's collection of luxury wheels are the pinnacle of elegance! From classic chrome to gloss black machine face to luscious red stripe options, 2 Crave custom rims come in a variety of striking finishes and colors. Our lineup of 2 Crave custom wheels include both familiar and brand-new designs conceived by 2 Crave's brightest minds, all offered at affordable prices. Available in a wide range of size options and bolt patterns, 2 Crave luxury wheels can accommodate the aesthetics and fitment of virtually any vehicle, from sedans to light trucks and SUVs!.</p> 
+                    <p>Here at Discounted Wheel Warehouse, we stock a vast selection of stylish rims and wheels from 2 Crave, one of the trendiest manufacturers of aftermarket wheels. With a variety of sleek, eye-catching designs, 2 Crave's collection of luxury wheels are the pinnacle of elegance! From classic chrome to gloss black machine face to luscious red stripe options, 2 Crave custom rims come in a variety of striking finishes and colors. Our lineup of 2 Crave custom wheels include both familiar and brand-new designs conceived by 2 Crave's brightest minds, all offered at affordable prices. Available in a wide range of size options and bolt patterns, 2 Crave luxury wheels can accommodate the aesthetics and fitment of virtually any vehicle, from sedans to light trucks and SUVs!.</p>
                     <p>Since 2007, 2 Crave has designed beautiful custom wheels and rims with creative, modern styles that set them ahead of their competitors. Each luxury wheel bearing the 2 Crave logo is a work of art, carefully crafted and engineered to maximize style and function for a beautiful, high quality product. Cast from refined aluminum alloy, these one-piece wheels blend classic and contemporary styles to add an touch of elegance to any vehicle. As the manufacturer's signature brand, 2Crave luxury wheels continue to be one of the strongest brands of aftermarket rims, enjoyed by many drivers not only in the United States, but in multiple parts of the world as well.</p>
                 </div>
             <div class="row main-pro">
@@ -70,7 +76,7 @@
                                                     @endif
                                                 </select>
                                             </li>
-                                            
+
                                             <li class="OT-Sub-List dropdown">
                                                 <select class="form-control chosen-select DriveBody" name="drivebody">
                                                     <option disabled selected>Select Drive/Body</option>
@@ -79,7 +85,7 @@
                                                     @endif
                                                 </select>
                                             </li>
-                                            {{--<li class="OT-Sub-List dropdown"> 
+                                            {{--<li class="OT-Sub-List dropdown">
                                                 <select class="form-control chosen-select SubModel" name="subodel">
                                                     <option disabled selected>Select Sub Model</option>
                                                 </select>
@@ -92,11 +98,11 @@
 
                                     </ul>
                                 </div>
-                            </div> 
+                            </div>
                         </aside>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="price-heading">SIZE</div> 
+                                <div class="price-heading">SIZE</div>
                                 <!--  -->
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <div class="panel panel-default">
@@ -111,12 +117,12 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheeldiameter as $diameter)
-                                                    <li><input type="checkbox" name="wheeldiameter[]" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" @if(in_array($diameter->wheeldiameter,json_decode(base64_decode(@Request::get('diameter')?:''))?:[])) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}  
+                                                    <li><input type="checkbox" name="wheeldiameter[]" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" @if(in_array($diameter->wheeldiameter,json_decode(base64_decode(@Request::get('diameter')?:''))?:[])) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}
                                                     </li>
                                                     @empty
                                                     <li><input type="checkbox" name="wheeldiameter[]" value=""> 13</li>
-                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 20</li> 
-                                                    @endforelse 
+                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 20</li>
+                                                    @endforelse
                                                 </ul>
                                             </div>
                                         </div>
@@ -136,10 +142,10 @@
                                                     <li><input type="checkbox" name="wheelwidth[]" class="wheelwidth" value="{{$width->wheelwidth}}" @if(in_array($width->wheelwidth,json_decode(base64_decode(@Request::get('width')?:''))?:[])) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
                                                     @empty
                                                     <li><input type="checkbox" name="wheelwidth[]" value=""> 7</li>
-                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li> 
-                                                    @endforelse 
+                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li>
+                                                    @endforelse
                                                 </ul>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="panel panel-default">
@@ -164,10 +170,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
-                        </div> 
-                    </div>   
+                        </div>
+                    </div>
                 </div>
 
 
@@ -214,11 +220,11 @@
                                         <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
                                             <span title="Add to compare">Add to compare</span>
                                         </button>
-                                        
+
                                         <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
                                             <span>Quick View</span>
                                         </button>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -325,8 +331,8 @@
                     {{$Wheels->appends(['diameter' => @Request::get('diameter'),'width' => @Request::get('width'),'brand' => @Request::get('brand'),'car_id' => @Request::get('car_id'),'page' => @Request::get('page')])->links()}}
                 </div>
             </div>
-        </div> 
-    </section>   
+        </div>
+    </section>
 
 <div class="container">
 
@@ -356,7 +362,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     @endforeach
                 </div>
             </div>
@@ -395,11 +401,11 @@
     </div>
 </div>
 @endsection
-@section('shop_by_vehicle_scripts') 
+@section('shop_by_vehicle_scripts')
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('js/shop_by_wheel.js') }}"></script>
     <script src="{{ asset('js/popImg.js') }}"></script>
-    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script> 
-    <script src="{{ asset('js/wheels.js') }}"></script>  
+    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('js/wheels.js') }}"></script>
     <script src="{{ asset('js/slick.js') }}"></script>
-@endsection 
+@endsection
