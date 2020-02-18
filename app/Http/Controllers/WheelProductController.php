@@ -94,7 +94,7 @@ class WheelProductController extends Controller
                 // if (isset($request->brand) && $request->brand)
                 // {
                 //     $products = $products->whereIn('prodbrand', json_decode(base64_decode($request->brand)));
-                //     $branddesc = WheelProduct::select('prodbrand')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+                //     $branddesc = WheelProduct::select('prodbrand','proddesc')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
                 //         ->get()
                 //         ->unique('prodbrand');
                 // }
@@ -108,13 +108,14 @@ class WheelProductController extends Controller
                 if (isset($request->search)) 
                         $products = $products->where('prodbrand', 'LIKE', '%' . json_decode(base64_decode($request->search)) . '%');
             }
-            
+
             if (isset($request->brand) && $request->brand)
             {
                 $products = $products->whereIn('prodbrand', json_decode(base64_decode($request->brand)));
-                $branddesc = WheelProduct::select('prodbrand')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+                $branddesc = WheelProduct::select('prodbrand','proddesc')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
                     ->get()
                     ->unique('prodbrand');
+                    // dd($branddesc);
             }
             $products = $products
                 ->orderBy('price', 'ASC')
