@@ -2,66 +2,80 @@
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
 
 <style>
-    
+
     .container-fluid.home-page {
         padding: 0px 0px !important;
         background: #f1f1f1 !important;
     }
-    
+
     #tires-size {
         padding: 40px 0px !important;
     }
-    
+
     .size-heading p {
         color: #000;
         font-size: 12px;
     }
-    
-    .size-heading h1 {
-        font-size: 18px !important;
-        font-family: oswald !important;
+
+    .size-heading h1
+    {
+      font-size: 15px !important;
+      font-family: Montserrat !important;
+      letter-spacing: 0px !important;
+      font-weight: 700 !important;
+      line-height: 30px !important;
     }
-    
-    .size-heading h2 {
-        font-size: 18px !important;
-        font-family: oswald !important;
+
+    .size-heading h2
+    {
+      font-size: 15px !important;
+      font-family: Montserrat !important;
+      letter-spacing: 0px !important;
+      font-weight: 700 !important;
+      line-height: 30px !important;
     }
-    
-    .size-heading h3 {
-        font-size: 18px !important;
-        font-family: oswald !important;
-        font-weight: 700;
-        color: #0e1661 !important;
+
+    .size-heading h3
+    {
+      font-size: 15px !important;
+      font-family: Montserrat !important;
+      letter-spacing: 0px !important;
+      font-weight: 700 !important;
+      line-height: 30px !important;
+      color:#0e1661 !important;
     }
-    
+
     .fa.fa-exclamation-circle {
         font-size: 25px;
     }
-    
+
     .row.icon-search {
         padding: 20px 15px !important;
         border: 1px solid #eaeaea;
         border-radius: 5px !important;
     }
-    
+
     .btn.btn-primary:hover p {
         border-right: 1px solid #fff !important;
     }
-    
+
     .btn.btn-primary a:hover {
         text-decoration: underline;
     }
-    
-    .btn.btn-primary p {
+
+    .wrapper .btn.btn-primary p
+    {
         float: left !important;
-        font-size: 18px !important;
+        font-size: 15px !important;
         margin: 0px 0px !important;
         padding: 0px 5px !important;
         border-right: 1px solid #ccc !important;
         margin-right: 10px !important;
+        font-family: poppins !important;
     }
-    
-    .wrapper .btn-primary {
+
+    .wrapper .btn-primary
+    {
         padding: 6px 6px;
         margin: 5px 0px !important;
         background: #fff !important;
@@ -71,24 +85,25 @@
         border-radius: 0px !important;
         transition: 1s all;
         border-radius: 3px;
+        font-family: poppins !important;
     }
-    
+
     .wrapper i {
         padding: 0px 10px !important;
     }
-    
+
     .col-sm-2.size-search {
         text-align: center !important;
     }
-    
+
     .wrapper .btn-primary a {
         color: #000 !important;
     }
-    
+
     .wrapper .btn-primary:hover a {
         color: #fff !important;
     }
-    
+
     .wrapper .btn-primary::before {
         content: "";
         position: absolute;
@@ -109,20 +124,20 @@
         -webkit-transition-timing-function: ease-out;
         transition-timing-function: ease-out;
     }
-    
+
     .wrapper .btn-primary:hover {
         color: #fff !important;
     }
-    
+
     .wrapper .btn-primary {
         position: relative;
         z-index: 1;
     }
-    
+
     .wrapper .btn-primary:hover::before {
         transform: scaleX(1);
     }
-    
+
     .wrapper .btn-primary:hover i {
         animation-name: hvr-icon-wobble-horizontal;
         animation-duration: 1s;
@@ -137,7 +152,7 @@
     {
         padding:17px 0px;
     }
-    
+
     @keyframes hvr-icon-wobble-horizontal {
         16.65% {
             -webkit-transform: translateX(6px);
@@ -164,16 +179,16 @@
             transform: translateX(0);
         }
     }
-    
+
     @media (max-width: 767px) {
-        
+
         .dropdown-menu.multi-colum-nav {
             width: 100% !important;
             background: #000 !important;
             border: none !important;
             text-align: center;
         }
-        
+
     }
 </style>
 
@@ -213,7 +228,7 @@
 
             <div class="col-sm-3 tire-banner">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                
+
                 <div class="carousel-inner">
                     <div class="item active">
                         <img src="image/image-1.png" alt="Tire" class="tire-slide">
@@ -232,7 +247,7 @@
     </div>
 </section>
 
-@endsection 
+@endsection
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
 @endsection

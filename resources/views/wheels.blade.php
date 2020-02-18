@@ -8,13 +8,20 @@
 @section('content')
 
 <style>
-.col-sm-12.wheel-des p {
-    font-family: play !important;
+.col-sm-12.wheel-des p
+{
+    font-family: poppins !important;
     font-size: 12px !important;
     line-height: 30px !important;
     color: #000 !important;
     margin: 0px 0px !important;
     text-align:justify;
+}
+.col-sm-12.wheel-des b a
+{
+  font-size: 12px !important;
+  font-family: Montserrat !important;
+  color: #0e1661 !important;
 }
 .wheel-des
 {

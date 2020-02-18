@@ -108,8 +108,9 @@
     .listing-sidebar h5 {
         font-size: 15px !important;
         line-height: 30px;
-        font-family: oswald !important;
-        color: #000 !important;
+        font-family: Montserrat !important;
+        color: #0e1661 !important;
+        font-weight: 600 !important;
     }
 
     ul.list-group li {
@@ -159,7 +160,7 @@
     .listing-sidebar #accordion .panel-title a {
         color: #000 !important;
         font-size: 12px !important;
-        font-family: oswald !important;
+        font-family:Montserrat !important;
     }
 
     #special-product,
@@ -173,6 +174,10 @@
     button.btn.speed {
         background: #0e1661 !important;
         margin: 5px 0px !important;
+        color: #fff !important;
+        font-family: poppins !important;
+        font-size: 12px !important;
+        padding:5px 5px !important;
     }
 
     button.btn.speed a {
@@ -190,7 +195,7 @@
 
     .btn.vehicle-change a {
         color: #fff !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         font-size: 14px !important;
     }
 
@@ -210,10 +215,10 @@
 
         <div class="wheel-list-tab">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 left-head">
                     <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b> OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b> </p>
                 </div>
-                <div class="col-md-4"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
+                <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
             </div>
         </div>
 
@@ -267,7 +272,7 @@
                                     <h5 class="heading">Speed Rating</h5>
                                     <div class="car-list">
                                         @foreach(@$speedratings as $key => $value)
-                                        <button class="btn {{(@$value->speedrating == 
+                                        <button class="btn {{(@$value->speedrating ==
                                             json_decode(base64_decode(
                                                 @Request::get('tirespeedrating')?:''
                                             ))

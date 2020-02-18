@@ -28,7 +28,7 @@
         border-radius: 2px;
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
-        background: #000;
+        background:#0e1661 !important;
     }
 
     .pTopCell {
@@ -37,8 +37,8 @@
         color: #fff;
         text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
         font-weight:100;
-        font-size: 14px;
-        font-family: oswald !important;
+        font-size: 12px;
+        font-family: Montserrat !important;
     }
 
     .pTopCell.Phone a {
@@ -51,12 +51,22 @@
         margin: 15px 0;
     }
 
-    .product-name 
+    .product-name
     {
-        font-size: 14px !important;
-        font-family: oswald !important;
+        font-size: 12px !important;
+        font-family: Montserrat !important;
         text-align: left;
-        font-weight: 100 !important;
+        font-weight: 700 !important;
+        margin:10px 0px !important;
+    }
+    .product-name2
+    {
+      font-size: 14px !important;
+      font-family: Montserrat !important;
+      text-align: left;
+      font-weight: 700 !important;
+      margin-top:10px !important;
+      margin-bottom:20px !important;
     }
 
     .product-info td {
@@ -65,7 +75,7 @@
         text-align: left;
         width: 200px !important;
         padding: 5px !important;
-        font-family:play !important;
+        font-family:Poppins !important;
         font-size: 12px;
     }
 
@@ -226,26 +236,21 @@
         padding: 4px 40px !important;
         border: 1px solid #7a7a7a !important;
     }
-
-    .shop-details {
-        margin: 10px 0px !important
-    }
-
     #demo-des {
         background: #f5f5f5 !important;
     }
 
-    .prod-headinghome p 
+    .prod-headinghome p
     {
         margin: 10px 0px;
         color:#121214;
         font-size: 12px !important;
         line-height: 30px !important;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
     .prod-headinghome h1
     {
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         font-size: 15px !important;
         font-weight: 100 !important;
         color:#0e1661 !important;
@@ -290,7 +295,7 @@
         color: #fff !important;
         font-size: 12px !important;
         font-weight: 100 !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
 
     .table.table-section {
@@ -306,7 +311,7 @@
         color: #fff !important;
         background: blue;
         font-size: 10px !important;
-        font-family:oswald !important;
+        font-family:Montserrat !important;
     }
 
     .btn.btn-default.cart-2 {
@@ -314,7 +319,7 @@
         color: #fff !important;
         background: green;
         font-size: 10px !important;
-        font-family:oswald !important;
+        font-family:Montserrat !important;
     }
 
     .table.table-section th {
@@ -326,7 +331,7 @@
         color: #000 !important;
         font-size: 12px !important;
         transition: 1s all;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
 
     .table.table-section td:hover {
@@ -349,17 +354,17 @@
         font-size: 12px !important;
         margin: 0px;
         line-height: 30px;
-        font-family:oswald !important;
+        font-family:Montserrat !important;
     }
 
-    .prograss-bar-head 
+    .prograss-bar-head
     {
         font-size: 10px;
         text-align: left;
         padding: 2px 0px !important;
         color: #0e1661 !important;
         margin: 0px 0px !important;
-        font-family:play !important;
+        font-family:Poppins !important;
     }
 
     .progress.pro-bar {
@@ -381,14 +386,14 @@
         width: 100% !important;
     }
 
-    .benifit-head 
+    .benifit-head
     {
         font-size: 12px !important;
         font-weight: 100 !important;
         margin: 0px 0px !important;
         padding: 2px 0px;
         text-align: left;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
 
     .row.tire-benifit {
@@ -396,21 +401,22 @@
     }
 
     .benifit-title p {
-        font-size: 12px !important;
+        font-size: 10px !important;
         text-align: left;
+        color:#000 !important;
         line-height: 25px !important;
         margin: 0px 0px;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
 
     .video img {
         width: 100% !important;
     }
 
-    .instock-head a 
+    .instock-head a
     {
         color:#ecb23d !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         font-size: 12px !important;
     }
 
@@ -423,17 +429,17 @@
         text-align: left;
         padding: 0px 0px !important;
         margin: 0px 0px !important;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
 
     .video img {
         width: 100% !important;
     }
 
-    .btn.btn-info 
+    .btn.btn-info
     {
         background: #ecb23d !important;
-        font-family:oswald !important;
+        font-family:Montserrat !important;
         font-size:12px !important;
     }
 
@@ -460,10 +466,10 @@
     .form-group.has-success.has-feedback {
         margin: 10px 0px !important;
     }
-    .col-sm-5.control-label 
+    .col-sm-5.control-label
     {
         color: #000 !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         font-size: 15px !important;
     }
     .modal-dialog.tire-view .modal-header
@@ -529,9 +535,9 @@
     }
 
     .progress-title {
-        font-size: 12px;
-        color: #011627;
-        margin: 10px 0px !important;
+        font-size: 10px;
+        color: #000 !important;
+        margin: 5px 0px !important;
         text-align: left !important;
     }
 
@@ -571,6 +577,7 @@
         }
     }
 </style>
+</section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
@@ -707,7 +714,7 @@
                 <div class="col-sm-3 tir-des">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h1 class="product-name">Performance Ratings</h1>
+                            <h2 class="product-name2">Performance Ratings</h2>
 
                             <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
                             <div class="progress pink">

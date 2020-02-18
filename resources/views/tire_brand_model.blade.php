@@ -53,7 +53,7 @@
     .product-name
     {
         font-size: 14px !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
         text-align: left;
         font-weight: 100 !important;
     }
@@ -142,7 +142,7 @@
         color: #fff !important;
         font-size: 12px !important;
         font-weight: 100 !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
 
     .table.table-section {
@@ -158,7 +158,7 @@
         color: #fff !important;
         background: blue;
         font-size: 10px !important;
-        font-family:oswald !important;
+        font-family:Montserrat !important;
     }
 
     .btn.btn-default.cart-2 {
@@ -166,7 +166,7 @@
         color: #fff !important;
         background: green;
         font-size: 10px !important;
-        font-family:oswald !important;
+        font-family:Montserrat !important;
     }
 
     .table.table-section th {
@@ -178,7 +178,7 @@
         color: #000 !important;
         font-size: 12px !important;
         transition: 1s all;
-        font-family:play !important;
+        font-family:Poppins !important;
     }
 
     .table.table-section td:hover {
@@ -197,11 +197,11 @@
         text-decoration: underline;
     }
     .progress-title{
-        font-size: 12px;
-        color: #011627;
-        margin:10px 0px !important;
+        font-size: 10px;
+        color: #000 !important;
+        margin:5px 0px !important;
         text-align:left !important;
-        font-family:play !important;
+        font-family:Poppins !important;
     }
     .progress{
         height: 10px;
@@ -223,7 +223,7 @@
         position: absolute;
         top: 10px;
         right: 0;
-        font-family:play !important;
+        font-family:Poppins !important;
     }
 
     @-webkit-keyframes animate-positive{
@@ -248,7 +248,7 @@
         margin: 0px 0px !important;
         padding: 2px 0px;
         text-align: left;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
     }
 
     .row.tire-benifit {
@@ -256,11 +256,12 @@
     }
 
     .benifit-title p {
-        font-size: 12px !important;
+        font-size: 10px !important;
+        color: #000 !important;
         text-align: left;
         line-height: 25px !important;
         margin: 0px 0px;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
 
     .video img {
@@ -280,17 +281,17 @@
         color: #121214;
         font-size: 12px !important;
         line-height: 30px !important;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
     .prod-headinghome {
       text-align: left !important;
     }
     .prod-headinghome h2 {
       color: #0e1661 !important;
-      font-size: 25px !important;
+      font-size: 20px !important;
       font-weight: 700 !important;
       margin:10px 0px !important;
-      font-family: oswald !important;
+      font-family: Montserrat !important;
     }
     .product-name
     {
@@ -348,10 +349,18 @@
 }
 .prod-headinghome h1
   {
-    font-family: oswald !important;
+    font-family: Montserrat !important;
     font-size: 15px !important;
     font-weight: 100 !important;
   }
+  .product-name2 {
+    font-size: 14px !important;
+    font-family: Montserrat !important;
+    text-align: left;
+    font-weight: 700 !important;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+}
 
 </style>
 
@@ -405,7 +414,7 @@
                 <div class="col-sm-3 tir-des">
                     <div class="row">
                         <div class="col-sm-12">
-                          <h1 class="product-name">Performance Ratings</h1>
+                          <h2 class="product-name2">Performance Ratings</h2>
 
                           <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
                           <div class="progress pink">

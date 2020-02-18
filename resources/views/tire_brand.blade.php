@@ -16,7 +16,7 @@
         color: #121214;
         font-size: 12px !important;
         line-height: 30px !important;
-        font-family: play !important;
+        font-family: Poppins !important;
     }
 
     .product-thumb h4 {
@@ -27,9 +27,10 @@
     }
 
     .title-heading h2 {
-        font-size: 18px !important;
+        font-size: 15px !important;
         margin: 20px 0px !important;
-        font-family: oswald !important;
+        font-family: Montserrat !important;
+        font-weight:700 !important;
     }
 
     .hometabled {

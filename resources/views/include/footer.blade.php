@@ -36,19 +36,19 @@
         margin: 40px 0px !important;
     }
 
-    .footer-ratings h1 a 
+    .footer-ratings h1 a
     {
         color:#0e1661 !important;
         font-size: 12px !important;
         line-height:30px;
-        font-family: oswald !important;
+        font-family: poppins !important;
     }
     .main
     {
         font-size: 12px !important;
         color:#000;
         line-height: 30px !important;
-        font-family: oswald !important;
+        font-family: poppins !important;
     }
     .main a {
         color: #0e1661 !important;
@@ -58,10 +58,10 @@
         display: inline;
         font-size: 12px;
         color: #ecb23d;
-        font-family: oswald !important;
+        font-family: poppins !important;
     }
 
-    .zfooterMenu ul li a 
+    .zfooterMenu ul li a
     {
         display: inline;
         text-decoration: none;
@@ -70,7 +70,7 @@
         padding: 2px 14px;
         border-right:1px solid #0e1661 !important;
         border-left: 1px solid #0e1661 !important;
-        font-family: oswald !important;
+        font-family: poppins !important;
         }
 
     .zfooterMenu ul li {
@@ -89,18 +89,18 @@
         margin: 0px 0px !important;
     }
 
-    .copywright 
+    .copywright
     {
         padding: 15px 0 !important;
         color: #0e1661 !important;
         font-size: 12px !important;
-        font-family: oswald !important;
+        font-family: poppins !important;
     }
     .footer-phone {
         color: #0e1661 !important;
         font-size: 12px !important;
         line-height: 30px !important;
-        font-family: oswald !important;
+        font-family: poppins !important;
 }
 
 
@@ -130,7 +130,7 @@
             display: block;
             padding-top: 15px;
         }
-        
+
         .main a {
             font-size: 10px !important;
         }
@@ -271,7 +271,7 @@ $(document).ready(function(){
             }, 800);
             return false;
         });
-        
+
         $('#back-to-top').tooltip('show');
 
 });

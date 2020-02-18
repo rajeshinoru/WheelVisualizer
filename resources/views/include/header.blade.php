@@ -79,7 +79,7 @@
 
         .dropdown-menu.multi-colum-nav li a {
             font-size: 12px !important;
-            font-family: oswald !important;
+            font-family: poppins !important;
         }
 
         .col-sm-3.one-nav ul {
@@ -130,14 +130,14 @@
             margin: 15px 0px !important;
             font-size: 12px !important;
             color: #000 !important;
-            font-family: oswald !important;
+            font-family: poppins !important;
         }
 
         .col-sm-2.shop-vehicle-head h1 {
             font-size: 12px !important;
             color: #000 !important;
             margin: 11px 0px !important;
-            font-family: oswald !important;
+            font-family: poppins !important;
         }
 
         .vehicle-list {
@@ -158,7 +158,7 @@
         .form-control {
             border: 1px solid #0e1661;
             color: #000;
-            font-family: play !important;
+            font-family: poppins !important;
             font-size: 12px !important;
         }
 
@@ -169,7 +169,7 @@
             font-size: 12px !important;
             padding: 5px 20px !important;
             height: 34px !important;
-            font-family: oswald !important;
+            font-family: poppins !important;
         }
 
         .col-sm-12.tire-menu ul {
@@ -300,6 +300,7 @@
             overflow-x: hidden;
             height: 500px;
         }
+        
     </style>
 
 
@@ -319,12 +320,10 @@
                 <div class="col-sm-10 nav-bar">
                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
                         <ul class="nav navbar-nav navbar">
-                            <li class="dropdown-nav"><a title="WHEELS" href="{{route('wheelproducts')}}">DISCOUNT WHEELS <span class="caret"></span></a>
+                            <li class="dropdown-nav">
+                              <!-- <a title="WHEELS" href="{{route('wheelproducts')}}">DISCOUNT WHEELS <span class="caret"></span></a> -->
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">DISCOUNT WHEELS <span class="caret"></span></a>
                                 <ul class="dropdown-menu nav-dropdown">
-                                    <!-- <li><a title="ALL" href="{{route('wheels')}}">ALL</a></li>
-                                        @forelse(wheelbrands() as $brand)
-                                        <li><a title="{{$brand->prodbrand}}" href="{{route('wheels')}}?brand={{base64_encode(json_encode(array($brand->prodbrand)))}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$brand->prodbrand}}</a></li>
-                                        @empty @endforelse -->
 
                                     <!-- New Menu Start-->
                                     <div class="row tire-nav">
@@ -472,7 +471,8 @@
 
                             <!-- New Nav Start -->
                             <li class="dropdown-tire">
-                                <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a>
+                                <!-- <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a> -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">DISCOUNT TIRES <span class="caret"></span></a>
                                 <ul class="dropdown-menu multi-colum-nav">
                                     <!-- New Menu Start-->
                                     <div class="row tire-nav">
