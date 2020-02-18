@@ -33,7 +33,6 @@ function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern 
         }
     }).done(function(data) {
 
-        // console.log(data);
         if (changeBy == '' || changeBy == 'wheeldiameter') {
             $('.ProductWheelWidth').empty().append('<option value="">Select Width</option>');
         }
@@ -57,7 +56,7 @@ function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern 
             //     $('.WheelDiameter').append('<option value="' + value.wheeldiameter + '" ' + isSelected + '>' + value.wheeldiameter + '</option>');
             // });
             data.data['boltpattern'].map(function(value, key) {
-                isSelected = (value.boltpattern1 == BoltPattern) ? 'selected' : '';
+                isSelected = (value.boltpattern1 == boltpattern) ? 'selected' : '';
                 $('.BoltPattern').append('<option value="' + value.boltpattern1 + '" ' + isSelected + '>' + value.boltpattern1 + '</option>');
             });
             data.data['minoffset'].map(function(value, key) {
@@ -71,18 +70,18 @@ function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern 
         } else {
             // console.log(data.data)
             data.data.map(function(value, key) {
-                if (changeBy == 'wheeldiameter') {
+                if (changeBy == 'wheeldiameter' && value.wheelwidth != null) {
                     $('.ProductWheelWidth').append('<option value="' + value.wheelwidth + '">' + value.wheelwidth + '</option>');
                 }
-                if (changeBy == 'wheelwidth') {
+                if (changeBy == 'wheelwidth' && value.boltpattern1 != null) {
                     // alert(value.boltpattern1)
                     $('.BoltPattern').append('<option value="' + value.boltpattern1 + '">' + value.boltpattern1 + '</option>');
                 }
-                if (changeBy == 'boltpattern') {
+                if (changeBy == 'boltpattern' && value.offset1 != null) {
                     // alert(value.boltpattern1)
                     $('.MinOffset').append('<option value="' + value.offset1 + '">' + value.offset1 + '</option>');
                 }
-                if (changeBy == 'minoffset') {
+                if (changeBy == 'minoffset' && value.offset2 != null) {
                     // alert(value.boltpattern1)
                     $('.MaxOffset').append('<option value="' + value.offset2 + '">' + value.offset2 + '</option>');
                 }

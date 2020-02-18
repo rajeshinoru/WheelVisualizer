@@ -410,18 +410,18 @@
                                                         </div>
 
                                                         <div class="dropdown">
-                                                            <select required="" class="form-control browser-default custom-select BoltPattern" name="boltpattern">
+                                                            <select class="form-control browser-default custom-select BoltPattern" name="boltpattern">
                                                                 <option value="">Select BoltPattern</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="dropdown">
-                                                            <select required="" class="form-control browser-default custom-select MinOffset" name="minoffset">
+                                                            <select class="form-control browser-default custom-select MinOffset" name="minoffset">
                                                                 <option value="">Select MinOffset</option>
                                                             </select>
                                                         </div>
                                                         <div class="dropdown">
-                                                            <select required="" class="form-control browser-default custom-select MaxOffset" name="maxoffset">
+                                                            <select class="form-control browser-default custom-select MaxOffset" name="maxoffset">
                                                                 <option value="">Select MaxOffset</option>
                                                             </select>
                                                         </div>

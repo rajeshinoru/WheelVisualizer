@@ -72,7 +72,7 @@ Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFil
 Route::get('/wheelproducts', 'WheelProductController@index')->name('wheelproducts');
 // Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
 
-Route::get('/wheelproductview/{product_id?}', 'WheelProductController@wheelproductview')->name('wheelproductview');
+Route::get('/wheelproductview/{product_id?}/{flag?}', 'WheelProductController@wheelproductview')->name('wheelproductview');
 // Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 // Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 

@@ -10,7 +10,7 @@ class WheelProduct extends Model
 
 
 
-	public function DifferentDiameters() {
-	    return $this->hasMany('App\WheelProduct','id','id');
+	public function DifferentOffsets() {
+	    return $this->hasMany('App\WheelProduct','wheeldiameter','wheeldiameter');
 	}
 }
