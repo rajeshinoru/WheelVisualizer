@@ -40,15 +40,18 @@ class WheelProductController extends Controller
                     $products = $products->where('wheelwidth', $request->wheelwidth);
 
                 if (isset($request->boltpattern) && $request->boltpattern) 
-                    $products = $products->where('boltpattern1', $request->boltpattern)
-                    ->orWhere('boltpattern2', $request->boltpattern)
-                    ->orWhere('boltpattern3', $request->boltpattern);
+                    $products = $products->where('boltpattern1', $request->boltpattern);
+                    // ->orWhere('boltpattern2', $request->boltpattern)
+                    // ->orWhere('boltpattern3', $request->boltpattern);
 
-                if (isset($request->wheeldiameter) && $request->wheeldiameter) 
+                if (isset($request->minoffset) && $request->minoffset) 
                     $products = $products->where('offset1', $request->minoffset);
 
-                if (isset($request->wheeldiameter) && $request->wheeldiameter) 
+                if (isset($request->maxoffset) && $request->maxoffset) 
                     $products = $products->where('offset2', $request->maxoffset);
+
+
+
             }
             elseif (isset($request->flag) && $request->flag == 'searchByVehicle')
             {
@@ -82,24 +85,27 @@ class WheelProductController extends Controller
                 $products = $products->whereIn('wheeltype', $typeArray);
                 // $products = $products->where('rf_lc', $vehicle->rf_lc);
                 // dd($vehicle);
+
             }
             else
             {
-
+                // dd($request->all());
                 if (isset($request->brand) && $request->brand)
                 {
                     $products = $products->whereIn('prodbrand', json_decode(base64_decode($request->brand)));
-                    $branddesc = WheelProduct::select('proddesc', 'prodbrand')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+                    $branddesc = WheelProduct::select('prodbrand')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
                         ->get()
                         ->unique('prodbrand');
                 }
 
-                if (isset($request->diameter) && $request->diameter) $products = $products->whereIn('wheeldiameter', json_decode(base64_decode($request->diameter)));
+                if (isset($request->diameter) && $request->diameter) 
+                        $products = $products->whereIn('wheeldiameter', json_decode(base64_decode($request->diameter)));
 
-                if (isset($request->width) && $request->width) $products = $products->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
+                if (isset($request->width) && $request->width) 
+                        $products = $products->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
 
-                if (isset($request->search)) $products = $products->where('prodbrand', 'LIKE', '%' . json_decode(base64_decode($request->search)) . '%');
-
+                if (isset($request->search)) 
+                        $products = $products->where('prodbrand', 'LIKE', '%' . json_decode(base64_decode($request->search)) . '%');
             }
 
             $products = $products
@@ -135,8 +141,8 @@ class WheelProductController extends Controller
             else $wheelwidth = WheelProduct::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')
                 ->get()
                 ->sortBy('wheelwidth');
-
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth', 'branddesc'));
+            $flag=@$request->flag?:null;
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth', 'branddesc','flag'));
 
         }
         catch(ModelNotFoundException $notfound)
@@ -221,24 +227,31 @@ class WheelProductController extends Controller
         
     }
 
-    public function wheelproductview(Request $request, $product_id = '')
+    public function wheelproductview(Request $request, $product_id = '',$flag='')
     {
         $wheel = WheelProduct::where('id', $product_id)->first();
 
         $wheelproducts = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc');
 
-        $products = $wheelproducts->where('prodbrand', $wheel->prodbrand)
-            ->where('prodmodel', $wheel->prodmodel)
-            ->where('prodimage', $wheel->prodimage)
-            ->where('prodfinish', $wheel->prodfinish)
-            ->get()
-            ->unique('wheeldiameter');
+        if($flag == 'searchByWheelSize'){
+            $products = WheelProduct::where('id', $product_id)->get();
+        }else{
+            $products = WheelProduct::where('prodtitle', $wheel->prodtitle)
+                ->with(['DifferentOffsets'=>function($q)use($wheel){ 
+                    $q->groupBy('detailtitle');
+                    $q->where('prodtitle', $wheel->prodtitle);
+                }])
+                ->groupBy('wheeldiameter')
+                ->get()
+                ->unique('wheeldiameter');
+                // dd($products[0]->DifferentOffsets[0]->wheelwidth );
+        }
         $similar_products = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc')
             ->where('prodbrand', $wheel->prodbrand)
             ->get()
             ->unique('prodtitle');
         // dd($products);
-        return view('wheel_view', compact('wheel', 'products', 'similar_products'));
+        return view('wheel_view', compact('wheel', 'products', 'similar_products','flag'));
     }
 
     public function getFiltersByProductWheelSize(Request $request)

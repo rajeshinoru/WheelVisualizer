@@ -58,7 +58,7 @@
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                        <div id="collapseOne" class="panel-collapse collapse {{(@Request::get('diameter'))?' in':''}} " role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheeldiameter as $diameter)
@@ -80,7 +80,7 @@
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div id="collapseTwo" class="panel-collapse collapse  {{(@Request::get('width'))?' in':''}}  " role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheelwidth as $width)
@@ -138,7 +138,7 @@
 
                                     <div class="thumb-description">
                                         <div class="caption">
-                                            <h4><a href="{{url('/wheelproductview',$product->id)}}">{{$product->prodtitle}}
+                                            <h4><a href="{{url('/wheelproductview',$product->id)}}{{@$flag?'/'.$flag:''}}">{{$product->prodtitle}}
                                                     <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
                                                 </a></h4>

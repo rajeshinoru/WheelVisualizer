@@ -391,41 +391,72 @@
 
                                     <div class="col-sm-6">
                                         <h2>Front & Rear</h2>
-          <!--                               <div class="col-sm-12 wheel-view-select">
-                                            <select id="">
-                                                <option value="">22X9 32mm</option>
-                                                <option value="">22X9 30mm</option>
-                                            </select>
-                                        </div> -->
                                         <div class="table-responsive wheel_view">
                                             <table class="table">
                                                 <tbody>
-                                                    @if(@$product->offset1 != null && @$product->offset2 != null)
+                                                    @if(@$product->DifferentOffsets->count()>1 && $flag != 'searchByWheelSize')
 
                                                     <tr>
                                                         <td colspan="2">
-                                            <select>
-                                                <option value="">{{@$product->wheeldiameter.'x'.@$product->wheelwidth}} {{@$product->offset1.'mm'}}</option>
-                                                <option value="">{{@$product->wheeldiameter.'x'.@$product->wheelwidth}} {{@$product->offset2.'mm'}}</option>
-                                            </select>
+                                                            <select class="form-control offset_tab" >
+                                @foreach(@$product->DifferentOffsets as $key => $diffproduct)
+                                    <option value="offset_{{@$diffproduct->partno}}" data-title="{{@$diffproduct->detailtitle}}">{{@$diffproduct->wheeldiameter.'x'.@$diffproduct->wheelwidth}} {{((@$diffproduct->offset1)?@$diffproduct->offset1:'0').'mm'}}</option>
+                                @endforeach
+                                                            </select>
+                                                        </td>
+
+                                                    </tr>
+
+                                @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic offset_{{$diffproduct->partno}}">
+                                                        <td>Finish</td>
+                                                        <td>{{@$diffproduct->prodfinish}}</td>
+                                                    </tr>
+                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                        <td>Offset</td>
+                                                        <td>{{((@$diffproduct->offset1 > 0)?@$diffproduct->offset1:'0').'mm'}}
+                                                            @if(@$diffproduct->offset2 != 'NULL' && @$diffproduct->offset2 != '')
+                                                            to {{((@$diffproduct->offset2 > 0)?@$diffproduct->offset2:'0').'mm'}}
+                                                            @endif
                                                         </td>
                                                     </tr>
+                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                        <td>Hub Bore</td>
+                                                        <td>{{@$diffproduct->hubbore?@$diffproduct->hubbore.'mm':''}}</td>
+                                                    </tr>
+                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                        <td>Brand</td>
+                                                        <td>{{@$diffproduct->prodbrand}}</td>
+                                                    </tr>
+                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                        <td>Name</td>
+                                                        <td>{{@$diffproduct->prodmodel}}</td>
+                                                    </tr>
+                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                        <td>PN</td>
+                                                        <td>{{@$diffproduct->partno}}</td>
+                                                    </tr>
+                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                        <td>Bolt Pattern</td>
+
+                                                        <td>{{showBoltPattern(@$diffproduct->boltpattern1,@$diffproduct->boltpattern2,@$diffproduct->boltpattern3)}}</td>
+                                                    </tr>
+                                        @endforeach
 
                                                     @else
                                                     <tr>
                                                         <td>Size</td>
                                                         <td>{{@$product->wheeldiameter.'x'.@$product->wheelwidth}}</td>
                                                     </tr>
-                                                    @endif
                                                     <tr>
                                                         <td>Finish</td>
                                                         <td>{{@$product->prodfinish}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Offset</td>
-                                                        <td>{{@$product->offset1.'mm'}}
+                                                        <td>{{((@$product->offset1 > 0)?@$product->offset1:'0').'mm'}}
                                                             @if(@$product->offset2 != 'NULL' && @$product->offset2 != '')
-                                                            to {{@$product->offset2.'mm'}}
+                                                            to {{((@$product->offset2 > 0)?@$product->offset2:'0').'mm'}}
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -447,8 +478,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Bolt Pattern</td>
-                                                        <td>{{--Fits 5x114 and 5x120 bolt patterns--}} {{@$product->boltpattern1.' AND '.@$product->boltpattern2}} Bolt Patterns</td>
+                                                        <td>{{showBoltPattern($product->boltpattern1,$product->boltpattern2,$product->boltpattern3)}}</td>
                                                     </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -457,6 +489,29 @@
                                         <img src="{{url('image/pay4.png')}}">
                                         <img src="{{url('image/pay5.png')}}">
                                         <!--  -->
+                                        @if(@$product->DifferentOffsets->count()>1 && $flag != 'searchByWheelSize')
+                                        @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
+                                        <div style="display: {{($diffKey > 0)?'none':''}}" class=" price-section dynamic offset_{{$diffproduct->partno}}">
+                                            <h2>Original Price : <span class="price-old">${{@$diffproduct->saleprice ?? 0}}</span>
+                                                You Save : <span class="price-new2">$0</span>
+                                            </h2>
+                                            <p>Set of 4 : <span class="price-new2">${{@$diffproduct->price*4}}</span></p>
+                                            <p>Your Price : <span class="price-new2">${{@$diffproduct->price}}</span></p>
+                                            <!-- <p>Starting at $15/mo with </p> -->
+                                            <div class="form-head">
+                                                <div class="form-group product-quantity">
+                                                    <label class="control-label" for="input-quantity">Qty</label>
+                                                    <input type="text" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
+                                                    <input type="hidden" name="product_id" value="46">
+                                                    <button class="btn btn-info" type="button">Add to Cart</button>
+                                                </div>
+                                            </div>
+                                            <h1 class="instock-head">Availability:<b>
+                                                {{@$diffproduct->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
+                                            </b></h1>
+                                        </div>
+                                        @endforeach
+                                        @else
                                         <div class="price-section">
                                             <h2>Original Price : <span class="price-old">${{@$product->saleprice ?? 0}}</span>
                                                 You Save : <span class="price-new2">$0</span>
@@ -472,8 +527,11 @@
                                                     <button class="btn btn-info" type="button">Add to Cart</button>
                                                 </div>
                                             </div>
-                                            <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Out Of Stock' }}</b></h1>
+                                            <h1 class="instock-head">Availability:<b>
+                                                {{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
+                                            </b></h1>
                                         </div>
+                                        @endif
                                         <!--  -->
                                     </div>
                                 </div>
@@ -630,10 +688,16 @@
 
 <script type="text/javascript">
 $('.wheel_diameter_tab').click(function(){
-    console.log(this);
-    // if($(this).closest('li').hasClass('active')){
         $('.wheel_detail_title').text($(this).attr('data-value'));
-    // }
 })
+$('.offset_tab').change(function(){
+    var selectedVal = $(this).val();
+    $('.'+selectedVal).siblings('.dynamic').hide();
+    $('.'+selectedVal).show();
+    var selectedOption = $(this).find('option:selected');
+    var title = selectedOption.data('title'); 
+    $('.wheel_detail_title').text(title);
+});
+
 </script>
 @endsection
