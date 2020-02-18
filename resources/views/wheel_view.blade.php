@@ -453,15 +453,15 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Offset</td>
-                                                        <td>{{((@$product->offset1 > 0)?@$product->offset1:'0').'mm'}}
+                                                        <td>{{((@$product->offset1)?@$product->offset1:'0').'mm'}}
                                                             @if(@$product->offset2 != 'NULL' && @$product->offset2 != '')
-                                                            to {{((@$product->offset2 > 0)?@$product->offset2:'0').'mm'}}
+                                                            to {{((@$product->offset2)?@$product->offset2:'0').'mm'}}
                                                             @endif
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Hub Bore</td>
-                                                        <td>{{@$product->hubbore?@$product->hubbore.'mm':''}}</td>
+                                                        <td>{{@$product->hubbore?@$product->hubbore.'mm':'-'}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Brand</td>

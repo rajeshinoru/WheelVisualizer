@@ -66,15 +66,16 @@ class WheelProductController extends Controller
                 $chassis_models = ChassisModel::where('chassis_id', $vehicle->dr_chassis_id)
                     ->where('model_id', $vehicle->dr_model_id)
                     ->first();
+                // dd($str);
                 if (strpos($chassis->pcd, '.') !== false)
                 {
                     $str = substr($chassis->pcd, 0, strpos($chassis->pcd, "."));
                 }
                 else
                 {
-                    $str = '';
+                    $str = $chassis->pcd;
                 }
-
+                // dd($str);
                 $boltpattern = str_replace("x", "", $str)?:'Blank5';
                 // dd($boltpattern,$vehicle->wheel_type);
                 if($boltpattern !=''){
@@ -90,13 +91,13 @@ class WheelProductController extends Controller
             else
             {
                 // dd($request->all());
-                if (isset($request->brand) && $request->brand)
-                {
-                    $products = $products->whereIn('prodbrand', json_decode(base64_decode($request->brand)));
-                    $branddesc = WheelProduct::select('prodbrand')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
-                        ->get()
-                        ->unique('prodbrand');
-                }
+                // if (isset($request->brand) && $request->brand)
+                // {
+                //     $products = $products->whereIn('prodbrand', json_decode(base64_decode($request->brand)));
+                //     $branddesc = WheelProduct::select('prodbrand')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+                //         ->get()
+                //         ->unique('prodbrand');
+                // }
 
                 if (isset($request->diameter) && $request->diameter) 
                         $products = $products->whereIn('wheeldiameter', json_decode(base64_decode($request->diameter)));
@@ -107,9 +108,16 @@ class WheelProductController extends Controller
                 if (isset($request->search)) 
                         $products = $products->where('prodbrand', 'LIKE', '%' . json_decode(base64_decode($request->search)) . '%');
             }
-
+            
+            if (isset($request->brand) && $request->brand)
+            {
+                $products = $products->whereIn('prodbrand', json_decode(base64_decode($request->brand)));
+                $branddesc = WheelProduct::select('prodbrand')->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+                    ->get()
+                    ->unique('prodbrand');
+            }
             $products = $products
-                // ->orderBy('price', 'ASC')
+                ->orderBy('price', 'ASC')
                 ->get()
                 ->unique('prodimage')
                 ->toArray();
