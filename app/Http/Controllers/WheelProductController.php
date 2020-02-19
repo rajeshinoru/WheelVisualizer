@@ -120,7 +120,7 @@ class WheelProductController extends Controller
             $products = $products
                 ->orderBy('price', 'ASC')
                 ->get()
-                ->unique('prodimage')
+                ->unique('prodtitle')
                 ->toArray();
             $products = MakeCustomPaginator($products, $request, 9);
 
@@ -134,23 +134,37 @@ class WheelProductController extends Controller
                 ->sortBy('prodbrand');
 
             ///wheeldiameter with count
-            if (isset($request->brand) && $request->brand) $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+            if (isset($request->brand) && $request->brand) 
+                $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
                 ->groupBy('wheeldiameter')
                 ->get()
                 ->sortBy('wheeldiameter');
-            else $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')
+            else 
+                $wheeldiameter = WheelProduct::select('wheeldiameter', \DB::raw('count(*) as total'))->groupBy('wheeldiameter')
                 ->get()
                 ->sortBy('wheeldiameter');
 
+
+
+            $wheelproducts = new WheelProduct;
             ///wheelwidth with count
-            if (isset($request->brand) && $request->brand) $wheelwidth = WheelProduct::select('wheelwidth', \DB::raw('count(*) as total'))->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+            if (isset($request->brand) && $request->brand) {
+                $wheelwidth = $wheelproducts->whereIn('prodbrand', json_decode(base64_decode($request->brand)))
+                ->select('wheelwidth', \DB::raw('count(*) as total'))
                 ->groupBy('wheelwidth')
                 ->get()
                 ->sortBy('wheelwidth');
-            else $wheelwidth = WheelProduct::select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')
+            }else{
+                $wheelwidth =  $wheelproducts->select('wheelwidth', \DB::raw('count(*) as total'))->groupBy('wheelwidth')
                 ->get()
                 ->sortBy('wheelwidth');
+            }
+
+
+
+
             $flag=@$request->flag?:null;
+
             return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth', 'branddesc','flag'));
 
         }
