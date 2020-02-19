@@ -61,7 +61,7 @@
 
         .dropdown-menu.multi-colum-nav
         {
-            width:1334px !important;
+            width:1311px !important;
             background: #f4f4f4 !important;
             border: none !important;
         }
@@ -71,7 +71,11 @@
             background: #f4f4f4 !important;
             border: none !important;
         }
-
+        button.btn.btn-inverse.btn-block.btn-lg
+        {
+            font-size: 12px !important;
+            line-height: 18px !important;
+        }
         .row.tire-nav {
             padding: 0px 0px !important;
             margin: 0px 0px !important;
@@ -300,7 +304,7 @@
             overflow-x: hidden;
             height: 500px;
         }
-        
+
     </style>
 
 

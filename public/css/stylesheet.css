@@ -1570,7 +1570,8 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
     color: #000000;
 }
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
-    padding: 8px 5px;
+    padding: 5px 5px !important;
+    line-height: 30px !important;
 }
 .header-cart-toggle .table-striped > tbody > tr:nth-child(2n+1) > td, .header-cart-toggle .table-striped > tbody > tr:nth-child(2n+1) > th {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -1844,14 +1845,18 @@ header .full-header {
         width: 150px !important;
    }
     #header-search .form-control {
-        height: 40px;
+        height: 30px;
+   }
+   .navbar-toggle
+   {
+     margin-right: 0px !important;
    }
     #header-search .btn-default {
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
    }
     #header-search .header-search-btn .fa.fa-search {
-        padding: 12px 13px;
+        padding: 7px 7px;
    }
 }
 @media (max-width: 480px) {
@@ -3974,11 +3979,8 @@ footer .footer-column h5 {
     padding: 6px 20px;
 }
 .btn.btn-default.cnt:hover, .btn-default:hover, .btn-default:focus, .btn-default.active, .btn-default:active, .btn-default:active:focus {
-    background: #fed700;
-    border: 1px solid #fed700;
-    color: #000000;
     text-transform: capitalize;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 .btn.active, .btn:active {
     box-shadow: none;
@@ -5089,7 +5091,7 @@ h2.price {
    }
    .search
    {
-       margin:9px 0px !important;
+       margin:12px 0px !important;
    }
     .header-right-cms {
         float: right;
@@ -7113,10 +7115,6 @@ button {
     padding: 5px 0px !important;
     border-bottom:1px solid #22222254 !important;
 }
-
-/* .dropdown-menu.nav-dropdown {
-    column-count: 6;
-} */
 .product-thumb .image img,.product-thumb .image img.image_thumb_swap {
     width:200px !important;
 }
@@ -7276,6 +7274,8 @@ button {
    .col-sm-12.tire-menu ul
    {
        column-count: 3;
+       column-count: 3 !important;
+       text-align: left;
    }
     .slick-slide img {
         width:100% !important;
@@ -7287,9 +7287,6 @@ button {
         display: inline-block;
         transition: 1s all;
         background: #f4f4f4 !important;
-   }
-    .dropdown-menu.nav-dropdown {
-        column-count: 5 !important;
    }
     .navbar .navbar-collapse .navbar-right > li:last-child {
         padding-left: 15px;
@@ -7314,6 +7311,8 @@ button {
    .navbar-nav > li > .dropdown-menu
    {
         background: #f4f4f4 !important;
+        width:100% !important;
+        text-align:center;
    }
    .dropdown-menu.nav-dropdown
    {
@@ -7336,10 +7335,6 @@ button {
         font-size: 14px !important;
         text-align: center;
         line-height: 30px !important;
-   }
-   .prod-headinghome p
-   {
-        text-align: justify;
    }
    .col-sm-4.wheel-img img
    {
@@ -7465,10 +7460,7 @@ button {
    {
        display: none !important;
    }
-   .prod-headinghome p
-   {
-        text-align: justify;
-   }
+
    .col-sm-4.wheel-img img
    {
         width: 100% !important;
@@ -7533,9 +7525,6 @@ button {
     {
         float:none;
     }
-    /* .navbar-nav > li {
-        float: none !important;
-    } */
     li.dropdown-tire:hover ul.dropdown-menu.multi-colum-nav
     {
         display: block !important;
@@ -7648,21 +7637,28 @@ button {
     {
         font-size: 15px !important;
     }
+    .nav > li > a
+    {
+      font-size: 10px !important;
+      font-family: Montserrat !important;
+      padding: 15px 8px !important;
+    }
 }
 
 
 
 
-@media screen and (min-device-width: 960px) and (max-device-width: 1000px)
+@media screen and (min-device-width: 960px) and (max-device-width: 1200px)
 {
-
+  .nav > li > a {
+      font-size: 10px !important;
+      font-family: Montserrat !important;
+      padding: 15px 12px !important;
+  }
 }
 
 /* Tirebrand Page */
-.prod-headinghome p
-{
-  text-align: justify;
-}
+
 .fal-logo img
 {
     margin: 95px 0px !important;
@@ -7717,3 +7713,28 @@ button {
     letter-spacing: 0px !important;
 }
 /* Wheel List Page End */
+/* Tirebrandmodel start */
+#table-section
+{
+    padding: 40px 0px !important;
+    background: #fff !important;
+}
+.table-responsive
+{
+    overflow-x: hidden !important;
+}
+#demo-des
+{
+    padding: 40px 0px !important;
+}
+/* Tirebrandmodel End */
+.ellipsis {
+  color: #14281D;
+}
+
+.more, .less {
+  color: #0e1661 !important;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0px 0px !important;
+}
