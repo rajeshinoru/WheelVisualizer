@@ -332,9 +332,7 @@
         .dropdown-menu.multi-colum-nav {
 
             width: 100% !important;
-            background:
-
-            #000 !important;
+            background: #000 !important;
             border: none !important;
             text-align: center;
 

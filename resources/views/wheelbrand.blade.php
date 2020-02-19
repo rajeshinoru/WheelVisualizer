@@ -14,7 +14,6 @@
     line-height: 30px !important;
     color: #000 !important;
     margin: 0px 0px !important;
-    text-align:justify;
 }
 .col-sm-12.wheel-des b a
 {

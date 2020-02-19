@@ -19,7 +19,6 @@
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
     }
-
     .pTopBar {
         display: table;
         width: 100%;
@@ -159,6 +158,7 @@
         background: blue;
         font-size: 10px !important;
         font-family:Montserrat !important;
+        border:none !important;
     }
 
     .btn.btn-default.cart-2 {
@@ -473,6 +473,18 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
+                <!-- Read More Start -->
+                <div class="row tire-benifit">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4 benifit">
+                            <img src="{{ViewBenefitImage(@$tire->benefitsimage1)}}">
+                        </div>
+                        <div class="col-sm-8 benifit-title">
+                          <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Read More End -->
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -647,6 +659,35 @@
 
 @endsection @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
+<!-- Read More Script Start-->
+<script>
+function moreLess(initiallyVisibleCharacters) {
+	var visibleCharacters = initiallyVisibleCharacters;
+	var paragraph = $(".text")
 
 
+	paragraph.each(function() {
+		var text = $(this).text();
+		var wholeText = text.slice(0, visibleCharacters) + "<span class='ellipsis'>... </span><a href='#' class='more'>Read More</a>" + "<span style='display:none'>" + text.slice(visibleCharacters, text.length) + "<a href='#' class='less'> Read Less</a></span>"
+
+		if (text.length < visibleCharacters) {
+			return
+		} else {
+			$(this).html(wholeText)
+		}
+	});
+	$(".more").click(function(e) {
+		e.preventDefault();
+		$(this).hide().prev().hide();
+		$(this).next().show();
+	});
+	$(".less").click(function(e) {
+		e.preventDefault();
+		$(this).parent().hide().prev().show().prev().show();
+	});
+};
+
+moreLess(100);
+</script>
+<!-- Read More Script End-->
 @endsection
