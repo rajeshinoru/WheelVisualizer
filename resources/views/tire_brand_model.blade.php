@@ -364,7 +364,6 @@
 
 </style>
 
-</section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
@@ -473,18 +472,7 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                <!-- Read More Start -->
-                <div class="row tire-benifit">
-                    <div class="col-sm-12">
-                        <div class="col-sm-4 benifit">
-                            <img src="{{ViewBenefitImage(@$tire->benefitsimage1)}}">
-                        </div>
-                        <div class="col-sm-8 benifit-title">
-                          <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Read More End -->
+
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -492,7 +480,7 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p>{{@$tire->benefits1}}</p>
+                                <p class="text">{{@$tire->benefits1}}</p>
                             </div>
                         </div>
                     </div>
@@ -503,7 +491,7 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p>{{@$tire->benefits2}}</p>
+                                <p class="text">{{@$tire->benefits2}}</p>
                             </div>
                         </div>
                     </div>
@@ -514,7 +502,7 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p>{{@$tire->benefits3}}</p>
+                                <p class="text">{{@$tire->benefits3}}</p>
                             </div>
                         </div>
                     </div>
@@ -525,7 +513,7 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p>{{@$tire->benefits4}}</p>
+                                <p class="text">{{@$tire->benefits4}}</p>
                             </div>
                         </div>
                     </div>

@@ -238,14 +238,17 @@ class WheelProductController extends Controller
 
     public function wheelproductview(Request $request, $product_id = '',$flag='')
     {
-        $wheel = WheelProduct::where('id', $product_id)->first();
 
-        // $wheelproducts = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc');
+        $selectFields=['id','prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc'];
+
+        $wheel = WheelProduct::select($selectFields)->where('id', $product_id)->first();
+
+        // $wheelproducts = WheelProduct::select();
 
         if($flag == 'searchByWheelSize'){
-            $products = WheelProduct::where('id', $product_id)->get();
+            $products = WheelProduct::select($selectFields)->where('id', $product_id)->get();
         }else{
-            $products = WheelProduct::where('prodtitle', $wheel->prodtitle)
+            $products = WheelProduct::select($selectFields)->where('prodtitle', $wheel->prodtitle)
 
                 ->with(['DifferentOffsets'=>function($q)use($wheel){ 
                     $q->where('prodtitle', $wheel->prodtitle);

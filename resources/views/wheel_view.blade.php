@@ -394,7 +394,7 @@
                                         <div class="table-responsive wheel_view">
                                             <table class="table">
                                                 <tbody>
-                                                    @if(@$product->DifferentOffsets->count()>1 && $flag != 'searchByWheelSize')
+                                                    @if(@$product->DifferentOffsets->count() > 1 && $flag != 'searchByWheelSize')
 
                                                     <tr>
                                                         <td colspan="2">
