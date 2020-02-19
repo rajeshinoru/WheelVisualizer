@@ -240,26 +240,30 @@ class WheelProductController extends Controller
     {
         $wheel = WheelProduct::where('id', $product_id)->first();
 
-        $wheelproducts = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc');
+        // $wheelproducts = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc');
 
         if($flag == 'searchByWheelSize'){
             $products = WheelProduct::where('id', $product_id)->get();
         }else{
             $products = WheelProduct::where('prodtitle', $wheel->prodtitle)
+
                 ->with(['DifferentOffsets'=>function($q)use($wheel){ 
-                    $q->groupBy('detailtitle');
                     $q->where('prodtitle', $wheel->prodtitle);
-                }])
-                ->groupBy('wheeldiameter')
+                },
+                'DifferentOffsets.DifferentOffsets'=>function($q1)use($wheel){ 
+                    $q1->where('prodtitle', $wheel->prodtitle);
+                    // $q1->get()->unique('boltpattern1');
+                },
+                ])
                 ->get()
                 ->unique('wheeldiameter');
-                // dd($products[0]->DifferentOffsets[0]->wheelwidth );
+                // dd($products);
         }
-        $similar_products = WheelProduct::select('prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc')
+        $similar_products = WheelProduct::select('prodimage','prodbrand','id','prodtitle','price')
             ->where('prodbrand', $wheel->prodbrand)
             ->get()
             ->unique('prodtitle');
-        // dd($products);
+        // dd($products[0]->DifferentOffsets);
         return view('wheel_view', compact('wheel', 'products', 'similar_products','flag'));
     }
 

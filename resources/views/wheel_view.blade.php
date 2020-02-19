@@ -379,7 +379,7 @@
                         <div class="col-sm-8">
                             <ul class="nav nav-tabs">
                                 @foreach(@$products as $key => $product)
-                                <li class="{{($key ==0 )?'active':''}}"><a class="wheel_diameter_tab" data-toggle="tab" href="#{{@$product->partno}}" data-value="{{@$product->detailtitle}}" >{{@$product->wheeldiameter}}</a></li>
+                                <li class="{{($key ==0 )?'active':''}}"><a class="wheel_diameter_tab" data-toggle="tab" href="#{{@$product->partno}}" data-value="{{@$product->detailtitle}}">{{@$product->wheeldiameter}}</a></li>
                                 @endforeach
                             </ul>
 
@@ -398,51 +398,65 @@
 
                                                     <tr>
                                                         <td colspan="2">
-                                                            <select class="form-control offset_tab" >
-                                @foreach(@$product->DifferentOffsets as $key => $diffproduct)
-                                    <option value="offset_{{@$diffproduct->partno}}" data-title="{{@$diffproduct->detailtitle}}">{{@$diffproduct->wheeldiameter.'x'.@$diffproduct->wheelwidth}} {{((@$diffproduct->offset1)?@$diffproduct->offset1:'0').'mm'}}</option>
-                                @endforeach
+                                                            <select class="form-control offset_tab">
+                                                                @foreach(@$product->DifferentOffsets->unique('detailtitle') as $key => $diffproduct)
+                                                                <option value="offset_{{@$diffproduct->id}}" data-title="{{@$diffproduct->detailtitle}}">{{@$diffproduct->wheeldiameter.'x'.@$diffproduct->wheelwidth}} {{((@$diffproduct->offset1)?@$diffproduct->offset1:'0').'mm'}} </option>
+                                                                @endforeach
                                                             </select>
                                                         </td>
 
                                                     </tr>
 
-                                @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
-                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic offset_{{$diffproduct->partno}}">
+                                                    @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
+                                                    <?php $offsetClass='offset_'.$diffproduct->id; ?>
+                                                    <?php $patternClass='pattern_'.$diffproduct->boltpattern1.'_'.$diffproduct->id; ?>
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}} ">
                                                         <td>Finish</td>
                                                         <td>{{@$diffproduct->prodfinish}}</td>
                                                     </tr>
-                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
                                                         <td>Offset</td>
-                                                        <td>{{((@$diffproduct->offset1 > 0)?@$diffproduct->offset1:'0').'mm'}}
+                                                        <td>{{((@$diffproduct->offset1)?@$diffproduct->offset1:'0').'mm'}}
                                                             @if(@$diffproduct->offset2 != 'NULL' && @$diffproduct->offset2 != '')
-                                                            to {{((@$diffproduct->offset2 > 0)?@$diffproduct->offset2:'0').'mm'}}
+                                                            to {{((@$diffproduct->offset2)?@$diffproduct->offset2:'0').'mm'}}
                                                             @endif
                                                         </td>
                                                     </tr>
 
-                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
                                                         <td>Hub Bore</td>
                                                         <td>{{@$diffproduct->hubbore?@$diffproduct->hubbore.'mm':'-'}}</td>
                                                     </tr>
-                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
                                                         <td>Brand</td>
                                                         <td>{{@$diffproduct->prodbrand}}</td>
                                                     </tr>
-                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
                                                         <td>Name</td>
                                                         <td>{{@$diffproduct->prodmodel}}</td>
                                                     </tr>
-                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
                                                         <td>PN</td>
                                                         <td>{{@$diffproduct->partno}}</td>
                                                     </tr>
-                                                    <tr  style="display: {{($diffKey > 0)?'none':''}}"  class="dynamic offset_{{$diffproduct->partno}}">
-                                                        <td>Bolt Pattern</td>
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
 
-                                                        <td>{{showBoltPattern(@$diffproduct->boltpattern1,@$diffproduct->boltpattern2,@$diffproduct->boltpattern3)}}</td>
+                                                        <td>Bolt Pattern</td>
+                                                        <td>
+                                                            @if(count(@$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1)) > 1 )
+                                                            <select class="form-control boltpattern_tab" name="boltpattern_tab[]">
+                                                                @foreach(@$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1) as $bpkey => $bpproduct)
+                                                                <option value="pattern_{{@$bpproduct->boltpattern1}}_{{@$bpproduct->id}}" data-title="{{@$bpproduct->detailtitle}}" {{(@$bpproduct->boltpattern1 == @$diffproduct->boltpattern1)?'selected':''}} >{{convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @else
+                                                            {{showBoltPattern(@$diffproduct->boltpattern1,@$diffproduct->boltpattern2,@$diffproduct->boltpattern3)}}
+                                                            @endif
+
+                                                        </td>
+
                                                     </tr>
-                                        @endforeach
+                                                    @endforeach
 
                                                     @else
                                                     <tr>
@@ -492,12 +506,13 @@
                                         <!--  -->
                                         @if(@$product->DifferentOffsets->count()>1 && $flag != 'searchByWheelSize')
                                         @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
-                                        <div style="display: {{($diffKey > 0)?'none':''}}" class=" price-section dynamic offset_{{$diffproduct->partno}}">
+                                        <div style="display: {{($diffKey > 0)?'none':''}}" class=" price-section dynamic offset_{{$diffproduct->id}} pattern_{{$diffproduct->boltpattern1}}_{{$diffproduct->id}}">
                                             <h2>Original Price : <span class="price-old">${{@$diffproduct->saleprice ?? 0}}</span>
                                                 You Save : <span class="price-new2">$0</span>
                                             </h2>
                                             <p>Set of 4 : <span class="price-new2">${{@$diffproduct->price*4}}</span></p>
                                             <p>Your Price : <span class="price-new2">${{@$diffproduct->price}}</span></p>
+                                            <!-- <p>{{@$diffproduct->partno}}</p> -->
                                             <!-- <p>Starting at $15/mo with </p> -->
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
@@ -508,8 +523,8 @@
                                                 </div>
                                             </div>
                                             <h1 class="instock-head">Availability:<b>
-                                                {{@$diffproduct->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
-                                            </b></h1>
+                                                    {{@$diffproduct->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
+                                                </b></h1>
                                         </div>
                                         @endforeach
                                         @else
@@ -529,8 +544,8 @@
                                                 </div>
                                             </div>
                                             <h1 class="instock-head">Availability:<b>
-                                                {{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
-                                            </b></h1>
+                                                    {{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
+                                                </b></h1>
                                         </div>
                                         @endif
                                         <!--  -->
@@ -584,17 +599,17 @@
                         <div class="panel-body">
                             <div class="tab-content wheel-list-tab">
                                 <div class="tab-pane fade in active" id="tab1default">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <div class="prod-headinghome">
                                             <br>
                                             <p><?php echo @$wheel->proddesc ?></p>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <!--  <div class="col-sm-4">
                                         <div class="wheel-des">
                                             <img src="{{ViewWheelProductImage(@$wheel->prodimage)}}">
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                                 <div class="tab-pane fade" id="tab2default">
@@ -688,17 +703,24 @@
 <script src="{{ asset('js/wheels.js') }}"></script>
 
 <script type="text/javascript">
-$('.wheel_diameter_tab').click(function(){
+    $('.wheel_diameter_tab').click(function() {
         $('.wheel_detail_title').text($(this).attr('data-value'));
-})
-$('.offset_tab').change(function(){
-    var selectedVal = $(this).val();
-    $('.'+selectedVal).siblings('.dynamic').hide();
-    $('.'+selectedVal).show();
-    var selectedOption = $(this).find('option:selected');
-    var title = selectedOption.data('title'); 
-    $('.wheel_detail_title').text(title);
-});
-
+    })
+    $('.offset_tab').change(function() {
+        var selectedVal = $(this).val();
+        $('.' + selectedVal).siblings('.dynamic').hide();
+        $('.' + selectedVal).show();
+        var selectedOption = $(this).find('option:selected');
+        var title = selectedOption.data('title');
+        $('.wheel_detail_title').text(title);
+    });
+    $('.boltpattern_tab').change(function() {
+        var selectedVal = $(this).val();
+        $('.' + selectedVal).siblings('.dynamic').hide();
+        $('.' + selectedVal).show();
+        var selectedOption = $(this).find('option:selected');
+        var title = selectedOption.data('title');
+        $('.wheel_detail_title').text(title);
+    });
 </script>
 @endsection

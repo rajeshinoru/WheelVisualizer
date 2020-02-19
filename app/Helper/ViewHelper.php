@@ -26,7 +26,10 @@ function MakeCustomPaginator($data,$request,$per_page=9){
 	return  $data;
 }
 
-function showBoltPattern($bp1,$bp2,$bp3){
+function convertBoltPattern($pattern=''){
+	return substr_replace($pattern, ' x ', 1, 0);
+}
+function showBoltPattern($bp1,$bp2='',$bp3=''){
 
 	$pattern ='';
 	if($bp1 == 'Blank5' || $bp2 == 'Blank6')
@@ -35,19 +38,19 @@ function showBoltPattern($bp1,$bp2,$bp3){
 		if($bp1 == 'Blank5'){
 			$pattern.=' 5 lug';		
 		}
-		if($bp2 == 'Blank6'){
-			$pattern.=' And 6 lug';
-		}
+		// if($bp2 == 'Blank6'){
+		// 	$pattern.=' And 6 lug';
+		// }
 
-		$pattern .=' bold patterns';
+		$pattern .=' bolt patterns';
 	}else{
 		// $pattern.='Fits ';
 		if($bp1 != null){
-			$pattern.=$bp1;		
+			$pattern.= convertBoltPattern($bp1) ;		
 		}
-		if($bp2 != null){
-			$pattern.=' And '.$bp2;
-		}
+		// if($bp2 != null){
+		// 	$pattern.=' And '.$bp2;
+		// }
 	}
 
 	return $pattern;
