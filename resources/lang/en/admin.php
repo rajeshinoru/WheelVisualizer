@@ -25,5 +25,18 @@ return [
     ],
     'error' => [
         'something' => 'Something went wrong!!', 
-    ]
+    ],
+    'common'    =>  [
+        's_no'          =>  'SI.No',
+        'actions'       =>  'Actions'
+    ],
+    'brands'    => [
+        'manufacturer'  =>  'Manufacturer',
+        'description'   =>  'Description',        
+        'logo'          =>  'Logo',
+        'brand'         =>  'Brand',
+        'brand_list'    =>  'Brands Lists',
+        'add_brand'     =>  'Add Brand',
+        'no_brand'      =>  'No Brands found',
+    ],    
 ];

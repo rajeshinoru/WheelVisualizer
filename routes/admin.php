@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::resource('user', 'Resource\UserResource');
 Route::resource('wheel', 'Resource\WheelResource');
 Route::resource('car', 'Resource\CarResource');
+Route::resource('brands', 'Resource\TireBrandsResource');
 
 // Routes for Cars Images 
 Route::get('/car/images/{id}', 'Resource\CarResource@getCarImages')->name('car.images'); 
