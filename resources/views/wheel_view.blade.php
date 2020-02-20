@@ -365,7 +365,7 @@
 
                 <div class="col-sm-3 wheel-img">
                     <div class="wheel-des">
-                        <img src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
+                        <img class="wheelImage" src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
                         <h1>Lip Size Information</h1>
                         <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img">
                     </div>
@@ -379,7 +379,7 @@
                         <div class="col-sm-8">
                             <ul class="nav nav-tabs">
                                 @foreach(@$products as $key => $product)
-                                <li class="{{($key ==0 )?'active':''}}"><a class="wheel_diameter_tab" data-toggle="tab" href="#{{@$product->partno}}" data-value="{{@$product->detailtitle}}">{{@$product->wheeldiameter}}</a></li>
+                                <li class="{{($key ==0 )?'active':''}}"><a class="wheel_diameter_tab" data-toggle="tab" href="#diameter_tab_{{@$product->id}}" data-value="{{@$product->detailtitle}}">{{@$product->wheeldiameter}}</a></li>
                                 @endforeach
                             </ul>
 
@@ -387,14 +387,14 @@
 
                                 @foreach(@$products as $key1 => $product)
 
-                                <div id="{{@$product->partno}}" class="wheel-diameter-tabs tab-pane fade {{($key1 ==0 )?'active in ':''}}">
+                                <div id="diameter_tab_{{@$product->id}}" class="wheel-diameter-tabs tab-pane fade {{($key1 ==0 )?'active in ':''}}">
 
                                     <div class="col-sm-6">
                                         <h2>Front & Rear</h2>
                                         <div class="table-responsive wheel_view">
                                             <table class="table">
                                                 <tbody>
-                                                    @if(@$product->DifferentOffsets->count() > 1 && $flag != 'searchByWheelSize')
+                                                    @if(@$product->DifferentOffsets->count() > 1 )
 
                                                     <tr>
                                                         <td colspan="2">
@@ -442,18 +442,23 @@
                                                     <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
 
                                                         <td>Bolt Pattern</td>
-                                                        <td>
-                                                            @if(count(@$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1)) > 1 )
-                                                            <select class="form-control boltpattern_tab" name="boltpattern_tab[]">
-                                                                @foreach(@$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1) as $bpkey => $bpproduct)
-                                                                <option value="pattern_{{@$bpproduct->boltpattern1}}_{{@$bpproduct->id}}" data-title="{{@$bpproduct->detailtitle}}" {{(@$bpproduct->boltpattern1 == @$diffproduct->boltpattern1)?'selected':''}} >{{convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @else
-                                                            {{showBoltPattern(@$diffproduct->boltpattern1,@$diffproduct->boltpattern2,@$diffproduct->boltpattern3)}}
-                                                            @endif
+<td>
+    <?php $bpproducts = @$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1);
+        $repeatCount = array_count_values($bpproducts->pluck('boltpattern1')->toArray())?:[];
+         ?>
+    @if(count(@$bpproducts) > 1 )
+    <select class="form-control boltpattern_tab bp_tab_{{@$diffproduct->id}}">
+        @foreach( @$bpproducts as $bpkey => $bpproduct)
+        <option value="pattern_{{@$bpproduct->boltpattern1}}_{{@$bpproduct->id}}" data-title="{{@$bpproduct->detailtitle}}" data-product="bp_tab_{{@$bpproduct->id}}" {{(@$bpproduct->boltpattern1 == @$diffproduct->boltpattern1)?'selected':''}} >
 
-                                                        </td>
+            {{(@$bpproduct->boltpattern1 && @$repeatCount[@$bpproduct->boltpattern1] > 1 )?convertBoltPattern(@$bpproduct->boltpattern1).' & '.convertBoltPattern(@$bpproduct->boltpattern2):convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
+        @endforeach
+    </select>
+    @else
+    {{showBoltPattern(@$diffproduct->boltpattern1,@$diffproduct->boltpattern2,@$diffproduct->boltpattern3)}}
+    @endif
+
+</td>
 
                                                     </tr>
                                                     @endforeach
@@ -702,25 +707,39 @@
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
 
+<script src="{{ asset('js/popImg.js') }}"></script>
 <script type="text/javascript">
     $('.wheel_diameter_tab').click(function() {
         $('.wheel_detail_title').text($(this).attr('data-value'));
     })
     $('.offset_tab').change(function() {
+
         var selectedVal = $(this).val();
         $('.' + selectedVal).siblings('.dynamic').hide();
         $('.' + selectedVal).show();
+
         var selectedOption = $(this).find('option:selected');
         var title = selectedOption.data('title');
         $('.wheel_detail_title').text(title);
+
     });
     $('.boltpattern_tab').change(function() {
+        
         var selectedVal = $(this).val();
+        
         $('.' + selectedVal).siblings('.dynamic').hide();
         $('.' + selectedVal).show();
+        
         var selectedOption = $(this).find('option:selected');
         var title = selectedOption.data('title');
         $('.wheel_detail_title').text(title);
+
+        var changeElement = selectedOption.data('product');
+        $('.'+changeElement).val($(this).val());
+
     });
+    $(function() {
+        $(".wheelImage").popImg();
+    })
 </script>
 @endsection

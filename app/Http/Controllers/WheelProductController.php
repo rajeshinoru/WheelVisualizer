@@ -25,7 +25,7 @@ class WheelProductController extends Controller
         try
         {
 
-            $products = WheelProduct::select('id', 'prodbrand', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','wheeltype','rf_lc');
+            $products = WheelProduct::select('id', 'prodbrand', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
             $branddesc = [];
 
@@ -45,10 +45,11 @@ class WheelProductController extends Controller
                     // ->orWhere('boltpattern3', $request->boltpattern);
 
                 if (isset($request->minoffset) && $request->minoffset) 
-                    $products = $products->where('offset1', $request->minoffset);
+                    $products = $products->where('offset1','>=', $request->minoffset);
+                    // $products = $products->whereBetween('offset1', [$request->minoffset, $request->maxoffset]);
 
                 if (isset($request->maxoffset) && $request->maxoffset) 
-                    $products = $products->where('offset2', $request->maxoffset);
+                    $products = $products->where('offset1','<=',$request->maxoffset);
 
 
 
@@ -260,7 +261,20 @@ class WheelProductController extends Controller
         // $wheelproducts = WheelProduct::select();
 
         if($flag == 'searchByWheelSize'){
-            $products = WheelProduct::select($selectFields)->where('id', $product_id)->get();
+            $products = WheelProduct::select($selectFields)->where('id', $product_id)
+                ->with(['DifferentOffsets'=>function($q)use($wheel){ 
+                    $q->where('prodtitle', $wheel->prodtitle);
+                    $q->where('boltpattern1', $wheel->boltpattern1);
+                    $q->where('offset1', $wheel->offset1);
+                },
+                'DifferentOffsets.DifferentOffsets'=>function($q1)use($wheel){ 
+                    $q1->where('prodtitle', $wheel->prodtitle);
+                    $q1->where('boltpattern1', $wheel->boltpattern1);
+                    $q1->where('offset1', $wheel->offset1);
+                    // $q1->get()->unique('boltpattern1');
+                },
+                ])
+                ->get();
         }else{
             $products = WheelProduct::select($selectFields)->where('prodtitle', $wheel->prodtitle)
 
@@ -305,24 +319,42 @@ class WheelProductController extends Controller
                 ->get();
 
             // boltpattern change  or Loading Filter
-            if (isset($request->wheeldiameter) && isset($request->wheelwidth) && isset($request->boltpattern) && $request->changeBy == 'boltpattern' || $request->changeBy == '') $allData['minoffset'] = $data = $wheel->select('offset1')
+            if (isset($request->wheeldiameter) && isset($request->wheelwidth) && isset($request->boltpattern) && $request->changeBy == 'boltpattern' || $request->changeBy == ''){
+
+                $allData['minoffset'] = $data = $wheel->select('offset1')
                 ->distinct('offset1')
                 ->where('wheelwidth', $request->wheelwidth)
                 ->where('boltpattern1', $request->boltpattern)
                 ->where('wheeldiameter', $request->wheeldiameter)
-                ->get();
+                ->pluck('offset1')->toArray();
+                sort($data);
+                $allData['minoffset'] = $data;
+
+            } 
 
             // minoffset change  or Loading Filter
-            if (isset($request->wheeldiameter) && isset($request->wheelwidth) && isset($request->boltpattern) && isset($request->minoffset) && isset($request->minoffset) && $request->changeBy == 'minoffset' || $request->changeBy == '') $allData['maxoffset'] = $data = $wheel->select('offset2')
+            if (isset($request->wheeldiameter) && isset($request->wheelwidth) && isset($request->boltpattern) && isset($request->minoffset) && isset($request->minoffset) && $request->changeBy == 'minoffset' || $request->changeBy == ''){
+                 $data = $wheel->select('offset1')
                 ->distinct('offset1')
                 ->where('wheelwidth', $request->wheelwidth)
                 ->where('boltpattern1', $request->boltpattern)
                 ->where('wheeldiameter', $request->wheeldiameter)
-                ->where('offset1', $request->minoffset)
-                ->get();
+                // ->where('offset1','>=', $request->minoffset)
+                ->pluck('offset1')->toArray();
+                sort($data);
+                $data = array_filter($data, function ($x)use($request) {
+                            if($x >= $request->minoffset){
+                               return $x;
+                            }
+                        });
+                $data = array_values($data);
+                $allData['maxoffset'] = $data;
+                // dd($data);
+            }
 
             if ($request->changeBy == '')
             {
+
                 return response()
                     ->json(['data' => $allData]);
             }
