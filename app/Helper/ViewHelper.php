@@ -29,7 +29,7 @@ function MakeCustomPaginator($data,$request,$per_page=9){
 function convertBoltPattern($pattern=''){
 	if($pattern == 'Blank5' || $pattern == 'Blank6' || $pattern == '' )
 	{
-		return $pattern;
+		return $pattern??'';
 	}else{
 
 		return substr_replace($pattern, ' x ', 1, 0);
