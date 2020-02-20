@@ -343,7 +343,7 @@ class WheelProductController extends Controller
                 ->pluck('offset1')->toArray();
                 sort($data);
                 $data = array_filter($data, function ($x)use($request) {
-                            if($x >= $request->minoffset){
+                            if($x > $request->minoffset){
                                return $x;
                             }
                         });

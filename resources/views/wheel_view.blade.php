@@ -1,6 +1,8 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
-
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+<link rel="stylesheet" href="{{ asset('css/zoomple.css') }}">
+@endsection
+@section('content')
 <style>
     .hometabled {
         margin: 25px 0px !important;
@@ -365,7 +367,9 @@
 
                 <div class="col-sm-3 wheel-img">
                     <div class="wheel-des">
-                        <img class="wheelImage" src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
+                        <a href="{{ViewWheelProductImage(@$wheel->prodimage)}}" class="zoomple">
+                        <img class="wheelImage"  src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
+                        </a>
                         <h1>Lip Size Information</h1>
                         <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img">
                     </div>
@@ -509,7 +513,7 @@
                                         <img src="{{url('image/pay4.png')}}">
                                         <img src="{{url('image/pay5.png')}}">
                                         <!--  -->
-                                        @if(@$product->DifferentOffsets->count()>1 && $flag != 'searchByWheelSize')
+                                        @if(@$product->DifferentOffsets->count() > 1 )
                                         @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
                                         <div style="display: {{($diffKey > 0)?'none':''}}" class=" price-section dynamic offset_{{$diffproduct->id}} pattern_{{$diffproduct->boltpattern1}}_{{$diffproduct->id}}">
                                             <h2>Original Price : <span class="price-old">${{@$diffproduct->saleprice ?? 0}}</span>
@@ -652,8 +656,8 @@
                 <div class="product-layouts">
                     <div class="product-thumb transition">
                         <div class="image">
-                            <img class="wheelImage image_thumb" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
-                            <img class="wheelImage image_thumb_swap" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
+                            <img class="wheelImage  image_thumb" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
+                            <img class="wheelImage  image_thumb_swap" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
                             <div class="sale-icon"><a>Sale</a></div>
                         </div>
 
@@ -706,8 +710,8 @@
 @endsection
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
+<script src="{{ asset('js/zoomple.js') }}"></script>
 
-<script src="{{ asset('js/popImg.js') }}"></script>
 <script type="text/javascript">
     $('.wheel_diameter_tab').click(function() {
         $('.wheel_detail_title').text($(this).attr('data-value'));
@@ -739,7 +743,18 @@
 
     });
     $(function() {
-        $(".wheelImage").popImg();
+        $(".zoomple>img").popImg();
     })
+</script>
+<script type="text/javascript">
+
+    // $(function() {
+        $('.zoomple').zoomple({ 
+            offset : {x:-150,y:-150},
+            zoomWidth : 300,  
+            zoomHeight : 300,
+            roundedCorners : true
+        });
+    // })
 </script>
 @endsection
