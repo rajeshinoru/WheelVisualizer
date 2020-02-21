@@ -44,9 +44,9 @@ function showBoltPattern($bp1,$bp2='',$bp3=''){
 		if($bp1 == 'Blank5'){
 			$pattern.=' 5 lug';		
 		}
-		// if($bp2 == 'Blank6'){
-		// 	$pattern.=' And 6 lug';
-		// }
+		if($bp2 == 'Blank6'){
+			$pattern.=' And 6 lug';
+		}
 
 		$pattern .=' bolt patterns';
 	}else{
@@ -54,9 +54,9 @@ function showBoltPattern($bp1,$bp2='',$bp3=''){
 		if($bp1 != null){
 			$pattern.= convertBoltPattern($bp1) ;		
 		}
-		// if($bp2 != null){
-		// 	$pattern.=' And '.$bp2;
-		// }
+		if($bp2 != null){
+			$pattern.=' And '.$bp2;
+		}
 	}
 
 	return $pattern;

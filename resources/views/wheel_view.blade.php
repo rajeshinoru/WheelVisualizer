@@ -448,14 +448,13 @@
                                                         <td>Bolt Pattern</td>
 <td>
     <?php $bpproducts = @$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1);
-        $repeatCount = array_count_values($bpproducts->pluck('boltpattern1')->toArray())?:[];
          ?>
     @if(count(@$bpproducts) > 1 )
     <select class="form-control boltpattern_tab bp_tab_{{@$diffproduct->id}}">
         @foreach( @$bpproducts as $bpkey => $bpproduct)
         <option value="pattern_{{@$bpproduct->boltpattern1}}_{{@$bpproduct->id}}" data-title="{{@$bpproduct->detailtitle}}" data-product="bp_tab_{{@$bpproduct->id}}" {{(@$bpproduct->boltpattern1 == @$diffproduct->boltpattern1)?'selected':''}} >
 
-            {{(@$bpproduct->boltpattern1 && @$repeatCount[@$bpproduct->boltpattern1] > 1 )?convertBoltPattern(@$bpproduct->boltpattern1).' & '.convertBoltPattern(@$bpproduct->boltpattern2):convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
+            {{(@@$bpproduct->boltpattern2 )?convertBoltPattern(@$bpproduct->boltpattern1).' & '.convertBoltPattern(@$bpproduct->boltpattern2):convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
         @endforeach
     </select>
     @else
