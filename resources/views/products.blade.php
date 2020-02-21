@@ -127,29 +127,29 @@
                                             </div>
                                         </div>
                                     </div>
-{{--
+
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingFour">
                                             <h4 class="panel-title">
                                                 <a role="button" data-toggle="collapse" data-parent="#accordion123456" href="#collapseFour" class="{{(@Request::get('width'))?'':'collapsed123456'}}" aria-expanded="{{(@Request::get('width'))?'true':'false'}}" aria-controls="collapseFour">
-                                                    Width
+                                                    Finish
                                                 </a>
                                             </h4>
                                         </div>
                                         <div id="collapseFour" class="panel-collapse4 collapse in in123456  {{(@Request::get('finish'))?' in':''}}  " role="tabpanel" aria-labelledby="headingFour">
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
-                                                    @forelse($wheelfinish as $width)
-                                                    <li><input type="checkbox" name="wheelwidth[]" class="wheelwidth" value="{{$width->wheelwidth}}" @if(in_array($width->wheelwidth,json_decode(base64_decode(@Request::get('width')?:''))?:[])) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
+                                                    @forelse($wheelfinish as $finish)
+                                                    <li><input type="checkbox" name="finish[]" class="finish" value="{{$finish->prodfinish}}" @if(in_array($finish->prodfinish,json_decode(base64_decode(@Request::get('finish')?:''))?:[])) checked @endif> {{$finish->prodfinish.'('.$finish->total.')'}} </li>
                                                     @empty
-                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 7</li>
-                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li>
+                                                    <li><input type="checkbox" name="finish[]" value=""> 7</li>
+                                                    <li><input type="checkbox" name="finish[]" value=""> 8</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
---}}
+
                                 </div>
                             </div>
                         </div>

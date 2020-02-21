@@ -102,6 +102,10 @@ class WheelProductController extends Controller
                 $wheelwidth = $wheelwidth->whereIn('wheeldiameter', json_decode(base64_decode($request->diameter)));
             }
             
+            if (isset($request->finish) && $request->finish) {
+                $wheelwidth = $wheelwidth->whereIn('prodfinish', json_decode(base64_decode($request->finish)));
+            }
+
             $wheelwidth =  $wheelwidth->select('wheelwidth', \DB::raw('count(DISTINCT prodtitle) as total'))
             ->groupBy('wheelwidth')
             ->get()
@@ -119,6 +123,10 @@ class WheelProductController extends Controller
                 $wheeldiameter = $wheeldiameter->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
             }
             
+            if (isset($request->finish) && $request->finish) {
+                $wheeldiameter = $wheeldiameter->whereIn('prodfinish', json_decode(base64_decode($request->finish)));
+            }
+
             $wheeldiameter =  $wheeldiameter->select('wheeldiameter', \DB::raw('count(DISTINCT prodtitle) as total'))
             ->groupBy('wheeldiameter')
             ->get()
@@ -136,6 +144,10 @@ class WheelProductController extends Controller
             if (isset($request->width) && $request->width) {
                 $countsByBrand = $countsByBrand->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
             }
+
+            if (isset($request->finish) && $request->finish) {
+                $countsByBrand = $countsByBrand->whereIn('prodfinish', json_decode(base64_decode($request->finish)));
+            }
             
             $brands =  WheelProduct::select('prodbrand')
             ->groupBy('prodbrand')
@@ -145,6 +157,26 @@ class WheelProductController extends Controller
             ->groupBy('prodbrand')
             ->pluck('total','prodbrand');
 
+            // Wheel Finish size search in the Sidebar
+
+            $wheelfinish = clone $products;
+
+            if (isset($request->brand) && $request->brand) {
+                $wheelfinish = $wheelfinish->whereIn('prodbrand', json_decode(base64_decode($request->brand)));
+            }
+
+            if (isset($request->diameter) && $request->diameter) {
+                $wheelfinish = $wheelfinish->whereIn('wheeldiameter', json_decode(base64_decode($request->diameter)));
+            }
+            
+            if (isset($request->width) && $request->width) {
+                $wheelfinish = $wheelfinish->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
+            }
+
+            $wheelfinish =  $wheelfinish->select('prodfinish', \DB::raw('count(DISTINCT prodtitle) as total'))
+            ->groupBy('prodfinish')
+            ->get()
+            ->sortBy('prodfinish');
 
             // Filters  for Main listing products ------------------------->
 
@@ -156,11 +188,13 @@ class WheelProductController extends Controller
                     ->unique('prodbrand');
             }
 
+            if (isset($request->finish) && $request->finish) 
+                    $products = $products->whereIn('prodfinish', json_decode(base64_decode($request->finish)));
+
             if (isset($request->diameter) && $request->diameter) 
                     $products = $products->whereIn('wheeldiameter', json_decode(base64_decode($request->diameter)));
 
             if (isset($request->width) && $request->width) 
-
                     $products = $products->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
 
             if (isset($request->search) && $request->search) 
@@ -177,7 +211,7 @@ class WheelProductController extends Controller
 
             $flag=@$request->flag?:null;
 
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth', 'branddesc','flag','countsByBrand'));
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand'));
 
         }
         catch(ModelNotFoundException $notfound)

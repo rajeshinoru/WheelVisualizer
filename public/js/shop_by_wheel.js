@@ -143,6 +143,20 @@ $('.brand').on('click', function() {
 
 });
 
+// Finish based filters for wheels
+$('.finish').on('click', function() {
+
+    var finish = $('.finish:checked').map(function() {
+        return $(this).val();
+    }).get();
+
+
+    if (finish != '') {
+        updateParamsToUrl('finish', finish);
+    } else {
+        removeParamsFromUrl('finish');
+    }
+});
 
 // change the cars by selected color
 $('.car_color').on('click', function() {
