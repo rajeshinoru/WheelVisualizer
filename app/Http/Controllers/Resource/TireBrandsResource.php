@@ -41,7 +41,26 @@ class TireBrandsResource extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'manufacture'   =>  'required|max:255',
+            'description'   =>  'required',
+            'logo'          =>  'required|image|mimes:jpeg,bmp,png|max:500000', 
+            'banner'        =>  'required|image|mimes:jpeg,bmp,png|max:500000',
+        ]);
+        try {
+            $brand = new TireBrand;
+            $brand->manufacturer = $request->manufacture;
+            $brand->manudesc = $request->description;
+            if($request->has('logo'))
+                $brand->manulogo = $request->logo->store('manufacture_logo');            
+            if($request->has('banner'))
+                $brand->manubanner = $request->banner->store('manufacture_banner');
+            $brand->save();
+            
+            return back()->with('flash_success', 'Brand added successfully');
+        } catch (\Throwable $th) {
+            return back()->with('flash_error', 'Oops!... Unable to add brand.');
+        }
     }
 
     /**
@@ -75,7 +94,23 @@ class TireBrandsResource extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'manufacture'   =>  'required|max:255',
+            'description'   =>  'required'
+        ]);
+        try {
+            $brand = TireBrand::find($id);
+            $brand->manufacturer = $request->manufacture;
+            $brand->manudesc = $request->description;
+            if($request->has('logo'))
+                $brand->manulogo = $request->logo->store('manufacture_logo');            
+            if($request->has('banner'))                
+                $brand->manubanner = $request->banner->store('manufacture_banner');            
+            $brand->save();
+            return back()->with('flash_success', 'Brand Updated Successfully');
+        } catch (\Throwable $th) {
+            return back()->with('flash_error', 'Oops!... Unable to update brand');
+        }
     }
 
     /**

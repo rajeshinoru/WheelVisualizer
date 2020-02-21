@@ -35,8 +35,10 @@ return [
         'description'   =>  'Description',        
         'logo'          =>  'Logo',
         'brand'         =>  'Brand',
+        'banner'        =>  'Banner',
         'brand_list'    =>  'Brands Lists',
         'add_brand'     =>  'Add Brand',
+        'edit_brand'    =>  'Edit Brand',
         'no_brand'      =>  'No Brands found',
     ],    
 ];

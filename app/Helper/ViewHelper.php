@@ -217,3 +217,13 @@ function upload_file($path,$image,$sting_length){
     $image->move(public_path($path),$imagename);
     return $path.$imagename;
 }
+
+function img($img){	
+	if($img == ""){
+		return asset('admin/no-image.png');
+	}else if (strpos($img, 'http') !== false) {
+        return $img;
+    }else{
+		return asset('storage/'.$img);
+	}
+}
