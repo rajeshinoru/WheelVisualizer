@@ -52,12 +52,12 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h4 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="{{(@Request::get('diameter'))?'':'collapsed'}}" aria-expanded="{{(@Request::get('diameter'))?'true':'false'}}" aria-controls="collapseOne">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion123456" href="#collapseOne" class="{{(@Request::get('diameter'))?'':'collapsed123456'}}" aria-expanded="{{(@Request::get('diameter'))?'true':'false'}}" aria-controls="collapseOne">
                                                     Diameter
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseOne" class="panel-collapse collapse {{(@Request::get('diameter'))?' in':''}} " role="tabpanel" aria-labelledby="headingOne">
+                                        <div id="collapseOne" class="panel-collapse1 collapse in in123456 {{(@Request::get('diameter'))?' in':''}} " role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheeldiameter as $diameter)
@@ -74,12 +74,12 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h4 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="{{(@Request::get('width'))?'':'collapsed'}}" aria-expanded="{{(@Request::get('width'))?'true':'false'}}" aria-controls="collapseTwo">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion123456" href="#collapseTwo" class="{{(@Request::get('width'))?'':'collapsed123456'}}" aria-expanded="{{(@Request::get('width'))?'true':'false'}}" aria-controls="collapseTwo">
                                                     Width
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseTwo" class="panel-collapse collapse  {{(@Request::get('width'))?' in':''}}  " role="tabpanel" aria-labelledby="headingTwo">
+                                        <div id="collapseTwo" class="panel-collapse2 collapse in in123456  {{(@Request::get('width'))?' in':''}}  " role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheelwidth as $width)
@@ -95,16 +95,29 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h4 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="{{(@Request::get('brand'))?'':'collapsed'}}" aria-expanded="{{(@Request::get('brand'))?'true':'false'}}" aria-controls="collapseThree">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion123456" href="#collapseThree" class="{{(@Request::get('brand'))?'':'collapsed123456'}}" aria-expanded="{{(@Request::get('brand'))?'true':'false'}}" aria-controls="collapseThree">
                                                     Brand
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                        <div id="collapseThree" class="panel-collapse3 collapse in in123456" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($brands as $brand)
-                                                    <li><input type="checkbox" name="brand[]" class="brand" value="{{$brand->prodbrand}}" @if(in_array($brand->prodbrand,json_decode(base64_decode(@Request::get('brand')?:''))?:[])) checked @endif> {{$brand->prodbrand.'('.$brand->total.')'}}
+                                                    <li><input type="checkbox" name="brand[]" class="brand" value="{{$brand->prodbrand}}" 
+                                                        @if(in_array($brand->prodbrand,json_decode(base64_decode(@Request::get('brand')?:''))?:[]))
+                                                             checked 
+                                                        @endif
+
+                                                        @if(!@$countsByBrand[$brand->prodbrand])
+                                                            disabled
+                                                        @endif
+                                                        > 
+                                                        @if(@$countsByBrand[$brand->prodbrand])
+                                                        {{$brand->prodbrand}} ( {{$countsByBrand[$brand->prodbrand]}} )
+                                                        @else
+                                                        <span style="color: #a0a0a0;">{{$brand->prodbrand}} ( 0 )</span >
+                                                        @endif
                                                     </li>
                                                     @empty
                                                     <li><input type="checkbox" name="brand[]" value=""> 7</li>
@@ -114,6 +127,29 @@
                                             </div>
                                         </div>
                                     </div>
+{{--
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingFour">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion123456" href="#collapseFour" class="{{(@Request::get('width'))?'':'collapsed123456'}}" aria-expanded="{{(@Request::get('width'))?'true':'false'}}" aria-controls="collapseFour">
+                                                    Width
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFour" class="panel-collapse4 collapse in in123456  {{(@Request::get('finish'))?' in':''}}  " role="tabpanel" aria-labelledby="headingFour">
+                                            <div class="panel-body">
+                                                <ul style="list-style-type: none;">
+                                                    @forelse($wheelfinish as $width)
+                                                    <li><input type="checkbox" name="wheelwidth[]" class="wheelwidth" value="{{$width->wheelwidth}}" @if(in_array($width->wheelwidth,json_decode(base64_decode(@Request::get('width')?:''))?:[])) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
+                                                    @empty
+                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 7</li>
+                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li>
+                                                    @endforelse
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+--}}
                                 </div>
                             </div>
                         </div>
@@ -138,7 +174,12 @@
                                     <div class="thumb-description">
                                         <div class="caption">
                                             <h4><a href="{{url('/wheelproductview',$product->id)}}{{@$flag?'/'.$flag:''}}">{{$product->prodtitle}}
-                                                    <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
+                                                @if(@Request::get('diameter'))
+                                                    <br> {{'Diameter : '.$product->wheeldiameter}} 
+                                                @endif
+                                                @if(@Request::get('width'))
+                                                    <br> {{'Width : '.$product->wheelwidth}} 
+                                                @endif
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
                                                 </a></h4>
                                             <!-- <h6><a href="">Accessories</a></h6> -->
@@ -180,6 +221,9 @@
                         @empty
                         {{'Not Found'}}
                         @endforelse
+                        <br>
+                            <p style="text-align: right;"> {{@$products->total()?@$products->total().' Wheels Found':''}}</p>
+              
                         {{$products->appends([
                         'diameter' => @Request::get('diameter'),
                         'width' => @Request::get('width'),
@@ -198,6 +242,7 @@
                         'minoffset'=> @Request::get('minoffset'),
                         'maxoffset'=> @Request::get('maxoffset')
                     ])->links()}}
+
                     </div>
                 </div>
             </div>

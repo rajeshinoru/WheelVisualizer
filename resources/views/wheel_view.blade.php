@@ -1,6 +1,5 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
-<link rel="stylesheet" href="{{ asset('css/zoomple.css') }}">
 @endsection
 @section('content')
 <style>
@@ -558,7 +557,7 @@
                                         @endif
                                         <!--  -->
                                     </div>
-                                </div>
+                                </div>  
                                 @endforeach
                             </div>
 
@@ -709,7 +708,6 @@
 @endsection
 @section('shop_by_vehicle_scripts')
 <script src="{{ asset('js/wheels.js') }}"></script>
-<script src="{{ asset('js/zoomple.js') }}"></script>
 
 <script type="text/javascript">
     $('.wheel_diameter_tab').click(function() {
@@ -742,7 +740,7 @@
 
     });
     $(function() {
-        $(".zoomple>img").popImg();
+        // $(".zoomple>img").popImg();
     })
 </script>
 <script type="text/javascript">

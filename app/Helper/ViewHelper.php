@@ -12,7 +12,6 @@ use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 function MakeCustomPaginator($data,$request,$per_page=9){
 	$total=count($data);
-	$per_page = 9;
 	$current_page = $request->input("page") ?? 1;
 
 	$starting_point = ($current_page * $per_page) - $per_page;

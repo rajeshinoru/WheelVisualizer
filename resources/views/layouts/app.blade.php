@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('js/font-awesome/css/font-awesome.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/zoomple.css') }}">
 
     @yield('styles')
     @yield('shop_by_vehicle_css')
@@ -57,6 +58,7 @@
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/zoomple.js') }}"></script>
     <script type="text/javascript">
         // Wait for window load
         $(window).load(function() {

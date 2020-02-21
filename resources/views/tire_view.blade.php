@@ -590,7 +590,9 @@
             <div class="row">
                 <div class="col-sm-3 tire-img">
                     <div class="tire-des">
+                        <a href="{{viewImage('tires/'.@$tire->prodimage)}}" class="zoomple">
                         <img src="{{viewImage('tires/'.@$tire->prodimage)}}">
+                        </a>
                         <h1>Price for TIRE ONLY</h1>
                         <h2>Rim depicted in image NOT INCLUDED</h2>
                     </div>
@@ -876,7 +878,9 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="tire-des">
+                                            <a href="{{viewImage('tires/'.@$tire->prodimage)}}" class="zoomple">
                                             <img src="{{viewImage('/tires/'.@$tire->prodimage)}}">
+                                            </a>
                                         </div>
                                     </div>
 
@@ -1200,4 +1204,17 @@ function moreLess(initiallyVisibleCharacters) {
 moreLess(100);
 </script>
 <!-- Read More Script End-->
+
+
+<script type="text/javascript">
+
+    // $(function() {
+        $('.zoomple').zoomple({ 
+            offset : {x:-100,y:-100},
+            zoomWidth : 130,  
+            zoomHeight : 130,
+            roundedCorners : true
+        });
+    // })
+</script>
 @endsection

@@ -77,13 +77,13 @@ function ProductWheelSizeFilters(wheeldiameter = '',wheelwidth = '',boltpattern 
                     // alert(value.boltpattern1)
                     $('.BoltPattern').append('<option value="' + value.boltpattern1 + '">' + value.boltpattern1 + '</option>');
                 }
-                if (changeBy == 'boltpattern' && value != null) {
+                if (changeBy == 'boltpattern' && value.offset1 != null) {
                     // alert(value.boltpattern1)
-                    $('.MinOffset').append('<option value="' + value + '">' + value + '</option>');
+                    $('.MinOffset').append('<option value="' + value.offset1 + '">' + value.offset1 + '</option>');
                 }
-                if (changeBy == 'minoffset' && value != null) {
+                if (changeBy == 'minoffset' && value.offset1 != null) {
                     // alert(value.boltpattern1)
-                    $('.MaxOffset').append('<option value="' + value + '">' + value + '</option>');
+                    $('.MaxOffset').append('<option value="' + value.offset1 + '">' + value.offset1 + '</option>');
                 }
 
             });
