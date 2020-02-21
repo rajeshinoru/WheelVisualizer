@@ -19,22 +19,28 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Users</span></a>
+                            <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Users</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Professors" href="{{url('admin/user')}}"><span class="mini-sub-pro">All Users</span></a></li>
                                 <!-- <li><a title="Add Professor" href="#"><span class="mini-sub-pro">Add User</span></a></li> -->
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-star icon-wrap"></span> <span class="mini-click-non">Wheels</span></a>
+                            <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><span class="educate-icon educate-star icon-wrap"></span> <span class="mini-click-non">Wheels</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Wheels List" href="{{url('admin/wheel')}}"><span class="mini-sub-pro">Wheels List</span></a></li> 
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-menu icon-wrap"></span> <span class="mini-click-non">Cars</span></a>
+                            <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><span class="educate-icon educate-menu icon-wrap"></span> <span class="mini-click-non">Cars</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Cars" href="{{url('admin/car')}}"><span class="mini-sub-pro">Cars List</span></a></li> 
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><span class="educate-icon educate-menu icon-wrap"></span> <span class="mini-click-non">Brands</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Cars" href="{{url('admin/brands')}}"><span class="mini-sub-pro">Brands List</span></a></li> 
                             </ul>
                         </li>
                         <li>

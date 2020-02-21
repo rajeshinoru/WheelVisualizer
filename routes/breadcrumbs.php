@@ -34,3 +34,9 @@ Breadcrumbs::for('admincarimages', function ($trail,$vifId) {
 Breadcrumbs::for('adminsetting', function ($trail) {
     $trail->push('Settings', url('/admin/setting'));
 });
+
+//Home > Brands
+Breadcrumbs::for('adminbrands', function ($trail) {
+    $trail->parent('adminhome');
+    $trail->push('Brands', url('/admin/brands'));
+});
