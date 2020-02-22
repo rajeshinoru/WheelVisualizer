@@ -88,18 +88,53 @@ function front_back_path($imgPath){
 }
 
 
-function ViewImage($url=''){
+function viewImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/'.$url))){
 			return asset('/storage/'.$url);
 		}else{
-			return asset('image/no_image.jpg');
+			$wheel_products_url="/storage/wheel_products/".$url;
+			$misc_url="/storage/misc_images/".$url;
+			if(file_exists(public_path($wheel_products_url))){
+				return asset($wheel_products_url);
+			}else{
+				if(file_exists(public_path($misc_url))){
+					return asset($misc_url);
+				}else{
+					return asset('image/no_image.jpg');
+				}
+			}
 		}
 	}else{
 			return asset('image/no_image.jpg');
 	}
 
 }
+
+function ViewTireImage($url=''){
+	// return $url;
+	if($url != ''){
+		if(file_exists(public_path('/storage/tires/'.$url))){
+			return asset('/storage/tires/'.$url);
+		}else{
+			$wheel_products_url="/storage/wheel_products/".$url;
+			$misc_url="/storage/misc_images/".$url;
+			if(file_exists(public_path($wheel_products_url))){
+				return asset($wheel_products_url);
+			}else{
+				if(file_exists(public_path($misc_url))){
+					return asset($misc_url);
+				}else{
+					return asset('image/no_image.jpg');
+				}
+			}
+		}
+	}else{
+			return asset('image/no_image.jpg');
+	}
+
+}
+
 function ViewBenefitImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/tires/models/'.$url))){

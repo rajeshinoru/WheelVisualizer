@@ -724,6 +724,8 @@
 </section>
 <!-- New Product End -->
 
-@include('include.latestproducts') @endsection @section('shop_by_vehicle_scripts')
-<script src="{{ asset('js/wheels.js') }}"></script>
+@include('include.latestproducts') 
+@endsection 
+@section('custom_scripts')
+<!--  -->
 @endsection

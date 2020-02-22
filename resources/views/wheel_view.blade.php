@@ -706,8 +706,8 @@
     </div>
 </section>
 @endsection
-@section('shop_by_vehicle_scripts')
-<script src="{{ asset('js/wheels.js') }}"></script>
+@section('custom_scripts')
+
 
 <script type="text/javascript">
     $('.wheel_diameter_tab').click(function() {
@@ -750,7 +750,8 @@
             offset : {x:-150,y:-150},
             zoomWidth : 300,  
             zoomHeight : 300,
-            roundedCorners : true
+            roundedCorners : true,
+            delay : 5
         });
     // })
 </script>

@@ -253,26 +253,27 @@
 <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
 
 
-
+@section('custom_scripts')
 <script>
-$(document).ready(function(){
-     $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('#back-to-top').fadeIn();
-            } else {
-                $('#back-to-top').fadeOut();
-            }
-        });
-        // scroll body to 0px on click
-        $('#back-to-top').click(function () {
-            $('#back-to-top').tooltip('hide');
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
+    $(document).ready(function(){
+         $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                $('#back-to-top').tooltip('hide');
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
 
-        $('#back-to-top').tooltip('show');
+            $('#back-to-top').tooltip('show');
 
-});
+    });
 </script>
+@endsection

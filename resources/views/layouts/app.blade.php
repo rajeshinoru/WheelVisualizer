@@ -52,13 +52,14 @@
     <script src="{{ asset('js/ontheme/bootstrap-notify.min.js') }}"></script>
     <script src="{{ asset('js/ontheme/jquery.elevatezoom.min.js') }}"></script>
     <script src="{{ asset('js/ontheme/lightbox-2.6.min.js') }}"></script>
-    <script type="javascript/text" src="{{ asset('js/swiper.jquery.js') }}"></script>
+    <script src="{{ asset('js/swiper.jquery-.js') }}"></script>
     <script src="{{ asset('js/swiper.js') }}"></script>
     <script src="{{ asset('js/swiper.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/zoomple.js') }}"></script>
+
     <script type="text/javascript">
         // Wait for window load
         $(window).load(function() {
@@ -67,7 +68,7 @@
         });
     </script>
 
-    @yield('shop_by_vehicle_scripts')
+@yield('custom_scripts')
 
     @yield('scripts')
     <script type="text/javascript">
@@ -82,64 +83,32 @@
             });
         });
     </script>
-    <!-- <script type="text/javascript">
-        $('#carousel0').swiper({
-            mode: 'horizontal',
-            autoplay: 3000,
-            //pagination: '.carousel0',
-            pagination: false,
-            paginationClickable: false,
-            prevButton: '.swiper-button-prev',
-            nextButton: '.swiper-button-next',
-
-            // Default parameters
-            slidesPerView: 6,
-
-            // Responsive breakpoints
-            breakpoints: {
-                // when window width is <= 1200px
-                1200: {
-                    slidesPerView: 5
-                },
-                // when window width is <= 991px
-                991: {
-                    slidesPerView: 4
-                },
-                // when window width is <= 767px
-                767: {
-                    slidesPerView: 3
-                },
-                // when window width is <= 480px
-                480: {
-                    slidesPerView: 2
-                }
-            }
-
-        });
-    </script> -->
     <script type="text/javascript">
-        var galleryTop = new Swiper('.gallery-top', {
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            loop: true,
-            loopedSlides: 4,
-        });
-        var galleryThumbs = new Swiper('.gallery-thumbs', {
-            slidesPerView: 4,
-            centeredSlides: false,
-            touchRatio: 0.2,
-            slideToClickedSlide: true,
-            loop: true,
-            loopedSlides: 4,
-        });
-        galleryTop.controller.control = galleryThumbs;
-        galleryThumbs.controller.control = galleryTop;
+        if($('.gallery-top').length > 0){
+
+            var galleryTop = new Swiper('.gallery-top', {
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                loop: true,
+                loopedSlides: 4,
+            });
+            var galleryThumbs = new Swiper('.gallery-thumbs', {
+                slidesPerView: 4,
+                centeredSlides: false,
+                touchRatio: 0.2,
+                slideToClickedSlide: true,
+                loop: true,
+                loopedSlides: 4,
+            });
+            galleryTop.controller.control = galleryThumbs;
+            galleryThumbs.controller.control = galleryTop;
+        }
     </script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script> -->
     <script>
@@ -167,12 +136,11 @@
     });
     </script>
 
-    <script src="{{ asset('js/shop_by_vehicle.js') }}"></script>
-    <script src="{{ asset('js/shop_by_tire.js') }}"></script>
-
-
-    <script src="{{ asset('js/product_shop_by_vehicle.js') }}"></script>
-    <script src="{{ asset('js/product_shop_by_size.js') }}"></script>
+    <script src="{{ asset('js/tire_product_search.js') }}"></script>
+    <script src="{{ asset('js/wheel_product_search.js') }}"></script>
+    <script src="{{ asset('js/wheel_visualiser.js') }}"></script>
+    <script src="{{ asset('js/common_search.js') }}"></script>
+    <script src="{{ asset('js/popImg.js') }}"></script>
 </body>
 
 </html>

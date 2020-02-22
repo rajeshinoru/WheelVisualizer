@@ -58,7 +58,7 @@ Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->nam
 Route::get('/tires', 'TireController@index')->name('tires');
 Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
 Route::get('/tireview/{tire_id}', 'TireController@tireview')->name('tireview');
-Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
+Route::get('/tirebrand/{brand_name?}', 'TireController@brand')->name('tirebrand');
 Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
 

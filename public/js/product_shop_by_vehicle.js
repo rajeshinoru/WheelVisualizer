@@ -1,192 +1,192 @@
 
-// Year based filters for Makes 
-$(document).on('change', '.WheelNavYear,.WheelNavMake,.WheelNavModel', function() {
-    var changeBy = $(this).attr('name');
+// // Year based filters for Makes 
+// $(document).on('change', '.WheelNavYear,.WheelNavMake,.WheelNavModel', function() {
+//     var changeBy = $(this).attr('name');
 
-    var make = $('.WheelNavMake').val();
-    var year = $('.WheelNavYear').val();
-    var model = $('.WheelNavModel').val();
-    var submodel = $('.WheelNavSubmodel').val();
-    WheelNavFilters(year, make, model,submodel, changeBy);
-});
-
-// $(document).ready(function() {
 //     var make = $('.WheelNavMake').val();
 //     var year = $('.WheelNavYear').val();
 //     var model = $('.WheelNavModel').val();
 //     var submodel = $('.WheelNavSubmodel').val();
-//     WheelNavFilters(year, make, model,submodel);
+//     WheelNavFilters(year, make, model,submodel, changeBy);
 // });
 
-function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
-    $.ajax({
-        method: "GET",
-        url: '/getFiltersByVehicle',
-        data: {
-            year: year,
-            make: make,
-            model: model,
-            changeBy: changeBy
-        }
-    }).done(function(data) {
+// // $(document).ready(function() {
+// //     var make = $('.WheelNavMake').val();
+// //     var year = $('.WheelNavYear').val();
+// //     var model = $('.WheelNavModel').val();
+// //     var submodel = $('.WheelNavSubmodel').val();
+// //     WheelNavFilters(year, make, model,submodel);
+// // });
 
-        $('.WheelNavSubmodel').empty().append('<option value="">Select Trim</option>');
+// function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
+//     $.ajax({
+//         method: "GET",
+//         url: '/getFiltersByVehicle',
+//         data: {
+//             year: year,
+//             make: make,
+//             model: model,
+//             changeBy: changeBy
+//         }
+//     }).done(function(data) {
 
-        if (changeBy == '' || changeBy == 'year' || changeBy == 'make') {
-            $('.WheelNavModel').empty().append('<option value="">Select Model</option>');
-        }
-        if (changeBy == '' || changeBy == 'make') {
-            $('.WheelNavYear').empty().append('<option value="">Select Year</option>');
-        }
+//         $('.WheelNavSubmodel').empty().append('<option value="">Select Trim</option>');
 
-        if (changeBy == '') {
-            data.data['year'].map(function(value, key) {
-                isSelected = (value.year == year) ? 'selected' : '';
-                $('.WheelNavYear').append('<option value="' + value.year + '" ' + isSelected + '>' + value.year + '</option>');
-            });
-            data.data['model'].map(function(value, key) {
-                isSelected = (value.model == model) ? 'selected' : '';
-                $('.WheelNavModel').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
-            });
-            data.data['submodel'].map(function(value, key) {
-                isSelected = (value.submodel == submodel) ? 'selected' : '';
-                $('.WheelNavSubmodel').append('<option value="' + value.submodel + '"' + isSelected + '>' + value.submodel  + '</option>');
-            });
-        } else {
-            data.data.map(function(value, key) {
-                if (changeBy == 'make') {
-                    $('.WheelNavYear').append('<option value="' + value.year + '">' + value.year + '</option>');
-                }
-                if (changeBy == 'year') {
-                    $('.WheelNavModel').append('<option value="' + value.model + '">' + value.model + '</option>');
-                }
-                if (changeBy == 'model') {
-                    $('.WheelNavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
-                }
-            });
-        }
+//         if (changeBy == '' || changeBy == 'year' || changeBy == 'make') {
+//             $('.WheelNavModel').empty().append('<option value="">Select Model</option>');
+//         }
+//         if (changeBy == '' || changeBy == 'make') {
+//             $('.WheelNavYear').empty().append('<option value="">Select Year</option>');
+//         }
 
-        if(make != null && changeBy !=''){
+//         if (changeBy == '') {
+//             data.data['year'].map(function(value, key) {
+//                 isSelected = (value.year == year) ? 'selected' : '';
+//                 $('.WheelNavYear').append('<option value="' + value.year + '" ' + isSelected + '>' + value.year + '</option>');
+//             });
+//             data.data['model'].map(function(value, key) {
+//                 isSelected = (value.model == model) ? 'selected' : '';
+//                 $('.WheelNavModel').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
+//             });
+//             data.data['submodel'].map(function(value, key) {
+//                 isSelected = (value.submodel == submodel) ? 'selected' : '';
+//                 $('.WheelNavSubmodel').append('<option value="' + value.submodel + '"' + isSelected + '>' + value.submodel  + '</option>');
+//             });
+//         } else {
+//             data.data.map(function(value, key) {
+//                 if (changeBy == 'make') {
+//                     $('.WheelNavYear').append('<option value="' + value.year + '">' + value.year + '</option>');
+//                 }
+//                 if (changeBy == 'year') {
+//                     $('.WheelNavModel').append('<option value="' + value.model + '">' + value.model + '</option>');
+//                 }
+//                 if (changeBy == 'model') {
+//                     $('.WheelNavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
+//                 }
+//             });
+//         }
 
-            $('.WheelNavMake').append('<option value="' + make + '" selected>' + make + '</option>');
-            // $('.WheelNavMake').trigger("chosen:updated");
-        }
+//         if(make != null && changeBy !=''){
 
-        // $('.WheelNavYear').trigger("chosen:updated");
-        // $('.WheelNavModel').trigger("chosen:updated");
-        // $('.DriveBody').trigger("chosen:updated");
-        // if (changeBy == 'make') {
-        //     $('.WheelNavYear').focus();
-        //     $('.WheelNavYear').childrens('option').show();
-        // }
-        // if (changeBy == 'year') {
-        //     $('.WheelNavModel').focus();
-        //     $('.WheelNavModel').childrens('option').show();
-        // }
-        // if (changeBy == 'model') {
-        //     $('.WheelNavSubmodel').focus();
-        //     $('.WheelNavSubmodel').childrens('option').show();
-        // }
-    }).fail(function(msg) {
-        alert("fails");
-    });
-}
+//             $('.WheelNavMake').append('<option value="' + make + '" selected>' + make + '</option>');
+//             // $('.WheelNavMake').trigger("chosen:updated");
+//         }
 
-// Common  Function to change the params values in the current url
-function updateParamsToUrl(paramKey, paramValue) {
+//         // $('.WheelNavYear').trigger("chosen:updated");
+//         // $('.WheelNavModel').trigger("chosen:updated");
+//         // $('.DriveBody').trigger("chosen:updated");
+//         // if (changeBy == 'make') {
+//         //     $('.WheelNavYear').focus();
+//         //     $('.WheelNavYear').childrens('option').show();
+//         // }
+//         // if (changeBy == 'year') {
+//         //     $('.WheelNavModel').focus();
+//         //     $('.WheelNavModel').childrens('option').show();
+//         // }
+//         // if (changeBy == 'model') {
+//         //     $('.WheelNavSubmodel').focus();
+//         //     $('.WheelNavSubmodel').childrens('option').show();
+//         // }
+//     }).fail(function(msg) {
+//         alert("fails");
+//     });
+// }
 
-    paramValue = window.btoa(JSON.stringify(paramValue));
+// // Common  Function to change the params values in the current url
+// function updateParamsToUrl(paramKey, paramValue) {
 
-    var nextUrl = window.location.origin + window.location.pathname;
+//     paramValue = window.btoa(JSON.stringify(paramValue));
 
-    var params = getUrlVars(); //Get all the query params as an ARRAY
+//     var nextUrl = window.location.origin + window.location.pathname;
 
-    var size = Object.keys(params).length;
-    var i = 0;
-    if (size == 0) {
-        window.location.href = window.location.href + "?" + paramKey + "=" + paramValue;
-    } else {
+//     var params = getUrlVars(); //Get all the query params as an ARRAY
 
-        nextUrl += '?'; // ? for started to attach the query string to url
+//     var size = Object.keys(params).length;
+//     var i = 0;
+//     if (size == 0) {
+//         window.location.href = window.location.href + "?" + paramKey + "=" + paramValue;
+//     } else {
 
-        params[paramKey] = paramValue;
+//         nextUrl += '?'; // ? for started to attach the query string to url
 
-        // This is for search,selection by any one of ways => BRAND or SEARCH Keyword
-        // if (paramKey == 'search' && params['brand'] != undefined) {
-        //     params['brand'] = '';
-        // }
-        // if (paramKey == 'brand' && params['search'] != undefined) {
-        //     params['search'] = '';
-        // }
+//         params[paramKey] = paramValue;
 
-        // if (paramKey == 'brand') {
-        //     params['width'] = '';
-        //     params['diameter'] = '';
-        // }
+//         // This is for search,selection by any one of ways => BRAND or SEARCH Keyword
+//         // if (paramKey == 'search' && params['brand'] != undefined) {
+//         //     params['brand'] = '';
+//         // }
+//         // if (paramKey == 'brand' && params['search'] != undefined) {
+//         //     params['search'] = '';
+//         // }
 
-        // Attach the query params to the nextURL 
-        $.each(params, function(key, value) {
-            if (value != '') {
-                if (i == size) {
-                    nextUrl += key + '=' + value;
-                } else {
-                    nextUrl += key + '=' + value + '&';
-                }
-            }
+//         // if (paramKey == 'brand') {
+//         //     params['width'] = '';
+//         //     params['diameter'] = '';
+//         // }
 
-            i++;
-        });
+//         // Attach the query params to the nextURL 
+//         $.each(params, function(key, value) {
+//             if (value != '') {
+//                 if (i == size) {
+//                     nextUrl += key + '=' + value;
+//                 } else {
+//                     nextUrl += key + '=' + value + '&';
+//                 }
+//             }
 
-
-        window.location.href = nextUrl;
-    }
-}
+//             i++;
+//         });
 
 
-// Common  Function to change the params values in the current url
-function removeParamsFromUrl(paramKey) {
+//         window.location.href = nextUrl;
+//     }
+// }
 
 
-    var nextUrl = window.location.origin + window.location.pathname;
+// // Common  Function to change the params values in the current url
+// function removeParamsFromUrl(paramKey) {
 
-    var params = getUrlVars(); //Get all the query params as an ARRAY
-    params[paramKey] = '';
-    var size = Object.keys(params).length;
-    var i = 0;
-    if (size == 0) {
-        window.location.href = window.location.origin + window.location.pathname;
-    } else {
-        nextUrl += '?'; // ? for started to attach the query string to url
 
-        // This is for search,selection by any one of ways => BRAND or SEARCH Keyword
-        if (paramKey == 'search' && params['brand'] != undefined) {
-            params['brand'] = '';
-        }
-        if (paramKey == 'brand' && params['search'] != undefined) {
-            params['search'] = '';
-        }
+//     var nextUrl = window.location.origin + window.location.pathname;
 
-        // Attach the query params to the nextURL 
-        $.each(params, function(key, value) {
-            if (value != '') {
-                if (i == size) {
-                    nextUrl += key + '=' + value;
-                } else {
-                    nextUrl += key + '=' + value + '&';
-                }
-            }
+//     var params = getUrlVars(); //Get all the query params as an ARRAY
+//     params[paramKey] = '';
+//     var size = Object.keys(params).length;
+//     var i = 0;
+//     if (size == 0) {
+//         window.location.href = window.location.origin + window.location.pathname;
+//     } else {
+//         nextUrl += '?'; // ? for started to attach the query string to url
 
-            i++;
-        });
+//         // This is for search,selection by any one of ways => BRAND or SEARCH Keyword
+//         if (paramKey == 'search' && params['brand'] != undefined) {
+//             params['brand'] = '';
+//         }
+//         if (paramKey == 'brand' && params['search'] != undefined) {
+//             params['search'] = '';
+//         }
 
-        window.location.href = nextUrl;
-    }
-}
+//         // Attach the query params to the nextURL 
+//         $.each(params, function(key, value) {
+//             if (value != '') {
+//                 if (i == size) {
+//                     nextUrl += key + '=' + value;
+//                 } else {
+//                     nextUrl += key + '=' + value + '&';
+//                 }
+//             }
 
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-        vars[key] = value;
-    });
-    return vars;
-}
+//             i++;
+//         });
+
+//         window.location.href = nextUrl;
+//     }
+// }
+
+// function getUrlVars() {
+//     var vars = {};
+//     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+//         vars[key] = value;
+//     });
+//     return vars;
+// }

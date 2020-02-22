@@ -153,6 +153,7 @@ class WheelProductController extends Controller
             ->groupBy('prodbrand')
             ->get()
             ->sortBy('prodbrand');
+            
             $countsByBrand = $countsByBrand->select('prodbrand', \DB::raw('count(DISTINCT prodtitle) as total'))
             ->groupBy('prodbrand')
             ->pluck('total','prodbrand');

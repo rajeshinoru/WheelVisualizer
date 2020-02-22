@@ -110,14 +110,14 @@
     
     Zoomple.DEFAULTS = { 
         attachWindowToMouse : true, 
-        blankURL : 'https://raw.githubusercontent.com/sularome/Zoomple/master/images/blank.gif',
+        blankURL : '/image/blank.gif',
         bgColor : '#fff',
         delay : 1,
-        loaderURL : 'images/loader.gif',
+        loaderURL : '/image/loader.gif',
         offset : {x : 5,y : 5},
         roundedCorners : false, 
         source : 'href',
-        showCursor : false, 
+        showCursor : true, 
         showOverlay : false, 
         windowPosition : {x : 'right', y : 'top'},
         zoomWidth : 300,
@@ -249,7 +249,7 @@
         var self = this;    
         self.$holder.css({"width" : self.options.zoomWidth + "px","height" : self.options.zoomHeight + "px"});      
         self.$holder.find(".image_wrap").css({"background" : " url(" + self.options.loaderURL +") 50% 50% no-repeat"});     
-        console.log(self.options);
+        
         var objImagePreloader = new Image()
             src = imgRefUrl + (self.options.appendTimestamp?(((imgRefUrl.indexOf("?") > -1 )?"&":"?") + "timestamp=" + self.options.timestamp):'');
         objImagePreloader.src = src;

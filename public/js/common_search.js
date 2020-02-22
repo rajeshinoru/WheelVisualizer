@@ -1,105 +1,52 @@
 
-// Year based filters for Makes 
-$(document).on('change', '.Year,.Make,.Model', function() {
-    var changeBy = $(this).attr('name');
+// brand based filters for wheels
+$('.tirebrand').on('click', function() {
+    // var brand = $(this).val();   
 
-    var make = $('.Make').val();
-    var year = $('.Year').val();
-    var model = $('.Model').val();
-    var driverbody = $('.DriveBody').val(); 
-    filters(year, make, model, driverbody, changeBy);
-});
-// $(document).on('change', '.NavMake', function() {
-//     var changeBy = $(this).attr('name');
+    var brand = $('.tirebrand:checked').map(function() {
+        return $(this).val();
+    }).get();
 
-//     $('.Make').val(make);
-//     $('.Year').val(year);
-//     $('.Model').val(model);
-//     $('.DriveBody').val(driverbody); 
-
-//     filters(year, make, model, driverbody, changeBy);
-// });
-
-// $(document).ready(function() {
-//     var make = $('.Make').val();
-//     var year = $('.Year').val();
-//     var model = $('.Model').val();
-//     var driverbody = $('.DriveBody').val();
-//     filters(year, make, model, driverbody);
-// });
-
-function filters(year = '', make = '', model = '', driverbody = '', changeBy = '') {
-    $.ajax({
-        method: "GET",
-        url: '/vehicledetails',
-        data: {
-            year: year,
-            make: make,
-            model: model,
-            changeBy: changeBy
-        }
-    }).done(function(data) {
-
-        $('.DriveBody').empty().append('<option disabled selected>Select Drive/Body</option>');
-
-        if (changeBy == '' || changeBy == 'year' || changeBy == 'make') {
-            $('.Model').empty().append('<option disabled selected>Select Model</option>');
-        }
-        if (changeBy == '' || changeBy == 'make') {
-            $('.Year').empty().append('<option disabled selected>Select Year</option>');
-        }
-
-        if (changeBy == '') {
-            data.data['year'].map(function(value, key) {
-                isSelected = (value.yr == year) ? 'selected' : '';
-                $('.Year').append('<option value="' + value.yr + '" ' + isSelected + '>' + value.yr + '</option>');
-            });
-            data.data['model'].map(function(value, key) {
-                isSelected = (value.model == model) ? 'selected' : '';
-                $('.Model').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
-            });
-            data.data['driverbody'].map(function(value, key) {
-                isSelected = (value.vif == driverbody) ? 'selected' : '';
-                $('.DriveBody').append('<option value="' + value.vif + '"' + isSelected + '>' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
-            });
-        } else {
-            data.data.map(function(value, key) {
-                if (changeBy == 'make') {
-                    $('.Year').append('<option value="' + value.yr + '">' + value.yr + '</option>');
-                }
-                if (changeBy == 'year') {
-                    $('.Model').append('<option value="' + value.model + '">' + value.model + '</option>');
-                }
-                if (changeBy == 'model') {
-                    $('.DriveBody').append('<option value="' + value.vif + '">' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
-                }
-            });
-        }
-
-        if(make != null && changeBy !=''){
-
-            $('.Make').append('<option value="' + make + '" selected>' + make + '</option>');
-            $('.Make').trigger("chosen:updated");
-        }
-        $('.Year').trigger("chosen:updated");
-        $('.Model').trigger("chosen:updated");
-        $('.DriveBody').trigger("chosen:updated");
-    }).fail(function(msg) {
-        alert("fails");
-    });
-}
-
-//  Driver / Body change your car 
-$('.DriveBody').on('change', function() {
-    var car_id = $(this).val();
-    if (car_id != '') {
-        updateParamsToUrl('car_id', car_id);
+    if (brand != '') {
+        updateParamsToUrl('tirebrand', brand);
+    } else {
+        removeParamsFromUrl('tirebrand');
     }
+
+});
+
+// brand based filters for wheels
+$('.tirespeedrating').on('click', function() {
+    // var brand = $(this).val();   
+
+    var speedrating = $(this).val();
+    if (speedrating != '') {
+        updateParamsToUrl('tirespeedrating', speedrating);
+    } else {
+        removeParamsFromUrl('tirespeedrating');
+    }
+
+});
+
+// brand based filters for wheels
+$('.tireloadindex').on('click', function() {
+    // var brand = $(this).val();   
+
+    var index = $('.tireloadindex:checked').map(function() {
+        return $(this).val();
+    }).get();
+
+    if (index != '') {
+        updateParamsToUrl('tireloadindex', index);
+    } else {
+        removeParamsFromUrl('tireloadindex');
+    }
+
 });
 
 // wheeldiameter based filters for wheels
 $('.wheeldiameter').on('click', function() {
-    // var diameter = $(this).val();	
+    // var diameter = $(this).val();    
 
     var diameter = $('.wheeldiameter:checked').map(function() {
         return $(this).val();
@@ -129,7 +76,7 @@ $('.wheelwidth').on('click', function() {
 
 // brand based filters for wheels
 $('.brand').on('click', function() {
-    // var brand = $(this).val(); 	
+    // var brand = $(this).val();   
 
     var brand = $('.brand:checked').map(function() {
         return $(this).val();
@@ -381,3 +328,66 @@ $('.diameter-down').click(function() {
     }
 
 });
+
+
+if ($(".chosen-select").length > 0) {
+ $(".chosen-select").chosen({
+    no_results_text: "Not Found!!"
+  }) 
+};
+
+$('.carousel[data-type="multi"] .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+        next = $(this).siblings(':first');
+    }
+
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+
+        
+$(function(){ 
+  $(".wheelImage").popImg(); 
+})
+
+
+
+ // Read More Script Start
+if($('.read_more_text').length > 0 ){
+
+    function moreLess(initiallyVisibleCharacters) {
+        var visibleCharacters = initiallyVisibleCharacters;
+        var paragraph = $(".read_more_text")
+        paragraph.each(function() {
+            var text = $(this).text();
+            var wholeText = text.slice(0, visibleCharacters) + "<span class='ellipsis'>... </span><a href='#' class='more'>Read More</a>" + "<span style='display:none'>" + text.slice(visibleCharacters, text.length) + "<a href='#' class='less'> Read Less</a></span>"
+
+            if (text.length < visibleCharacters) {
+                return
+            } else {
+                $(this).html(wholeText)
+            }
+        });
+        $(".more").click(function(e) {
+            e.preventDefault();
+            $(this).hide().prev().hide();
+            $(this).next().show();
+        });
+        $(".less").click(function(e) {
+            e.preventDefault();
+            $(this).parent().hide().prev().show().prev().show();
+        });
+    };
+
+    moreLess(100);
+
+}
+ // Read More Script Ends

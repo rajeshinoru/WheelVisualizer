@@ -86,9 +86,13 @@ class TireController extends Controller
      */
     public function brand(Request $request,$brand_name='')
     {
+        $tires = new Tire;
+        
+        if($brand_name != ''){
+                $tires = $tires->where('prodbrand',base64_decode($brand_name));
+        }
 
-        $tires = Tire::select('prodimage','prodtitle','prodmodel','price','id','prodbrand','detaildesctype')
-                ->where('prodbrand',base64_decode($brand_name))
+        $tires = $tires->select('prodimage','prodtitle','prodmodel','price','id','prodbrand','detaildesctype')
                 ->with(['Brand'])
                 ->orderBy('price','ASC')
                 ->get()
@@ -232,7 +236,7 @@ class TireController extends Controller
 
     public function Falken_Import(){
          // $in_file = public_path('/storage/tires_data/Falken-Export.csv'); 
-         $in_file = public_path('/storage/tires_data/All-Falken.csv'); 
+         $in_file = public_path('/storage/tires_data/Conti-Web-02-08.csv'); 
 
         if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
         // $fw = fopen($out_file, "w");
