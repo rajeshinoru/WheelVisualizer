@@ -1,6 +1,8 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+@endsection 
+@section('content')
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -191,40 +193,40 @@
                                 </div>
                             </div>
                         </div>
-                        @empty {{'Not Found'}} @endforelse
+                        @empty {{'Not Found'}} 
+                        @endforelse
                 </div>
 
                 <div class="row pro-pagination">
                     <div class="col-sm-6 pagi-left">
-                        <p>1521 Wheels Found</p>
+                        <p>{{(@$products->total())?@$products->total().' Wheels Found':''}} </p>
                     </div>
                     <div class="col-sm-6 pagi-right">
                         {{$products->appends([ 'diameter' => @Request::get('diameter'), 'width' => @Request::get('width'), 'brand' => @Request::get('brand'), 'car_id' => @Request::get('car_id'), 'page' => @Request::get('page'), 'flag' => @Request::get('flag'), 'make' => @Request::get('make'), 'year' => @Request::get('year'), 'model' => @Request::get('model'), 'submodel' => @Request::get('submodel'), 'zip' => @Request::get('zip'), 'wheeldiameter'=> @Request::get('wheeldiameter'), 'wheelwidth'=> @Request::get('wheelwidth'), 'boltpattern'=> @Request::get('boltpattern'), 'minoffset'=> @Request::get('minoffset'), 'maxoffset'=> @Request::get('maxoffset') ])->links()}}
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
 
 <section id="all-brand-wheel" style="display: none;">
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 sub-head">
-            <h1>All Brand Wheels</h1>
-        </div>
-        <div class="col-md-12">
-            <!-- Controls -->
-            <div class="controls pull-right hidden-xs">
-                <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example2" data-slide="prev"></a>
-                <a class="right fa fa-chevron-right btn btn-success" href="#carousel-example2" data-slide="next"></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 sub-head">
+                <h1>All Brand Wheels</h1>
+            </div>
+            <div class="col-md-12">
+                <!-- Controls -->
+                <div class="controls pull-right hidden-xs">
+                    <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example2" data-slide="prev"></a>
+                    <a class="right fa fa-chevron-right btn btn-success" href="#carousel-example2" data-slide="next"></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</section>
 @endsection
 @section('custom_scripts')
 @endsection

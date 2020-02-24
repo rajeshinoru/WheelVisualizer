@@ -129,7 +129,8 @@
     </div>
 </section>
 
-@endsection @section('custom_scripts')
+@endsection 
+@section('custom_scripts')
 <!--  -->
 
 @endsection
