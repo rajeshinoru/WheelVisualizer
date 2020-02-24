@@ -66,26 +66,11 @@ class CreateWheelProductsTable extends Migration
             $table->string('dropshipper2')->nullable();
             $table->string('staggonly')->nullable();
             $table->string('rf_lc')->nullable();
-            $table->string('offset1')->nullable();
-            $table->string('offset2')->nullable();
+            $table->integer('offset1')->nullable();
+            $table->integer('offset2')->nullable();
             $table->string('hubbore')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            // $table->string('part_no')->nullable();
-            // $table->string('brand')->nullable();
-            // $table->string('style')->nullable();
-            // $table->string('finish')->nullable();
-            // $table->string('image')->nullable();
-            // $table->string('boldpattern1')->nullable();
-            // $table->string('boldpattern2')->nullable();
-            // $table->string('boldpattern3')->nullable();
-            // $table->string('offset1')->nullable();
-            // $table->string('offset2')->nullable();
-            // $table->string('simpleoffset')->nullable();
-            // $table->string('wheeltype')->nullable();
-            // $table->string('wheeldiameter')->nullable();
-            // $table->string('wheelwidth')->nullable();
-            // $table->string('hub')->nullable();
         });
     }
 

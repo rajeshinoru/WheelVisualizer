@@ -12,7 +12,6 @@ use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 function MakeCustomPaginator($data,$request,$per_page=9){
 	$total=count($data);
-	$per_page = 9;
 	$current_page = $request->input("page") ?? 1;
 
 	$starting_point = ($current_page * $per_page) - $per_page;
@@ -89,18 +88,53 @@ function front_back_path($imgPath){
 }
 
 
-function ViewImage($url=''){
+function viewImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/'.$url))){
 			return asset('/storage/'.$url);
 		}else{
-			return asset('image/no_image.jpg');
+			$wheel_products_url="/storage/wheel_products/".$url;
+			$misc_url="/storage/misc_images/".$url;
+			if(file_exists(public_path($wheel_products_url))){
+				return asset($wheel_products_url);
+			}else{
+				if(file_exists(public_path($misc_url))){
+					return asset($misc_url);
+				}else{
+					return asset('image/no_image.jpg');
+				}
+			}
 		}
 	}else{
 			return asset('image/no_image.jpg');
 	}
 
 }
+
+function ViewTireImage($url=''){
+	// return $url;
+	if($url != ''){
+		if(file_exists(public_path('/storage/tires/'.$url))){
+			return asset('/storage/tires/'.$url);
+		}else{
+			$wheel_products_url="/storage/wheel_products/".$url;
+			$misc_url="/storage/misc_images/".$url;
+			if(file_exists(public_path($wheel_products_url))){
+				return asset($wheel_products_url);
+			}else{
+				if(file_exists(public_path($misc_url))){
+					return asset($misc_url);
+				}else{
+					return asset('image/no_image.jpg');
+				}
+			}
+		}
+	}else{
+			return asset('image/no_image.jpg');
+	}
+
+}
+
 function ViewBenefitImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/tires/models/'.$url))){
@@ -217,4 +251,14 @@ function upload_file($path,$image,$sting_length){
     $image->getClientOriginalName();
     $image->move(public_path($path),$imagename);
     return $path.$imagename;
+}
+
+function img($img){	
+	if($img == ""){
+		return asset('admin/no-image.png');
+	}else if (strpos($img, 'http') !== false) {
+        return $img;
+    }else{
+		return asset('storage/'.$img);
+	}
 }

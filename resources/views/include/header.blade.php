@@ -330,6 +330,7 @@
 
                                                         <div class="col-sm-12 tire-menu">
                                                             <ul>
+                                                                <li><a href="{{url('/tirebrand')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> All</a></li>
                                                                 @foreach(getTireBrandList() as $key => $tirebrand)
                                                                 <li><a href="{{url('/tirebrand')}}/{{base64_encode($tirebrand)}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$tirebrand}}</a></li>
                                                                 @endforeach
@@ -370,8 +371,7 @@
 
 </header>
 
-<!-- New Fixed Nav Start -->
-
+@section('custom_scripts')
 <script>
     window.onscroll = function() {
         myFunction()
@@ -389,4 +389,5 @@
     }
 
 </script>
-<!-- New Fixed Nav End -->
+
+@endsection

@@ -42,14 +42,15 @@
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$ptire->prodimage)}}" title="{{@$ptire->prodtitle}}" alt="{{@$ptire->prodtitle}}" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$ptire->prodimage)}}" title="{{@$ptire->prodtitle}}" alt="{{@$ptire->prodtitle}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{ViewTireImage(@$ptire->prodimage)}}" title="{{@$ptire->prodtitle}}" alt="{{@$ptire->prodtitle}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{ViewTireImage(@$ptire->prodimage)}}" title="{{@$ptire->prodtitle}}" alt="{{@$ptire->prodtitle}}" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a>Sale</a></div>
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
                                     <h4 class="tire-type" title="{{@$ptire->prodtitle}}">
-                                        <a href="{{url('/tirebrandmodel')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}} <br>
+                                        <a href="{{url('/tirebrandmodel')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}} 
+                                            <br>
                                         @if(@$ptire->price)
                                         Starting at: ${{@$ptire->price}}
                                         @else
@@ -93,8 +94,8 @@
                     <div class="product-layouts">
                         <div class="product-thumb transition">
                             <div class="image">
-                                <img class="wheelImage image_thumb" src="{{viewImage('/tires/'.@$lttire->prodimage)}}" title="{{@$lttire->prodtitle}}" alt="{{@$lttire->prodtitle}}" style="cursor: zoom-in;">
-                                <img class="wheelImage image_thumb_swap" src="{{viewImage('/tires/'.@$lttire->prodimage)}}" title="{{@$lttire->prodtitle}}" alt="{{@$lttire->prodtitle}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb" src="{{ViewTireImage(@$lttire->prodimage)}}" title="{{@$lttire->prodtitle}}" alt="{{@$lttire->prodtitle}}" style="cursor: zoom-in;">
+                                <img class="wheelImage image_thumb_swap" src="{{ViewTireImage(@$lttire->prodimage)}}" title="{{@$lttire->prodtitle}}" alt="{{@$lttire->prodtitle}}" style="cursor: zoom-in;">
                                 <div class="sale-icon"><a>Sale</a></div>
                             </div>
                             <div class="thumb-description">
@@ -128,7 +129,7 @@
     </div>
 </section>
 
-@endsection @section('shop_by_vehicle_scripts')
-<!-- <script src="{{ asset('js/wheels.js') }}"></script> -->
+@endsection @section('custom_scripts')
+<!--  -->
 
 @endsection

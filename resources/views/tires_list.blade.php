@@ -142,8 +142,8 @@
                         <div class="product-layouts">
                             <div class="product-thumb transition">
                                 <div class="image">
-                                    <img class="wheelImage image_thumb" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
-                                    <img class="wheelImage image_thumb_swap" src="{{viewImage('tires/'.@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                    <img class="wheelImage image_thumb" src="{{ViewTireImage(@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                                    <img class="wheelImage image_thumb_swap" src="{{ViewTireImage(@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
                                     <div class="sale-icon"><a></a></div>
                                 </div>
                                 <div class="thumb-description">
@@ -183,8 +183,8 @@
 </section>
 
 @endsection
-@section('shop_by_vehicle_scripts')
-<script src="{{ asset('js/wheels.js') }}"></script>
+@section('custom_scripts')
+
 
 
 

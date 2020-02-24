@@ -400,11 +400,11 @@
     </div>
 </div>
 @endsection
-@section('shop_by_vehicle_scripts')
+@section('custom_scripts')
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('js/shop_by_wheel.js') }}"></script>
     <script src="{{ asset('js/popImg.js') }}"></script>
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
-    <script src="{{ asset('js/wheels.js') }}"></script>
+    
     <script src="{{ asset('js/slick.js') }}"></script>
 @endsection

@@ -92,9 +92,8 @@
 <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
 
 
-
+@section('custom_scripts')
 <script>
-
 $(document).ready(function(){
      $(window).scroll(function () {
             if ($(this).scrollTop() > 100) {
@@ -116,3 +115,4 @@ $(document).ready(function(){
 
 });
 </script>
+@endsection

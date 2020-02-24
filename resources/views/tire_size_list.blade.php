@@ -248,6 +248,6 @@
 </section>
 
 @endsection
-@section('shop_by_vehicle_scripts')
-<script src="{{ asset('js/wheels.js') }}"></script>
+@section('custom_scripts')
+
 @endsection

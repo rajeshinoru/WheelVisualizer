@@ -388,7 +388,7 @@
                 </div>
 
                 <div class="col-sm-3 shop-details">
-
+                  
                   <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
                       <img src="{{ViewProductImage(@$tire->prodimage1)}}">
@@ -417,62 +417,64 @@
 
                           <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->dry_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->dry_performance}}%</div>
+                              <div class="progress-bar" style="width:{{@$tire->dry_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->dry_performance??0}}%</div>
                               </div>
                           </div>
                           <br>
 
                           <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->wet_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->wet_performance}}%</div>
+                              <div class="progress-bar" style="width:{{@$tire->wet_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->wet_performance??0}}%</div>
                               </div>
                           </div>
                           <br>
                           <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->mileage_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->mileage_performance}}%</div>
+                              <div class="progress-bar" style="width:{{@$tire->mileage_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->mileage_performance??0}}%</div>
                               </div>
                           </div>
                           <br>
 
                           <h3 class="progress-title">Ride Comfort:</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->ride_comfort}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->ride_comfort}}%</div>
+                              <div class="progress-bar" style="width:{{@$tire->ride_comfort??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->ride_comfort??0}}%</div>
                               </div>
                           </div>
                           <br>
                           <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->quiet_ride}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->quiet_ride}}%</div>
+                              <div class="progress-bar" style="width:{{@$tire->quiet_ride??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->quiet_ride??0}}%</div>
                               </div>
                           </div>
                           <br>
 
                           <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->winter_performance}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->winter_performance}}%</div>
+                              <div class="progress-bar" style="width:{{@$tire->winter_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->winter_performance??0}}%</div>
                               </div>
                           </div>
                           <br>
 
                           <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
                           <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->fuel_efficiency}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->fuel_efficiency}}%</div>
+                              <div class="progress-bar" style="width:{{@$tire->fuel_efficiency??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->fuel_efficiency??0}}%</div>
                               </div>
                           </div>
                           <br>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 tire-benifit-des">
 
+              @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
+                <div class="col-sm-3 tire-benifit-des">
+                    @if(@$tire->benefits1)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -480,10 +482,12 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits1}}</p>
+                                <p class="read_more_text">{{@$tire->benefits1}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @if(@$tire->benefits2)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -491,10 +495,12 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits2}}</p>
+                                <p class="read_more_text">{{@$tire->benefits2}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @if(@$tire->benefits3)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -502,10 +508,12 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits3}}</p>
+                                <p class="read_more_text">{{@$tire->benefits3}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @if(@$tire->benefits4)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -513,12 +521,13 @@
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits4}}</p>
+                                <p class="read_more_text">{{@$tire->benefits4}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
-
+              @endif
             </div>
 
         </div>
@@ -577,7 +586,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="tire-des">
-                                            <img src="{{viewImage('/tires/'.@$tire->prodimage)}}">
+                                            <img src="{{ViewTireImage(@$tire->prodimage)}}">
                                         </div>
                                     </div>
 
@@ -645,8 +654,8 @@
 
 
 
-@endsection @section('shop_by_vehicle_scripts')
-<script src="{{ asset('js/wheels.js') }}"></script>
+@endsection @section('custom_scripts')
+
 <!-- Read More Script Start-->
 <script>
 function moreLess(initiallyVisibleCharacters) {

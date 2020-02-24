@@ -590,7 +590,9 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
             <div class="row">
                 <div class="col-sm-3 tire-img">
                     <div class="tire-des">
-                        <img src="{{viewImage('tires/'.@$tire->prodimage)}}">
+                        <a href="{{ViewTireImage(@$tire->prodimage)}}" class="zoomple">
+                        <img src="{{ViewTireImage(@$tire->prodimage)}}">
+                        </a>
                         <h1>Price for TIRE ONLY</h1>
                         <h2>Rim depicted in image NOT INCLUDED</h2>
                     </div>
@@ -710,68 +712,71 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                     </div>
 
                 </div>
+
                 <div class="col-sm-3 tir-des">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="product-name2">Performance Ratings</h2>
+                          <h2 class="product-name2">Performance Ratings</h2>
 
-                            <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->dry_performance}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->dry_performance}}%</div>
-                                </div>
-                            </div>
-                            <br>
+                          <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->dry_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->dry_performance??0}}%</div>
+                              </div>
+                          </div>
+                          <br>
 
-                            <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->wet_performance}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->wet_performance}}%</div>
-                                </div>
-                            </div>
-                            <br>
-                            <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->mileage_performance}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->mileage_performance}}%</div>
-                                </div>
-                            </div>
-                            <br>
+                          <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->wet_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->wet_performance??0}}%</div>
+                              </div>
+                          </div>
+                          <br>
+                          <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->mileage_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->mileage_performance??0}}%</div>
+                              </div>
+                          </div>
+                          <br>
 
-                            <h3 class="progress-title">Ride Comfort:</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->ride_comfort}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->ride_comfort}}%</div>
-                                </div>
-                            </div>
-                            <br>
-                            <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness :</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->quiet_ride}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->quiet_ride}}%</div>
-                                </div>
-                            </div>
-                            <br>
+                          <h3 class="progress-title">Ride Comfort:</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->ride_comfort??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->ride_comfort??0}}%</div>
+                              </div>
+                          </div>
+                          <br>
+                          <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->quiet_ride??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->quiet_ride??0}}%</div>
+                              </div>
+                          </div>
+                          <br>
 
-                            <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->winter_performance}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->winter_performance}}%</div>
-                                </div>
-                            </div>
-                            <br>
+                          <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->winter_performance??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->winter_performance??0}}%</div>
+                              </div>
+                          </div>
+                          <br>
 
-                            <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->fuel_efficiency}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->fuel_efficiency}}%</div>
-                                </div>
-                            </div>
-                            <br>
+                          <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
+                          <div class="progress pink">
+                              <div class="progress-bar" style="width:{{@$tire->fuel_efficiency??0}}%; background:#0e1661;">
+                                  <div class="progress-value">{{@$tire->fuel_efficiency??0}}%</div>
+                              </div>
+                          </div>
+                          <br>
                         </div>
                     </div>
                 </div>
+              @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
                 <div class="col-sm-3">
+                    @if(@$tire->benefits1)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -779,10 +784,12 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits1}}</p>
+                                <p class="read_more_text">{{@$tire->benefits1}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @if(@$tire->benefits2)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -790,10 +797,12 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits2}}</p>
+                                <p class="read_more_text">{{@$tire->benefits2}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @if(@$tire->benefits3)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -801,10 +810,12 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits3}}</p>
+                                <p class="read_more_text">{{@$tire->benefits3}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @if(@$tire->benefits4)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">
                             <div class="col-sm-4 benifit">
@@ -812,11 +823,13 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                             </div>
                             <div class="col-sm-8 benifit-title">
                                 <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="text">{{@$tire->benefits4}}</p>
+                                <p class="read_more_text">{{@$tire->benefits4}}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
+              @endif
 
             </div>
 
@@ -876,7 +889,9 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="tire-des">
-                                            <img src="{{viewImage('/tires/'.@$tire->prodimage)}}">
+                                            <a href="{{ViewTireImage(@$tire->prodimage)}}" class="zoomple">
+                                            <img src="{{ViewTireImage(@$tire->prodimage)}}">
+                                            </a>
                                         </div>
                                     </div>
 
@@ -1167,37 +1182,17 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
 
 </section>
 
-@endsection @section('shop_by_vehicle_scripts')
-<script src="{{ asset('js/wheels.js') }}"></script>
-<!-- Read More Script Start-->
+@endsection @section('custom_scripts')
+
 <script>
-function moreLess(initiallyVisibleCharacters) {
-	var visibleCharacters = initiallyVisibleCharacters;
-	var paragraph = $(".text")
+    if($('.zoomple').length > 0){
 
-
-	paragraph.each(function() {
-		var text = $(this).text();
-		var wholeText = text.slice(0, visibleCharacters) + "<span class='ellipsis'>... </span><a href='#' class='more'>Read More</a>" + "<span style='display:none'>" + text.slice(visibleCharacters, text.length) + "<a href='#' class='less'> Read Less</a></span>"
-
-		if (text.length < visibleCharacters) {
-			return
-		} else {
-			$(this).html(wholeText)
-		}
-	});
-	$(".more").click(function(e) {
-		e.preventDefault();
-		$(this).hide().prev().hide();
-		$(this).next().show();
-	});
-	$(".less").click(function(e) {
-		e.preventDefault();
-		$(this).parent().hide().prev().show().prev().show();
-	});
-};
-
-moreLess(100);
+        $('.zoomple').zoomple({ 
+            offset : {x:-100,y:-100},
+            zoomWidth : 130,  
+            zoomHeight : 130,
+            roundedCorners : true
+        });
+    }
 </script>
-<!-- Read More Script End-->
 @endsection
