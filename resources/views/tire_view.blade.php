@@ -1,4 +1,4 @@
-oo0@extends('layouts.app') @section('shop_by_vehicle_css')
+@extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
 
 <style>
@@ -713,123 +713,138 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
 
                 </div>
 
+
                 <div class="col-sm-3 tir-des">
                     <div class="row">
                         <div class="col-sm-12">
                           <h2 class="product-name2">Performance Ratings</h2>
-
+    
+                          @if(@$tire->dry_performance > 0)
                           <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
                           <div class="progress pink">
                               <div class="progress-bar" style="width:{{@$tire->dry_performance??0}}%; background:#0e1661;">
                                   <div class="progress-value">{{@$tire->dry_performance??0}}%</div>
                               </div>
                           </div>
+                          @endif
                           <br>
-
+  
+                          @if(@$tire->wet_performance > 0)
                           <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
                           <div class="progress pink">
                               <div class="progress-bar" style="width:{{@$tire->wet_performance??0}}%; background:#0e1661;">
                                   <div class="progress-value">{{@$tire->wet_performance??0}}%</div>
                               </div>
                           </div>
-                          <br>
+                          @endif
+                          <br>    
+                          @if(@$tire->mileage_performance > 0)
                           <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
                           <div class="progress pink">
                               <div class="progress-bar" style="width:{{@$tire->mileage_performance??0}}%; background:#0e1661;">
                                   <div class="progress-value">{{@$tire->mileage_performance??0}}%</div>
                               </div>
                           </div>
+                          @endif
                           <br>
-
+    
+                          @if(@$tire->ride_comfort > 0)
                           <h3 class="progress-title">Ride Comfort:</h3>
                           <div class="progress pink">
                               <div class="progress-bar" style="width:{{@$tire->ride_comfort??0}}%; background:#0e1661;">
                                   <div class="progress-value">{{@$tire->ride_comfort??0}}%</div>
                               </div>
                           </div>
-                          <br>
+                          @endif
+                          <br>    
+                          @if(@$tire->quiet_ride > 0)
                           <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
                           <div class="progress pink">
                               <div class="progress-bar" style="width:{{@$tire->quiet_ride??0}}%; background:#0e1661;">
                                   <div class="progress-value">{{@$tire->quiet_ride??0}}%</div>
                               </div>
                           </div>
+                          @endif
                           <br>
-
+    
+                          @if(@$tire->winter_performance > 0)
                           <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
                           <div class="progress pink">
                               <div class="progress-bar" style="width:{{@$tire->winter_performance??0}}%; background:#0e1661;">
                                   <div class="progress-value">{{@$tire->winter_performance??0}}%</div>
                               </div>
                           </div>
+                          @endif
                           <br>
-
+    
+                          @if(@$tire->fuel_efficiency > 0)
                           <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
                           <div class="progress pink">
                               <div class="progress-bar" style="width:{{@$tire->fuel_efficiency??0}}%; background:#0e1661;">
                                   <div class="progress-value">{{@$tire->fuel_efficiency??0}}%</div>
                               </div>
                           </div>
+                          @endif
                           <br>
                         </div>
                     </div>
                 </div>
-              @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
-                <div class="col-sm-3">
-                    @if(@$tire->benefits1)
-                    <div class="row tire-benifit">
-                        <div class="col-sm-12">
-                            <div class="col-sm-4 benifit">
-                                <img src="{{ViewBenefitImage(@$tire->benefitsimage1)}}">
-                            </div>
-                            <div class="col-sm-8 benifit-title">
-                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="read_more_text">{{@$tire->benefits1}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if(@$tire->benefits2)
-                    <div class="row tire-benifit">
-                        <div class="col-sm-12">
-                            <div class="col-sm-4 benifit">
-                                <img src="{{ViewBenefitImage(@$tire->benefitsimage2)}}">
-                            </div>
-                            <div class="col-sm-8 benifit-title">
-                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="read_more_text">{{@$tire->benefits2}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if(@$tire->benefits3)
-                    <div class="row tire-benifit">
-                        <div class="col-sm-12">
-                            <div class="col-sm-4 benifit">
-                                <img src="{{ViewBenefitImage(@$tire->benefitsimage3)}}">
-                            </div>
-                            <div class="col-sm-8 benifit-title">
-                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="read_more_text">{{@$tire->benefits3}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if(@$tire->benefits4)
-                    <div class="row tire-benifit">
-                        <div class="col-sm-12">
-                            <div class="col-sm-4 benifit">
-                                <img src="{{ViewBenefitImage(@$tire->benefitsimage4)}}">
-                            </div>
-                            <div class="col-sm-8 benifit-title">
-                                <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                <p class="read_more_text">{{@$tire->benefits4}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                </div>
-              @endif
+                @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
+                  <div class="col-sm-3 tire-benifit-des">
+                      @if(@$tire->benefits1)
+                      <div class="row tire-benifit">
+                          <div class="col-sm-12">
+                              <div class="col-sm-4 benifit">
+                                  <img src="{{ViewBenefitImage(@$tire->benefitsimage1)}}">
+                              </div>
+                              <div class="col-sm-8 benifit-title">
+                                  <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                  <p class="read_more_text">{{@$tire->benefits1}}</p>
+                              </div>
+                          </div>
+                      </div>
+                      @endif
+                      @if(@$tire->benefits2)
+                      <div class="row tire-benifit">
+                          <div class="col-sm-12">
+                              <div class="col-sm-4 benifit">
+                                  <img src="{{ViewBenefitImage(@$tire->benefitsimage2)}}">
+                              </div>
+                              <div class="col-sm-8 benifit-title">
+                                  <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                  <p class="read_more_text">{{@$tire->benefits2}}</p>
+                              </div>
+                          </div>
+                      </div>
+                      @endif
+                      @if(@$tire->benefits3)
+                      <div class="row tire-benifit">
+                          <div class="col-sm-12">
+                              <div class="col-sm-4 benifit">
+                                  <img src="{{ViewBenefitImage(@$tire->benefitsimage3)}}">
+                              </div>
+                              <div class="col-sm-8 benifit-title">
+                                  <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                  <p class="read_more_text">{{@$tire->benefits3}}</p>
+                              </div>
+                          </div>
+                      </div>
+                      @endif
+                      @if(@$tire->benefits4)
+                      <div class="row tire-benifit">
+                          <div class="col-sm-12">
+                              <div class="col-sm-4 benifit">
+                                  <img src="{{ViewBenefitImage(@$tire->benefitsimage4)}}">
+                              </div>
+                              <div class="col-sm-8 benifit-title">
+                                  <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
+                                  <p class="read_more_text">{{@$tire->benefits4}}</p>
+                              </div>
+                          </div>
+                      </div>
+                      @endif
+                  </div>
+                @endif
 
             </div>
 
@@ -878,7 +893,7 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                                 <div class="tab-pane fade active in " id="tab1default">
                                     <div class="col-sm-8">
                                         <div class="prod-headinghome">
-                                            
+                                            <br>
                                             <p><b>Details</b></p>
                                             <p><b>Type</b>: {{@$tire->detaildesctype}}</p>
                                             <p><b>Style</b>: {{@$tire->prodmodel}}</p>
@@ -967,21 +982,24 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
 <section id="fal-feature">
     <div class="container">
         <div class="row">
+            @foreach(@$similar_tires->take(6) as $key => $tire)
             <div class="col-sm-2">
                 <div class="product-layouts">
                     <div class="product-thumb transition">
                         <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
+                            <img class="wheelImage image_thumb" src="{{ViewTireImage(@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="{{ViewTireImage(@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                            <div class="sale-icon"><a></a></div>
                         </div>
                         <div class="thumb-description">
                             <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
+                                <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}">
+                                        {{@$tire->detailtitle}}<br>
+                                        <br>
+                                        <!-- Size : {{@$tire->tiresize}}<br> -->
+                                        <!-- Load : {{@$tire->loadindex}} Speed:{{@$tire->speedrating}}<br> -->
+                                        <b>${{@$tire->price}}</b>
+                                    </a></h4>
                                 <br>
                             </div>
                             <div class="button-group">
@@ -1002,181 +1020,7 @@ oo0@extends('layouts.app') @section('shop_by_vehicle_css')
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="product-layouts">
-                    <div class="product-thumb transition">
-                        <div class="image">
-                            <img class="wheelImage image_thumb" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="http://127.0.0.1:8000/storage//tires/Falken-Ziex-ZE950.jpg" title="Falken Tires Ziex ZE950 A/S" alt="Falken Tires Ziex ZE950 A/S" style="cursor: zoom-in;">
-                            <div class="sale-icon"><a>Sale</a></div>
-                        </div>
-                        <div class="thumb-description">
-                            <div class="caption">
-                                <h4 class="tire-type" title="Falken Tires Ziex ZE950 A/S">
-                                                <a href="http://127.0.0.1:8000/tireview/NA==">Falken Tires Ziex ZE950 A/S <br>
-                                                                                        Starting at: $43.58
-                                                                                        </a>
-                                            </h4>
-                                <br>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                </button>
-                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                    <span title="Add to Wish List">Add to Wish List</span>
-                                </button>
-                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                    <span title="Add to compare">Add to compare</span>
-                                </button>
-                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                    <span>Quick View</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 

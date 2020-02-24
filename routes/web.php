@@ -64,7 +64,7 @@ Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('
 
 // Filters By Tire sizes
 Route::get('/getFiltersByTire', 'TireController@getFiltersByTire')->name('getFiltersByTire');
-Route::get('/setFiltersByTire', 'TireController@setFiltersByTire')->name('setFiltersByTire');
+Route::get('/setFiltersByTire', 'TireController@list')->name('setFiltersByTire');
 
 
 

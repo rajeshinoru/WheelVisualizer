@@ -75,13 +75,16 @@ function NavTireFilters(width = '',profile = '', changeBy = '') {
 
 // Year based filters for Makes 
 $(document).on('change', '.NavYear,.NavMake,.NavModel', function() {
+
     var changeBy = $(this).attr('name');
 
     var make = $('.NavMake').val();
     var year = $('.NavYear').val();
     var model = $('.NavModel').val();
     var submodel = $('.NavSubmodel').val();
-    NavFilters(year, make, model,submodel, changeBy);
+    if($(this).val()!=''){
+        NavFilters(year, make, model,submodel, changeBy);
+    }
 });
 
 

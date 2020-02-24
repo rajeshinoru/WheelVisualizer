@@ -2,8 +2,11 @@
 @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 @endsection @section('content')
-
-</section>
+<style type="text/css">
+.product-layouts {
+    min-height: 445px !important;
+}
+</style>
 <section id="tire-list">
     <div class="container">
         <!-- <div class="row">
@@ -23,9 +26,44 @@
                             <div class="price-slide">
                                 <div class="price">
                                     <p><label for="price">Price range:</label>
-                                        <input type="text" id="price" style="border:0; color:#b9cd6d; font-weight:bold;">
+                                        <!-- <input type="text" id="price" class="price_range" style="border:0; color:#b9cd6d; font-weight:bold;"> -->
                                     </p>
-                                    <div id="slider-3"></div>
+                                    <!-- <div id="slider-3"></div> -->
+<div class="vehicle-list">
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select minprice" id="minprice" name="minprice">
+                                                            <option value="">Select Min.Price</option>
+                                                            @for($amt=10;$amt<10000;$amt=$amt+10)
+
+                                                            <option value="{{$amt}}" 
+                                                            @if($amt==json_decode(base64_decode(@Request::get('minprice')?:'')))    selected 
+                                                            @endif
+
+                                                            @if($amt > json_decode(base64_decode(@Request::get('maxprice')?:'')))    disabled 
+                                                            @endif
+                                                            > Above ${{$amt}}</option>
+                                                            @endfor
+                                                            </select>
+                                                        </div>
+</div>
+<div class="vehicle-list">
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select maxprice" id="maxprice" name="maxprice">
+                                                            <option value="">Select Max.Price</option>
+                                                            @for($amt=10;$amt<10000;$amt=$amt+10)
+
+                                                            <option value="{{$amt}}" 
+                                                            @if($amt==json_decode(base64_decode(@Request::get('maxprice')?:''))) 
+                                                                selected 
+                                                            @endif 
+
+                                                            @if($amt <= json_decode(base64_decode(@Request::get('minprice')?:'')))    disabled 
+                                                            @endif
+                                                            > Below ${{$amt}}</option>
+                                                            @endfor
+                                                            </select>
+                                                        </div>
+</div>
                                 </div>
                             </div>
                         </div>
@@ -41,10 +79,44 @@
                                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
                                                 <ul style="display: block;">
-                                                    @foreach(@getTireBrandList() as $key => $brand)
+                                                    @foreach(@$brands as $key => $brand)
+                                                    <li><input type="checkbox" name="tirebrand[]" class="tirebrand" value="{{$brand->prodbrand}}" 
+                                                        @if(in_array($brand->prodbrand,json_decode(base64_decode(@Request::get('tirebrand')?:''))?:[]))
+                                                             checked 
+                                                        @endif
+
+                                                        @if(!@$countsByBrand[$brand->prodbrand])
+                                                            disabled
+                                                        @endif
+                                                        > 
+                                                        @if(@$countsByBrand[$brand->prodbrand])
+                                                        {{$brand->prodbrand}} ( {{$countsByBrand[$brand->prodbrand]}} )
+                                                        @else
+                                                        <span style="color: #a0a0a0;">{{$brand->prodbrand}} ( 0 )</span >
+                                                        @endif
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Speed Rating</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">
+                                                <ul style="display: block;">
+                                                    @foreach(@$speedratings as $key => $value)
                                                     <li><span class="checkbox">
                                                             <label>
-                                                                <input type="checkbox" class="tirebrand" name="tirebrand[]" value="{{$brand}}" @if(in_array($brand,json_decode(base64_decode(@Request::get('tirebrand')?:''))?:[])) checked @endif> {{$brand}}
+                                                                <input type="checkbox" name="tirespeedrating[]" class="tirespeedrating" value="{{@$value->speedrating}}" 
+                                                                @if(in_array($value->speedrating,
+                                                                json_decode(base64_decode(@Request::get('tirespeedrating')?:''))?:[])) checked @endif  > {{@$value->speedrating}} ( {{@$value->total}} )
                                                             </label>
                                                         </span></li>
                                                     @endforeach
@@ -53,27 +125,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-                                <div class="widget-search">
-                                    <h5 class="heading">Speed Rating</h5>
-                                    <div class="car-list">
-                                        @foreach(@$speedratings as $key => $value)
-                                        <button class="btn {{(@$value->speedrating ==
-                                            json_decode(base64_decode(
-                                                @Request::get('tirespeedrating')?:''
-                                            ))
-                                            )?'btn-inverse ':''}} speed tirespeedrating" type="button" name="tirespeedrating[]" class="tirespeedrating" value="{{@$value->speedrating}}">
-                                            {{@$value->speedrating}} <!-- 130 mph --> ({{@$value->total}})
-                                        </button>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
@@ -126,7 +177,7 @@
                 <!-- Side End -->
             </div>
             <div class="col-sm-9">
-
+            @if(@$vehicle)
               <div class="wheel-list-change-tab">
                   <div class="row">
                       <div class="col-md-8 left-head">
@@ -135,9 +186,10 @@
                       <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
                   </div>
               </div>
-
+              @endif
                 <div class="row">
                     @foreach($tires as $key =>$tire)
+                    <?php $tire = (object)$tire;?>
                     <div class="col-sm-3">
                         <div class="product-layouts">
                             <div class="product-thumb transition">
@@ -177,6 +229,24 @@
                     </div>
                     @endforeach
                 </div>
+
+                <div class="row pro-pagination">
+                    <div class="col-sm-6 pagi-left">
+                        <p>{{(@$tires->total())?@$tires->total().' Tires Found':''}} </p>
+                    </div>
+                    <div class="col-sm-6 pagi-right">
+                        {{$tires->appends([ 
+                        'tirebrand' => @Request::get('tirebrand'), 
+                        'tirespeedrating' => @Request::get('tirespeedrating'), 
+                        'tireloadindex' => @Request::get('tireloadindex'), 
+                        'page' => @Request::get('page'), 
+                        'zip' => @Request::get('zip'), 
+                        'width'=> @Request::get('width'), 
+                        'profile'=> @Request::get('profile'), 
+                        'diameter'=> @Request::get('diameter')])->links()}}
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -186,7 +256,7 @@
 @section('custom_scripts')
 
 
-
+<!-- 
 
 <script>
     $(function() {
@@ -196,6 +266,7 @@
             max: 500,
             values: [1, 200],
             slide: function(event, ui) {
+                console.log(ui.values);
                 $("#price").val("$" + ui.values[0] + " - $" + ui.values[1]);
             }
         });
@@ -203,7 +274,7 @@
             " - $" + $("#slider-3").slider("values", 1));
     });
 </script>
-
+ -->
 
 
 

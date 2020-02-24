@@ -19,7 +19,10 @@ $('.tirebrand').on('click', function() {
 $('.tirespeedrating').on('click', function() {
     // var brand = $(this).val();   
 
-    var speedrating = $(this).val();
+    var speedrating = $('.tirespeedrating:checked').map(function() {
+        return $(this).val();
+    }).get();
+
     if (speedrating != '') {
         updateParamsToUrl('tirespeedrating', speedrating);
     } else {
@@ -27,6 +30,7 @@ $('.tirespeedrating').on('click', function() {
     }
 
 });
+
 
 // brand based filters for wheels
 $('.tireloadindex').on('click', function() {
@@ -42,6 +46,49 @@ $('.tireloadindex').on('click', function() {
         removeParamsFromUrl('tireloadindex');
     }
 
+});
+
+
+
+$('#minprice').on('change', function(){
+  
+    $('#maxprice').children("option").each(function(){
+        var opt = $(this),
+        optVal = parseInt(opt.attr('value'));
+
+        if ( optVal <= $('#minprice').val() ) {
+          opt.attr('disabled','disabled');
+        } else {
+          opt.removeAttr('disabled');
+        }
+
+    });
+    if ($('#minprice').val() != '') {
+        updateParamsToUrl('minprice', $('#minprice').val());
+    } else {
+        removeParamsFromUrl('minprice');
+    }
+});
+
+$('#maxprice').on('change', function(){
+  
+  $('#minprice').children("option").each(function(){
+    var opt = $(this),
+        optVal = parseInt(opt.attr('value'));
+    
+    if ( optVal != 0 && optVal >= $('#maxprice').val() ) {
+      opt.attr('disabled','disabled');
+    } else {
+      opt.removeAttr('disabled');
+    }
+    
+  });
+  
+    if ($('#maxprice').val() != '') {
+        updateParamsToUrl('maxprice', $('#maxprice').val());
+    } else {
+        removeParamsFromUrl('maxprice');
+    }
 });
 
 // wheeldiameter based filters for wheels

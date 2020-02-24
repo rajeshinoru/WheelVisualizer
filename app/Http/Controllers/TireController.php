@@ -26,36 +26,113 @@ class TireController extends Controller
      */
     public function list(Request $request,$chassis_model_id='',$vehicle_id='')
     {
-        
-        $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->groupBy('loadindex')->get()->sortBy('loadindex');
-        // ->where('tiresize','like', '%' . base64_decode($chassis_model_id) . '%')
-        $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->groupBy('speedrating')->get()->sortBy('speedrating');
 
-        $chassis_model = ChassisModel::find(base64_decode($chassis_model_id));
-        $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first();
-        // dd($vehicle);
-        $tire = new Tire;
+        $tires = new Tire;
+
+        $tires = $tires->select('prodimage','id','prodtitle','tiresize','loadindex','speedrating',
+                    'price','prodmodel','tirewidth','tireprofile','tirediameter');
+
+        $chassis_model = ChassisModel::find(base64_decode($chassis_model_id)) ?? null;
+        $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
+
         if($request->has('tirebrand')){
             if($request->tirebrand !=''){
-                $tire = $tire->whereIn('prodbrand',json_decode(base64_decode($request->tirebrand)));
+                $tires = $tires->whereIn('prodbrand',json_decode(base64_decode($request->tirebrand)));
             }
         }
         if($request->has('tirespeedrating')){
             if($request->tirespeedrating !=''){
-                $tire = $tire->where('speedrating',json_decode(base64_decode($request->tirespeedrating)));
+                $tires = $tires->where('speedrating',json_decode(base64_decode($request->tirespeedrating)));
             }
         }
         if($request->has('tireloadindex')){
             if($request->tireloadindex !=''){
-                $tire = $tire->whereIn('loadindex',json_decode(base64_decode($request->tireloadindex)));
+                $tires = $tires->whereIn('loadindex',json_decode(base64_decode($request->tireloadindex)));
             }
         }
 
-        $tires = $tire->select('prodimage','id','prodtitle','tiresize','loadindex','speedrating','price','prodmodel')
-                ->where('tiresize','like', '%' . @$chassis_model->tire_size . '%')
-                ->get()
-                ->unique('prodmodel');
-        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings'));
+          
+        if( $chassis_model_id!='' && $vehicle_id!=''){
+            $tires = $tires->where('tiresize','like', '%' . @$chassis_model->tire_size . '%');
+        }else{
+            $tires = $tires->where('tirewidth',$request->width)
+                    ->where('tireprofile',$request->profile)
+                    ->where('tirediameter',$request->diameter);
+        }
+
+
+        // Load index search in the Sidebar
+
+        $load_indexs = clone $tires;
+
+        if (isset($request->tirebrand) && $request->tirebrand) {
+            $load_indexs = $load_indexs->whereIn('prodbrand', json_decode(base64_decode($request->tirebrand)));
+        }
+
+        if (isset($request->speedrating) && $request->speedrating) {
+            $load_indexs = $load_indexs->whereIn('speedrating', json_decode(base64_decode($request->speedrating)));
+        }
+
+        $load_indexs =  $load_indexs->select('loadindex', \DB::raw('count(DISTINCT prodmodel) as total'))
+        ->groupBy('loadindex')
+        ->get()
+        ->sortBy('loadindex');
+
+
+
+        // Speed Ratings search in the Sidebar
+
+        $speedratings = clone $tires;
+
+        if (isset($request->tirebrand) && $request->tirebrand) {
+            $speedratings = $speedratings->whereIn('prodbrand', json_decode(base64_decode($request->tirebrand)));
+        }
+
+        if (isset($request->loadindex) && $request->loadindex) {
+            $speedratings = $speedratings->whereIn('loadindex', json_decode(base64_decode($request->loadindex)));
+        }
+
+        $speedratings =  $speedratings->select('speedrating', \DB::raw('count(DISTINCT prodmodel) as total'))
+        ->groupBy('speedrating')
+        ->get()
+        ->sortBy('speedrating');
+
+
+
+            // Tire Brands search in the Sidebar
+
+            $countsByBrand = clone $tires;
+            
+            if (isset($request->tirebrand) && $request->tirebrand) {
+                $countsByBrand = $countsByBrand->whereIn('prodbrand', json_decode(base64_decode($request->tirebrand)));
+            }
+
+            if (isset($request->loadindex) && $request->loadindex) {
+                $countsByBrand = $countsByBrand->whereIn('loadindex', json_decode(base64_decode($request->loadindex)));
+            }
+
+            $countsByBrand = $countsByBrand->select('prodbrand', \DB::raw('count(DISTINCT prodmodel) as total'))
+            ->groupBy('prodbrand')
+            ->pluck('total','prodbrand');
+
+            $brands =  Tire::select('prodbrand')
+            ->groupBy('prodbrand')
+            ->get()
+            ->sortBy('prodbrand');
+            $prices =  Tire::select('price')
+            ->groupBy('price')
+            ->get()
+            ->sortBy('price');
+        $tires = $tires
+            ->orderBy('price', 'ASC')
+            ->get()
+            ->unique('prodmodel')
+            ->toArray();
+
+        $tires = MakeCustomPaginator($tires, $request, 8);
+        // dd($tires);
+        // dd($speedratings,json_decode(base64_decode($request->tirespeedrating)));
+        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices'));
     }
 
     /**
@@ -76,7 +153,15 @@ class TireController extends Controller
                 ->where('tiresize',$tire->tiresize)
                 ->with(['Brand'])
                 ->get();
-        return view('tire_view',compact('tire','diff_tires'));
+
+        $similar_tires = Tire::select('detailtitle','prodimage','id','warranty','tiresize',
+                'speedrating','loadindex','utqg','partno','price','prodmodel')
+                ->where('prodbrand',$tire->prodbrand)
+                // ->orWhere('tirewidth',$tire->tirewidth)
+                // ->orWhere('tirediameter',$tire->tirediameter)
+                ->get()
+                ->unique('prodmodel');
+        return view('tire_view',compact('tire','diff_tires','similar_tires'));
     }
 
     /**
@@ -204,33 +289,33 @@ class TireController extends Controller
             return response()->json(['error' => $error->getMessage()]); 
         }
     }
-    /**
-     * Search the records by filters.
-     *
-     * @param  \App\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function setFiltersByTire(Request $request)
-    {
-        try{
-            $tires = Tire::select('prodimage','id','prodtitle','tiresize','loadindex','speedrating',
-                    'price','prodmodel','tirewidth','tireprofile','tirediameter')
-                    ->where('tirewidth',$request->width)
-                    ->where('tireprofile',$request->profile)
-                    ->where('tirediameter',$request->diameter)
-                    ->get();  
-            $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->groupBy('loadindex')->get()->sortBy('loadindex');
+    // /**
+    //  * Search the records by filters.
+    //  *
+    //  * @param  \App\Vehicle  $vehicle
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function setFiltersByTire(Request $request)
+    // {
+    //     try{
+    //         $tires = Tire::select('prodimage','id','prodtitle','tiresize','loadindex','speedrating',
+    //                 'price','prodmodel','tirewidth','tireprofile','tirediameter')
+    //                 ->where('tirewidth',$request->width)
+    //                 ->where('tireprofile',$request->profile)
+    //                 ->where('tirediameter',$request->diameter)
+    //                 ->get();  
+    //         $load_indexs =Tire::select('loadindex', \DB::raw('count(*) as total'))->groupBy('loadindex')->get()->sortBy('loadindex');
         
-            $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->groupBy('speedrating')->get()->sortBy('speedrating');
+    //         $speedratings =Tire::select('speedrating', \DB::raw('count(*) as total'))->groupBy('speedrating')->get()->sortBy('speedrating');
 
-            return view('tires_list',compact('tires','load_indexs','speedratings'));
+    //         return view('tires_list',compact('tires','load_indexs','speedratings'));
 
-        }catch(ModelNotFoundException $notfound){
-            return response()->json(['error' => $notfound->getMessage()]); 
-        }catch(Exception $error){
-            return response()->json(['error' => $error->getMessage()]); 
-        }
-    }
+    //     }catch(ModelNotFoundException $notfound){
+    //         return response()->json(['error' => $notfound->getMessage()]); 
+    //     }catch(Exception $error){
+    //         return response()->json(['error' => $error->getMessage()]); 
+    //     }
+    // }
 
 
 
