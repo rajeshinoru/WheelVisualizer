@@ -26,9 +26,27 @@ function MakeCustomPaginator($data,$request,$per_page=9){
 }
 
 function convertBoltPattern($pattern=''){
-	if($pattern == 'Blank5' || $pattern == 'Blank6' || $pattern == '' )
+	if($pattern == 'Blank5' || $pattern == 'Blank6'  || $pattern == 'Blank5x' || $pattern == '' )
 	{
-		return $pattern??'';
+		$patternText='Fits most';
+		if($pattern == 'Blank5'){
+			$patternText=' 5 lug';		
+		}
+		if($pattern == 'Blank6'){
+			$patternText=' 6 lug';
+		}
+		if($pattern == 'Blank5x'){
+			$patternText=' 5x lug';		
+		}
+
+		$patternText .=' bolt patterns';
+
+		if($pattern == ''){
+			return $pattern;
+		}else{
+			return $patternText??'';
+		}
+		
 	}else{
 
 		return substr_replace($pattern, ' x ', 1, 0);
