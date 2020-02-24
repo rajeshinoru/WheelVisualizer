@@ -471,7 +471,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 tire-benifit-des">
 
                     <div class="row tire-benifit">
                         <div class="col-sm-12">

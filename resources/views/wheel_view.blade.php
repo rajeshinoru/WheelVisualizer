@@ -337,16 +337,6 @@
     .col-sm-9.wheel_view_list .tab-content {
         margin-bottom: 0px !important;
     }
-
-    @media (max-width: 767px) {
-        .row.wheel-view h1 {
-            font-family: Montserrat !important;
-            font-size: 16px !important;
-            text-align: center;
-            line-height: 30px !important;
-        }
-    }
-
     .activetab .nav-tabs li.active a {
         background-color: #ecb23d !important;
         color: #ffff;
@@ -609,7 +599,7 @@
                                 <div class="tab-pane fade in active" id="tab1default">
                                     <div class="col-sm-12">
                                         <div class="prod-headinghome">
-                                            <br>
+
                                             <p><?php echo @$wheel->proddesc ?></p>
                                         </div>
                                     </div>
@@ -727,12 +717,12 @@
 
     });
     $('.boltpattern_tab').change(function() {
-        
+
         var selectedVal = $(this).val();
-        
+
         $('.' + selectedVal).siblings('.dynamic').hide();
         $('.' + selectedVal).show();
-        
+
         var selectedOption = $(this).find('option:selected');
         var title = selectedOption.data('title');
         $('.wheel_detail_title').text(title);
@@ -748,9 +738,9 @@
 <script type="text/javascript">
 
     // $(function() {
-        $('.zoomple').zoomple({ 
+        $('.zoomple').zoomple({
             offset : {x:-150,y:-150},
-            zoomWidth : 300,  
+            zoomWidth : 300,
             zoomHeight : 300,
             roundedCorners : true
         });

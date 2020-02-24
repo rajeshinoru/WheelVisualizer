@@ -1,38 +1,36 @@
 <header>
-<nav id="top">
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <div id="top-links" class="pull-left">
-                    <ul class="list-inline">
-                        <li class="header-phone pull-left"><a href=""><i class="fa fa-phone"></i><span>123456789</span></a></li>
-                        <li class="header-phone pull-left"><a href=""><i class="fa fa-envelope-o"></i><span>sales@discountedwheelwarehouse.com</span></a></li>
-                    </ul>
+    <nav id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="top-links" class="pull-left">
+                        <ul class="list-inline">
+                            <li class="header-phone pull-left"><a href=""><i class="fa fa-phone"></i><span>123456789</span></a></li>
+                            <li class="header-phone pull-left"><a href=""><i class="fa fa-envelope-o"></i><span>sales@discountedwheelwarehouse.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="top-links" class="pull-right">
+                        <ul class="list-inline">
+                            @if(@Auth::user()=='')
+                            <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
+                            <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
+                            @else
+                            <li class="header-phone pull-left">
+                                <form action="{{ url('/logout') }}" method="POST">
+                                    {{csrf_field()}}
+                                    <button type="submit"><i class="fa fa-sign-out"></i> Sign out</button>
+                                </form>
+                            </li>
+                            @endif
+                            <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-6">
-                <div id="top-links" class="pull-right">
-                    <ul class="list-inline">
-                        @if(@Auth::user()=='')
-                        <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
-                        <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
-                        @else
-                        <li class="header-phone pull-left">
-                            <form action="{{ url('/logout') }}" method="POST">
-                                {{csrf_field()}}
-                                <button type="submit"><i class="fa fa-sign-out"></i> Sign out</button>
-                            </form>
-                        </li>
-                        @endif
-                        <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li>
-                    </ul>
-                </div>
-        </div>
-    </div>
-</div>
-</nav>
-
-
+    </nav>
 
     <div class="full-header">
         <div class="container">
@@ -57,258 +55,6 @@
         </div>
     </div>
 
-    <style>
-
-        .dropdown-menu.multi-colum-nav
-        {
-            width:1311px !important;
-            background: #f4f4f4 !important;
-            border: none !important;
-        }
-        .dropdown-menu.nav-dropdown
-        {
-            width:1470px !important;
-            background: #f4f4f4 !important;
-            border: none !important;
-        }
-        button.btn.btn-inverse.btn-block.btn-lg
-        {
-            font-size: 12px !important;
-            line-height: 18px !important;
-        }
-        .row.tire-nav {
-            padding: 0px 0px !important;
-            margin: 0px 0px !important;
-        }
-
-        .dropdown-menu.multi-colum-nav li a {
-            font-size: 12px !important;
-            font-family: poppins !important;
-        }
-
-        .col-sm-3.one-nav ul {
-            list-style-type: none !important;
-        }
-
-        .col-sm-3.one-nav ul li {
-            padding: 5px 0px !important;
-            border-bottom: 1px solid #222 !important;
-        }
-
-        .col-sm-3.one-nav h5 {
-            color: #ccc !important;
-            font-weight: 600;
-            font-size: 15px !important;
-            text-transform: uppercase;
-        }
-
-        .col-sm-3.see-more {
-            text-align: center !important;
-        }
-
-        .more a {
-            color: #fff !important;
-            font-size: 12px !important;
-        }
-
-        .more {
-            padding: 10px 0px !important;
-        }
-
-        .more:hover a {
-            color: red !important;
-        }
-
-        .dropdown-menu li>a:hover,
-        .dropdown-menu li>a:focus {
-            color: #ecb23d !important;
-        }
-
-        .dropdown-tire:hover .dropdown-menu.multi-colum-nav {
-            display: block !important;
-        }
-    </style>
-
-    <style>
-        .car-truck-head {
-            margin: 15px 0px !important;
-            font-size: 12px !important;
-            color: #000 !important;
-            font-family: poppins !important;
-        }
-
-        .col-sm-2.shop-vehicle-head h1 {
-            font-size: 12px !important;
-            color: #000 !important;
-            margin: 11px 0px !important;
-            font-family: poppins !important;
-        }
-
-        .vehicle-list {
-            margin: 0px 0px !important;
-        }
-
-        .btn.vehicle {
-            background: #fff !important;
-            border-radius: 5px !important;
-            color: #222 !important;
-            font-size: 12px !important;
-        }
-
-        .dropdown-menu li>a {
-            color: #000 !important;
-        }
-
-        .form-control {
-            border: 1px solid #0e1661;
-            color: #000;
-            font-family: poppins !important;
-            font-size: 12px !important;
-        }
-
-        .btn.vehicle-go {
-            background: #ecb23d !important;
-            border-radius: 5px !important;
-            color: #fff !important;
-            font-size: 12px !important;
-            padding: 5px 20px !important;
-            height: 34px !important;
-            font-family: poppins !important;
-        }
-
-        .col-sm-12.tire-menu ul {
-            list-style-type: none !important;
-            column-count: 7;
-        }
-
-        .col-sm-12.tire-menu ul li {
-            color: #000 !important;
-            font-size: 12px !important;
-            padding: 5px 0px !important;
-            /*border-bottom:1px solid #22222254 !important;*/
-        }
-
-        .col-sm-12.tire-menu li a:hover {
-            color: #ecb23d !important;
-        }
-
-        .tire-dropdown-menu {
-
-            column-count: 4;
-        }
-
-        .car-truck-head i {
-            font-size: 25px !important;
-            padding: 0px 5px !important;
-        }
-
-        .dropdown-menu.multi-colum-nav {
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-        }
-
-        .btn.vehicle {
-            padding: 7px 30px !important;
-        }
-
-
-        .col-sm-12.tire-menu-list {
-            margin-bottom: 20px !important;
-        }
-
-        @media (max-width: 767px) {
-            .car-truck-head {
-                line-height: 30px !important;
-            }
-
-            .btn.vehicle {
-                margin: 5px 0px !important;
-                font-size: 10px !important;
-            }
-        }
-    </style>
-
-    <style>
-        .dropbtn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
-        }
-
-
-        .navbar-collapse {
-            padding: 0px 0px !important;
-        }
-
-        .car-truck-head img {
-            width: 40px !important;
-            margin: 0px 5px !important;
-        }
-
-        .moving-car {
-            animation: move 4s 1s infinite ease-in-out;
-        }
-
-        .moving-truck {
-            animation: move 4s 1s infinite ease-in-out;
-        }
-
-        @keyframes move {
-            0% {
-                transfrom: translateX(0);
-            }
-
-            100% {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-        }
-
-        .dropdown-menu.nav-dropdown .col-sm-12.tire-menu {
-            overflow-y: scroll;
-            overflow-x: hidden;
-            height: 500px;
-        }
-
-    </style>
-
-
-
     <div id="myHeader" class="new-navbar">
 
         <div class="container">
@@ -324,9 +70,9 @@
                 <div class="col-sm-10 nav-bar">
                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
                         <ul class="nav navbar-nav navbar">
-                            <li class="dropdown-nav">
-                              <!-- <a title="WHEELS" href="{{route('wheelproducts')}}">DISCOUNT WHEELS <span class="caret"></span></a> -->
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">DISCOUNT WHEELS <span class="caret"></span></a>
+                            <li class="dropdown dropdown-nav">
+                                <!-- <a title="WHEELS" href="{{route('wheelproducts')}}">DISCOUNT WHEELS <span class="caret"></span></a> -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">DISCOUNT WHEELS <span class="caret"></span></a>
                                 <ul class="dropdown-menu nav-dropdown">
 
                                     <!-- New Menu Start-->
@@ -346,43 +92,42 @@
                                             <div class="col-sm-10">
                                                 <div class="vehicle-list">
 
-                                                <form action="{{url('/setFiltersByProductVehicle')}}">
-                                                    <input type="hidden" name="flag" value="searchByVehicle">
-                                                    <div class="dropdown">
-                                                        <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
-                                                            <option value="">Select Make</option>
-                                                            @foreach(getVehicleMakeList() as $key => $make)
-                                                            <option value="{{$make}}">{{$make}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                    <form action="{{url('/setFiltersByProductVehicle')}}">
+                                                        <input type="hidden" name="flag" value="searchByVehicle">
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
+                                                                <option value="">Select Make</option>
+                                                                @foreach(getVehicleMakeList() as $key => $make)
+                                                                <option value="{{$make}}">{{$make}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
 
-                                                    <div class="dropdown">
-                                                        <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
-                                                            <option value="">Year</option>
-                                                        </select>
-                                                    </div>
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
+                                                                <option value="">Year</option>
+                                                            </select>
+                                                        </div>
 
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
+                                                                <option value="">Model</option>
+                                                            </select>
+                                                        </div>
 
-                                                    <div class="dropdown">
-                                                        <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
-                                                            <option value="">Model</option>
-                                                        </select>
-                                                    </div>
+                                                        <div class="dropdown">
+                                                            <select required="" class="form-control browser-default custom-select WheelNavSubmodel" name="submodel">
+                                                                <option value="">Trim</option>
 
-                                                    <div class="dropdown">
-                                                        <select required="" class="form-control browser-default custom-select WheelNavSubmodel" name="submodel">
-                                                            <option value="">Trim</option>
-
-                                                        </select>
-                                                    </div>
-                                                    <div class="dropdown">
-                                                        <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                    </div>
-                                                    <a href="">
-                                                        <button type="submit" class="btn vehicle-go">GO</button>
-                                                    </a>
-                                                </form>
+                                                            </select>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
+                                                        </div>
+                                                        <a href="">
+                                                            <button type="submit" class="btn vehicle-go">GO</button>
+                                                        </a>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -452,7 +197,6 @@
 
                                                         <div class="col-sm-12 tire-menu">
 
-
                                                             <ul class="tire-dropdown-menu">
                                                                 <li><a title="ALL" href="{{route('wheelproducts')}}">ALL</a></li>
 
@@ -461,7 +205,6 @@
                                                                 @empty @endforelse
                                                             </ul>
                                                         </div>
-
 
                                                     </div>
                                                 </div>
@@ -474,7 +217,7 @@
                             </li>
 
                             <!-- New Nav Start -->
-                            <li class="dropdown-tire">
+                            <li class="dropdown dropdown-tire">
                                 <!-- <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a> -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">DISCOUNT TIRES <span class="caret"></span></a>
                                 <ul class="dropdown-menu multi-colum-nav">
@@ -509,7 +252,6 @@
                                                                 <option value="">Year</option>
                                                             </select>
                                                         </div>
-
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select NavModel" name="model">
@@ -559,7 +301,6 @@
                                                             </select>
                                                         </div>
 
-
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select NavDiameter" name="diameter">
                                                                 <option value="">Select Diameter</option>
@@ -596,7 +337,6 @@
 
                                                         </div>
 
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -626,7 +366,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </header>
@@ -634,24 +373,20 @@
 <!-- New Fixed Nav Start -->
 
 <script>
-    window.onscroll = function()
-    {
+    window.onscroll = function() {
         myFunction()
     };
     var header = document.getElementById("myHeader");
     var sticky = header.offsetTop;
 
-    function myFunction()
-    {
+    function myFunction() {
         // if (window.pageYOffset > sticky)
-        if($(document).scrollTop() > 120)
-        {
+        if ($(document).scrollTop() > 123) {
             header.classList.add("sticky");
-        }
-        else
-        {
+        } else {
             header.classList.remove("sticky");
         }
     }
+
 </script>
 <!-- New Fixed Nav End -->

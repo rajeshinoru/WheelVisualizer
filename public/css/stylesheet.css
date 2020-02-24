@@ -1077,7 +1077,12 @@ input[type="radio"], input[type="checkbox"] {
     .main-pro-inner {
         float: right;
         width: 100% !important;
-        padding: 20px 20px !important;
+        padding: 0px 0px !important;
+   }
+   .main-pro-inner-category
+   {
+     padding: 0px 0px !important;
+     margin:0px 0px !important;
    }
     .container.banner-form {
         position: absolute;
@@ -1684,7 +1689,7 @@ header .full-header {
     color:#fff !important;
     cursor: pointer;
     font-family: Montserrat !important;
-    margin-top: 25px;
+    margin-top: 10px;
     padding: 11px 15px;
     position: relative;
     text-transform: uppercase;
@@ -1947,7 +1952,7 @@ header .full-header {
 }
 header {
     background: #2874f0;
-    float: left;
+    /* float: left; */
     width: 100%;
 }
 /* menu */
@@ -2360,6 +2365,11 @@ header {
     .slideshow-panel .swiper-container .swiper-pager .swiper-button-next, .slideshow-panel .swiper-container:hover .swiper-pager .swiper-button-next {
         right: 20px;
    }
+}
+@media(max-width:992px) {
+    .wrapper {
+        width: 100%;
+    }
 }
 @media (max-width: 480px) {
     .slideshow-panel .swiper-container .swiper-pager div, .slideshow-panel .swiper-container .swiper-pager div:hover {
@@ -4395,7 +4405,7 @@ h2.price {
     width: 100%;
 }
 .button-group button.btn-cart span, .button-group button.btn-wishlist span, .button-group button.btn-compare span {
-    display: none;
+    display: none !important;
 }
 .product-thumb .button-group i::before {
     content: "";
@@ -5220,12 +5230,21 @@ h2.price {
         right: 20px;
    }
 }
-@media (min-width: 481px) and (max-width: 767px) {
-    .product-product .product-image {
+
+
+@media (min-width: 481px) and (max-width: 767px)
+{
+    .product-product .product-image
+    {
         margin: 0 auto;
         width: 80%;
    }
-    .product-images .additional-images-container {
+   .prod-heading-center p
+   {
+     font-size: 12px !important;
+   }
+    .product-images .additional-images-container
+    {
         width: 400px;
    }
    .search
@@ -5236,15 +5255,91 @@ h2.price {
    {
      width:200px !important;
    }
+   .fal-logo img
+   {
+     margin: 5px 0px !important;
+   }
+   .col-sm-3.video iframe
+   {
+     margin: 5px 0px !important;
+     width: 100%;
+   }
+   .wheel-list
+   {
+     column-width: 8em !important;
+     padding: 5px 5px !important;
+   }
+   .col-sm-6.pagi-left
+   {
+    float: left;
+  }
+  .img.lazy
+  {
+      margin: 5px 0px !important;
+  }
+  .googlestore {
+      vertical-align: middle;
+      width: 100% !important;
+      text-align: center;
+      display: inline-block;
+  }
+  .zfooterMenu ul li {
+      display: block;
+      padding-top: 15px;
+  }
+  .main a {
+      font-size: 10px !important;
+  }
+  .dropdown-menu.multi-colum-nav {
+      width: 100% !important;
+      background: #000 !important;
+      border: none !important;
+      text-align: center;
+  }
+  .social2-nl {
+      text-align: center;
+  }
+
+  .hometabled
+  {
+      padding: 15px 15px !important;
+  }
+  .col-sm-9.wheel_view_list .table > tbody > tr > td
+  {
+    text-align: center;
+  }
+  #diameter_tab_36 h2
+  {
+    text-align: center;
+  }
+  .car-truck-head {
+    line-height: 30px !important;
+  }
+  .btn.vehicle {
+    margin: 5px 0px !important;
+    font-size: 10px !important;
+  }
 }
-@media (max-width: 480px) {
-    #top .container {
+
+@media (min-width: 360px) and (max-width: 767px)
+{
+  .fal-logo img
+  {
+    margin: 5px 0px !important;
+  }
+}
+
+@media (max-width: 480px)
+{
+    #top .container
+    {
         padding: 0;
    }
     .top-column {
         margin: 15px 0 30px;
    }
-    #cart .dropdown-menu {
+    #cart .dropdown-menu
+    {
         right: -10px;
    }
     .product-layout, .product-layouts {
@@ -5456,7 +5551,14 @@ h2.price {
     #otcmsheader .otheader-service {
         padding: 10px 0 0;
    }
+   #otcmsheaderservices {
+       display: inline-block;
+       float: none;
+       margin: 0;
+       vertical-align: top;
+  }
 }
+
 @media(max-width:543px) {
     #otcmsheader .otheader-service {
         font: 400 14px/18px "Poppins", Helvetica, sans-serif;
@@ -5519,14 +5621,7 @@ h2.price {
     -o-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
 }
-@media(max-width:767px) {
-    #otcmsheaderservices {
-        display: inline-block;
-        float: none;
-        margin: 0;
-        vertical-align: top;
-   }
-}
+
 /*--------------------End cms-header services----------------------*/
 #content .html-content {
     float: left;
@@ -5737,6 +5832,7 @@ h2.price {
     -o-transform: scale(1);
     -ms-transform: scale(1);
 }
+
 @media(max-width:767px) {
     #otcmsrightbanner {
         width: 100%;
@@ -6827,6 +6923,14 @@ input[type="radio"], input[type="checkbox"] {
     overflow-y: scroll;
     height: 200px !important;
 }
+#collapseOne .panel-body {
+    overflow-y: scroll;
+    height: 150px !important;
+}
+#collapseTwo .panel-body {
+    overflow-y: scroll;
+    height: 150px !important;
+}
 .wrapper.center-block #collapseTwo .panel-body {
     overflow-y: scroll;
     height: 200px !important;
@@ -7095,17 +7199,37 @@ button {
     border-radius: 0px;
     margin-top: 20px !important;
 }
-.pagination {
-    float: right !important;
-    padding: 50px 0px !important;
+/* Pagination Start */
+.pro-pagination
+{
+    padding: 15px 0px !important;
+    margin: 0px 0 0;
+    display: block;
 }
-.row.main-pro {
-    padding: 30px 0px !important;
+.pagi-right
+{
+  text-align: right;
 }
-.dropdown-nav:hover .nav-dropdown {
+.pagi-left p
+{
+    margin:0px 0px !important;
+    padding: 10px 0px;
+    font-family: poppins !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #000 !important;
+}
+/* Pagination End */
+/* Header Start */
+.dropdown-nav:hover .nav-dropdown
+{
     display: block;
     transition: 1s all;
     background: #f4f4f4 !important;
+}
+.dropdown-tire:hover .dropdown-menu.multi-colum-nav
+{
+    display: block !important;
 }
 .nav-dropdown {
     transition:1s all !important;
@@ -7115,7 +7239,8 @@ button {
     padding: 5px 0px !important;
     border-bottom:1px solid #22222254 !important;
 }
-.product-thumb .image img,.product-thumb .image img.image_thumb_swap {
+.product-thumb .image img,.product-thumb .image img.image_thumb_swap
+{
     width:200px !important;
 }
 .dropdown-menu > li > a {
@@ -7171,6 +7296,7 @@ button {
 /* .navbar-toggle .icon-bar {
     background: #000 !important;
 } */
+
 .navbar-toggle {
     background-color: #fff !important;
     margin-right:25px !important;
@@ -7233,8 +7359,20 @@ button {
     margin: 0px 0px !important;
     font-family: Poppins !important;
 }
+/* Tire inner Page Start */
+.wheel-list-change-tab
+{
+    text-align: center !important;
+    margin-top: 10px !important;
+    background:#cccccc2e !important;
+    padding: 10px 0px !important;
+}
+.listing-sidebar
+{
+    margin-top: 10px !important;
+}
 
-
+/* Tire inner Page End */
 
 
 
@@ -7249,6 +7387,16 @@ button {
      text-align: center !important;
      float: none !important;
    }
+   .row.wheel-view h1 {
+       font-family: Montserrat !important;
+       font-size: 16px !important;
+       text-align: center;
+       line-height: 30px !important;
+   }
+   .product-layouts
+   {
+     min-height: auto !important;
+   }
    #top .btn-link, #top-links li, #top-links a
    {
      font-size:10px !important;
@@ -7257,8 +7405,8 @@ button {
    {
      float:none !important;
    }
-    #logo img
-    {
+   #logo img
+   {
         width: 35% !important;
         height:auto;
         float:left;
@@ -7277,35 +7425,44 @@ button {
        column-count: 3 !important;
        text-align: left;
    }
-    .slick-slide img {
+    .slick-slide img
+    {
         width:100% !important;
    }
-    .footer-bottom p {
+    .footer-bottom p
+    {
         text-align:left !important;
    }
-    .dropdown-nav:hover .nav-dropdown {
+    .dropdown-nav:hover .nav-dropdown
+    {
         display: inline-block;
         transition: 1s all;
         background: #f4f4f4 !important;
    }
-    .navbar .navbar-collapse .navbar-right > li:last-child {
+    .navbar .navbar-collapse .navbar-right > li:last-child
+    {
         padding-left: 15px;
         padding-right: 15px;
    }
-    .navbar-toggle .icon-bar {
+    .navbar-toggle .icon-bar
+    {
         background: #fff !important;
    }
-    .navbar-toggle {
+    .navbar-toggle
+    {
         background-color: #ecb23d !important;
    }
-    .navbar .nav-collapse {
+    .navbar .nav-collapse
+    {
         margin: 7.5px auto;
         padding: 0;
    }
-    .navbar .nav-collapse .navbar-form {
+    .navbar .nav-collapse .navbar-form
+    {
         margin: 0;
    }
-    .nav-collapse>li {
+    .nav-collapse>li
+    {
         float: none;
    }
    .navbar-nav > li > .dropdown-menu
@@ -7319,13 +7476,16 @@ button {
        width:100% !important;
        column-count: 1;
    }
-    .btn.btn-inverse.btn-block.btn-lg {
+    .btn.btn-inverse.btn-block.btn-lg
+    {
         display: none !important;
    }
-    .nav.navbar-nav.navbar {
+    .nav.navbar-nav.navbar
+    {
         text-align: center !important;
    }
-    .zfooterMenu ul li {
+    .zfooterMenu ul li
+    {
         display: inline !important;
         margin: 10px 0px !important;
         line-height: 30px !important;
@@ -7336,10 +7496,7 @@ button {
         text-align: center;
         line-height: 30px !important;
    }
-   .col-sm-4.wheel-img img
-   {
-        width: 100% !important;
-    }
+
     .col-sm-3.payments3-card img
     {
         height: 50px !important;
@@ -7365,10 +7522,12 @@ button {
     {
         opacity: 0;
     }
-    #carousel-example2 {
+    #carousel-example2
+    {
         display: none !important;
     }
-    .pagination {
+    .pagination
+    {
         float: right;
         padding: 10px 10px !important;
     }
@@ -7389,7 +7548,7 @@ button {
     }
     .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl
     {
-        display: inline-block;
+        display: inline !important;
         padding:10px 0px !important;
     }
     .lazy.ri
@@ -7415,22 +7574,25 @@ button {
     }
     .col-sm-3.shop-details,.col-sm-3.tir-des
     {
-      margin: 25px 0px !important;
+      margin: 0px 5px !important;
     }
-    .video img {
+    .video img
+    {
       width: 100% !important;
       padding: 10px 0px !important;
     }
     .benifit-title p,.benifit-head
     {
-      text-align: center;
+      text-align: left !important;
     }
     .col-sm-4.benifit img
     {
-      width: 75% !important;
-      margin: 10px 0px !important;
+      width: 25% !important;
+      margin: 10px 10px !important;
+      float: left;
     }
-    .active > div {
+    .active > div
+    {
       display: unset !important;
     }
     .wheelImage.image_thumb_swap
@@ -7440,8 +7602,74 @@ button {
       width:100% !important;
       height: auto !important;
       left: 0% !important;
-      top: 30% !important;
-      z-index: 10000000;
+      top: 0% !important;
+    }
+    .nav-img img
+    {
+        width: 90px !important;
+        height: 90px !important;
+    }
+    .wheel-list-tab .nav > li > a
+    {
+      font-size: 12px !important;
+      font-family: Montserrat !important;
+      padding: 5px 5px !important;
+    }
+    ::-webkit-scrollbar
+    {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track
+    {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb
+    {
+      background: #ecb23d;
+      border-radius: 10px;
+    }
+    .prod-headinghome h2
+    {
+      line-height: 30px !important;
+      font-size: 15px !important;
+    }
+    .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl
+    {
+        display: inline-block;
+        padding: 10px 50px;
+        width: auto;
+        text-align: center;
+    }
+    .googlestore
+    {
+        vertical-align: middle;
+        width: 100% !important;
+        text-align: center;
+        display: inline-block;
+    }
+    .zfooterMenu ul li
+    {
+        display: block;
+        padding-top: 15px;
+    }
+    .zfooterMenu ul,.zfooterMenu ul li
+    {
+        border-left:none !important;
+    }
+    .zfooterMenu ul li a
+    {
+        border-right:none;
+    }
+    .main a
+    {
+        font-size:10px !important;
+    }
+    .dropdown-menu.multi-colum-nav {
+        width: 100% !important;
+        background: #000 !important;
+        border: none !important;
+        text-align: center;
     }
 }
 
@@ -7541,10 +7769,6 @@ button {
     .zfooterMenu ul li a
     {
         padding: 2px 5px !important;
-    }
-    .row.main-pro {
-        padding: 0px 0px !important;
-        margin: 0px 0px !important;
     }
     .col-sm-12.sub-head h1
     {
@@ -7661,7 +7885,7 @@ button {
 
 .fal-logo img
 {
-    margin: 95px 0px !important;
+    margin: 95px 0px;
 }
 ::-webkit-scrollbar
 {
@@ -7693,17 +7917,13 @@ button {
 }
 
 /* Wheel List Page Start*/
-.wheel-list-tab
-{
-    /*border: 1px solid #ccc !important;
-    padding: 20px 20px !important;
-    margin: 10px 0px !important; */
-}
+
 .col-md-8.left-head p
 {
     font-size: 12px !important;
     line-height: 30px !important;
     font-family: Montserrat !important;
+    margin-bottom:0px !important;
 }
 .btn.vehicle-change a
 {
@@ -7719,22 +7939,607 @@ button {
     padding: 40px 0px !important;
     background: #fff !important;
 }
-.table-responsive
-{
-    overflow-x: hidden !important;
-}
+
 #demo-des
 {
     padding: 40px 0px !important;
 }
 /* Tirebrandmodel End */
-.ellipsis {
+.ellipsis
+{
   color: #14281D;
 }
-
-.more, .less {
+.col-sm-3.video iframe
+{
+    width: 100% !important;
+}
+.more, .less
+{
   color: #0e1661 !important;
   text-decoration: none;
   font-weight: bold;
   padding: 0px 0px !important;
 }
+
+/* Footer Start */
+#footer-down {
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+}
+
+/* .bbb-nl,
+.godaddy-nl,
+.reseller-nl,
+.sitelock-nl,
+.socialicons-nl,
+.verisign-nl {
+    display: table-cell;
+    vertical-align: middle;
+    width: 16%;
+    text-align: center;
+}
+
+.social2-nl {
+    display: table;
+    vertical-align: middle;
+    position: relative;
+}
+
+.googlestore {
+    display: table-cell;
+    vertical-align: middle;
+    width: 16%;
+    text-align: center;
+} */
+
+.social-nl {
+    padding: 40px 0px !important;
+}
+
+.footer-ratings h1 a
+{
+    color:#0e1661 !important;
+    font-size: 12px !important;
+    line-height:30px;
+    font-family: poppins !important;
+}
+.main
+{
+    font-size: 12px !important;
+    color:#000;
+    line-height: 30px !important;
+    font-family: poppins !important;
+}
+.main a {
+    color: #0e1661 !important;
+}
+
+.zfooterMenu ul li a:hover {
+    display: inline;
+    font-size: 12px;
+    color: #ecb23d;
+    font-family: poppins !important;
+}
+
+.zfooterMenu ul li a
+{
+    display: inline;
+    text-decoration: none;
+    font-size: 12px;
+    color: #000;
+    padding: 2px 14px;
+    border-right:1px solid #0e1661 !important;
+    border-left: 1px solid #0e1661 !important;
+    font-family: poppins !important;
+    }
+
+.zfooterMenu ul li {
+    position: relative;
+    display: inline;
+}
+
+.zfooterMenu ul {
+    margin: 5px 0;
+    padding: 0;
+    list-style-type: none;
+    border-left: 1px solid #e0e0e0;
+}
+
+.footer-ratings h1 {
+    margin: 0px 0px !important;
+}
+
+.copywright
+{
+    padding: 15px 0 !important;
+    color: #0e1661 !important;
+    font-size: 12px !important;
+    font-family: poppins !important;
+}
+.footer-phone {
+    color: #0e1661 !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    font-family: poppins !important;
+}
+
+#tire-list {
+    padding: 40px 0px;
+}
+
+.tire-type a {
+    font-size: 12px !important;
+}
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    background: #ecb23d !important;
+    border: none !important;
+    padding: 8px 5px !important;
+    border-radius: 50% !important;
+    z-index:999;
+    width: 40px;
+    height: 40px;
+}
+#back-to-top:hover i {
+top: 5px !important;
+}
+.row.social-nl
+{
+    text-align: center !important;
+}
+.row.social-nl ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+.foot-icon li img
+{
+    margin: 0px 20px !important;
+}
+/* Footer End */
+
+/* header Start */
+.dropdown-menu.multi-colum-nav
+{
+    width:1311px !important;
+    background: #f4f4f4 !important;
+    border: none !important;
+}
+.dropdown-menu.nav-dropdown
+{
+    width:1470px !important;
+    background: #f4f4f4 !important;
+    border: none !important;
+}
+button.btn.btn-inverse.btn-block.btn-lg
+{
+    font-size: 12px !important;
+    line-height: 18px !important;
+}
+.row.tire-nav {
+    padding: 0px 0px !important;
+    margin: 0px 0px !important;
+}
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover
+{
+    background: #ecb23d !important;
+    border: none !important;
+}
+.dropdown-menu.multi-colum-nav li a {
+    font-size: 12px !important;
+    font-family: poppins !important;
+}
+
+.col-sm-3.one-nav ul {
+    list-style-type: none !important;
+}
+
+.col-sm-3.one-nav ul li {
+    padding: 5px 0px !important;
+    border-bottom: 1px solid #222 !important;
+}
+
+.col-sm-3.one-nav h5 {
+    color: #ccc !important;
+    font-weight: 600;
+    font-size: 15px !important;
+    text-transform: uppercase;
+}
+
+.col-sm-3.see-more {
+    text-align: center !important;
+}
+
+.more a {
+    color: #fff !important;
+    font-size: 12px !important;
+}
+
+.more {
+    padding: 10px 0px !important;
+}
+
+.more:hover a {
+    color: red !important;
+}
+
+.dropdown-menu li>a:hover,
+.dropdown-menu li>a:focus {
+    color: #ecb23d !important;
+}
+
+.car-truck-head {
+    margin: 15px 0px !important;
+    font-size: 12px !important;
+    color: #000 !important;
+    font-family: poppins !important;
+}
+
+.col-sm-2.shop-vehicle-head h1 {
+    font-size: 12px !important;
+    color: #000 !important;
+    margin: 11px 0px !important;
+    font-family: poppins !important;
+}
+
+.vehicle-list {
+    margin: 0px 0px !important;
+}
+
+.btn.vehicle {
+    background: #fff !important;
+    border-radius: 5px !important;
+    color: #222 !important;
+    font-size: 12px !important;
+}
+
+.dropdown-menu li>a {
+    color: #000 !important;
+}
+
+.form-control {
+    border: 1px solid #0e1661;
+    color: #000;
+    font-family: poppins !important;
+    font-size: 12px !important;
+}
+
+.btn.vehicle-go {
+    background: #ecb23d !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    padding: 5px 20px !important;
+    height: 34px !important;
+    font-family: poppins !important;
+}
+
+.col-sm-12.tire-menu ul {
+    list-style-type: none !important;
+    column-count: 7;
+}
+
+.col-sm-12.tire-menu ul li {
+    color: #000 !important;
+    font-size: 12px !important;
+    padding: 5px 0px !important;
+    /*border-bottom:1px solid #22222254 !important;*/
+}
+
+.col-sm-12.tire-menu li a:hover {
+    color: #ecb23d !important;
+}
+
+.tire-dropdown-menu {
+
+    column-count: 4;
+}
+
+.car-truck-head i {
+    font-size: 25px !important;
+    padding: 0px 5px !important;
+}
+
+.dropdown-menu.multi-colum-nav {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.btn.vehicle {
+    padding: 7px 30px !important;
+}
+
+
+.col-sm-12.tire-menu-list {
+    margin-bottom: 20px !important;
+}
+
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+
+.navbar-collapse {
+    padding: 0px 0px !important;
+}
+
+.car-truck-head img {
+    width: 40px !important;
+    margin: 0px 5px !important;
+}
+
+.moving-car {
+    animation: move 4s 1s infinite ease-in-out;
+}
+
+.moving-truck {
+    animation: move 4s 1s infinite ease-in-out;
+}
+.dropdown-menu.nav-dropdown .col-sm-12.tire-menu {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 500px;
+}
+
+@keyframes move {
+    0% {
+        transfrom: translateX(0);
+    }
+
+    100% {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+/* Header End */
+/* Wheel Products Start */
+.col-sm-12.wheel-des p
+{
+    font-family: poppins !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #000 !important;
+    margin: 0px 0px !important;
+}
+.col-sm-12.wheel-des b a
+{
+  font-size: 12px !important;
+  font-family: Montserrat !important;
+  color: #0e1661 !important;
+}
+/* Wheel Products End */
+
+
+/* Tire Brand Page Start */
+#falken-des {
+    padding: 40px 0px;
+}
+.fal-logo {
+    text-align: center;
+}
+.prod-headinghome p
+{
+    margin: 10px 0px;
+    color: #121214;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    font-family: Poppins !important;
+}
+
+.title-heading h2 {
+    font-size: 15px !important;
+    margin: 20px 0px !important;
+    font-family: Montserrat !important;
+    font-weight:700 !important;
+}
+.hometabled {
+    display: table;
+    text-align: center;
+    width: 100%;
+    background: #fff;
+    margin: 25px 0px !important;
+    padding: .5%;
+    border-radius: 2px !important;
+}
+/* Tire Brand Page End */
+
+/* Tire List Page Start */
+.wrapper {
+    width: 100%;
+}
+
+.panel-heading {
+    padding: 0;
+    border: 0;
+}
+
+.panel-title>a,
+.panel-title>a:active {
+    display: block;
+    padding: 15px;
+    color: #555;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    text-decoration: none;
+}
+
+/* .panel-heading a:before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    transition: all 0.5s;
+} */
+
+.panel-heading.active a:before {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.listing-sidebar .widget-search ul li {
+    margin: 5px 2px !important;
+    list-style: none;
+}
+.listing-sidebar .widget-search ul li i {
+    padding-right: 10px;
+}
+.listing-sidebar .widget-search ul li span {
+    background: #db2d2e;
+}
+.listing-sidebar .widget-search ul li span {
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #ffffff;
+    background: #db2d2e;
+    text-align: center;
+    display: inline-block;
+}
+
+.widget-search {
+    border: 1px solid #ccc;
+}
+
+ul.list-group li {
+    list-style: none;
+    position: relative;
+}
+
+.list-group-item:first-child {
+    border-radius: 0px;
+}
+
+.list-group-item {
+    border-left: 0;
+    border-right: 0;
+    padding: 13px 15px;
+}
+
+.listing-sidebar .widget-search {
+    padding: 20px !important;
+}
+
+.list-style.-none {
+    padding: 0px 0px !important;
+}
+
+.listing-sidebar h5 {
+    font-size: 15px !important;
+    line-height: 30px;
+    font-family: Montserrat !important;
+    color: #0e1661 !important;
+    font-weight: 600 !important;
+}
+
+ul.list-group li {
+    list-style: none;
+}
+
+.panel-body ul {
+    list-style-type: none;
+    padding: 0px 0px !important;
+}
+.widget-banner img {
+    width: 100% !important;
+}
+.sorting-options-main {
+    border: 1px solid #e3e3e3;
+    padding: 20px;
+}
+.listing-sidebar #collapseOne, #collapseTwo {
+    border: 1px solid #e2e4e7;
+}
+.widget-search {
+    margin-bottom: 20px;
+}
+.widget-search .heading {
+    font-size: 13px !important;
+}
+.car-list ul li {
+    border: 1px solid #e3e3e3;
+    padding: 1px 10px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+.listing-sidebar #accordion .panel-title a {
+    color: #000 !important;
+    font-size: 12px !important;
+    font-family:Montserrat !important;
+}
+#special-product,.container.brand-logo,#bott,footer {
+    display: none !important;
+}
+button.btn.speed {
+    background: #0e1661 !important;
+    margin: 5px 0px !important;
+    color: #fff !important;
+    font-family: poppins !important;
+    font-size: 12px !important;
+    padding:5px 5px !important;
+}
+button.btn.speed a {
+    color: #fff !important;
+    font-size: 10px !important;
+}
+.col-sm-8.vehicle-change p {
+    margin: 0px 0px !important;
+}
+.btn.vehicle-change {
+    background: #0e1661 !important;
+}
+.btn.vehicle-change a {
+    color: #fff !important;
+    font-family: Montserrat !important;
+    font-size: 14px !important;
+}
+.tire-list-change {
+    border: 1px solid red;
+}
+/* Tire List Page End */

@@ -1,180 +1,7 @@
 
 <style>
-    #footer-down {
-        border: 1px solid #ccc !important;
-        background: #fff !important;
-    }
 
-    .bbb-nl,
-    .godaddy-nl,
-    .reseller-nl,
-    .sitelock-nl,
-    .socialicons-nl,
-    .verisign-nl {
-        display: table-cell;
-        vertical-align: middle;
-        width: 16%;
-        text-align: center;
-    }
-
-    .social2-nl {
-        display: table;
-        vertical-align: middle;
-        position: relative;
-        width: 90%;
-        max-width: 1366px;
-    }
-
-    .googlestore {
-        display: table-cell;
-        vertical-align: middle;
-        width: 16%;
-        text-align: center;
-    }
-
-    .social-nl {
-        margin: 40px 0px !important;
-    }
-
-    .footer-ratings h1 a
-    {
-        color:#0e1661 !important;
-        font-size: 12px !important;
-        line-height:30px;
-        font-family: poppins !important;
-    }
-    .main
-    {
-        font-size: 12px !important;
-        color:#000;
-        line-height: 30px !important;
-        font-family: poppins !important;
-    }
-    .main a {
-        color: #0e1661 !important;
-    }
-
-    .zfooterMenu ul li a:hover {
-        display: inline;
-        font-size: 12px;
-        color: #ecb23d;
-        font-family: poppins !important;
-    }
-
-    .zfooterMenu ul li a
-    {
-        display: inline;
-        text-decoration: none;
-        font-size: 12px;
-        color: #000;
-        padding: 2px 14px;
-        border-right:1px solid #0e1661 !important;
-        border-left: 1px solid #0e1661 !important;
-        font-family: poppins !important;
-        }
-
-    .zfooterMenu ul li {
-        position: relative;
-        display: inline;
-    }
-
-    .zfooterMenu ul {
-        margin: 5px 0;
-        padding: 0;
-        list-style-type: none;
-        border-left: 1px solid #e0e0e0;
-    }
-
-    .footer-ratings h1 {
-        margin: 0px 0px !important;
-    }
-
-    .copywright
-    {
-        padding: 15px 0 !important;
-        color: #0e1661 !important;
-        font-size: 12px !important;
-        font-family: poppins !important;
-    }
-    .footer-phone {
-        color: #0e1661 !important;
-        font-size: 12px !important;
-        line-height: 30px !important;
-        font-family: poppins !important;
-}
-
-
-
-    @media (max-width: 767px) {
-
-        .bbb-nl,
-        .godaddy-nl,
-        .reseller-nl,
-        .sitelock-nl,
-        .socialicons-nl,
-        .verisign-nl {
-            display: inline-block;
-            padding: 10px 50px;
-            width: auto;
-            text-align: center;
-        }
-
-        .googlestore {
-            vertical-align: middle;
-            width: 100% !important;
-            text-align: center;
-            display: inline-block;
-        }
-
-        .zfooterMenu ul li {
-            display: block;
-            padding-top: 15px;
-        }
-
-        .main a {
-            font-size: 10px !important;
-        }
-
-        .dropdown-menu.multi-colum-nav {
-            width: 100% !important;
-            background: #000 !important;
-            border: none !important;
-            text-align: center;
-        }
-
-        .social2-nl {
-            text-align: center;
-        }
-    }
-
-
-    #tire-list {
-        padding: 40px 0px;
-    }
-
-    .tire-type a {
-        font-size: 12px !important;
-    }
-    .back-to-top {
-        cursor: pointer;
-        position: fixed;
-        bottom: 20px;
-        right: 10px;
-        background: #ecb23d !important;
-        border: none !important;
-        padding: 8px 5px !important;
-        border-radius: 50% !important;
-        z-index:999;
-        width: 40px;
-        height: 40px;
-}
-#back-to-top:hover i {
-    top: 5px !important;
-}
 </style>
-
-
-
 <section id="footer-down">
     <div class="container-fluid">
         <div class="footerWrapper">
@@ -188,8 +15,20 @@
 <section id="footer">
 
     <div class="container">
-        <div class="social-nl">
-            <div align="center">
+        <div class="row social-nl">
+
+          <div class="col-sm-12">
+            <ul class="foot-icon">
+              <li><img class="lazy" src="{{url('image/social-1.png')}}" style="display: inline;" width="125" height="auto"></a></li>
+              <li><img class="lazy" src="{{url('image/social-2.png')}}" style="display: inline;" width="125" height="auto"></a></li>
+              <li><img class="lazy" src="{{url('image/social-3.png')}}" style="display: inline;" width="125" height="auto"></a></li>
+              <li><img class="lazy" src="{{url('image/social-4.png')}}" style="display: inline;" width="125" height="auto"></a></li>
+              <li><img class="lazy" src="{{url('image/social-5.png')}}" style="display: inline;" width="125" height="auto"></a></li>
+            </ul>
+          </div>
+
+
+            <!-- <div align="center">
                 <div class="social2-nl">
 
                     <div class="bbb-nl">
@@ -218,7 +57,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="container">
@@ -255,6 +94,7 @@
 
 
 <script>
+
 $(document).ready(function(){
      $(window).scroll(function () {
             if ($(this).scrollTop() > 100) {
