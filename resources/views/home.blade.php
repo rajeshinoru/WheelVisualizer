@@ -16,6 +16,7 @@
                                     <a>
                                         <img src="image/Banner.jpg" alt="slider-01" class="img-responsive" />
                                     </a>
+                                    
                                 </div>
                                 <div class="swiper-slide text-center">
                                     <a>
@@ -216,16 +217,10 @@
         width: auto;
         display: table;
     }
-
-    .homeapge1 {
-        height: 190px !important;
-    }
-
     .gridItem {
         display: inline-block;
         width: 210px;
         text-align: center;
-        height: 250px;
         padding: 5px;
     }
 
@@ -278,65 +273,18 @@
     .prod-heading-center p
     {
         color:#0e1661 !important;
-        font-size: 15px !important;
+        font-size: 15px;
         line-height: 30px !important;
         font-family: Montserrat !important;
         font-weight: 700 !important;
     }
 
-    #produst,
-    #special-product,
-    footer,
-    #bott,
-    .container.brand-logo {
+    #produst, #special-product, footer, #bott, .container.brand-logo {
         display: none !important;
     }
     .container-fluid.home-page {
         padding: 0px 0px !important;
         background: #f1f1f1 !important;
-    }
-
-    @media (max-width: 767px)
-    {
-        .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl
-        {
-            display: inline-block;
-            padding: 10px 50px;
-            width: auto;
-            text-align: center;
-        }
-        .googlestore
-        {
-            vertical-align: middle;
-            width: 100% !important;
-            text-align: center;
-            display: inline-block;
-        }
-        .zfooterMenu ul li
-        {
-            display: block;
-            padding-top: 15px;
-        }
-        .zfooterMenu ul,.zfooterMenu ul li
-        {
-            border-left:none !important;
-        }
-        .zfooterMenu ul li a
-        {
-            border-right:none;
-        }
-        .main a
-        {
-            font-size:10px !important;
-        }
-        .dropdown-menu.multi-colum-nav {
-
-            width: 100% !important;
-            background: #000 !important;
-            border: none !important;
-            text-align: center;
-
-        }
     }
 </style>
 <div class="banner-search">

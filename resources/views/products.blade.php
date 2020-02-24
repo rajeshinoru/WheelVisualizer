@@ -1,30 +1,6 @@
-@extends('layouts.app')
-
-@section('shop_by_vehicle_css')
+@extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
-<style>
-  .col-sm-12.wheel-des p
-  {
-      font-family: poppins !important;
-      font-size: 12px !important;
-      line-height: 30px !important;
-      color: #000 !important;
-      margin: 0px 0px !important;
-  }
-  .col-sm-12.wheel-des b a
-  {
-    font-size: 12px !important;
-    font-family: Montserrat !important;
-    color: #0e1661 !important;
-  }
-  .wheel-des
-  {
-      padding: 20px 20px !important;
-  }
-</style>
-@endsection
-@section('content')
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -32,18 +8,17 @@
             <div class="col-sm-12 sub-head">
                 <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1>
             </div>
-            <div class="row">
-                <div class="col-sm-12 wheel-des">
-                    @forelse(@$branddesc as $desc)
-                    <p>{!! @$desc->proddesc !!}</p>
-                    @empty
-                    @endforelse
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 wheel-des">
+                @forelse(@$branddesc as $desc)
+                <p>{!! @$desc->proddesc !!}</p>
+                @empty @endforelse
             </div>
-            <div class="row main-pro">
-                <div class="col-sm-3">
-                    <div class="header-bottom col-sm-12">
-
+        </div>
+        <div class="row main-pro">
+            <div class="col-sm-3 main-pro-inner-category">
+                <div class="header-bottom col-sm-12">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="price-heading">SIZE</div>
@@ -153,15 +128,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
+            </div>
 
-
-
-                <div class="col-sm-9 col-sm-9 main-pro-inner">
-                    <div class="row">
-                        @forelse($products as $key => $product)
-                        <?php $product = (object)$product;?>
+            <div class="col-sm-9 col-sm-9 main-pro-inner">
+                <div class="row">
+                    @forelse($products as $key => $product)
+                    <?php $product = (object)$product;?>
                         <div class="col-sm-4">
                             <div class="product-layouts">
                                 <div class="product-thumb transition">
@@ -218,52 +191,40 @@
                                 </div>
                             </div>
                         </div>
-                        @empty
-                        {{'Not Found'}}
-                        @endforelse
-                        <br>
-                            <p style="text-align: right;"> {{@$products->total()?@$products->total().' Wheels Found':''}}</p>
-              
-                        {{$products->appends([
-                        'diameter' => @Request::get('diameter'),
-                        'width' => @Request::get('width'),
-                        'brand' => @Request::get('brand'),
-                        'car_id' => @Request::get('car_id'),
-                        'page' => @Request::get('page'),
-                        'flag' => @Request::get('flag'),
-                        'make' => @Request::get('make'),
-                        'year' => @Request::get('year'),
-                        'model' => @Request::get('model'),
-                        'submodel' => @Request::get('submodel'),
-                        'zip' => @Request::get('zip'),
-                        'wheeldiameter'=> @Request::get('wheeldiameter'),
-                        'wheelwidth'=> @Request::get('wheelwidth'),
-                        'boltpattern'=> @Request::get('boltpattern'),
-                        'minoffset'=> @Request::get('minoffset'),
-                        'maxoffset'=> @Request::get('maxoffset')
-                    ])->links()}}
+                        @empty {{'Not Found'}} @endforelse
+                </div>
+
+                <div class="row pro-pagination">
+                    <div class="col-sm-6 pagi-left">
+                        <p>1521 Wheels Found</p>
+                    </div>
+                    <div class="col-sm-6 pagi-right">
+                        {{$products->appends([ 'diameter' => @Request::get('diameter'), 'width' => @Request::get('width'), 'brand' => @Request::get('brand'), 'car_id' => @Request::get('car_id'), 'page' => @Request::get('page'), 'flag' => @Request::get('flag'), 'make' => @Request::get('make'), 'year' => @Request::get('year'), 'model' => @Request::get('model'), 'submodel' => @Request::get('submodel'), 'zip' => @Request::get('zip'), 'wheeldiameter'=> @Request::get('wheeldiameter'), 'wheelwidth'=> @Request::get('wheelwidth'), 'boltpattern'=> @Request::get('boltpattern'), 'minoffset'=> @Request::get('minoffset'), 'maxoffset'=> @Request::get('maxoffset') ])->links()}}
 
                     </div>
                 </div>
+
             </div>
         </div>
-  </div>
+    </div>
 </section>
 
+<section id="all-brand-wheel" style="display: none;">
 <div class="container">
-
-    <div class="row" style="display: none;">
+    <div class="row">
         <div class="col-sm-12 sub-head">
             <h1>All Brand Wheels</h1>
         </div>
         <div class="col-md-12">
             <!-- Controls -->
             <div class="controls pull-right hidden-xs">
-                <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example2" data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-success" href="#carousel-example2" data-slide="next"></a>
+                <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example2" data-slide="prev"></a>
+                <a class="right fa fa-chevron-right btn btn-success" href="#carousel-example2" data-slide="next"></a>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
 @section('custom_scripts')
 @endsection

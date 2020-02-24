@@ -3,206 +3,6 @@
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 @endsection @section('content')
 
-<style>
-    .wrapper {
-        width: 100%;
-    }
-
-    @media(max-width:992px) {
-        .wrapper {
-            width: 100%;
-        }
-    }
-
-    .panel-heading {
-        padding: 0;
-        border: 0;
-    }
-
-    .panel-title>a,
-    .panel-title>a:active {
-        display: block;
-        padding: 15px;
-        color: #555;
-        font-size: 16px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        word-spacing: 3px;
-        text-decoration: none;
-    }
-
-    .panel-heading a:before {
-        font-family: 'Glyphicons Halflings';
-        content: "\e114";
-        float: right;
-        transition: all 0.5s;
-    }
-
-    .panel-heading.active a:before {
-        -webkit-transform: rotate(180deg);
-        -moz-transform: rotate(180deg);
-        transform: rotate(180deg);
-    }
-
-    .listing-sidebar .widget-search {
-        padding: 20px;
-    }
-
-    ul {
-        margin-bottom: 0px;
-    }
-
-    .listing-sidebar .widget-search ul li {
-        margin: 5px 2px !important;
-        list-style: none;
-    }
-
-    .listing-sidebar .widget-search ul li i {
-        padding-right: 10px;
-    }
-
-    .listing-sidebar .widget-search ul li span {
-        background: #db2d2e;
-    }
-
-    .listing-sidebar .widget-search ul li span {
-        font-size: 12px;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        border-radius: 50%;
-        color: #ffffff;
-        background: #db2d2e;
-        text-align: center;
-        display: inline-block;
-    }
-
-    .widget-search {
-        border: 1px solid #ccc;
-    }
-
-    ul.list-group li {
-        list-style: none;
-        position: relative;
-    }
-
-    .list-group-item:first-child {
-        border-radius: 0px;
-    }
-
-    .list-group-item {
-        border-left: 0;
-        border-right: 0;
-        padding: 13px 15px;
-    }
-
-    .listing-sidebar .widget-search {
-        padding: 20px !important;
-    }
-
-    .list-style.-none {
-        padding: 0px 0px !important;
-    }
-
-    .listing-sidebar h5 {
-        font-size: 15px !important;
-        line-height: 30px;
-        font-family: Montserrat !important;
-        color: #0e1661 !important;
-        font-weight: 600 !important;
-    }
-
-    ul.list-group li {
-        list-style: none;
-    }
-
-    .panel-body ul {
-        list-style-type: none;
-        padding: 0px 0px !important;
-    }
-
-    .widget-banner img {
-        width: 100% !important;
-    }
-
-    .sorting-options-main {
-        border: 1px solid #e3e3e3;
-        padding: 20px;
-    }
-
-    #collapseOne,
-    #collapseTwo {
-        border: 1px solid #e2e4e7;
-    }
-
-    #headingOne,
-    #headingTwo {
-        border: 1px solid #ccc !important;
-    }
-
-    .widget-search {
-        margin-bottom: 20px;
-    }
-
-    .heading {
-        font-size: 13px !important;
-    }
-
-    .car-list ul li {
-        border: 1px solid #e3e3e3;
-        padding: 1px 10px;
-        font-size: 12px;
-        display: inline-block;
-        margin-bottom: 0px;
-    }
-
-    .listing-sidebar #accordion .panel-title a {
-        color: #000 !important;
-        font-size: 12px !important;
-        font-family:Montserrat !important;
-    }
-
-    #special-product,
-    .container.brand-logo,
-    #bott,
-    footer {
-        display: none !important;
-    }
-</style>
-<style type="text/css">
-    button.btn.speed {
-        background: #0e1661 !important;
-        margin: 5px 0px !important;
-        color: #fff !important;
-        font-family: poppins !important;
-        font-size: 12px !important;
-        padding:5px 5px !important;
-    }
-
-    button.btn.speed a {
-        color: #fff !important;
-        font-size: 10px !important;
-    }
-
-    .col-sm-8.vehicle-change p {
-        margin: 0px 0px !important;
-    }
-
-    .btn.vehicle-change {
-        background: #0e1661 !important;
-    }
-
-    .btn.vehicle-change a {
-        color: #fff !important;
-        font-family: Montserrat !important;
-        font-size: 14px !important;
-    }
-
-    .tire-list-change {
-        border: 1px solid red;
-    }
-</style>
 </section>
 <section id="tire-list">
     <div class="container">
@@ -212,16 +12,6 @@
               <div class="col-sm-2"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
             </div>
       </div> -->
-
-        <div class="wheel-list-tab">
-            <div class="row">
-                <div class="col-md-8 left-head">
-                    <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b> OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b> </p>
-                </div>
-                <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
-            </div>
-        </div>
-
 
 
         <div class="row">
@@ -336,6 +126,15 @@
                 <!-- Side End -->
             </div>
             <div class="col-sm-9">
+
+              <div class="wheel-list-change-tab">
+                  <div class="row">
+                      <div class="col-md-8 left-head">
+                          <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b> OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b> </p>
+                      </div>
+                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
+                  </div>
+              </div>
 
                 <div class="row">
                     @foreach($tires as $key =>$tire)

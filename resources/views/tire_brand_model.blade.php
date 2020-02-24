@@ -471,8 +471,9 @@
                         </div>
                     </div>
                 </div>
+
               @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
-                <div class="col-sm-3">
+                <div class="col-sm-3 tire-benifit-des">
                     @if(@$tire->benefits1)
                     <div class="row tire-benifit">
                         <div class="col-sm-12">

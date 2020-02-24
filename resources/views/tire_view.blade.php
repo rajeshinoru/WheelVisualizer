@@ -1,4 +1,4 @@
-@extends('layouts.app') @section('shop_by_vehicle_css')
+oo0@extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
 
 <style>
@@ -878,7 +878,7 @@
                                 <div class="tab-pane fade active in " id="tab1default">
                                     <div class="col-sm-8">
                                         <div class="prod-headinghome">
-                                            <br>
+                                            
                                             <p><b>Details</b></p>
                                             <p><b>Type</b>: {{@$tire->detaildesctype}}</p>
                                             <p><b>Style</b>: {{@$tire->prodmodel}}</p>
