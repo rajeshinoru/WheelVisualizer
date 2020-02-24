@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vehicle;
+use App\Chassis;
 use App\ChassisModel;
 use Illuminate\Http\Request;
 
@@ -126,18 +127,21 @@ class VehicleController extends Controller
     public function setFiltersByVehicle(Request $request)
     {
         try{
-            $vehicle = Vehicle::select('vehicle_id','year','make','model','submodel','dr_chassis_id','year_make_model_submodel')
+            $vehicle = Vehicle::select('id','vehicle_id','year','make','model','submodel','dr_chassis_id','year_make_model_submodel')
             ->where('year',$request->year)
             ->where('make',$request->make)
             ->where('model',$request->model)
             ->where('submodel',$request->submodel)
             ->first(); 
-            
+            // dd($vehicle);
+            $chassis = Chassis::where('chassis_id',$vehicle->dr_chassis_id)->first();
             $chassis_models =ChassisModel::select('id','p_lt','tire_size','rim_size','chassis_id')
                 ->where('chassis_id',$vehicle->dr_chassis_id)
+                // ->where('max_rim_width',$)
                 ->get()
                 ->unique('tire_size'); 
 
+            // dd($chassis,$chassis_models);
             return view('tire_size_list',compact('vehicle','chassis_models'));
 
         }catch(ModelNotFoundException $notfound){

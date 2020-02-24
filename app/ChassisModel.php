@@ -31,5 +31,10 @@ protected $fillable = [
 			'tp_r_psi',
 			'ltp_f_psi',
 			'ltp_r_psi'
-			    ];
+		];
+ 
+	public function Chassis() {
+	    return $this->belongsTo('App\Chassis');
+	}
+
 }
