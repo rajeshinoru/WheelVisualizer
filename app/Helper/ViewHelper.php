@@ -30,13 +30,11 @@ function convertBoltPattern($pattern=''){
 	{
 		$patternText='Fits most';
 		if($pattern == 'Blank5'){
-			$patternText=' 5 lug';		
-		}
-		if($pattern == 'Blank6'){
-			$patternText=' 6 lug';
-		}
-		if($pattern == 'Blank5x'){
-			$patternText=' 5x lug';		
+			$patternText.=' 5 lug';		
+		}elseif($pattern == 'Blank6'){
+			$patternText.=' 6 lug';
+		}elseif($pattern == 'Blank5x'){
+			$patternText.=' 5x lug';		
 		}
 
 		$patternText .=' bolt patterns';

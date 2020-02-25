@@ -39,7 +39,7 @@
                                                             @if($amt==json_decode(base64_decode(@Request::get('minprice')?:'')))    selected 
                                                             @endif
 
-                                                            @if($amt > json_decode(base64_decode(@Request::get('maxprice')?:'')))    disabled 
+                                                            @if($amt > json_decode(base64_decode(@Request::get('maxprice')?:'')) && @Request::get('maxprice'))    disabled 
                                                             @endif
                                                             > Above ${{$amt}}</option>
                                                             @endfor
