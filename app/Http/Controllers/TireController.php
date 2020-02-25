@@ -31,7 +31,7 @@ class TireController extends Controller
 
         $tires = $tires->select('prodimage','id','prodtitle','tiresize','loadindex','speedrating',
                     'price','prodmodel','tirewidth','tireprofile','tirediameter');
-
+        // dd(base64_decode($chassis_model_id));
         $chassis_model = ChassisModel::find(base64_decode($chassis_model_id)) ?? null;
         $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
 
@@ -50,14 +50,34 @@ class TireController extends Controller
                 $tires = $tires->whereIn('loadindex',json_decode(base64_decode($request->tireloadindex)));
             }
         }
+        if($request->has('minprice')){
+            if($request->minprice !=''){
+                $tires = $tires->where('price','>',json_decode(base64_decode($request->minprice)));
+            }
+        }
+        
+        if($request->has('maxprice')){
+            if($request->maxprice !=''){
+                $tires = $tires->where('price','<',json_decode(base64_decode($request->maxprice)));
+            }
+        }
 
-          
+
         if( $chassis_model_id!='' && $vehicle_id!=''){
             $tires = $tires->where('tiresize','like', '%' . @$chassis_model->tire_size . '%');
         }else{
-            $tires = $tires->where('tirewidth',$request->width)
-                    ->where('tireprofile',$request->profile)
-                    ->where('tirediameter',$request->diameter);
+
+            if($request->has('width')){
+                $tires = $tires->where('tirewidth',$request->width);
+            }
+
+            if($request->has('profile')){
+                $tires = $tires->where('tireprofile',$request->profile);
+            }
+
+            if($request->has('diameter')){
+                $tires = $tires->where('tirediameter',$request->diameter);
+            }
         }
 
 
@@ -128,6 +148,22 @@ class TireController extends Controller
             ->get()
             ->unique('prodmodel')
             ->toArray();
+
+        if(count($tires) == 0){
+
+            $load_indexs =  Tire::select('loadindex', \DB::raw('count(DISTINCT prodmodel) as total'))
+            ->groupBy('loadindex')
+            ->get()
+            ->sortBy('loadindex');
+
+            $speedratings =  Tire::select('speedrating', \DB::raw('count(DISTINCT prodmodel) as total'))
+            ->groupBy('speedrating')
+            ->get()
+            ->sortBy('speedrating');
+            $countsByBrand = Tire::select('prodbrand', \DB::raw('count(DISTINCT prodmodel) as total'))
+                ->groupBy('prodbrand')
+                ->pluck('total','prodbrand');
+        }
 
         $tires = MakeCustomPaginator($tires, $request, 8);
         // dd($tires);
@@ -321,97 +357,106 @@ class TireController extends Controller
 
     public function Falken_Import(){
          // $in_file = public_path('/storage/tires_data/Falken-Export.csv'); 
-         $in_file = public_path('/storage/tires_data/Conti-Web-02-08.csv'); 
+         // $in_file = public_path('/storage/tires_data/Conti-Web-02-08.csv'); 
+         $in_file = public_path('/storage/tires_data/Continental-02-24-20 (1).csv'); 
+
 
         if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
         // $fw = fopen($out_file, "w");
         $i=1;
         while( ($data = fgetcsv($fr, 2000, ",")) !== FALSE ) {
                 if($i != 1){
-                    $tire = new Tire;
-                    $tire->partno = $data[0]?:null;
-                    $tire->prodtitle = $data[1]?:null;
-                    $tire->prodbrand = $data[2]?:null;
-                    $tire->prodmodel = $data[3]?:null;
-                    $tire->prodmetadesc = $data[4]?:null;
-                    $tire->prodimage = $data[5]?:null;
-                    $tire->prodimageshow = $data[6]?:null;
-                    $tire->prodsortcode = $data[7]?:null;
-                    $tire->prodheaderid = $data[8]?:null;
-                    $tire->prodfooterid = $data[9]?:null;
-                    $tire->prodinfoid = $data[10]?:null;
-                    $tire->proddesc = $data[11]?:null;
-                    $tire->tirewidth = $data[12]?:null;
-                    $tire->tireprofile = $data[13]?:null;
-                    $tire->tirediameter = $data[14]?:null;
-                    $tire->tiresize = $data[15]?:null;
-                    $tire->speedrating = $data[16]?:null;
-                    $tire->loadindex = $data[17]?:null;
-                    $tire->ply = $data[18]?:null;
-                    $tire->utqg = $data[19]?:null;
-                    $tire->warranty = $data[20]?:null;
-                    $tire->detailtitle = $data[21]?:null;
-                    $tire->keywords = $data[22]?:null;
-                    $tire->price = $data[23]?:null;
-                    $tire->price2 = $data[24]?:null;
-                    $tire->cost = $data[25]?:null;
-                    $tire->rate = $data[26]?:null;
-                    $tire->saleprice = $data[27]?:null;
-                    $tire->saletype = $data[28]?:null;
-                    $tire->salestart = $data[29]?:null;
-                    $tire->saleexp = $data[30]?:null;
-                    $tire->weight = $data[31]?:null;
-                    $tire->length = $data[32]?:null;
-                    $tire->width = $data[33]?:null;
-                    $tire->height = $data[34]?:null;
-                    $tire->shpsep = $data[35]?:null;
-                    $tire->shpfree = $data[36]?:null;
-                    $tire->shpcode = $data[37]?:null;
-                    $tire->shpflatrate = $data[38]?:null;
-                    $tire->partno_old = $data[39]?:null;
-                    $tire->metadesc = $data[40]?:null;
-                    $tire->qtyavail = $data[41]?:null;
-                    $tire->proddetailid = $data[42]?:null;
-                    $tire->productid = $data[43]?:null;
-                    $tire->dropshippable = $data[44]?:null;
-                    $tire->vendorpartno = $data[45]?:null;
-                    $tire->dropshipper = $data[46]?:null;
-                    $tire->vendorpartno2 = $data[47]?:null;
-                    $tire->dropshipper2 = $data[48]?:null;
-                    $tire->tiretype = $data[49]?:null;
-                    $tire->lt = $data[50]?:null;
-                    $tire->xl = $data[51]?:null;
-                    $tire->badge1 = $data[52]?:null;
-                    $tire->badge2 = $data[53]?:null;
-                    $tire->badge3 = $data[54]?:null;
-                    $tire->originalprice = $data[55]?:null;
-                    $tire->detaildesctype = $data[56]?:null;
-                    $tire->detaildescfeatures = $data[57]?:null;
-                    $tire->detaildesc = $data[58]?:null;
-                    $tire->benefits1 = $data[59]?:null;
-                    $tire->benefits2 = $data[60]?:null;
-                    $tire->benefits3 = $data[61]?:null;
-                    $tire->benefits4 = $data[62]?:null;
-                    $tire->benefitsimage1 = $data[63]?:null;
-                    $tire->benefitsimage2 = $data[64]?:null;
-                    $tire->benefitsimage3 = $data[65]?:null;
-                    $tire->benefitsimage4 = $data[66]?:null;
-                    $tire->prodlandingdesc = $data[67]?:null;
-                    $tire->prodimage1 = $data[68]?:null;
-                    $tire->prodimage2 = $data[69]?:null;
-                    $tire->prodimage3 = $data[70]?:null;
-                    $tire->dry_performance = $data[71]?:null;
-                    $tire->wet_performance = $data[72]?:null;
-                    $tire->mileage_performance = $data[73]?:null;
-                    $tire->ride_comfort = $data[74]?:null;
-                    $tire->quiet_ride = $data[75]?:null;
-                    $tire->winter_performance = $data[76]?:null;
-                    $tire->fuel_efficiency = $data[77]?:null;
-                    $tire->braking = $data[78]?:null;
-                    $tire->responsiveness = $data[79]?:null;
-                    $tire->sport = $data[80]?:null;
-                    $tire->off_road = $data[81]?:null;
+
+                    $tire =Tire::where('partno',$data[0])->first();
+                    if($tire==null){
+                        $tire=new Tire;
+                    }
+                    $tire->partno = isset($data[0])?$data[0]:null;
+                    $tire->prodtitle = isset($data[1])?$data[1]:null;
+                    $tire->prodbrand = isset($data[2])?$data[2]:null;
+                    $tire->prodmodel = isset($data[3])?$data[3]:null;
+                    $tire->prodmetadesc = isset($data[4])?$data[4]:null;
+                    $tire->prodimage = isset($data[5])?$data[5]:null;
+                    $tire->prodimageshow = isset($data[6])?$data[6]:null;
+                    $tire->prodsortcode = isset($data[7])?$data[7]:null;
+                    $tire->prodheaderid = isset($data[8])?$data[8]:null;
+                    $tire->prodfooterid = isset($data[9])?$data[9]:null;
+                    $tire->prodinfoid = isset($data[10])?$data[10]:null;
+                    $tire->proddesc = isset($data[11])?$data[11]:null;
+                    $tire->tirewidth = isset($data[12])?$data[12]:null;
+                    $tire->tireprofile = isset($data[13])?$data[13]:null;
+                    $tire->tirediameter = isset($data[14])?$data[14]:null;
+                    $tire->tiresize = isset($data[15])?$data[15]:null;
+                    $tire->speedrating = isset($data[16])?$data[16]:null;
+                    $tire->loadindex = isset($data[17])?$data[17]:null;
+                    $tire->ply = isset($data[18])?$data[18]:null;
+                    $tire->utqg = isset($data[19])?$data[19]:null;
+                    $tire->warranty = isset($data[20])?$data[20]:null;
+                    $tire->detailtitle = isset($data[21])?$data[21]:null;
+                    $tire->keywords = isset($data[22])?$data[22]:null;
+                    $tire->price = isset($data[23])?$data[23]:null;
+                    $tire->price2 = isset($data[24])?$data[24]:null;
+                    $tire->cost = isset($data[25])?$data[25]:null;
+                    $tire->rate = isset($data[26])?$data[26]:null;
+                    $tire->saleprice = isset($data[27])?$data[27]:null;
+                    $tire->saletype = isset($data[28])?$data[28]:null;
+                    $tire->salestart = isset($data[29])?$data[29]:null;
+                    $tire->saleexp = isset($data[30])?$data[30]:null;
+                    $tire->weight = isset($data[31])?$data[31]:null;
+                    $tire->length = isset($data[32])?$data[32]:null;
+                    $tire->width = isset($data[33])?$data[33]:null;
+                    $tire->height = isset($data[34])?$data[34]:null;
+                    $tire->shpsep = isset($data[35])?$data[35]:null;
+                    $tire->shpfree = isset($data[36])?$data[36]:null;
+                    $tire->shpcode = isset($data[37])?$data[37]:null;
+                    $tire->shpflatrate = isset($data[38])?$data[38]:null;
+                    $tire->partno_old = isset($data[39])?$data[39]:null;
+                    $tire->metadesc = isset($data[40])?$data[40]:null;
+                    $tire->qtyavail = isset($data[41])?$data[41]:null;
+                    $tire->proddetailid = isset($data[42])?$data[42]:null;
+                    $tire->productid = isset($data[43])?$data[43]:null;
+                    $tire->dropshippable = isset($data[44])?$data[44]:null;
+                    $tire->vendorpartno = isset($data[45])?$data[45]:null;
+                    $tire->dropshipper = isset($data[46])?$data[46]:null;
+                    $tire->vendorpartno2 = isset($data[47])?$data[47]:null;
+                    $tire->dropshipper2 = isset($data[48])?$data[48]:null;
+                    $tire->tiretype = isset($data[49])?$data[49]:null;
+                    $tire->lt = isset($data[50])?$data[50]:null;
+                    $tire->xl = isset($data[51])?$data[51]:null;
+                    $tire->badge1 = isset($data[52])?$data[52]:null;
+                    $tire->badge2 = isset($data[53])?$data[53]:null;
+                    $tire->badge3 = isset($data[54])?$data[54]:null;
+                    $tire->originalprice = isset($data[55])?$data[55]:null;
+                    $tire->detaildesctype = isset($data[56])?$data[56]:null;
+                    $tire->detaildescfeatures = isset($data[57])?$data[57]:null;
+                    $tire->detaildesc = isset($data[58])?$data[58]:null;
+                    $tire->benefits1 = isset($data[59])?$data[59]:null;
+                    $tire->benefits2 = isset($data[60])?$data[60]:null;
+                    $tire->benefits3 = isset($data[61])?$data[61]:null;
+                    $tire->benefits4 = isset($data[62])?$data[62]:null;
+                    $tire->benefitsimage1 = isset($data[63])?$data[63]:null;
+                    $tire->benefitsimage2 = isset($data[64])?$data[64]:null;
+                    $tire->benefitsimage3 = isset($data[65])?$data[65]:null;
+                    $tire->benefitsimage4 = isset($data[66])?$data[66]:null;
+                    $tire->prodlandingdesc = isset($data[67])?$data[67]:null;
+                    $tire->prodimage1 = isset($data[68])?$data[68]:null;
+                    $tire->prodimage2 = isset($data[69])?$data[69]:null;
+                    $tire->prodimage3 = isset($data[70])?$data[70]:null;
+                    $tire->dry_performance = isset($data[71])?$data[71]:null;
+                    $tire->wet_performance = isset($data[72])?$data[72]:null;
+                    $tire->mileage_performance = isset($data[73])?$data[73]:null;
+                    $tire->ride_comfort = isset($data[74])?$data[74]:null;
+                    $tire->quiet_ride = isset($data[75])?$data[75]:null;
+                    $tire->winter_performance = isset($data[76])?$data[76]:null;
+                    $tire->fuel_efficiency = isset($data[77])?$data[77]:null;
+                    $tire->braking = isset($data[78])?$data[78]:null;
+                    $tire->responsiveness = isset($data[79])?$data[79]:null;
+                    $tire->sport = isset($data[80])?$data[80]:null;
+                    $tire->off_road = isset($data[81])?$data[81]:null;
+                    // dd($tire);
+                    echo $tire->partno."<br>";
                     $tire->save(); 
+
                 }
                 $i++;
             }

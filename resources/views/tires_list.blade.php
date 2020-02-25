@@ -183,12 +183,12 @@
                       <div class="col-md-8 left-head">
                           <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b> OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b> </p>
                       </div>
-                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="">Change</a></button></div>
+                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
                   </div>
               </div>
               @endif
                 <div class="row">
-                    @foreach($tires as $key =>$tire)
+                    @forelse($tires as $key =>$tire)
                     <?php $tire = (object)$tire;?>
                     <div class="col-sm-3">
                         <div class="product-layouts">
@@ -227,7 +227,12 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                      <div class="col-md-8 left-head">
+                          <h5> <b>No Results found for your selected vehicle.Please try selecting a different brand or attribute on the left.</b> </h5>
+                      </div>
+                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
+                    @endforelse
                 </div>
 
                 <div class="row pro-pagination">
@@ -243,8 +248,11 @@
                         'zip' => @Request::get('zip'), 
                         'width'=> @Request::get('width'), 
                         'profile'=> @Request::get('profile'), 
+                        'minprice'=> @Request::get('minprice'), 
+                        'maxprice'=> @Request::get('maxprice'), 
                         'diameter'=> @Request::get('diameter')])->links()}}
-
+                        
+                        
                     </div>
                 </div>
             </div>
