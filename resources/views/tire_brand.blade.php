@@ -10,18 +10,8 @@
             <div class="col-sm-9">
                 <div class="prod-headinghome">
                     @if(@$tire->Brand)
-                    <p>
+                    <p class="read_more_text" data-length="1300">
                         {{@$tire->Brand->manudesc}}
-                    </p>
-                    @else
-                    <p>
-                        Shop for Falken tires at wholesale prices at Discounted Wheel Warehouse! We sell low-priced, high-performing Falken tires for today's passenger car, crossover, SUV, and light truck owners. Designed with performance in mind, Falken tires deliver exceptional value for the everyday driver. We have the best bargain prices on UHP, all-season, and off-road Falken tires here at Discounted Wheel Warehouse.
-                    </p>
-                    <p>
-                        Our warehouse has affordable Falken performance tires for all sorts of passenger vehicles, including coupes, sedans, crossovers, compact SUVs, and sport trucks. Our Falken lineup includes all-season Ziex and Sincera passenger tires for year-round tread life and versatile performance in rain, sun, or snow. We sell Falken Azenis summer tires that deliver outstanding wet and dry handling capabilities for sports performance. We also stock a great selection of highway and all-terrain light truck tires from Falken's acclaimed Wildpeak tire series for resilient handling in both on-road and off-road applications. All Falken tires at Discounted Wheel Warehouse are sold at wholesale prices.
-                    </p>
-                    <p>
-                        Falken tires are engineered with advanced performance technologies for the street, the track, or off the road. From rugged Wildpeak tires for SUVs and pickup trucks, to all-season performance Falken tires for passenger cars, all Falken tires deliver great quality at value prices. Save money on your next set of replacement tires, and get a set of affordable, reliable Falken tires at a discount from Discounted Wheel Warehouse!
                     </p>
                     @endif
                 </div>

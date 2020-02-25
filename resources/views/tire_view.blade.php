@@ -588,7 +588,14 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-3 tire-img">
+              <?php $divClass=2;$benefits=false;$ratings=false;?>
+              @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
+                <?php $divClass+=1;$benefits=true;?>
+              @endif
+              @if(@$tire->dry_performance > 0 ||@$tire->wet_performance > 0 ||@$tire->mileage_performance > 0 ||@$tire->ride_comfort > 0 ||@$tire->quiet_ride > 0 ||@$tire->winter_performance > 0 ||@$tire->fuel_efficiency > 0 )
+                <?php $divClass+=1;$ratings=true;?>
+              @endif
+                <div class="col-sm-{{12/$divClass}} tire-img">
                     <div class="tire-des">
                         <a href="{{ViewTireImage(@$tire->prodimage)}}" class="zoomple">
                         <img src="{{ViewTireImage(@$tire->prodimage)}}">
@@ -607,7 +614,7 @@
                     <img src="{{viewImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
                     @endif
                 </div>
-                <div class="col-sm-3 shop-details">
+                <div class="col-sm-{{12/$divClass}} shop-details">
                     <h1 class="product-name">{{@$tire->detailtitle}}</h1>
                     <div class="rating-section product-rating-status text-left">
                         <div class="rating">
@@ -714,83 +721,85 @@
                 </div>
 
 
-                <div class="col-sm-3 tir-des">
-                    <div class="row">
-                        <div class="col-sm-12">
-                          <h2 class="product-name2">Performance Ratings</h2>
+                @if(@$ratings)
+                  <div class="col-sm-{{12/$divClass}} tir-des">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <h2 class="product-name2">Performance Ratings</h2>
+      
+                            @if(@$tire->dry_performance > 0)
+                            <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->dry_performance??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->dry_performance??0}}%</div>
+                                </div>
+                            </div>
+                            @endif
+                            <br>
     
-                          @if(@$tire->dry_performance > 0)
-                          <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->dry_performance??0}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->dry_performance??0}}%</div>
-                              </div>
+                            @if(@$tire->wet_performance > 0)
+                            <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->wet_performance??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->wet_performance??0}}%</div>
+                                </div>
+                            </div>
+                            @endif
+                            <br>    
+                            @if(@$tire->mileage_performance > 0)
+                            <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->mileage_performance??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->mileage_performance??0}}%</div>
+                                </div>
+                            </div>
+                            @endif
+                            <br>
+      
+                            @if(@$tire->ride_comfort > 0)
+                            <h3 class="progress-title">Ride Comfort:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->ride_comfort??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->ride_comfort??0}}%</div>
+                                </div>
+                            </div>
+                            @endif
+                            <br>    
+                            @if(@$tire->quiet_ride > 0)
+                            <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->quiet_ride??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->quiet_ride??0}}%</div>
+                                </div>
+                            </div>
+                            @endif
+                            <br>
+      
+                            @if(@$tire->winter_performance > 0)
+                            <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->winter_performance??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->winter_performance??0}}%</div>
+                                </div>
+                            </div>
+                            @endif
+                            <br>
+      
+                            @if(@$tire->fuel_efficiency > 0)
+                            <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->fuel_efficiency??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->fuel_efficiency??0}}%</div>
+                                </div>
+                            </div>
+                            @endif
+                            <br>
                           </div>
-                          @endif
-                          <br>
-  
-                          @if(@$tire->wet_performance > 0)
-                          <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->wet_performance??0}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->wet_performance??0}}%</div>
-                              </div>
-                          </div>
-                          @endif
-                          <br>    
-                          @if(@$tire->mileage_performance > 0)
-                          <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->mileage_performance??0}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->mileage_performance??0}}%</div>
-                              </div>
-                          </div>
-                          @endif
-                          <br>
-    
-                          @if(@$tire->ride_comfort > 0)
-                          <h3 class="progress-title">Ride Comfort:</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->ride_comfort??0}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->ride_comfort??0}}%</div>
-                              </div>
-                          </div>
-                          @endif
-                          <br>    
-                          @if(@$tire->quiet_ride > 0)
-                          <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->quiet_ride??0}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->quiet_ride??0}}%</div>
-                              </div>
-                          </div>
-                          @endif
-                          <br>
-    
-                          @if(@$tire->winter_performance > 0)
-                          <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->winter_performance??0}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->winter_performance??0}}%</div>
-                              </div>
-                          </div>
-                          @endif
-                          <br>
-    
-                          @if(@$tire->fuel_efficiency > 0)
-                          <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
-                          <div class="progress pink">
-                              <div class="progress-bar" style="width:{{@$tire->fuel_efficiency??0}}%; background:#0e1661;">
-                                  <div class="progress-value">{{@$tire->fuel_efficiency??0}}%</div>
-                              </div>
-                          </div>
-                          @endif
-                          <br>
-                        </div>
-                    </div>
-                </div>
-                @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
-                  <div class="col-sm-3 tire-benifit-des">
+                      </div>
+                  </div>
+                @endif
+                @if(@$benefits)
+                  <div class="col-sm-{{12/$divClass}} tire-benifit-des">
                       @if(@$tire->benefits1)
                       <div class="row tire-benifit">
                           <div class="col-sm-12">
@@ -799,7 +808,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text">{{@$tire->benefits1}}</p>
+                                  <p class="read_more_text" data-length="90">{{@$tire->benefits1}}</p>
                               </div>
                           </div>
                       </div>
@@ -812,7 +821,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text">{{@$tire->benefits2}}</p>
+                                  <p class="read_more_text" data-length="90">{{@$tire->benefits2}}</p>
                               </div>
                           </div>
                       </div>
@@ -825,7 +834,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text">{{@$tire->benefits3}}</p>
+                                  <p class="read_more_text" data-length="90">{{@$tire->benefits3}}</p>
                               </div>
                           </div>
                       </div>
@@ -838,7 +847,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text">{{@$tire->benefits4}}</p>
+                                  <p class="read_more_text" data-length="90">{{@$tire->benefits4}}</p>
                               </div>
                           </div>
                       </div>
@@ -891,7 +900,7 @@
                         <div class="panel-body">
                             <div class="tab-content wheel-list-tab">
                                 <div class="tab-pane fade active in " id="tab1default">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <div class="prod-headinghome">
                                             <br>
                                             <p><b>Details</b></p>
@@ -902,25 +911,27 @@
                                             <p><?php echo @$tire->proddesc ?></p>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+<!--                                     <div class="col-sm-4">
                                         <div class="tire-des">
                                             <a href="{{ViewTireImage(@$tire->prodimage)}}" class="zoomple">
                                             <img src="{{ViewTireImage(@$tire->prodimage)}}">
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                                 <div class="tab-pane fade" id="tab2default">
                                     <div class="prod-headinghome">
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+                                        <p class="read_more_text" data-length="500">Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.
+                                            <br>
+                                        Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab3default">
                                     <div class="prod-headinghome">
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
-                                        <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+                                        <p class="read_more_text" data-length="500">Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.
+                                            <br>
+                                        Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
                                     </div>
                                 </div>
                             </div>
@@ -949,18 +960,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(@$diff_tires as $key => $tire)
+                    @foreach(@$diff_tires as $key => $dtire)
                     <tr>
-                        <td><a href="{{url('/tireview/'.base64_encode($tire->id))}}">{{@$tire->tiresize}}</a></td>
-                        <td>{{@$tire->partno}}</td>
-                        <td>{{@$tire->utqg?:'-'}}</td>
-                        <td>{{@$tire->speedrating?:'-'}}</td>
-                        <td>{{@$tire->loadindex?:'-'}}</td>
-                        <td>{{@$tire->warranty?:'-'}}</td>
-                        <!-- <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td> -->
-                        <td>${{@$tire->price}}</td>
+                        <td><a href="{{url('/tireview/'.base64_encode($dtire->id))}}">{{@$dtire->tiresize}}</a></td>
+                        <td>{{@$dtire->partno}}</td>
+                        <td>{{@$dtire->utqg?:'-'}}</td>
+                        <td>{{@$dtire->speedrating?:'-'}}</td>
+                        <td>{{@$dtire->loadindex?:'-'}}</td>
+                        <td>{{@$dtire->warranty?:'-'}}</td>
+                        <!-- <td><img src="{{url('image/'.@$dtire->warranty)}}" width="35px" height="35px"></td> -->
+                        <td>${{@$dtire->price}}</td>
                         <td>
-                            <button type="button" class="btn btn-default cart-1">Details</button>
+                            <a href="{{url('/tireview/'.base64_encode($dtire->id))}}" class="btn btn-default cart-1">Details</a>
                             <button type="button" class="btn btn-default cart-2">Add</button>
                         </td>
                     </tr>
@@ -975,30 +986,30 @@
 
 <section id="falken-info">
     <div class="container">
-        <a href=""><img src="http://127.0.0.1:8000/image/Falken-Company-Info.jpg" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
+        <a href=""><img src="{{ViewTireImage(@$tire->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
     </div>
 </section>
 
 <section id="fal-feature">
     <div class="container">
         <div class="row">
-            @foreach(@$similar_tires->take(6) as $key => $tire)
+            @foreach(@$similar_tires->take(6) as $key => $stire)
             <div class="col-sm-2">
                 <div class="product-layouts">
                     <div class="product-thumb transition">
                         <div class="image">
-                            <img class="wheelImage image_thumb" src="{{ViewTireImage(@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
-                            <img class="wheelImage image_thumb_swap" src="{{ViewTireImage(@$tire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb" src="{{ViewTireImage(@$stire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
+                            <img class="wheelImage image_thumb_swap" src="{{ViewTireImage(@$stire->prodimage)}}" title="" alt="" style="cursor: zoom-in;">
                             <div class="sale-icon"><a></a></div>
                         </div>
                         <div class="thumb-description">
                             <div class="caption">
-                                <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}">
-                                        {{@$tire->detailtitle}}<br>
+                                <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$stire->id)}}">
+                                        {{@$stire->detailtitle}}<br>
                                         <br>
-                                        <!-- Size : {{@$tire->tiresize}}<br> -->
-                                        <!-- Load : {{@$tire->loadindex}} Speed:{{@$tire->speedrating}}<br> -->
-                                        <b>${{@$tire->price}}</b>
+                                        <!-- Size : {{@$stire->tiresize}}<br> -->
+                                        <!-- Load : {{@$stire->loadindex}} Speed:{{@$stire->speedrating}}<br> -->
+                                        <b>${{@$stire->price}}</b>
                                     </a></h4>
                                 <br>
                             </div>
