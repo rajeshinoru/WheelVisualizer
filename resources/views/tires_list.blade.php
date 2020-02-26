@@ -187,7 +187,6 @@
               @endif
                 <div class="row">
                     @forelse($tires as $key =>$tire)
-                    <?php $tire = (object)$tire;?>
                     <div class="col-sm-3">
                         <div class="product-layouts">
                             <div class="product-thumb transition">

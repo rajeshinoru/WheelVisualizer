@@ -105,19 +105,19 @@
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
-                                                                <option value="">Year</option>
+                                                                <option value="">Select Year</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
-                                                                <option value="">Model</option>
+                                                                <option value="">Select Model</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select WheelNavSubmodel" name="submodel">
-                                                                <option value="">Trim</option>
+                                                                <option value="">Select Trim</option>
 
                                                             </select>
                                                         </div>
@@ -249,19 +249,19 @@
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select NavYear" name="year">
-                                                                <option value="">Year</option>
+                                                                <option value="">Select Year</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select NavModel" name="model">
-                                                                <option value="">Model</option>
+                                                                <option value="">Select Model</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select NavSubmodel" name="submodel">
-                                                                <option value="">Trim</option>
+                                                                <option value="">Select Trim</option>
 
                                                             </select>
                                                         </div>

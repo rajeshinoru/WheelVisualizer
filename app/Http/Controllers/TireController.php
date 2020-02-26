@@ -146,8 +146,7 @@ class TireController extends Controller
         $tires = $tires
             ->orderBy('price', 'ASC')
             ->get()
-            ->unique('prodmodel')
-            ->toArray();
+            ->unique('prodmodel');
 
         if(count($tires) == 0){
 
@@ -215,11 +214,23 @@ class TireController extends Controller
 
         $tires = $tires->select('prodimage','prodtitle','prodmodel','price','id','prodbrand','detaildesctype')
                 ->with(['Brand'])
-                ->orderBy('price','ASC')
+                ->orderBy('price','ASC');
+
+        $ptires =clone $tires;
+        $lttires =clone $tires;
+        $tire = $tires->first();
+
+        $ptires =$ptires->where('detaildesctype','Passenger')
                 ->get()
                 ->unique('prodmodel');
-        $tire = $tires->first();
-        return view('tire_brand',compact('tires','tire'));
+        $lttires =$lttires->where('detaildesctype','!=','Passenger')
+                ->get()
+                ->unique('prodmodel');
+
+        $ptires = MakeCustomPaginator($ptires, $request, 6,'ptpage');
+        $lttires = MakeCustomPaginator($lttires, $request, 6,'ltpage');
+
+        return view('tire_brand',compact('ptires','lttires','tire'));
     }
 
     public function tirebrandmodel(Request $request,$tire_id='')

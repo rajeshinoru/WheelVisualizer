@@ -204,11 +204,10 @@ class WheelProductController extends Controller
             $products = $products
                 ->orderBy('price', 'ASC')
                 ->get()
-                ->unique('prodtitle')
-                ->toArray();
+                ->unique('prodtitle');
 
             $products = MakeCustomPaginator($products, $request, 9);
-
+            // dd($products);
 
             $flag=@$request->flag?:null;
 

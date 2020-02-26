@@ -21,13 +21,14 @@
     </div>
 
     <div class="container">
+        @if(@$ptires->total() > 0)
         <div class="hometabled">
             <div class="row">
                 <div class="title-heading">
                     <h2>Passenger Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires->where('detaildesctype','Passenger') as $key => $ptire)
+                @forelse($ptires as $key => $ptire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -70,16 +71,27 @@
                 </div>
                 @empty @endforelse
             </div>
-
+                <div class="row pro-pagination">
+                    <div class="col-sm-6 pagi-left">
+                        <p>{{(@$ptires->total())?@$ptires->total().' Passanger Tires Found':''}} </p>
+                    </div>
+                    <div class="col-sm-6 pagi-right">
+                        {{$ptires->appends([ 
+                        'ptpage' => @Request::get('ptpage'), 
+                        'ltpage' => @Request::get('ltpage')])->links()}}
+                        
+                    </div>
+                </div>
         </div>
-
+        @endif
+        @if(@$lttires->total() > 0)
         <div class="hometabled">
             <div class="row">
                 <div class="title-heading">
                     <h2>Light Truck Tires</h2></div>
             </div>
             <div class="row">
-                @forelse($tires->where('detaildesctype','!=','Passenger') as $key => $lttire)
+                @forelse($lttires as $key => $lttire)
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -114,8 +126,19 @@
                 @empty @endforelse
             </div>
 
+                <div class="row pro-pagination">
+                    <div class="col-sm-6 pagi-left">
+                        <p>{{(@$lttires->total())?@$lttires->total().' Light Truck Tires Found':''}} </p>
+                    </div>
+                    <div class="col-sm-6 pagi-right">
+                        {{$lttires->appends([ 
+                        'ptpage' => @Request::get('ptpage'), 
+                        'ltpage' => @Request::get('ltpage')])->links()}}
+                        
+                    </div>
+                </div>
         </div>
-
+        @endif
     </div>
 </section>
 

@@ -10,19 +10,31 @@ use Illuminate\Http\Request;
 
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
-function MakeCustomPaginator($data,$request,$per_page=9){
+function MakeCustomPaginator($objectData,$request,$per_page=9,$page_name='page'){
+
+	$filteredObject=array();
+
+	$data=$objectData->toArray();
+
 	$total=count($data);
-	$current_page = $request->input("page") ?? 1;
+	
+	$current_page = $request->input($page_name) ?? 1;
 
 	$starting_point = ($current_page * $per_page) - $per_page;
 
-	$data = array_slice($data, $starting_point, $per_page, true);
+	$dataKeys = array_keys(array_slice($data, $starting_point, $per_page, true));
 
-	$data = new Paginator($data, $total, $per_page, $current_page, [
+	foreach ($dataKeys as $k => &$key) {
+		$filteredObject[]=$objectData[$key];
+
+	}
+
+	$result = new Paginator($filteredObject, $total, $per_page, $current_page, [
 		'path' => $request->url(),
 		'query' => $request->query(),
+		'pageName' => $page_name
 	]);
-	return  $data;
+	return  $result;
 }
 
 
