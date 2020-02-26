@@ -411,9 +411,11 @@ $(function(){
 if($('.read_more_text').length > 0 ){
 
     function moreLess(initiallyVisibleCharacters) {
-        var visibleCharacters = initiallyVisibleCharacters;
         var paragraph = $(".read_more_text")
         paragraph.each(function() {
+            var visibleCharacters = $(this).data('length')? $(this).data('length'):initiallyVisibleCharacters;
+            // console.log(visibleCharacters);
+        
             var text = $(this).text();
             var wholeText = text.slice(0, visibleCharacters) + "<span class='ellipsis'>... </span><a href='#' class='more'>Read More</a>" + "<span style='display:none'>" + text.slice(visibleCharacters, text.length) + "<a href='#' class='less'> Read Less</a></span>"
 
