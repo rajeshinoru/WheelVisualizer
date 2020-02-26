@@ -44,6 +44,13 @@
                             </ul>
                         </li>
                         <li>
+                            <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><span class="educate-icon educate-star icon-wrap"></span> <span class="mini-click-non">Wheel Product</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Wheel Product List" href="{{url('admin/wheelproduct')}}"><span class="mini-sub-pro">Wheel Product List</span></a></li> 
+                            </ul>
+                        </li>
+
+                        <li>
                             <a title="Landing Page" href="{{url('admin/setting')}}" aria-expanded="false"><span class="educate-icon educate-settings icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Settings</span></a>
                         </li>
 

@@ -21,6 +21,7 @@ Route::resource('user', 'Resource\UserResource');
 Route::resource('wheel', 'Resource\WheelResource');
 Route::resource('car', 'Resource\CarResource');
 Route::resource('brands', 'Resource\TireBrandsResource');
+Route::resource('wheelproduct', 'Resource\WheelProductResource');
 
 // Routes for Cars Images 
 Route::get('/car/images/{id}', 'Resource\CarResource@getCarImages')->name('car.images'); 

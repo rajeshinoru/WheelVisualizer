@@ -18,6 +18,11 @@ Breadcrumbs::for('adminwheel', function ($trail) {
     $trail->push('Wheels', url('/admin/wheel'));
 });
 
+Breadcrumbs::for('adminwheelproduct', function ($trail) {
+    $trail->parent('adminhome');
+    $trail->push('Wheel Products', url('/admin/wheelproduct'));
+});
+
 // Home > Car
 Breadcrumbs::for('admincar', function ($trail) {
     $trail->parent('adminhome');
