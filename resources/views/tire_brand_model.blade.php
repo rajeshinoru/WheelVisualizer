@@ -385,12 +385,12 @@
         <div class="hometabled">
 
             <div class="row">
-              <?php $divClass=2;?>
+              <?php $divClass=2;$benefits=false;$ratings=false;?>
               @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
-                <?php $divClass+=1;?>
+                <?php $divClass+=1;$benefits=true;?>
               @endif
               @if(@$tire->dry_performance > 0 ||@$tire->wet_performance > 0 ||@$tire->mileage_performance > 0 ||@$tire->ride_comfort > 0 ||@$tire->quiet_ride > 0 ||@$tire->winter_performance > 0 ||@$tire->fuel_efficiency > 0 )
-                <?php $divClass+=1;?>
+                <?php $divClass+=1;$ratings=true;?>
               @endif
                 <div class="col-sm-{{12/$divClass}} tire-details">
                   <div class="prod-headinghome">
@@ -424,13 +424,19 @@
                   </div>
 
                   <ul class="nav nav-tabs nav-img slider-tires-{{12/$divClass}} " >
+                    @if(@$tire->prodimage1)
                     <li class="active"><a data-toggle="tab" href="#home"><img src="{{ViewProductImage(@$tire->prodimage1)}}"></a></li>
+                    @endif
+                    @if(@$tire->prodimage2)
                     <li><a data-toggle="tab" href="#menu1"><img src="{{ViewProductImage(@$tire->prodimage2)}}"></a></li>
+                    @endif
+                    @if(@$tire->prodimage3)
                     <li><a data-toggle="tab" href="#menu2"><img src="{{ViewProductImage(@$tire->prodimage3)}}"></a></li>
+                    @endif
                   </ul>
                 </div>
 
-                @if(@$tire->dry_performance > 0 ||@$tire->wet_performance > 0 ||@$tire->mileage_performance > 0 ||@$tire->ride_comfort > 0 ||@$tire->quiet_ride > 0 ||@$tire->winter_performance > 0 ||@$tire->fuel_efficiency > 0 )
+                @if(@$ratings)
                   <div class="col-sm-{{12/$divClass}} tir-des">
                       <div class="row">
                           <div class="col-sm-12">
@@ -507,7 +513,7 @@
                       </div>
                   </div>
                 @endif
-                @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
+                @if(@$benefits)
                   <div class="col-sm-{{12/$divClass}} tire-benifit-des">
                       @if(@$tire->benefits1)
                       <div class="row tire-benifit">
@@ -517,7 +523,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits1}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits1)}}</p>
                               </div>
                           </div>
                       </div>
@@ -530,7 +536,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits2}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits2)}}</p>
                               </div>
                           </div>
                       </div>
@@ -543,7 +549,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits3}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits3)}}</p>
                               </div>
                           </div>
                       </div>
@@ -556,7 +562,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits4}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits4)}}</p>
                               </div>
                           </div>
                       </div>

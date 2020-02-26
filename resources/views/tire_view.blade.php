@@ -808,7 +808,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits1}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits1)}}</p>
                               </div>
                           </div>
                       </div>
@@ -821,7 +821,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits2}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits2)}}</p>
                               </div>
                           </div>
                       </div>
@@ -834,7 +834,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits3}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits3)}}</p>
                               </div>
                           </div>
                       </div>
@@ -847,7 +847,7 @@
                               </div>
                               <div class="col-sm-8 benifit-title">
                                   <!-- <h1 class="benifit-head">WIDE ANGLED TREAD SLOT</h1> -->
-                                  <p class="read_more_text" data-length="90">{{@$tire->benefits4}}</p>
+                                  <p class="read_more_text" data-length="100">{{SplitBenefitHeading(@$tire->benefits4)}}</p>
                               </div>
                           </div>
                       </div>

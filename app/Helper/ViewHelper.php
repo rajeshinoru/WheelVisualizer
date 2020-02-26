@@ -25,6 +25,34 @@ function MakeCustomPaginator($data,$request,$per_page=9){
 	return  $data;
 }
 
+
+function SplitBenefitHeading($string=''){
+	$resultString = '';
+	$flag=0;
+	if($string != '' )
+	{
+		$words = explode(" ", $string);
+        foreach($words as $word) {
+        	$filteredWord = preg_replace('/[^A-Za-z0-9\-]/', '', $word);
+        	$filteredWord = preg_replace("/-/", "", $filteredWord);
+            if( ( ctype_upper($word) || ctype_upper($filteredWord) ) && $flag==0){
+                $resultString.="<b>".$word."</b>";
+            } 
+            else{
+            	if($flag==0){
+                	$resultString.="<br>";
+            		$flag=1;
+            	}
+                $resultString.=$word;
+            }
+            $resultString.=" ";
+        }
+
+	}
+
+	return $resultString;
+}
+
 function convertBoltPattern($pattern=''){
 	if($pattern == 'Blank5' || $pattern == 'Blank6'  || $pattern == 'Blank5x' || $pattern == '' )
 	{
@@ -70,8 +98,9 @@ function showBoltPattern($bp1,$bp2='',$bp3=''){
 			$pattern.= convertBoltPattern($bp1) ;		
 		}
 		if($bp2 != null){
-			$pattern.=' And '.$bp2;
+			$pattern.=' And '.convertBoltPattern($bp2) ;
 		}
+
 	}
 
 	return $pattern;
