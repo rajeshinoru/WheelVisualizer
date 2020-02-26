@@ -29,6 +29,7 @@
             </div>
             <div class="row">
                 @forelse($ptires as $key => $ptire)
+                <?php $ptire = (object)$ptire; ?>
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">
@@ -92,6 +93,7 @@
             </div>
             <div class="row">
                 @forelse($lttires as $key => $lttire)
+                <?php $lttire = (object)$lttire; ?>
                 <div class="col-sm-2">
                     <div class="product-layouts">
                         <div class="product-thumb transition">

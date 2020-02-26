@@ -136,6 +136,7 @@
             <div class="col-sm-9 col-sm-9 main-pro-inner">
                 <div class="row">
                     @forelse($products as $key => $product)
+                        <?php $product = (object)$product; ?>
                         <div class="col-sm-4">
                             <div class="product-layouts">
                                 <div class="product-thumb transition">
