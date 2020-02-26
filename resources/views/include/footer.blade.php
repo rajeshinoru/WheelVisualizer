@@ -91,8 +91,7 @@
 
 <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
 
-
-@section('custom_scripts')
+@section('footer_scripts')
 <script>
 $(document).ready(function(){
      $(window).scroll(function () {
@@ -115,4 +114,8 @@ $(document).ready(function(){
 
 });
 </script>
+@endsection
+
+@section('custom_scripts')
+
 @endsection

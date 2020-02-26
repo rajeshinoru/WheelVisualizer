@@ -371,7 +371,7 @@
 
 </header>
 
-@section('custom_scripts')
+@section('header_scripts')
 <script>
     window.onscroll = function() {
         myFunction()
@@ -381,7 +381,7 @@
 
     function myFunction() {
         // if (window.pageYOffset > sticky)
-        if ($(document).scrollTop() > 123) {
+        if ($(document).scrollTop() > 130) {
             header.classList.add("sticky");
         } else {
             header.classList.remove("sticky");
