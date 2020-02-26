@@ -16,7 +16,6 @@
             </div>
       </div> -->
 
-
         <div class="row">
             <div class="col-sm-3">
                 <!-- Side Start -->
@@ -29,41 +28,40 @@
                                         <!-- <input type="text" id="price" class="price_range" style="border:0; color:#b9cd6d; font-weight:bold;"> -->
                                     </p>
                                     <!-- <div id="slider-3"></div> -->
-<div class="vehicle-list">
+                                    <div class="vehicle-list">
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select minprice" id="minprice" name="minprice">
                                                             <option value="">Select Min.Price</option>
                                                             @for($amt=10;$amt<10000;$amt=$amt+10)
 
-                                                            <option value="{{$amt}}" 
-                                                            @if($amt==json_decode(base64_decode(@Request::get('minprice')?:'')))    selected 
+                                                            <option value="{{$amt}}"
+                                                            @if($amt==json_decode(base64_decode(@Request::get('minprice')?:'')))    selected
                                                             @endif
 
-                                                            @if($amt > json_decode(base64_decode(@Request::get('maxprice')?:'')) && @Request::get('maxprice'))    disabled 
+                                                            @if($amt > json_decode(base64_decode(@Request::get('maxprice')?:'')) && @Request::get('maxprice'))    disabled
                                                             @endif
                                                             > Above ${{$amt}}</option>
                                                             @endfor
                                                             </select>
                                                         </div>
-</div>
-<div class="vehicle-list">
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select maxprice" id="maxprice" name="maxprice">
                                                             <option value="">Select Max.Price</option>
                                                             @for($amt=10;$amt<10000;$amt=$amt+10)
 
-                                                            <option value="{{$amt}}" 
-                                                            @if($amt==json_decode(base64_decode(@Request::get('maxprice')?:''))) 
-                                                                selected 
-                                                            @endif 
+                                                            <option value="{{$amt}}"
+                                                            @if($amt==json_decode(base64_decode(@Request::get('maxprice')?:'')))
+                                                                selected
+                                                            @endif
 
-                                                            @if($amt <= json_decode(base64_decode(@Request::get('minprice')?:'')))    disabled 
+                                                            @if($amt <= json_decode(base64_decode(@Request::get('minprice')?:'')))    disabled
                                                             @endif
                                                             > Below ${{$amt}}</option>
                                                             @endfor
                                                             </select>
                                                         </div>
-</div>
+                                      </div>
+                                      
                                 </div>
                             </div>
                         </div>
@@ -80,15 +78,15 @@
                                             <div class="panel-body">
                                                 <ul style="display: block;">
                                                     @foreach(@$brands as $key => $brand)
-                                                    <li><input type="checkbox" name="tirebrand[]" class="tirebrand" value="{{$brand->prodbrand}}" 
+                                                    <li><input type="checkbox" name="tirebrand[]" class="tirebrand" value="{{$brand->prodbrand}}"
                                                         @if(in_array($brand->prodbrand,json_decode(base64_decode(@Request::get('tirebrand')?:''))?:[]))
-                                                             checked 
+                                                             checked
                                                         @endif
 
                                                         @if(!@$countsByBrand[$brand->prodbrand])
                                                             disabled
                                                         @endif
-                                                        > 
+                                                        >
                                                         @if(@$countsByBrand[$brand->prodbrand])
                                                         {{$brand->prodbrand}} ( {{$countsByBrand[$brand->prodbrand]}} )
                                                         @else
@@ -114,7 +112,7 @@
                                                     @foreach(@$speedratings as $key => $value)
                                                     <li><span class="checkbox">
                                                             <label>
-                                                                <input type="checkbox" name="tirespeedrating[]" class="tirespeedrating" value="{{@$value->speedrating}}" 
+                                                                <input type="checkbox" name="tirespeedrating[]" class="tirespeedrating" value="{{@$value->speedrating}}"
                                                                 @if(in_array($value->speedrating,
                                                                 json_decode(base64_decode(@Request::get('tirespeedrating')?:''))?:[])) checked @endif  > {{@$value->speedrating}} ( {{@$value->total}} )
                                                             </label>
@@ -252,7 +250,6 @@
                         'maxprice'=> @Request::get('maxprice'), 
                         'diameter'=> @Request::get('diameter')])->links()}}
                         
-                        
                     </div>
                 </div>
             </div>
@@ -264,7 +261,7 @@
 @section('custom_scripts')
 
 
-<!-- 
+<!--
 
 <script>
     $(function() {

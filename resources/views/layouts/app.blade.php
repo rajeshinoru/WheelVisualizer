@@ -69,6 +69,8 @@
     </script>
 
     @yield('custom_scripts')
+    @yield('header_scripts')
+    @yield('footer_scripts')
 
     @yield('scripts')
     <script type="text/javascript">
