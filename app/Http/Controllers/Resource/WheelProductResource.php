@@ -15,9 +15,14 @@ class WheelProductResource extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
-    {
-        $wheelproducts = WheelProduct::orderBy('id','DESC')->paginate(10); 
+    public function index(Request $request)
+    {        
+
+        $selectFields=['id','prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc'];
+
+        $wheelproducts = WheelProduct::get()->unique('prodmodel');
+        // dd($tires);
+        $wheelproducts = MakeCustomPaginator($wheelproducts, $request, 10);
         return view('admin.wheelproduct.index',compact('wheelproducts'));
     }
 
@@ -196,13 +201,18 @@ class WheelProductResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getCarImages($id)
+    public function getProductsByModel($id)
     {
-        $vif = WheelProduct::find($id);
-        $cars =CarImage::where('car_id',$vif->vif)->paginate(10);
-        // dd($cars[0],$cars[0]->CarColor->where('code',$cars[0]->color_code)->first()->simple);
-        $brands = Wheel::select('brand')->distinct('brand')->get();
-        return view('admin.car.images',compact('cars','brands','vif'));
+        try {
+            $wheelproduct = WheelProduct::find(base64_decode($id));
+            $wheelproducts = WheelProduct::where('prodbrand',$wheelproduct->prodbrand)->where('prodmodel',$wheelproduct->prodmodel)->paginate(10);
+            // dd($tires);
+            return view('admin.wheelproduct.model',compact('wheelproducts','wheelproduct'));
+        } 
+        catch (Exception $e) {
+            dd($e);
+            return back()->with('flash_error', 'Tire Not Found');
+        }
     }
 
     /**

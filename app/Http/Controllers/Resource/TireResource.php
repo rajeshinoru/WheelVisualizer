@@ -15,11 +15,12 @@ class TireResource extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $wheels = Tire::paginate(10); 
-        $brands = Tire::select('brand')->distinct('brand')->get();
-        return view('admin.wheel.index',compact('wheels','brands'));
+        $tires = Tire::select('partno','prodtitle','prodbrand','prodmodel','prodimage','tiresize','tirewidth','tireprofile','tirediameter','speedrating','loadindex','ply','utqg','price','qtyavail','prodmetadesc','proddesc','id')->get()->unique('prodtitle');
+        // dd($tires);
+        $tires = MakeCustomPaginator($tires, $request, 10);
+        return view('admin.tire.index',compact('tires'));
     }
 
     /**
@@ -161,6 +162,20 @@ class TireResource extends Controller
             return back()->with('flash_sucess', 'Tire deleted successfully');
         } 
         catch (Exception $e) {
+            return back()->with('flash_error', 'Tire Not Found');
+        }
+    }
+
+    public function getTiresByModel($id)
+    {
+        try {
+            $tire = Tire::find(base64_decode($id));
+            $tires = Tire::where('prodbrand',$tire->prodbrand)->where('prodmodel',$tire->prodmodel)->paginate(10);
+            // dd($tires);
+            return view('admin.tire.model',compact('tires','tire'));
+        } 
+        catch (Exception $e) {
+            dd($e);
             return back()->with('flash_error', 'Tire Not Found');
         }
     }

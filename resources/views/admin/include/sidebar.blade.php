@@ -8,7 +8,7 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        <li class="">
+{{--                    <li class="">
                             <a class="has-arrow" href="{{url('/admin/home')}}">
                                    <span class="educate-icon educate-home icon-wrap"></span>
                                    <span class="mini-click-non">Home</span>
@@ -53,6 +53,35 @@
                         <li>
                             <a title="Landing Page" href="{{url('admin/setting')}}" aria-expanded="false"><span class="educate-icon educate-settings icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Settings</span></a>
                         </li>
+--}}
+
+                        <li>
+                            <a  href="{{url('admin/home')}}" aria-expanded="false"><i class="fa fa-home "></i> Home   </a>
+                        </li>
+                        <li>
+                            <a  href="{{url('admin/user')}}" aria-expanded="false"><i class="fa fa-user "></i> Users  </a>
+                        </li>
+                        <li>
+                            <a  href="{{url('admin/wheel')}}" aria-expanded="false"><i class="fa fa-cogs "></i> Wheels  </a>
+                        </li>
+                        <li>
+                            <a  href="{{url('admin/car')}}" aria-expanded="false"><i class="fa fa-car "></i> Cars  </a>
+                        </li>
+                        <li>
+                            <a  href="{{url('admin/brands')}}" aria-expanded="false"><i class="fa fa-list "></i> Brands  </a>
+                        </li>
+
+                        <li>
+                            <a  href="{{url('admin/wheelproduct')}}" aria-expanded="false"><i class="fa fa-list "></i> Wheel Products  </a>
+                        </li>
+
+                        <li>
+                            <a  href="{{url('admin/tire')}}" aria-expanded="false"><i class="fa fa-list "></i> Tires  </a>
+                        </li>
+                        <li>
+                            <a  href="{{url('admin/setting')}}" aria-expanded="false"><i class="fa fa-cog "></i> Settings  </a>
+                        </li>
+
 
 
 

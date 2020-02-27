@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('/admin/css/bootstrap.min.css') }}">
     <!-- Bootstrap CSS
         ============================================ -->
-    <link rel="stylesheet" href="{{ asset('/admin/css/font-awesome.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('/admin/css/font-awesome.min.css') }}"> -->
     <!-- owl.carousel CSS
         ============================================ -->
     <link rel="stylesheet" href="{{ asset('/admin/css/owl.carousel.css') }}">
@@ -67,7 +67,7 @@
         ============================================ -->
     <link rel="stylesheet" href="{{ asset('/admin/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('/admin/css/dropify.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('/js/font-awesome/css/font-awesome.min.css') }}">
     <!-- DataTable CSS -->
 
 
@@ -240,6 +240,7 @@
         ============================================ -->
     <!-- <script src="{{asset('/admin/js/tawk-chat.js">')}}</script> -->
 
+    <script src="{{ asset('js/common_search.js') }}"></script>
     <script src="{{asset('/admin/js/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('/admin/js/dropify.min.js')}}"></script>
     <script type="text/javascript">

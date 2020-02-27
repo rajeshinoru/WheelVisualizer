@@ -22,6 +22,16 @@ Route::resource('wheel', 'Resource\WheelResource');
 Route::resource('car', 'Resource\CarResource');
 Route::resource('brands', 'Resource\TireBrandsResource');
 Route::resource('wheelproduct', 'Resource\WheelProductResource');
+Route::resource('tire', 'Resource\TireResource');
+
+
+// Routes for Tires
+Route::get('/tire/{id?}/model', 'Resource\TireResource@getTiresByModel')->name('tire.model');  
+
+
+// Routes for Wheel Products
+Route::get('/wheelproduct/{id?}/model', 'Resource\WheelProductResource@getProductsByModel')->name('wheelproduct.model');  
+
 
 // Routes for Cars Images 
 Route::get('/car/images/{id}', 'Resource\CarResource@getCarImages')->name('car.images'); 

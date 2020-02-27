@@ -265,19 +265,23 @@
 <?php
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
 $urls = explode('/', $uri_parts[0]);
-$param ='';
+$param ='adminhome';
 $value =0;
-if(count($urls) >= 2){
-    $param =$urls[1];
-} 
-if(count($urls) >= 3){
-    $param .=$urls[2];
-}
-if(count($urls) >= 4){
-    $param .=$urls[3];
-    $value = $urls[4];
-}
-
+// dd(count($urls));
+// if(count($urls) >= 2){
+//     $param =$urls[1];
+// } 
+// if(count($urls) >= 3){
+//     $param .=$urls[2];
+// }
+// if(count($urls) == 4){
+//     $param .=$urls[3];
+//     // $value = $urls[4];
+// }
+// if(count($urls) == 5){
+//     $param .=$urls[2];
+//     // $value = $urls[3];
+// }
 ?>
 {{ Breadcrumbs::render($param,$value) }}
                             </div>

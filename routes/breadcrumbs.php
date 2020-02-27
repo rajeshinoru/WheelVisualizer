@@ -23,6 +23,17 @@ Breadcrumbs::for('adminwheelproduct', function ($trail) {
     $trail->push('Wheel Products', url('/admin/wheelproduct'));
 });
 
+// Home > Tire
+Breadcrumbs::for('admintire', function ($trail) {
+    $trail->parent('adminhome');
+    $trail->push('Tires', url('/admin/tire'));
+});
+// Home > Tire > Tire models
+Breadcrumbs::for('admintiremodels', function ($trail,$id) {
+    $trail->parent('admintire');
+    $trail->push('Tire Model',url('/admin/tire/'.$id.'/model'));
+});
+
 // Home > Car
 Breadcrumbs::for('admincar', function ($trail) {
     $trail->parent('adminhome');
