@@ -22,7 +22,7 @@ class WheelProductResource extends Controller
 
         $wheelproducts = WheelProduct::get()->unique('prodmodel');
         // dd($tires);
-        $wheelproducts = MakeCustomPaginator($wheelproducts, $request, 10);
+        $wheelproducts = MakeCustomPaginator($wheelproducts, $request, 5);
         return view('admin.wheelproduct.index',compact('wheelproducts'));
     }
 
@@ -205,7 +205,7 @@ class WheelProductResource extends Controller
     {
         try {
             $wheelproduct = WheelProduct::find(base64_decode($id));
-            $wheelproducts = WheelProduct::where('prodbrand',$wheelproduct->prodbrand)->where('prodmodel',$wheelproduct->prodmodel)->paginate(10);
+            $wheelproducts = WheelProduct::where('prodbrand',$wheelproduct->prodbrand)->where('prodmodel',$wheelproduct->prodmodel)->paginate(5);
             // dd($tires);
             return view('admin.wheelproduct.model',compact('wheelproducts','wheelproduct'));
         } 
