@@ -8,6 +8,7 @@ use App\Wheel;
 use App\CarImage;
 use App\Chassis;
 use App\ChassisModel;
+use App\PlusSize;
 use Illuminate\Http\Request;
 
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
@@ -50,24 +51,43 @@ class WheelProductController extends Controller
 
                 if (isset($request->maxoffset) && $request->maxoffset) 
                     $products = $products->where('offset1','<=',$request->maxoffset);
-
-
-
             }
             elseif (isset($request->flag) && $request->flag == 'searchByVehicle')
             {
 
                 $vehicle = Vehicle::select('vehicle_id', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $request->year)
                     ->where('make', $request->make)
-                    ->where('model', $request->model)
-                    ->where('submodel', $request->submodel)
+                    ->where('model', $request->model);
+
+                if($request->has('submodel')){
+
+                    $submodelBody = explode('-',$request->submodel);
+
+                    $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
+                }
+                $vehicle = $vehicle->first(); 
+                
+
+                $chassis_models = ChassisModel::where('chassis_id', $vehicle->dr_chassis_id)->where('chassis_id', $vehicle->dr_chassis_id)
                     ->first();
+
                 $chassis = Chassis::where('chassis_id', $vehicle->dr_chassis_id)
                     ->first();
-                $chassis_models = ChassisModel::where('chassis_id', $vehicle->dr_chassis_id)
-                    ->where('model_id', $vehicle->dr_model_id)
-                    ->first();
-                // dd($str);
+                // dd($chassis_models,$chassis);
+
+                $plusSizes = PlusSize::where('chassis_id',$vehicle->dr_chassis_id)->where('min_offset','<=', $chassis->min_et_front)->where('max_offset','<=', $chassis->max_et_front)->get();
+                
+                //*********************** Offset checking **************************
+
+                // $products = $products->whereBetween('offset1', [$chassis->min_et_front, $chassis->max_et_front]);
+                // $products->where('offset1','>=',$chassis->min_et_front)->where('offset1','<=',$chassis->max_et_front);
+                
+
+                // if($chassis_models->rim_size_r != null && $chassis_models->rim_size_r != 'NULL'){
+                //     $products = $products->whereBetween('offset1', [$chassis->min_et_rear, $chassis->max_et_rear]);
+                // }
+                // dd($chassis->min_et_front, $chassis->max_et_front,$plusSizes);
+                //*********************** BCD Bolt Pattern checking **************************
                 if (strpos($chassis->pcd, '.') !== false)
                 {
                     $str = substr($chassis->pcd, 0, strpos($chassis->pcd, "."));
@@ -78,15 +98,27 @@ class WheelProductController extends Controller
                 }
                 // dd($str);
                 $boltpattern = str_replace("x", "", $str)?:'';
-                // dd($boltpattern,$vehicle->wheel_type);
-                if($boltpattern !=''){
-                    $products = $products->where('boltpattern1', $boltpattern);//->orWhere('boltpattern2', $boltpattern);
+                // dd([$boltpattern,'Blank5']);
+                if($boltpattern != ''){
+                    $products = $products->whereIn('boltpattern1', [$boltpattern]);
                 }
-                $typeArray = explode(',', $vehicle->wheel_type);
-                // dd($typeArray);
-                $products = $products->whereIn('wheeltype', $typeArray);
-                // $products = $products->where('rf_lc', $vehicle->rf_lc);
-                // dd($vehicle);
+
+                // dd($chassis,$chassis_models,$plusSizes);
+
+                //*********************** Plus Size checking **************************
+                $plusSizesArray=array();
+                $rimsizearray = explode('x', $chassis_models->rim_size);
+                $diameterPart = str_replace(" ", "", $rimsizearray[1])?:$rimsizearray[1];
+
+                foreach ($plusSizes as $key => $plusSize) {
+                    
+                    $wheelsizearray = explode('x', $plusSize->wheel_size);
+                    $widthPart = str_replace(" ", "", $wheelsizearray[0])?:$wheelsizearray[0];
+                    array_push($plusSizesArray, $widthPart);
+                }
+                // dd($plusSizesArray,$diameterPart);
+                $products = $products->whereIn('wheelwidth', $plusSizesArray)->where('wheeldiameter', $diameterPart);
+
 
             }
 

@@ -105,7 +105,7 @@ class VehicleController extends Controller
 
             // Model change  or Loading Filter
             if(isset($request->make) && isset($request->year) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == '')
-                $allData['submodel'] = $data = $vehicle->select('dr_model_id','submodel','body')->where('year',$request->year)->wheremake($request->make)->wheremodel($request->model)->orderBy('submodel','ASC')->get()->unique('submodel');
+                $allData['submodel'] = $data = $vehicle->select('submodel','body')->distinct('submodel','body')->where('year',$request->year)->wheremake($request->make)->wheremodel($request->model)->orderBy('submodel','ASC')->get();
                 // dd($allData['submodel']);
 
             if($request->changeBy == ''){    
@@ -128,21 +128,27 @@ class VehicleController extends Controller
     public function setFiltersByVehicle(Request $request)
     {
         try{
+
+
             $vehicle = Vehicle::select('id','vehicle_id','year','make','model','submodel','dr_chassis_id','dr_model_id','year_make_model_submodel')
             ->where('year',$request->year)
             ->where('make',$request->make)
-            ->where('model',$request->model)
-            ->where('submodel',$request->submodel)
-            ->first(); 
-            // dd($vehicle,$request->all());
+            ->where('model',$request->model);
+            if($request->has('submodel')){
+
+                $submodelBody = explode('-',$request->submodel);
+
+                $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
+            }
+            $vehicle = $vehicle->first(); 
+            
             // $chassis = Chassis::where('chassis_id',$vehicle->dr_chassis_id)->first();
+            
             $chassis_models =ChassisModel::select('id','p_lt','tire_size','rim_size','chassis_id','model_id')
                 ->where('model_id',$vehicle->dr_model_id)
-                // ->where('max_rim_width',$)
                 ->get()
                 ->unique('tire_size'); 
-                // dd($chassis_models);
-            // dd($chassis,$chassis_models);
+
             return view('tire_size_list',compact('vehicle','chassis_models'));
 
         }catch(ModelNotFoundException $notfound){

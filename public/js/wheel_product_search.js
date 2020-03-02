@@ -140,7 +140,11 @@ function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeB
                 $('.WheelNavSubmodel').append('<option value="' + value.submodel + '"' + isSelected + '>' + value.submodel  + '</option>');
             });
         } else {
-            data.data.map(function(value, key) {
+            var arrayData = $.map(data.data, function(value, index) {
+                return [value];
+            });
+
+            arrayData.map(function(value, key) {
                 if (changeBy == 'make') {
                     $('.WheelNavYear').append('<option value="' + value.year + '">' + value.year + '</option>');
                 }
@@ -148,7 +152,10 @@ function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeB
                     $('.WheelNavModel').append('<option value="' + value.model + '">' + value.model + '</option>');
                 }
                 if (changeBy == 'model') {
-                    $('.WheelNavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
+                    // $('.WheelNavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
+
+                    var submodelBody = value.submodel + '-' + value.body;
+                    $('.WheelNavSubmodel').append('<option value="'+ submodelBody+'">'+submodelBody+ '</option>');
                 }
             });
         }
