@@ -101,11 +101,12 @@ class VehicleController extends Controller
 
             // Year change  or Loading Filter
             if(isset($request->make) && isset($request->year) && $request->changeBy == 'year' || $request->changeBy == '')
-                $allData['model'] = $data = $vehicle->select('model')->distinct('model')->where('year',$request->year)->wheremake($request->make)->get();
+                $allData['model'] = $data = $vehicle->select('model')->distinct('model')->where('year',$request->year)->wheremake($request->make)->orderBy('model','ASC')->get();
 
             // Model change  or Loading Filter
             if(isset($request->make) && isset($request->year) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == '')
-                $allData['submodel'] = $data = $vehicle->select('submodel')->distinct('submodel')->where('year',$request->year)->wheremake($request->make)->wheremodel($request->model)->get();
+                $allData['submodel'] = $data = $vehicle->select('dr_model_id','submodel','body')->where('year',$request->year)->wheremake($request->make)->wheremodel($request->model)->orderBy('submodel','ASC')->get()->unique('submodel');
+                // dd($allData['submodel']);
 
             if($request->changeBy == ''){    
                 return response()->json(['data' => $allData]);
@@ -127,20 +128,20 @@ class VehicleController extends Controller
     public function setFiltersByVehicle(Request $request)
     {
         try{
-            $vehicle = Vehicle::select('id','vehicle_id','year','make','model','submodel','dr_chassis_id','year_make_model_submodel')
+            $vehicle = Vehicle::select('id','vehicle_id','year','make','model','submodel','dr_chassis_id','dr_model_id','year_make_model_submodel')
             ->where('year',$request->year)
             ->where('make',$request->make)
             ->where('model',$request->model)
             ->where('submodel',$request->submodel)
             ->first(); 
-            // dd($vehicle);
-            $chassis = Chassis::where('chassis_id',$vehicle->dr_chassis_id)->first();
-            $chassis_models =ChassisModel::select('id','p_lt','tire_size','rim_size','chassis_id')
-                ->where('chassis_id',$vehicle->dr_chassis_id)
+            // dd($vehicle,$request->all());
+            // $chassis = Chassis::where('chassis_id',$vehicle->dr_chassis_id)->first();
+            $chassis_models =ChassisModel::select('id','p_lt','tire_size','rim_size','chassis_id','model_id')
+                ->where('model_id',$vehicle->dr_model_id)
                 // ->where('max_rim_width',$)
                 ->get()
                 ->unique('tire_size'); 
-
+                // dd($chassis_models);
             // dd($chassis,$chassis_models);
             return view('tire_size_list',compact('vehicle','chassis_models'));
 

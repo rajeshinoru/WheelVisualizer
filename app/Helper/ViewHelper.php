@@ -112,6 +112,21 @@ function showBoltPattern($bp1,$bp2='',$bp3=''){
 }
 
 
+function getHigherSpeedRating($rating=''){
+	$list = array("B","C","D","E","F","G","I","J","K","L","M","N","O","P","Q","R","S","T","U","H","V","W","X","Y","ZR");
+	$key = array_search($rating, $list);
+
+
+	$max1 = $key;
+	$max2 = count($list);
+	for ($i=0; ($i<$max1 && $i<$max2); $i++) {
+	    unset($list[$i]);
+	    $key--;
+	}
+	return array('list'=>$list,'key'=>$key);
+}
+
+
 //// All Wheel Brands
 function wheelbrands($splitarray = '') {
 	$wheels = Wheel::select('brand');

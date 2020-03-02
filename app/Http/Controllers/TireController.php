@@ -33,7 +33,8 @@ class TireController extends Controller
                     'price','prodmodel','tirewidth','tireprofile','tirediameter');
         // dd(base64_decode($chassis_model_id));
         $chassis_model = ChassisModel::find(base64_decode($chassis_model_id)) ?? null;
-        $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
+        // dd($chassis_model);
+        // $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
 
         if($request->has('tirebrand')){
             if($request->tirebrand !=''){
@@ -64,7 +65,10 @@ class TireController extends Controller
 
 
         if( $chassis_model_id!='' && $vehicle_id!=''){
-            $tires = $tires->where('tiresize','like', '%' . @$chassis_model->tire_size . '%');
+            $higherRating = getHigherSpeedRating($chassis_model->speed_index)['list'];
+            $tires = $tires->where('tiresize',$chassis_model->tire_size)
+                    ->where('loadindex','>=', $chassis_model->load_index)
+                    ->whereIn('speedrating',$higherRating );
         }else{
 
             if($request->has('width')){
@@ -145,8 +149,7 @@ class TireController extends Controller
             ->sortBy('price');
         $tires = $tires
             ->orderBy('price', 'ASC')
-            ->get()
-            ->unique('prodmodel');
+            ->get();
 
         if(count($tires) == 0){
 

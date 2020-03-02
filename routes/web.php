@@ -40,6 +40,8 @@ Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import')
 Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
 Route::get('/Chassis_Import', 'ChassisController@Chassis_Import');
 Route::get('/ChassisModel_Import', 'ChassisModelController@ChassisModel_Import');
+Route::get('/PlusSize_Import', 'PlusSizeController@PlusSize_Import');
+Route::get('/MinusSize_Import', 'MinusSizeController@MinusSize_Import');
 
 Route::resource('wheel', 'WheelController');
 

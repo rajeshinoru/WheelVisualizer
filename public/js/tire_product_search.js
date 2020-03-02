@@ -123,7 +123,12 @@ function NavFilters(year = '', make = '', model = '',submodel = '', changeBy = '
                 $('.NavSubmodel').append('<option value="' + value.submodel + '"' + isSelected + '>' + value.submodel  + '</option>');
             });
         } else {
-            data.data.map(function(value, key) {
+
+            var arrayData = $.map(data.data, function(value, index) {
+                return [value];
+            });
+
+            arrayData.map(function(value, key) {
                 if (changeBy == 'make') {
                     $('.NavYear').append('<option value="' + value.year + '">' + value.year + '</option>');
                 }
@@ -131,7 +136,8 @@ function NavFilters(year = '', make = '', model = '',submodel = '', changeBy = '
                     $('.NavModel').append('<option value="' + value.model + '">' + value.model + '</option>');
                 }
                 if (changeBy == 'model') {
-                    $('.NavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
+                    // $('.NavSubmodel').append('<option value="' + value.dr_model_id + '">' + value.submodel + ' - ' + value.body + ' </option>');
+                    $('.NavSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + ' </option>');
                 }
             });
         }
