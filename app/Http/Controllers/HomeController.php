@@ -435,45 +435,69 @@ class HomeController extends Controller
         }
     }
 
+    public $storeArr=array();
+
+    public function recursiveScan($dir,$storeArr) {
+        $tree = glob(rtrim($dir, '/') . '/*');
+        if (is_array($tree)) {
+            foreach($tree as $file) {
+                if(is_dir($file)) {
+                    // array_push($this->storeArr,$file);
+                    $this->recursiveScan($file,$this->storeArr);
+                    // dd($storeArr);
+                }elseif (is_file($file)) {
+                    array_push($this->storeArr,$file);
+                }
+            }
+        }
+
+        return $this->storeArr;
+    }
+
     public function tiredetailimages()
     {
+        $tireimages = $this->recursiveScan('storage/tires/models/*',$this->storeArr);
+    
+        // $tireimages = glob("storage/tires/models/*/*/*");
+        // $tireimages  =  glob("storage/tires/models/*") ;
 
-        $tireimages = glob("storage/tires/models/*/*");
-
-        $arr=array();
         foreach ($tireimages as $key => $value) {
+            if(!(strpos($value, 'Thumbs.db') !== false ||
+                 strpos($value, '.xlsx') !== false || 
+                 strpos($value, '.zip') !== false || 
+                 strpos($value, '.pdf') !== false)){
+                $path = str_replace("storage/tires/models/","",$value);
+                $folders= explode('/', $value);
+                $lastPart = $folders[count($folders)-1];
 
-            $folders= explode('/', $value);
-            if($folders[4] != 'Thumbs.db'){
-
-                Tire::where('benefitsimage1','like', '%' . $folders[4]. '%')->update([
-                    'benefitsimage1'=>$folders[3].'/'.$folders[4],
+                Tire::where('benefitsimage1','like', '%' . $lastPart. '%')->update([
+                    'benefitsimage1'=>$path,
                 ]);
 
-                Tire::where('benefitsimage2','like', '%' . $folders[4]. '%')->update([
-                    'benefitsimage2'=>$folders[3].'/'.$folders[4],
+                Tire::where('benefitsimage2','like', '%' . $lastPart. '%')->update([
+                    'benefitsimage2'=>$path,
                 ]);
 
-                Tire::where('benefitsimage3','like', '%' . $folders[4]. '%')->update([
-                    'benefitsimage3'=>$folders[3].'/'.$folders[4],
+                Tire::where('benefitsimage3','like', '%' . $lastPart. '%')->update([
+                    'benefitsimage3'=>$path,
                 ]);
 
-                Tire::where('benefitsimage4','like', '%' . $folders[4]. '%')->update([
-                    'benefitsimage4'=>$folders[3].'/'.$folders[4],
+                Tire::where('benefitsimage4','like', '%' . $lastPart. '%')->update([
+                    'benefitsimage4'=>$path,
                 ]);
 
-                Tire::where('prodimage1','like', '%' . $folders[4]. '%')->update([
-                    'prodimage1'=>$folders[3].'/'.$folders[4],
+                Tire::where('prodimage1','like', '%' . $lastPart. '%')->update([
+                    'prodimage1'=>$path,
                 ]);
 
-                Tire::where('prodimage2','like', '%' . $folders[4]. '%')->update([
-                    'prodimage2'=>$folders[3].'/'.$folders[4],
+                Tire::where('prodimage2','like', '%' . $lastPart. '%')->update([
+                    'prodimage2'=>$path,
                 ]);
 
-                Tire::where('prodimage3','like', '%' . $folders[4]. '%')->update([
-                    'prodimage3'=>$folders[3].'/'.$folders[4],
+                Tire::where('prodimage3','like', '%' . $lastPart. '%')->update([
+                    'prodimage3'=>$path,
                 ]);
-                echo $folders[3].'/'.$folders[4]."<br>";
+                echo $lastPart."<br>";
             }
         }
         // dd($arr);

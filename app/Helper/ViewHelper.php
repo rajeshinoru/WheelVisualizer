@@ -45,7 +45,10 @@ function SplitBenefitHeading($string=''){
             } 
             else{
             	if($flag==0){
-                	$resultString.="<br>";
+            		if($resultString != ''){
+
+                		$resultString.="<br>";
+            		}
             		$flag=1;
             	}
                 $resultString.=$word;

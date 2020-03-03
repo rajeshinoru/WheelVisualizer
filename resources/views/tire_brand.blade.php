@@ -5,7 +5,7 @@
 
 <section id="falken-des">
     <div class="container">
-
+        @if(@$tire->Brand)
         <div class="row">
             <div class="col-sm-9">
                 <div class="prod-headinghome">
@@ -18,6 +18,7 @@
             </div>
             <div class="col-sm-3 fal-logo"><img src="{{viewImage('tires/brands/'.@$tire->Brand->manulogo)}}"></div>
         </div>
+        @endif
     </div>
 
     <div class="container">
