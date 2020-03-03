@@ -134,6 +134,19 @@
             </div>
 
             <div class="col-sm-9 col-sm-9 main-pro-inner">
+
+                @if(@$vehicle)
+                  <div class="wheel-list-change-tab">
+                      <div class="row">
+                          <div class="col-md-8 left-head">
+                              <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                               <!-- OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b>  -->
+                            </p>
+                          </div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
+                      </div>
+                  </div>
+                @endif
                 <div class="row">
                     @forelse($products as $key => $product)
                         <?php $product = (object)$product; ?>

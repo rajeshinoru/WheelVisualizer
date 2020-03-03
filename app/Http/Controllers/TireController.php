@@ -34,7 +34,7 @@ class TireController extends Controller
         // dd(base64_decode($chassis_model_id));
         $chassis_model = ChassisModel::find(base64_decode($chassis_model_id)) ?? null;
         // dd($chassis_model);
-        // $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
+        $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
 
         if($request->has('tirebrand')){
             if($request->tirebrand !=''){

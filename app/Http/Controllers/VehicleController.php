@@ -143,13 +143,17 @@ class VehicleController extends Controller
             $vehicle = $vehicle->first(); 
             
             // $chassis = Chassis::where('chassis_id',$vehicle->dr_chassis_id)->first();
-            
+
             $chassis_models =ChassisModel::select('id','p_lt','tire_size','rim_size','chassis_id','model_id')
                 ->where('model_id',$vehicle->dr_model_id)
                 ->get()
                 ->unique('tire_size'); 
+            if(count($chassis_models)  == 1){
 
-            return view('tire_size_list',compact('vehicle','chassis_models'));
+                return redirect('/tirelist/'.base64_encode($chassis_models[0]->id).'/'.base64_encode(@$vehicle->vehicle_id));
+            }else{
+                return view('tire_size_list',compact('vehicle','chassis_models'));
+            }
 
         }catch(ModelNotFoundException $notfound){
             return response()->json(['error' => $notfound->getMessage()]); 
