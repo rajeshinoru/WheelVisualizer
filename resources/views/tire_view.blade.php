@@ -600,7 +600,7 @@
               @if(@$tire->benefits1 || @$tire->benefits2 || @$tire->benefits3 || @$tire->benefits4)
                 <?php $divClass+=1;$benefits=true;?>
               @endif
-              @if(@$tire->dry_performance > 0 ||@$tire->wet_performance > 0 ||@$tire->mileage_performance > 0 ||@$tire->ride_comfort > 0 ||@$tire->quiet_ride > 0 ||@$tire->winter_performance > 0 ||@$tire->fuel_efficiency > 0 )
+              @if(@$tire->dry_performance > 0 ||@$tire->wet_performance > 0 ||@$tire->mileage_performance > 0 ||@$tire->ride_comfort > 0 ||@$tire->quiet_ride > 0 ||@$tire->winter_performance > 0 ||@$tire->fuel_efficiency > 0 || @$tire->braking > 0 || @$tire->responsiveness > 0 || @$tire->sport > 0 || @$tire->handling > 0 || @$tire->off_road > 0 )
                 <?php $divClass+=1;$ratings=true;?>
               @endif
                 <div class="col-sm-{{12/$divClass}} tire-img">
@@ -659,12 +659,12 @@
                                 <td class="product-info-value"><b>{{@$tire->partno}}</b></td>
                             </tr>
                             <tr>
-                                <td>Original Price : <span class="price-old">${{@$tire->originalprice}}</span></td>
-                                <td class="product-info-value">You Save : <span class="price-new2">${{(@$tire->originalprice - @$tire->price)}}</td>
+                                <td>Original Price : <span class="price-old">${{roundCurrency(($tire->price + (35 / 100) * $tire->price))}}</span></td>
+                                <td class="product-info-value">You Save : <span class="price-new2">${{roundCurrency((($tire->price + (35 / 100) * $tire->price) - @$tire->price))}}</td>
                             </tr>
                             <tr>
-                                <td>Set of 4 : <span class="price-new2">${{@$tire->price * 4}}</span></td>
-                                <td class="product-info-value">Your Price : <span class="price-new2">${{@$tire->price}}</span></td>
+                                <td>Set of 4 : <span class="price-new2">${{roundCurrency(@$tire->price * 4)}}</span></td>
+                                <td class="product-info-value">Your Price : <span class="price-new2">${{roundCurrency(@$tire->price)}}</span></td>
                             </tr>
                             <tr>
                                 <td><div class="reward-block">
@@ -784,9 +784,8 @@
                                     <div class="progress-value">{{@$tire->dry_performance??0}}%</div>
                                 </div>
                             </div>
-                            @endif
                             <br>
-
+                            @endif
                             @if(@$tire->wet_performance > 0)
                             <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
                             <div class="progress pink">
@@ -794,8 +793,9 @@
                                     <div class="progress-value">{{@$tire->wet_performance??0}}%</div>
                                 </div>
                             </div>
+
+                            <br>    
                             @endif
-                            <br>
                             @if(@$tire->mileage_performance > 0)
                             <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
                             <div class="progress pink">
@@ -803,9 +803,9 @@
                                     <div class="progress-value">{{@$tire->mileage_performance??0}}%</div>
                                 </div>
                             </div>
-                            @endif
                             <br>
 
+                            @endif
                             @if(@$tire->ride_comfort > 0)
                             <h3 class="progress-title">Ride Comfort:</h3>
                             <div class="progress pink">
@@ -813,8 +813,9 @@
                                     <div class="progress-value">{{@$tire->ride_comfort??0}}%</div>
                                 </div>
                             </div>
+
+                            <br>    
                             @endif
-                            <br>
                             @if(@$tire->quiet_ride > 0)
                             <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
                             <div class="progress pink">
@@ -822,9 +823,10 @@
                                     <div class="progress-value">{{@$tire->quiet_ride??0}}%</div>
                                 </div>
                             </div>
-                            @endif
                             <br>
 
+                            @endif
+      
                             @if(@$tire->winter_performance > 0)
                             <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
                             <div class="progress pink">
@@ -832,9 +834,10 @@
                                     <div class="progress-value">{{@$tire->winter_performance??0}}%</div>
                                 </div>
                             </div>
-                            @endif
                             <br>
 
+                            @endif
+      
                             @if(@$tire->fuel_efficiency > 0)
                             <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
                             <div class="progress pink">
@@ -842,8 +845,61 @@
                                     <div class="progress-value">{{@$tire->fuel_efficiency??0}}%</div>
                                 </div>
                             </div>
-                            @endif
                             <br>
+                            @endif
+
+
+                            @if(@$tire->braking > 0)
+                            <h3 class="progress-title">Braking:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->braking??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->braking??0}}%</div>
+                                </div>
+                            </div>
+                            <br>
+                            @endif
+
+
+                            @if(@$tire->responsiveness > 0)
+                            <h3 class="progress-title">Responsiveness:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->responsiveness??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->responsiveness??0}}%</div>
+                                </div>
+                            </div>
+                            <br>
+                            @endif
+
+                            @if(@$tire->sport > 0)
+                            <h3 class="progress-title">Sport:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->sport??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->sport??0}}%</div>
+                                </div>
+                            </div>
+                            <br>
+                            @endif
+
+                            @if(@$tire->handling > 0)
+                            <h3 class="progress-title">Handling:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->handling??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->handling??0}}%</div>
+                                </div>
+                            </div>
+                            <br>
+                            @endif
+
+                            @if(@$tire->off_road > 0)
+                            <h3 class="progress-title">Off Road:</h3>
+                            <div class="progress pink">
+                                <div class="progress-bar" style="width:{{@$tire->off_road??0}}%; background:#0e1661;">
+                                    <div class="progress-value">{{@$tire->off_road??0}}%</div>
+                                </div>
+                            </div>
+                            <br>
+                            @endif
+
                           </div>
                       </div>
                   </div>
@@ -914,17 +970,22 @@
     <div class="container">
         <div class="row youtube-video">
             <div class="col-sm-12 tire-video">
-                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=uobjGGIjV-Y')?>
+                @if(@$tire->youtube1)
+                <div class="col-sm-3 video"><?php echo embedYoutube(@$tire->youtube1)?>
                 </div>
-                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=TdR_KUfM1z0')?>
+                @endif
+                @if(@$tire->youtube2)
+                <div class="col-sm-3 video"><?php echo embedYoutube(@$tire->youtube2)?>
                 </div>
-                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=uobjGGIjV-Y')?>
+                @endif
+                @if(@$tire->youtube3)
+                <div class="col-sm-3 video"><?php echo embedYoutube(@$tire->youtube3)?>
                 </div>
-                <div class="col-sm-3 video"><?php echo embedYoutube('https://www.youtube.com/watch?v=TdR_KUfM1z0')?>
+                @endif
+                @if(@$tire->youtube4)
+                <div class="col-sm-3 video"><?php echo embedYoutube(@$tire->youtube4)?>
                 </div>
-                <!--                 <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div>
-                <div class="col-sm-3 video"><img src="{{url('image/video.jpg')}}"></div> -->
+                @endif
             </div>
         </div>
     </div>
@@ -992,7 +1053,7 @@
         </div>
     </div>
 </section>
-
+{{--
 <section id="table-section">
     <div class="container">
         <div class="table-responsive table-bordered">
@@ -1031,7 +1092,7 @@
         </div>
     </div>
 </section>
-
+--}}
 
 
 <section id="falken-info">

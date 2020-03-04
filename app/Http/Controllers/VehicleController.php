@@ -137,17 +137,24 @@ class VehicleController extends Controller
             if($request->has('submodel')){
 
                 $submodelBody = explode('-',$request->submodel);
+                // dd($submodelBody);
+                if(count($submodelBody) == 2 ){
 
-                $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
+                    $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
+                }elseif(count($submodelBody) == 3 ){
+
+                    $vehicle = $vehicle->where('submodel',$submodelBody[0].'-'.$submodelBody[1])->where('body',$submodelBody[2]);
+                }
             }
             $vehicle = $vehicle->first(); 
-            
+            // dd($vehicle);
             // $chassis = Chassis::where('chassis_id',$vehicle->dr_chassis_id)->first();
 
             $chassis_models =ChassisModel::select('id','p_lt','tire_size','rim_size','chassis_id','model_id')
                 ->where('model_id',$vehicle->dr_model_id)
                 ->get()
                 ->unique('tire_size'); 
+                // dd($chassis_models);
             if(count($chassis_models)  == 1){
 
                 return redirect('/tirelist/'.base64_encode($chassis_models[0]->id).'/'.base64_encode(@$vehicle->vehicle_id));
