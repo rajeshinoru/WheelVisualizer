@@ -107,8 +107,8 @@ class WheelProductController extends Controller
                     $widthPart1 = str_replace(" ", "", $wheelsizearray[0])?:$wheelsizearray[0];
                     $diameterPart1 = str_replace(" ", "", $wheelsizearray[1])?:$wheelsizearray[1];
                     if($widthPart1 >= $widthPart ){
-                        // array_push($plusSizesArray, $widthPart1);
-                        $products = $products->where('wheelwidth','>=',$widthPart1);
+                        array_push($plusSizesArray, $widthPart1);
+                        // $products = $products->where('wheelwidth','>=',$widthPart1);
                     }
                 }
 
@@ -128,7 +128,7 @@ class WheelProductController extends Controller
                 }
 
                 $products = $products->where('wheeldiameter','>=',$diameterPart);
-                // $products = $products->whereIn('wheelwidth', $plusSizesArray);//->where('wheeldiameter',$diameterPart);
+                $products = $products->whereIn('wheelwidth', $plusSizesArray);
 
                 $request->flag = 'searchByWheelSize';
                 // dd($plusSizesArray,$boltpattern,$diameterPart);
