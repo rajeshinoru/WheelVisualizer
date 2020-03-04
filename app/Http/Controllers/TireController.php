@@ -227,7 +227,7 @@ class TireController extends Controller
         $ptires =$ptires->where('detaildesctype','Passenger')
                 ->get()
                 ->unique('prodmodel');
-        $lttires =$lttires->whereNotIn('detaildesctype',['Passenger'])
+        $lttires =$lttires
                 ->get()
                 ->unique('prodmodel');
 
