@@ -196,6 +196,19 @@
                                 @if(@Request::get('tireloadindex'))
                                  Load Index: <b>{{implode(',',json_decode(base64_decode(@Request::get('tireloadindex'))))}} </b>
                                 @endif
+
+                                @if(@Request::get('width'))
+                                  Width: <b>{{@Request::get('width')}},</b>
+                                @endif
+
+                                @if(@Request::get('profile'))
+                                  Profile: <b>{{@Request::get('profile')}},</b>
+                                @endif
+
+                                @if(@Request::get('diameter'))
+                                  Diameter: <b>{{@Request::get('diameter')}} </b>
+                                @endif
+
                             @endif
                         </p>
                       </div>

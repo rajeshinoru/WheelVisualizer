@@ -206,7 +206,11 @@
                                 </div>
                             </div>
                         </div>
-                        @empty {{'Not Found'}} 
+                        @empty 
+                     <div class="col-md-12 left-head text-center" >
+                        <br>
+                          <h5> <b>No Results found for your selected vehicle.Please try selecting a different brand or attribute on the left.</b> </h5>
+                      </div>
                         @endforelse
                 </div>
 

@@ -113,7 +113,9 @@ function showBoltPattern($bp1,$bp2='',$bp3=''){
 
 	return $pattern;
 }
-
+function roundCurrency($amt=0){
+	return round($amt,2);
+}
 
 function getHigherSpeedRating($rating=''){
 	$list = array("B","C","D","E","F","G","I","J","K","L","M","N","O","P","Q","R","S","T","U","H","V","W","X","Y","ZR");
