@@ -328,7 +328,7 @@
                                                 <div class="vehicle-list">
                                                     <div class="row">
 
-                                                        <div class="col-sm-12 tire-menu">
+                                                        <div class="col-sm-12 tire-menu tire-two">
                                                             <ul>
                                                                 <li><a href="{{url('/tirebrand')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> All</a></li>
                                                                 @foreach(getTireBrandList() as $key => $tirebrand)
