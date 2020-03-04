@@ -127,7 +127,7 @@ class WheelProductController extends Controller
                     $products = $products->whereIn('boltpattern1', [$boltpattern,'Blank5']);
                 }
 
-                $products = $products->where('wheeldiameter','>=',$diameterPart);
+                $products = $products->where('wheeldiameter',$diameterPart);
                 $products = $products->whereIn('wheelwidth', $plusSizesArray);
 
                 $request->flag = 'searchByWheelSize';

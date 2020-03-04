@@ -143,7 +143,7 @@
                                <!-- OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b>  -->
                             </p>
                           </div>
-                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
                       </div>
                   </div>
                 @endif

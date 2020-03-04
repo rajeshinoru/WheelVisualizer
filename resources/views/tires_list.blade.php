@@ -175,11 +175,29 @@
                 <!-- Side End -->
             </div>
             <div class="col-sm-9">
-            @if(@$vehicle)
+                @if(@$vehicle || count(Request::all()) > 0)
               <div class="wheel-list-change-tab">
                   <div class="row">
                       <div class="col-md-8 left-head">
-                          <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b> OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b> </p>
+                        <p> 
+                            @if(@$vehicle)
+                            Your Selected Vehicle: 
+                                <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                            OEM Tire Size:
+                                <b>{{@$chassis_model->tire_size}}</b>
+                            <br>
+                            @endif
+                            @if(count(Request::all()) > 0)
+                                Filtered on 
+                                @if(@Request::get('tirespeedrating'))
+                                 Speed Rating: <b>{{implode(',',json_decode(base64_decode(@Request::get('tirespeedrating'))))}} ,</b>
+                                @endif
+
+                                @if(@Request::get('tireloadindex'))
+                                 Load Index: <b>{{implode(',',json_decode(base64_decode(@Request::get('tireloadindex'))))}} </b>
+                                @endif
+                            @endif
+                        </p>
                       </div>
                       <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
                   </div>
