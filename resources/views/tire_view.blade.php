@@ -77,7 +77,7 @@
         font-family:Poppins !important;
         font-size: 12px;
     }
-    .product-info td a 
+    .product-info td a
     {
         color: #222 !important;
     }
@@ -700,7 +700,7 @@
                     </div> -->
 
                     <div class="row product-quantity">
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 view-one">
                             <div class="input-group spinner">
                                 <input type="text" class="form-control" value="1" min="0" max="10">
                                 <div class="input-group-btn-vertical">
@@ -709,10 +709,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4"><button class="btn btn-info" type="button">Add to Cart</button></div>
-                        <div class="col-sm-4"><button class="btn btn-info" type="button">FINANCE</button></div>
+                        <div class="col-sm-4 view-two"><button class="btn btn-info" type="button">Add to Cart</button></div>
+                        <div class="col-sm-4 view-three"><button class="btn btn-info" type="button">FINANCE</button></div>
                     </div>
-                   
+
                     <!-- <div class="form-group product-quantity">
                         <label class="control-label" for="input-quantity">Qty</label>
                         <div class="input-group spinner">
@@ -776,7 +776,7 @@
                       <div class="row">
                           <div class="col-sm-12">
                             <h2 class="product-name2">Performance Ratings</h2>
-      
+
                             @if(@$tire->dry_performance > 0)
                             <h3 class="progress-title">Dry Handling / Dry Traction/ Dry Performance :</h3>
                             <div class="progress pink">
@@ -786,7 +786,7 @@
                             </div>
                             @endif
                             <br>
-    
+
                             @if(@$tire->wet_performance > 0)
                             <h3 class="progress-title">Wet Braking/ Wet Traction/ Wet Performance :</h3>
                             <div class="progress pink">
@@ -795,7 +795,7 @@
                                 </div>
                             </div>
                             @endif
-                            <br>    
+                            <br>
                             @if(@$tire->mileage_performance > 0)
                             <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
                             <div class="progress pink">
@@ -805,7 +805,7 @@
                             </div>
                             @endif
                             <br>
-      
+
                             @if(@$tire->ride_comfort > 0)
                             <h3 class="progress-title">Ride Comfort:</h3>
                             <div class="progress pink">
@@ -814,7 +814,7 @@
                                 </div>
                             </div>
                             @endif
-                            <br>    
+                            <br>
                             @if(@$tire->quiet_ride > 0)
                             <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
                             <div class="progress pink">
@@ -824,7 +824,7 @@
                             </div>
                             @endif
                             <br>
-      
+
                             @if(@$tire->winter_performance > 0)
                             <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
                             <div class="progress pink">
@@ -834,7 +834,7 @@
                             </div>
                             @endif
                             <br>
-      
+
                             @if(@$tire->fuel_efficiency > 0)
                             <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
                             <div class="progress pink">
@@ -1092,9 +1092,9 @@
 <script>
     if($('.zoomple').length > 0){
 
-        $('.zoomple').zoomple({ 
+        $('.zoomple').zoomple({
             offset : {x:-100,y:-100},
-            zoomWidth : 130,  
+            zoomWidth : 130,
             zoomHeight : 130,
             roundedCorners : true
         });
@@ -1107,7 +1107,7 @@ $(function(){
 $('.spinner .btn:first-of-type').on('click', function() {
   var btn = $(this);
   var input = btn.closest('.spinner').find('input');
-  if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {    
+  if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {
     input.val(parseInt(input.val(), 10) + 1);
   } else {
     btn.next("disabled", true);
@@ -1116,7 +1116,7 @@ $('.spinner .btn:first-of-type').on('click', function() {
 $('.spinner .btn:last-of-type').on('click', function() {
   var btn = $(this);
   var input = btn.closest('.spinner').find('input');
-  if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {    
+  if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {
     input.val(parseInt(input.val(), 10) - 1);
   } else {
     btn.prev("disabled", true);

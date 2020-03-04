@@ -1,7 +1,7 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
-@endsection 
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+@endsection
 @section('content')
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
@@ -81,15 +81,15 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($brands as $brand)
-                                                    <li><input type="checkbox" name="brand[]" class="brand" value="{{$brand->prodbrand}}" 
+                                                    <li><input type="checkbox" name="brand[]" class="brand" value="{{$brand->prodbrand}}"
                                                         @if(in_array($brand->prodbrand,json_decode(base64_decode(@Request::get('brand')?:''))?:[]))
-                                                             checked 
+                                                             checked
                                                         @endif
 
                                                         @if(!@$countsByBrand[$brand->prodbrand])
                                                             disabled
                                                         @endif
-                                                        > 
+                                                        >
                                                         @if(@$countsByBrand[$brand->prodbrand])
                                                         {{$brand->prodbrand}} ( {{$countsByBrand[$brand->prodbrand]}} )
                                                         @else
@@ -163,28 +163,18 @@
                                         <div class="caption">
                                             <h4><a href="{{url('/wheelproductview',$product->id)}}{{@$flag?'/'.$flag:''}}">{{$product->prodtitle}}
                                                 @if(@Request::get('diameter'))
-                                                    <br> {{'Diameter : '.$product->wheeldiameter}} 
+                                                    <br> {{'Diameter : '.$product->wheeldiameter}}
                                                 @endif
                                                 @if(@Request::get('width'))
-                                                    <br> {{'Width : '.$product->wheelwidth}} 
+                                                    <br> {{'Width : '.$product->wheelwidth}}
                                                 @endif
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
-                                                </a></h4>
-                                            <!-- <h6><a href="">Accessories</a></h6> -->
-                                            <!-- <div class="rating">
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
-                                            </div> -->
-                                            <br>
-                                            <div class="price">
-                                                <span class="price-new">Starting at : ${{@$product->price}}</span>
-                                                <!-- <span class="price-old">$1,202.00</span> -->
-                                                <!-- <span class="price-tax">Ex Tax: $85.00</span> -->
-                                            </div>
+                                                </a>
+                                              </h4>
 
+                                            <!-- <div class="price">
+                                                <span class="price-new">Starting at : ${{@$product->price}}</span>
+                                            </div> -->
                                         </div>
                                         <div class="button-group">
                                             <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -200,13 +190,15 @@
                                             <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
                                                 <span>Quick View</span>
                                             </button>
-
                                         </div>
+                                    </div>
+                                    <div class="thumb-description-price-details">
+                                      <span class="price-new">Starting at : ${{@$product->price}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @empty {{'Not Found'}} 
+                        @empty {{'Not Found'}}
                         @endforelse
                 </div>
 
