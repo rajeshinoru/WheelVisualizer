@@ -71,14 +71,16 @@
 
     .product-info td {
         color: #222 !important;
-        text-transform: uppercase;
         text-align: left;
         width: 200px !important;
-        padding: 5px !important;
+        padding: 5px 0px !important;
         font-family:Poppins !important;
         font-size: 12px;
     }
-
+    .product-info td a 
+    {
+        color: #222 !important;
+    }
     .product-details .rating {
         display: table;
     }
@@ -270,10 +272,12 @@
         text-decoration: line-through;
         margin: 0 10px 0 0;
     }
-
+    .rating a {
+        color: #0e1661;
+    }
     .price-old {
-        color: #c2c2c2;
-        font-size: 17px;
+        color: #ecb23d;
+        font-size: 16px;
         line-height: 20px;
         text-decoration: line-through;
     }
@@ -287,7 +291,7 @@
     }
 
     .product-info {
-        margin: 10px 0px !important;
+        margin: 0px 0px !important;
     }
 
     #table-section thead {
@@ -419,8 +423,12 @@
         color:#ecb23d !important;
         font-family: Montserrat !important;
         font-size: 12px !important;
+        font-weight: 700;
     }
-
+    .instock
+    {
+        padding:15px 0px !important;
+    }
     .youtube-video {
         margin: 20px 0px !important;
     }
@@ -451,7 +459,10 @@
     .reward-block {
         padding: 10px 0px !important;
     }
-
+    .reward-block .btn
+    {
+        width:100% !important;
+    }
     .modal-dialog.tire-view {
         width: 300px !important;
     }
@@ -506,23 +517,20 @@
 <style>
     .price-section h1 {
         font-size: 12px !important;
-        text-align: center;
         padding: 5px 0px !important;
         margin: 0px 0px !important;
         line-height: 30px;
     }
-
+    .padd
+    {
+        padding:0px 0px !important;
+    }
     .price-section h2 {
         font-size: 12px !important;
         padding: 5px 0px !important;
         margin: 0px 0px !important;
         line-height: 30px;
     }
-
-    .reward-block {
-        text-align: center !important;
-    }
-
     .modal-dialog.tire-view .modal-header {
         background: #0e1661 !important;
     }
@@ -645,11 +653,35 @@
                                 <td></td>
                                 <td class="product-info-value">UTQG : {{@$tire->utqg}}</td>
                             </tr>
-
+                        <!-- New Table Start -->
+                            <tr>
+                                <td>Part No :</td>
+                                <td class="product-info-value"><b>{{@$tire->partno}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Original Price : <span class="price-old">${{@$tire->originalprice}}</span></td>
+                                <td class="product-info-value">You Save : <span class="price-new2">${{(@$tire->originalprice - @$tire->price)}}</td>
+                            </tr>
+                            <tr>
+                                <td>Set of 4 : <span class="price-new2">${{@$tire->price * 4}}</span></td>
+                                <td class="product-info-value">Your Price : <span class="price-new2">${{@$tire->price}}</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="reward-block">
+                                    @if(@$tire->saletype == 4)
+                                    <button class="btn btn-info" type="button">See Price in Cart</button>
+                                    @elseif(@$tire->saletype == 5)
+                                    <button class="btn btn-info" type="button">Join DWW for Special Offers</button>
+                                    @elseif(@$tire->saletype == 7)
+                                    <button class="btn btn-info" type="button">See Price in Checkout</button>
+                                    @endif
+                                    </div></td>
+                            </tr>
+                        <!-- New Table End -->
                         </tbody>
                     </table>
 
-                    <div class="price-section">
+                    <!-- <div class="price-section">
                         <h1>Partno : <b>{{@$tire->partno}}</b></h1>
                         <h2>Original Price : <span class="price-old">${{@$tire->originalprice}}</span>
                             You Save : <span class="price-new2">${{(@$tire->originalprice - @$tire->price)}}</span>
@@ -665,22 +697,40 @@
                             <button class="btn btn-info" type="button">See Price in Checkout</button>
                             @endif
                         </div>
+                    </div> -->
+
+                    <div class="row product-quantity">
+                        <div class="col-sm-4">
+                            <div class="input-group spinner">
+                                <input type="text" class="form-control" value="1" min="0" max="10">
+                                <div class="input-group-btn-vertical">
+                                <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4"><button class="btn btn-info" type="button">Add to Cart</button></div>
+                        <div class="col-sm-4"><button class="btn btn-info" type="button">FINANCE</button></div>
                     </div>
-
-
-                    <div class="form-group product-quantity">
+                   
+                    <!-- <div class="form-group product-quantity">
                         <label class="control-label" for="input-quantity">Qty</label>
-                        <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
-                        <input type="hidden" name="product_id" value="46">
+                        <div class="input-group spinner">
+                            <input type="text" class="form-control" value="1" min="0" max="5">
+                            <div class="input-group-btn-vertical">
+                            <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                            <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+                            </div>
+                        </div>
                         <button class="btn btn-info" type="button">Add to Cart</button>
                         <button class="btn btn-info" type="button">FINANCE</button>
-                    </div>
+                    </div> -->
 
                     <div class="instock">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="col-sm-6">
-                                    <h1 class="instock-head">Availability:
+                                <div class="col-sm-6 padd">
+                                    <h1 class="instock-head">Availability :
                                         @if(@$tire->qtyavail == 1)
                                         <b>In Stock</b>
                                         @else
@@ -911,7 +961,7 @@
                                             <p><?php echo @$tire->proddesc ?></p>
                                         </div>
                                     </div>
-<!--                                     <div class="col-sm-4">
+                                    <!--  <div class="col-sm-4">
                                         <div class="tire-des">
                                             <a href="{{ViewTireImage(@$tire->prodimage)}}" class="zoomple">
                                             <img src="{{ViewTireImage(@$tire->prodimage)}}">
@@ -1049,5 +1099,30 @@
             roundedCorners : true
         });
     }
+</script>
+
+<script>
+$(function(){
+
+$('.spinner .btn:first-of-type').on('click', function() {
+  var btn = $(this);
+  var input = btn.closest('.spinner').find('input');
+  if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {    
+    input.val(parseInt(input.val(), 10) + 1);
+  } else {
+    btn.next("disabled", true);
+  }
+});
+$('.spinner .btn:last-of-type').on('click', function() {
+  var btn = $(this);
+  var input = btn.closest('.spinner').find('input');
+  if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {    
+    input.val(parseInt(input.val(), 10) - 1);
+  } else {
+    btn.prev("disabled", true);
+  }
+});
+
+})
 </script>
 @endsection
