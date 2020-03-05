@@ -42,13 +42,13 @@
                             <div class="thumb-description">
                                 <div class="caption">
                                     <h4 class="tire-type" title="{{@$ptire->prodtitle}}">
-                                        <a href="{{url('/tirebrandmodel')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}} 
-                                            <br>
-                                        @if(@$ptire->price)
+                                        <a href="{{url('/tirebrandmodel')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}}
+                                            <!-- <br> -->
+                                        <!-- @if(@$ptire->price)
                                         Starting at: ${{@$ptire->price}}
                                         @else
                                         <br>
-                                        @endif
+                                        @endif -->
                                         </a>
                                     </h4>
                                     <br>
@@ -68,6 +68,15 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <div class="thumb-description-price-details">
+                              <span class="price-new">@if(@$ptire->price)
+                              Starting at: ${{@$ptire->price}}
+                              @else
+                              <br>
+                              @endif</span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -78,10 +87,10 @@
                         <p>{{(@$ptires->total())?@$ptires->total().' Passanger Tires Found':''}} </p>
                     </div>
                     <div class="col-sm-6 pagi-right">
-                        {{$ptires->appends([ 
-                        'ptpage' => @Request::get('ptpage'), 
+                        {{$ptires->appends([
+                        'ptpage' => @Request::get('ptpage'),
                         'ltpage' => @Request::get('ltpage')])->links()}}
-                        
+
                     </div>
                 </div>
         </div>
@@ -105,7 +114,7 @@
                             </div>
                             <div class="thumb-description">
                                 <div class="caption">
-                                    <h4 class="tire-type" title="{{@$lttire->prodtitle}}"><a href="{{url('/tirebrandmodel')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prodtitle}} <br> Starting at: ${{@$lttire->price}}</a></h4>
+                                    <h4 class="tire-type" title="{{@$lttire->prodtitle}}"><a href="{{url('/tirebrandmodel')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prodtitle}}</a></h4>
                                     <br>
                                 </div>
                                 <div class="button-group">
@@ -123,6 +132,11 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <div class="thumb-description-price-details">
+                              <span class="price-new">Starting at: ${{@$lttire->price}}</span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -134,10 +148,10 @@
                         <p>{{(@$lttires->total())?@$lttires->total().' Light Truck Tires Found':''}} </p>
                     </div>
                     <div class="col-sm-6 pagi-right">
-                        {{$lttires->appends([ 
-                        'ptpage' => @Request::get('ptpage'), 
+                        {{$lttires->appends([
+                        'ptpage' => @Request::get('ptpage'),
                         'ltpage' => @Request::get('ltpage')])->links()}}
-                        
+
                     </div>
                 </div>
         </div>
@@ -145,7 +159,7 @@
     </div>
 </section>
 
-@endsection 
+@endsection
 @section('custom_scripts')
 <!--  -->
 

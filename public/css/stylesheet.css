@@ -1214,7 +1214,7 @@ a:hover, a:focus {
 span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
     display: inline;
 }
-.navbar-nav > li > .dropdown-menu 
+.navbar-nav > li > .dropdown-menu
 {
     border-top: 5px solid #ecb23d !important;
     animation-duration: 0.3s;
@@ -2871,6 +2871,10 @@ header {
     padding: 0 15px;
     text-align: left;
 }
+.product-thumb.transition .thumb-description
+{
+  min-height:80px !important;
+}
 .option-filter .list-group {
     margin: 0px;
 }
@@ -3606,6 +3610,17 @@ body.product-compare .table-product-image {
 .thumb-description {
     margin-top:0px !important;
 }
+.thumb-description-price-details .price-new
+{
+  font-family: Poppins !important;
+  font-size: 12px !important;
+  color: #000 !important;
+  font-weight: 500;
+}
+.thumb-description-price-details
+{
+  text-align: center;
+}
 .footer-para {
     font-size: 14px !important;
     color:#fff !important;
@@ -4252,7 +4267,7 @@ footer .footer-column h5 {
 }
 .product-thumb h4 {
     font-family: Montserrat !important;
-    margin: 5px 0 10px;
+    margin: 5px 0px;
     overflow: hidden;
     padding: 0;
     font-size: 12px !important;
@@ -4336,7 +4351,7 @@ h2.price {
 }
 /*----------------------button css start----------------------*/
 .product-thumb .button-group {
-    bottom: 45px;
+    bottom: 0px;
     left: 0;
     position: absolute;
     right: 0;
@@ -5337,7 +5352,7 @@ h2.price {
     margin: 5px 0px !important;
     font-size: 10px !important;
   }
-  
+
 }
 
 @media (min-width: 360px) and (max-width: 767px)
@@ -5576,7 +5591,7 @@ h2.price {
        margin: 0;
        vertical-align: top;
   }
-  .header-text h2 
+  .header-text h2
   {
     font-size: 20px !important;
     color: #fff !important;
@@ -5589,7 +5604,7 @@ h2.price {
   {
       margin:0px 0px !important;
   }
-  .btn-sm 
+  .btn-sm
   {
     padding: 0px 5px;
     min-width: 0px !important;
@@ -7280,7 +7295,7 @@ button {
 }
 .dropdown-menu.nav-dropdown li {
     padding: 5px 0px !important;
-    
+
 }
 .product-thumb .image img,.product-thumb .image img.image_thumb_swap
 {
@@ -7430,7 +7445,8 @@ button {
      text-align: center !important;
      float: none !important;
    }
-   .row.wheel-view h1 {
+   .row.wheel-view h1
+   {
        font-family: Montserrat !important;
        font-size: 16px !important;
        text-align: center;
@@ -7713,6 +7729,19 @@ button {
         background: #000 !important;
         border: none !important;
         text-align: center;
+    }
+    .view-two, .view-three
+    {
+      display: inline;
+    }
+    .col-sm-4.view-one
+    {
+      float: left;
+      width: 25% !important;
+    }
+    .col-sm-6.shop-details .col-sm-4.view-one, .col-sm-4.view-two, .col-sm-4.view-three
+    {
+      width: 25% !important;
     }
 }
 
@@ -8718,7 +8747,7 @@ ol.carousel-indicators {
 .spinner input {
     text-align: center;
   }
-  
+
   .input-group-btn-vertical {
     position: relative;
     white-space: nowrap;
@@ -8726,7 +8755,7 @@ ol.carousel-indicators {
     vertical-align: middle;
     display: table-cell;
   }
-  
+
   .input-group-btn-vertical > .btn {
     display: block;
     float: none;
@@ -8737,16 +8766,16 @@ ol.carousel-indicators {
     position: relative;
     border-radius: 0;
   }
-  
+
   .input-group-btn-vertical > .btn:first-child {
     border-top-right-radius: 4px;
   }
-  
+
   .input-group-btn-vertical > .btn:last-child {
     margin-top: -2px;
     border-bottom-right-radius: 4px;
   }
-  
+
   .input-group-btn-vertical i {
     position: absolute;
     top: 0;
@@ -8756,13 +8785,30 @@ ol.carousel-indicators {
   {
       border:1px solid #eaeaea;
   }
-  .input-group-btn-vertical .btn-default {
+  .input-group-btn-vertical .btn-default
+  {
     background: #ecb23d !important;
   }
   .table-responsive
   {
     overflow-x: hidden;
   }
-  .col-sm-6.pagi-left p {
+  .col-sm-6.pagi-left p
+  {
     text-align: left !important;
-}
+  }
+  .col-sm-6.shop-details .col-sm-6.padd
+  {
+    width:25% !important;
+  }
+  .col-sm-4.tire-benifit-des .benifit img {
+    width: 65% !important;
+  }
+  .col-sm-4.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three
+  {
+    width:25% !important;
+  }
+  .col-sm-6.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three
+  {
+    width:15% !important;
+  }
