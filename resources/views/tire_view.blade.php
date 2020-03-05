@@ -281,7 +281,12 @@
         line-height: 20px;
         text-decoration: line-through;
     }
-
+    .price-save {
+        color: green;
+        font-size: 16px;
+        line-height: 20px;
+        /*text-decoration: line-through;*/
+    }
     .price-section {
         text-align: left !important;
     }
@@ -661,29 +666,25 @@
                     <table class="product-info">
                         <tbody>
                             <tr>
-                                <td>{{@$tire->prodbrand}}</td>
-                                <td class="product-info-value"><a href="">Size : {{@$tire->tiresize}}</a></td>
+                                <td>Brand : {{@$tire->prodbrand}}</td>
+                                <td>Model : {{@$tire->prodmodel}}</td>
                             </tr>
                             <tr>
-                                <td>{{@$tire->prodmodel}}</td>
-                                <td class="product-info-value">Speed Rating : {{@$tire->speedrating}}</td>
+                                <td class="product-info-value"><a href="">Size : {{@$tire->tiresize?:' - '}}</a></td>
+                                <td class="product-info-value">UTQG : {{@$tire->utqg?:' - '}}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td class="product-info-value">Load Index : {{@$tire->loadindex}}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="product-info-value">UTQG : {{@$tire->utqg}}</td>
+                                <td class="product-info-value">Speed Rating : {{@$tire->speedrating?:' - '}}</td>
+                                <td class="product-info-value">Load Index : {{@$tire->loadindex?:' - '}}</td>
                             </tr>
                         <!-- New Table Start -->
                             <tr>
-                                <td>Part No :</td>
-                                <td class="product-info-value"><b>{{@$tire->partno}}</b></td>
+                                <td class="product-info-value">Part No : {{@$tire->partno?:' - '}}</td>
+                                <td class="product-info-value">Warranty : {{@$tire->warranty?:' - '}}</td>
                             </tr>
                             <tr>
                                 <td>Original Price : <span class="price-old">${{roundCurrency(($tire->price + (35 / 100) * $tire->price))}}</span></td>
-                                <td class="product-info-value">You Save : <span class="price-new2">${{roundCurrency((($tire->price + (35 / 100) * $tire->price) - @$tire->price))}}</td>
+                                <td class="product-info-value">You Save : <span class="price-save">${{roundCurrency((($tire->price + (35 / 100) * $tire->price) - @$tire->price))}}</td>
                             </tr>
                             <tr>
                                 <td>Set of 4 : <span class="price-new2">${{roundCurrency(@$tire->price * 4)}}</span></td>
