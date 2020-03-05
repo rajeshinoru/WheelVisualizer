@@ -629,12 +629,18 @@
         </div>
     </div>
 </section>
-
+@if(ViewBannerImage(@$wheel->prodbrand.'-Company-Info.jpg'))
 <section id="falken-info">
+    <div class="container">
+        <a href=""><img src="{{ViewBannerImage(@$wheel->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
+    </div>
+</section>
+@endif
+<!-- <section id="falken-info">
     <div class="container">
         <a href=""><img src="{{url('image/wheel-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
     </div>
-</section>
+</section> -->
 
 <section id="fal-feature">
     <div class="container">
