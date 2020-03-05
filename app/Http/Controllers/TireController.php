@@ -183,7 +183,7 @@ class TireController extends Controller
         $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
                 'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
                 'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
-                'winter_performance','fuel_efficiency','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3','detaildesctype','detaildescfeatures')
+                'winter_performance','fuel_efficiency','braking','responsiveness','sport','handling','off_road','youtube1','youtube2','youtube3','youtube4','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3','detaildesctype','detaildescfeatures')
                 ->where('id',base64_decode($tire_id))
                 ->with(['Brand'])->first();
         $diff_tires =  Tire::select('id','warranty','tiresize',
@@ -460,26 +460,26 @@ class TireController extends Controller
                     $tire->prodimage1 =(isset($data[68])&&$data[68]!='')?$data[68]:null; 
                     $tire->prodimage2 =(isset($data[69])&&$data[69]!='')?$data[69]:null; 
                     $tire->prodimage3 =(isset($data[70])&&$data[70]!='')?$data[70]:null; 
-                    $tire->dry_performance =(isset($data[71])&&$data[71]!=''&&$data[71]!='N/A')?$data[71]:null; 
-                    $tire->wet_performance =(isset($data[72])&&$data[72]!=''&&$data[72]!='N/A')?$data[72]:null; 
-                    $tire->mileage_performance =(isset($data[73])&&$data[73]!=''&&$data[73]!='N/A')?$data[73]:null; 
-                    $tire->ride_comfort =(isset($data[74])&&$data[74]!=''&&$data[74]!='N/A')?$data[74]:null; 
-                    $tire->quiet_ride =(isset($data[75])&&$data[75]!=''&&$data[75]!='N/A')?$data[75]:null; 
-                    $tire->winter_performance =(isset($data[76])&&$data[76]!=''&&$data[76]!='N/A')?$data[76]:null; 
-                    $tire->fuel_efficiency =(isset($data[77])&&$data[77]!=''&&$data[77]!='N/A')?$data[77]:null; 
-                    $tire->braking =(isset($data[78])&&$data[78]!=''&&$data[78]!='N/A')?$data[78]:null; 
-                    $tire->responsiveness =(isset($data[79])&&$data[79]!=''&&$data[79]!='N/A')?$data[79]:null; 
-                    $tire->sport =(isset($data[80])&&$data[80]!=''&&$data[80]!='N/A')?$data[80]:null; 
-                    $tire->handling =(isset($data[81])&&$data[81]!=''&&$data[81]!='N/A')?$data[81]:null; 
-                    $tire->off_road =(isset($data[82])&&$data[82]!=''&&$data[82]!='N/A')?$data[82]:null; 
+                    $tire->dry_performance =(isset($data[71])&&$data[71]!=''&&$data[71]!='N/A')?$data[71]:0; 
+                    $tire->wet_performance =(isset($data[72])&&$data[72]!=''&&$data[72]!='N/A')?$data[72]:0; 
+                    $tire->mileage_performance =(isset($data[73])&&$data[73]!=''&&$data[73]!='N/A')?$data[73]:0; 
+                    $tire->ride_comfort =(isset($data[74])&&$data[74]!=''&&$data[74]!='N/A')?$data[74]:0; 
+                    $tire->quiet_ride =(isset($data[75])&&$data[75]!=''&&$data[75]!='N/A')?$data[75]:0; 
+                    $tire->winter_performance =(isset($data[76])&&$data[76]!=''&&$data[76]!='N/A')?$data[76]:0; 
+                    $tire->fuel_efficiency =(isset($data[77])&&$data[77]!=''&&$data[77]!='N/A')?$data[77]:0; 
+                    $tire->braking =(isset($data[78])&&$data[78]!=''&&$data[78]!='N/A')?$data[78]:0; 
+                    $tire->responsiveness =(isset($data[79])&&$data[79]!=''&&$data[79]!='N/A')?$data[79]:0; 
+                    $tire->sport =(isset($data[80])&&$data[80]!=''&&$data[80]!='N/A')?$data[80]:0; 
+                    $tire->handling =(isset($data[81])&&$data[81]!=''&&$data[81]!='N/A')?$data[81]:0; 
+                    $tire->off_road =(isset($data[82])&&$data[82]!=''&&$data[82]!='N/A')?$data[82]:0; 
                     $tire->youtube1 =(isset($data[83])&&$data[83]!='')?$data[83]:null; 
                     $tire->youtube2 =(isset($data[84])&&$data[84]!='')?$data[84]:null; 
                     $tire->youtube3 =(isset($data[85])&&$data[85]!='')?$data[85]:null; 
                     $tire->youtube4 =(isset($data[86])&&$data[86]!='')?$data[86]:null; 
                     // dd($tire);
-                    echo $tire->partno."<br>";
                     $tire->save(); 
 
+                    echo $tire->id."-----------".$tire->partno."<br>";
                     }else{
 
                         echo "break<br>";

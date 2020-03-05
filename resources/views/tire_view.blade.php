@@ -1091,13 +1091,13 @@
 </section>
 --}}
 
-
+@if(ViewBannerImage(@$tire->prodbrand.'-Company-Info.jpg'))
 <section id="falken-info">
     <div class="container">
-        <a href=""><img src="{{ViewTireImage(@$tire->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
+        <a href=""><img src="{{ViewBannerImage(@$tire->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
     </div>
 </section>
-
+@endif
 <section id="fal-feature">
     <div class="container">
         <div class="row">

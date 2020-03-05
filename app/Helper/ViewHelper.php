@@ -205,6 +205,30 @@ function ViewTireImage($url=''){
 
 }
 
+function ViewBannerImage($url=''){
+	// return $url;
+	if($url != ''){
+		if(file_exists(public_path('/storage/tires/'.$url))){
+			return asset('/storage/tires/'.$url);
+		}else{
+			$wheel_products_url="/storage/wheel_products/".$url;
+			$misc_url="/storage/misc_images/".$url;
+			if(file_exists(public_path($wheel_products_url))){
+				return asset($wheel_products_url);
+			}else{
+				if(file_exists(public_path($misc_url))){
+					return asset($misc_url);
+				}else{
+					return false;
+				}
+			}
+		}
+	}else{
+			return false;
+	}
+
+}
+
 function ViewBenefitImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/tires/models/'.$url))){
