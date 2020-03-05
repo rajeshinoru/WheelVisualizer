@@ -178,8 +178,15 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tireview(Request $request,$tire_id='')
+    public function tireview(Request $request,$tire_id='',$vehicle_id='')
     {
+        if($vehicle_id!=''){
+            $vehicle = Vehicle::with('ChassisModels')->where('id',base64_decode($vehicle_id))->first();
+        }else
+        {
+            $vehicle='';
+        }
+        // dd($vehicle);
         $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
                 'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
                 'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
@@ -194,13 +201,15 @@ class TireController extends Controller
 
         $similar_tires = Tire::select('detailtitle','prodimage','id','warranty','tiresize',
                 'speedrating','loadindex','utqg','partno','price','prodmodel')
-                ->where('prodbrand',$tire->prodbrand)
+                // ->where('prodbrand',$tire->prodbrand)
                 ->where('tiresize',$tire->tiresize)
+                ->where('speedrating',$tire->speedrating)
+                ->where('loadindex',$tire->loadindex)
                 // ->orWhere('tirewidth',$tire->tirewidth)
                 // ->orWhere('tirediameter',$tire->tirediameter)
                 ->get()
                 ->unique('prodmodel');
-        return view('tire_view',compact('tire','diff_tires','similar_tires'));
+        return view('tire_view',compact('tire','diff_tires','similar_tires','vehicle'));
     }
 
     /**

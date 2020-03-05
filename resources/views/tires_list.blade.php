@@ -175,7 +175,7 @@
                 <!-- Side End -->
             </div>
             <div class="col-sm-9">
-                @if(@$vehicle || count(Request::all()) > 0)
+              @if(@$vehicle)
               <div class="wheel-list-change-tab">
                   <div class="row">
                       <div class="col-md-8 left-head">
@@ -184,32 +184,16 @@
                             Your Selected Vehicle: 
                                 <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
                             OEM Tire Size:
-                                <b>{{@$chassis_model->tire_size}}</b>
+                                <b>{{@$chassis_model->tire_size}}</b> ,
+
+                            Speed Rating:
+                                <b>{{@$chassis_model->speed_index}}</b> ,
+
+                            Load Index:
+                                <b>{{@$chassis_model->load_index}}</b> 
                             <br>
                             @endif
-                            @if(count(Request::all()) > 0)
-                                Filtered on 
-                                @if(@Request::get('tirespeedrating'))
-                                 Speed Rating: <b>{{implode(',',json_decode(base64_decode(@Request::get('tirespeedrating'))))}} ,</b>
-                                @endif
-
-                                @if(@Request::get('tireloadindex'))
-                                 Load Index: <b>{{implode(',',json_decode(base64_decode(@Request::get('tireloadindex'))))}} </b>
-                                @endif
-
-                                @if(@Request::get('width'))
-                                  Width: <b>{{@Request::get('width')}},</b>
-                                @endif
-
-                                @if(@Request::get('profile'))
-                                  Profile: <b>{{@Request::get('profile')}},</b>
-                                @endif
-
-                                @if(@Request::get('diameter'))
-                                  Diameter: <b>{{@Request::get('diameter')}} </b>
-                                @endif
-
-                            @endif
+                            
                         </p>
                       </div>
                       <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
@@ -230,7 +214,7 @@
                                 </div>
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}">
+                                        <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}/{{base64_encode(@$vehicle->id)}}">
                                                 {{@$tire->prodtitle}}<br>
                                                 <br>
                                                 Size : {{@$tire->tiresize}}<br>

@@ -588,7 +588,29 @@
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
+              @if(@$vehicle || count(Request::all()) > 0)
+              <div class="wheel-list-change-tab">
+                  <div class="row">
+                      <div class="col-md-8 left-head">
+                        <p> 
+                            @if(@$vehicle)
+                            Your Selected Vehicle: 
+                                <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                            OEM Tire Size:
+                                <b>{{@$vehicle->ChassisModels->tire_size}}</b> ,
+                            Speed Rating:
+                                <b>{{@$vehicle->ChassisModels->speed_index}}</b> ,
 
+                            Load Index:
+                                <b>{{@$vehicle->ChassisModels->load_index}}</b> 
+                            <br>
+                            @endif
+                        </p>
+                      </div>
+                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
+                  </div>
+              </div>
+              @endif
         <div class="hometabled">
             <div class="pTopBar">
                 <div class="pTopCell HotDeals">Hot Deals Save 30%-75%</div>
@@ -962,7 +984,6 @@
                 @endif
 
             </div>
-
         </div>
     </div>
 

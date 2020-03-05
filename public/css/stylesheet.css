@@ -8804,9 +8804,9 @@ ol.carousel-indicators {
   .col-sm-4.tire-benifit-des .benifit img {
     width: 65% !important;
   }
-    .col-sm-3.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three
+  .col-sm-3.shop-details .col-sm-4.view-one 
   {
-    width:25% !important;
+    width: 22% !important;
   }
   .col-sm-4.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three
   {

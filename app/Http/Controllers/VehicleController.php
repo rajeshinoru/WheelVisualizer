@@ -210,5 +210,47 @@ class VehicleController extends Controller
         return 'hiii';
     }
 
+  public function New_Vehicle_Import(){
+         $in_file = public_path('/storage/tires_data/vehicle_test.csv'); 
 
+        if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
+        // $fw = fopen($out_file, "w");
+        while( ($data = fgetcsv($fr, 1000, ",")) !== FALSE ) {
+                if($data[1] != 'vehicle_id'){
+                    \DB::table('vehicle_test')->insert(
+                        [
+                            'dummy' => (isset($data[0])&&$data[0]!='')?$data[0]:null,
+                            'vehicle_id' => (isset($data[1])&&$data[1]!='')?$data[1]:null,
+                            'base_vehicle_id' => (isset($data[2])&&$data[2]!='')?$data[2]:null,
+                            'year' => (isset($data[3])&&$data[3]!='')?$data[3]:null,
+                            'make' => (isset($data[4])&&$data[4]!='')?$data[4]:null,
+                            'model' => (isset($data[5])&&$data[5]!='')?$data[5]:null,
+                            'submodel' => (isset($data[6])&&$data[6]!='')?$data[6]:null,
+                            'submodel_body' => (isset($data[7])&&$data[7]!='')?$data[7]:null,
+                            'body' => (isset($data[8])&&$data[8]!='')?$data[8]:null,
+                            'option' => (isset($data[9])&&$data[9]!='')?$data[9]:null,
+                            'dr_chassis_id' => (isset($data[10])&&$data[10]!='')?$data[10]:null,
+                            'wheel_type' => (isset($data[11])&&$data[11]!='')?$data[11]:null,
+                            'rf_lc' => (isset($data[12])&&$data[12]!='')?$data[12]:null,
+                            'offroad' => (isset($data[13])&&$data[13]!='')?$data[13]:null,
+                            'dually' => (isset($data[14])&&$data[14]!='')?$data[14]:null,
+                            'drive_type' => (isset($data[15])&&$data[15]!='')?$data[15]:null,
+                            'body_type' => (isset($data[16])&&$data[16]!='')?$data[16]:null,
+                            'body_number_doors' => (isset($data[17])&&$data[17]!='')?$data[17]:null,
+                            'bed_length' => (isset($data[18])&&$data[18]!='')?$data[18]:null,
+                            'vehicle_type' => (isset($data[19])&&$data[19]!='')?$data[19]:null,
+                            'liter' => (isset($data[20])&&$data[20]!='')?$data[20]:null,
+                            'region_id' => (isset($data[21])&&$data[21]!='')?$data[21]:null,
+                            'region' => (isset($data[22])&&$data[22]!='')?$data[22]:null,
+                            'custom_note' => (isset($data[23])&&$data[23]!='')?$data[23]:null,
+                            'dr_chassis_id_1' => (isset($data[24])&&$data[24]!='')?$data[24]:null,
+                            'dr_model_id' => (isset($data[25])&&$data[25]!='')?$data[25]:null,
+                        ]
+                    );
+                }
+            }
+        fclose($fr);
+        // fclose($fw);
+        return 'hiii';
+    }
 }
