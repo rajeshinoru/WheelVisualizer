@@ -249,7 +249,10 @@ class TireController extends Controller
     public function tirebrandmodel(Request $request,$tire_id='')
     {
         $tire = Tire::with(['Brand'])->where('id',base64_decode($tire_id))->first();
+
         $diff_tires =  Tire::with(['Brand'])->where('prodmodel',$tire->prodmodel)->get();
+
+        // dd($tire,$diff_tires);
         return view('tire_brand_model',compact('tire','diff_tires'));
     }
     /**

@@ -205,7 +205,7 @@ function ViewTireImage($url=''){
 
 }
 
-function ViewBannerImage($url=''){
+function ViewExistImage($url=''){
 	// return $url;
 	if($url != ''){
 		if(file_exists(public_path('/storage/tires/'.$url))){

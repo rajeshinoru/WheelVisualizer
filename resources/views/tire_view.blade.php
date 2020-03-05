@@ -626,6 +626,7 @@
                 <?php $divClass+=1;$ratings=true;?>
               @endif
                 <div class="col-sm-{{12/$divClass}} tire-img">
+
                     <div class="tire-des">
                         <a href="{{ViewTireImage(@$tire->prodimage)}}" class="zoomple">
                         <img src="{{ViewTireImage(@$tire->prodimage)}}">
@@ -634,14 +635,14 @@
                         <h2>Rim depicted in image NOT INCLUDED</h2>
                     </div>
 
-                    @if(@$tire->badge1)
-                    <img src="{{viewImage('tires/badges/'.@$tire->badge1)}}" width="70px" height="70px">
+                    @if(ViewExistImage('tires/badges/'.@$tire->badge1))
+                    <img src="{{ViewExistImage('tires/badges/'.@$tire->badge1)}}" width="70px" height="70px">
                     @endif
-                    @if(@$tire->badge2)
-                    <img src="{{viewImage('tires/badges/'.@$tire->badge2)}}" width="70px" height="70px">
+                    @if(ViewExistImage('tires/badges/'.@$tire->badge2))
+                    <img src="{{ViewExistImage('tires/badges/'.@$tire->badge2)}}" width="70px" height="70px">
                     @endif
-                    @if(@$tire->badge3)
-                    <img src="{{viewImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
+                    @if(ViewExistImage('tires/badges/'.@$tire->badge3))
+                    <img src="{{ViewExistImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
                     @endif
                 </div>
                 <div class="col-sm-{{12/$divClass}} shop-details">
@@ -1094,7 +1095,7 @@
                 <tbody>
                     @foreach(@$diff_tires as $key => $dtire)
                     <tr>
-                        <td><a href="{{url('/tireview/'.base64_encode($dtire->id))}}">{{@$dtire->tiresize}}</a></td>
+                        <td><a href="{{url('/tireview')}}/{{base64_encode(@$dtire->id)}}/{{base64_encode(@$vehicle->id)}}">{{@$dtire->tiresize}}</a></td>
                         <td>{{@$dtire->partno}}</td>
                         <td>{{@$dtire->utqg?:'-'}}</td>
                         <td>{{@$dtire->speedrating?:'-'}}</td>
@@ -1103,7 +1104,7 @@
                         <!-- <td><img src="{{url('image/'.@$dtire->warranty)}}" width="35px" height="35px"></td> -->
                         <td>${{@$dtire->price}}</td>
                         <td>
-                            <a href="{{url('/tireview/'.base64_encode($dtire->id))}}" class="btn btn-default cart-1">Details</a>
+                            <a href="{{url('/tireview')}}/{{base64_encode(@$dtire->id)}}/{{base64_encode(@$vehicle->id)}}" class="btn btn-default cart-1">Details</a>
                             <button type="button" class="btn btn-default cart-2">Add</button>
                         </td>
                     </tr>
@@ -1115,10 +1116,10 @@
 </section>
 --}}
 
-@if(ViewBannerImage(@$tire->prodbrand.'-Company-Info.jpg'))
+@if(ViewExistImage(@$tire->prodbrand.'-Company-Info.jpg'))
 <section id="falken-info">
     <div class="container">
-        <a href=""><img src="{{ViewBannerImage(@$tire->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
+        <a href=""><img src="{{ViewExistImage(@$tire->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
     </div>
 </section>
 @endif
@@ -1136,7 +1137,7 @@
                         </div>
                         <div class="thumb-description">
                             <div class="caption">
-                                <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$stire->id)}}">
+                                <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$stire->id)}}/{{base64_encode(@$vehicle->id)}}">
                                         {{@$stire->detailtitle}}<br>
                                         <br>
                                         <!-- Size : {{@$stire->tiresize}}<br> -->

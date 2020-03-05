@@ -629,10 +629,10 @@
         </div>
     </div>
 </section>
-@if(ViewBannerImage(@$wheel->prodbrand.'-Company-Info.jpg'))
+@if(ViewExistImage(@$wheel->prodbrand.'-Company-Info.jpg'))
 <section id="falken-info">
     <div class="container">
-        <a href=""><img src="{{ViewBannerImage(@$wheel->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
+        <a href=""><img src="{{ViewExistImage(@$wheel->prodbrand.'-Company-Info.jpg')}}" class="lazy ri" alt="Wheel Visualizer" width="100%" height="auto"></a>
     </div>
 </section>
 @endif

@@ -397,30 +397,38 @@
                       <h2>{{@$tire->prodmodel}}</h2>
                       
                       <p class="read_more_text" data-length="650">{{@$tire->prodlandingdesc}}</p>
-                      @if(@$tire->badge1)
-                      <img src="{{viewImage('tires/badges/'.@$tire->badge1)}}">
-                      @endif
-                      @if(@$tire->badge2)
-                      <img src="{{viewImage('tires/badges/'.@$tire->badge2)}}">
-                      @endif
-                      @if(@$tire->badge3)
-                      <img src="{{viewImage('tires/badges/'.@$tire->badge3)}}">
-                      @endif
+                        @if(ViewExistImage('tires/badges/'.@$tire->badge1))
+                        <img src="{{ViewExistImage('tires/badges/'.@$tire->badge1)}}" width="70px" height="70px">
+                        @endif
+                        @if(ViewExistImage('tires/badges/'.@$tire->badge2))
+                        <img src="{{ViewExistImage('tires/badges/'.@$tire->badge2)}}" width="70px" height="70px">
+                        @endif
+                        @if(ViewExistImage('tires/badges/'.@$tire->badge3))
+                        <img src="{{ViewExistImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
+                        @endif
                   </div>
                 </div>
 
                 <div class="col-sm-{{12/$divClass}}  shop-details" >
                   
                   <div class="tab-content">
+
+                    @if(@$tire->prodimage1)
                     <div id="home" class="tab-pane fade in active">
                       <img src="{{ViewProductImage(@$tire->prodimage1)}}">
                     </div>
+                    @endif
+                    @if(@$tire->prodimage2)
                     <div id="menu1" class="tab-pane fade">
                       <img src="{{ViewProductImage(@$tire->prodimage2)}}">
                     </div>
+                    @endif
+                    @if(@$tire->prodimage3)
                     <div id="menu2" class="tab-pane fade">
                       <img src="{{ViewProductImage(@$tire->prodimage3)}}">
                     </div>
+                    @endif
+
                   </div>
 
                   <ul class="nav nav-tabs nav-img slider-tires-{{12/$divClass}} " >

@@ -41,8 +41,6 @@
                                                     <li><input type="checkbox" name="wheeldiameter[]" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" @if(in_array($diameter->wheeldiameter,json_decode(base64_decode(@Request::get('diameter')?:''))?:[])) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}
                                                     </li>
                                                     @empty
-                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 13</li>
-                                                    <li><input type="checkbox" name="wheeldiameter[]" value=""> 20</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -62,8 +60,6 @@
                                                     @forelse($wheelwidth as $width)
                                                     <li><input type="checkbox" name="wheelwidth[]" class="wheelwidth" value="{{$width->wheelwidth}}" @if(in_array($width->wheelwidth,json_decode(base64_decode(@Request::get('width')?:''))?:[])) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
                                                     @empty
-                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 7</li>
-                                                    <li><input type="checkbox" name="wheelwidth[]" value=""> 8</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -97,8 +93,6 @@
                                                         @endif
                                                     </li>
                                                     @empty
-                                                    <li><input type="checkbox" name="brand[]" value=""> 7</li>
-                                                    <li><input type="checkbox" name="brand[]" value=""> 8</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -119,8 +113,6 @@
                                                     @forelse($wheelfinish as $finish)
                                                     <li><input type="checkbox" name="finish[]" class="finish" value="{{$finish->prodfinish}}" @if(in_array($finish->prodfinish,json_decode(base64_decode(@Request::get('finish')?:''))?:[])) checked @endif> {{$finish->prodfinish.'('.$finish->total.')'}} </li>
                                                     @empty
-                                                    <li><input type="checkbox" name="finish[]" value=""> 7</li>
-                                                    <li><input type="checkbox" name="finish[]" value=""> 8</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -222,22 +214,6 @@
     </div>
 </section>
 
-<section id="all-brand-wheel" style="display: none;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 sub-head">
-                <h1>All Brand Wheels</h1>
-            </div>
-            <div class="col-md-12">
-                <!-- Controls -->
-                <div class="controls pull-right hidden-xs">
-                    <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example2" data-slide="prev"></a>
-                    <a class="right fa fa-chevron-right btn btn-success" href="#carousel-example2" data-slide="next"></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 @endsection
 @section('custom_scripts')
 @endsection
