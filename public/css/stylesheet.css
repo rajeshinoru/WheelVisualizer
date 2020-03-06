@@ -2873,7 +2873,7 @@ header {
 }
 .product-thumb.transition .thumb-description
 {
-  min-height:80px !important;
+  min-height:100px !important;
 }
 .option-filter .list-group {
     margin: 0px;
@@ -4199,7 +4199,7 @@ footer .footer-column h5 {
     border: 1px solid #eaeaea;
     padding: 15px;
     margin:10px 0px !important;
-    min-height:420px;
+    min-height:355px;
 }
 .owl-item:last-child .product-layout, .owl-item:last-child .product-layouts {
     border-right: none;
@@ -4367,12 +4367,13 @@ h2.price {
     -ms-transition: all 400ms ease-in-out 0s;
 }
 .product-thumb:hover .button-group {
-    bottom: 120px;
+    bottom: 150px;
     opacity: 1;
     -moz-opacity: 1;
     -khtml-opacity: 1;
     -webkit-opacity: 1;
 }
+
 .product-list .product-thumb .button-group {
     float: left;
     opacity: 1;
@@ -8804,7 +8805,7 @@ ol.carousel-indicators {
   .col-sm-4.tire-benifit-des .benifit img {
     width: 65% !important;
   }
-  .col-sm-3.shop-details .col-sm-4.view-one 
+  .col-sm-3.shop-details .col-sm-4.view-one
   {
     width: 22% !important;
   }
@@ -8816,3 +8817,36 @@ ol.carousel-indicators {
   {
     width:15% !important;
   }
+  /* Wheel Product Start */
+  .modal-dialog.wheel-view h2
+  {
+      border: none !important;
+      color: #000 !important;
+  }
+  .form-group.product-quantity .btn a
+  {
+    color: #fff !important;
+  }
+  .modal-dialog.wheel-view
+  {
+    width: 700px !important;
+    margin: 15% auto !important;
+  }
+  .modal-dialog.wheel-view .modal-header
+  {
+    background:#070b31 !important;
+    color: #fff !important;
+  }
+  .product-layouts.wheel-pro
+  {
+    min-height: 400px !important;
+  }
+  .product-thumb.transition .thumb-description.wheel-vire-pro
+  {
+    min-height: 125px !important;
+  }
+  .btn.btn-info.cart-btn
+  {
+    background: #070b31 !important;
+  }
+  /* Wheel Product End */
