@@ -15,6 +15,8 @@ class SettingsController extends Controller
 
     public function store(Request $request)
     {
+
+
     	$this->validate($request,[
                 'site_title' => 'required',
                 'site_contact' => 'required',

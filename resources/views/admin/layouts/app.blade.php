@@ -67,6 +67,11 @@
         ============================================ -->
     <link rel="stylesheet" href="{{ asset('/admin/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('/admin/css/dropify.min.css') }}">
+
+    <!-- summernote CSS
+        ============================================ -->
+    <link rel="stylesheet" href="{{ asset('/admin/css/summernote/summernote.css') }}">
+
     <link rel="stylesheet" href="{{ asset('/js/font-awesome/css/font-awesome.min.css') }}">
     <!-- DataTable CSS -->
 
