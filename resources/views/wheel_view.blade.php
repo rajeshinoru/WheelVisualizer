@@ -516,12 +516,34 @@
                                                     <label class="control-label" for="input-quantity">Qty</label>
                                                     <input type="text" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
                                                     <input type="hidden" name="product_id" value="46">
-                                                    <button class="btn btn-info" type="button">Add to Cart</button>
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal22">Add to Cart</button>
+                                                    <!-- model Start -->
+                                                    <div class="modal fade" id="myModal22" role="dialog">
+                                                        <div class="modal-dialog wheel-view">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title text-left">Items Added to Cart</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2>
+                                                                  <h2 class="modal-title">The following items have been added to your cart:</h2>
+                                                                  <p>Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                                                    <form class="form-horizontal">
+                                                                        <div class="form-group has-success has-feedback text-center">
+                                                                            <button class="btn btn-info" type="button">Continue Shopping</button>
+                                                                            <button class="btn btn-info" type="button">Add Matching Tires</button>
+                                                                            <button class="btn btn-info cart-btn" type="button"><i class="fa fa-shopping-cart"></i> View Cart</button>
+                                                                        </div>
+                                                                    </form>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Model End  -->
                                                 </div>
                                             </div>
-                                            <h1 class="instock-head">Availability:<b>
-                                                    {{@$diffproduct->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
-                                                </b></h1>
+                                            <h1 class="instock-head">Availability:<b>{{@$diffproduct->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
                                         </div>
                                         @endforeach
                                         @else
@@ -540,6 +562,7 @@
                                                     <button class="btn btn-info" type="button">Add to Cart</button>
                                                 </div>
                                             </div>
+
                                             <h1 class="instock-head">Availability:<b>
                                                     {{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
                                                 </b></h1>
@@ -547,7 +570,7 @@
                                         @endif
                                         <!--  -->
                                     </div>
-                                </div>  
+                                </div>
                                 @endforeach
                             </div>
 
@@ -647,7 +670,7 @@
         <div class="row">
             @foreach(@$similar_products->take(6) as $product)
             <div class="col-sm-2">
-                <div class="product-layouts">
+                <div class="product-layouts wheel-pro">
                     <div class="product-thumb transition">
                         <div class="image">
                             <img class="wheelImage  image_thumb" src="{{ViewWheelProductImage($product->prodimage)}}" title="{{$product->prodbrand}}" alt="{{$product->prodbrand}}">
@@ -655,29 +678,13 @@
                             <div class="sale-icon"><a>Sale</a></div>
                         </div>
 
-                        <div class="thumb-description">
+                        <div class="thumb-description wheel-vire-pro">
                             <div class="caption">
-                                <h4><a href="{{url('/wheelproductview',$product->id)}}" title="{{$product->prodtitle}}">{{$product->prodtitle}}
-                                        <!-- <br> {{'Diameter : '.$product->wheeldiameter}}  -->
-                                        <!-- <br> {{'PN : '.$product->partno}}  -->
-                                    </a></h4>
-                                <!-- <h6><a href="">Accessories</a></h6> -->
-                                <!-- <div class="rating">
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
-                                            </div> -->
-                                <br>
-                                <div class="price">
-                                    <span class="price-new">{{roundCurrency(@$product->price)}}</span>
-                                    <!-- <span class="price-old">$1,202.00</span> -->
-                                    <!-- <span class="price-tax">Ex Tax: $85.00</span> -->
-                                </div>
 
+                                <h4><a href="{{url('/wheelproductview',$product->id)}}" title="{{$product->prodtitle}}">{{$product->prodtitle}}</a></h4>
+                                
                             </div>
-                            <!--                                     <div class="button-group">
+                            <div class="button-group">
                                         <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
                                             <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
                                         </button>
@@ -691,9 +698,12 @@
                                         <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
                                             <span>Quick View</span>
                                         </button>
-
-                                    </div> -->
+                            </div>
                         </div>
+                        <div class="thumb-description-price-details">
+                              <span class="price-new">{{roundCurrency(@$product->price)}}</span>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -134,30 +134,30 @@
                                 <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
                             <br>
                             @endif
-                            @if(@$flag=='searchByWheelSize')
+                            @if(@$flag == 'searchByWheelSize' && @$request->wheeldiameter)
 
-                            Your Selected  
-                            @if(@$request->wheeldiameter)
+                                Your Selected  
+                                @if(@$request->wheeldiameter)
 
-                            Diameter:
-                                <b>{{@$request->wheeldiameter}}</b> ,
-                            @endif
+                                Diameter:
+                                    <b>{{@$request->wheeldiameter}}</b> ,
+                                @endif
 
-                            @if(@$request->wheelwidth)
-                            Width:
-                                <b>{{@$request->wheelwidth}}</b> ,
-                            @endif
+                                @if(@$request->wheelwidth)
+                                Width:
+                                    <b>{{@$request->wheelwidth}}</b> ,
+                                @endif
 
-                            @if(@$request->boltpattern)
-                            Bolt Pattern:
-                                <b>{{showBoltPattern(@$request->boltpattern)}}</b> ,
-                            @endif
+                                @if(@$request->boltpattern)
+                                Bolt Pattern:
+                                    <b>{{showBoltPattern(@$request->boltpattern)}}</b> ,
+                                @endif
 
-                            @if(@$request->minoffset)
-                            Offset:
-                                <b>{{@$request->minoffset}}</b> 
-                                @if(@$request->maxoffset)<b> to {{@$request->maxoffset}}</b> @endif
-                            @endif
+                                @if(@$request->minoffset)
+                                Offset:
+                                    <b>{{@$request->minoffset}}</b> 
+                                    @if(@$request->maxoffset)<b> to {{@$request->maxoffset}}</b> @endif
+                                @endif
                             @endif
                         </p>
                       </div>

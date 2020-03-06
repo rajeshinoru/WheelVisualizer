@@ -597,12 +597,12 @@
               <div class="wheel-list-change-tab">
                   <div class="row">
                       <div class="col-md-8 left-head">
-                        <p> 
+                        <p>
                             @if(@$vehicle)
-                            Your Selected Vehicle: 
+                            Your Selected Vehicle:
                                 <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
                             OEM Tire Size:
-                                <b>{{@$vehicle->ChassisModels->tire_size}}</b> 
+                                <b>{{@$vehicle->ChassisModels->tire_size}}</b>
 <!--                             Speed Rating:
                                 <b>{{@$vehicle->ChassisModels->speed_index}}</b> ,
 
@@ -787,7 +787,7 @@
                                 </div>
                             </div>
 
-                            <br>    
+                            <br>
                             @endif
                             @if(@$tire->mileage_performance > 0)
                             <h3 class="progress-title">Tread Life/ Mileage/ Wear :</h3>
@@ -807,7 +807,7 @@
                                 </div>
                             </div>
 
-                            <br>    
+                            <br>
                             @endif
                             @if(@$tire->quiet_ride > 0)
                             <h3 class="progress-title">Quiet Ride/ Noise Comfort/ Quietness  :</h3>
@@ -819,7 +819,7 @@
                             <br>
 
                             @endif
-      
+
                             @if(@$tire->winter_performance > 0)
                             <h3 class="progress-title">Winter Performance/ Snow Traction/ Snow :</h3>
                             <div class="progress pink">
@@ -830,7 +830,7 @@
                             <br>
 
                             @endif
-      
+
                             @if(@$tire->fuel_efficiency > 0)
                             <h3 class="progress-title">Fuel Efficiency / Eco:</h3>
                             <div class="progress pink">
@@ -1108,13 +1108,8 @@
                         <div class="thumb-description">
                             <div class="caption">
                                 <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$stire->id)}}/{{base64_encode(@$vehicle->id)}}">
-                                        {{@$stire->detailtitle}}<br>
-                                        <br>
-                                        <!-- Size : {{@$stire->tiresize}}<br> -->
-                                        <!-- Load : {{@$stire->loadindex}} Speed:{{@$stire->speedrating}}<br> -->
-                                        <b>{{roundCurrency(@$stire->price)}}</b>
-                                    </a></h4>
-                                <br>
+
+                                        {{@$stire->detailtitle}}</a></h4>
                             </div>
                             <div class="button-group">
                                 <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -1131,6 +1126,11 @@
                                 </button>
                             </div>
                         </div>
+
+                        <div class="thumb-description-price-details">
+                              <span class="price-new"><b>{{roundCurrency(@$stire->price)}}</b></span>
+                        </div>
+
                     </div>
                 </div>
             </div>
