@@ -235,7 +235,10 @@
 
     <!-- DataTable JS -->
     <script type="text/javascript" src="{{asset('/admin/DataTables/datatables.min.js')}}"></script>
-
+    <!-- summernote JS
+        ============================================ -->
+    <script src="{{ asset('/admin/js/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('/admin/js/summernote/summernote-active.js') }}"></script>
     <!-- tawk chat JS
         ============================================ -->
     <!-- <script src="{{asset('/admin/js/tawk-chat.js">')}}</script> -->

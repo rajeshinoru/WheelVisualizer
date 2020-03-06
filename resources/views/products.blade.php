@@ -41,6 +41,7 @@
                                                     <li><input type="checkbox" name="wheeldiameter[]" class="wheeldiameter" value="{{$diameter->wheeldiameter}}" @if(in_array($diameter->wheeldiameter,json_decode(base64_decode(@Request::get('diameter')?:''))?:[])) checked @endif> {{$diameter->wheeldiameter.'('.$diameter->total.')'}}
                                                     </li>
                                                     @empty
+                                                    <li>No Diameter Available</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -60,6 +61,7 @@
                                                     @forelse($wheelwidth as $width)
                                                     <li><input type="checkbox" name="wheelwidth[]" class="wheelwidth" value="{{$width->wheelwidth}}" @if(in_array($width->wheelwidth,json_decode(base64_decode(@Request::get('width')?:''))?:[])) checked @endif> {{$width->wheelwidth.'('.$width->total.')'}} </li>
                                                     @empty
+                                                    <li>No width Available</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -81,18 +83,13 @@
                                                         @if(in_array($brand->prodbrand,json_decode(base64_decode(@Request::get('brand')?:''))?:[]))
                                                              checked
                                                         @endif
-
-                                                        @if(!@$countsByBrand[$brand->prodbrand])
-                                                            disabled
-                                                        @endif
                                                         >
                                                         @if(@$countsByBrand[$brand->prodbrand])
                                                         {{$brand->prodbrand}} ( {{$countsByBrand[$brand->prodbrand]}} )
-                                                        @else
-                                                        <span style="color: #a0a0a0;">{{$brand->prodbrand}} ( 0 )</span >
                                                         @endif
                                                     </li>
                                                     @empty
+                                                    <li>No Brands Available</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -113,6 +110,7 @@
                                                     @forelse($wheelfinish as $finish)
                                                     <li><input type="checkbox" name="finish[]" class="finish" value="{{$finish->prodfinish}}" @if(in_array($finish->prodfinish,json_decode(base64_decode(@Request::get('finish')?:''))?:[])) checked @endif> {{$finish->prodfinish.'('.$finish->total.')'}} </li>
                                                     @empty
+                                                    <li>No Finish Available</li>
                                                     @endforelse
                                                 </ul>
                                             </div>
@@ -126,19 +124,47 @@
             </div>
 
             <div class="col-sm-9 col-sm-9 main-pro-inner">
+              @if(@$vehicle || @$flag=='searchByWheelSize')
+              <div class="wheel-list-change-tab">
+                  <div class="row">
+                      <div class="col-md-8 left-head">
+                        <p> 
+                            @if(@$vehicle)
+                            Your Selected Vehicle: 
+                                <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                            <br>
+                            @endif
+                            @if(@$flag=='searchByWheelSize')
 
-                @if(@$vehicle)
-                  <div class="wheel-list-change-tab">
-                      <div class="row">
-                          <div class="col-md-8 left-head">
-                              <p> Your selected vehicle: <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
-                               <!-- OEM Tire Size: <b>{{@$chassis_model->tire_size}}</b>  -->
-                            </p>
-                          </div>
-                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
+                            Your Selected  
+                            @if(@$request->wheeldiameter)
+
+                            Diameter:
+                                <b>{{@$request->wheeldiameter}}</b> ,
+                            @endif
+
+                            @if(@$request->wheelwidth)
+                            Width:
+                                <b>{{@$request->wheelwidth}}</b> ,
+                            @endif
+
+                            @if(@$request->boltpattern)
+                            Bolt Pattern:
+                                <b>{{showBoltPattern(@$request->boltpattern)}}</b> ,
+                            @endif
+
+                            @if(@$request->minoffset)
+                            Offset:
+                                <b>{{@$request->minoffset}}</b> 
+                                @if(@$request->maxoffset)<b> to {{@$request->maxoffset}}</b> @endif
+                            @endif
+                            @endif
+                        </p>
                       </div>
+                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
                   </div>
-                @endif
+              </div>
+              @endif
                 <div class="row">
                     @forelse($products as $key => $product)
                         <?php $product = (object)$product; ?>
@@ -165,7 +191,7 @@
                                               </h4>
 
                                             <!-- <div class="price">
-                                                <span class="price-new">Starting at : ${{@$product->price}}</span>
+                                                <span class="price-new">Starting at : {{roundCurrency(@$product->price)}}</span>
                                             </div> -->
                                         </div>
                                         <div class="button-group">
@@ -185,7 +211,7 @@
                                         </div>
                                     </div>
                                     <div class="thumb-description-price-details">
-                                      <span class="price-new">Starting at : ${{@$product->price}}</span>
+                                      <span class="price-new">Starting at : {{roundCurrency(@$product->price)}}</span>
                                     </div>
                                 </div>
                             </div>

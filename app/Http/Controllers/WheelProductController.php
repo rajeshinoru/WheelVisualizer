@@ -97,7 +97,7 @@ class WheelProductController extends Controller
                 $rimsizearray = explode('x', $chassis_models->rim_size);
                 $widthPart2 = $widthPart1 = str_replace(" ", "", $rimsizearray[0])?:$rimsizearray[0];
                 $diameterPart2 = $diameterPart1 = str_replace(" ", "", $rimsizearray[1])?:$rimsizearray[1];
-                
+
                 foreach ($plusSizes as $key => $plusSize) {
                     
                     $wheelsizearray = explode('x', $plusSize->wheel_size);
@@ -192,7 +192,7 @@ class WheelProductController extends Controller
                 $countsByBrand = $countsByBrand->whereIn('prodfinish', json_decode(base64_decode($request->finish)));
             }
             
-            $brands =  WheelProduct::select('prodbrand')
+            $brands =  $countsByBrand->select('prodbrand')
             ->groupBy('prodbrand')
             ->get()
             ->sortBy('prodbrand');
@@ -254,7 +254,7 @@ class WheelProductController extends Controller
 
             $flag=@$request->flag?:null;
 
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle'));
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request'));
 
         }
         catch(ModelNotFoundException $notfound)

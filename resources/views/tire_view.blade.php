@@ -683,12 +683,12 @@
                                 <td class="product-info-value">Warranty : {{@$tire->warranty?:' - '}}</td>
                             </tr>
                             <tr>
-                                <td>Original Price : <span class="price-old">${{roundCurrency(($tire->price + (35 / 100) * $tire->price))}}</span></td>
-                                <td class="product-info-value">You Save : <span class="price-save">${{roundCurrency((($tire->price + (35 / 100) * $tire->price) - @$tire->price))}}</td>
+                                <td>Original Price : <span class="price-old">{{roundCurrency(($tire->price + (35 / 100) * $tire->price))}}</span></td>
+                                <td class="product-info-value">You Save : <span class="price-save">{{roundCurrency((($tire->price + (35 / 100) * $tire->price) - @$tire->price))}}</td>
                             </tr>
                             <tr>
-                                <td>Set of 4 : <span class="price-new2">${{roundCurrency(@$tire->price * 4)}}</span></td>
-                                <td class="product-info-value">Your Price : <span class="price-new2">${{roundCurrency(@$tire->price)}}</span></td>
+                                <td>Set of 4 : <span class="price-new2">{{roundCurrency(@$tire->price * 4)}}</span></td>
+                                <td class="product-info-value">Your Price : <span class="price-new2">{{roundCurrency(@$tire->price)}}</span></td>
                             </tr>
                             <tr>
                                 <td><div class="reward-block">
@@ -705,24 +705,6 @@
                         </tbody>
                     </table>
 
-                    <!-- <div class="price-section">
-                        <h1>Partno : <b>{{@$tire->partno}}</b></h1>
-                        <h2>Original Price : <span class="price-old">${{@$tire->originalprice}}</span>
-                            You Save : <span class="price-new2">${{(@$tire->originalprice - @$tire->price)}}</span>
-                        </h2>
-                        <h1>Set of 4 : <span class="price-new2">${{@$tire->price * 4}}</span></h1>
-                        <h1>Your Price : <span class="price-new2">${{@$tire->price}}</span></h1>
-                        <div class="reward-block">
-                            @if(@$tire->saletype == 4)
-                            <button class="btn btn-info" type="button">See Price in Cart</button>
-                            @elseif(@$tire->saletype == 5)
-                            <button class="btn btn-info" type="button">Join DWW for Special Offers</button>
-                            @elseif(@$tire->saletype == 7)
-                            <button class="btn btn-info" type="button">See Price in Checkout</button>
-                            @endif
-                        </div>
-                    </div> -->
-
                     <div class="row product-quantity">
                         <div class="col-sm-4 view-one">
                             <div class="input-group spinner">
@@ -736,19 +718,6 @@
                         <div class="col-sm-4 view-two"><button class="btn btn-info" type="button">Add to Cart</button></div>
                         <div class="col-sm-4 view-three"><button class="btn btn-info" type="button">FINANCE</button></div>
                     </div>
-
-                    <!-- <div class="form-group product-quantity">
-                        <label class="control-label" for="input-quantity">Qty</label>
-                        <div class="input-group spinner">
-                            <input type="text" class="form-control" value="1" min="0" max="5">
-                            <div class="input-group-btn-vertical">
-                            <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
-                            <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
-                            </div>
-                        </div>
-                        <button class="btn btn-info" type="button">Add to Cart</button>
-                        <button class="btn btn-info" type="button">FINANCE</button>
-                    </div> -->
 
                     <div class="instock">
                         <div class="row">
@@ -1103,7 +1072,7 @@
                         <td>{{@$dtire->loadindex?:'-'}}</td>
                         <td>{{@$dtire->warranty?:'-'}}</td>
                         <!-- <td><img src="{{url('image/'.@$dtire->warranty)}}" width="35px" height="35px"></td> -->
-                        <td>${{@$dtire->price}}</td>
+                        <td>{{roundCurrency(@$dtire->price)}}</td>
                         <td>
                             <a href="{{url('/tireview')}}/{{base64_encode(@$dtire->id)}}/{{base64_encode(@$vehicle->id)}}" class="btn btn-default cart-1">Details</a>
                             <button type="button" class="btn btn-default cart-2">Add</button>
@@ -1143,7 +1112,7 @@
                                         <br>
                                         <!-- Size : {{@$stire->tiresize}}<br> -->
                                         <!-- Load : {{@$stire->loadindex}} Speed:{{@$stire->speedrating}}<br> -->
-                                        <b>${{@$stire->price}}</b>
+                                        <b>{{roundCurrency(@$stire->price)}}</b>
                                     </a></h4>
                                 <br>
                             </div>

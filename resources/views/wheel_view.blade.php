@@ -504,11 +504,11 @@
                                         @if(@$product->DifferentOffsets->count() > 1 )
                                         @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
                                         <div style="display: {{($diffKey > 0)?'none':''}}" class=" price-section dynamic offset_{{$diffproduct->id}} pattern_{{$diffproduct->boltpattern1}}_{{$diffproduct->id}}">
-                                            <h2>Original Price : <span class="price-old">${{@$diffproduct->saleprice ?? 0}}</span>
-                                                You Save : <span class="price-new2">$0</span>
+                                            <h2>Original Price : <span class="price-old">{{roundCurrency(@$diffproduct->saleprice ?? 0)}}</span>
+                                                You Save : <span class="price-new2">{{roundCurrency(0)}}</span>
                                             </h2>
-                                            <p>Set of 4 : <span class="price-new2">${{@$diffproduct->price*4}}</span></p>
-                                            <p>Your Price : <span class="price-new2">${{@$diffproduct->price}}</span></p>
+                                            <p>Set of 4 : <span class="price-new2">{{roundCurrency(@$diffproduct->price*4)}}</span></p>
+                                            <p>Your Price : <span class="price-new2">{{roundCurrency(@$diffproduct->price)}}</span></p>
                                             <!-- <p>{{@$diffproduct->partno}}</p> -->
                                             <!-- <p>Starting at $15/mo with </p> -->
                                             <div class="form-head">
@@ -526,11 +526,11 @@
                                         @endforeach
                                         @else
                                         <div class="price-section">
-                                            <h2>Original Price : <span class="price-old">${{@$product->saleprice ?? 0}}</span>
-                                                You Save : <span class="price-new2">$0</span>
+                                            <h2>Original Price : <span class="price-old">{{roundCurrency(@$product->saleprice ?? 0)}}</span>
+                                                You Save : <span class="price-new2">{{roundCurrency(0)}}</span>
                                             </h2>
-                                            <p>Set of 4 : <span class="price-new2">${{@$product->price*4}}</span></p>
-                                            <p>Your Price : <span class="price-new2">${{@$product->price}}</span></p>
+                                            <p>Set of 4 : <span class="price-new2">{{roundCurrency(@$product->price*4)}}</span></p>
+                                            <p>Your Price : <span class="price-new2">{{roundCurrency(@$product->price)}}</span></p>
                                             <!-- <p>Starting at $15/mo with </p> -->
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
@@ -671,7 +671,7 @@
                                             </div> -->
                                 <br>
                                 <div class="price">
-                                    <span class="price-new">${{@$product->price}}</span>
+                                    <span class="price-new">{{roundCurrency(@$product->price)}}</span>
                                     <!-- <span class="price-old">$1,202.00</span> -->
                                     <!-- <span class="price-tax">Ex Tax: $85.00</span> -->
                                 </div>

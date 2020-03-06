@@ -114,7 +114,8 @@ function showBoltPattern($bp1,$bp2='',$bp3=''){
 	return $pattern;
 }
 function roundCurrency($amt=0){
-	return round($amt,2);
+	// return round($amt,2);
+	return "$".number_format((float)$amt, 2, '.', '');
 }
 
 function getHigherSpeedRating($rating=''){

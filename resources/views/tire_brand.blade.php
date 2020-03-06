@@ -45,7 +45,7 @@
                                         <a href="{{url('/tirebrandmodel')}}/{{base64_encode($ptire->id)}}">{{@$ptire->prodtitle}}
                                             <!-- <br> -->
                                         <!-- @if(@$ptire->price)
-                                        Starting at: ${{@$ptire->price}}
+                                        Starting at: {{roundCurrency(@$ptire->price)}}
                                         @else
                                         <br>
                                         @endif -->
@@ -71,7 +71,7 @@
 
                             <div class="thumb-description-price-details">
                               <span class="price-new">@if(@$ptire->price)
-                              Starting at: ${{@$ptire->price}}
+                              Starting at: {{roundCurrency(@$ptire->price)}}
                               @else
                               <br>
                               @endif</span>
@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="thumb-description-price-details">
-                              <span class="price-new">Starting at: ${{@$lttire->price}}</span>
+                              <span class="price-new">Starting at: {{roundCurrency(@$lttire->price)}}</span>
                             </div>
 
                         </div>

@@ -146,7 +146,7 @@ function NavFilters(year = '', make = '', model = '',submodel = '', changeBy = '
 
         if(make != null && changeBy !=''){
 
-            $('.NavMake').append('<option value="' + make + '" selected>' + make + '</option>');
+            // $('.NavMake').append('<option value="' + make + '" selected>' + make + '</option>');
             // $('.NavMake').trigger("chosen:updated");
         }
 

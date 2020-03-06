@@ -40,7 +40,7 @@
 
                                                             @if($amt > json_decode(base64_decode(@Request::get('maxprice')?:'')) && @Request::get('maxprice'))    disabled
                                                             @endif
-                                                            > Above ${{$amt}}</option>
+                                                            > Above {{roundCurrency($amt)}}</option>
                                                             @endfor
                                                             </select>
                                                         </div>
@@ -56,7 +56,7 @@
 
                                                             @if($amt <= json_decode(base64_decode(@Request::get('minprice')?:'')))    disabled
                                                             @endif
-                                                            > Below ${{$amt}}</option>
+                                                            > Below {{roundCurrency($amt)}}</option>
                                                             @endfor
                                                             </select>
                                                         </div>
@@ -194,7 +194,7 @@
                                 <b>{{@$chassis_model->load_index}}</b> 
                             <br>
                             @endif
-                            @if(@count($request->all())>0)
+                            @if(@count($request->all())>0 && @$request->width)
 
                             Your Selected  
                             @if(@$request->width)
@@ -212,6 +212,7 @@
                             Diameter:
                                 <b>{{@$request->diameter}}</b> ,
                             @endif
+
                             @endif
                         </p>
                       </div>
@@ -238,7 +239,7 @@
                                                 <br>
                                                 Size : {{@$tire->tiresize}}<br>
                                                 Load : {{@$tire->loadindex}} Speed:{{@$tire->speedrating}}<br>
-                                                <b>${{@$tire->price}}</b>
+                                                <b>{{roundCurrency(@$tire->price)}}</b>
                                             </a></h4>
                                         <br>
                                     </div>

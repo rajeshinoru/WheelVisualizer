@@ -127,6 +127,8 @@ class TireController extends Controller
 
             $countsByBrand = clone $tires;
             
+            $brands = clone $tires; 
+
             if (isset($request->tirebrand) && $request->tirebrand) {
                 $countsByBrand = $countsByBrand->whereIn('prodbrand', json_decode(base64_decode($request->tirebrand)));
             }
@@ -135,21 +137,23 @@ class TireController extends Controller
                 $countsByBrand = $countsByBrand->whereIn('loadindex', json_decode(base64_decode($request->loadindex)));
             }
 
+            $brands = $countsByBrand->select('prodbrand')
+            ->groupBy('prodbrand')
+            ->get()
+            ->sortBy('prodbrand');
+
             $countsByBrand = $countsByBrand->select('prodbrand', \DB::raw('count(DISTINCT prodmodel) as total'))
             ->groupBy('prodbrand')
             ->pluck('total','prodbrand');
 
-            $brands =  Tire::select('prodbrand')
-            ->groupBy('prodbrand')
-            ->get()
-            ->sortBy('prodbrand');
             $prices =  Tire::select('price')
             ->groupBy('price')
             ->get()
             ->sortBy('price');
         $tires = $tires
             ->orderBy('price', 'ASC')
-            ->get();
+            ->get()
+            ->unique('prodtitle');
 
         if(count($tires) == 0){
 
@@ -232,13 +236,16 @@ class TireController extends Controller
         $ptires =clone $tires;
         $lttires =clone $tires;
         $tire = $tires->first();
-
-        $ptires =$ptires->where('detaildesctype','Passenger')
-                ->get()
-                ->unique('prodmodel');
-        $lttires =$lttires
-                ->get()
-                ->unique('prodmodel');
+        $ptires = $ptires->where(function ($query) {
+                    $query->where('detaildesctype','Passenger');
+                    $query->orWhereNull('detaildesctype');
+                    })->get()
+                    ->unique('prodmodel');
+        $lttires =$lttires->where(function ($query) {
+                    $query->where('detaildesctype','!=','Passenger');
+                    $query->orWhereNotNull('detaildesctype');
+                    })->get()
+                    ->unique('prodmodel');
 
         $ptires = MakeCustomPaginator($ptires, $request, 6,'ptpage');
         $lttires = MakeCustomPaginator($lttires, $request, 6,'ltpage');

@@ -743,7 +743,7 @@
                         <td>{{@$tire->loadindex?:'-'}}</td>
                         <td>{{@$tire->warranty?:'-'}}</td>
                         <!-- <td><img src="{{url('image/'.@$tire->warranty)}}" width="35px" height="35px"></td> -->
-                        <td>${{@$tire->price}}</td>
+                        <td>{{roundCurrency(@$tire->price)}}</td>
                         <td>
                             <a href="{{url('/tireview/'.base64_encode($tire->id))}}" class="btn btn-default cart-1">Details</a>
                             <button type="button" class="btn btn-default cart-2">Add</button>
