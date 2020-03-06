@@ -175,7 +175,8 @@
                 <!-- Side End -->
             </div>
             <div class="col-sm-9">
-              @if(@$vehicle)
+
+              @if(@$vehicle || @count($request->all())>0)
               <div class="wheel-list-change-tab">
                   <div class="row">
                       <div class="col-md-8 left-head">
@@ -193,7 +194,25 @@
                                 <b>{{@$chassis_model->load_index}}</b> 
                             <br>
                             @endif
-                            
+                            @if(@count($request->all())>0)
+
+                            Your Selected  
+                            @if(@$request->width)
+
+                            Width:
+                                <b>{{@$request->width}}</b> ,
+                            @endif
+
+                            @if(@$request->profile)
+                            Profile:
+                                <b>{{@$request->profile}}</b> ,
+                            @endif
+
+                            @if(@$request->diameter)
+                            Diameter:
+                                <b>{{@$request->diameter}}</b> ,
+                            @endif
+                            @endif
                         </p>
                       </div>
                       <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>

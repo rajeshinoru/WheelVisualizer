@@ -170,7 +170,7 @@ class TireController extends Controller
         $tires = MakeCustomPaginator($tires, $request, 8);
         // dd($tires);
         // dd($speedratings,json_decode(base64_decode($request->tirespeedrating)));
-        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices'));
+        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices','request'));
     }
 
     /**

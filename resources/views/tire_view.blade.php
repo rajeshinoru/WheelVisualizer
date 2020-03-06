@@ -666,8 +666,8 @@
                     <table class="product-info">
                         <tbody>
                             <tr>
-                                <td>Brand : {{@$tire->prodbrand}}</td>
-                                <td>Model : {{@$tire->prodmodel}}</td>
+                                <td><h1 class="product-name"><!-- Brand :--> {{@$tire->prodbrand}}</h1></td>
+                                <td><h1 class="product-name"><!-- Model :--> {{@$tire->prodmodel}}</h1></td>
                             </tr>
                             <tr>
                                 <td class="product-info-value"><a href="">Size : {{@$tire->tiresize?:' - '}}</a></td>
