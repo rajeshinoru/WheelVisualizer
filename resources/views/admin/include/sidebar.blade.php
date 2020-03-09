@@ -78,8 +78,15 @@
                         <li>
                             <a  href="{{url('admin/tire')}}" aria-expanded="false"><i class="fa fa-list "></i> Tires  </a>
                         </li>
-                        <li>
+<!--                         <li>
                             <a  href="{{url('admin/setting')}}" aria-expanded="false"><i class="fa fa-cog "></i> Settings  </a>
+                        </li> -->
+                        <li>
+                            <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-file "></i> CMS Pages</a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Header Page" href="{{url('admin/cms/setting')}}"> <i class="fa fa-paperclip"></i>  Application Setting </a></li> 
+                                <li><a title="Home Page" href="{{url('admin/cms/home')}}"> <i class="fa fa-paperclip"></i>  Home Page </a></li> 
+                            </ul>
                         </li>
 
 

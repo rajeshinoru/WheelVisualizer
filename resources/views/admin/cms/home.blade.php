@@ -7,7 +7,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Application Details</a></li>
+                                <li class="active"><a href="#description">Home Page Details</a></li>
                                 <!-- <li><a href="#reviews"> Acount Information</a></li> -->
                                 <!-- <li><a href="#INFORMATION">Social Information</a></li> -->
                             </ul>
@@ -19,66 +19,30 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form action="{{url('admin/setting/store')}}" class=" needsclick addcourse" method="POST" id="demo1-upload"  enctype="multipart/form-data">
-                                                         <!-- onsubmit="return summernoteForm($('#test123'))" -->
+                                                    <form action="{{url('admin/cms/home')}}" class=" needsclick addcourse" method="POST" id="demo1-upload"  enctype="multipart/form-data">
                                                         {{csrf_field()}}
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Logo</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input type="file" accept="image/*" name="site_logo" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{asset(Setting::get('site_logo'))}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Title</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input name="site_title" type="text" class="form-control" placeholder="Site Title" value="{{Setting::get('site_title','')}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Contact</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input name="site_contact" type="text" class="form-control" placeholder="+91" value="{{Setting::get('site_contact','')}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Email</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input name="site_email" type="text" class="form-control" placeholder="Enter the email" value="{{Setting::get('site_email','')}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Home Page Site Content</div>
-                                                                    <div class="col-md-8">
-                                                                        <textarea class="form-control summernote" name="homepage_content" rows="5">
-                                                                            {{Setting::get('homepage_content','')}}
+                                                                    <div class="col-md-3">Home Page Content - I </div>
+                                                                    <div class="col-md-9">
+                                                                        <textarea class="form-control summernote" name="homepage_content1" rows="5">
+                                                                            {{Setting::get('homepage_content1','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Footer </div>
-                                                                    <div class="col-md-8">
-                                                                        <textarea class="form-control summernote" name="footer_content" rows="5">
-                                                                            {{Setting::get('footer_content','')}}
+                                                                    <div class="col-md-3">Home Page Content - II </div>
+                                                                    <div class="col-md-9">
+                                                                        <textarea class="form-control summernote" name="homepage_content2" rows="5">
+                                                                            {{Setting::get('homepage_content2','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Header </div>
-                                                                    <div class="col-md-8">
-                                                                        <textarea class="form-control summernote" name="header_content" rows="5">
-                                                                            {{Setting::get('header_content','')}}
-                                                                        </textarea>
-                                                                    </div>
-                                                            </div>
+                                                        </div>
+                                                        <br>
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <div class="payment-adress">

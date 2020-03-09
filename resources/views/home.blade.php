@@ -319,7 +319,9 @@
             </ul>
         </div>
     </div>
-
+    @if(Setting::get('header_content'))
+    <?=Setting::get('header_content','')?>
+    @else
     <div class="container">
         <div class="title-header">
             <div id="heading" class="title">
@@ -351,6 +353,7 @@
             <div class="col-sm-4 wheel-img"><img src="image/image-3.png"></div>
         </div>
     </div>
+    @endif
 
 </div>
 <!--  -->
@@ -473,6 +476,9 @@
 
 </div>
 <!--  -->
+    @if(Setting::get('hompage_content'))
+    <?=Setting::get('hompage_content','')?>
+    @else
 <div class="container">
     <div class="prod-headinghome">
         <h2>We offer the hassle free fitment to make things EASY</h2>
@@ -498,6 +504,7 @@
         <p>Aftermarket Rims and Tires for your Car, Truck or Suv, Wheel and Tire Packages</p>
     </div>
 </div>
+    @endif
 <!--  -->
 
 <!-- New Design End -->

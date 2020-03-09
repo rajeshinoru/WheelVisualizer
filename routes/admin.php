@@ -39,5 +39,9 @@ Route::post('/car/images/{id}', 'Resource\CarResource@setCarImages')->name('car.
 Route::patch('/car/images/{id}', 'Resource\CarResource@updateCarImages')->name('car.images.update');
 Route::delete('/car/images/{id}', 'Resource\CarResource@destroyCarImages')->name('car.images.destroy');
 
-Route::get('/setting', 'SettingsController@index')->name('settings.index'); 
-Route::post('/setting/store', 'SettingsController@store')->name('settings.store'); 
+// Route::get('/setting', 'SettingsController@index')->name('settings.index'); 
+// Route::post('/setting/store', 'SettingsController@store')->name('settings.store'); 
+
+
+Route::get('/cms/{category?}','SettingsController@index')->name('cms.index'); 
+Route::post('/cms/{category?}', 'SettingsController@store')->name('cms.store'); 

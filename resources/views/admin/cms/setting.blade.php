@@ -8,11 +8,8 @@
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#description">Application Details</a></li>
-                                <!-- <li><a href="#reviews"> Acount Information</a></li> -->
-                                <!-- <li><a href="#INFORMATION">Social Information</a></li> -->
                             </ul>
                            
-<!-- form class dropzone dropzone-custom -->
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
@@ -56,10 +53,10 @@
                                                                     </div>
                                                             </div>
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Home Page Site Content</div>
+                                                                    <div class="col-md-4">Header </div>
                                                                     <div class="col-md-8">
-                                                                        <textarea class="form-control summernote" name="homepage_content" rows="5">
-                                                                            {{Setting::get('homepage_content','')}}
+                                                                        <textarea class="form-control summernote" name="header_content" rows="5">
+                                                                            {{Setting::get('header_content','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
@@ -68,14 +65,6 @@
                                                                     <div class="col-md-8">
                                                                         <textarea class="form-control summernote" name="footer_content" rows="5">
                                                                             {{Setting::get('footer_content','')}}
-                                                                        </textarea>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Header </div>
-                                                                    <div class="col-md-8">
-                                                                        <textarea class="form-control summernote" name="header_content" rows="5">
-                                                                            {{Setting::get('header_content','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
