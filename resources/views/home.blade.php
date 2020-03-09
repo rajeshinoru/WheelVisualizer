@@ -8,70 +8,70 @@
         <div class="row">
             <div class="top-column col-sm-12">
                 <div class="slideshow-panel col-sm-12">
-                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol>
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="image/Banner.jpg" alt="Wheel">
-                            <!-- Static Header -->
-                            <div class="header-text hidden-xs">
-                                <div class="col-md-12 text-center">
-                                    <h2><strong>WHEEL VISUALIZER</strong></h2>
-                                    <br>
-                                    <h3><span>Vividly Designed And Made For Speed.</span></h3>
-                                    <br>
-                                    <div class="">
-                                        <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="image/Banner.jpg" alt="Wheel">
+                                <!-- Static Header -->
+                                <div class="header-text hidden-xs">
+                                    <div class="col-md-12 text-center">
+                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
+                                        <br>
+                                        <h3><span>Vividly Designed And Made For Speed.</span></h3>
+                                        <br>
+                                        <div class="">
+                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                                    </div>
                                 </div>
+                                <!-- /header-text -->
                             </div>
-                            <!-- /header-text -->
-                        </div>
-                        <div class="item">
-                            <img src="image/Banner-1.jpg" alt="Wheel">
-                            <!-- Static Header -->
-                            <div class="header-text hidden-xs">
-                                <div class="col-md-12 text-center">
-                                    <h2><strong>WHEEL VISUALIZER</strong></h2>
-                                    <br>
-                                    <h3><span>Because So Much Is Riding Your Tires.</span></h3>
-                                    <br>
-                                    <div class="">
-                                        <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                            <div class="item">
+                                <img src="image/Banner-1.jpg" alt="Wheel">
+                                <!-- Static Header -->
+                                <div class="header-text hidden-xs">
+                                    <div class="col-md-12 text-center">
+                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
+                                        <br>
+                                        <h3><span>Because So Much Is Riding Your Tires.</span></h3>
+                                        <br>
+                                        <div class="">
+                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                                    </div>
                                 </div>
+                                <!-- /header-text -->
                             </div>
-                            <!-- /header-text -->
-                        </div>
-                        <div class="item">
-                            <img src="image/Banner-2.jpg" alt="Wheel">
-                            <!-- Static Header -->
-                            <div class="header-text hidden-xs">
-                                <div class="col-md-12 text-center">
-                                    <h2><strong>WHEEL VISUALIZER</strong></h2>
-                                    <br>
-                                    <h3><span>Give Your Car A True Custom Look.</span></h3>
-                                    <br>
-                                    <div class="">
-                                        <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                            <div class="item">
+                                <img src="image/Banner-2.jpg" alt="Wheel">
+                                <!-- Static Header -->
+                                <div class="header-text hidden-xs">
+                                    <div class="col-md-12 text-center">
+                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
+                                        <br>
+                                        <h3><span>Give Your Car A True Custom Look.</span></h3>
+                                        <br>
+                                        <div class="">
+                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                                    </div>
                                 </div>
+                                <!-- /header-text -->
                             </div>
-                            <!-- /header-text -->
                         </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
                     </div>
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                  </div>
-                  <!-- /carousel -->
+                    <!-- /carousel -->
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
 <!-- New Design Start -->
 <style>
     .ban-ser {
-        border:1px solid #ddd9d9 !important;
+        border: 1px solid #ddd9d9 !important;
     }
 
     .wheel-list {
@@ -121,7 +121,7 @@
 
     #heading h1 {
         font-family: Montserrat;
-        color:#121214;
+        color: #121214;
         font-size: 18px !important;
         text-align: center;
         font-weight: 700 !important;
@@ -135,11 +135,10 @@
         text-align: center !important;
     }
 
-    .prod-headinghome p
-    {
+    .prod-headinghome p {
         margin: 10px 0px;
         color: #121214;
-        line-height:30px;
+        line-height: 30px;
         font-family: poppins !important;
         font-size: 12px !important;
     }
@@ -147,6 +146,7 @@
     .col-sm-4.wheel-img {
         text-align: center !important;
     }
+
     /* pro Start */
 
     .hometabled {
@@ -171,13 +171,13 @@
         border-radius: 2px;
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
-        background:#0e1661 !important;
+        background: #0e1661 !important;
     }
 
     .pTopCell {
         display: table-cell;
         width: 50%;
-        color:#fff;
+        color: #fff;
         text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
         font-size: 12px;
         font-family: Montserrat !important;
@@ -219,6 +219,7 @@
         width: auto;
         display: table;
     }
+
     .gridItem {
         display: inline-block;
         width: 210px;
@@ -226,8 +227,7 @@
         padding: 5px;
     }
 
-    .homecelld b
-    {
+    .homecelld b {
         color: #222 !important;
         font-size: 12px !important;
         font-family: Montserrat !important;
@@ -246,7 +246,7 @@
     }
 
     .prod-headinghome h2 {
-        color:#0e1661 !important;
+        color: #0e1661 !important;
         text-align: center;
         font-family: Montserrat !important;
         font-size: 18px !important;
@@ -272,23 +272,28 @@
         text-align: center;
     }
 
-    .prod-heading-center p
-    {
-        color:#0e1661 !important;
+    .prod-heading-center p {
+        color: #0e1661 !important;
         font-size: 15px;
         line-height: 30px !important;
         font-family: Montserrat !important;
         font-weight: 700 !important;
     }
 
-    #produst, #special-product, footer, #bott, .container.brand-logo {
+    #produst,
+    #special-product,
+    footer,
+    #bott,
+    .container.brand-logo {
         display: none !important;
     }
+
     .container-fluid.home-page {
         padding: 0px 0px !important;
         background: #f1f1f1 !important;
     }
 </style>
+<!-- New Design End -->
 <div class="banner-search">
     <div class="container">
         <div class="wheel-list ban-ser">
@@ -319,9 +324,10 @@
             </ul>
         </div>
     </div>
-    @if(Setting::get('header_content'))
-    <?=Setting::get('header_content','')?>
+    @if(Setting::get('homepage_content1'))
+    <?=Setting::get('homepage_content1','')?>
     @else
+    <!---------------- This Section will show when settings not found---------------->
     <div class="container">
         <div class="title-header">
             <div id="heading" class="title">
@@ -353,10 +359,12 @@
             <div class="col-sm-4 wheel-img"><img src="image/image-3.png"></div>
         </div>
     </div>
+    <!---------------- This Section will show when settings not found---------------->
+
     @endif
 
 </div>
-<!--  -->
+<!-- Start - This is for Duynamic Products from database -->
 <div class="container">
 
     <div class="hometabled">
@@ -373,7 +381,7 @@
                 <?php if($key == count($Wheels)/2 ) break; ?>
                 <li class="gridItem homeapge1">
                     <div class="homecelld">
-                        <a href=""><img  class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
+                        <a href=""><img class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
                     </div>
                     <div class="homecelld" style="margin-top: 4px;"><b>{{$wheel->wheeldiameter}} Diameter</b></div>
                 </li>
@@ -473,12 +481,17 @@
             </ul>
         </div>
     </div>
-
 </div>
-<!--  -->
-    @if(Setting::get('hompage_content'))
-    <?=Setting::get('hompage_content','')?>
-    @else
+<!-- End - This is for Duynamic Products from database  -->
+
+
+
+@if(Setting::get('homepage_content2'))
+<div class="container">
+    <?=Setting::get('homepage_content2','')?>
+</div>
+@else
+<!---------------- Start - This Section will show when settings not found---------------->
 <div class="container">
     <div class="prod-headinghome">
         <h2>We offer the hassle free fitment to make things EASY</h2>
@@ -504,12 +517,8 @@
         <p>Aftermarket Rims and Tires for your Car, Truck or Suv, Wheel and Tire Packages</p>
     </div>
 </div>
-    @endif
-<!--  -->
-
-<!-- New Design End -->
-
-
+<!---------------- End - This Section will show when settings not found---------------->
+@endif
 
 @endsection
 @section('custom_scripts')

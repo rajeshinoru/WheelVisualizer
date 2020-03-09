@@ -1,8 +1,14 @@
     <!-- Start Left menu area -->
+    <style type="text/css">
+        .main-logo{
+            width: 200px !important;
+            height: 60px !important;
+        }
+    </style>
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="{{url('/admin/home')}}"><img class="main-logo" src="/admin/img/logo/logo.png" alt="" /></a>
+                <a href="{{url('/admin/home')}}"><img class="main-logo" src="{{url(Setting::get('site_logo','/admin/img/logo/logo.png'))}}" alt="" /></a>
                 <!-- <strong><a href="index.html"><img src="/admin/img/logo/logo.png" alt="" /></a></strong> -->
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">

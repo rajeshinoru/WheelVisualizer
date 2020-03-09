@@ -15,49 +15,21 @@
 <section id="footer">
 
     <div class="container">
+
+    @if(Setting::get('footer_content'))
+    <?=Setting::get('footer_content','')?>
+    @else
         <div class="row social-nl">
 
           <div class="col-sm-12">
             <ul class="foot-icon">
-              <li><img class="lazy" src="{{url('image/social-1.png')}}" style="display: inline;" width="125" height="auto"></a></li>
-              <li><img class="lazy" src="{{url('image/social-2.png')}}" style="display: inline;" width="125" height="auto"></a></li>
-              <li><img class="lazy" src="{{url('image/social-3.png')}}" style="display: inline;" width="125" height="auto"></a></li>
-              <li><img class="lazy" src="{{url('image/social-4.png')}}" style="display: inline;" width="125" height="auto"></a></li>
-              <li><img class="lazy" src="{{url('image/social-5.png')}}" style="display: inline;" width="125" height="auto"></a></li>
+              <li><img class="lazy" src="{{url('image/social-1.png')}}" style="display: inline;" width="125" height="auto"></li>
+              <li><img class="lazy" src="{{url('image/social-2.png')}}" style="display: inline;" width="125" height="auto"></li>
+              <li><img class="lazy" src="{{url('image/social-3.png')}}" style="display: inline;" width="125" height="auto"></li>
+              <li><img class="lazy" src="{{url('image/social-4.png')}}" style="display: inline;" width="125" height="auto"></li>
+              <li><img class="lazy" src="{{url('image/social-5.png')}}" style="display: inline;" width="125" height="auto"></li>
             </ul>
           </div>
-
-
-            <!-- <div align="center">
-                <div class="social2-nl">
-
-                    <div class="bbb-nl">
-                        <a target="_blank" href="">
-                            <img class="lazy" src="{{url('image/social-1.png')}}" style="display: inline;" width="90" height="72"></a>
-                    </div>
-
-                    <div class="reseller-nl">
-                        <a href="">
-                            <img class="lazy" src="{{url('image/social-2.png')}}" style="display: inline;" height="52"></a>
-                    </div>
-
-                    <div class="googlestore">
-                        <a target="_blank">
-                            <img class="lazy" src="{{url('image/social-3.png')}}" style="display: inline;" width="150" height="61"></a>
-                    </div>
-
-                    <div class="sitelock-nl">
-                        <a target="_blank" href="">
-                            <img class="lazy" src="{{url('image/social-4.png')}}" style="display: inline;" width="145" height="68"></a>
-                    </div>
-
-                    <div class="godaddy-nl">
-                        <a target="_blank" rel="noreferrer" href="">
-                            <img class="lazy" src="{{url('image/social-5.png')}}" style="display: inline;" width="113" height="59"></a>
-                    </div>
-
-                </div>
-            </div> -->
         </div>
 
         <div class="container">
@@ -83,8 +55,8 @@
                 <h1><a href="">DiscountedWheelWarehouse.com has a ResellerRatings of 4.505/5 based on 8203 Reviews</a></h1>
             </div>
             <div class="copywright" align="center">copyright © 2020 Discounted Wheel Warehouse</div>
-
         </div>
+    @endif
     </div>
 </section>
 

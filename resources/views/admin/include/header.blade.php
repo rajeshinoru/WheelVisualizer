@@ -283,7 +283,7 @@ $value =0;
 //     // $value = $urls[3];
 // }
 ?>
-{{ Breadcrumbs::render($param,$value) }}
+<!-- {{ Breadcrumbs::render($param,$value) }} -->
                             </div>
                         </div>
                     </div>

@@ -5,8 +5,8 @@
                 <div class="col-sm-6">
                     <div id="top-links" class="pull-left">
                         <ul class="list-inline">
-                            <li class="header-phone pull-left"><a href=""><i class="fa fa-phone"></i><span>123456789</span></a></li>
-                            <li class="header-phone pull-left"><a href=""><i class="fa fa-envelope-o"></i><span>sales@discountedwheelwarehouse.com</span></a></li>
+                            <li class="header-phone pull-left"><a href=""><i class="fa fa-phone"></i><span>{{Setting::get('site_contact','123456789')}}</span></a></li>
+                            <li class="header-phone pull-left"><a href=""><i class="fa fa-envelope-o"></i><span>{{Setting::get('site_email','sales@discountedwheelwarehouse.com')}}</span></a></li>
                         </ul>
                     </div>
                 </div>
