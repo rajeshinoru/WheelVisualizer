@@ -454,11 +454,15 @@ class HomeController extends Controller
                     $this->recursiveScan($file,$this->storeArr,$destinationPath);
                     // dd($storeArr);
                 }elseif (is_file($file)) {
+
                     $folders= explode('/', $file);
                     $lastPart = $folders[count($folders)-1];
-                    copy($file, $destinationPath.$lastPart);
 
-                    echo count(glob($destinationPath."/*.*"))." - ".$destinationPath.$lastPart." <br> ";
+            if(!file_exists($destinationPath.$lastPart)){ 
+                    copy($file, $destinationPath.$lastPart);
+            }
+
+                    // echo count(glob($destinationPath."/*.*"))." - ".$destinationPath.$lastPart." <br> ";
                     // array_push($this->storeArr,$file);
                 }
             }
