@@ -32,10 +32,12 @@ Route::get('/tiredetailimages', 'HomeController@tiredetailimages');
 Route::get('/carImagesMovingToFolder', 'HomeController@carImagesMovingToFolder');
 Route::get('/carImagesMovingToFolderLive', 'HomeController@carImagesMovingToFolderLive');
 Route::get('/renameFrontBackImages', 'HomeController@renameFrontBackImages');
+Route::get('/carimagestosqlLive', 'HomeController@carimagestosqlLive');
 
 Route::get('/New_Vehicle_Import', 'VehicleController@New_Vehicle_Import');
 Route::get('/csv_vftp0016', 'HomeController@csv_vftp0016');
 Route::get('/csv_vftp0017', 'HomeController@csv_vftp0017');
+Route::get('/csv_vftp0018', 'HomeController@csv_vftp0018');
 
 
 
