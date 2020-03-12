@@ -527,8 +527,8 @@ class HomeController extends Controller
     }
     public function carImagesMovingToFolderLive()
     {     
-        $destinationPath = '/storage/cars/';
-        $carimagesArray = $this->recursiveScan('/storage/cars_all/*',$this->storeArr,$destinationPath);
+        $destinationPath = '/var/www/html/WheelVisualizer/storage/app/public/cars/';
+        $carimagesArray = $this->recursiveScan('/var/www/html/WheelVisualizer/storage/app/public/cars_all/*',$this->storeArr,$destinationPath);
   
         return 'success';
     }
