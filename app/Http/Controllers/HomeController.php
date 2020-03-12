@@ -77,6 +77,7 @@ class HomeController extends Controller
                 $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
 
             $Wheels = $Wheels->inRandomOrder()->paginate(9); 
+
             ///Brand with count
             $brands = Wheel::select('brand', \DB::raw('count(*) as total'))->groupBy('brand')->get()->sortBy('brand'); 
 
@@ -103,8 +104,9 @@ class HomeController extends Controller
 
                 },'CarColor'])->first();
 
-            }else
+            }else{
                 $car_images = ''; 
+            }
                 
             return view('wheels',compact('years','Wheels','car_images','brands','wheeldiameter','wheelwidth')); 
             
@@ -252,22 +254,28 @@ class HomeController extends Controller
     public function carimages()
     {
 
-        $imagesjpg = glob("storage/cars/*.jpg");
-        $imagespng = glob("storage/cars/*.png"); 
+        $imagesjpg = glob("/var/www/html/cars/*.jpg");
+        $imagespng = glob("/var/www/html/cars/*.png");
+        // $imagespng = glob("storage/cars/*.png"); 
         $images = array_merge($imagesjpg,$imagespng);  
-        foreach ($imagesjpg as $key => $value) {
+        foreach ($images as $key => $value) {
 
-            $path_remove = str_replace('storage/cars/', '', $value);
+            $path_remove = str_replace('/var/www/html/cars/', '', $value);
+            $imagename ="storage/cars/".$path_remove;
+            // dd($imagename) ;
             $getvalue_array = explode('_', $path_remove); 
-            if(count($getvalue_array) == 4)
-            {
-                $color_code = explode('.', $getvalue_array[3]);
-                CarImage::insert(['car_id' => $getvalue_array[0],'cc' => $getvalue_array[1],'color_code'=> $color_code[0],'image'=>$value]);
+            if(!CarImage::where('image',$imagename)->first()){
+
+                if(count($getvalue_array) == 4)
+                {
+                    $color_code = explode('.', $getvalue_array[3]);
+                    CarImage::insert(['car_id' => $getvalue_array[0],'cc' => $getvalue_array[1],'color_code'=> $color_code[0],'image'=>$imagename]);
+                }
+                elseif(count($getvalue_array) == 5){
+                    $color_code = explode('.', $getvalue_array[4]);
+                    CarImage::insert(['car_id' => $getvalue_array[1],'cc' => $getvalue_array[2],'color_code'=> $color_code[0],'image'=>$imagename]);
+                } 
             }
-            elseif(count($getvalue_array) == 5){
-                $color_code = explode('.', $getvalue_array[4]);
-                CarImage::insert(['car_id' => $getvalue_array[1],'cc' => $getvalue_array[2],'color_code'=> $color_code[0],'image'=>$value]);
-            } 
         }
         return 'success';
     }
@@ -437,16 +445,21 @@ class HomeController extends Controller
 
     public $storeArr=array();
 
-    public function recursiveScan($dir,$storeArr) {
+    public function recursiveScan($dir,$storeArr,$destinationPath) {
         $tree = glob(rtrim($dir, '/') . '/*');
         if (is_array($tree)) {
             foreach($tree as $file) {
                 if(is_dir($file)) {
                     // array_push($this->storeArr,$file);
-                    $this->recursiveScan($file,$this->storeArr);
+                    $this->recursiveScan($file,$this->storeArr,$destinationPath);
                     // dd($storeArr);
                 }elseif (is_file($file)) {
-                    array_push($this->storeArr,$file);
+                    $folders= explode('/', $file);
+                    $lastPart = $folders[count($folders)-1];
+                    copy($file, $destinationPath.$lastPart);
+
+                    echo count(glob($destinationPath."/*.*"))." - ".$lastPart." <br> ";
+                    // array_push($this->storeArr,$file);
                 }
             }
         }
@@ -502,6 +515,215 @@ class HomeController extends Controller
         }
         // dd($arr);
 
+        return 'success';
+    }
+
+    public function carImagesMovingToFolder()
+    {     
+        $destinationPath = '/var/www/html/mergedImages/';
+        $carimagesArray = $this->recursiveScan('/var/www/html/imgs/color2400png/color_2400_032_png/MY2006/*',$this->storeArr,$destinationPath);
+  
+        return 'success';
+    }
+    public function carImagesMovingToFolderLive()
+    {     
+        $destinationPath = '/storage/cars/';
+        $carimagesArray = $this->recursiveScan('/storage/cars_all/*',$this->storeArr,$destinationPath);
+  
+        return 'success';
+    }
+    public function renameFrontBackImages()
+    {
+
+        $images = glob("storage/wheels/optimised_front_back/*");
+        
+        $destinationPath = 'storage/wheels/new_front_back/';
+
+        foreach ($images as $key => $value) {
+
+                    $folders= explode('/', $value);
+                    $lastPart = $folders[count($folders)-1];
+
+                    $path_remove = str_replace('-min_optimized.png', '.png', $lastPart);
+                    $path_remove = str_replace('_optimized.png', '.png', $path_remove);
+
+                    copy($value, $destinationPath.$path_remove);
+        }
+        return 'success';
+    }
+
+
+    function csv_vftp0016(Request $request)
+    {
+        $filepath = public_path('/storage/vftp/vftp0016/WheelPros_USAWheel.csv');
+        $destpath1 = public_path('/storage/vftp/vftp0016/combined-invent-vftp0016-1.csv');
+        $destpath2 = public_path('/storage/vftp/vftp0016/combined-invent-vftp0016-2.csv');
+        $destpath3 = public_path('/storage/vftp/vftp0016/combined-invent-vftp0016-3.csv');
+        $destpath4 = public_path('/storage/vftp/vftp0016/combined-invent-vftp0016-4.csv');
+         $inpfile = fopen($filepath, "r");
+         $outfile1 = fopen($destpath1, "w+");
+         $outfile2 = fopen($destpath2, "w+");
+         $outfile3 = fopen($destpath3, "w+");
+         $outfile4 = fopen($destpath4, "w+");
+         $data = []; // Empty Data
+            
+ // Open and Read individual CSV file
+        if (($inpfile = fopen($filepath, 'r')) !== false) {
+            // Collect CSV each row records
+
+            $loc =array(
+'DenverCO' =>  '3',  
+'DallasTX' =>  '4',  
+'HoustonTX' =>  '5',  
+'KansasCityMO' =>  '6',  
+'NewOrleansLA' =>  '7',  
+'PhoenixAZ' =>  '8',  
+'OKCityOK' =>  '9',  
+'ElkGroveCA' =>  '10', 
+'SanAntonioTX' =>  '11', 
+'LosAngelesCA' =>  '12', 
+'SeattleWA' =>  '13', 
+'AtlantaGA' =>  '14', 
+'ChicagoIL' =>  '15'
+            );
+
+// , 
+// 'OrlandoFL' =>  '16', 
+// 'MiamiFL' =>  '17', 
+// 'ClevelandOH' =>  '18', 
+// 'CincinattiOH' =>  '19', 
+// 'CharlotteNC' =>  '20', 
+// 'CranburyNJ' =>  '21', 
+// 'NashvilleTN' =>  '22', 
+// 'SaltLakeUT' =>  '23', 
+// 'ManchesterCT' =>  '24', 
+// 'MinneapolisMN' =>  '25', 
+// 'JacksonvilleFL' =>  '26', 
+// 'RichmondVA' =>  '27', 
+// 'CoronaCA' =>  '28', 
+// 'PortlandOR' =>  '29', 
+// 'BaltimoreMD' =>  '30', 
+// 'MfgBuenaParkCA' =>  '31', 
+// 'DistBuenaParkCA' =>  '32'
+
+
+
+                        $data = []; // Empty Data
+                while (($dataValue = fgetcsv($inpfile, 20000)) !== false) {
+
+                    if($dataValue[1] != 'ItemNumber'){
+                        foreach ($loc as $locName => $colnValue) {
+                                $newRow = array(
+                                 $dataValue[1],
+                                 null,
+                                 null,
+                                 $dataValue[2],
+                                 null,
+                                 null,
+                                 $locName,
+                                 $dataValue[$colnValue],
+                                 $dataValue[34]
+                                );
+
+                                $data[$locName][] = $newRow;
+                                // if($colnValue > 24){
+                                //     fputcsv($outfile4, $newRow, ",", "'");//24-32
+                                // }elseif($colnValue > 16){
+                                //     fputcsv($outfile3, $newRow, ",", "'");//16-24
+                                // }elseif($colnValue > 8){
+                                //     fputcsv($outfile2, $newRow, ",", "'");//8-16
+                                // }else{
+                                //     fputcsv($outfile1, $newRow, ",", "'");//3-8
+                                // }
+                        }
+                    // dd($data);
+                   
+                    }
+                }
+                // dd($data);
+                 foreach ($data as $key =>  $locationData) {
+                    // dd($locationData);
+                    foreach ($locationData as $key1 => $value) {
+                            try {
+                               // Insert record into master CSV file
+                               // fputcsv($outfile1, $value, ",", "'");
+                                if($key <= 10){
+                                    fputcsv($outfile1, $value, ",", "'");//24-32
+                                }elseif($key <= 20){
+                                    fputcsv($outfile2, $value, ",", "'");//16-24
+                                }elseif($key <= 30){
+                                    fputcsv($outfile3, $value, ",", "'");//8-16
+                                }
+                                // else{
+                                //     fputcsv($outfile1, $value, ",", "'");//3-8
+                                // }
+                            } catch (Exception $e) {
+                                echo $e->getMessage();
+                            }
+                        
+                        # code...
+                    }
+                }
+        }
+
+        fclose($inpfile); // Close individual CSV file 
+// Close master CSV file 
+fclose($outfile1);
+// fclose($outfile2);
+// fclose($outfile3);
+// fclose($outfile4);
+        return 'success';
+    }
+
+
+
+    function csv_vftp0017(Request $request)
+    {
+        $filepath = public_path('/storage/vftp/vftp0017/TSW-Wheels-inventory_2020-03-06-1583534287.csv');
+        $destpath = public_path('/storage/vftp/vftp0017/combined-invent-vftp0017.csv');
+         $inpfile = fopen($filepath, "r");
+         $outfile = fopen($destpath, "w+");
+         $data = []; // Empty Data
+ // Open and Read individual CSV file
+        if (($inpfile = fopen($filepath, 'r')) !== false) {
+            // Collect CSV each row records
+
+                $loc =array(
+                'CA' =>  '1',  
+                'FL' =>  '2',  
+                'GA' =>  '3',  
+                'IL' =>  '4',  
+                'PA' =>  '5',  
+                'TX' =>  '6',  
+                'UT' =>  '7',  
+                'WA' =>  '8', 
+                            );
+
+                while (($dataValue = fgetcsv($inpfile, 1000)) !== false) {
+
+                    if($dataValue[0] != 'Item Number'){
+                $data = []; // Empty Data
+                foreach ($loc as $locName => $colnValue) {
+                        $newRow = array(
+                         $dataValue[0],
+                         null,
+                         null,
+                         null,
+                         null,
+                         null,
+                         $locName,
+                         $dataValue[$colnValue],
+                         null,
+                        );
+                        fputcsv($outfile, $newRow, ",", "'");
+                        // $data[] = $newRow;
+                }
+                    }
+            }
+        }
+
+// Close master CSV file 
+fclose($outfile);
         return 'success';
     }
 
