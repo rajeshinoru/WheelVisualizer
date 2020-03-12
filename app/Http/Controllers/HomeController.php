@@ -458,7 +458,7 @@ class HomeController extends Controller
                     $lastPart = $folders[count($folders)-1];
                     copy($file, $destinationPath.$lastPart);
 
-                    echo count(glob($destinationPath."/*.*"))." - ".$lastPart." <br> ";
+                    echo count(glob($destinationPath."/*.*"))." - ".$destinationPath.$lastPart." <br> ";
                     // array_push($this->storeArr,$file);
                 }
             }
