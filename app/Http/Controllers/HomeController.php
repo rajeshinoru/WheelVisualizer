@@ -553,7 +553,7 @@ class HomeController extends Controller
     public function carImagesMovingToFolder()
     {     
         $destinationPath = '/var/www/html/mergedImages/';
-        $carimagesArray = $this->recursiveScan('/var/www/html/imgs/color2400png/color_2400_032_png/MY2006/*',$this->storeArr,$destinationPath);
+        $carimagesArray = $this->recursiveScan('/var/www/html/imgs/color2400png/color_2400_032_png/*',$this->storeArr,$destinationPath);
   
         return 'success';
     }
@@ -758,12 +758,12 @@ fclose($outfile1);
                 return 'success';
     }
 
-    function csv_vftp0016(Request $request)
+    function csv_vftp0028(Request $request)
     {
 
-        $filepath = public_path('/storage/vftp/vftp0016/WheelPros_USAWheel.csv');
-        $destpath1 = public_path('/storage/vftp/vftp0016/combined-invent-vftp0016-part1.csv');
-        $destpath2 = public_path('/storage/vftp/vftp0016/combined-invent-vftp0016-part2.csv');
+        $filepath = public_path('/storage/vftp/vftp0028/50055_202003090901.csv');
+        $destpath1 = public_path('/storage/vftp/vftp0028/combined-invent-vftp0028-part1.csv');
+        $destpath2 = public_path('/storage/vftp/vftp0028/combined-invent-vftp0028-part2.csv');
          $inpfile = fopen($filepath, "r");
          $outfile1 = fopen($destpath1, "w+");
          $outfile2 = fopen($destpath2, "w+");
@@ -773,62 +773,60 @@ fclose($outfile1);
 
                 $loc =array(
 
-            'DenverCO' => '3',
-            'DallasTX' => '4',
-            'HoustonTX' => '5',
-            'KansasCityMO' => '6',
-            'NewOrleansLA' => '7',
-            'PhoenixAZ' => '8',
-            'OKCityOK' => '9',
-            'ElkGroveCA' => '10',
-            'SanAntonioTX' => '11',
-            'LosAngelesCA' => '12',
-            'SeattleWA' => '13',
-            'AtlantaGA' => '14',
-            'ChicagoIL' => '15',
-            'OrlandoFL' => '16',
-            'MiamiFL' => '17',
-            'ClevelandOH' => '18',
-            'CincinattiOH' => '19',
-            'CharlotteNC' => '20',
-            'CranburyNJ' => '21',
-            'NashvilleTN' => '22',
-            'SaltLakeUT' => '23',
-            'ManchesterCT' => '24',
-            'MinneapolisMN' => '25',
-            'JacksonvilleFL' => '26',
-            'RichmondVA' => '27',
-            'CoronaCA' => '28',
-            'PortlandOR' => '29',
-            'BaltimoreMD' => '30',
-            'MfgBuenaParkCA' => '31',
-            'DistBuenaParkCA' => '32'
+                    'F92'=>'22',
+
+                    'g90'=>'24',
+
+                    'G91'=>'26',
+
+                    'G92'=>'28',
+
+                    'O91'=>'30',
+
+                    'W90'=>'32',
+
+                    'W91'=>'34',
+
+                    'W92'=>'36',
+
+                    'W93'=>'38',
+
+                    'W94'=>'40',
+
+                    'W95'=>'42',
+
+                    'W96'=>'44',
+
+                    'W97'=>'46',
+
+                    'W98'=>'48',
+
 
                             );
 
                 while (($dataValue = fgetcsv($inpfile, 2000)) !== false) {
 
-                    if($dataValue[0] != 'BrandCode'){
+                    if($dataValue[0] != 'Item Number'){
                 $data = []; // Empty Data
                 foreach ($loc as $locName => $colnValue) {
                         $newRow = array(
-                         $dataValue[1],                         //PartNo
+                         $dataValue[0],                         //PartNo
                          null,                         //VendorPartNo
                          null,                                  //MPN
-                         $dataValue[2],                         //Description
-                         null,                                  //Brand
-                         null,                                  //Model
+                         $dataValue[5],                         //Description
+                         $dataValue[1],                                  //Brand
+                         $dataValue[3],                                  //Model
                          $locName,                              //Location Code
                          $dataValue[$colnValue],                //Available QTY
-                         $dataValue[34],                                   //Price
+                         $dataValue[$colnValue+1],                                   //Price
                         );
-                        if($colnValue < 15){
+                        // if($colnValue < 15){
 
                             fputcsv($outfile1, $newRow, ",", "'");
-                        }else{
+                        // }else{
 
-                            fputcsv($outfile2, $newRow, ",", "'");
-                        }
+                            // fputcsv($outfile2, $newRow, ",", "'");
+                        // }
                         // $data[] = $newRow;
                 }
                     }
@@ -840,4 +838,64 @@ fclose($outfile1);
         // fclose($outfile2);
                 return 'success';
     }
+
+
+    function csv_vftp0030(Request $request)
+    {
+        $filepath = public_path('/storage/vftp/vftp0030/130353-66311-T1-20200309-060005-246.csv');
+        $destpath = public_path('/storage/vftp/vftp0030/combined-invent-vftp0030.csv');
+         $inpfile = fopen($filepath, "r");
+         $outfile = fopen($destpath, "w+");
+         $data = []; // Empty Data
+        if (($inpfile = fopen($filepath, 'r')) !== false) {
+            // Collect CSV each row records
+
+                // $loc =array(
+                // 'CA' =>  '1',  
+                // 'FL' =>  '2',  
+                // 'GA' =>  '3',  
+                // 'IL' =>  '4',  
+                // 'PA' =>  '5',  
+                // 'TX' =>  '6',  
+                // 'UT' =>  '7',  
+                // 'WA' =>  '8', 
+                //             );
+// 0 => "PartNumber"
+//   1 => "ProductDescription"
+//   2 => "BrandName"
+//   3 => "ManufacturerName"
+//   4 => "ManufacturerPartNumber"
+//   5 => "DC"
+//   6 => "QuantityAvailable"
+  // 7 => "ItemWeight"
+                while (($dataValue = fgetcsv($inpfile, 1000)) !== false) {
+                        $dataValue = explode('|', $dataValue[0]);
+                        // dd($dataValue);
+                    if($dataValue[0] != 'PartNumber'){
+                $data = []; // Empty Data
+                // foreach ($loc as $locName => $colnValue) {
+                        $newRow = array(
+                         $dataValue[0]??null,                         //PartNo
+                         null,                         //VendorPartNo
+                         $dataValue[4]??null,                                  //MPN
+                         $dataValue[1]??null,                         //Description
+                         $dataValue[2]??null,                                  //Brand
+                         null,                                  //Model
+                         $dataValue[5]??null,                               //Location Code
+                         $dataValue[6]??null,                 //Available QTY
+                         null,                                   //Price
+                        );
+                        fputcsv($outfile, $newRow, ",", "'");
+                        // $data[] = $newRow;
+                // }
+                    }
+            }
+        }
+
+        // Close master CSV file 
+        fclose($outfile);
+                return 'success';
+    }
+
+
 }
