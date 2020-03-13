@@ -159,6 +159,16 @@ function front_back_path($imgPath){
 }
 
 
+function viewCarImage($url=''){
+	if($url != ''){
+		if(file_exists(public_path($url))){
+					return asset('image/no_image.jpg');
+		}else{
+
+					return asset('image/no_image.jpg');
+		}
+	}
+}
 function viewImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/'.$url))){

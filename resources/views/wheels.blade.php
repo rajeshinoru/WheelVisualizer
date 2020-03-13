@@ -245,7 +245,7 @@
                                         {{@$car_images->CarViflist->model}} -
                                         {{@$car_images->CarViflist->whls}}
                                         {{@$car_images->CarViflist->drs}}
-                                        {{@$car_images->CarViflist->body}}
+                                        {{@$car_images->CarViflist->body}} 
                                         @else
                                         Your Car
                                         @endif
@@ -254,7 +254,7 @@
                                 <div class="modal-body">
                                     <div class="row main-model-body">
                                         <div class="col-sm-8 model-car">
-                                            <img class="car_image_{{$car_images->car_id}} " src="{{asset($car_images->image)}}" style="">
+                                            <img class="car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" style="">
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
                                         <div class="car-wheel">

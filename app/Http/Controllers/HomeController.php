@@ -483,15 +483,10 @@ class HomeController extends Controller
                     // dd($storeArr);
                 }elseif (is_file($file)) {
 
-                    $folders= explode('/', $file);
-                    $lastPart = $folders[count($folders)-1];
-
-            if(!file_exists($destinationPath.$lastPart)){ 
-                    copy($file, $destinationPath.$lastPart);
-            }
-
+                    // $folders= explode('/', $file);
+                    // $lastPart = $folders[count($folders)-1];
                     // echo count(glob($destinationPath."/*.*"))." - ".$destinationPath.$lastPart." <br> ";
-                    // array_push($this->storeArr,$file);
+                    array_push($this->storeArr,$file);
                 }
             }
         }
@@ -552,9 +547,26 @@ class HomeController extends Controller
 
     public function carImagesMovingToFolder()
     {     
-        $destinationPath = '/var/www/html/mergedImages/';
+        $destinationPath = "storage/cars/";
+
+        $existingImages = glob("storage/cars/*");
+        usort($existingImages, create_function('$a,$b', 'return filemtime($a) - filemtime($b);'));
+
         $carimagesArray = $this->recursiveScan('/var/www/html/imgs/color2400png/color_2400_032_png/*',$this->storeArr,$destinationPath);
-  
+        // $cleanTags= preg_grep("/Free_Course/", $tags, PREG_GREP_INVERT);
+        // $result=array_diff_assoc($carimagesArray,$images123[0]);
+        // dd(count($images123),count($carimagesArray));
+        foreach ($carimagesArray as $key => $file) {
+
+                    $folders= explode('/', $file);
+                    $lastPart = $folders[count($folders)-1];
+                    //dd(file_exists($destinationPath.$lastPart),$destinationPath.$lastPart);
+                    if(!file_exists($destinationPath.$lastPart)){ 
+                            copy($file, $destinationPath.$lastPart);
+                    }
+
+
+        }
         return 'success';
     }
     public function carImagesMovingToFolderLive()
@@ -709,53 +721,40 @@ fclose($outfile1);
 
 
 
-    function csv_vftp0017(Request $request)
+    function csv_vftp0032(Request $request)
     {
-        $filepath = public_path('/storage/vftp/vftp0017/TSW-Wheels-inventory_2020-03-06-1583534287.csv');
-        $destpath = public_path('/storage/vftp/vftp0017/combined-invent-vftp0017.csv');
-         $inpfile = fopen($filepath, "r");
-         $outfile = fopen($destpath, "w+");
-         $data = []; // Empty Data
-        if (($inpfile = fopen($filepath, 'r')) !== false) {
-            // Collect CSV each row records
+  
+    $files = glob("$PathToCreate$version/*.csv");
 
-                $loc =array(
-                'CA' =>  '1',  
-                'FL' =>  '2',  
-                'GA' =>  '3',  
-                'IL' =>  '4',  
-                'PA' =>  '5',  
-                'TX' =>  '6',  
-                'UT' =>  '7',  
-                'WA' =>  '8', 
-                            );
+    foreach($files as $file) {
 
-                while (($dataValue = fgetcsv($inpfile, 1000)) !== false) {
+        if (($handle = fopen($file, "r")) !== FALSE) {
+            echo "<b>Filename: " . basename($file) . "</b><br><br>";
+            while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
+                
+                $newRow = array(
+                 $data[0],                         //PartNo
+                 $data[5],                         //VendorPartNo
+                 $data[5],                                  //MPN
+                 $data[5],                         //Description
+                 $data[1],                                  //Brand
+                 $data[3],                                  //Model
+                 $data[3],                              //Location Code
+                 $data[3],                //Available QTY
+                 $data[3],                                   //Price
+                );
+                // if($colnValue < 15){
 
-                    if($dataValue[0] != 'Item Number'){
-                $data = []; // Empty Data
-                foreach ($loc as $locName => $colnValue) {
-                        $newRow = array(
-                         $dataValue[0],
-                         null,
-                         null,
-                         null,
-                         null,
-                         null,
-                         $locName,
-                         $dataValue[$colnValue],
-                         null,
-                        );
-                        fputcsv($outfile, $newRow, ",", "'");
-                        // $data[] = $newRow;
-                }
-                    }
+                            fputcsv($outfile1, $newRow, ",", "'");
             }
+            echo "<br>";
+            fclose($handle);
+        } else {
+            echo "Could not open file: " . $file;
         }
 
-        // Close master CSV file 
-        fclose($outfile);
-                return 'success';
+    }
+
     }
 
     function csv_vftp0028(Request $request)
