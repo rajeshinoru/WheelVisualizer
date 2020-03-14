@@ -254,16 +254,21 @@ class HomeController extends Controller
     public function carimages()
     {
 
-        $imagesjpg = glob("/var/www/html/cars/*.jpg");
-        $imagespng = glob("/var/www/html/cars/*.png");
+        $imagesjpg = glob("storage/cars/*.jpg");
+        $imagespng = glob("storage/cars/*.png");
         // $imagespng = glob("storage/cars/*.png"); 
         $images = array_merge($imagesjpg,$imagespng);  
+        $car_image = CarImage::pluck('image')->toArray();
+
+        $images = array_diff($images, $car_image);
+        // dd(count($images),count($car_image),count($newArr));
         foreach ($images as $key => $value) {
 
-            $path_remove = str_replace('/var/www/html/cars/', '', $value);
+            $path_remove = str_replace('storage/cars/', '', $value);
             $imagename ="storage/cars/".$path_remove;
-            // dd($imagename) ;
+
             $getvalue_array = explode('_', $path_remove); 
+            // dd(CarImage::where('image',$imagename)->first());
             if(!CarImage::where('image',$imagename)->first()){
 
                 if(count($getvalue_array) == 4)
@@ -723,37 +728,158 @@ fclose($outfile1);
 
     function csv_vftp0032(Request $request)
     {
-  
-    $files = glob("$PathToCreate$version/*.csv");
+    set_time_limit(3000);
+    $files = glob("storage/vftp/vftp0032/*.csv");
+
+    $locationNames=array(
+        '3001'=>array('TBC', 'TBC3001', 'TBC-Inv_AlbanyGA'),
+        '3008'=>array('TBC', 'TBC3008', 'TBC-Inv_FlorenceSC'),
+        '3009'=>array('TBC', 'TBC3009', 'TBC-Inv_GainesvilleGA'),
+        '3010'=>array('TBC', 'TBC3010', 'TBC-Inv_GreerSC'),
+        '3011'=>array('TBC', 'TBC3011', 'TBC-Inv_GrovetownGA'),
+        '3013'=>array('TBC', 'TBC3013', 'TBC-Inv_JacksonvilleFL'),
+        '3015'=>array('TBC', 'TBC3015', 'TBC-Inv_MaconGA'),
+        '3017'=>array('TBC', 'TBC3017', 'TBC-Inv_OrlandoFL'),
+        '3019'=>array('TBC', 'TBC3019', 'TBC-Inv_PoolerGA'),
+        '3021'=>array('TBC', 'TBC3021', 'TBC-Inv_WestPalmBeachFL'),
+        '3023'=>array('TBC', 'TBC3023', 'TBC-Inv_TampaFL'),
+        '3029'=>array('TBC', 'TBC3029', 'TBC-Inv_LehighAcresFL'),
+        '3032'=>array('TBC', 'TBC3032', 'TBC-Inv_LongviewTX'),
+        '3035'=>array('TBC', 'TBC3035', 'TBC-Inv_AuburnME'),
+        '3037'=>array('TBC', 'TBC3037', 'TBC-Inv_OcoeeTN'),
+        '3038'=>array('TBC', 'TBC3038', 'TBC-Inv_KnoxvilleTN'),
+        '3040'=>array('TBC', 'TBC3040', 'TBC-Inv_RochesterNY'),
+        '3041'=>array('TBC', 'TBC3041', 'TBC-Inv_AlbanyNY'),
+        '3042'=>array('TBC', 'TBC3042', 'TBC-Inv_GoodlettsvilleTN'),
+        '3044'=>array('TBC', 'TBC3044', 'TBC-Inv_WichitaKS'),
+        '3046'=>array('TBC', 'TBC3046', 'TBC-Inv_SantaFeSpringsCA'),
+        '3050'=>array('TBC', 'TBC3050', 'TBC-Inv_GlendaleHeightsIL'),
+        '3058'=>array('TBC', 'TBC3058', 'TBC-Inv_LockbourneOH'),
+        '3060'=>array('TBC', 'TBC3060', 'TBC-Inv_BeniciaCA'),
+        '3061'=>array('TBC', 'TBC3061', 'TBC-Inv_ColumbiaMO'),
+        '3064'=>array('TBC', 'TBC3064', 'TBC-Inv_RedlandsCA'),
+        '3065'=>array('TBC', 'TBC3065', 'TBC-Inv_FresnoCA'),
+        '3066'=>array('TBC', 'TBC3066', 'TBC-Inv_TollesonAZ'),
+        '3069'=>array('TBC', 'TBC3069', 'TBC-Inv_WestSacramentoCA'),
+        '3071'=>array('TBC', 'TBC3071', 'TBC-Inv_StowOH'),
+        '3072'=>array('TBC', 'TBC3072', 'TBC-Inv_BedfordParkIL'),
+        '3111'=>array('TBC', 'TBC3111', 'TBC-Inv_OmahaNE'),
+        '3121'=>array('TBC', 'TBC3121', 'TBC-Inv_WyomingMI'),
+        '3122'=>array('TBC', 'TBC3122', 'TBC-Inv_KnoxvilleTN2'),
+        '3124'=>array('TBC', 'TBC3124', 'TBC-Inv_MaumeOH'),
+        '3133'=>array('TBC', 'TBC3133', 'TBC-Inv_MariettaGA'),
+        '3134'=>array('TBC', 'TBC3134', 'TBC-Inv_NCharlestonSC'),
+        '3140'=>array('TBC', 'TBC3140', 'TBC-Inv_WillistonVT'),
+        '3144'=>array('TBC', 'TBC3144', 'TBC-Inv_LibertyvilleIL'),
+        '3146'=>array('TBC', 'TBC3146', 'TBC-Inv_AlbuquerqueNM'),
+        '3149'=>array('TBC', 'TBC3149', 'TBC-Inv_MidwayFL'),
+        '3153'=>array('TBC', 'TBC3153', 'TBC-Inv_OFallonMO'),
+        '3154'=>array('TBC', 'TBC3154', 'TBC-Inv_AvenelNJ'),
+        '3155'=>array('TBC', 'TBC3155', 'TBC-Inv_HicksvilleNY'),
+        '3159'=>array('TBC', 'TBC3159', 'TBC-Inv_SpringfieldMO'),
+        '3163'=>array('TBC', 'TBC3163', 'TBC-Inv_ChatsworthCA'),
+        '3165'=>array('TBC', 'TBC3165', 'TBC-Inv_NewBerlinWI'),
+        '3179'=>array('TBC', 'TBC3179', 'TBC-Inv_KansasCityKS'),
+        '3180'=>array('TBC', 'TBC3180', 'TBC-Inv_RogersMN'),
+        '3185'=>array('TBC', 'TBC3185', 'TBC-Inv_ConwaySC'),
+        '3187'=>array('TBC', 'TBC3187', 'TBC-Inv_ColumbiaSC'),
+        '3192'=>array('TBC', 'TBC3192', 'TBC-Inv_LubbockTX'),
+        '3194'=>array('TBC', 'TBC3194', 'TBC-Inv_SunnyvaleCA'),
+        '3201'=>array('TBC', 'TBC3201', 'TBC-Inv_AnchorageAK'),
+        '3203'=>array('TBC', 'TBC3203', 'TBC-Inv_ColoradoSpringsCO'),
+        '3205'=>array('TBC', 'TBC3205', 'TBC-Inv_MesquiteTX'),
+        '3209'=>array('TBC', 'TBC3209', 'TBC-Inv_DenverCO'),
+        '3214'=>array('TBC', 'TBC3214', 'TBC-Inv_WestValleyCityUT'),
+        '3216'=>array('TBC', 'TBC3216', 'TBC-Inv_TucsonAZ'),
+        '3223'=>array('TBC', 'TBC3223', 'TBC-Inv_LexingtonKY'),
+        '3228'=>array('TBC', 'TBC3228', 'TBC-Inv_BellevilleMI'),
+        '3231'=>array('TBC', 'TBC3231', 'TBC-Inv_BrooksKY'),
+        '3236'=>array('TBC', 'TBC3236', 'TBC-Inv_NormalIL'),
+        '3240'=>array('TBC', 'TBC3240', 'TBC-Inv_BurienWA'),
+        '3242'=>array('TBC', 'TBC3242', 'TBC-Inv_ForestParkGA'),
+        '3243'=>array('TBC', 'TBC3243', 'TBC-Inv_NorcrossGA'),
+        '3244'=>array('TBC', 'TBC3244', 'TBC-Inv_StaffordTX'),
+        '3253'=>array('TBC', 'TBC3253', 'TBC-Inv_WestChesterOH'),
+        '3269'=>array('TBC', 'TBC3269', 'TBC-Inv_MiamiFL'),
+        '3281'=>array('TBC', 'TBC3281', 'TBC-Inv_OklahomaCityOK'),
+        '3282'=>array('TBC', 'TBC3282', 'TBC-Inv_PortlandOR'),
+        '3283'=>array('TBC', 'TBC3283', 'TBC-Inv_SpokaneWA'),
+        '3286'=>array('TBC', 'TBC3286', 'TBC-Inv_MemphisTN'),
+        '3289'=>array('TBC', 'TBC3289', 'TBC-Inv_PflugervilleTX')
+    );
+
+
+    $destpath1 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-new.csv');
+    // dd($destpath1);
+    $outfile1 = fopen($destpath1, "w+");
+    $wholeArray = array();
+    // $rejectedArray  = array();
+    // dd($files);
+    // rsort($files);
+    // dd($files);
+
+    // Add Title to first
+    
+    $titles=array(
+        'PartNo',
+        'VendorPartNo',
+        'MPN',
+        'Description',
+        'Brand',
+        'Model',
+        'Location Code',
+        'Available QTY',
+        'Price',
+        'Dropshipper',
+        'DSVendorCode',
+        'LocationName',
+    );
+    fputcsv($outfile1, $titles, ',', "'");
+
 
     foreach($files as $file) {
 
         if (($handle = fopen($file, "r")) !== FALSE) {
-            echo "<b>Filename: " . basename($file) . "</b><br><br>";
+            // echo "<b>Filename: " . basename($file) . "</b><br><br>";
             while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
                 
                 $newRow = array(
-                 $data[0],                         //PartNo
-                 $data[5],                         //VendorPartNo
-                 $data[5],                                  //MPN
-                 $data[5],                         //Description
-                 $data[1],                                  //Brand
-                 $data[3],                                  //Model
-                 $data[3],                              //Location Code
-                 $data[3],                //Available QTY
-                 $data[3],                                   //Price
+                 $data[12],                         //PartNo
+                 null,                         //VendorPartNo
+                 $data[13],                                  //MPN
+                 $data[10]." ".$data[3],                         //Description
+                 $data[11],                                  //Brand
+                 $data[10],                                  //Model
+                 $data[1],                              //Location Code
+                 $data[4],                //Available QTY
+                 $data[9],                                   //Price
+                 $locationNames[$data[1]][0]??null,                                   //Price
+                 $locationNames[$data[1]][1]??null,                                   //Price
+                 $locationNames[$data[1]][2]??null,                                   //Price
                 );
                 // if($colnValue < 15){
+                // $checkValue = $data[12]."_".$data[1];
+                // if(!in_array($checkValue, $wholeArray)){
+                    fputcsv($outfile1, $newRow, ",", "'");
+                //     array_push($wholeArray, $checkValue);
+                // }
+                // else{
+                //     array_push($rejectedArray, $checkValue);
 
-                            fputcsv($outfile1, $newRow, ",", "'");
+                // }
+                            
             }
-            echo "<br>";
+            // echo $file."<br>";
             fclose($handle);
         } else {
             echo "Could not open file: " . $file;
         }
 
     }
+
+    // echo "<br> R:".count($rejectedArray);
+
+    return "<br> S:".count($wholeArray);
 
     }
 
@@ -895,6 +1021,24 @@ fclose($outfile1);
         fclose($outfile);
                 return 'success';
     }
+
+
+
+
+    public function location_logic($folder){
+
+        $reader = Excel::load($path)->get();
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 }
