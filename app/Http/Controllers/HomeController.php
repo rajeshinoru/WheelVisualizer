@@ -809,36 +809,60 @@ fclose($outfile1);
     );
 
 
-    $destpath1 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-new.csv');
+    $destpath1 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-1.csv');
+    $destpath2 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-2.csv');
+    $destpath3 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-3.csv');
+    $destpath4 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-4.csv');
+    $destpath5 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-5.csv');
     // dd($destpath1);
     $outfile1 = fopen($destpath1, "w+");
+    $outfile2 = fopen($destpath2, "w+");
+    $outfile3 = fopen($destpath3, "w+");
+    $outfile4 = fopen($destpath4, "w+");
+    $outfile5 = fopen($destpath5, "w+");
     $wholeArray = array();
     // $rejectedArray  = array();
     // dd($files);
-    // rsort($files);
+    rsort($files);
     // dd($files);
 
     // Add Title to first
     
-    $titles=array(
-        'PartNo',
-        'VendorPartNo',
-        'MPN',
-        'Description',
-        'Brand',
-        'Model',
-        'Location Code',
-        'Available QTY',
-        'Price',
-        'Dropshipper',
-        'DSVendorCode',
-        'LocationName',
-    );
-    fputcsv($outfile1, $titles, ',', "'");
+    // $titles=array(
+    //     'PartNo',
+    //     'VendorPartNo',
+    //     'MPN',
+    //     'Description',
+    //     'Brand',
+    //     'Model',
+    //     'Location Code',
+    //     'Available QTY',
+    //     'Price',
+    //     'Dropshipper',
+    //     'DSVendorCode',
+    //     'LocationName',
+    // );
+    // fputcsv($outfile1, $titles, ',', "'");
 
 
-    foreach($files as $file) {
+    foreach($files as $fkey => $file) {
+        if($fkey < 100){
+            $outfile = $outfile1;
+        }
+        elseif($fkey < 200){
 
+            $outfile = $outfile2;
+        }
+        elseif($fkey < 300 ){
+
+            $outfile = $outfile3;
+        }
+        elseif($fkey < 400 ){
+            $outfile = $outfile4;
+        }else{
+
+            $outfile = $outfile5;
+        }
         if (($handle = fopen($file, "r")) !== FALSE) {
             // echo "<b>Filename: " . basename($file) . "</b><br><br>";
             while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
@@ -860,7 +884,7 @@ fclose($outfile1);
                 // if($colnValue < 15){
                 // $checkValue = $data[12]."_".$data[1];
                 // if(!in_array($checkValue, $wholeArray)){
-                    fputcsv($outfile1, $newRow, ",", "'");
+                    fputcsv($outfile, $newRow, ",", "'");
                 //     array_push($wholeArray, $checkValue);
                 // }
                 // else{
@@ -1025,20 +1049,229 @@ fclose($outfile1);
 
 
 
-    public function location_logic($folder){
+    public function redundancy_check($filename){
 
-        $reader = Excel::load($path)->get();
+   set_time_limit(3000);
+    // $files = glob("storage/vftp/vftp0032/*.csv");
+
+    $file = public_path('storage/vftp/vftp32_all/combined-invent-'.$filename.'.csv');
+    $destpath1 = public_path('storage/vftp/vftp32_all/combined-invent-'.$filename.'-unique.csv');
+    $destpath2 = public_path('storage/vftp/vftp32_all/combined-invent-'.$filename.'-rejected.csv');
+    // $destpath2 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-2.csv');
+    // $destpath3 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-3.csv');
+    // $destpath4 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-4.csv');
+    // $destpath5 = public_path('storage/vftp/vftp0032/combined-invent-vftp0032-5.csv');
+    // dd($destpath1);
+    $outfile1 = fopen($destpath1, "w+");
+    $outfile2 = fopen($destpath2, "w+");
+    // $outfile2 = fopen($destpath2, "w+");
+    // $outfile3 = fopen($destpath3, "w+");
+    // $outfile4 = fopen($destpath4, "w+");
+    // $outfile5 = fopen($destpath5, "w+");
+    $wholeArray = array();
+    // $rejectedArray  = array();
+    // dd($files);
+    // rsort($files);
+    // dd($files);
+
+    // Add Title to first
+    
+    // $titles=array(
+    //     'PartNo',
+    //     'VendorPartNo',
+    //     'MPN',
+    //     'Description',
+    //     'Brand',
+    //     'Model',
+    //     'Location Code',
+    //     'Available QTY',
+    //     'Price',
+    //     'Dropshipper',
+    //     'DSVendorCode',
+    //     'LocationName',
+    // );
+    // fputcsv($outfile1, $titles, ',', "'");
+
+
+    // foreach($files as $fkey => $file) {
+    //     if($fkey < 100){
+    //         $outfile = $outfile1;
+    //     }
+    //     elseif($fkey < 200){
+
+    //         $outfile = $outfile2;
+    //     }
+    //     elseif($fkey < 300 ){
+
+    //         $outfile = $outfile3;
+    //     }
+    //     elseif($fkey < 400 ){
+    //         $outfile = $outfile4;
+    //     }else{
+
+    //         $outfile = $outfile5;
+    //     }
+        if (($handle = fopen($file, "r")) !== FALSE) {
+            // echo "<b>Filename: " . basename($file) . "</b><br><br>";
+            while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
+                
+                // $newRow = array(
+                //  $data[12],                         //PartNo
+                //  null,                         //VendorPartNo
+                //  $data[13],                                  //MPN
+                //  $data[10]." ".$data[3],                         //Description
+                //  $data[11],                                  //Brand
+                //  $data[10],                                  //Model
+                //  $data[1],                              //Location Code
+                //  $data[4],                //Available QTY
+                //  $data[9],                                   //Price
+                //  $locationNames[$data[1]][0]??null,                                   //Price
+                //  $locationNames[$data[1]][1]??null,                                   //Price
+                //  $locationNames[$data[1]][2]??null,                                   //Price
+                // );
+                // if($colnValue < 15){
+                $checkValue = $data[0]."_".$data[6];
+                if(!in_array($checkValue, $wholeArray)){
+                    fputcsv($outfile1, $data, ",", "'");
+                    array_push($wholeArray, $checkValue);
+                }
+                else{
+                    fputcsv($outfile2, $data, ",", "'");
+
+                }
+                            
+            }
+            // echo $file."<br>";
+            fclose($handle);
+        } else {
+            echo "Could not open file: " . $file;
+        }
+
+    // }
+
+    // echo "<br> R:".count($rejectedArray);
+
+    return "<br> S:".count($wholeArray);
 
     }
 
 
+function mergeUniqueFiles(){
+
+   set_time_limit(3000);
+    $files = glob("storage/vftp/vftp32_all/unique/*.csv");
+
+    $destpath1 = public_path('storage/vftp/vftp32_all/unique/merged-unique.csv');
+
+    $destpath2 = public_path('storage/vftp/vftp32_all/unique/merged-rejected.csv');
+
+    $outfile1 = fopen($destpath1, "w+");
+
+    $outfile2 = fopen($destpath2, "w+");
+
+    $wholeArray = array();
+    // Add Title to first
+    
+    $titles=array(
+        'PartNo',
+        'VendorPartNo',
+        'MPN',
+        'Description',
+        'Brand',
+        'Model',
+        'Location Code',
+        'Available QTY',
+        'Price',
+        'Dropshipper',
+        'DSVendorCode',
+        'LocationName',
+    );
+    fputcsv($outfile1, $titles, ',', "'");
+
+
+    foreach($files as $fkey => $file) {
+
+        if (($handle = fopen($file, "r")) !== FALSE) {
+
+            while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
+                
+                $checkValue = $data[0]."_".$data[6];
+                if(!in_array($checkValue, $wholeArray)){
+                    fputcsv($outfile1, $data, ",", "'");
+                    array_push($wholeArray, $checkValue);
+                }
+                else{
+                    fputcsv($outfile2, $data, ",", "'");
+
+                }
+                            
+            }
+            // echo $file."<br>";
+            fclose($handle);
+        } else {
+            echo "Could not open file: " . $file;
+        }
+
+    }
+
+    // echo "<br> R:".count($rejectedArray);
+
+    return "<br> S:".count($wholeArray);
+}
 
 
 
 
+public function csv_vftp0022(){
+
+        $filepath = public_path('/storage/vftp/vftp0022/KM_Tire.csv');
+        $destpath1 = public_path('/storage/vftp/vftp0022/combined-invent-vftp0022.csv');
+        $inpfile = fopen($filepath, "r");
+        $outfile1 = fopen($destpath1, "w+");
+         // $data = []; // Empty Data
+            try {
+                
+        // Open and Read individual CSV file
+        if (($inpfile = fopen($filepath, 'r')) !== false) {
+            // Collect CSV each row records
+                while (($data = fgetcsv($inpfile, 10000)) !== false) {
+
+                    if($data[5] != '' ){
+                        // dd($data);
+                            // echo $data[6]." - ".$data[6]." = ".($data[6]+$data[6]);
+                                $newRow = array(
+                                     $data[4],                         //PartNo
+                                     null,                         //VendorPartNo
+                                     null,                                  //MPN
+                                     $data[2],                         //Description
+                                     $data[0],                                  //Brand
+                                     null,                                  //Model
+                                     null,                              //Location Code
+                                     $data[5],                //Available QTY
+                                     ($data[6]+($data[8]?:0)),                                   //Price
+                                     'KMTires',                                   //Price
+                                     'KMHICK',                                   //Price
+                                     'KM-Inv_HickoryNC',                                   //Price
+                                );
+                                fputcsv($outfile1, $newRow, ",", "'");
+                    }
+                }
+        }
+   
+            } catch (Exception $e) {
+                    dd($e);
+            }
+        fclose($inpfile); // Close individual CSV file 
+        // Close master CSV file 
+        fclose($outfile1);
+        return 'success';
+
+}
 
 
 
-
+function opencv(){
+    return view('opencv');
+}
 
 }
