@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Viflist;
 use App\Btlist;
 use App\CarImage;
+use App\Inventory;
 use App\CarColour;
 use App\Wheel;
 use App\Tire;
@@ -1281,5 +1282,44 @@ function opencv(){
 function tsf(){
     return view('tsf');
 }
+
+
+
+
+
+public function vftp_to_sql(){
+
+        $filepath = public_path('/storage/inventories/vftp0010.csv');
+        $inpfile = fopen($filepath, "r");
+        // Open and Read individual CSV file
+        if (($inpfile = fopen($filepath, 'r')) !== false) {
+            // Collect CSV each row records
+                while (($data = fgetcsv($inpfile, 10000)) !== false) {
+                    $inventory = new Inventory;
+                    $inventory->partno = $data[0];
+                    $inventory->vendor_partno = $data[1];
+                    $inventory->mpn = $data[2];
+                    $inventory->description = $data[3];
+                    $inventory->brand = $data[4];
+                    $inventory->model = $data[5];
+                    $inventory->location_code = $data[6];
+                    $inventory->available_qty = $data[7];
+                    $inventory->price = $data[8];
+                    $inventory->drop_shipper = $data[9];
+                    $inventory->ds_vendor_code = $data[10];
+                    $inventory->location_name = $data[11];
+                    $inventory->save();
+                }
+        fclose($inpfile); // Close individual CSV file 
+        return 'success';
+
+}
+
+
+
+
+
+
+
 
 }
