@@ -259,7 +259,7 @@
                                         @if(file_exists(front_back_path($wheel->image)))
                                         <div class="car-wheel">
                                             <div class="front">
-                                                <img src="{{front_back_path($wheel->image)}}" id="image-diameter-front-{{$key}}">
+                                                <img class="frontimg" src="{{front_back_path($wheel->image)}}" id="image-diameter-front-{{$key}}">
                                             </div>
                                             <div class="back">
                                                 <img src="{{front_back_path($wheel->image)}}" id="image-diameter-back-{{$key}}">
@@ -339,4 +339,9 @@
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
     <script src="{{ asset('js/slick.js') }}"></script>
+    <script type="text/javascript">
+        
+        $('.frontimg').draggable();
+
+    </script>
 @endsection

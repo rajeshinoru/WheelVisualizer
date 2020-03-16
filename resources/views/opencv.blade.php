@@ -69,10 +69,10 @@ document.getElementById('circlesButton').onclick = function() {
     let srcMat = cv.imread('imageCanvas');
     let displayMat = srcMat.clone();
     let circlesMat = new cv.Mat();
-    
+
     cv.cvtColor(srcMat, srcMat, cv.COLOR_RGBA2GRAY);
 
-    cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+    cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 0, 45, 75, 40, 0, 0);
 
     for (let i = 0; i < circlesMat.cols; ++i) {
         let x = circlesMat.data32F[i * 3];

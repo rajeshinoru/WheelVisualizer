@@ -125,7 +125,7 @@
     }
 .back img
 {    
-    width: 61px !important;
+    width: 61px ;
     position: absolute;
     content: '';
     top: 43%;

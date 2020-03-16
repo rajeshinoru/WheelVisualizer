@@ -292,6 +292,10 @@ class HomeController extends Controller
         $imagespng = glob("/var/www/html/WheelVisualizer/storage/app/public/cars/*.png");
         // $imagespng = glob("storage/cars/*.png"); 
         $images = array_merge($imagesjpg,$imagespng);  
+        
+        $car_image = CarImage::pluck('image')->toArray();
+
+        $images = array_diff($images, $car_image);
         foreach ($images as $key => $value) {
 
             $path_remove = str_replace('/var/www/html/WheelVisualizer/storage/app/public/cars/', '', $value);
@@ -1272,6 +1276,10 @@ public function csv_vftp0022(){
 
 function opencv(){
     return view('opencv');
+}
+
+function tsf(){
+    return view('tsf');
 }
 
 }
