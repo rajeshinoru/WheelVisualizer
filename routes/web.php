@@ -53,7 +53,7 @@ Route::get('/tsf', 'HomeController@tsf');
 
 
 Route::get('/Wheel_Import', 'WheelController@Wheel_Import');
-Route::get('/Falken_Import', 'TireController@Falken_Import');
+Route::get('/Tires_data_import', 'TireController@Tires_data_import');
 Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
 Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
 Route::get('/Chassis_Import', 'ChassisController@Chassis_Import');

@@ -266,6 +266,9 @@
                                             </div>
                                         </div>
                                         @endif
+
+
+
                                     </div>
 
                                     <div class="row model-car-body">
@@ -273,8 +276,8 @@
                                         <div class="col-sm-4">
                                             <h1 class="model-car">Vechicle Color</h1>
                                             <ul class="list-color">
-                                                @if(@$car_images->CarColor)
-                                                @foreach(@$car_images->CarColor as $key1 => $color)
+                                                @if(@$car_images->CarColor()->count() > 0)
+                                                @foreach(@$car_images->CarColor()->get()->unique('rgb1') as $key1 => $color)
                                                 @if(strlen($color->rgb1) ==6)
                                                 <li class="color-radius car_color {{($color->code ==$car_images->color_code )?'color-selected':''}}" style="background:#{{$color->rgb1}};" title="{{$color->name}}" data-code="{{$color->code}}" data-vif="{{$color->vif}}"></li>
                                                 @endif
