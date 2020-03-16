@@ -192,9 +192,8 @@ class TireController extends Controller
         }
         // dd($vehicle);
         $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
-                'speedrating','loadindex','utqg','partno','originalprice','price','saletype','qtyavail',
-                'dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
-                'winter_performance','fuel_efficiency','braking','responsiveness','sport','handling','off_road','youtube1','youtube2','youtube3','youtube4','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3','detaildesctype','detaildescfeatures')
+                'speedrating','loadindex','utqg','partno','originalprice','yousave','set_amount','vehicle_type','price','saletype','qtyavail','dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
+                'winter_performance','fuel_efficiency','braking','responsiveness','sport','off_road','youtube1','youtube2','youtube3','youtube4','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3','detaildesctype','detaildescfeatures')
                 ->where('id',base64_decode($tire_id))
                 ->with(['Brand'])->first();
         $diff_tires =  Tire::select('id','warranty','tiresize',
@@ -229,7 +228,7 @@ class TireController extends Controller
                 $tires = $tires->where('prodbrand',base64_decode($brand_name));
         }
 
-        $tires = $tires->select('prodimage','prodtitle','prodmodel','price','id','prodbrand','detaildesctype')
+        $tires = $tires->select('prodimage','prodtitle','prodmodel','price','id','prodbrand','vehicle_type')
                 ->with(['Brand'])
                 ->orderBy('price','ASC');
 
@@ -237,13 +236,13 @@ class TireController extends Controller
         $lttires =clone $tires;
         $tire = $tires->first();
         $ptires = $ptires->where(function ($query) {
-                    $query->where('detaildesctype','Passenger');
-                    $query->orWhereNull('detaildesctype');
+                    $query->where('vehicle_type','Passenger');
+                    // $query->orWhereNull('vehicle_type');
                     })->get()
                     ->unique('prodmodel');
         $lttires =$lttires->where(function ($query) {
-                    $query->where('detaildesctype','!=','Passenger');
-                    $query->orWhereNotNull('detaildesctype');
+                    $query->where('vehicle_type','!=','Passenger');
+                    // $query->orWhereNotNull('vehicle_type');
                     })->get()
                     ->unique('prodmodel');
 
@@ -403,7 +402,7 @@ class TireController extends Controller
                 if($i != 1){
                     // dd($data[55]);
                     if((isset($data[0])&&$data[0]!='')){
-                        
+
                         $tire =Tire::where('partno',$data[22])->first();
                         if($tire==null){
                             $tire=new Tire;
@@ -499,7 +498,7 @@ class TireController extends Controller
                             $tire->youtube4 = isset($data[88])?$data[88]:null;    
                             // dd($tire);
                             $tire->save(); 
-                        
+
                         }
                     // echo $tire->id."-----------".$tire->partno."<br>";
                     }else{

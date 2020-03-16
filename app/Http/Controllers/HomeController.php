@@ -1284,9 +1284,6 @@ function tsf(){
 }
 
 
-
-
-
 public function vftp_to_sql(){
 
         $filepath = public_path('/storage/inventories/vftp0010.csv');
@@ -1310,6 +1307,7 @@ public function vftp_to_sql(){
                     $inventory->location_name = $data[11];
                     $inventory->save();
                 }
+        }
         fclose($inpfile); // Close individual CSV file 
         return 'success';
 
