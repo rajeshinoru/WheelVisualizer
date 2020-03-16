@@ -35,7 +35,7 @@ body.loading .modal {
 <div class="modal"></div>
 
 <input type="file" id="fileInput" name="file" />
-<img id="imageSrc" alt="No Image" />
+<img id="imageSrc" alt="No Image" style="display: none;" />
 <canvas id="imageCanvas" ></canvas>
 <button type="button" id="circlesButton" class="btn btn-primary">Circle Detection</button>
 <script  onload="onOpenCvReady();" src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
@@ -68,11 +68,14 @@ document.getElementById('circlesButton').onclick = function() {
 
     let srcMat = cv.imread('imageCanvas');
     let displayMat = srcMat.clone();
+    let gaussMat = srcMat.clone();
     let circlesMat = new cv.Mat();
 
     cv.cvtColor(srcMat, srcMat, cv.COLOR_RGBA2GRAY);
-
-    cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 0, 45, 75, 40, 0, 0);
+	
+	cv.GaussianBlur( srcMat, gaussMat,{width : 9, height : 9}, 2, 2 );
+    // cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+    cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
 
     for (let i = 0; i < circlesMat.cols; ++i) {
         let x = circlesMat.data32F[i * 3];
@@ -83,7 +86,7 @@ document.getElementById('circlesButton').onclick = function() {
         cv.circle(displayMat, center, radius, [0, 255, 250, 255], 3);
     }
 
-    cv.imshow('imageCanvas', displayMat);
+    cv.imshow('imageCanvas', gaussMat);
 
     srcMat.delete();
     displayMat.delete();

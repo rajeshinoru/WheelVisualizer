@@ -341,7 +341,7 @@
     <script src="{{ asset('js/slick.js') }}"></script>
     <script type="text/javascript">
         
-        $('.frontimg').draggable();
+        // $('.frontimg').draggable();
 
     </script>
 @endsection
