@@ -61,7 +61,7 @@ function filters(year = '', make = '', model = '', driverbody = '', changeBy = '
 
         if(make != null && changeBy !=''){
 
-            $('.Make').append('<option value="' + make + '" selected>' + make + '</option>');
+            // $('.Make').append('<option value="' + make + '" selected>' + make + '</option>');
             $('.Make').trigger("chosen:updated");
         }
         $('.Year').trigger("chosen:updated");

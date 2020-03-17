@@ -29,14 +29,31 @@ Route::get('/wheelsNameChange', 'HomeController@wheelsNameChange')->name('wheels
 Route::get('/notFoundCars', 'HomeController@notFoundCars')->name('notFoundCars'); 
 Route::get('/fold-fil', 'HomeController@fold_fil');
 Route::get('/tiredetailimages', 'HomeController@tiredetailimages');
+Route::get('/carImagesMovingToFolder', 'HomeController@carImagesMovingToFolder');
+Route::get('/carImagesMovingToFolderLive', 'HomeController@carImagesMovingToFolderLive');
+Route::get('/renameFrontBackImages', 'HomeController@renameFrontBackImages');
+Route::get('/carimagestosqlLive', 'HomeController@carimagestosqlLive');
+
 Route::get('/New_Vehicle_Import', 'VehicleController@New_Vehicle_Import');
+Route::get('/csv_vftp0028', 'HomeController@csv_vftp0028');
+Route::get('/csv_vftp0017', 'HomeController@csv_vftp0017');
+Route::get('/csv_vftp0018', 'HomeController@csv_vftp0018');
+Route::get('/csv_vftp0030', 'HomeController@csv_vftp0030');
+Route::get('/csv_vftp0032', 'HomeController@csv_vftp0032');
+Route::get('/csv_vftp0022', 'HomeController@csv_vftp0022');
+Route::get('/redundancy_check/{filename}', 'HomeController@redundancy_check');
+Route::get('/mergeUniqueFiles', 'HomeController@mergeUniqueFiles');
+
+//OpenCv Test Routes
+Route::get('/opencv', 'HomeController@opencv');
+Route::get('/tsf', 'HomeController@tsf');
 
 
 
 
 
 Route::get('/Wheel_Import', 'WheelController@Wheel_Import');
-Route::get('/Falken_Import', 'TireController@Falken_Import');
+Route::get('/Tires_data_import', 'TireController@Tires_data_import');
 Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
 Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
 Route::get('/Chassis_Import', 'ChassisController@Chassis_Import');

@@ -413,17 +413,17 @@
                   
                   <div class="tab-content">
 
-                    @if(@$tire->prodimage1)
+                    @if(ViewProductImage(@$tire->prodimage1))
                     <div id="home" class="tab-pane fade in active">
                       <img src="{{ViewProductImage(@$tire->prodimage1)}}">
                     </div>
                     @endif
-                    @if(@$tire->prodimage2)
+                    @if(ViewProductImage(@$tire->prodimage2))
                     <div id="menu1" class="tab-pane fade">
                       <img src="{{ViewProductImage(@$tire->prodimage2)}}">
                     </div>
                     @endif
-                    @if(@$tire->prodimage3)
+                    @if(ViewProductImage(@$tire->prodimage3))
                     <div id="menu2" class="tab-pane fade">
                       <img src="{{ViewProductImage(@$tire->prodimage3)}}">
                     </div>
@@ -432,13 +432,13 @@
                   </div>
 
                   <ul class="nav nav-tabs nav-img slider-tires-{{12/$divClass}} " >
-                    @if(@$tire->prodimage1)
+                    @if(ViewProductImage(@$tire->prodimage1))
                     <li class="active"><a data-toggle="tab" href="#home"><img src="{{ViewProductImage(@$tire->prodimage1)}}"></a></li>
                     @endif
-                    @if(@$tire->prodimage2)
+                    @if(ViewProductImage(@$tire->prodimage2))
                     <li><a data-toggle="tab" href="#menu1"><img src="{{ViewProductImage(@$tire->prodimage2)}}"></a></li>
                     @endif
-                    @if(@$tire->prodimage3)
+                    @if(ViewProductImage(@$tire->prodimage3))
                     <li><a data-toggle="tab" href="#menu2"><img src="{{ViewProductImage(@$tire->prodimage3)}}"></a></li>
                     @endif
                   </ul>
@@ -550,15 +550,6 @@
                             <br>
                             @endif
 
-                            @if(@$tire->handling > 0)
-                            <h3 class="progress-title">Handling:</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->handling??0}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->handling??0}}%</div>
-                                </div>
-                            </div>
-                            <br>
-                            @endif
 
                             @if(@$tire->off_road > 0)
                             <h3 class="progress-title">Off Road:</h3>

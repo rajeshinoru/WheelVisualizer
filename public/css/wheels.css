@@ -106,23 +106,47 @@
     padding: 50px 0px !important;
 }  
 .front img {
+
+    width: 82px;
+    position: absolute;
+    content: '';
+    top: 40.7%;
+    left: 38%;
+    bottom: 121%;
+    right: 0;
+    transform: perspective(0px) rotateY(37deg);
+
+/*
     width: 80px;
     position: absolute;
     content: '';
+    top: 43.7%;
+    left: 36.2%;*/
+    /*    
+
+    width: 80px;
     top: 44.7%;
     left: 39.2%;
-    bottom: 149%;
+
+    */
+    /*bottom: 149%;
     right: 0;
-    transform: perspective(0px) rotateY(41deg);
+    transform: perspective(0px) rotateY(41deg);*/
     object-fit: scale-down;
     }
 .back img
 {    
-    width: 65px;
+    width: 61px ;
     position: absolute;
     content: '';
+    top: 40%;
+    left: 70.9%;
+
+
+/*
     top: 43.7%;
     left: 72.9%;
+*/
     bottom: 0;
     right: 0;
     transform: perspective(405px) rotateY(54deg);
@@ -141,9 +165,15 @@
 
 }
 
-.car_image_12993
+.car_image_responsive
 {
-    width: 152% !important;
+    /*width: 152% !important;*/
+/*    width: 685px;
+    height: 415px;*/
+
+    width: 150%;
+    height: 150%;
+
 }
 
 @media screen and (max-width: 767px)
@@ -153,7 +183,7 @@
         width: 100% !important;
         margin: 0% auto !important;
     }
-    .car_image_12993 
+    .car_image_responsive 
     {
         width: 100% !important;
     }

@@ -683,11 +683,11 @@
                                 <td class="product-info-value">Warranty : {{@$tire->warranty?:' - '}}</td>
                             </tr>
                             <tr>
-                                <td>Original Price : <span class="price-old">{{roundCurrency(($tire->price + (35 / 100) * $tire->price))}}</span></td>
-                                <td class="product-info-value">You Save : <span class="price-save">{{roundCurrency((($tire->price + (35 / 100) * $tire->price) - @$tire->price))}}</td>
+                                <td>Original Price : <span class="price-old">{{roundCurrency($tire->originalprice)}}</span></td>
+                                <td class="product-info-value">You Save : <span class="price-save">{{roundCurrency($tire->yousave)}}</td>
                             </tr>
                             <tr>
-                                <td>Set of 4 : <span class="price-new2">{{roundCurrency(@$tire->price * 4)}}</span></td>
+                                <td>Set of 4 : <span class="price-new2">{{roundCurrency(@$tire->set_amount)}}</span></td>
                                 <td class="product-info-value">Your Price : <span class="price-new2">{{roundCurrency(@$tire->price)}}</span></td>
                             </tr>
                             <tr>
@@ -873,16 +873,6 @@
                             <br>
                             @endif
 
-                            @if(@$tire->handling > 0)
-                            <h3 class="progress-title">Handling:</h3>
-                            <div class="progress pink">
-                                <div class="progress-bar" style="width:{{@$tire->handling??0}}%; background:#0e1661;">
-                                    <div class="progress-value">{{@$tire->handling??0}}%</div>
-                                </div>
-                            </div>
-                            <br>
-                            @endif
-
                             @if(@$tire->off_road > 0)
                             <h3 class="progress-title">Off Road:</h3>
                             <div class="progress pink">
@@ -1007,9 +997,15 @@
                                         <div class="prod-headinghome">
                                             <br>
                                             <p><b>Details</b></p>
+                                            @if(@$tire->detaildesctype)
                                             <p><b>Type</b>: {{@$tire->detaildesctype}}</p>
+                                            @endif
+                                            @if(@$tire->prodmodel)
                                             <p><b>Style</b>: {{@$tire->prodmodel}}</p>
+                                            @endif
+                                            @if(@$tire->detaildescfeatures)
                                             <p><b>Feature</b>: {{@$tire->detaildescfeatures}}</p>
+                                            @endif
                                             <p><b>Description</b>:</p>
                                             <p><?php echo @$tire->proddesc ?></p>
                                         </div>

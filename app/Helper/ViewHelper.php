@@ -159,6 +159,16 @@ function front_back_path($imgPath){
 }
 
 
+function viewCarImage($url=''){
+	if($url != ''){
+		if(file_exists(public_path($url))){
+					return asset('image/no_image.jpg');
+		}else{
+
+					return asset('image/no_image.jpg');
+		}
+	}
+}
 function viewImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/'.$url))){
@@ -212,17 +222,17 @@ function ViewExistImage($url=''){
 		if(file_exists(public_path('/storage/tires/'.$url))){
 			return asset('/storage/tires/'.$url);
 		}else{
-			$wheel_products_url="/storage/wheel_products/".$url;
-			$misc_url="/storage/misc_images/".$url;
-			if(file_exists(public_path($wheel_products_url))){
-				return asset($wheel_products_url);
-			}else{
-				if(file_exists(public_path($misc_url))){
-					return asset($misc_url);
-				}else{
+			// $wheel_products_url="/storage/wheel_products/".$url;
+			// $misc_url="/storage/misc_images/".$url;
+			// if(file_exists(public_path($wheel_products_url))){
+			// 	return asset($wheel_products_url);
+			// }else{
+			// 	if(file_exists(public_path($misc_url))){
+			// 		return asset($misc_url);
+			// 	}else{
 					return false;
-				}
-			}
+			// 	}
+			// }
 		}
 	}else{
 			return false;
@@ -247,10 +257,10 @@ function ViewProductImage($url=''){
 		if(file_exists(public_path('/storage/tires/models/'.$url))){
 			return asset('/storage/tires/models/'.$url);
 		}else{
-			return asset('image/no_image.jpg');
+			return false;
 		}
 	}else{
-			return asset('image/no_image.jpg');
+			return false;
 	}
 
 }
@@ -326,6 +336,15 @@ function getVehicleMakeList(){
 
 
 function embedYoutube($url){
+
+	if(!(strpos($url, 'watch') !== false) && (strpos($url, 'youtu.be') !== false)){
+		$parts = explode('/', $url);
+		if(count($parts) > 1){
+			$url = 'https://www.youtube.com/watch?v='.end($parts);			
+		}
+
+	}
+
 	return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$url);
 }
 
