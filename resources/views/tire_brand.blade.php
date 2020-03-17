@@ -7,7 +7,7 @@
     <div class="container">
         @if(@$tire->Brand)
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-9 fal-des">
                 <div class="prod-headinghome">
                     @if(@$tire->Brand)
                     <p class="read_more_text" data-length="1300">

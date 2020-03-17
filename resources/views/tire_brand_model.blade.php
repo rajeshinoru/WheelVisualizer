@@ -139,7 +139,7 @@
         #table-section thead {
         background:#0e1661 !important;
         color: #fff !important;
-        font-size: 12px !important;
+        font-size: 12px;
         font-weight: 100 !important;
         font-family: Montserrat !important;
     }
@@ -241,7 +241,7 @@
     }
 
     .benifit img {
-        width: 100% !important;
+        width: 100%;
     }
 
     .benifit-head {
