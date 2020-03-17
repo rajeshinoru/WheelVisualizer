@@ -1284,37 +1284,97 @@ function tsf(){
 }
 
 
-public function vftp_to_sql(){
+public function vftp_to_sql($filename){
 
-        $filepath = public_path('/storage/inventories/vftp0010.csv');
-        $inpfile = fopen($filepath, "r");
-        // Open and Read individual CSV file
-        if (($inpfile = fopen($filepath, 'r')) !== false) {
-            // Collect CSV each row records
-                while (($data = fgetcsv($inpfile, 10000)) !== false) {
-                    $inventory = new Inventory;
-                    $inventory->partno = $data[0];
-                    $inventory->vendor_partno = $data[1];
-                    $inventory->mpn = $data[2];
-                    $inventory->description = $data[3];
-                    $inventory->brand = $data[4];
-                    $inventory->model = $data[5];
-                    $inventory->location_code = $data[6];
-                    $inventory->available_qty = $data[7];
-                    $inventory->price = $data[8];
-                    $inventory->drop_shipper = $data[9];
-                    $inventory->ds_vendor_code = $data[10];
-                    $inventory->location_name = $data[11];
-                    $inventory->save();
+    set_time_limit(999999999);
+    $filepath = public_path('/storage/inventories/'.$filename.'.csv');
+    $inpfile = fopen($filepath, "r");
+    // Open and Read individual CSV file
+    if (($inpfile = fopen($filepath, 'r')) !== false) {
+        // Collect CSV each row records
+        $flag = 0;
+            while (($data = fgetcsv($inpfile, 10000)) !== false) {
+
+                if($flag != 0){
+                    if(!Inventory::where('partno',$data[0])->where('location_code',$data[6])->first()){
+                        $inventory = new Inventory;
+                        $inventory->partno = $data[0];
+                        $inventory->vendor_partno = $data[1];
+                        $inventory->mpn = $data[2];
+                        $inventory->description = $data[3];
+                        $inventory->brand = $data[4];
+                        $inventory->model = $data[5];
+                        $inventory->location_code = $data[6];
+                        $inventory->available_qty = $data[7];
+                        $inventory->price = $data[8];
+                        $inventory->drop_shipper = $data[9];
+                        $inventory->ds_vendor_code = $data[10];
+                        $inventory->location_name = $data[11];
+                        $inventory->save();
+                    }
+                
                 }
-        }
-        fclose($inpfile); // Close individual CSV file 
-        return 'success';
+                    $flag=1;
+            }
+    }
+    fclose($inpfile); // Close individual CSV file 
+    return 'success';
 
 }
 
 
 
+public function vftp_to_sql_test($filename){
+
+    set_time_limit(999999999);
+    $filepath = public_path('/storage/inventories/'.$filename.'.csv');
+    $inpfile = fopen($filepath, "r");
+    // Open and Read individual CSV file
+    if (($inpfile = fopen($filepath, 'r')) !== false) {
+        // Collect CSV each row records
+        $flag = 0;
+            while (($data = fgetcsv($inpfile, 10000)) !== false) {
+
+                if($flag != 0){
+                    if(!(\DB::table('inventories_test')->where('filename',$filename)->where('partno',$data[0])->where('location_code',$data[6])->first())){
+                        \DB::table('inventories_test')->insert([
+                            'filename' => $filename,
+                            'partno' => $data[0]?$data[0]:null,
+                            'vendor_partno' => $data[1]?$data[1]:null,
+                            'mpn' => $data[2]?$data[2]:null,
+                            'description' => $data[3]?$data[3]:null,
+                            'brand' => $data[4]?$data[4]:null,
+                            'model' => $data[5]?$data[5]:null,
+                            'location_code' => $data[6]?$data[6]:null,
+                            'available_qty' => $data[7]?$data[7]:null,
+                            'price' => $data[8]?$data[8]:null,
+                            'drop_shipper' => $data[9]?$data[9]:null,
+                            'ds_vendor_code' => $data[10]?$data[10]:null,
+                            'location_name' => $data[11]?$data[11]:null,
+                        ]);
+                        // $inventory->partno = $data[0];
+                        // $inventory->vendor_partno = $data[1];
+                        // $inventory->mpn = $data[2];
+                        // $inventory->description = $data[3];
+                        // $inventory->brand = $data[4];
+                        // $inventory->model = $data[5];
+                        // $inventory->location_code = $data[6];
+                        // $inventory->available_qty = $data[7];
+                        // $inventory->price = $data[8];
+                        // $inventory->drop_shipper = $data[9];
+                        // $inventory->ds_vendor_code = $data[10];
+                        // $inventory->location_name = $data[11];
+                        // $inventory->save();
+                    }
+                
+                }
+                    $flag=1;
+            }
+    }
+    fclose($inpfile); // Close individual CSV file 
+    return 'success';
+
+}
 
 
 
