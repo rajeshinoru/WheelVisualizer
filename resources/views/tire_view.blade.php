@@ -393,7 +393,7 @@
     }
 
     .benifit img {
-        width: 100% !important;
+        width: 100%;
     }
 
     .benifit-head

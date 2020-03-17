@@ -132,7 +132,7 @@
 
     .row.wheel-view h1 {
         font-family: Montserrat !important;
-        font-size: 15px !important;
+        font-size: 15px;
         text-align: left;
         line-height: 30px !important;
         color: #000 !important;
@@ -144,7 +144,7 @@
     }
 
     .wheel-des img {
-        width: 100% !important;
+        width: 100%;
     }
 
     .wheel-diameter-tabs h2 {
@@ -153,7 +153,7 @@
         color: #0e1661 !important;
         font-size: 14px !important;
         text-align: left;
-        border-bottom: 1px solid #ccc !important;
+        border-bottom: 1px solid #ccc;
         padding: 10px 0px !important;
     }
 
@@ -277,7 +277,7 @@
 
     .wheel_view_ship .btn.btn-info {
         margin: 10px 0px !important;
-        width: 136px !important;
+        width: 136px;
         border-radius: 2px !important;
     }
 
@@ -326,11 +326,11 @@
     }
 
     .wheel-des .wheel-brand-img {
-        width: 75% !important;
+        width: 75%;
     }
 
     .wheel-brand-img2 {
-        width: 70% !important;
+        width: 70%;
     }
 
     .col-sm-9.wheel_view_list .tab-content {
@@ -369,7 +369,7 @@
                         <h1 class="wheel_detail_title">{{@$products[0]->detailtitle}}</h1>
                     </div>
                     <div class="row activetab">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 wheel-bolt">
                             <ul class="nav nav-tabs">
                                 @foreach(@$products as $key => $product)
                                 <li class="{{($key ==0 )?'active':''}}"><a class="wheel_diameter_tab" data-toggle="tab" href="#diameter_tab_{{@$product->id}}" data-value="{{@$product->detailtitle}}">{{@$product->wheeldiameter}}</a></li>

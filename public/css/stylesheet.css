@@ -57,7 +57,7 @@ a:hover {
 }
 legend {
     font-size: 18px;
-    padding: 7px 0px
+    padding: 7px 0px 
 }
 small, .small {
     font-size: 11px;
@@ -1044,68 +1044,6 @@ input[type="radio"], input[type="checkbox"] {
     background-color: #2874f0;
     border-color: #2874f0;
 }
-@media (max-width: 767px) {
-    .OTProduct-Tab .products-carousel.owl-carousel .owl-buttons {
-        display: inline-block;
-        float: none;
-        left: 0;
-        margin: 0 auto;
-        right: 0;
-        text-align: center;
-        top: -40px;
-        width: 70px;
-   }
-    .modal-dialog.car-model {
-        width: 100% !important;
-        margin: 10% auto !important;
-   }
-    .hidden-xs {
-        display: block !important;
-   }
-    #bott .text-right {
-        float: left;
-        padding: 10px 20px !important;
-   }
-    .product-layouts {
-        border: 1px solid #eaeaea !important;
-        padding: 15px;
-        margin: 2px 0px !important;
-   }
-    .header-bottom {
-        float: right !important;
-   }
-    .main-pro-inner {
-        float: right;
-        width: 100% !important;
-        padding: 0px 0px !important;
-   }
-   .main-pro-inner-category
-   {
-     padding: 0px 0px !important;
-     margin:0px 0px !important;
-   }
-    .container.banner-form {
-        position: absolute;
-        content: '';
-        top: 35% !important;
-        bottom: 0;
-        left:0% !important;
-        z-index: 99999;
-   }
-    .well {
-        min-height: 20px;
-        padding: 0px 10px !important;
-        margin: 0px 10px !important;
-   }
-    .slideshow-panel img {
-        height: 400px !important;
-   }
-    #forms {
-        font-size: 15px !important;
-        margin: 0px 0px !important;
-        padding: 5px 0px !important;
-   }
-}
 /*--------------------------------- Next-Prev Button CSS End ---------------------------------------*/
 /*------------------------------------- additional-images Owl Button CSS End ------------------------------------------*/
 .additional-images .owl-controls .owl-buttons div {
@@ -1214,8 +1152,7 @@ a:hover, a:focus {
 span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
     display: inline;
 }
-.navbar-nav > li > .dropdown-menu
-{
+.navbar-nav > li > .dropdown-menu {
     border-top: 5px solid #ecb23d !important;
     animation-duration: 0.3s;
     animation-fill-mode: both;
@@ -1224,12 +1161,12 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 }
 @keyframes slideUpIn {
     0% {
-      top: 150%;
-    }
+        top: 150%;
+   }
     100% {
-      top: 98%;
-    }
-  }
+        top: 98%;
+   }
+}
 /* top */
 #top {
     background:#0e1661 !important;
@@ -1348,7 +1285,7 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
     padding: 2px 10px;
 }
 #top-links .account-link-toggle a i.fa {
-    padding: 0 2px
+    padding: 0 2px 
 }
 .header-top-left .header-phone {
     margin: 0 10px;
@@ -1371,13 +1308,11 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 #top-links > ul > li.header-phone {
     line-height: 20px;
 }
-.pull-right ul li
-{
-  border-right:1px solid #cccccc9e !important;
+.pull-right ul li {
+    border-right:1px solid #cccccc9e !important;
 }
-.pull-left ul li
-{
-  border-left:1px solid #cccccc9e !important;
+.pull-left ul li {
+    border-left:1px solid #cccccc9e !important;
 }
 .header-phone::before {
    /* background: rgba(0, 0, 0, 0) url("OnTheme/images/sprite.png") no-repeat scroll -34px -436px;
@@ -1790,8 +1725,8 @@ header .full-header {
     width: auto;
 }
 #logo img {
-  width: 25% !important;
-  padding: 12px 10px !important;
+    width: 25% !important;
+    padding: 12px 10px !important;
 }
 .pull-right {
     float: right !important;
@@ -1851,30 +1786,6 @@ header .full-header {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-   }
-}
-@media (max-width: 767px) {
-    .search {
-        display: inline-block;
-        float: none;
-        vertical-align: top;
-   }
-    #search .input-lg, #header-search .input-lg {
-        width: 150px !important;
-   }
-    #header-search .form-control {
-        height: 30px;
-   }
-   .navbar-toggle
-   {
-     margin-right: 0px !important;
-   }
-    #header-search .btn-default {
-        height: 30px;
-        width: 30px;
-   }
-    #header-search .header-search-btn .fa.fa-search {
-        padding: 7px 7px;
    }
 }
 @media (max-width: 480px) {
@@ -1965,7 +1876,8 @@ header .full-header {
 }
 header {
     background: #2874f0;
-    /* float: left; */
+   /* float: left;
+    */
     width: 100%;
 }
 /* menu */
@@ -2362,27 +2274,10 @@ header {
         bottom: 62px;
    }
 }
-@media (max-width: 767px) {
-    .slideshow-panel {
-        width: 100%;
-   }
-    .slideshow-panel .swiper-container .swiper-pager div, .slideshow-panel .swiper-container .swiper-pager div:hover {
-        opacity: 1;
-        -moz-opacity: 1;
-        -khtml-opacity: 1;
-        -webkit-opacity: 1;
-   }
-    .slideshow-panel .swiper-container .swiper-pager .swiper-button-prev, .slideshow-panel .swiper-container:hover .swiper-pager .swiper-button-prev {
-        left: 20px;
-   }
-    .slideshow-panel .swiper-container .swiper-pager .swiper-button-next, .slideshow-panel .swiper-container:hover .swiper-pager .swiper-button-next {
-        right: 20px;
-   }
-}
 @media(max-width:992px) {
     .wrapper {
         width: 100%;
-    }
+   }
 }
 @media (max-width: 480px) {
     .slideshow-panel .swiper-container .swiper-pager div, .slideshow-panel .swiper-container .swiper-pager div:hover {
@@ -2865,15 +2760,14 @@ header {
     float: left;
     width: 100%;
     position: relative;
-    text-transform: capitalize
+    text-transform: capitalize 
 }
 #column-left .product-thumb .thumb-description, #column-right .product-thumb .thumb-description {
     padding: 0 15px;
     text-align: left;
 }
-.product-thumb.transition .thumb-description
-{
-  min-height:100px !important;
+.product-thumb.transition .thumb-description {
+    min-height:100px !important;
 }
 .option-filter .list-group {
     margin: 0px;
@@ -3099,8 +2993,7 @@ header {
     margin: 0;
     padding: 3px 0 5px;
 }
-#column-left .product-thumb .price-new, #column-right
-{
+#column-left .product-thumb .price-new, #column-right {
     font: 500 14px/18px "Poppins", Helvetica, sans-serif;
 }
 #column-left .product-thumb .price-old, #column-right .product-thumb .price-old {
@@ -3456,8 +3349,7 @@ s.bootstrap-datetimepicker-widget .accordion-toggle a.btn, .bootstrap-datetimepi
 #accordion .panel-heading h4.panel-title a i.fa-caret-down {
     float: right;
 }
-.wrapper.center-block #accordion
-{
+.wrapper.center-block #accordion {
     margin-bottom:0px !important;
 }
 .product-search #content .search-criteria {
@@ -3610,16 +3502,14 @@ body.product-compare .table-product-image {
 .thumb-description {
     margin-top:0px !important;
 }
-.thumb-description-price-details .price-new
-{
-  font-family: Poppins !important;
-  font-size: 12px !important;
-  color: #000 !important;
-  font-weight: 500;
+.thumb-description-price-details .price-new {
+    font-family: Poppins !important;
+    font-size: 12px !important;
+    color: #000 !important;
+    font-weight: 500;
 }
-.thumb-description-price-details
-{
-  text-align: center;
+.thumb-description-price-details {
+    text-align: center;
 }
 .footer-para {
     font-size: 14px !important;
@@ -4044,7 +3934,7 @@ footer .footer-column h5 {
     text-transform: capitalize;
 }
 .btn-block {
-    width: auto
+    width: auto 
 }
 .product-details #button-cart {
     background: #fed700;
@@ -4272,10 +4162,12 @@ footer .footer-column h5 {
     padding: 0;
     font-size: 12px !important;
     line-height: 30px;
-    /*text-overflow: ellipsis;*/
+   /*text-overflow: ellipsis;
+   */
 }
 .product-thumb h4 a {
-    /*white-space: nowrap;*/
+   /*white-space: nowrap;
+   */
     color: #000 !important;
 }
 .product-thumb h4 a:hover, .product-thumb:hover h4 a {
@@ -4373,7 +4265,6 @@ h2.price {
     -khtml-opacity: 1;
     -webkit-opacity: 1;
 }
-
 .product-list .product-thumb .button-group {
     float: left;
     opacity: 1;
@@ -5121,21 +5012,79 @@ h2.price {
         width: 100%;
    }
 }
-
 @media (max-width: 767px) {
+    .OTProduct-Tab .products-carousel.owl-carousel .owl-buttons {
+        display: inline-block;
+        float: none;
+        left: 0;
+        margin: 0 auto;
+        right: 0;
+        text-align: center;
+        top: -40px;
+        width: 70px;
+   }
+    .modal-dialog.car-model {
+        width: 100% !important;
+        margin: 10% auto !important;
+   }
+    .hidden-xs {
+        display: block !important;
+   }
+    #bott .text-right {
+        float: left;
+        padding: 10px 20px !important;
+   }
+    .product-layouts {
+        border: 1px solid #eaeaea !important;
+        padding: 15px;
+        margin: 2px 0px !important;
+   }
+    .header-bottom {
+        float: right !important;
+   }
+    .main-pro-inner {
+        float: right;
+        width: 100% !important;
+        padding: 0px 0px !important;
+   }
+    .main-pro-inner-category {
+        padding: 0px 0px !important;
+        margin:0px 0px !important;
+   }
+    .container.banner-form {
+        position: absolute;
+        content: '';
+        top: 35% !important;
+        bottom: 0;
+        left:0% !important;
+        z-index: 99999;
+   }
+    .well {
+        min-height: 20px;
+        padding: 0px 10px !important;
+        margin: 0px 10px !important;
+   }
+    .slideshow-panel img {
+        height: 400px !important;
+   }
+    #forms {
+        font-size: 15px !important;
+        margin: 0px 0px !important;
+        padding: 5px 0px !important;
+   }
     header .header-left {
         float: left;
         margin: 15px 0 10px;
         width: 100%;
    }
     #logo {
-        /* display: inline-block;
+       /* display: inline-block;
         float: none;
-        vertical-align: top; */
+        vertical-align: top;
+        */
    }
-   .search
-   {
-       margin:12px 0px !important;
+    .search {
+        margin:12px 0px !important;
    }
     .header-right-cms {
         float: right;
@@ -5264,117 +5213,97 @@ h2.price {
         right: 20px;
    }
 }
-
-
-@media (min-width: 481px) and (max-width: 767px)
-{
-    .product-product .product-image
-    {
+@media (min-width: 481px) and (max-width: 767px) {
+    .product-product .product-image {
         margin: 0 auto;
         width: 80%;
    }
-   .prod-heading-center p
-   {
-     font-size: 12px !important;
+    .prod-heading-center p {
+        font-size: 12px !important;
    }
-    .product-images .additional-images-container
-    {
+    .product-images .additional-images-container {
         width: 400px;
    }
-   .search
-   {
-       margin:21px 0px !important;
+    .search {
+        margin:21px 0px !important;
    }
-   #search .input-lg, #header-search .input-lg
-   {
-     width:200px !important;
+    #search .input-lg, #header-search .input-lg {
+        width:200px !important;
    }
-   .fal-logo img
-   {
-     margin: 5px 0px !important;
+    .fal-logo img {
+        margin: 5px 0px !important;
+        width:50% !important;
    }
-   .col-sm-3.video iframe
+   .pro-pagination
    {
-     margin: 5px 0px !important;
-     width: 100%;
+    padding: 0px 0px !important;
    }
-   .wheel-list
-   {
-     column-width: 8em !important;
-     padding: 5px 5px !important;
+    .col-sm-3.video iframe {
+        margin: 5px 0px !important;
+        width: 100%;
    }
-   .col-sm-6.pagi-left
-   {
-    float: left;
-  }
-  .img.lazy
-  {
-      margin: 5px 0px !important;
-  }
-  .googlestore {
-      vertical-align: middle;
-      width: 100% !important;
-      text-align: center;
-      display: inline-block;
-  }
-  .zfooterMenu ul li {
-      display: block;
-      padding-top: 15px;
-  }
-  .main a {
-      font-size: 10px !important;
-  }
-  .dropdown-menu.multi-colum-nav {
-      width: 100% !important;
-      background: #000 !important;
-      border: none !important;
-      text-align: center;
-  }
-  .social2-nl {
-      text-align: center;
-  }
-
-  .hometabled
-  {
-      padding: 15px 15px !important;
-  }
-  .col-sm-9.wheel_view_list .table > tbody > tr > td
-  {
-    text-align: center;
-  }
-  #diameter_tab_36 h2
-  {
-    text-align: center;
-  }
-  .car-truck-head {
-    line-height: 30px !important;
-  }
-  .btn.vehicle {
-    margin: 5px 0px !important;
-    font-size: 10px !important;
-  }
-
+    .wheel-list {
+        column-width: 8em !important;
+        padding: 5px 5px !important;
+   }
+    .col-sm-6.pagi-left {
+        float: left;
+   }
+    .img.lazy {
+        margin: 5px 0px !important;
+   }
+    .googlestore {
+        vertical-align: middle;
+        width: 100% !important;
+        text-align: center;
+        display: inline-block;
+   }
+    .zfooterMenu ul li {
+        display: block;
+        padding-top: 15px;
+   }
+    .main a {
+        font-size: 10px !important;
+   }
+    .dropdown-menu.multi-colum-nav {
+        width: 100% !important;
+        background: #000 !important;
+        border: none !important;
+        text-align: center;
+   }
+    .social2-nl {
+        text-align: center;
+   }
+    .hometabled {
+        padding: 15px 15px !important;
+   }
+    .col-sm-9.wheel_view_list .table > tbody > tr > td {
+        text-align: center;
+   }
+    #diameter_tab_36 h2 {
+        text-align: center;
+   }
+    .car-truck-head {
+        line-height: 30px !important;
+   }
+    .btn.vehicle {
+        margin: 5px 0px !important;
+        font-size: 10px !important;
+   }
 }
-
-@media (min-width: 360px) and (max-width: 767px)
-{
-  .fal-logo img
-  {
-    margin: 5px 0px !important;
-  }
+@media (min-width: 360px) and (max-width: 767px) {
+    .fal-logo img {
+        margin: 5px 0px !important;
+   }
 }
-
-@media (max-width: 480px)
-{
-    #top .container
-    {
+@media (max-width: 480px) {
+    #top .container {
         padding: 0;
    }
     .top-column {
         margin: 15px 0 30px;
    }
-    #cart .dropdown-menu
-    {
+    #cart .dropdown-menu {
         right: -10px;
    }
     .product-layout, .product-layouts {
@@ -5576,44 +5505,6 @@ h2.price {
     -o-transform: rotateX(180deg);
     -ms-transform: rotateX(180deg);
 }
-
-@media(max-width:767px) {
-    #otcmsheader {
-        float: none;
-        display: inline-block;
-        vertical-align: top;
-   }
-    #otcmsheader .otheader-service {
-        padding: 10px 0 0;
-   }
-   #otcmsheaderservices {
-       display: inline-block;
-       float: none;
-       margin: 0;
-       vertical-align: top;
-  }
-  .header-text h2
-  {
-    font-size: 20px !important;
-    color: #fff !important;
-  }
-  .header-text h3 span
-  {
-    font-size:12px !important;
-  }
-  .col-md-12.text-center h3
-  {
-      margin:0px 0px !important;
-  }
-  .btn-sm
-  {
-    padding: 0px 5px;
-    min-width: 0px !important;
-    border: 1px solid #fff !important;
-    font-size: 10px !important;
-  }
-}
-
 @media(max-width:543px) {
     #otcmsheader .otheader-service {
         font: 400 14px/18px "Poppins", Helvetica, sans-serif;
@@ -5676,7 +5567,6 @@ h2.price {
     -o-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
 }
-
 /*--------------------End cms-header services----------------------*/
 #content .html-content {
     float: left;
@@ -5886,19 +5776,6 @@ h2.price {
     -moz-transform: scale(1);
     -o-transform: scale(1);
     -ms-transform: scale(1);
-}
-
-@media(max-width:767px) {
-    #otcmsrightbanner {
-        width: 100%;
-        text-align: center;
-        margin: 30px 0 0;
-   }
-    #otcmsrightbanner .otrightbanner-img {
-        display: inline-block;
-        float: none;
-        vertical-align: top;
-   }
 }
 /* ------------------ End OT - CMS rightbanner block --------------------- */
 /* ------------------------------------ Start WA - CMS client block------------------------------- */
@@ -6665,6 +6542,82 @@ footer .footer-right #footer-right {
     color: #f33857;
 }
 @media (max-width: 767px) {
+    #otcmsheader {
+        float: none;
+        display: inline-block;
+        vertical-align: top;
+   }
+    #otcmsheader .otheader-service {
+        padding: 10px 0 0;
+   }
+    #otcmsheaderservices {
+        display: inline-block;
+        float: none;
+        margin: 0;
+        vertical-align: top;
+   }
+    .header-text h2 {
+        font-size: 20px !important;
+        color: #fff !important;
+   }
+    .header-text h3 span {
+        font-size:12px !important;
+   }
+    .col-md-12.text-center h3 {
+        margin:0px 0px !important;
+   }
+    .btn-sm {
+        padding: 0px 5px;
+        min-width: 0px !important;
+        border: 1px solid #fff !important;
+        font-size: 10px !important;
+   }
+    .search {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+   }
+    #search .input-lg, #header-search .input-lg {
+        width: 150px !important;
+   }
+    #header-search .form-control {
+        height: 30px;
+   }
+    .navbar-toggle {
+        margin-right: 0px !important;
+   }
+    #header-search .btn-default {
+        height: 30px;
+        width: 30px;
+   }
+    #header-search .header-search-btn .fa.fa-search {
+        padding: 7px 7px;
+   }
+    .slideshow-panel {
+        width: 100%;
+   }
+    .slideshow-panel .swiper-container .swiper-pager div, .slideshow-panel .swiper-container .swiper-pager div:hover {
+        opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+   }
+    .slideshow-panel .swiper-container .swiper-pager .swiper-button-prev, .slideshow-panel .swiper-container:hover .swiper-pager .swiper-button-prev {
+        left: 20px;
+   }
+    .slideshow-panel .swiper-container .swiper-pager .swiper-button-next, .slideshow-panel .swiper-container:hover .swiper-pager .swiper-button-next {
+        right: 20px;
+   }
+    #otcmsrightbanner {
+        width: 100%;
+        text-align: center;
+        margin: 30px 0 0;
+   }
+    #otcmsrightbanner .otrightbanner-img {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+   }
     .follow-us {
         text-align: center;
         padding: 0 0 10px;
@@ -6769,8 +6722,7 @@ input[type="radio"], input[type="checkbox"] {
     background: #000 !important;
 }
 /*------------------------ CheckBox,Radio Extra CSS End -----------------------------------------*/
-.new-navbar.sticky
- {
+.new-navbar.sticky {
     background: #2874f0;
     transition: all 400ms ease 0s;
     -webkit-transition: all 400ms ease 0s;
@@ -6817,7 +6769,7 @@ input[type="radio"], input[type="checkbox"] {
     margin: 0 5px;
 }
 .search.footer-search {
-    margin: -6px 0px !important
+    margin: -6px 0px !important 
 }
 .col-sm-12.sub-head h1 {
     text-align: center !important;
@@ -7259,18 +7211,15 @@ button {
     margin-top: 20px !important;
 }
 /* Pagination Start */
-.pro-pagination
-{
+.pro-pagination {
     padding: 15px 0px !important;
     margin: 0px 0 0;
     display: block;
 }
-.pagi-right
-{
-  text-align: right;
+.pagi-right {
+    text-align: right;
 }
-.pagi-left p
-{
+.pagi-left p {
     margin:0px 0px !important;
     padding: 10px 0px;
     font-family: poppins !important;
@@ -7280,14 +7229,12 @@ button {
 }
 /* Pagination End */
 /* Header Start */
-.dropdown-nav:hover .nav-dropdown
-{
+.dropdown-nav:hover .nav-dropdown {
     display: block;
     transition: 1s all;
     background: #f4f4f4 !important;
 }
-.dropdown-tire:hover .dropdown-menu.multi-colum-nav
-{
+.dropdown-tire:hover .dropdown-menu.multi-colum-nav {
     display: block !important;
 }
 .nav-dropdown {
@@ -7296,10 +7243,8 @@ button {
 }
 .dropdown-menu.nav-dropdown li {
     padding: 5px 0px !important;
-
 }
-.product-thumb .image img,.product-thumb .image img.image_thumb_swap
-{
+.product-thumb .image img,.product-thumb .image img.image_thumb_swap {
     width:200px !important;
 }
 .dropdown-menu > li > a {
@@ -7354,8 +7299,8 @@ button {
 }
 /* .navbar-toggle .icon-bar {
     background: #000 !important;
-} */
-
+}
+*/
 .navbar-toggle {
     background-color: #fff !important;
     margin-right:25px !important;
@@ -7367,7 +7312,7 @@ button {
     padding:15px 15px !important;
 }
 .fa-shopping-cart::before {
-    font-size: 18px !important;
+    font-size: 15px !important;
     padding-left: 10px !important;
 }
 .nav > li > a:focus, .nav > li > a:hover {
@@ -7419,560 +7364,512 @@ button {
     font-family: Poppins !important;
 }
 /* Tire inner Page Start */
-.wheel-list-change-tab
-{
+.wheel-list-change-tab {
     text-align: center !important;
     margin-top: 10px !important;
     background:#cccccc2e !important;
     padding: 10px 0px !important;
 }
-.listing-sidebar
-{
+.listing-sidebar {
     margin-top: 10px !important;
 }
-
 /* Tire inner Page End */
-
-
-
-@media (max-width: 767px)
-{
-    .dropdown-nav:hover .nav-dropdown
-   {
+.col-sm-4.wheel-View-but {
+    z-index: 1;
+}
+@media (max-width: 767px) {
+    .active > div {
+        display: unset !important;
+   }
+    .dropdown-nav:hover .nav-dropdown {
         display:none;
    }
-   #top-links > ul > li
-   {
-     text-align: center !important;
-     float: none !important;
+    #top-links > ul > li {
+        text-align: center !important;
+        float: none !important;
    }
-   .row.wheel-view h1
-   {
-       font-family: Montserrat !important;
-       font-size: 16px !important;
-       text-align: center;
-       line-height: 30px !important;
+    .product-name {
+        line-height:30px;
    }
-   .product-layouts
-   {
-     min-height: auto !important;
+    .row.wheel-view h1 {
+        font-family: Montserrat !important;
+        font-size: 14px !important;
+        text-align: center !important;
+        line-height: 30px !important;
+        padding:0px 10px !important;
    }
-   #top .btn-link, #top-links li, #top-links a
-   {
-     font-size:10px !important;
+    .product-layouts {
+        min-height: auto !important;
    }
-   #top-links,#top-links > ul
-   {
-     float:none !important;
+    #top .btn-link, #top-links li, #top-links a {
+        font-size:10px !important;
    }
-   #logo img
-   {
+    #top-links,#top-links > ul {
+        float:none !important;
+   }
+    #logo img {
         width: 35% !important;
         height:auto;
         float:left;
    }
-   .pull-right ul li
-   {
-     border-right:none !important;
+    .pull-right ul li {
+        border-right:none !important;
    }
-   .pull-left ul li
-   {
-     border-left:none !important;
+    .pull-left ul li {
+        border-left:none !important;
    }
-   .col-sm-12.tire-menu ul
-   {
-       column-count: 3;
-       column-count: 3 !important;
-       text-align: left;
+    .padd {
+        float: left;
+        margin-right: 15% !important;
    }
-    .slick-slide img
-    {
+    .col-sm-12.tire-menu ul {
+        column-count: 3;
+        column-count: 3 !important;
+        text-align: left;
+   }
+    .slick-slide img {
         width:100% !important;
    }
-    .footer-bottom p
-    {
+    .col-sm-9.wheel_view_list {
+        padding: 0px 0px !important;
+   }
+    .footer-bottom p {
         text-align:left !important;
    }
-    .dropdown-nav:hover .nav-dropdown
-    {
+    .dropdown-nav:hover .nav-dropdown {
         display: inline-block;
         transition: 1s all;
         background: #f4f4f4 !important;
    }
-    .navbar .navbar-collapse .navbar-right > li:last-child
-    {
+    .navbar .navbar-collapse .navbar-right > li:last-child {
         padding-left: 15px;
         padding-right: 15px;
    }
-    .navbar-toggle .icon-bar
-    {
+    .navbar-toggle .icon-bar {
         background: #fff !important;
    }
-    .navbar-toggle
-    {
+    .navbar-toggle {
         background-color: #ecb23d !important;
    }
-    .navbar .nav-collapse
-    {
+    .navbar .nav-collapse {
         margin: 7.5px auto;
         padding: 0;
    }
-    .navbar .nav-collapse .navbar-form
-    {
+    .navbar .nav-collapse .navbar-form {
         margin: 0;
    }
-    .nav-collapse>li
-    {
+    .nav-collapse>li {
         float: none;
    }
-   .navbar-nav > li > .dropdown-menu
-   {
+    .navbar-nav > li > .dropdown-menu {
         background: #f4f4f4 !important;
         width:100% !important;
         text-align:center;
    }
-   .dropdown-menu.nav-dropdown
-   {
-       width:100% !important;
-       column-count: 1;
+    .dropdown-menu.nav-dropdown {
+        width:100% !important;
+        column-count: 1;
    }
-    .btn.btn-inverse.btn-block.btn-lg
-    {
+    .btn.btn-inverse.btn-block.btn-lg {
         display: none !important;
    }
-    .nav.navbar-nav.navbar
-    {
+    .nav.navbar-nav.navbar {
         text-align: center !important;
    }
-    .zfooterMenu ul li
-    {
+    .zfooterMenu ul li {
         display: inline !important;
         margin: 10px 0px !important;
         line-height: 30px !important;
    }
-   #heading h1
-   {
+    #heading h1 {
         font-size: 14px !important;
         text-align: center;
         line-height: 30px !important;
    }
-
-    .col-sm-3.payments3-card img
-    {
+    .col-sm-3.payments3-card img {
         height: 50px !important;
-    }
-    .dropdown-tire:hover .dropdown-menu.multi-colum-nav
-    {
+   }
+    .dropdown-tire:hover .dropdown-menu.multi-colum-nav {
         display: block !important;
         background: #f4f4f4 !important;
-    }
-    .car-truck-head img
-    {
+   }
+    .car-truck-head img {
         display: inline;
-    }
+   }
     .row.main-pro {
         padding: 0px 0px !important;
         margin: 0px 0px !important;
-    }
-    .col-sm-12.sub-head h1
-    {
+   }
+    .col-sm-12.sub-head h1 {
         padding: 0px 0px !important;
-    }
-    .product-thumb .button-group
-    {
+   }
+    .product-thumb .button-group {
         opacity: 0;
-    }
-    #carousel-example2
-    {
+   }
+    #carousel-example2 {
         display: none !important;
-    }
-    .pagination
-    {
+   }
+    .pagination {
         float: right;
         padding: 10px 10px !important;
-    }
-    .pagination > .active > span, .pagination > .active > a
-    {
+   }
+    .pagination > .active > span, .pagination > .active > a {
         background: #0e1661 !important;
         border-color:#0e1661 !important;
         color:#fff;
-    }
-    .pagination > li > a:hover
-    {
+   }
+    .pagination > li > a:hover {
         background: #ecb23d !important;
         border-color:#ecb23d !important;
-    }
-    .zfooterMenu ul
-    {
+   }
+    .zfooterMenu ul {
         border:none !important;
-    }
-    .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl
-    {
+   }
+    .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl {
         display: inline !important;
         padding:10px 0px !important;
-    }
-    .lazy.ri
-    {
+   }
+    .lazy.ri {
         height:100px;
-    }
-    .product-thumb .image
-    {
+   }
+    .product-thumb .image {
         height:auto !important;
-    }
-    .thumb-description
-    {
+   }
+    .thumb-description {
         margin-top: 0px !important;
-    }
-    .prod-headinghome
-    {
-      text-align: center !important;
-    }
-    .nav-img > li > a
-    {
-      padding: 10px 5px !important;
-      border: none !important;
-    }
-    .col-sm-3.shop-details,.col-sm-3.tir-des
-    {
-      margin: 0px 5px !important;
-    }
-    .video img
-    {
-      width: 100% !important;
-      padding: 10px 0px !important;
-    }
-    .benifit-title p,.benifit-head
-    {
-      text-align: left !important;
-    }
-    .col-sm-4.benifit img
-    {
-      width: 25% !important;
-      margin: 10px 10px !important;
-      float: left;
-    }
-    .active > div
-    {
-      display: unset !important;
-    }
-    .wheelImage.image_thumb_swap
-    {
-      cursor: zoom-out;
-      position: fixed;
-      width:100% !important;
-      height: auto !important;
-      left: 0% !important;
-      top: 0% !important;
-    }
-    .nav-img img
-    {
+   }
+    .prod-headinghome {
+        text-align: left !important;
+   }
+    .nav-img > li > a {
+        padding: 10px 5px !important;
+        border: none !important;
+   }
+    .col-sm-3.shop-details,.col-sm-3.tir-des {
+        margin: 0px 5px !important;
+   }
+    .video img {
+        width: 100% !important;
+        padding: 10px 0px !important;
+   }
+    .benifit-title p,.benifit-head {
+        text-align: left !important;
+   }
+    .col-sm-4.benifit img {
+        width: 25% !important;
+        margin: 10px 10px !important;
+        float: left;
+   }
+    .wheelImage.image_thumb_swap {
+        cursor: zoom-out;
+        position: fixed;
+        width:100% !important;
+        height: auto !important;
+        left: 0% !important;
+        top: 0% !important;
+   }
+    .nav-img img {
         width: 90px !important;
         height: 90px !important;
-    }
-    .wheel-list-tab .nav > li > a
-    {
-      font-size: 12px !important;
-      font-family: Montserrat !important;
-      padding: 5px 5px !important;
-    }
-    ::-webkit-scrollbar
-    {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track
-    {
-      box-shadow: inset 0 0 5px grey;
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb
-    {
-      background: #ecb23d;
-      border-radius: 10px;
-    }
-    .prod-headinghome h2
-    {
-      line-height: 30px !important;
-      font-size: 15px !important;
-    }
-    .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl
-    {
+   }
+    .wheel-list-tab .nav > li > a {
+        font-size: 12px !important;
+        font-family: Montserrat !important;
+        padding: 8px 15px !important;
+        border: none !important;
+        white-space: nowrap;
+        width: 100px !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+   }
+    div#myModal22 {
+        padding-right: 0px !important;
+   }
+   /* .col-sm-4.wheel-View-but {
+        z-index: -1;
+   }
+    */
+    .modal-dialog.wheel-view {
+        width:100% !important;
+   }
+    #table-section .table-responsive {
+        overflow-x: visible !important;
+   }
+    ::-webkit-scrollbar {
+        width: 10px;
+   }
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+   }
+    ::-webkit-scrollbar-thumb {
+        background: #ecb23d;
+        border-radius: 10px;
+   }
+    .prod-headinghome h2 {
+        line-height: 30px !important;
+        font-size: 15px !important;
+   }
+    .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl {
         display: inline-block;
         padding: 10px 50px;
         width: auto;
         text-align: center;
-    }
-    .googlestore
-    {
+   }
+    .googlestore {
         vertical-align: middle;
         width: 100% !important;
         text-align: center;
         display: inline-block;
-    }
-    .zfooterMenu ul li
-    {
+   }
+    .zfooterMenu ul li {
         display: block;
         padding-top: 15px;
-    }
-    .zfooterMenu ul,.zfooterMenu ul li
-    {
+   }
+    .zfooterMenu ul,.zfooterMenu ul li {
         border-left:none !important;
-    }
-    .zfooterMenu ul li a
-    {
+   }
+    .zfooterMenu ul li a {
         border-right:none;
-    }
-    .main a
-    {
+   }
+    .main a {
         font-size:10px !important;
-    }
+   }
     .dropdown-menu.multi-colum-nav {
         width: 100% !important;
         background: #000 !important;
         border: none !important;
         text-align: center;
-    }
-    .view-two, .view-three
-    {
-      display: inline;
-    }
-    .col-sm-4.view-one
-    {
-      float: left;
-      width: 25% !important;
-    }
-    .col-sm-6.shop-details .col-sm-4.view-one, .col-sm-4.view-two, .col-sm-4.view-three
-    {
-      width: 25% !important;
-    }
+   }
+    .view-two, .view-three {
+        display: inline;
+   }
+    .col-sm-4.view-one {
+        float: left;
+        width: 25% !important;
+   }
+    .col-sm-6.shop-details .col-sm-4.view-one, .col-sm-4.view-two, .col-sm-4.view-three {
+        width: 25% !important;
+   }
+    .col-sm-8.wheel-bolt .form-head {
+        float: none !important;
+        display: inline-block;
+   }
+    .new-model-button {
+        border:none;
+   }
+    .wheel-diameter-tabs h2 {
+        text-align: center !important;
+        border-bottom: none !important;
+   }
+    tbody tr ,td {
+        text-align: center !important;
+   }
+    .table-responsive.wheel_view {
+        border:none !important;
+        margin-bottom: 0px;
+   }
+    .table-responsive.wheel_view .table {
+        width:90% !important;
+   }
+    .new-model-button {
+        border:none !important;
+   }
+    .col-sm-8.wheel-bolt .nav.nav-tabs {
+        padding-left: 25px !important;
+   }
+    .col-sm-8.wheel-bolt .tab-content {
+        float:none;
+   }
+    .modal-dialog.wheel-view {
+        width: 100%;
+        margin: 15% auto !important;
+   }
+    .form-group.has-success.has-feedback.text-center {
+        padding: 5px 0px !important;
+   }
+    .modal-dialog.wheel-view .btn.btn-info {
+        display: block;
+        margin: 5px 0px !important;
+        width: 100%;
+   }
 }
-
-
-
-
-@media screen and (min-device-width: 768px) and (max-device-width: 960px)
-{
-    #heading h1
-   {
+@media screen and (min-device-width: 768px) and (max-device-width: 960px) {
+    #heading h1 {
         font-size: 14px !important;
         text-align: center;
         line-height: 30px !important;
    }
-   .btn.btn-inverse.btn-block.btn-lg
-   {
-       display: none !important;
+    .btn.btn-inverse.btn-block.btn-lg {
+        display: none !important;
    }
-
-   .col-sm-4.wheel-img img
-   {
+    .col-sm-4.wheel-img img {
         width: 100% !important;
-    }
+   }
     .navbar-toggle {
         background-color: #ecb23d !important;
-    }
-    .navbar-toggle .icon-bar
-    {
+   }
+    .navbar-toggle .icon-bar {
         background: #fff;
-    }
-    .col-sm-6.search-bar
-    {
+   }
+    .col-sm-6.search-bar {
         float: right;
-    }
-    .col-sm-6.logo
-    {
+   }
+    .col-sm-6.logo {
         float: left;
-    }
-    .btn.btn-inverse.btn-block.btn-lg
-    {
+   }
+    .btn.btn-inverse.btn-block.btn-lg {
         display: none !important;
-    }
+   }
     .navbar-toggle {
         display: block;
         display: none;
-    }
+   }
     #navbar-collapse-1 {
         display: unset !important;
-    }
-    .navbar-header
-    {
+   }
+    .navbar-header {
         float:right;
-    }
-    #logo img
-    {
+   }
+    #logo img {
         width: 40% !important;
         padding: 12px 12px !important;
-    }
-    .search
-    {
+   }
+    .search {
         margin: 13px 0;
-    }
-    .col-sm-3.payments-card img,.col-sm-3.payments3-card img
-    {
+   }
+    .col-sm-3.payments-card img,.col-sm-3.payments3-card img {
         width: 100% !important;
-    }
-    .col-sm-3.payments-card img
-    {
+   }
+    .col-sm-3.payments-card img {
         width: 160px !important;
         height: 30px !important;
-    }
-    .nav.navbar-nav.navbar
-    {
+   }
+    .nav.navbar-nav.navbar {
         text-align: center !important;
-    }
+   }
     .col-sm-10.nav-bar {
         width: 100% !important;
         text-align: center;
-    }
-    .navbar-nav
-    {
+   }
+    .navbar-nav {
         float:none;
-    }
-    li.dropdown-tire:hover ul.dropdown-menu.multi-colum-nav
-    {
+   }
+    li.dropdown-tire:hover ul.dropdown-menu.multi-colum-nav {
         display: block !important;
-    }
-    .dropdown-menu.multi-colum-nav
-    {
+   }
+    .dropdown-menu.multi-colum-nav {
         background:#f4f4f4 !important;
         text-align:left;
-    }
+   }
     .row.main-pro {
         margin: 0px 0px !important;
         padding: 0px 0px !important;
-    }
-    .zfooterMenu ul li a
-    {
+   }
+    .zfooterMenu ul li a {
         padding: 2px 5px !important;
-    }
-    .col-sm-12.sub-head h1
-    {
+   }
+    .col-sm-12.sub-head h1 {
         padding: 0px 0px !important;
-    }
-    .product-thumb .button-group .btn-quickview i
-    {
+   }
+    .product-thumb .button-group .btn-quickview i {
         background-position: 2px -134px;
-    }
-    .product-thumb .button-group button
-    {
+   }
+    .product-thumb .button-group button {
         height: 25px;
         width:25px;
-    }
-    .product-thumb .button-group .btn-compare i
-    {
+   }
+    .product-thumb .button-group .btn-compare i {
         background-position: 0px -90px;
-    }
-    .product-thumb .button-group i.fa-heart
-    {
+   }
+    .product-thumb .button-group i.fa-heart {
         background-position: 2px 0px;
-    }
-    .product-thumb .button-group i.fa-shopping-cart
-    {
+   }
+    .product-thumb .button-group i.fa-shopping-cart {
         background-position: 0px -44px;
-    }
-    .product-thumb .button-group .btn-cart:hover i.fa-shopping-cart
-    {
+   }
+    .product-thumb .button-group .btn-cart:hover i.fa-shopping-cart {
         background-position: -43px -43px;
-    }
-    .product-thumb .button-group .btn-wishlist:hover i.fa-heart
-    {
+   }
+    .product-thumb .button-group .btn-wishlist:hover i.fa-heart {
         background-position: -42px 0px;
-    }
-    .product-thumb .button-group .btn-compare:hover i
-    {
+   }
+    .product-thumb .button-group .btn-compare:hover i {
         background-position: -42px -92px;
-    }
-    .product-thumb .button-group .btn-quickview:hover i
-    {
+   }
+    .product-thumb .button-group .btn-quickview:hover i {
         background-position: -42px -133px;
-    }
-    .thumb-description
-    {
+   }
+    .thumb-description {
         margin-top: 0px !important;
-    }
-    .product-thumb .sale-icon, .product-sale-icon
-    {
+   }
+    .product-thumb .sale-icon, .product-sale-icon {
         right: 0px;
-    }
-    .pagination > .active > span, .pagination > .active > a
-    {
+   }
+    .pagination > .active > span, .pagination > .active > a {
         background: #0e1661 !important;
         border-color:#0e1661 !important;
         color:#fff;
-    }
-    .pagination > li > a:hover
-    {
+   }
+    .pagination > li > a:hover {
         background: #ecb23d !important;
         border-color:#ecb23d !important;
-    }
-    .pagination
-    {
+   }
+    .pagination {
         padding: 10px 10px !important;
-    }
-    .zfooterMenu ul
-    {
+   }
+    .zfooterMenu ul {
         border:none !important;
-    }
-    .product-thumb .image
-    {
+   }
+    .product-thumb .image {
         height:auto !important;
-    }
-    .col-sm-2.size-search .btn.btn-primary
-    {
+   }
+    .col-sm-2.size-search .btn.btn-primary {
         width: 150px !important;
-    }
-    .size-heading h1
-    {
+   }
+    .size-heading h1 {
         font-size: 15px !important;
         font-family: Montserrat !important;
         margin: 0px 0px !important;
-    }
-    .size-heading h2
-    {
+   }
+    .size-heading h2 {
         font-size: 15px !important;
         font-family: Montserrat !important;
-    }
-    .size-heading h3
-    {
+   }
+    .size-heading h3 {
         font-size: 15px !important;
-    }
-    .nav > li > a
-    {
-      font-size: 10px !important;
-      font-family: Montserrat !important;
-      padding: 15px 8px !important;
-    }
+   }
+    .nav > li > a {
+        font-size: 10px !important;
+        font-family: Montserrat !important;
+        padding: 15px 8px !important;
+   }
+    .wheel_view_ship {
+        float: none;
+        display: inline;
+   }
 }
-
-
-
-
-@media screen and (min-device-width: 960px) and (max-device-width: 1200px)
-{
-  .nav > li > a {
-      font-size: 10px !important;
-      font-family: Montserrat !important;
-      padding: 15px 12px !important;
-  }
+@media screen and (min-device-width: 960px) and (max-device-width: 1200px) {
+    .nav > li > a {
+        font-size: 10px !important;
+        font-family: Montserrat !important;
+        padding: 15px 12px !important;
+   }
 }
-
 /* Tirebrand Page */
-
-.fal-logo img
-{
+.fal-logo img {
     margin: 80px 0px;
 }
-::-webkit-scrollbar
-{
-  width: 10px;
+::-webkit-scrollbar {
+    width: 10px;
 }
-::-webkit-scrollbar-track
-{
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
 }
-::-webkit-scrollbar-thumb
-{
-  background: #ecb23d;
-  border-radius: 10px;
+::-webkit-scrollbar-thumb {
+    background: #ecb23d;
+    border-radius: 10px;
 }
 .price p label {
     font-family: Montserrat !important;
@@ -7982,24 +7879,19 @@ button {
     line-height: 30px !important;
 }
 #price {
-    color:
-    #0e1661 !important;
+    color: #0e1661 !important;
     font-weight: 100 !important;
     font-family: poppins !important;
     font-size: 12px !important;
 }
-
 /* Wheel List Page Start*/
-
-.col-md-8.left-head p
-{
+.col-md-8.left-head p {
     font-size: 12px !important;
     line-height: 30px !important;
     font-family: Montserrat !important;
     margin-bottom:0px !important;
 }
-.btn.vehicle-change a
-{
+.btn.vehicle-change a {
     color:#fff !important;
     font-family: poppins !important;
     font-size: 12px !important;
@@ -8007,77 +7899,59 @@ button {
 }
 /* Wheel List Page End */
 /* Tirebrandmodel start */
-#table-section
-{
+#table-section {
     padding: 40px 0px !important;
     background: #fff !important;
 }
-
-#demo-des
-{
+#demo-des {
     padding: 40px 0px !important;
 }
 /* Tirebrandmodel End */
-.ellipsis
-{
-  color: #14281D;
+.ellipsis {
+    color: #14281D;
 }
-.col-sm-3.video iframe
-{
+.col-sm-3.video iframe {
     width: 100% !important;
 }
-.more, .less
-{
-  color: #0e1661 !important;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 0px 0px !important;
+.more, .less {
+    color: #0e1661 !important;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0px 0px !important;
 }
-
 /* Footer Start */
 #footer-down {
     border: 1px solid #ccc !important;
     background: #fff !important;
 }
-
-/* .bbb-nl,
-.godaddy-nl,
-.reseller-nl,
-.sitelock-nl,
-.socialicons-nl,
-.verisign-nl {
+/* .bbb-nl, .godaddy-nl, .reseller-nl, .sitelock-nl, .socialicons-nl, .verisign-nl {
     display: table-cell;
     vertical-align: middle;
     width: 16%;
     text-align: center;
 }
-
 .social2-nl {
     display: table;
     vertical-align: middle;
     position: relative;
 }
-
 .googlestore {
     display: table-cell;
     vertical-align: middle;
     width: 16%;
     text-align: center;
-} */
-
+}
+*/
 .social-nl {
     padding: 40px 0px !important;
 }
-
-.footer-ratings h1 a
-{
+.footer-ratings h1 a {
     color:#0e1661 !important;
     font-size: 12px !important;
     line-height:30px;
     font-family: poppins !important;
 }
-.main
-{
+.main {
     font-size: 12px !important;
     color:#000;
     line-height: 30px !important;
@@ -8086,16 +7960,13 @@ button {
 .main a {
     color: #0e1661 !important;
 }
-
 .zfooterMenu ul li a:hover {
     display: inline;
     font-size: 12px;
     color: #ecb23d;
     font-family: poppins !important;
 }
-
-.zfooterMenu ul li a
-{
+.zfooterMenu ul li a {
     display: inline;
     text-decoration: none;
     font-size: 12px;
@@ -8104,26 +7975,21 @@ button {
     border-right:1px solid #0e1661 !important;
     border-left: 1px solid #0e1661 !important;
     font-family: poppins !important;
-    }
-
+}
 .zfooterMenu ul li {
     position: relative;
     display: inline;
 }
-
 .zfooterMenu ul {
     margin: 5px 0;
     padding: 0;
     list-style-type: none;
     border-left: 1px solid #e0e0e0;
 }
-
 .footer-ratings h1 {
     margin: 0px 0px !important;
 }
-
-.copywright
-{
+.copywright {
     padding: 15px 0 !important;
     color: #0e1661 !important;
     font-size: 12px !important;
@@ -8135,11 +8001,9 @@ button {
     line-height: 30px !important;
     font-family: poppins !important;
 }
-
 #tire-list {
     padding: 40px 0px;
 }
-
 .tire-type a {
     font-size: 12px !important;
 }
@@ -8157,38 +8021,31 @@ button {
     height: 40px;
 }
 #back-to-top:hover i {
-top: 5px !important;
+    top: 5px !important;
 }
-.row.social-nl
-{
+.row.social-nl {
     text-align: center !important;
 }
-.row.social-nl ul li
-{
+.row.social-nl ul li {
     list-style-type: none;
     display: inline;
 }
-.foot-icon li img
-{
+.foot-icon li img {
     margin: 0px 20px !important;
 }
 /* Footer End */
-
 /* header Start */
-.dropdown-menu.multi-colum-nav
-{
+.dropdown-menu.multi-colum-nav {
     width:1311px !important;
     background: #f4f4f4 !important;
     border: none !important;
 }
-.dropdown-menu.nav-dropdown
-{
+.dropdown-menu.nav-dropdown {
     width:1470px !important;
     background: #f4f4f4 !important;
     border: none !important;
 }
-button.btn.btn-inverse.btn-block.btn-lg
-{
+button.btn.btn-inverse.btn-block.btn-lg {
     font-size: 12px !important;
     line-height: 18px !important;
 }
@@ -8196,8 +8053,7 @@ button.btn.btn-inverse.btn-block.btn-lg
     padding: 0px 0px !important;
     margin: 0px 0px !important;
 }
-.nav .open > a, .nav .open > a:focus, .nav .open > a:hover
-{
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
     background: #ecb23d !important;
     border: none !important;
 }
@@ -8205,81 +8061,65 @@ button.btn.btn-inverse.btn-block.btn-lg
     font-size: 12px !important;
     font-family: poppins !important;
 }
-
 .col-sm-3.one-nav ul {
     list-style-type: none !important;
 }
-
 .col-sm-3.one-nav ul li {
     padding: 5px 0px !important;
     border-bottom: 1px solid #222 !important;
 }
-
 .col-sm-3.one-nav h5 {
     color: #ccc !important;
     font-weight: 600;
     font-size: 15px !important;
     text-transform: uppercase;
 }
-
 .col-sm-3.see-more {
     text-align: center !important;
 }
-
 .more a {
     color: #fff !important;
     font-size: 12px !important;
 }
-
 .more {
     padding: 10px 0px !important;
 }
-
 .more:hover a {
     color: red !important;
 }
-
-.dropdown-menu li>a:hover,
-.dropdown-menu li>a:focus {
+.dropdown-menu li>a:hover, .dropdown-menu li>a:focus {
     color: #ecb23d !important;
 }
-
 .car-truck-head {
     margin: 15px 0px !important;
     font-size: 12px !important;
     color: #000 !important;
     font-family: poppins !important;
 }
-
 .col-sm-2.shop-vehicle-head h1 {
     font-size: 12px !important;
     color: #000 !important;
     margin: 11px 0px !important;
     font-family: poppins !important;
 }
-
 .vehicle-list {
     margin: 0px 0px !important;
 }
-
 .btn.vehicle {
     background: #fff !important;
     border-radius: 5px !important;
     color: #222 !important;
     font-size: 12px !important;
 }
-
 .dropdown-menu li>a {
     color: #000 !important;
 }
-
 .form-control {
     border: 1px solid #0e1661;
     color: #000;
     font-family: poppins !important;
     font-size: 12px !important;
 }
-
 .btn.vehicle-go {
     background: #ecb23d !important;
     border-radius: 5px !important;
@@ -8289,52 +8129,39 @@ button.btn.btn-inverse.btn-block.btn-lg
     height: 34px !important;
     font-family: poppins !important;
 }
-
 .col-sm-12.tire-menu ul {
     list-style-type: none !important;
     column-count: 7;
 }
-.col-sm-12.tire-menu.tire-two ul
-{
+.col-sm-12.tire-menu.tire-two ul {
     column-count: 6;
 }
-
 .col-sm-12.tire-menu ul li {
     color: #000 !important;
     font-size: 12px !important;
     padding: 5px 0px !important;
     border-bottom: 1px solid #22222254 !important;
 }
-
 .col-sm-12.tire-menu li a:hover {
     color: #ecb23d !important;
 }
-
 .tire-dropdown-menu {
-
     column-count: 4;
 }
-
 .car-truck-head i {
     font-size: 25px !important;
     padding: 0px 5px !important;
 }
-
 .dropdown-menu.multi-colum-nav {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-
 .btn.vehicle {
     padding: 7px 30px !important;
 }
-
-
 .col-sm-12.tire-menu-list {
     margin-bottom: 20px !important;
 }
-
-
 .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -8342,12 +8169,10 @@ button.btn.btn-inverse.btn-block.btn-lg
     font-size: 16px;
     border: none;
 }
-
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -8356,40 +8181,31 @@ button.btn.btn-inverse.btn-block.btn-lg
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
-
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
-
 .dropdown-content a:hover {
     background-color: #ddd;
 }
-
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
-
-
 .navbar-collapse {
     padding: 0px 0px !important;
 }
-
 .car-truck-head img {
     width: 40px !important;
     margin: 0px 5px !important;
 }
-
 .moving-car {
     animation: move 4s 1s infinite ease-in-out;
 }
-
 .moving-truck {
     animation: move 4s 1s infinite ease-in-out;
 }
@@ -8398,36 +8214,30 @@ button.btn.btn-inverse.btn-block.btn-lg
     overflow-x: hidden;
     height: 500px;
 }
-
 @keyframes move {
     0% {
         transfrom: translateX(0);
-    }
-
+   }
     100% {
         transform: translateX(400px);
         opacity: 0;
-    }
+   }
 }
 /* Header End */
 /* Wheel Products Start */
-.col-sm-12.wheel-des p
-{
+.col-sm-12.wheel-des p {
     font-family: poppins !important;
     font-size: 12px !important;
     line-height: 30px !important;
     color: #000 !important;
     margin: 0px 0px !important;
 }
-.col-sm-12.wheel-des b a
-{
-  font-size: 12px !important;
-  font-family: Montserrat !important;
-  color: #0e1661 !important;
+.col-sm-12.wheel-des b a {
+    font-size: 12px !important;
+    font-family: Montserrat !important;
+    color: #0e1661 !important;
 }
 /* Wheel Products End */
-
-
 /* Tire Brand Page Start */
 #falken-des {
     padding: 40px 0px;
@@ -8435,15 +8245,13 @@ button.btn.btn-inverse.btn-block.btn-lg
 .fal-logo {
     text-align: center;
 }
-.prod-headinghome p
-{
+.prod-headinghome p {
     margin: 10px 0px;
     color: #121214;
     font-size: 12px !important;
     line-height: 30px !important;
     font-family: Poppins !important;
 }
-
 .title-heading h2 {
     font-size: 15px !important;
     margin: 10px 0px !important;
@@ -8460,19 +8268,15 @@ button.btn.btn-inverse.btn-block.btn-lg
     border-radius: 2px !important;
 }
 /* Tire Brand Page End */
-
 /* Tire List Page Start */
 .wrapper {
     width: 100%;
 }
-
 .panel-heading {
     padding: 0;
     border: 0;
 }
-
-.panel-title>a,
-.panel-title>a:active {
+.panel-title>a, .panel-title>a:active {
     display: block;
     padding: 15px;
     color: #555;
@@ -8483,20 +8287,18 @@ button.btn.btn-inverse.btn-block.btn-lg
     word-spacing: 3px;
     text-decoration: none;
 }
-
 /* .panel-heading a:before {
     font-family: 'Glyphicons Halflings';
     content: "\e114";
     float: right;
     transition: all 0.5s;
-} */
-
+}
+*/
 .panel-heading.active a:before {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-
 .listing-sidebar .widget-search ul li {
     margin: 5px 2px !important;
     list-style: none;
@@ -8518,34 +8320,27 @@ button.btn.btn-inverse.btn-block.btn-lg
     text-align: center;
     display: inline-block;
 }
-
 .widget-search {
     border: 1px solid #ccc;
 }
-
 ul.list-group li {
     list-style: none;
     position: relative;
 }
-
 .list-group-item:first-child {
     border-radius: 0px;
 }
-
 .list-group-item {
     border-left: 0;
     border-right: 0;
     padding: 13px 15px;
 }
-
 .listing-sidebar .widget-search {
     padding: 20px !important;
 }
-
 .list-style.-none {
     padding: 0px 0px !important;
 }
-
 .listing-sidebar h5 {
     font-size: 15px !important;
     line-height: 30px;
@@ -8553,11 +8348,9 @@ ul.list-group li {
     color: #0e1661 !important;
     font-weight: 600 !important;
 }
-
 ul.list-group li {
     list-style: none;
 }
-
 .panel-body ul {
     list-style-type: none;
     padding: 0px 0px !important;
@@ -8572,8 +8365,7 @@ ul.list-group li {
 .listing-sidebar #collapseOne, #collapseTwo, #collapseThree {
     border: 1px solid #e2e4e7 !important;
 }
-#collapseOne, #collapseFour
-{
+#collapseOne, #collapseFour {
     border: 1px solid #e2e4e7 !important;
 }
 .widget-search {
@@ -8624,72 +8416,52 @@ button.btn.speed a {
     border: 1px solid red;
 }
 /* Tire List Page End */
-
 /* Home Banner Start */
 .carousel-indicators .active {
     background-color: #ecb23d;
 }
-
 ol.carousel-indicators {
     margin-bottom: 0px;
 }
 .carousel-inner img {
     width: 100%;
-    max-height: 620px
+    max-height: 620px 
 }
-
 .carousel-control {
     width: 0;
 }
-
-.carousel-control.left,
-.carousel-control.right {
-	opacity: 1;
-	filter: alpha(opacity=100);
-	background-image: none;
-	background-repeat: no-repeat;
-	text-shadow: none;
+.carousel-control.left, .carousel-control.right {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    background-image: none;
+    background-repeat: no-repeat;
+    text-shadow: none;
 }
-
 .carousel-control.left span {
-	padding:0px;
+    padding:0px;
 }
-
 .carousel-control.right span {
-	padding:0px;
+    padding:0px;
 }
-
-.carousel-control .glyphicon-chevron-left,
-.carousel-control .glyphicon-chevron-right,
-.carousel-control .icon-prev,
-.carousel-control .icon-next {
-	position: absolute;
-	top: 45%;
-	z-index: 5;
-	display: inline-block;
+.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-prev, .carousel-control .icon-next {
+    position: absolute;
+    top: 45%;
+    z-index: 5;
+    display: inline-block;
 }
-
-.carousel-control .glyphicon-chevron-left,
-.carousel-control .icon-prev {
-	left: 20px;
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    left: 20px;
 }
-
-.carousel-control .glyphicon-chevron-right,
-.carousel-control .icon-next {
-	right: 20px;
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+    right: 20px;
 }
-
-.carousel-control.left span,
-.carousel-control.right span {
-	background-color:transparent;
+.carousel-control.left span, .carousel-control.right span {
+    background-color:transparent;
 }
-
-.carousel-control.left span:hover,
-.carousel-control.right span:hover {
-	opacity: .7;
-	filter: alpha(opacity=70);
+.carousel-control.left span:hover, .carousel-control.right span:hover {
+    opacity: .7;
+    filter: alpha(opacity=70);
 }
-
 /* Carousel Header Styles */
 .header-text {
     position: absolute;
@@ -8697,35 +8469,29 @@ ol.carousel-indicators {
     width: 100%;
     color: #fff;
 }
-
 .header-text h2 {
     font-size: 40px;
     color: #fff !important;
 }
-.carousel-control.left
-{
-  margin-left: 15px !important;
+.carousel-control.left {
+    margin-left: 15px !important;
 }
-.carousel-control.right
-{
-  margin-right: 15px !important;
+.carousel-control.right {
+    margin-right: 15px !important;
 }
-.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right
-{
+.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right {
     font-size: 20px !important;
 }
 .header-text h3 span {
-	background-color: transparent !important;
-	padding: 0px;
+    background-color: transparent !important;
+    padding: 0px;
     font-size: 35px;
     color:#fff !important;
 }
-
 .btn-min-block {
     min-width: 170px;
     line-height: 26px;
 }
-
 .btn-theme {
     color: #fff;
     background-color: transparent;
@@ -8736,28 +8502,24 @@ ol.carousel-indicators {
     font-family: Montserrat !important;
     font-weight: 700;
 }
-
 .btn-theme:hover {
     color: #fff;
     background-color: #ecb23d !important;
     border-color: #fff;
 }
 /* Home Banner End */
-
 /* Tirelist Page Start */
 .spinner input {
     text-align: center;
-  }
-
-  .input-group-btn-vertical {
+}
+.input-group-btn-vertical {
     position: relative;
     white-space: nowrap;
     width: 2%;
     vertical-align: middle;
     display: table-cell;
-  }
-
-  .input-group-btn-vertical > .btn {
+}
+.input-group-btn-vertical > .btn {
     display: block;
     float: none;
     width: 12%;
@@ -8766,87 +8528,277 @@ ol.carousel-indicators {
     margin-left: -1px;
     position: relative;
     border-radius: 0;
-  }
-
-  .input-group-btn-vertical > .btn:first-child {
+}
+.input-group-btn-vertical > .btn:first-child {
     border-top-right-radius: 4px;
-  }
-
-  .input-group-btn-vertical > .btn:last-child {
+}
+.input-group-btn-vertical > .btn:last-child {
     margin-top: -2px;
     border-bottom-right-radius: 4px;
-  }
-
-  .input-group-btn-vertical i {
+}
+.input-group-btn-vertical i {
     position: absolute;
     top: 0;
     left: 4px;
-  }
-  .input-group.spinner .form-control
-  {
-      border:1px solid #eaeaea;
-  }
-  .input-group-btn-vertical .btn-default
-  {
+}
+.input-group.spinner .form-control {
+    border:1px solid #eaeaea;
+}
+.input-group-btn-vertical .btn-default {
     background: #ecb23d !important;
-  }
-  .table-responsive
-  {
+}
+.table-responsive {
     overflow-x: hidden;
-  }
-  .col-sm-6.pagi-left p
-  {
+}
+.col-sm-6.pagi-left p {
     text-align: left !important;
-  }
-  .col-sm-6.shop-details .col-sm-6.padd
-  {
+}
+.col-sm-6.shop-details .col-sm-6.padd {
     width:25% !important;
-  }
-  .col-sm-4.tire-benifit-des .benifit img {
+}
+.col-sm-4.tire-benifit-des .benifit img {
     width: 65% !important;
-  }
-  .col-sm-3.shop-details .col-sm-4.view-one
-  {
+}
+.col-sm-3.shop-details .col-sm-4.view-one {
     width: 22% !important;
-  }
-  .col-sm-4.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three
-  {
+}
+.col-sm-4.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three {
     width:25% !important;
-  }
-  .col-sm-6.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three
-  {
+}
+.col-sm-6.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three {
     width:15% !important;
-  }
-  /* Wheel Product Start */
-  .modal-dialog.wheel-view h2
-  {
-      border: none !important;
-      color: #000 !important;
-  }
-  .form-group.product-quantity .btn a
-  {
+}
+/* Wheel Product Start */
+.modal-dialog.wheel-view h2 {
+    border: none !important;
+    color: #000 !important;
+}
+.form-group.product-quantity .btn a {
     color: #fff !important;
-  }
-  .modal-dialog.wheel-view
-  {
-    width: 700px !important;
+}
+.modal-dialog.wheel-view {
+    width: 700px;
     margin: 15% auto !important;
-  }
-  .modal-dialog.wheel-view .modal-header
-  {
+}
+.modal-dialog.wheel-view .modal-header {
     background:#070b31 !important;
     color: #fff !important;
-  }
-  .product-layouts.wheel-pro
-  {
+}
+.product-layouts.wheel-pro {
     min-height: 400px !important;
-  }
-  .product-thumb.transition .thumb-description.wheel-vire-pro
-  {
+}
+.product-thumb.transition .thumb-description.wheel-vire-pro {
     min-height: 125px !important;
-  }
-  .btn.btn-info.cart-btn
-  {
+}
+.btn.btn-info.cart-btn {
     background: #070b31 !important;
-  }
-  /* Wheel Product End */
+}
+/* Wheel Product End */
+/* Media Query */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .product-thumb h4 a {
+        color: #000 !important;
+        white-space: nowrap;
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+   }
+    #produst .product-layouts {
+        min-height: 285px !important;
+   }
+    .thumb-description .btn.btn-primary {
+        font-size: 10px !important;
+   }
+    .product-thumb .image img {
+        height:142px !important;
+   }
+    #falken-des .product-layout, .product-layouts {
+        min-height: 200px !important;
+        padding: 5px;
+   }
+    #fal-feature .product-layouts {
+        min-height: 150px !important;
+        padding: 5px;
+   }
+    .product-thumb.transition .thumb-description {
+        min-height: auto !important;
+   }
+    #falken-des .product-thumb .thumb-description {
+        padding:0px 10px !important;
+   }
+    .col-sm-12.tire-menu ul {
+        column-count: 4;
+   }
+    .dropdown-menu.nav-dropdown {
+        width: 750px !important;
+   }
+    .dropdown-menu.multi-colum-nav {
+        position: absolute;
+        left: -135px;
+   }
+    .dropdown-menu.multi-colum-nav {
+        width: 750px !important;
+   }
+    .col-sm-12.tire-menu.tire-two ul {
+        column-count: 5;
+   }
+    .product-thumb .price-new {
+        font-size: 11px !important;
+        font-weight: 100;
+   }
+    .pagination > li > a, .pagination > li > span {
+        padding: 0px 0;
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
+        line-height: 18px;
+   }
+    .pagination li:last-child > a::after {
+        font-size: 10px;
+        left: 5px;
+        top: 0px;
+   }
+    .pagination li:last-child > a, .pagination li:first-child > a {
+        padding:0px 0px !important;
+   }
+    .foot-icon li img {
+        margin: 0px 5px !important;
+   }
+    .zfooterMenu ul li a {
+        font-size: 10px;
+        font-weight: 500;
+   }
+    #accordion .panel-body {
+        font-size: 10px;
+        line-height: 25px;
+   }
+    #falken-des {
+        padding:0px 0px;
+   }
+    #header-search .header-search-btn .fa.fa-search {
+        font-size: 10px;
+        padding: 10px 0;
+   }
+    #header-search .btn-default {
+        width:30px;
+        height:30px;
+   }
+    #header-search .form-control {
+        height: 30px;
+        font-size: 10px;
+   }
+    .search {
+        margin: 16px 0;
+   }
+    .header-phone.pull-left span {
+        padding-left: 5px !important;
+   }
+    #top-links a {
+        color: #ffffff;
+        font-size: 10px;
+   }
+    #table-section thead {
+        font-size: 10px !important;
+   }
+    .product-layouts.wheel-pro, .product-thumb.transition .thumb-description.wheel-vire-pro {
+        min-height: auto !important;
+   }
+    .fal-logo img {
+        margin: 100px 0px !important;
+        width: 100%;
+   }
+    .col-sm-3.fal-logo {
+        display: none;
+   }
+    .col-sm-9.fal-des {
+        width: 100%;
+   }
+    .col-sm-3.tire-details, .col-sm-3.shop-details, .col-sm-3.tir-des, .col-sm-3.tire-benifit-des {
+        width: 100%;
+   }
+    .nav.nav-tabs.nav-img.slider-tires-3 li {
+        display: inline-block;
+        float: none;
+   }
+    .nav.nav-tabs.nav-img.slider-tires-3 {
+        text-align: center;
+   }
+    .benifit img {
+        width: 50% !important;
+   }
+    .col-sm-3.tire-benifit-des .benifit img {
+        width: 50% !important;
+   }
+    .col-sm-3.tire-img {
+        width: 100%;
+   }
+    .product-name {
+        text-align: center !important;
+   }
+    .rating {
+        text-align: center;
+   }
+    .rating-section.product-rating-status.text-left {
+        text-align: center;
+   }
+    .product-info td {
+        text-align:center !important;
+   }
+    .product-info {
+        text-align: center;
+        width: 100%;
+   }
+    .col-sm-3.shop-details .col-sm-4.view-one, .col-sm-4.view-two, .col-sm-4.col-sm-4.view-three {
+        width: 33% !important;
+   }
+    .instock-head, .instock-head.animated.pulse {
+        text-align: center !important;
+   }
+    .new-model-button {
+        text-align: center;
+   }
+    .col-sm-3.wheel-img {
+        text-align: center;
+   }
+    .hometabled {
+        margin: 20px 0px !important;
+   }
+    #tires-des .col-sm-3.wheel-img {
+        width: 100% !important;
+   }
+    .nav > li > a {
+        font-size:9px !important;
+   }
+    .col-sm-4.wheel-View-but {
+        width: 100% !important;
+   }
+    .col-sm-9.wheel_view_list {
+        width: 100% !important;
+   }
+    .row.wheel-view h1 {
+        text-align: center !important;
+   }
+    .col-sm-8.wheel-bolt {
+        width:100%;
+   }
+    .wheel_view_ship .btn.btn-info {
+        margin: 5px 0px !important;
+        width: 100% !important;
+   }
+    .wheel-brand-img2 {
+        width: auto;
+   }
+    .wheel-des img {
+        width: 300px !important;
+   }
+    .wheel-des .wheel-brand-img {
+        width: auto !important;
+   }
+    .wheel-brand-img2 {
+        width: 30% !important;
+        height: auto;
+   }
+    .wheel_view_ship {
+        display: inline-block;
+   }
+}
