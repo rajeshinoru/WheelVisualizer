@@ -22,7 +22,7 @@
     </div>
 
     <div class="container">
-        @if(@$ptires->total() > 0)
+        @if(@$ptires->count() > 0)
         <div class="hometabled">
             <div class="row">
                 <div class="title-heading">
@@ -82,6 +82,7 @@
                 </div>
                 @empty @endforelse
             </div>
+{{-- 
                 <div class="row pro-pagination">
                     <div class="col-sm-6 pagi-left">
                         <p>{{(@$ptires->total())?@$ptires->total().' Passanger Tires Found':''}} </p>
@@ -93,9 +94,10 @@
 
                     </div>
                 </div>
+--}}
         </div>
         @endif
-        @if(@$lttires->total() > 0)
+        @if(@$lttires->count() > 0)
         <div class="hometabled">
             <div class="row">
                 <div class="title-heading">
@@ -142,7 +144,7 @@
                 </div>
                 @empty @endforelse
             </div>
-
+{{-- 
                 <div class="row pro-pagination">
                     <div class="col-sm-6 pagi-left">
                         <p>{{(@$lttires->total())?@$lttires->total().' Light Truck Tires Found':''}} </p>
@@ -154,6 +156,7 @@
 
                     </div>
                 </div>
+--}}
         </div>
         @endif
     </div>

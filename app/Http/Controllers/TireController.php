@@ -246,8 +246,8 @@ class TireController extends Controller
                     })->get()
                     ->unique('prodmodel');
 
-        $ptires = MakeCustomPaginator($ptires, $request, 6,'ptpage');
-        $lttires = MakeCustomPaginator($lttires, $request, 6,'ltpage');
+        // $ptires = MakeCustomPaginator($ptires, $request, 6,'ptpage');
+        // $lttires = MakeCustomPaginator($lttires, $request, 6,'ltpage');
 
         return view('tire_brand',compact('ptires','lttires','tire','brand_name'));
     }
