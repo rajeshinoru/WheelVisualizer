@@ -51,7 +51,6 @@
                                         @endif -->
                                         </a>
                                     </h4>
-                                    <br>
                                 </div>
                                 <div class="button-group">
                                     <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
