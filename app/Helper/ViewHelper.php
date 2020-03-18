@@ -257,10 +257,10 @@ function ViewProductImage($url=''){
 		if(file_exists(public_path('/storage/tires/models/'.$url))){
 			return asset('/storage/tires/models/'.$url);
 		}else{
-	return asset('image/no_image.jpg');
+			return false;
 		}
 	}else{
-	return asset('image/no_image.jpg');
+			return false;
 	}
 
 }
