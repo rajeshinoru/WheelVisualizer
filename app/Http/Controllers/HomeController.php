@@ -483,7 +483,7 @@ class HomeController extends Controller
 
     public $storeArr=array();
 
-    public function recursiveScan($dir,$storeArr,$destinationPath) {
+    public function recursiveScan($dir,$storeArr,$destinationPath='') {
         $tree = glob(rtrim($dir, '/') . '/*');
         if (is_array($tree)) {
             foreach($tree as $file) {
