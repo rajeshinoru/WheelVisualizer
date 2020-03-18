@@ -159,17 +159,7 @@ function front_back_path($imgPath){
 }
 
 
-function viewCarImage($url=''){
-	if($url != ''){
-		if(file_exists(public_path($url))){
-					return asset('image/no_image.jpg');
-		}else{
-
-					return asset('image/no_image.jpg');
-		}
-	}
-}
-function viewImage($url=''){
+function ViewImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/'.$url))){
 			return asset('/storage/'.$url);
@@ -192,8 +182,7 @@ function viewImage($url=''){
 
 }
 
-function ViewTireImage($url=''){
-	// return $url;
+function ViewTireImage($url=''){ 
 	if($url != ''){
 		if(file_exists(public_path('/storage/tires/'.$url))){
 			return asset('/storage/tires/'.$url);
@@ -212,6 +201,24 @@ function ViewTireImage($url=''){
 		}
 	}else{
 			return asset('image/no_image.jpg');
+	}
+
+}
+
+function ViewTireBadgeImage($url=''){ 
+	if($url != ''){
+		if(file_exists(public_path('/storage/tires/badges/'.$url))){
+			return asset('/storage/tires/badges/'.$url);
+		}else{
+				$misc_url="/storage/misc_images/".$url;
+				if(file_exists(public_path($misc_url))){
+					return asset($misc_url);
+				}else{
+					return false;
+				}
+		}
+	}else{
+			return false;
 	}
 
 }

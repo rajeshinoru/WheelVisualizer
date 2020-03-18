@@ -397,14 +397,14 @@
                       <h2>{{@$tire->prodmodel}}</h2>
                       
                       <p class="read_more_text" data-length="650">{{@$tire->prodlandingdesc}}</p>
-                        @if(ViewExistImage('tires/badges/'.@$tire->badge1))
-                        <img src="{{ViewExistImage('tires/badges/'.@$tire->badge1)}}" width="70px" height="70px">
+                        @if(ViewTireBadgeImage(@$tire->badge1))
+                        <img src="{{ViewTireBadgeImage(@$tire->badge1)}}" width="70px" height="70px">
                         @endif
-                        @if(ViewExistImage('tires/badges/'.@$tire->badge2))
-                        <img src="{{ViewExistImage('tires/badges/'.@$tire->badge2)}}" width="70px" height="70px">
+                        @if(ViewTireBadgeImage(@$tire->badge2))
+                        <img src="{{ViewTireBadgeImage(@$tire->badge2)}}" width="70px" height="70px">
                         @endif
-                        @if(ViewExistImage('tires/badges/'.@$tire->badge3))
-                        <img src="{{ViewExistImage('tires/badges/'.@$tire->badge3)}}" width="70px" height="70px">
+                        @if(ViewTireBadgeImage(@$tire->badge3))
+                        <img src="{{ViewTireBadgeImage(@$tire->badge3)}}" width="70px" height="70px">
                         @endif
                   </div>
                 </div>
