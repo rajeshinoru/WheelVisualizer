@@ -206,7 +206,7 @@
                                                 <span class="price-tax">Ex Tax: $85.00</span>
                                             </div> -->
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}">See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="LoadCar('{{$car_images->car_id}}')">See On Your Car</button>
                                         @endif
                                     </div>
                                     <div class="button-group">
@@ -251,10 +251,11 @@
                                         @endif
                                     </h4>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body">    
                                     <div class="row main-model-body">
                                         <div class="col-sm-8 model-car">
-                                            <img class="car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" style="">
+                                            <!-- <canvas id="CarCanvas_{{$car_images->car_id}}"> </canvas> -->
+                                            <img id="car_image_{{$car_images->car_id}}" class="car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" style="display: block;">
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
                                         <div class="car-wheel">
@@ -342,9 +343,48 @@
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
     <script src="{{ asset('js/slick.js') }}"></script>
-    <script type="text/javascript">
-        
-        // $('.frontimg').draggable();
+    <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
 
-    </script>
+<script type="text/javascript">
+
+function LoadCar(id) {
+    let imgElement = document.getElementById('car_image_'+id);
+        let image = cv.imread(imgElement);
+        console.log('CarCanvas_'+id)
+        cv.imshow('CarCanvas_'+id, image);
+        // let srcMat = cv.imread('CarCanvas_'+id);
+        // let displayMat = srcMat.clone();
+        // let gaussMat = srcMat.clone();
+        // let circlesMat = new cv.Mat();
+
+        // cv.cvtColor(srcMat, srcMat, cv.COLOR_RGBA2GRAY);
+        
+        // cv.GaussianBlur( srcMat, gaussMat,{width : 9, height : 9}, 2, 2 );
+        // // cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+        // cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+
+        // for (let i = 0; i < circlesMat.cols; ++i) {
+        //     let x = circlesMat.data32F[i * 3];
+        //     let y = circlesMat.data32F[i * 3 + 1];
+        //     let radius = circlesMat.data32F[i * 3 + 2];
+        //     console.log(x,y)
+        //     let center = new cv.Point(x, y);
+        //     cv.circle(displayMat, center, radius, [0, 255, 250, 255], 3);
+        // }
+
+        // cv.imshow('CarCanvas_'+id, gaussMat);
+
+        // srcMat.delete();
+        // displayMat.delete();
+        // circlesMat.delete();  
+};
+
+
+
+function onOpenCvReady() {
+  document.body.classList.remove("loading");
+}
+
+</script>
+
 @endsection
