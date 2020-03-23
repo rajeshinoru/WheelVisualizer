@@ -352,31 +352,31 @@ function LoadCar(id) {
         let image = cv.imread(imgElement);
         console.log('CarCanvas_'+id)
         cv.imshow('CarCanvas_'+id, image);
-        // let srcMat = cv.imread('CarCanvas_'+id);
-        // let displayMat = srcMat.clone();
-        // let gaussMat = srcMat.clone();
-        // let circlesMat = new cv.Mat();
+        let srcMat = cv.imread('CarCanvas_'+id);
+        let displayMat = srcMat.clone();
+        let gaussMat = srcMat.clone();
+        let circlesMat = new cv.Mat();
 
-        // cv.cvtColor(srcMat, srcMat, cv.COLOR_RGBA2GRAY);
+        cv.cvtColor(srcMat, srcMat, cv.COLOR_RGBA2GRAY);
         
-        // cv.GaussianBlur( srcMat, gaussMat,{width : 9, height : 9}, 2, 2 );
-        // // cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+        cv.GaussianBlur( srcMat, gaussMat,{width : 9, height : 9}, 2, 2 );
         // cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+        cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
 
-        // for (let i = 0; i < circlesMat.cols; ++i) {
-        //     let x = circlesMat.data32F[i * 3];
-        //     let y = circlesMat.data32F[i * 3 + 1];
-        //     let radius = circlesMat.data32F[i * 3 + 2];
-        //     console.log(x,y)
-        //     let center = new cv.Point(x, y);
-        //     cv.circle(displayMat, center, radius, [0, 255, 250, 255], 3);
-        // }
+        for (let i = 0; i < circlesMat.cols; ++i) {
+            let x = circlesMat.data32F[i * 3];
+            let y = circlesMat.data32F[i * 3 + 1];
+            let radius = circlesMat.data32F[i * 3 + 2];
+            console.log(x,y)
+            let center = new cv.Point(x, y);
+            cv.circle(displayMat, center, radius, [0, 255, 250, 255], 3);
+        }
 
-        // cv.imshow('CarCanvas_'+id, gaussMat);
+        cv.imshow('CarCanvas_'+id, gaussMat);
 
-        // srcMat.delete();
-        // displayMat.delete();
-        // circlesMat.delete();  
+        srcMat.delete();
+        displayMat.delete();
+        circlesMat.delete();  
 };
 
 

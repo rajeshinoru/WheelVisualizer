@@ -554,4 +554,43 @@ class TireController extends Controller
     //     return 'hiii';
     // }
 
+
+
+ function tires_update(){
+
+
+        $in_file = public_path('/storage/tires_data/tires_updated.csv'); 
+
+
+        if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
+        // $fw = fopen($out_file, "w");
+        $i=1;
+        while( ($data = fgetcsv($fr, 2000000, ",")) !== FALSE ) {
+                if($i != 1){
+                    // dd($data[55]);
+                    if((isset($data[2])&&$data[2]!='')){
+
+                        $tire =Tire::where('partno',$data[2])->first();
+                        if($tire!=null){
+                            $tire->prodimage1 = isset($data[3])?$data[3]:null;  
+                            $tire->prodimage2 = isset($data[4])?$data[4]:null;  
+                            $tire->prodimage3 = isset($data[5])?$data[5]:null;  
+                            $tire->save(); 
+
+                        }
+                    // echo $tire->id."-----------".$tire->partno."<br>";
+                    }else{
+
+                        echo "break<br>";
+                        break;
+                    }
+                }
+                $i++;
+            }
+        fclose($fr);
+        // fclose($fw);
+        return 'success';
+ }
+
+
 }
