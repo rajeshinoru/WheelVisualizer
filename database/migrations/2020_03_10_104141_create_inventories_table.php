@@ -18,7 +18,7 @@ class CreateInventoriesTable extends Migration
             $table->string('partno')->nullable();
             $table->string('vendor_partno')->nullable();
             $table->string('mpn')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
             $table->string('location_code')->nullable();
