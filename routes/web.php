@@ -57,6 +57,9 @@ Route::get('/opencv', 'HomeController@opencv');
 Route::get('/tsf', 'HomeController@tsf');
 
 
+Route::get('/UploadInventories', 'InventoryController@UploadInventories');
+
+Route::get('/getUploadInventories', 'InventoryController@getUploadInventories');
 
 
 
