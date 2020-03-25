@@ -28,7 +28,25 @@
     padding: 20px 20px !important;
 }
 </style>
+<?php
 
+    $widthArray = array(
+        'Audi'=>array('width'=>'84px','top'=>'41.7%','left'=>'40%'),
+    );
+
+?>
+
+@if(@$car_images->CarViflist->make == 'Audi')
+<!-- <style type="text/css">
+    
+.front img {
+    width: 84px;
+    top: 41.7%;
+    left: 40%;
+}
+
+</style> -->
+@endif
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -259,8 +277,8 @@
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
                                         <div class="car-wheel">
-                                            <div class="front">
-                                                <img class="frontimg" src="{{front_back_path($wheel->image)}}" id="image-diameter-front-{{$key}}">
+                                            <div class="front" >
+                                                <img class="frontimg" src="{{front_back_path($wheel->image)}}" id="image-diameter-front-{{$key}}" >
                                             </div>
                                             <div class="back">
                                                 <img src="{{front_back_path($wheel->image)}}" id="image-diameter-back-{{$key}}">
