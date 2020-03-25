@@ -101,6 +101,15 @@ class InventoryController extends Controller
     if (($inpfile = fopen($filepath, 'r')) !== false) {
         // Collect CSV each row records
         $flag = 0;
+
+$skipLines = Inventory::get()->count(); // or however many lines you want to skip
+$lineNum = 1;
+if ($skipLines > 0) {
+    while (fgetcsv($inpfile)) {
+        if ($lineNum==$skipLines) { break; }
+        $lineNum++;
+    }
+}
             while (($data = fgetcsv($inpfile, 10000)) !== false) {
 
                 if($flag != 0){
