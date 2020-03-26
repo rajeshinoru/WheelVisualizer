@@ -224,7 +224,7 @@
                                                 <span class="price-tax">Ex Tax: $85.00</span>
                                             </div> -->
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="LoadCar('{{$car_images->car_id}}')">See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" data-onclick="LoadImageToCanvas('{{$key}}')" >See On Your Car</button>
                                         @endif
                                     </div>
                                     <div class="button-group">
@@ -270,10 +270,11 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">    
-                                    <div class="row main-model-body">
-                                        <div class="col-sm-8 model-car">
-                                            <!-- <canvas id="CarCanvas_{{$car_images->car_id}}"> </canvas> -->
-                                            <img id="car_image_{{$car_images->car_id}}" class="car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" style="display: block;">
+                                    <div class="row main-model-body" >
+                                        <div class="col-sm-8 model-car" id="modal_canvas_{{$key}}">
+
+                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_responsive" src="{{asset($car_images->image)}}">
+
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
                                         <div class="car-wheel">
@@ -356,6 +357,157 @@
       </div>
       </div>
     </section>
+
+<script type="text/javascript">
+
+// function LoadCar(id) {
+//     let imgElement = document.getElementById('car_image_'+id);
+//         let image = cv.imread(imgElement);
+//         console.log('CarCanvas_'+id)
+//         cv.imshow('CarCanvas_'+id, image);
+//         let srcMat = cv.imread('CarCanvas_'+id);
+//         let displayMat = srcMat.clone();
+//         let gaussMat = srcMat.clone();
+//         let circlesMat = new cv.Mat();
+
+//         cv.cvtColor(srcMat, srcMat, cv.COLOR_RGBA2GRAY);
+        
+//         cv.GaussianBlur( srcMat, gaussMat,{width : 9, height : 9}, 2, 2 );
+//         // cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+//         cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
+
+//         for (let i = 0; i < circlesMat.cols; ++i) {
+//             let x = circlesMat.data32F[i * 3];
+//             let y = circlesMat.data32F[i * 3 + 1];
+//             let radius = circlesMat.data32F[i * 3 + 2];
+//             console.log(x,y)
+//             let center = new cv.Point(x, y);
+//             cv.circle(displayMat, center, radius, [0, 255, 250, 255], 3);
+//         }
+
+//         cv.imshow('CarCanvas_'+id, gaussMat);
+
+//         srcMat.delete();
+//         displayMat.delete();
+//         circlesMat.delete();  
+// };
+
+
+
+// function onOpenCvReady() {
+//   document.body.classList.remove("loading");
+// }
+
+
+function trimCanvas(c) {
+    var ctx = c.getContext('2d'),
+        copy = document.createElement('canvas').getContext('2d'),
+        pixels = ctx.getImageData(0, 0, c.width, c.height),
+        l = pixels.data.length,
+        i,
+        bound = {
+            top: null,
+            left: null,
+            right: null,
+            bottom: null
+        },
+        x, y;
+    
+    // Iterate over every pixel to find the highest
+    // and where it ends on every axis ()
+    for (i = 0; i < l; i += 4) {
+        if (pixels.data[i + 3] !== 0) {
+            x = (i / 4) % c.width;
+            y = ~~((i / 4) / c.width);
+
+            if (bound.top === null) {
+                bound.top = y;
+            }
+
+            if (bound.left === null) {
+                bound.left = x;
+            } else if (x < bound.left) {
+                bound.left = x;
+            }
+
+            if (bound.right === null) {
+                bound.right = x;
+            } else if (bound.right < x) {
+                bound.right = x;
+            }
+
+            if (bound.bottom === null) {
+                bound.bottom = y;
+            } else if (bound.bottom < y) {
+                bound.bottom = y;
+            }
+        }
+    }
+    
+    // Calculate the height and width of the content
+    var trimHeight = bound.bottom - bound.top,
+        trimWidth = bound.right - bound.left,
+        trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+
+    copy.canvas.width = trimWidth;
+    copy.canvas.height = trimHeight;
+    copy.putImageData(trimmed, 0, 0);
+
+
+    // Return trimmed canvas
+    return copy.canvas;
+}
+
+function LoadImageToCanvas(key){
+    var width = $("#car_image_"+key).width() + 500;
+    var height = $("#car_image_"+key).height() + 500;
+
+    var canvas = document.createElement('canvas');
+
+    canvas.id = "CursorLayer";
+    canvas.width = width;
+    canvas.height = height;
+    canvas.class = 'car_image_responsive';  
+    canvas.style.zIndex = -1;
+    canvas.style.position = "absolute";
+    canvas.style.border = "1px solid";
+
+    var loc = document.getElementById("modal_canvas_"+key);
+    loc.prepend(canvas);
+
+    var ctx = canvas.getContext("2d");
+
+    var car = document.getElementById("car_image_"+key);
+    // var frontWheel = document.getElementById("image-diameter-front-"+key);
+    // var backWheel = document.getElementById("image-diameter-back-"+key);
+
+    ctx.drawImage(car, 0, 0,width,height);
+    // ctx.drawImage(frontWheel,300,250,100,100);
+    // ctx.drawImage(backWheel,300+100,250,100,100);
+
+    $("#car_image_"+key).hide();
+
+    // var trimmedCanvas = trimCanvas(ctx);
+   
+}
+
+// Tiral Code for Canvas ----------------------->
+
+//     context = canvas.getContext("2d"); // get Canvas Context object
+
+// // // Crop and obtain the new canvas
+// var trimmedCanvas = trimCanvas(canvas);
+
+// // data:image/png;base64,iVBORw0KGgoAAAANSUhE..........XTklIOUbk4AAAAAElFTkSuQmCC
+// console.log(trimmedCanvas.toDataURL());
+//   var c = document.getElementById("myCanvas");
+//   var ctx = trimmedCanvas.getContext("2d");
+//   var img = document.getElementById("CarCanvas_{{$car_images->car_id}}");
+//   ctx.drawImage(img, 10, 10);
+
+// Tiral Code for Canvas Ended----------------------->
+</script>
+
 @endsection
 @section('custom_scripts')
     <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
@@ -363,46 +515,5 @@
     <script src="{{ asset('js/slick.js') }}"></script>
     <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
 
-<script type="text/javascript">
-
-function LoadCar(id) {
-    let imgElement = document.getElementById('car_image_'+id);
-        let image = cv.imread(imgElement);
-        console.log('CarCanvas_'+id)
-        cv.imshow('CarCanvas_'+id, image);
-        let srcMat = cv.imread('CarCanvas_'+id);
-        let displayMat = srcMat.clone();
-        let gaussMat = srcMat.clone();
-        let circlesMat = new cv.Mat();
-
-        cv.cvtColor(srcMat, srcMat, cv.COLOR_RGBA2GRAY);
-        
-        cv.GaussianBlur( srcMat, gaussMat,{width : 9, height : 9}, 2, 2 );
-        // cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
-        cv.HoughCircles(srcMat, circlesMat, cv.HOUGH_GRADIENT, 1, 45, 75, 40, 0, 0);
-
-        for (let i = 0; i < circlesMat.cols; ++i) {
-            let x = circlesMat.data32F[i * 3];
-            let y = circlesMat.data32F[i * 3 + 1];
-            let radius = circlesMat.data32F[i * 3 + 2];
-            console.log(x,y)
-            let center = new cv.Point(x, y);
-            cv.circle(displayMat, center, radius, [0, 255, 250, 255], 3);
-        }
-
-        cv.imshow('CarCanvas_'+id, gaussMat);
-
-        srcMat.delete();
-        displayMat.delete();
-        circlesMat.delete();  
-};
-
-
-
-function onOpenCvReady() {
-  document.body.classList.remove("loading");
-}
-
-</script>
 
 @endsection
