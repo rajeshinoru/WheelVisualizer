@@ -132,7 +132,7 @@
     /*bottom: 149%;
     right: 0;
     transform: perspective(0px) rotateY(41deg);*/
-    object-fit: scale-down;
+    object-fit: cover;
     }
 .back img
 {    
@@ -150,7 +150,7 @@
     bottom: 0;
     right: 0;
     transform: perspective(405px) rotateY(54deg);
-    object-fit: scale-down;
+    object-fit: cover;
 } 
 .color-radius{
     height: 25px;
@@ -200,7 +200,7 @@
         bottom: 0px;
         right: 0;
         transform: perspective(0px) rotateY(34deg);
-        object-fit: scale-down;
+        object-fit: cover;
     }
     .back img {
         width: 45px;
@@ -211,6 +211,6 @@
         bottom: 0;
         right: 0;
         transform: perspective(382px) rotateY(54deg);
-        object-fit: scale-down;
+        object-fit: cover;
     }
 }

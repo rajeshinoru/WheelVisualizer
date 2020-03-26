@@ -61,6 +61,7 @@ class HomeController extends Controller
     public function wheels(Request $request)
     {
         try{ 
+            
             $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->get(); 
 
             $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style'); 

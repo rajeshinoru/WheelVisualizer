@@ -141,7 +141,9 @@
                         </div>
                     </div>
                 </div>
-                @empty @endforelse
+                @empty 
+
+                @endforelse
             </div>
 {{-- 
                 <div class="row pro-pagination">
