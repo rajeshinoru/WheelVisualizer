@@ -30,23 +30,66 @@
 </style>
 <?php
 
-    $widthArray = array(
-        'Audi'=>array('width'=>'84px','top'=>'41.7%','left'=>'40%'),
-    );
+    // $widthArray = array(
+    //     'Audi'=>array('width'=>'84px','top'=>'41.7%','left'=>'40%'),
+    // );
 
 ?>
 
-@if(@$car_images->CarViflist->make == 'Audi')
-<!-- <style type="text/css">
-    
+@if(@$car_images->CarViflist->yr == "2020"  && @$car_images->CarViflist->make =="Acura"  && @$car_images->CarViflist->model =="MDX"  )
+<style type="text/css">
 .front img {
-    width: 84px;
-    top: 41.7%;
-    left: 40%;
+width: 78px;
+top: 46.5%;
+left: 39%;
+transform: perspective(0px) rotateY(40deg);
 }
-
-</style> -->
+.back img{
+width: 63px;
+top: 46%;
+left: 70.9%;
+transform: perspective(405px) rotateY(54deg);
+}
+</style>
 @endif
+
+@if(@$car_images->CarViflist->yr == "2019"  && @$car_images->CarViflist->make =="Acura"  && @$car_images->CarViflist->model =="TLX"  )
+<style type="text/css">
+.front img {
+    width: 69px;
+    top: 45.5%;
+    left: 39%;
+    transform: perspective(0px) rotateY(37deg);
+
+}
+.back img{
+    width: 61px;
+    top: 44%;
+    left: 70.9%;
+    transform: perspective(405px) rotateY(54deg);
+}
+</style>
+@endif
+
+@if(@$car_images->CarViflist->yr == "2019"  && @$car_images->CarViflist->make =="Volvo"  && @$car_images->CarViflist->model =="S90"  )
+<style type="text/css">
+.front img {
+    width: 68px;
+    top: 45.7%;
+    left: 37%;
+    transform: perspective(0px) rotateY(44deg);
+
+}
+.back img{
+
+    width: 53px;
+    top: 44.5%;
+    left: 70.7%;
+    transform: perspective(405px) rotateY(57deg);
+}
+</style>
+@endif
+
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -491,21 +534,6 @@ function LoadImageToCanvas(key){
    
 }
 
-// Tiral Code for Canvas ----------------------->
-
-//     context = canvas.getContext("2d"); // get Canvas Context object
-
-// // // Crop and obtain the new canvas
-// var trimmedCanvas = trimCanvas(canvas);
-
-// // data:image/png;base64,iVBORw0KGgoAAAANSUhE..........XTklIOUbk4AAAAAElFTkSuQmCC
-// console.log(trimmedCanvas.toDataURL());
-//   var c = document.getElementById("myCanvas");
-//   var ctx = trimmedCanvas.getContext("2d");
-//   var img = document.getElementById("CarCanvas_{{$car_images->car_id}}");
-//   ctx.drawImage(img, 10, 10);
-
-// Tiral Code for Canvas Ended----------------------->
 </script>
 
 @endsection
