@@ -39,15 +39,15 @@
                             </tr>
                             @endforelse
 
-                            <tfoot>
+                            <!-- <tfoot>
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Created At</th>
-                                    <!-- <th>Setting</th> -->
+                                    <th>Setting</th> 
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
                     </div>
                     <div class="custom-pagination">

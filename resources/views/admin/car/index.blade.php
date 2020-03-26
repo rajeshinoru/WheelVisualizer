@@ -231,7 +231,7 @@
                             </tr>
                             @endforelse
 
-                            <tfoot>
+                            <!-- <tfoot>
                                 <tr>
 
                                     <th> S.No</th>
@@ -247,7 +247,7 @@
                                     <th>View Images</th>
                                     <th> Actions</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
 
                         {{$cars->appends(['diameter' => @Request::get('diameter'),'width' => @Request::get('width'),'brand' => @Request::get('brand'),'car_id' => @Request::get('car_id'),'page' => @Request::get('page')])->links()}}

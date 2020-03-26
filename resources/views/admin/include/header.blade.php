@@ -1,5 +1,4 @@
 <div class="header-advance-area">
-    <br>
     <div class="header-top-area">
         <div class="container-fluid">
             <div class="row">

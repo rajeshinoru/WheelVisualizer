@@ -51,7 +51,6 @@
                                         @endif -->
                                         </a>
                                     </h4>
-                                    <br>
                                 </div>
                                 <div class="button-group">
                                     <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -117,7 +116,7 @@
                             <div class="thumb-description">
                                 <div class="caption">
                                     <h4 class="tire-type" title="{{@$lttire->prodtitle}}"><a href="{{url('/tirebrandmodel')}}/{{base64_encode($lttire->id)}}">{{@$lttire->prodtitle}}</a></h4>
-                                    <br>
+                                    
                                 </div>
                                 <div class="button-group">
                                     <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>

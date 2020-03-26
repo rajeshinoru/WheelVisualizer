@@ -126,7 +126,7 @@
                             </tr>
                             @endforelse
 
-                            <tfoot>
+                            <!-- <tfoot>
                                 <tr>
                                     <th>@lang('admin.common.s_no')</th>
                                     <th>@lang('admin.brands.manufacturer') </th>
@@ -135,7 +135,7 @@
                                     <th>@lang('admin.brands.banner') </th>                                    
                                     <th>@lang('admin.common.actions')</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>                        
                     </div>
                 </div>

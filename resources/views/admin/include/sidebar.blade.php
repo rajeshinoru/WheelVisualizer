@@ -1,16 +1,10 @@
     <!-- Start Left menu area -->
-    <style type="text/css">
-        .main-logo{
-            width: 200px !important;
-            height: 60px !important;
-        }
-    </style>
+    
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
                 <a href="{{url('/admin/home')}}"><img class="main-logo" src="{{url(Setting::get('site_logo','/admin/img/logo/logo.png'))}}" alt="" /></a>
-                <!-- <strong><a href="index.html"><img src="/admin/img/logo/logo.png" alt="" /></a></strong> -->
-            </div>
+               </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
@@ -90,8 +84,8 @@
                         <li>
                             <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-file "></i> CMS Pages</a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Header Page" href="{{url('admin/cms/setting')}}"> <i class="fa fa-paperclip"></i>  Application Setting </a></li> 
-                                <li><a title="Home Page" href="{{url('admin/cms/home')}}"> <i class="fa fa-paperclip"></i>  Home Page </a></li> 
+                                <li><a title="Header Page" href="{{url('admin/cms/setting')}}"> <i class="fa fa-cog"></i>  Application Setting </a></li> 
+                                <li><a title="Home Page" href="{{url('admin/cms/home')}}"> <i class="fa fa-home"></i>  Home Page </a></li> 
                             </ul>
                         </li>
 

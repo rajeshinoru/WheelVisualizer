@@ -563,12 +563,34 @@
                                                 </div>
                                             </div>
 
-                                            <h1 class="instock-head">Availability:<b>
-                                                    {{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}
-                                                </b></h1>
+                                            <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
                                         </div>
                                         @endif
                                         <!--  -->
+
+<!-- Add Qty Dropdoen Button Start -->
+<!-- 
+<div class="row">
+<div class="col-md-6 main-qty">
+        <div class="col-sm-6">
+        <div class="input-group spinner spin-2">
+    <input type="text" class="form-control" value="1" min="0" max="5">
+    <div class="input-group-btn-vertical">
+      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+    </div>
+  </div>
+  </div>
+  <div class="col-sm-6">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal22">Add to Cart</button>
+        </div>
+        </div>
+  <div class="col-md-6">
+  <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
+  </div>
+  </div> -->
+<!-- Add Qty Dropdoen Button End -->
+                                        
                                     </div>
                                 </div>
                                 @endforeach
@@ -682,7 +704,7 @@
                             <div class="caption">
 
                                 <h4><a href="{{url('/wheelproductview',$product->id)}}" title="{{$product->prodtitle}}">{{$product->prodtitle}}</a></h4>
-                                
+
                             </div>
                             <div class="button-group">
                                         <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -713,7 +735,30 @@
 </section>
 @endsection
 @section('custom_scripts')
+<script>
+$(function(){
 
+$('.spinner .btn:first-of-type').on('click', function() {
+  var btn = $(this);
+  var input = btn.closest('.spinner').find('input');
+  if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {
+    input.val(parseInt(input.val(), 10) + 1);
+  } else {
+    btn.next("disabled", true);
+  }
+});
+$('.spinner .btn:last-of-type').on('click', function() {
+  var btn = $(this);
+  var input = btn.closest('.spinner').find('input');
+  if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {
+    input.val(parseInt(input.val(), 10) - 1);
+  } else {
+    btn.prev("disabled", true);
+  }
+});
+
+})
+</script>
 
 <script type="text/javascript">
     $('.wheel_diameter_tab').click(function() {
