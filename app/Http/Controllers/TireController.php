@@ -392,7 +392,8 @@ class TireController extends Controller
          // $in_file = public_path('/storage/tires_data/Falken-Export.csv'); 
          // $in_file = public_path('/storage/tires_data/Conti-Web-02-08.csv'); 
          // $in_file = public_path('/storage/tires_data/Tire-Master-3-3-20.csv'); 
-         $in_file = public_path('/storage/tires_data/Tire-Master-3-11-20.csv'); 
+         // $in_file = public_path('/storage/tires_data/Tire-Master-3-11-20.csv'); 
+         $in_file = public_path('/storage/tires_data/Tires-March-27.csv'); 
 
 
         if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");

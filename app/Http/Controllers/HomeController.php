@@ -1285,6 +1285,10 @@ function tsf(){
 }
 
 
+function canvas(){
+    return view('canvas');
+}
+
 public function vftp_to_sql($filename){
 
     set_time_limit(999999999);

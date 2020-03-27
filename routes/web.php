@@ -55,6 +55,8 @@ Route::get('/mergeUniqueFiles', 'HomeController@mergeUniqueFiles');
 //OpenCv Test Routes
 Route::get('/opencv', 'HomeController@opencv');
 Route::get('/tsf', 'HomeController@tsf');
+Route::get('/canvas', 'HomeController@canvas');
+
 
 
 Route::get('/UploadInventories', 'InventoryController@UploadInventories');
