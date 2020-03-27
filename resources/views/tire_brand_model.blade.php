@@ -411,8 +411,10 @@
 
                 <div class="col-sm-{{12/$divClass}}  shop-details" >
                   
-                  <div class="tab-content">
 
+
+                  <div class="tab-content">
+                    @if(ViewProductImage(@$tire->prodimage1) || ViewProductImage(@$tire->prodimage2) || ViewProductImage(@$tire->prodimage3))
                     @if(ViewProductImage(@$tire->prodimage1))
                     <div id="home" class="tab-pane fade in active">
                       <img src="{{ViewProductImage(@$tire->prodimage1)}}">
@@ -428,9 +430,14 @@
                       <img src="{{ViewProductImage(@$tire->prodimage3)}}">
                     </div>
                     @endif
+                    @else
+                    <div id="home" class="tab-pane fade in active">
+                      <img src="{{ViewImage(@$tire->prodimage)}}">
+                    </div>
+                    @endif
 
                   </div>
-
+                  @if(ViewProductImage(@$tire->prodimage1) || ViewProductImage(@$tire->prodimage2) || ViewProductImage(@$tire->prodimage3))
                   <ul class="nav nav-tabs nav-img slider-tires-{{12/$divClass}} " >
                     @if(ViewProductImage(@$tire->prodimage1))
                     <li class="active"><a data-toggle="tab" href="#home"><img src="{{ViewProductImage(@$tire->prodimage1)}}"></a></li>
@@ -442,6 +449,7 @@
                     <li><a data-toggle="tab" href="#menu2"><img src="{{ViewProductImage(@$tire->prodimage3)}}"></a></li>
                     @endif
                   </ul>
+                  @endif
                 </div>
 
                 @if(@$ratings)

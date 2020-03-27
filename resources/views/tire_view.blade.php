@@ -603,11 +603,7 @@
                                 <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
                             OEM Tire Size:
                                 <b>{{@$vehicle->ChassisModels->tire_size}}</b>
-<!--                             Speed Rating:
-                                <b>{{@$vehicle->ChassisModels->speed_index}}</b> ,
 
-                            Load Index:
-                                <b>{{@$vehicle->ChassisModels->load_index}}</b>  -->
                             <br>
                             @endif
                         </p>

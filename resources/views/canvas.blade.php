@@ -1,59 +1,108 @@
 @extends('layouts.app')
 
 
+@section('shop_by_vehicle_css')
+<link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
 
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+@endsection
 @section('content')
 
-<canvas id="cancan" width="400", height="200">Canvas Blue Goat</canvas>
+<style>
+.modal_canvas{
+    min-height: 427px !important;
+}
+.col-sm-12.wheel-des p
+{
+    font-family: poppins !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #000 !important;
+    margin: 0px 0px !important;
+    text-align:justify;
+}
+.col-sm-12.wheel-des b a
+{
+  font-size: 12px !important;
+  font-family: Montserrat !important;
+  color: #0e1661 !important;
+}
+.wheel-des
+{
+    padding: 20px 20px !important;
+}
+</style>
+
+
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-body">    
+                                    <div class="row main-model-body" >
+                                        <div class="col-sm-8 model-car modal_canvas" id="modal_canvas_1">
+
+                                            <img id="car_image_1" class="car_image_1 car_image_responsive" src="http://localhost:8000/storage/cars/10900_cc2400_032_17U.png">
+
+                                        </div>
+                                        <div class="car-wheel">
+                                            <div class="front" >
+                                                <img class="frontimg" src="storage/wheels/front_back/Xcess_X03_BFS_XC4624299918_18.png" id="image-diameter-front-1" >
+                                            </div>
+                                            <div class="back">
+                                                <img src="storage/wheels/front_back/Xcess_X03_BFS_XC4624299918_18.png" id="image-diameter-back-1">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
 
 <script type="text/javascript">
-function imageLoaded(ev) {
-    element = document.getElementById("cancan");
-    c = element.getContext("2d");
+    LoadImageToCanvas(1);
+function LoadImageToCanvas(key){
+    var width = 520;//$("#car_image_"+key).width() ;
+    var height = 520;//$("#car_image_"+key).height() ;
 
-    im = ev.target; // the image, assumed to be 200x200
+    var canvas = document.createElement('canvas');
+    var angleInRadians = 45;
+    canvas.id = "CursorLayer";
+    canvas.width = width;
+    canvas.height = height;
+    canvas.class = 'car_image_responsive';  
+    canvas.style.zIndex = 0;
+    canvas.style.position = "absolute";
+    // canvas.style.border = "1px solid";
+    var x = canvas.width / 2;
+    var y = canvas.height / 2;
+    canvas.translate(x, y);
+    canvas.rotate(angleInRadians);
+    canvas.drawImage(image, -width / 2, -height / 2, width, height);
+    canvas.rotate(-angleInRadians);
+    canvas.translate(-x, -y);
 
-    // read the width and height of the canvas
-    width = element.width;
-    height = element.height;
+    var loc = document.getElementById("modal_canvas_"+key);
+    loc.prepend(canvas);
 
-    // stamp the image on the left of the canvas:
-    c.drawImage(im, 0, 0);
+    var ctx = canvas.getContext("3d");
 
-    // get all canvas pixel data
-    imageData = c.getImageData(0, 0, width, height);
+    var car = document.getElementById("car_image_"+key);
+    // var frontWheel = document.getElementById("image-diameter-front-"+key);
+    // var backWheel = document.getElementById("image-diameter-back-"+key);
 
-    w2 = width / 2;
+    ctx.drawImage(car, 0, 0,width,height);
+    // ctx.drawImage(frontWheel,10 0,0,50,50);
+    // ctx.drawImage(backWheel,300+100,250,100,100);
 
-    // run through the image, increasing blue, but filtering
-    // down red and green:
+    $("#car_image_"+key).hide();
+    // $("#image-diameter-front-"+key).hide();
+    // $("#image-diameter-back-"+key).hide();
 
-    for (y = 0; y < height; y++) {
-        inpos = y * width * 4; // *4 for 4 ints per pixel
-        outpos = inpos + w2 * 4
-        for (x = 0; x < w2; x++) {
-            r = imageData.data[inpos++] / 3; // less red
-            g = imageData.data[inpos++] / 3; // less green
-            b = imageData.data[inpos++] * 5; // MORE BLUE
-            a = imageData.data[inpos++];     // same alpha
-
-            b = Math.min(255, b); // clamp to [0..255]
-
-            imageData.data[outpos++] = r;
-            imageData.data[outpos++] = g;
-            imageData.data[outpos++] = b;
-            imageData.data[outpos++] = a;
-        }
-    }
-
-    // put pixel data on canvas
-    c.putImageData(imageData, 0, 0);
+    // var trimmedCanvas = trimCanvas(ctx);
+   
 }
-
-im = new Image();
-im.onload = imageLoaded;
-im.src = "goat200.jpg"; // code assumes this image is 200x200
-
 </script>
 
 @endsection

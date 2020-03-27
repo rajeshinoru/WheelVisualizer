@@ -8,6 +8,9 @@
 @section('content')
 
 <style>
+.modal_canvas{
+    min-height: 427px !important;
+}
 .col-sm-12.wheel-des p
 {
     font-family: poppins !important;
@@ -267,7 +270,7 @@ transform: perspective(405px) rotateY(54deg);
                                                 <span class="price-tax">Ex Tax: $85.00</span>
                                             </div> -->
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" data-onclick="LoadImageToCanvas('{{$key}}')" >See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="LoadImageToCanvas('{{$key}}')" >See On Your Car</button>
                                         @endif
                                     </div>
                                     <div class="button-group">
@@ -314,7 +317,7 @@ transform: perspective(405px) rotateY(54deg);
                                 </div>
                                 <div class="modal-body">    
                                     <div class="row main-model-body" >
-                                        <div class="col-sm-8 model-car" id="modal_canvas_{{$key}}">
+                                        <div class="col-sm-8 model-car modal_canvas" id="modal_canvas_{{$key}}">
 
                                             <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_responsive" src="{{asset($car_images->image)}}">
 
@@ -502,8 +505,8 @@ function trimCanvas(c) {
 }
 
 function LoadImageToCanvas(key){
-    var width = $("#car_image_"+key).width() + 500;
-    var height = $("#car_image_"+key).height() + 500;
+    var width = 520;//$("#car_image_"+key).width() ;
+    var height = 520;//$("#car_image_"+key).height() ;
 
     var canvas = document.createElement('canvas');
 
@@ -511,9 +514,16 @@ function LoadImageToCanvas(key){
     canvas.width = width;
     canvas.height = height;
     canvas.class = 'car_image_responsive';  
-    canvas.style.zIndex = -1;
+    canvas.style.zIndex = 0;
     canvas.style.position = "absolute";
-    canvas.style.border = "1px solid";
+    // canvas.style.border = "1px solid";
+    var x = canvas.width / 2;
+    var y = canvas.height / 2;
+    canvas.translate(x, y);
+    canvas.rotate(angleInRadians);
+    canvas.drawImage(image, -width / 2, -height / 2, width, height);
+    canvas.rotate(-angleInRadians);
+    canvas.translate(-x, -y);
 
     var loc = document.getElementById("modal_canvas_"+key);
     loc.prepend(canvas);
@@ -525,10 +535,12 @@ function LoadImageToCanvas(key){
     // var backWheel = document.getElementById("image-diameter-back-"+key);
 
     ctx.drawImage(car, 0, 0,width,height);
-    // ctx.drawImage(frontWheel,300,250,100,100);
+    // ctx.drawImage(frontWheel,10 0,0,50,50);
     // ctx.drawImage(backWheel,300+100,250,100,100);
 
     $("#car_image_"+key).hide();
+    // $("#image-diameter-front-"+key).hide();
+    // $("#image-diameter-back-"+key).hide();
 
     // var trimmedCanvas = trimCanvas(ctx);
    
