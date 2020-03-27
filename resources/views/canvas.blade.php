@@ -41,7 +41,7 @@
                                     <div class="row main-model-body" >
                                         <div class="col-sm-8 model-car modal_canvas" id="modal_canvas_1">
 
-                                            <img id="car_image_1" class="car_image_1 car_image_responsive" src="http://localhost:8000/storage/cars/10900_cc2400_032_17U.png">
+                                            <img id="car_image_1" class="car_image_1 car_image_responsive" src="storage/cars/10900_cc2400_032_17U.png">
 
                                         </div>
                                         <div class="car-wheel">
