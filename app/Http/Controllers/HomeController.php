@@ -1285,8 +1285,12 @@ function tsf(){
 }
 
 
-function canvas(){
-    return view('canvas');
+function canvas($imgUrl=''){
+
+    $images = glob("storage/demo_cars/*.jpg");    
+
+    return view('canvas-trim',compact('images'));
+    return view('canvas',compact('images'));
 }
 
 public function vftp_to_sql($filename){
