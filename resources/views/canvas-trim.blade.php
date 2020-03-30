@@ -57,12 +57,11 @@
 body{background-color:red;}
 </style>
 
-before: <img src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg')}}"/>
+<!-- before: <img src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg')}}"/> -->
+<!-- <hr /> -->
+after : <img id="image" src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg')}}"/>
 <hr />
-after : <img id="image" src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg')}}" style="background-color: yellow" />
-<hr />
-<!-- <button>clear white</button> -->
-
+<img style="display: none;" id="wheel" src="{{asset('storage/wheels/front_back/Azad_AZ22_MB_AZ3455405253_24.png')}}">
 
 @endsection
 
@@ -77,6 +76,65 @@ after : <img id="image" src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg'
     var after = $('#image')[0];
     after.crossOrigin = "Anonymous";
     after.src = white2transparent(after);
+
+function trimCanvas(c) {
+    var ctx = c.getContext('2d'),
+        copy = document.createElement('canvas').getContext('2d'),
+        pixels = ctx.getImageData(0, 0, c.width, c.height),
+        l = pixels.data.length,
+        i,
+        bound = {
+            top: null,
+            left: null,
+            right: null,
+            bottom: null
+        },
+        x, y;
+    
+    // Iterate over every pixel to find the highest
+    // and where it ends on every axis ()
+    for (i = 0; i < l; i += 4) {
+        if (pixels.data[i + 3] !== 0) {
+            x = (i / 4) % c.width;
+            y = ~~((i / 4) / c.width);
+
+            if (bound.top === null) {
+                bound.top = y;
+            }
+
+            if (bound.left === null) {
+                bound.left = x;
+            } else if (x < bound.left) {
+                bound.left = x;
+            }
+
+            if (bound.right === null) {
+                bound.right = x;
+            } else if (bound.right < x && x < (c.width - 200)) {
+                bound.right = x;
+            }
+
+            if (bound.bottom === null) {
+                bound.bottom = y;
+            } else if (bound.bottom < y && y < (c.height - 100)) {
+                bound.bottom = y;
+            }
+        }
+    }
+    
+    // Calculate the height and width of the content
+    var trimHeight = bound.bottom - bound.top,
+        trimWidth = bound.right - bound.left,
+        trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+    // console.log(bound, trimWidth, trimHeight)
+    copy.canvas.width = trimWidth;
+    copy.canvas.height = trimHeight;
+    copy.putImageData(trimmed, 0, 0);
+
+ 
+    // Return trimmed canvas
+    return copy.canvas;
+}
 function white2transparent(img)
 {
     var c = document.createElement('canvas');
@@ -107,9 +165,9 @@ function white2transparent(img)
     for (var p = 0; p<pixel.length; p+=4)
     {
       if (
-          pixel[p+r] >= 240 &&
-          pixel[p+g] >= 240 &&
-          pixel[p+b] >= 240) // if white then change alpha to 0
+          pixel[p+r] >= 216 &&
+          pixel[p+g] >= 216 &&
+          pixel[p+b] >= 216) // if white then change alpha to 0
         {
 
             pixel[p+a] = 0;
@@ -118,65 +176,100 @@ function white2transparent(img)
       //       console.log(p+a);
       //   }
 
-        if (pixel[p+a] !== 0) {
-            x = (p+a / 4) % c.width;
-            y = ~~((p+a / 4) / c.width);
+        // if (pixel[p+a] !== 0) {
+        //     x = (p+a / 4) % c.width;
+        //     y = ~~((p+a / 4) / c.width);
 
-            if (bound.top === null) {
-                bound.top = y;
-            }
+        //     if (bound.top === null) {
+        //         bound.top = y;
+        //     }
 
-            if (bound.left === null) { 
-                    bound.left = x;
-            } else if (x < bound.left) {
-                    bound.left = x;
-            }
+        //     if (bound.left === null) { 
+        //             bound.left = x;
+        //     } else if (x < bound.left) {
+        //             bound.left = x;
+        //     }
 
  
 
-            if (bound.right === null) {
-                bound.right = x;
-            } else if (bound.right < x) {
-                bound.right = x;
-            }
+        //     if (bound.right === null) {
+        //         bound.right = x;
+        //     } else if (bound.right < x) {
+        //         bound.right = x;
+        //     }
 
-            if (bound.bottom === null) {
-                bound.bottom = y;
-            } else if (bound.bottom < y) {
-                bound.bottom = y;
-            }
+        //     if (bound.bottom === null) {
+        //         bound.bottom = y;
+        //     } else if (bound.bottom < y && (y < (h * 4)-500)) {
+        //         console.log(y , (h * 4)-500)
+        //         bound.bottom = y;
+        //     }
 
-            if(bound.left < 50){
-                bound.left = null;
-            }
-            if(bound.top < 50){
-                bound.top = null;
-            }
-        }
+
+
+        //     if(bound.left < 500){
+        //         bound.left = null;
+        //     }
+        //     if(bound.top < 50){
+        //         bound.top = null;
+        //     }
+        // }
 
     }
+    // console.log(bound ,imageData,pixel)
+    
+    // imageData.data = pixel;
+
     ctx.putImageData(imageData,0,0);
 
 
   //   // console.log(bound)
   // // Calculate the height and width of the content
-    var trimHeight = bound.bottom - bound.top,
-        trimWidth = bound.right - bound.left;
+    // var trimHeight = bound.bottom - bound.top,
+    //     trimWidth = bound.right - bound.left;
 
 
   //   console.log(bound.left, bound.top, trimWidth, trimHeight)
-  //   var trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
-  //   // c.width = trimWidth;
-  //   // c.height = trimHeight;
-  //   // ctx.putImageData(trimmed, 0, 0);
-  //   c.style.border = "1px solid";
+    // var trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+    // console.log(trimmed)
+    // c.width = trimWidth;
+    // c.height = trimHeight;
+    // ctx.putImageData(trimmed, 0, 0);
+    // c.style.border = "1px solid";
 
 
 
-    // var ctx = c.getContext('2d');
+    // var newctx = c.getContext('2d');
     
+    // newctx.width = w;
+    // newctx.height = h;
+    
+    // newctx.drawImage(img, bound.left, bound.top, trimWidth, trimHeight);
+// var imageData = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+// Then create a secondary canvas with the desired sizes and use puImageData to set the pixels:
 
-    return  c1.toDataURL('image/png');
+// var canvas1 = document.createElement("canvas");
+// canvas1.width = 100;
+// canvas1.height = 100;
+// var ctx1 = canvas1.getContext("2d");
+// ctx1.rect(0, 0, 100, 100);
+// ctx1.fillStyle = 'black';
+// ctx1.fill();
+// ctx1.putImageData(trimmed, 0, 0);
+// Finally use toDataURL to update the image:
+
+// dstImg.src = canvas1.toDataURL("image/png");
+    c = trimCanvas(c);
+
+    ctx = c.getContext('2d');
+
+    var frontWheel = document.getElementById("wheel");
+    // frontWheel.style.display="block";
+    // var backWheel = document.getElementById("image-diameter-back-"+key);
+    ctx.drawImage(frontWheel,0,0,50,50);
+    // frontWheel.style.display="none";
+    // ctx.drawImage(backWheel,300+100,250,100,100);
+    return  c.toDataURL('image/jpg');
 }
 
 </script>
