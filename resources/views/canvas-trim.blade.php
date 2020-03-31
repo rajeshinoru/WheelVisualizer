@@ -57,11 +57,10 @@
 body{background-color:red;}
 </style>
 
-<!-- before: <img src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg')}}"/> -->
-<!-- <hr /> -->
 after : <img id="image" src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg')}}"/>
 <hr />
 <img style="display: none;" id="wheel" src="{{asset('storage/wheels/front_back/Azad_AZ22_MB_AZ3455405253_24.png')}}">
+
 
 @endsection
 
@@ -76,6 +75,7 @@ after : <img id="image" src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg'
     var after = $('#image')[0];
     after.crossOrigin = "Anonymous";
     after.src = white2transparent(after);
+
 
 function trimCanvas(c) {
     var ctx = c.getContext('2d'),
@@ -168,6 +168,7 @@ function white2transparent(img)
           pixel[p+r] >= 216 &&
           pixel[p+g] >= 216 &&
           pixel[p+b] >= 216) // if white then change alpha to 0
+
         {
 
             pixel[p+a] = 0;
@@ -175,50 +176,6 @@ function white2transparent(img)
       //   else{
       //       console.log(p+a);
       //   }
-
-        // if (pixel[p+a] !== 0) {
-        //     x = (p+a / 4) % c.width;
-        //     y = ~~((p+a / 4) / c.width);
-
-        //     if (bound.top === null) {
-        //         bound.top = y;
-        //     }
-
-        //     if (bound.left === null) { 
-        //             bound.left = x;
-        //     } else if (x < bound.left) {
-        //             bound.left = x;
-        //     }
-
- 
-
-        //     if (bound.right === null) {
-        //         bound.right = x;
-        //     } else if (bound.right < x) {
-        //         bound.right = x;
-        //     }
-
-        //     if (bound.bottom === null) {
-        //         bound.bottom = y;
-        //     } else if (bound.bottom < y && (y < (h * 4)-500)) {
-        //         console.log(y , (h * 4)-500)
-        //         bound.bottom = y;
-        //     }
-
-
-
-        //     if(bound.left < 500){
-        //         bound.left = null;
-        //     }
-        //     if(bound.top < 50){
-        //         bound.top = null;
-        //     }
-        // }
-
-    }
-    // console.log(bound ,imageData,pixel)
-    
-    // imageData.data = pixel;
 
     ctx.putImageData(imageData,0,0);
 
@@ -270,6 +227,7 @@ function white2transparent(img)
     // frontWheel.style.display="none";
     // ctx.drawImage(backWheel,300+100,250,100,100);
     return  c.toDataURL('image/jpg');
+
 }
 
 </script>
