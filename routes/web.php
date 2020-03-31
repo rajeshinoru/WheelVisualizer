@@ -56,6 +56,7 @@ Route::get('/mergeUniqueFiles', 'HomeController@mergeUniqueFiles');
 Route::get('/opencv', 'HomeController@opencv');
 Route::get('/tsf', 'HomeController@tsf');
 Route::get('/canvas', 'HomeController@canvas');
+Route::get('/runPython', 'HomeController@runPython');
 
 
 

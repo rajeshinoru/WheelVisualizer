@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 use Illuminate\Http\Request;
 use App\Viflist;
@@ -12,7 +14,6 @@ use App\Wheel;
 use App\Tire;
 use App\WheelProduct;
 use Artisan;
-use Symfony\Component\Process\Process;
 class HomeController extends Controller
 {
     /**
@@ -1387,6 +1388,17 @@ public function vftp_to_sql_test($filename){
 
 
 
+public function runPython(){ 
+    $process = new Process("python3 {{public_path().'/js/detect-wheel.py'}}");
+    $process->run();
 
+    // executes after the command finishes
+    if (!$process->isSuccessful()) {
+        throw new ProcessFailedException($process);
+    }
+
+    echo $process->getOutput();
+    // Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
+    }
 
 }

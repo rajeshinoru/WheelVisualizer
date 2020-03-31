@@ -16,7 +16,7 @@
         "hesto/multi-auth": "^2.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "symfony/process": "^4.4"
+        "symfony/process": "^5.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
