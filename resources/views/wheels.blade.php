@@ -270,7 +270,7 @@ transform: perspective(405px) rotateY(54deg);
                                                 <span class="price-tax">Ex Tax: $85.00</span>
                                             </div> -->
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="LoadImageToCanvas('{{$key}}')" >See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="getWheelPosition('{{$key}}')" >See On Your Car</button>
                                         @endif
                                     </div>
                                     <div class="button-group">
@@ -319,7 +319,7 @@ transform: perspective(405px) rotateY(54deg);
                                     <div class="row main-model-body" >
                                         <div class="col-sm-8 model-car modal_canvas" id="modal_canvas_{{$key}}">
 
-                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_responsive" src="{{asset($car_images->image)}}">
+                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_responsive" src="{{asset($car_images->image)}}" data-imagename="{{$car_images->image}}">
 
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
@@ -405,6 +405,39 @@ transform: perspective(405px) rotateY(54deg);
     </section>
 
 <script type="text/javascript">
+    function imgSize(key){
+        var myImg = document.querySelector("#car_image_"+key);
+        var realWidth = myImg.naturalWidth;
+        var realHeight = myImg.naturalHeight;
+        alert("Original width=" + realWidth + ", " + "Original height=" + realHeight);
+    }
+    function getWheelPosition(key){ 
+        // console.log(img.naturalWidth);
+        // imgSize(key);
+        // alert($('#car_image_'+key).width());
+        imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
+        // alert(imagePath)
+        // alert(imagePath);
+        // console.log("python3 {{public_path().'/js/detect-wheel.py'}}");
+        // var regex = new RegExp(); 
+        // var res = regex.exec("python3 {{public_path().'/js/detect-wheel.py'}}");
+        // console.log(res);
+        $.ajax({url: "/runPython",data:{'image':imagePath}, success: function(result){
+            setWheelPosition(JSON.parse(result),key);
+        }});
+    }
+    function setWheelPosition(coordinates,key){
+        // console.log(coordinates);
+        var x = coordinates[0][0];
+        var y = coordinates[0][1];
+        var r = coordinates[0][2];
+        var w = coordinates[1];
+        var h = coordinates[2];
+        var front = $('#image-diameter-front-'+key);
+        front.css('left',x-r+'px');
+        front.css('top',y-r+'px');
+        
+    }
 
 // function LoadCar(id) {
 //     let imgElement = document.getElementById('car_image_'+id);

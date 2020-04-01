@@ -79,7 +79,8 @@ after : <img id="image" src="{{asset('storage/demo_cars/0777_cc1280_032_KH3.jpg'
         // var res = regex.exec("python3 {{public_path().'/js/detect-wheel.py'}}");
         // console.log(res);
     $.ajax({url: "/runPython", success: function(result){
-        console.log(result);
+        
+        console.log(JSON.parse(result));
     }});
     }
 

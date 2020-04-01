@@ -559,12 +559,12 @@ class HomeController extends Controller
 
     public function carImagesMovingToFolder()
     {     
-        $destinationPath = "storage/cars/";
+        $destinationPath = "storage/demo_cars/";
 
-        $existingImages = glob("storage/cars/*");
-        usort($existingImages, create_function('$a,$b', 'return filemtime($a) - filemtime($b);'));
+        $existingImages = glob("storage/demo_cars/*");
+        // usort($existingImages, create_function('$a,$b', 'return filemtime($a) - filemtime($b);'));
 
-        $carimagesArray = $this->recursiveScan('/var/www/html/imgs/color2400png/color_2400_032_png/*',$this->storeArr,$destinationPath);
+        $carimagesArray = $this->recursiveScan('/bala/Bala - web/Wheel Client/03_28_Car Images 1280 size/*',$this->storeArr,$destinationPath);
         // $cleanTags= preg_grep("/Free_Course/", $tags, PREG_GREP_INVERT);
         // $result=array_diff_assoc($carimagesArray,$images123[0]);
         // dd(count($images123),count($carimagesArray));
@@ -1388,8 +1388,12 @@ public function vftp_to_sql_test($filename){
 
 
 
-public function runPython(){ 
-    $process = new Process("python3 {{public_path().'/js/detect-wheel.py'}}");
+public function runPython(Request $request){ 
+
+    // python3 detect_circles.py --image images/car.png
+    // dd("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
+    $process = new Process("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
+
     $process->run();
 
     // executes after the command finishes
@@ -1397,7 +1401,8 @@ public function runPython(){
         throw new ProcessFailedException($process);
     }
 
-    echo $process->getOutput();
+    return response()->json($process->getOutput());
+    // return $process->getOutput();
     // Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
     }
 
