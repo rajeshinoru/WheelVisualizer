@@ -14,12 +14,21 @@ args = vars(ap.parse_args())
 
 width = 800
 height =600
+
+  
+# Front Wheel Configuration values
+param1 =55;
+param2 =20;
+minRadius =20;
+maxRadius =25;
+
 img = cv2.imread(args["image"], cv2.IMREAD_COLOR) 
 
 # img = cv2.resize(img, (0, 0), fx = 0.1, fy = 0.1) 
 img = cv2.resize(img, (width, height))
 
-points = [];
+front_points = [];
+back_points = [];
 # Read image. 
 # img = cv2.imread('/home/css/Desktop/shadow cropped.png', cv2.IMREAD_COLOR) 
 
@@ -40,28 +49,52 @@ gray_blurred = cv2.blur(gray, (5, 5))
 # 				cv2.HOUGH_GRADIENT, 1, 80, param1 = 55, 
 # 			param2 = 20, minRadius = 54, maxRadius = 60)
 
-detected_circles = cv2.HoughCircles(gray_blurred, 
+
+# Font Wheel for 2400X1800 % 3 size
+detected_circles_front = cv2.HoughCircles(gray_blurred, 
 				cv2.HOUGH_GRADIENT, 1, 80, param1 = 55, 
 			param2 = 20, minRadius = 20, maxRadius = 25) 
+detected_circles_back = cv2.HoughCircles(gray_blurred, 
+				cv2.HOUGH_GRADIENT, 1, 80, param1 = 55, 
+			param2 = 20, minRadius = 10, maxRadius = 15) 
 
 # Draw circles that are detected. 
-if detected_circles is not None:  
+if detected_circles_front is not None:  
 
 	# Convert the circle parameters a, b and r to integers. 
-	detected_circles = np.uint16(np.around(detected_circles)) 
+	detected_circles_front = np.uint16(np.around(detected_circles_front)) 
 	
 	
 	
-	for pt in detected_circles[0, :]: 
+	for pt in detected_circles_front[0, :]: 
 		a, b, r = pt[0], pt[1], pt[2] 
-		points.append([a,b,r])
+		front_points.append([a,b,r])
 		# Draw the circumference of the circle. 
 		cv2.circle(img, (a, b), r, (0, 255, 0), 2) 
 
 		# Draw a small circle (of radius 1) to show the center. 
 		cv2.circle(img, (a, b), 1, (0, 0, 255), 3) 
 
-print([points[0],width,height])
+
+# Draw circles that are detected. 
+if detected_circles_back is not None:  
+
+	# Convert the circle parameters a, b and r to integers. 
+	detected_circles_back = np.uint16(np.around(detected_circles_back)) 
+	
+	
+	
+	for pt in detected_circles_back[0, :]: 
+		a, b, r = pt[0], pt[1], pt[2] 
+		back_points.append([a,b,r])
+		# Draw the circumference of the circle. 
+		cv2.circle(img, (a, b), r, (0, 255, 0), 2) 
+
+		# Draw a small circle (of radius 1) to show the center. 
+		cv2.circle(img, (a, b), 1, (0, 0, 255), 3) 
+
+
+print([front_points,back_points,width,height])
 # python2json = json.dumps(detected_circles)
 # cv2.namedWindow('Detected Circle',WINDOW_NORMAL)
 # cv2.resizeWindow('Detected Circle', 600,600)

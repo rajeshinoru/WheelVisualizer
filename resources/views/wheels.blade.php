@@ -428,15 +428,24 @@ transform: perspective(405px) rotateY(54deg);
     }
     function setWheelPosition(coordinates,key){
         // console.log(coordinates);
-        var x = coordinates[0][0];
-        var y = coordinates[0][1];
-        var r = coordinates[0][2];
-        var w = coordinates[1];
-        var h = coordinates[2];
+        var front = coordinates[0];
+        var back = coordinates[1];
+        var w = coordinates[3];
+        var h = coordinates[4];
+
+        var x = front[0][0];
+        var y = front[0][1];
+        var r = front[0][2];
         var front = $('#image-diameter-front-'+key);
         front.css('left',x-r+'px');
         front.css('top',y-r+'px');
-        
+        var x = back[0][0];
+        var y = back[0][1];
+        var r = back[0][2];
+        var back = $('#image-diameter-back-'+key);
+        back.css('left',x-r+'px');
+        back.css('top',y-r+'px');
+
     }
 
 // function LoadCar(id) {
