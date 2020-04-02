@@ -9,7 +9,15 @@ $(document).on('change', '.Year,.Make,.Model', function() {
     var driverbody = $('.DriveBody').val(); 
     filters(year, make, model, driverbody, changeBy);
 });
+$(document).ready(function() {
+    var changeBy = '';
 
+    var make = $('.Make').val();
+    var year = $('.Year').val();
+    var model = $('.Model').val();
+    var driverbody = $('.DriveBody').val(); 
+    filters(year, make, model, driverbody, changeBy);
+}); 
 
 function filters(year = '', make = '', model = '', driverbody = '', changeBy = '') {
     $.ajax({
@@ -48,25 +56,30 @@ function filters(year = '', make = '', model = '', driverbody = '', changeBy = '
         } else {
             data.data.map(function(value, key) {
                 if (changeBy == 'make') {
-                    $('.Year').append('<option value="' + value.yr + '">' + value.yr + '</option>');
+
+                    isSelected = (value.yr == year) ? 'selected' : '';
+                    $('.Year').append('<option value="' + value.yr + '"' + isSelected + '>' + value.yr + '</option>');
                 }
                 if (changeBy == 'year') {
-                    $('.Model').append('<option value="' + value.model + '">' + value.model + '</option>');
+                    isSelected = (value.model == model) ? 'selected' : '';
+                    $('.Model').append('<option value="' + value.model + '"' + isSelected + '>' + value.model + '</option>');
                 }
                 if (changeBy == 'model') {
-                    $('.DriveBody').append('<option value="' + value.vif + '">' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
+                    isSelected = (value.vif == driverbody) ? 'selected' : '';
+                    $('.DriveBody').append('<option value="' + value.vif + '"' + isSelected + '>' + value.whls + ' ' + value.drs + ' ' + value.body + '</option>');
                 }
             });
         }
 
-        if(make != null && changeBy !=''){
+        // if(make != null && changeBy !=''){
 
-            // $('.Make').append('<option value="' + make + '" selected>' + make + '</option>');
-            $('.Make').trigger("chosen:updated");
-        }
-        $('.Year').trigger("chosen:updated");
-        $('.Model').trigger("chosen:updated");
-        $('.DriveBody').trigger("chosen:updated");
+        //     // $('.Make').append('<option value="' + make + '" selected>' + make + '</option>');
+        //     $('.Make').trigger("chosen:updated");
+        // }
+         $('.Make').trigger("chosen:updated");
+            $('.Year').trigger("chosen:updated");
+            $('.Model').trigger("chosen:updated");
+            $('.DriveBody').trigger("chosen:updated");
     }).fail(function(msg) {
         alert("fails");
     });
