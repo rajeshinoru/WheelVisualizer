@@ -12,8 +12,10 @@ args = vars(ap.parse_args())
 
 # load the image, clone it for output, and then convert it to grayscale
 
-width = 800
-height =600
+width = 668
+# 800
+height =501
+# 600
 
   
 # Front Wheel Configuration values
@@ -58,7 +60,7 @@ detected_circles_front = cv2.HoughCircles(gray_blurred,
 			param2 = 20, minRadius = 20, maxRadius = 25) 
 detected_circles_back = cv2.HoughCircles(gray_blurred, 
 				cv2.HOUGH_GRADIENT, 1, 80, param1 = 55, 
-			param2 = 20, minRadius = 10, maxRadius = 15) 
+			param2 = 20, minRadius = 10, maxRadius = 25) 
 
 # Draw circles that are detected. 
 if detected_circles_front is not None:  
@@ -70,7 +72,7 @@ if detected_circles_front is not None:
 	
 	for pt in detected_circles_front[0, :]: 
 		a, b, r = pt[0], pt[1], pt[2] 
-		if a < 400:
+		if a < 300 and a > 200 and b > 290:
 			front_points.append([a,b,r])
 		# Draw the circumference of the circle. 
 		cv2.circle(img, (a, b), r, (0, 255, 0), 2) 
@@ -89,12 +91,13 @@ if detected_circles_back is not None:
 	
 	for pt in detected_circles_back[0, :]: 
 		a, b, r = pt[0], pt[1], pt[2] 
-		back_points.append([a,b,r])
-		# Draw the circumference of the circle. 
-		cv2.circle(img, (a, b), r, (0, 255, 255), 2) 
+		if a > 400 and b > 300:
+			back_points.append([a,b,r])
+			# Draw the circumference of the circle. 
+			cv2.circle(img, (a, b), r, (0, 255, 255), 2) 
 
-		# Draw a small circle (of radius 1) to show the center. 
-		cv2.circle(img, (a, b), 1, (0, 0, 255), 3) 
+			# Draw a small circle (of radius 1) to show the center. 
+			cv2.circle(img, (a, b), 1, (0, 0, 255), 3) 
 
 
 print([front_points,back_points,width,height])
