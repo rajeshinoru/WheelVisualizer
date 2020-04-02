@@ -383,16 +383,16 @@
 
         if(coordinates[0].length == 0){
 
-            fx =282;//278;//366;
-            fy =301;//313;//355;
+            fx =281;//278;//366;
+            fy =308;//313;//355;
             fr = 0;
         } else{
             fx = front[0][0];
             fy = front[0][1];
             fr = front[0][2];
-            if(fy < 300 && fy > 290){
-                fy = 311+24;
-            }
+            // if(fy < 295 && fy > 290){
+            //     fy = 311;
+            // }
         }
 
         if(coordinates[1].length == 0){
@@ -401,8 +401,8 @@
             br = fr;
             if(coordinates[0].length == 0){
                 bx = 512;//642;
-                by = 310;//344;
-                br = 0;
+                by = fy;//344;
+                br = fr;
             }
         } else{
             bx = back[0][0];
