@@ -317,9 +317,9 @@ transform: perspective(405px) rotateY(54deg);
                                 </div>
                                 <div class="modal-body">    
                                     <div class="row main-model-body" >
-                                        <div class="col-sm-8 model-car modal_canvas" id="modal_canvas_{{$key}}">
+                                        <div class="col-sm-12 model-car modal_canvas" id="modal_canvas_{{$key}}">
 
-                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_responsive" src="{{asset($car_images->image)}}" data-imagename="{{$car_images->image}}">
+                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-imagename="{{$car_images->image}}">
 
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
@@ -427,24 +427,65 @@ transform: perspective(405px) rotateY(54deg);
         }});
     }
     function setWheelPosition(coordinates,key){
-        // console.log(coordinates);
         var front = coordinates[0];
         var back = coordinates[1];
+
+
+        console.log(front,back);
         var w = coordinates[3];
         var h = coordinates[4];
 
-        var x = front[0][0];
-        var y = front[0][1];
-        var r = front[0][2];
+        var fx,fy,fr;
+        var bx,by,br;
+
+
+
+        if(coordinates[0].length == 0){
+
+            fx = 366;
+            fy = 355;
+            fr = 0;
+        } else{
+            fx = front[0][0];
+            fy = front[0][1];
+            fr = front[0][2];
+        }
+
+        if(coordinates[1].length == 0){
+
+            bx = fx+275;
+            by = fy;
+            br = fr;
+            if(coordinates[0].length == 0){
+                bx = 642;
+                by = 344;
+                br = 0;
+            }
+        } else{
+
+            bx = back[0][0];
+            by = back[0][1];
+            br = back[0][2];
+        }
+
+        if(fy != by){
+            by = fy;
+        }
+        if(fr < 23){
+            fr = fr+2;
+            br = br+2;
+        }
+        if(br < 23){
+            fr = fr+2;
+            br = br+2;
+        }
         var front = $('#image-diameter-front-'+key);
-        front.css('left',x-r+'px');
-        front.css('top',y-r+'px');
-        var x = back[0][0];
-        var y = back[0][1];
-        var r = back[0][2];
+        front.css('left',fx-fr+'px');
+        front.css('top',fy-fr+'px');
+
         var back = $('#image-diameter-back-'+key);
-        back.css('left',x-r+'px');
-        back.css('top',y-r+'px');
+        back.css('left',bx-br+'px');
+        back.css('top',by-br-10+'px');
 
     }
 

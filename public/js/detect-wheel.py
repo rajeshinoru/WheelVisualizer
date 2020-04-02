@@ -17,10 +17,10 @@ height =600
 
   
 # Front Wheel Configuration values
-param1 =55;
-param2 =20;
-minRadius =20;
-maxRadius =25;
+param1 =55
+param2 =20
+minRadius =20
+maxRadius =25
 
 img = cv2.imread(args["image"], cv2.IMREAD_COLOR) 
 
@@ -33,9 +33,11 @@ back_points = [];
 # img = cv2.imread('/home/css/Desktop/shadow cropped.png', cv2.IMREAD_COLOR) 
 
 # Convert to grayscale. 
+
+# (thresh, blackAndWhiteImage) = cv2.threshold(img, 90, 255, cv2.THRESH_BINARY)
+# Blur using 3 * 3 kernel. 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
 
-# Blur using 3 * 3 kernel. 
 gray_blurred = cv2.blur(gray, (5, 5)) 
 
 # Apply Hough transform on the blurred image. 
@@ -68,7 +70,8 @@ if detected_circles_front is not None:
 	
 	for pt in detected_circles_front[0, :]: 
 		a, b, r = pt[0], pt[1], pt[2] 
-		front_points.append([a,b,r])
+		if a < 400:
+			front_points.append([a,b,r])
 		# Draw the circumference of the circle. 
 		cv2.circle(img, (a, b), r, (0, 255, 0), 2) 
 
@@ -88,18 +91,20 @@ if detected_circles_back is not None:
 		a, b, r = pt[0], pt[1], pt[2] 
 		back_points.append([a,b,r])
 		# Draw the circumference of the circle. 
-		cv2.circle(img, (a, b), r, (0, 255, 0), 2) 
+		cv2.circle(img, (a, b), r, (0, 255, 255), 2) 
 
 		# Draw a small circle (of radius 1) to show the center. 
 		cv2.circle(img, (a, b), 1, (0, 0, 255), 3) 
 
 
 print([front_points,back_points,width,height])
-# python2json = json.dumps(detected_circles)
-# cv2.namedWindow('Detected Circle',WINDOW_NORMAL)
-# cv2.resizeWindow('Detected Circle', 600,600)
+
 # img = cv2.resize(img, (1200, 800))
-# cv2.imshow('image', img)
+# thresh = cv2.resize(thresh, (1200, 800))
+# blackAndWhiteImage = cv2.resize(blackAndWhiteImage, (1200, 800))
+# cv2.imshow('img', img)
+# cv2.imshow('thresh', thresh)
+# cv2.imshow('blackAndWhiteImage', blackAndWhiteImage)
 # cv2.waitKey(0) 
 
 
