@@ -107,7 +107,8 @@
 }  
 .front img {
 
-    width: 82px;
+    width: 72px;
+    /*82px;*/
     position: absolute;
     content: '';
     top: 40.7%;
@@ -136,7 +137,8 @@
     }
 .back img
 {    
-    width: 61px ;
+    width: 55px;
+    /*61px ;*/
     position: absolute;
     content: '';
     top: 40%;
@@ -171,8 +173,8 @@
 /*    width: 685px;
     height: 415px;*/
 
-    width: 800px;
-    height: 600px;
+    width: 100%;/*800px;*/
+    height: 100%;/*600px*/;
 
 }
 

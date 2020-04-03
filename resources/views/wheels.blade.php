@@ -31,67 +31,7 @@
     padding: 20px 20px !important;
 }
 </style>
-<?php
 
-    // $widthArray = array(
-    //     'Audi'=>array('width'=>'84px','top'=>'41.7%','left'=>'40%'),
-    // );
-
-?>
-
-@if(@$car_images->CarViflist->yr == "2020"  && @$car_images->CarViflist->make =="Acura"  && @$car_images->CarViflist->model =="MDX"  )
-<style type="text/css">
-.front img {
-width: 78px;
-top: 46.5%;
-left: 39%;
-transform: perspective(0px) rotateY(40deg);
-}
-.back img{
-width: 63px;
-top: 46%;
-left: 70.9%;
-transform: perspective(405px) rotateY(54deg);
-}
-</style>
-@endif
-
-@if(@$car_images->CarViflist->yr == "2019"  && @$car_images->CarViflist->make =="Acura"  && @$car_images->CarViflist->model =="TLX"  )
-<style type="text/css">
-.front img {
-    width: 69px;
-    top: 45.5%;
-    left: 39%;
-    transform: perspective(0px) rotateY(37deg);
-
-}
-.back img{
-    width: 61px;
-    top: 44%;
-    left: 70.9%;
-    transform: perspective(405px) rotateY(54deg);
-}
-</style>
-@endif
-
-@if(@$car_images->CarViflist->yr == "2019"  && @$car_images->CarViflist->make =="Volvo"  && @$car_images->CarViflist->model =="S90"  )
-<style type="text/css">
-.front img {
-    width: 68px;
-    top: 45.7%;
-    left: 37%;
-    transform: perspective(0px) rotateY(44deg);
-
-}
-.back img{
-
-    width: 53px;
-    top: 44.5%;
-    left: 70.7%;
-    transform: perspective(405px) rotateY(57deg);
-}
-</style>
-@endif
 
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
@@ -317,9 +257,9 @@ transform: perspective(405px) rotateY(54deg);
                                 </div>
                                 <div class="modal-body">    
                                     <div class="row main-model-body" >
-                                        <div class="col-sm-8 model-car modal_canvas" id="modal_canvas_{{$key}}">
+                                        <div class="col-sm-12 model-car modal_canvas" id="modal_canvas_{{$key}}">
 
-                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_responsive" src="{{asset($car_images->image)}}" data-imagename="{{$car_images->image}}">
+                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-imagename="{{$car_images->image}}">
 
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
@@ -427,24 +367,68 @@ transform: perspective(405px) rotateY(54deg);
         }});
     }
     function setWheelPosition(coordinates,key){
-        // console.log(coordinates);
         var front = coordinates[0];
         var back = coordinates[1];
+
+
+        console.log(front,back);
+
         var w = coordinates[3];
         var h = coordinates[4];
 
-        var x = front[0][0];
-        var y = front[0][1];
-        var r = front[0][2];
+        var fx,fy,fr;
+        var bx,by,br;
+
+
+
+        if(coordinates[0].length == 0){
+
+            fx =281;//278;//366;
+            fy =308;//313;//355;
+            fr = 0;
+        } else{
+            fx = front[0][0];
+            fy = front[0][1];
+            fr = front[0][2];
+            // if(fy < 295 && fy > 290){
+            //     fy = 311;
+            // }
+        }
+
+        if(coordinates[1].length == 0){
+            bx = fx+235;
+            by = fy;
+            br = fr;
+            if(coordinates[0].length == 0){
+                bx = 512;//642;
+                by = fy;//344;
+                br = fr;
+            }
+        } else{
+            bx = back[0][0];
+            by = back[0][1];
+            br = back[0][2];
+
+            if(fy != by){
+                by = fy;
+            }
+        }
+
+        // if(fr < 22){
+        //     fr = fr+2;
+        //     br = br+2;
+        // }
+        // if(br < 22){
+        //     fr = fr+2;
+        //     br = br+2;
+        // }
         var front = $('#image-diameter-front-'+key);
-        front.css('left',x-r+'px');
-        front.css('top',y-r+'px');
-        var x = back[0][0];
-        var y = back[0][1];
-        var r = back[0][2];
+        front.css('left',fx-fr+'px');
+        front.css('top',fy-fr+'px');
+
         var back = $('#image-diameter-back-'+key);
-        back.css('left',x-r+'px');
-        back.css('top',y-r+'px');
+        back.css('left',bx-br+'px');
+        back.css('top',by-br+'px');
 
     }
 
