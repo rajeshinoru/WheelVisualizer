@@ -87,8 +87,8 @@ class InventoryController extends Controller
 
     public function  getUploadInventories(Request $request){
         $db_ext = \DB::connection('sqlsrv');
-        $inv = $db_ext->table('inventories')->get()->count();
-        dd(Inventory::get()->count(),$inv);
+        $inv = $db_ext->table('inventories')->get();
+        dd($inv);
         // dd($db_ext);
     }
 
@@ -97,18 +97,24 @@ class InventoryController extends Controller
         $db_ext = \DB::connection('sqlsrv');
 
         $columns=[
-            'fname',
-            'lname',
-            'email',
-            'mobile',
-            'email_verified_at',
-            'password',
+            'partno',
+            'vendor_partno',
+            'mpn',
+            'description',
+            'brand',
+            'model',
+            'location_code',
+            'available_qty',
+            'price',
+            'drop_shipper',
+            'ds_vendor_code',
+            'location_name'
         ];
         // Get table data from production
-        foreach(\DB::table('users')->select($columns)->get() as $data){
+        foreach(\DB::table('inventories')->select($columns)->get() as $data){
             // dd($data);
              // Save data to staging database - default db connection
-             $db_ext->table('users')->insert((array) $data);
+             $db_ext->table('inventories')->insert((array) $data);
         }
     }
 
