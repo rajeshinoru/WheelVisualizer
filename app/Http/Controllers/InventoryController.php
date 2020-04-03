@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -85,7 +86,30 @@ class InventoryController extends Controller
 
 
     public function  getUploadInventories(Request $request){
-        dd(Inventory::get()->count());
+        $db_ext = \DB::connection('sqlsrv');
+        $inv = $db_ext->table('inventories')->get()->count();
+        dd(Inventory::get()->count(),$inv);
+        // dd($db_ext);
+    }
+
+    public function  CopyTableToServer(Request $request){
+        // dd(Inventory::get()->count());
+        $db_ext = \DB::connection('sqlsrv');
+
+        $columns=[
+            'fname',
+            'lname',
+            'email',
+            'mobile',
+            'email_verified_at',
+            'password',
+        ];
+        // Get table data from production
+        foreach(\DB::table('users')->select($columns)->get() as $data){
+            // dd($data);
+             // Save data to staging database - default db connection
+             $db_ext->table('users')->insert((array) $data);
+        }
     }
 
 
