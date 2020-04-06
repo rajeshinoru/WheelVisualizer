@@ -89,7 +89,6 @@ class InventoryController extends Controller
         $db_ext = \DB::connection('sqlsrv');
         $inv = $db_ext->table('inventories')->get()->count();
         dd($inv);
-        // dd($db_ext);
     }
 
     public function  CopyTableToServer(Request $request){

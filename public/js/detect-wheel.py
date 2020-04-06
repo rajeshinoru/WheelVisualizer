@@ -41,6 +41,7 @@ back_points = [];
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
 
 gray_blurred = cv2.blur(gray, (5, 5)) 
+# gray_blurred = cv2.blur(gray, (4, 4)) 
 
 # Apply Hough transform on the blurred image. 
 
@@ -49,18 +50,20 @@ gray_blurred = cv2.blur(gray, (5, 5))
 # 			param2 = 20, minRadius = 30, maxRadius = 35) 
 
 
-# detected_circles = cv2.HoughCircles(gray_blurred, 
-# 				cv2.HOUGH_GRADIENT, 1, 80, param1 = 55, 
-# 			param2 = 20, minRadius = 54, maxRadius = 60)
-
 
 # Font Wheel for 2400X1800 % 3 size
 detected_circles_front = cv2.HoughCircles(gray_blurred, 
 				cv2.HOUGH_GRADIENT, 1, 80, param1 = 55, 
-			param2 = 20, minRadius = 10, maxRadius = 25) 
+			param2 = 20, minRadius = 10, maxRadius = 30) 
+
 detected_circles_back = cv2.HoughCircles(gray_blurred, 
 				cv2.HOUGH_GRADIENT, 1, 80, param1 = 55, 
 			param2 = 20, minRadius = 10, maxRadius = 25) 
+
+
+# detected_circles = cv2.HoughCircles(gray_blurred, 
+# 				cv2.HOUGH_GRADIENT, 1.5, 80, param1 = 55, 
+# 			param2 = 20, minRadius = 54, maxRadius = 70)
 
 # Draw circles that are detected. 
 if detected_circles_front is not None:  
