@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/js/custom-detection/images
 /public/storage
 /vendor
 /.idea
