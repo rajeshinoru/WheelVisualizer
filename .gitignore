@@ -1,6 +1,9 @@
 /node_modules
 /public/hot
 /public/js/custom-detection/images
+/public/js/tf-custom-obj-detection/annotations
+/public/js/tf-custom-obj-detection/images
+/public/js/custom-detection/masked-cars
 /public/storage
 /vendor
 /.idea
