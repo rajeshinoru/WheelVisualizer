@@ -1392,10 +1392,10 @@ public function runPython(Request $request){
 
     // python3 detect_circles.py --image images/car.png
     // dd("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
-    $process = new Process("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
+    $process = new Process("python3 ".public_path()."/js/detect-wheel.py ".$request->image." ".public_path());
 
     $process->run(); 
-    
+
     // executes after the command finishes
     if (!$process->isSuccessful()) {
         throw new ProcessFailedException($process);

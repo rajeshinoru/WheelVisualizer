@@ -1,22 +1,24 @@
 import cv2 
 import numpy as np 
-import torch
+# import torch
 import codecs, json 
-
-import argparse
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required = True, help = "Path to the image")
-args = vars(ap.parse_args())
+import sys 
+# import argparse
+# # construct the argument parser and parse the arguments
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-i", "--image", required = True, help = "Path to the image")
+# args = vars(ap.parse_args())
 
 # load the image, clone it for output, and then convert it to grayscale
-
+args = sys.argv
+image = args[1]
+baseurl = args[2]
 width = 668
 # 800
 height =501
 # 600
-baseurl = '/bala/projects/inoru/WheelVisualizer/'
-storageurl = 'public/storage/custom-detection-dataset/'
+# baseurl = '/bala/projects/inoru/WheelVisualizer/'
+storageurl = '/storage/custom-detection-dataset/'
   
 # Front Wheel Configuration values
 param1 =55
@@ -24,7 +26,7 @@ param2 =20
 minRadius =20
 maxRadius =25
 
-img = cv2.imread(args["image"], cv2.IMREAD_COLOR) 
+img = cv2.imread(image, cv2.IMREAD_COLOR) 
 
 # img = cv2.resize(img, (0, 0), fx = 0.1, fy = 0.1) 
 img = cv2.resize(img, (width, height))
