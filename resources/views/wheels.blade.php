@@ -210,7 +210,7 @@
                                                 <span class="price-tax">Ex Tax: $85.00</span>
                                             </div> -->
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="getWheelPosition('{{$key}}')" >See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($wheel->image)))?'disabled':''}}" {{(!file_exists(front_back_path($wheel->image)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
                                         @endif
                                     </div>
                                     <div class="button-group">
@@ -344,13 +344,18 @@
       </div>
     </section>
 
+@endsection
+@section('custom_scripts')
+    <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
+    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('js/slick.js') }}"></script>
+    <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
+
 <script type="text/javascript">
-    function imgSize(key){
-        var myImg = document.querySelector("#car_image_"+key);
-        var realWidth = myImg.naturalWidth;
-        var realHeight = myImg.naturalHeight;
-        alert("Original width=" + realWidth + ", " + "Original height=" + realHeight);
-    }
+    var boxes;
+    $(document).ready(function(){
+        getWheelPosition('0')
+    });
     function getWheelPosition(key){ 
         // console.log(img.naturalWidth);
         // imgSize(key);
@@ -363,15 +368,41 @@
         // var res = regex.exec("python3 {{public_path().'/js/detect-wheel.py'}}");
         // console.log(res);
         $.ajax({url: "/runPython",data:{'image':imagePath}, success: function(result){
-            setWheelPosition(JSON.parse(result),key);
+            boxes = JSON.parse(result)
+            // WheelMapping(JSON.parse(result));
+            // setWheelPosition(result,key);
         }});
     }
+
+    function WheelMapping(key){
+
+        console.log('boxes',boxes)
+        if(boxes[0][0] < 400 ){
+
+            f = boxes[0];
+
+            b = boxes[1];
+        }else{
+
+            f = boxes[1];
+
+            b = boxes[0];
+        }
+        d = f[3]-f[2];
+        var front = $('#image-diameter-front-'+key);
+        front.css('left',f[0]-d+'px');
+        front.css('top',f[1]+'px');
+
+        var back = $('#image-diameter-back-'+key);
+        back.css('left',b[0]-d/2+'px');
+        back.css('top',b[1]+'px');
+    }
+
+
+
     function setWheelPosition(coordinates,key){
         var front = coordinates[0];
         var back = coordinates[1];
-
-
-        console.log(front,back);
 
         var w = coordinates[3];
         var h = coordinates[4];
@@ -573,13 +604,4 @@ function LoadImageToCanvas(key){
 }
 
 </script>
-
-@endsection
-@section('custom_scripts')
-    <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
-    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
-    <script src="{{ asset('js/slick.js') }}"></script>
-    <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
-
-
 @endsection

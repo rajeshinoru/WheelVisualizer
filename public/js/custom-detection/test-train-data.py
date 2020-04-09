@@ -1,17 +1,13 @@
 from detecto import core, utils, visualize
-
-dataset = core.Dataset('masked-cars/')
-model = core.Model(['wheel'])
-
-model.fit(dataset)
-
 # Specify the path to your image
-image = utils.read_image('10827_cc1280_032_BN.jpg')
+image = utils.read_image('10827_cc1280_032_BN.jpg')# Specify the path to your image
+model = core.Model.load('model_weights.pth', ['wheel'])
+# image = utils.read_image('lorry-transport-services-500x500.jpg')
 predictions = model.predict(image)
 
 # predictions format: (labels, boxes, scores)
 labels, boxes, scores = predictions
-
+visualize.show_labeled_image(image, boxes, labels)
 # ['alien', 'bat', 'bat']
 print(labels) 
 

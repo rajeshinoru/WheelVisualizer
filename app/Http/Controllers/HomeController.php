@@ -1394,8 +1394,8 @@ public function runPython(Request $request){
     // dd("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
     $process = new Process("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
 
-    $process->run();
-
+    $process->run(); 
+    
     // executes after the command finishes
     if (!$process->isSuccessful()) {
         throw new ProcessFailedException($process);
