@@ -1391,10 +1391,8 @@ public function vftp_to_sql_test($filename){
 public function runPython(Request $request){ 
 
     // python3 detect_circles.py --image images/car.png
-    // dd("which python3");
     // dd("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
-    // $process = new Process("python3 ".public_path()."/js/detect-wheel.py ".$request->image." ".public_path());
-    $process = new Process("which python3");
+    $process = new Process("python3 ".public_path()."/js/detect-wheel.py ".$request->image." ".public_path());
 
     $process->run(); 
 
