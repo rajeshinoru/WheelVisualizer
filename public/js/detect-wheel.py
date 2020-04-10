@@ -1,3 +1,6 @@
+
+from detecto import core, utils, visualize
+
 import cv2 
 import numpy as np 
 # import torch
@@ -30,11 +33,10 @@ img = cv2.imread(image, cv2.IMREAD_COLOR)
 
 # img = cv2.resize(img, (0, 0), fx = 0.1, fy = 0.1) 
 img = cv2.resize(img, (width, height))
-cv2.imwrite('current_car.png', img);
+cv2.imwrite('current_car.png', img)
 
 
 
-from detecto import core, utils, visualize
 # Specify the path to your image
 image = utils.read_image('current_car.png')# Specify the path to your image
 model = core.Model.load(baseurl+storageurl+'model_weights.pth', ['wheel'])
