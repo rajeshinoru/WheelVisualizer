@@ -1,5 +1,4 @@
 
-from detecto import core, utils, visualize
 
 import cv2 
 import numpy as np 
@@ -8,6 +7,8 @@ import codecs, json
 import sys 
 
 sys.path.append('/home/rajesh/.local/lib/python3.6/site-packages') 
+
+from detecto import core, utils, visualize
 # import argparse
 # # construct the argument parser and parse the arguments
 # ap = argparse.ArgumentParser()
