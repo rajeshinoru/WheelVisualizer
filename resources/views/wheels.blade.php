@@ -387,15 +387,45 @@
 
             b = boxes[0];
         }
-        d = f[3]-f[2];
+   
+        // d = f[3]-f[2];
         var front = $('#image-diameter-front-'+key);
         front.css('left',f[0]-18+'px');
         front.css('top',f[1]+'px');
 
         var back = $('#image-diameter-back-'+key);
-        back.css('left',b[0]-10+'px');
+        back.css('left',b[0]-11+'px');
         back.css('top',b[1]+8.5+'px');
         // back.css('width',b[2]+'px');
+
+        // d=f[3]-f[2];
+        // if(d > 21){
+        //     f[3] = f[2]+14;//+(f[2]/2);
+        // }
+
+
+        // var front = $('#image-diameter-front-'+key);
+        // front.css('left',f[0]-19+'px'); //
+        // front.css('top',f[1]+2+'px');
+        // front.width(f[2]+'px');
+        // front.height(f[3]+'px');
+        // // front.css('padding','5px')
+        // d=b[3]-b[2];
+        // if(b[2] < 50){
+        //     b[2] = 60;
+        // }
+        // if(d > 21){
+        //     b[3] = b[3]-15;//+(b[2]/2);
+        // }
+
+        // var back = $('#image-diameter-back-'+key);
+        // back.css('left',b[0]-12+'px'); //
+        // back.css('top',b[1]+9+'px'); //
+        // back.width(b[2]+'px');
+        // back.height(b[3]+'px');
+
+
+
     }
 
 

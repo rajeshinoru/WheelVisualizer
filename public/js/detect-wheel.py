@@ -66,9 +66,9 @@ for key, value in enumerate(boxes):
 		rect = value.tolist()
 		x = (rect[0] +rect[2])/2
 		y = (rect[1] +rect[3])/2
-		sr = (rect[2]-rect[0])
-		tr = (rect[3]-rect[1])
-		points.append([x,y,sr,tr])
+		w = (rect[2]-rect[0])
+		h = (rect[3]-rect[1])
+		points.append([x,y,w,h])
 		cv2.rectangle(img,(value[0],value[1]),(value[2],value[3]), color, thickness)
 		# cv2.circle(img, (value[0],value[1]), 1, color, 5)
 		# cv2.circle(img, (value[2],value[3]), 1, color, thickness)
