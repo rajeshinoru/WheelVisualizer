@@ -41,8 +41,6 @@
                 <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1>
             </div>
         </div>
-
-
             <div class="row main-pro">
                 <div class="col-sm-3">
                     <div class="header-bottom col-sm-12">
@@ -259,7 +257,7 @@
                                     <div class="row main-model-body" >
                                         <div class="col-sm-12 model-car modal_canvas" id="modal_canvas_{{$key}}">
 
-                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-imagename="{{$car_images->image}}">
+                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-carid="{{$car_images->car_id}}" data-imagename="{{$car_images->image}}">
 
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
@@ -361,13 +359,14 @@
         // imgSize(key);
         // alert($('#car_image_'+key).width());
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
+        carid = $('#car_image_'+key).attr('data-carid');
         // alert(imagePath)
         // alert(imagePath);
         // console.log("python3 {{public_path().'/js/detect-wheel.py'}}");
         // var regex = new RegExp(); 
         // var res = regex.exec("python3 {{public_path().'/js/detect-wheel.py'}}");
         // console.log(res);
-        $.ajax({url: "/runPython",data:{'image':imagePath}, success: function(result){
+        $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
             boxes = JSON.parse(result)
             // WheelMapping(JSON.parse(result));
             // setWheelPosition(result,key);
@@ -396,6 +395,7 @@
         var back = $('#image-diameter-back-'+key);
         back.css('left',b[0]-10+'px');
         back.css('top',b[1]+5+'px');
+        // back.css('width',b[2]+'px');
     }
 
 
