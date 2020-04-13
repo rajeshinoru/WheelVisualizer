@@ -389,12 +389,12 @@
         }
         d = f[3]-f[2];
         var front = $('#image-diameter-front-'+key);
-        front.css('left',f[0]-15+'px');
+        front.css('left',f[0]-18+'px');
         front.css('top',f[1]+'px');
 
         var back = $('#image-diameter-back-'+key);
         back.css('left',b[0]-10+'px');
-        back.css('top',b[1]+5+'px');
+        back.css('top',b[1]+8.5+'px');
         // back.css('width',b[2]+'px');
     }
 

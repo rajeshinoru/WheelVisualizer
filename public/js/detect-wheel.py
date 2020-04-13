@@ -69,14 +69,16 @@ for key, value in enumerate(boxes):
 		sr = (rect[2]-rect[0])
 		tr = (rect[3]-rect[1])
 		points.append([x,y,sr,tr])
-		# cv2.rectangle(img,(value[0],value[1]),(value[2],value[3]), color, thickness)
-		# cv2.circle(img, (x,y), 1, color, thickness)
+		cv2.rectangle(img,(value[0],value[1]),(value[2],value[3]), color, thickness)
+		# cv2.circle(img, (value[0],value[1]), 1, color, 5)
+		# cv2.circle(img, (value[2],value[3]), 1, color, thickness)
 
 
  
 
 print(points)
  
+cv2.imwrite(dummyPath+carid+'_car.png', img)
 # # cv2.imshow('img', img)
 # # cv2.waitKey(0) 
 
