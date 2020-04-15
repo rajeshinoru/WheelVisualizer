@@ -59,7 +59,6 @@
 
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/zoomple.js') }}"></script>
-
     <script type="text/javascript">
         // Wait for window load
         $(window).load(function() {
@@ -67,6 +66,7 @@
             $(".se-pre-con").fadeOut("slow");;
         });
     </script>
+
 
     @yield('custom_scripts')
     @yield('header_scripts')
@@ -144,7 +144,7 @@
     <script src="{{ asset('js/common_search.js') }}"></script>
     <script src="{{ asset('js/popImg.js') }}"></script>
     <script src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
-    
+
 </body>
 
 </html>

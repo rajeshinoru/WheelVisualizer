@@ -73,9 +73,6 @@ for key, value in enumerate(boxes):
 		# cv2.circle(img, (value[0],value[1]), 1, color, 5)
 		# cv2.circle(img, (value[2],value[3]), 1, color, thickness)
 
-
- 
-
 print(points)
  
 cv2.imwrite(dummyPath+carid+'_car.png', img)

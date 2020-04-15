@@ -351,30 +351,31 @@
 
 <script type="text/javascript">
     var boxes;
-    $(document).ready(function(){
-        getWheelPosition('0')
+    $(".se-pre-con").bind('ajaxStart', function(){
+        $(this).show();
+    }).bind('ajaxStop', function(){
+        $(this).hide();
     });
-    function getWheelPosition(key){ 
-        // console.log(img.naturalWidth);
-        // imgSize(key);
-        // alert($('#car_image_'+key).width());
+    $(document).ready(function(){
+        if("{{@$car_images}}"){
+            getWheelPosition('0')
+        }
+    });
+    function getWheelPosition(key){  
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
-        carid = $('#car_image_'+key).attr('data-carid');
-        // alert(imagePath)
-        // alert(imagePath);
-        // console.log("python3 {{public_path().'/js/detect-wheel.py'}}");
-        // var regex = new RegExp(); 
-        // var res = regex.exec("python3 {{public_path().'/js/detect-wheel.py'}}");
-        // console.log(res);
+        carid = $('#car_image_'+key).attr('data-carid'); 
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
             boxes = JSON.parse(result)
+            console.log('RESPONSE RECEIVED')
             // WheelMapping(JSON.parse(result));
             // setWheelPosition(result,key);
         }});
     }
 
     function WheelMapping(key){
-
+        if(boxes == 'undefined'){
+            getWheelPosition(key)
+        }
         console.log('boxes',boxes)
         if(boxes[0][0] < 400 ){
 
@@ -391,10 +392,11 @@
         // d = f[3]-f[2];
         var front = $('#image-diameter-front-'+key);
         front.css('left',f[0]-18+'px');
-        front.css('top',f[1]+'px');
+        front.css('top',f[1]-1+'px');
+        // back.css('width',front.clientWidth-20+'px');
 
         var back = $('#image-diameter-back-'+key);
-        back.css('left',b[0]-11+'px');
+        back.css('left',b[0]-11.5+'px');
         back.css('top',b[1]+8.5+'px');
         // back.css('width',b[2]+'px');
 
