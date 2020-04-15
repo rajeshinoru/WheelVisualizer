@@ -388,23 +388,17 @@
 
             b = boxes[0];
         }
-   
+           // d=f[3]-f[2];
+        // if(d > 21){
+        //     f[3] = f[2]+14;//+(f[2]/2);
+        // }
+
         // d = f[3]-f[2];
         var front = $('#image-diameter-front-'+key);
         front.css('left',f[0]-18+'px');
         front.css('top',f[1]-1+'px');
         // back.css('width',front.clientWidth-20+'px');
-
-        var back = $('#image-diameter-back-'+key);
-        back.css('left',b[0]-11.5+'px');
-        back.css('top',b[1]+8.5+'px');
-        // back.css('width',b[2]+'px');
-
-        // d=f[3]-f[2];
-        // if(d > 21){
-        //     f[3] = f[2]+14;//+(f[2]/2);
-        // }
-
+        
 
         // var front = $('#image-diameter-front-'+key);
         // front.css('left',f[0]-19+'px'); //
@@ -425,6 +419,16 @@
         // back.css('top',b[1]+9+'px'); //
         // back.width(b[2]+'px');
         // back.height(b[3]+'px');
+
+
+
+
+        var back = $('#image-diameter-back-'+key);
+        back.css('left',b[0]-11.5+'px');
+        back.css('top',b[1]+8.5+'px');
+        // back.css('width',b[2]+'px');
+
+
 
 
 

@@ -40,11 +40,10 @@ cv2.imwrite(dummyPath+carid+'_car.png', img)
 
 # Specify the path to your image
 image = utils.read_image(dummyPath+carid+'_car.png')# Specify the path to your image
-model = core.Model.load(baseurl+storageurl+'model_weights.pth', ['wheel'])
-# image = utils.read_image('lorry-transport-services-500x500.jpg')
-predictions = model.predict(image)
+model = core.Model.load(baseurl+storageurl+'model_weights.pth', ['wheel']) 
 
-# print(boxes)
+#Getting Prediction Values 
+predictions = model.predict(image)
 
 # # predictions format: (labels, boxes, scores)
 labels, boxes, scores = predictions
@@ -58,8 +57,6 @@ color = (255, 0, 0)
 thickness = 2
 
 points = [];
-
-# back_points = [];
 
 for key, value in enumerate(boxes): 
 	if scores[key] > 0.6 :
