@@ -30,6 +30,32 @@ class WheelProductController extends Controller
 
             $branddesc = [];
             $vehicle = '';
+            $viflist='';
+            $car_images='';
+            
+            //Color based cars 
+            if(isset($request->flag) && $request->flag == 'searchByVehicle'){
+                $viflist = Viflist::select('vif', 'yr','make','model','body','drs','whls')->where('yr', $request->year)
+                    ->where('make', $request->make)
+                    ->where('model', $request->model)->first();
+                    // dd($viflist);
+                    if($viflist != null){
+                        $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($viflist->vif)->where('image', 'LIKE', '%.png%')
+                        ->with(['CarViflist' => function($query) {
+                            $query->select('vif', 'yr','make','model','body','drs','whls');
+
+                        },'CarColor'])->first();
+                    }
+                
+
+
+            }
+
+
+
+
+
+
             // Search By Wheels Size in products
             if (isset($request->flag) && $request->flag == 'searchByWheelSize')
             {
@@ -250,11 +276,15 @@ class WheelProductController extends Controller
                 ->unique('prodtitle');
 
             $products = MakeCustomPaginator($products, $request, 9);
-            // dd($products);
-
+            
             $flag=@$request->flag?:null;
 
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request'));
+
+
+
+
+
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','viflist','car_images'));
 
         }
         catch(ModelNotFoundException $notfound)

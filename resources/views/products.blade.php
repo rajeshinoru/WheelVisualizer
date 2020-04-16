@@ -193,6 +193,9 @@
                                             <!-- <div class="price">
                                                 <span class="price-new">Starting at : {{roundCurrency(@$product->price)}}</span>
                                             </div> -->
+                                        @if($car_images)
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($product->prodimage)))?'disabled':''}}" {{(!file_exists(front_back_path($product->prodimage)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
+                                        @endif
                                         </div>
                                         <div class="button-group">
                                             <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
@@ -216,7 +219,105 @@
                                 </div>
                             </div>
                         </div>
+                    @if($car_images)
+                    <!-- Model Car Start -->
 
+                    <div class="modal fade" id="myModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        @if(@$car_images->CarViflist)
+                                        {{@$car_images->CarViflist->yr}} -
+                                        {{@$car_images->CarViflist->make}} -
+                                        {{@$car_images->CarViflist->model}} -
+                                        {{@$car_images->CarViflist->whls}}
+                                        {{@$car_images->CarViflist->drs}}
+                                        {{@$car_images->CarViflist->body}} 
+                                        @else
+                                        Your Car
+                                        @endif
+                                    </h4>
+                                </div>
+                                <div class="modal-body">    
+                                    <div class="row main-model-body" >
+                                        <div class="col-sm-12 model-car modal_canvas" id="modal_canvas_{{$key}}">
+
+                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-carid="{{$car_images->car_id}}" data-imagename="{{$car_images->image}}">
+
+                                        </div>
+                                        @if(file_exists(front_back_path($product->prodimage)))
+                                        <div class="car-wheel">
+                                            <div class="front" >
+                                                <img class="frontimg" src="{{front_back_path($product->prodimage)}}" id="image-diameter-front-{{$key}}" >
+                                            </div>
+                                            <div class="back">
+                                                <img src="{{front_back_path($product->prodimage)}}" id="image-diameter-back-{{$key}}">
+                                            </div>
+                                        </div>
+                                        @endif
+
+
+
+                                    </div>
+
+                                    <div class="row model-car-body">
+
+                                        <div class="col-sm-4">
+                                            <h1 class="model-car">Vechicle Color</h1>
+                                            <ul class="list-color">
+                                                @if(@$car_images->CarColor()->count() > 0)
+                                                @foreach(@$car_images->CarColor()->get()->unique('rgb1') as $key1 => $color)
+                                                @if(strlen($color->rgb1) ==6)
+                                                <li class="color-radius car_color {{($color->code ==$car_images->color_code )?'color-selected':''}}" style="background:#{{$color->rgb1}};" title="{{$color->name}}" data-code="{{$color->code}}" data-vif="{{$color->vif}}"></li>
+                                                @endif
+                                                @endforeach
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h1 class="model-car">Wheel Diameter</h1>
+                                            <button class="model-button diameter-up" data-id="{{$key}}">Zoom In</button>
+                                            <button class="model-button diameter-down" data-id="{{$key}}">Zoom Out</button>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h1 class="model-car">Share :</h1>
+                                            <ul class="model-list-unstyled">
+                                                <li class="facebook">
+                                                    <a target="_blank" class="_blank" href="#" title="Facebook">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="twitter">
+                                                    <a target="_blank" class="_blank" href="#" title="Twitter">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li class="google-plus">
+                                                    <a target="_blank" class="_blank" href="#" rel="publisher" title="Google Plus">
+                                                        <i class="fa fa-google-plus"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="pinterest">
+                                                    <a target="_blank" class="_blank" href="#" rel="publisher" title="pinterest">
+                                                        <i aria-hidden="true" class="fa fa-pinterest-p"></i>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Model Car End -->
+                    @endif
                         @empty 
                      <div class="col-md-12 left-head text-center" >
                         <br>
