@@ -1402,7 +1402,7 @@ public function runPython(Request $request){
         throw new ProcessFailedException($process);
     }
 
-    return $process->getOutput();//response()->json($process->getOutput());
+    return response()->json($process->getOutput());
     // return $process->getOutput();
     // Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
     }

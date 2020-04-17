@@ -351,24 +351,26 @@
 
 <script type="text/javascript">
     var boxes;
-    $(".se-pre-con").bind('ajaxStart', function(){
-        $(this).show();
-    }).bind('ajaxStop', function(){
-        $(this).hide();
-    });
+    // $(".se-pre-con").bind('ajaxStart', function(){
+    //     $(this).show();
+    // }).bind('ajaxStop', function(){
+    //     $(this).hide();
+    // });
     $(document).ready(function(){
         if("{{@$car_images}}"){
             getWheelPosition('0')
         }
     });
     function getWheelPosition(key){  
+        $(".se-pre-con").show();
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
         carid = $('#car_image_'+key).attr('data-carid'); 
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
-            console.log(typeof JSON.parse(result.toString()))
-            
+            // console.log(typeof result)
+
             boxes = JSON.parse(result.toString())
             console.log('RESPONSE RECEIVED')
+            $(".se-pre-con").hide();
             // WheelMapping(JSON.parse(result));
             // setWheelPosition(result,key);
         }});
@@ -404,7 +406,7 @@
         {
             extraWidth=(front.width() - f[2])/2;
         }
-        console.log(front.width(),f[2])
+        console.log(extraWidth)
         front.width(front.width()+extraWidth+'px');
         // ,front[0]['clientWidth'],f[2]);
         // back.css('width',front.clientWidth-20+'px');
