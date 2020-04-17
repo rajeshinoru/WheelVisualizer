@@ -365,7 +365,9 @@
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
         carid = $('#car_image_'+key).attr('data-carid'); 
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
-            boxes = JSON.parse(result)
+            console.log(typeof JSON.parse(result.toString()))
+            
+            boxes = JSON.parse(result.toString())
             console.log('RESPONSE RECEIVED')
             // WheelMapping(JSON.parse(result));
             // setWheelPosition(result,key);
@@ -397,6 +399,14 @@
         var front = $('#image-diameter-front-'+key);
         front.css('left',f[0]-18+'px');
         front.css('top',f[1]-1+'px');
+        var extraWidth=0;
+        if(front.width() - f[2] > 4)
+        {
+            extraWidth=(front.width() - f[2])/2;
+        }
+        console.log(front.width(),f[2])
+        front.width(front.width()+extraWidth+'px');
+        // ,front[0]['clientWidth'],f[2]);
         // back.css('width',front.clientWidth-20+'px');
         
 

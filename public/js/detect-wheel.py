@@ -60,15 +60,20 @@ points = [];
 
 for key, value in enumerate(boxes): 
 	if scores[key] > 0.6 :
+		singlerect = {};
 		rect = value.tolist()
-		x = (rect[0] +rect[2])/2
-		y = (rect[1] +rect[3])/2
-		w = (rect[2]-rect[0])
-		h = (rect[3]-rect[1])
-		points.append([x,y,w,h])
+		singlerect["startX"] = rect[0]
+		singlerect["startY"] = rect[1]
+		singlerect["endX"] = rect[0]
+		singlerect["endY"] = rect[1]
+		singlerect["x"] = (rect[0] +rect[2])/2
+		singlerect["y"] = (rect[1] +rect[3])/2
+		singlerect["w"] = (rect[2]-rect[0])
+		singlerect["h"] = (rect[3]-rect[1])
+		points.append(singlerect)
 		cv2.rectangle(img,(value[0],value[1]),(value[2],value[3]), color, thickness)
-		# cv2.circle(img, (value[0],value[1]), 1, color, 5)
-		# cv2.circle(img, (value[2],value[3]), 1, color, thickness)
+		cv2.circle(img, (value[0],value[1]), 1, color, 5)
+		cv2.circle(img, (value[2],value[3]), 1, color, thickness)
 
 print(points)
  
