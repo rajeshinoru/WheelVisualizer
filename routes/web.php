@@ -19,6 +19,8 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');
 Route::get('/wheels', 'HomeController@wheels')->name('wheels');
+Route::get('/shoppingcart', 'HomeController@shopping_cart')->name('shopping_cart');
+Route::get('/checkout', 'HomeController@checkout')->name('checkout');
 Route::get('/wheelview/{wheel_id?}', 'HomeController@wheelview')->name('wheelview');
 Route::get('/wheelbrand/{wheel_id?}', 'HomeController@wheelbrand')->name('wheelbrand');
 Route::get('/csvuplaod', 'HomeController@csv_upload')->name('csvuplaod');
@@ -43,7 +45,7 @@ Route::get('/csv_vftp0032', 'HomeController@csv_vftp0032');
 Route::get('/csv_vftp0022', 'HomeController@csv_vftp0022');
 
 
-Route::get('/vftp_to_sql/{filename}', 'HomeController@vftp_to_sql');
+Route::get('/vftp_to_sql/{filename?}', 'HomeController@vftp_to_sql');
 Route::get('/vftp_to_sql_test/{filename}', 'HomeController@vftp_to_sql_test');
 
 

@@ -378,9 +378,9 @@
 
                             <div class="tab-content">
 
-                                @foreach(@$products as $key1 => $product)
+                                @foreach(@$products as $productKey => $product)
 
-                                <div id="diameter_tab_{{@$product->id}}" class="wheel-diameter-tabs tab-pane fade {{($key1 ==0 )?'active in ':''}}">
+                                <div id="diameter_tab_{{@$product->id}}" class="wheel-diameter-tabs tab-pane fade {{($productKey ==0 )?'active in ':''}}">
 
                                     <div class="col-sm-6">
                                         <h2>Front & Rear</h2>
@@ -516,9 +516,9 @@
                                                     <label class="control-label" for="input-quantity">Qty</label>
                                                     <input type="text" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
                                                     <input type="hidden" name="product_id" value="46">
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal22">Add to Cart</button>
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#DiffProductCart{{$diffKey}}">Add to Cart</button>
                                                     <!-- model Start -->
-                                                    <div class="modal fade" id="myModal22" role="dialog">
+                                                    <div class="modal fade" id="DiffProductCart{{$diffKey}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -557,40 +557,40 @@
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="text" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
-                                                    <input type="hidden" name="product_id" value="46">
-                                                    <button class="btn btn-info" type="button">Add to Cart</button>
+                                                    <input type="number" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="qty-" class="form-control">
+                                                    <input type="hidden" name="product_id" value="{{@$product->id}}">
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ProductCart{{$productKey}}">Add to Cart</button>
+                                                    <!-- model Start -->
+                                                    <div class="modal fade" id="ProductCart{{$productKey}}" role="dialog">
+                                                        <div class="modal-dialog wheel-view">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title text-left">Items Added to Cart</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
+                                                                  <h2 class="modal-title">The following items have been added to your cart:</h2>
+                                                                  <p>Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                                                    <form class="form-horizontal">
+                                                                        <div class="form-group has-success has-feedback text-center">
+                                                                            <button class="btn btn-info" type="button">Continue Shopping</button>
+                                                                            <button class="btn btn-info" type="button">Add Matching Tires</button>
+                                                                            <button class="btn btn-info cart-btn" type="button"><i class="fa fa-shopping-cart"></i> View Cart</button>
+                                                                        </div>
+                                                                    </form>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Model End  -->
                                                 </div>
                                             </div>
 
                                             <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
                                         </div>
                                         @endif
-                                        <!--  -->
-
-<!-- Add Qty Dropdoen Button Start -->
-<!-- 
-<div class="row">
-<div class="col-md-6 main-qty">
-        <div class="col-sm-6">
-        <div class="input-group spinner spin-2">
-    <input type="text" class="form-control" value="1" min="0" max="5">
-    <div class="input-group-btn-vertical">
-      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
-      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
-    </div>
-  </div>
-  </div>
-  <div class="col-sm-6">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal22">Add to Cart</button>
-        </div>
-        </div>
-  <div class="col-md-6">
-  <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
-  </div>
-  </div> -->
-<!-- Add Qty Dropdoen Button End -->
-                                        
+                                        <!--  -->   
                                     </div>
                                 </div>
                                 @endforeach

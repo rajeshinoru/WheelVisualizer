@@ -47,6 +47,19 @@ class HomeController extends Controller
         $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
         return view('forms',compact('Wheels')); 
     }
+
+    public function shopping_cart()
+    { 
+        return view('shopping_cart'); 
+    }
+
+
+    public function checkout()
+    { 
+        return view('checkout'); 
+    }
+
+
     public function wheelview(Request $request,$wheel_id='')
     {
 
@@ -1294,18 +1307,18 @@ function canvas($imgUrl=''){
     return view('canvas',compact('images'));
 }
 
-public function vftp_to_sql($filename){
+public function vftp_to_sql($filename=''){
 
     set_time_limit(999999999);
-    $filepath = public_path('/storage/inventories/'.$filename.'.csv');
+    $filepath = public_path('/storage/inventories/vftp0013.csv');
     $inpfile = fopen($filepath, "r");
     // Open and Read individual CSV file
     if (($inpfile = fopen($filepath, 'r')) !== false) {
         // Collect CSV each row records
         $flag = 0;
             while (($data = fgetcsv($inpfile, 10000)) !== false) {
-
                 if($flag != 0){
+                    dd($data);
                     if(!Inventory::where('partno',$data[0])->where('location_code',$data[6])->first()){
                         $inventory = new Inventory;
                         $inventory->partno = $data[0];
