@@ -514,9 +514,8 @@
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2"   class="input-quantity form-control">
-                                                    <input type="hidden" name="product_id" value="46">
-                                                    <button type="button" class="btn btn-info addToCart"  data-modelid="#DiffProductCart{{$diffKey}}">Add to Cart</button>
+                                                    <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2"   class="input-quantity quantity form-control">
+                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$diffproduct->id}}" data-price="{{roundCurrency(@$diffproduct->price)}}"  data-modelid="#DiffProductCart{{$diffKey}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade" id="DiffProductCart{{$diffKey}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
@@ -526,14 +525,15 @@
                                                                     <h4 class="modal-title text-left">Items Added to Cart</h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                  <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2>
+                                                                  <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
                                                                   <h2 class="modal-title">The following items have been added to your cart:</h2>
-                                                                  <p>Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                                                  <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info" type="button">Continue Shopping</button>
                                                                             <button class="btn btn-info" type="button">Add Matching Tires</button>
-                                                                            <button class="btn btn-info cart-btn" type="button"><i class="fa fa-shopping-cart"></i> View Cart</button>
+                                                                            <a class="btn btn-info cart-btn" href="{{url
+                                                                            ('/CartItems')}}" type="button"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
                                                                     </form>
                                                                   </div>
@@ -557,9 +557,8 @@
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="number" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="" class="form-control input-quantity">
-                                                    <input type="hidden" name="product_id" value="46">
-                                                    <button type="button" class="btn btn-info addToCart"  data-modelid="#ProductCart{{$productKey}}">Add to Cart</button>
+                                                    <input type="number" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="" class="form-control quantity input-quantity">
+                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$product->id}}"  data-price="{{roundCurrency(@$product->price)}}" data-modelid="#ProductCart{{$productKey}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade" id="ProductCart{{$productKey}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
@@ -571,7 +570,7 @@
                                                                 <div class="modal-body">
                                                                   <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
                                                                   <h2 class="modal-title">The following items have been added to your cart:</h2>
-                                                                  <p>Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                                                  <p class=" modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info" type="button">Continue Shopping</button>
@@ -811,7 +810,21 @@ $('.spinner .btn:last-of-type').on('click', function() {
 <script type="text/javascript">
     
     $('.addToCart').click(function(){
-        alert($(this).attr('data-modelid'))
+
+        var modelid = $(this).data('modelid');
+        var qty = $(this).prev('.quantity').val();
+        var productid = $(this).data('productid');
+        var price = $(this).data('price');
+        var prodtype ='wheel';
+        var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+"     "+price+"/ea";
+
+        $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype}, success: function(result){
+            if(result =='success'){
+                $(modelid).find('.modal-msg').text(modalMsg);
+                $(modelid).modal("show");
+            }
+            // $(".se-pre-con").hide(); 
+        }});
     })
 
 

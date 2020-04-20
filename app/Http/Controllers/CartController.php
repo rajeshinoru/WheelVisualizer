@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use App\WheelProduct;
 class CartController extends Controller
 {
     /**
@@ -14,7 +15,13 @@ class CartController extends Controller
     public function index()
     {   
         $cart = Session::get('cart')?:[];
-        return view('shopping_cart',compact('cart')); 
+        $wheelproducts = new WheelProduct;
+        if (array_key_exists("wheel",$cart)){
+            $productIds = array_keys($cart['wheel']);
+            $wheelproducts = $wheelproducts->whereIn('id',$productIds)->get();
+            
+        }
+        return view('shopping_cart',compact('cart','wheelproducts')); 
     }
 
     /**
@@ -35,20 +42,18 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $product = DB::select('select * from products where id='.$id);
+        // dd($request->all());
         $cart = Session::get('cart');
-        $cart[$product[0]->id] = array(
-            "id" => $product[0]->id,
-            "nama_product" => $product[0]->nama_product,
-            "harga" => $product[0]->harga,
-            "pict" => $product[0]->pict,
-            "qty" => 1,
+        $cart[$request->prodtype][$request->productid]= array(
+            "id" => $request->productid,
+            "type" => $request->prodtype,
+            "qty" => $request->qty,
         );
 
         Session::put('cart', $cart);
-        Session::flash('success','barang berhasil ditambah ke keranjang!');
+        Session::flash('success','Product Added to Cart!');
         //dd(Session::get('cart'));
-        return redirect()->back();
+        return 'success';
     }
 
     /**
@@ -91,9 +96,14 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($type,$id)
     {
-        //
+        $cart = Session::get('cart');
+        unset($cart[$type][$id]);
+        Session::put('cart', $cart);
+        Session::flash('success','Removed one Item!!');
+        //dd(Session::get('cart'));
+        return redirect()->back();
     }
 
     public function addToCart(Request $request, $id)
@@ -113,7 +123,11 @@ class CartController extends Controller
         //dd(Session::get('cart'));
         return redirect()->back();
     }
-
+    public function clearCart(Request $cartdata)
+    {
+        $cart = Session::put('cart',null);
+        return redirect()->back();
+    }
     public function updateCart(Request $cartdata)
     {
         $cart = Session::get('cart');

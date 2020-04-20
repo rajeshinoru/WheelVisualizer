@@ -271,66 +271,41 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="shopping-cart-image"><img src="../image/wheel.jpg" class="shop-img"></td>
+                    @forelse(@$wheelproducts as $pkey=> $product)
+                  <tr class="row{{$pkey}}">
+                    <td class="shopping-cart-image"><img src="{{ViewWheelProductImage(@$product->prodimage)}}" class="shop-img"></td>
                     <td>
                       <div class="shop-mar">
                         <div class="form-group product-quantity">
-                            <input type="number" name="quantity" value="1" size="2" id="qty-" class="form-control">
-                            <input type="hidden" name="product_id" value="15">
+                            <input type="number" name="quantity[]" value="{{@$cart['wheel'][$product->id]['qty']}}" size="2" class="form-control quantity" data-key="{{$pkey}}" min="1" max="8">
+                            <input type="hidden" name="product_id[]" value="{{$product->id}}">
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="shop-mar">
-                        <h1>H123-Lyon-1353</h1>
-                        <h2>HTR Wheels H123 Lyon 17x7.5 Gloss Black Machine 35mm Offset</h2>
-                        <span><a href="">Remove</a></span>
+                        <h1>{{$product->partno}}</h1>
+                        <h2>{{$product->detailtitle}}</h2>
+                        <span><a href="{{url('/removeItem/')}}/{{@$cart['wheel'][$product->id]['type']}}/{{@$cart['wheel'][$product->id]['id']}}">Remove</a></span>
                       </div>
                     </td>
-                    <td><div class="shop-mar"><h1>$101.00</h1></div></td>
-                    <td><div class="shop-mar"><h1>$2,424.00</h1></div></td>
+                    <td><div class="shop-mar"><h1 class="eachprice" data-price="{{$product->price}}" >{{roundCurrency($product->price)}}</h1></div></td>
+                    <td><div class="shop-mar"><h1 class="eachtotal">{{roundCurrency($product->price * @$cart['wheel'][$product->id]['qty'])}}</h1></div></td>
                   </tr>
+                  @empty
                   <tr>
-                    <td class="shopping-cart-image"><img src="../image/wheel.jpg" class="shop-img"></td>
-                    <td>
-                      <div class="shop-mar">
-                        <div class="form-group product-quantity">
-                            <input type="number" name="quantity" value="1" size="2" id="qty-" class="form-control">
-                            <input type="hidden" name="product_id" value="15">
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="shop-mar">
-                        <h1>H123-Lyon-1353</h1>
-                        <h2>HTR Wheels H123 Lyon 17x7.5 Gloss Black Machine 35mm Offset</h2>
-                        <span><a href="">Remove</a></span>
-                      </div>
-                    </td>
-                    <td><div class="shop-mar"><h1>$101.00</h1></div></td>
-                    <td><div class="shop-mar"><h1>$2,424.00</h1></div></td>
+                    <td colspan="4"><div class="shop-mar">Your Cart is Empty!!</h1></div></td>
                   </tr>
+
+                  @endforelse
+
                   <tr>
-                    <td class="shopping-cart-image"><img src="../image/wheel.jpg" class="shop-img"></td>
-                    <td>
-                      <div class="shop-mar">
-                        <div class="form-group product-quantity">
-                            <input type="number" name="quantity" value="1" size="2" id="qty-" class="form-control">
-                            <input type="hidden" name="product_id" value="15">
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="shop-mar">
-                        <h1>H123-Lyon-1353</h1>
-                        <h2>HTR Wheels H123 Lyon 17x7.5 Gloss Black Machine 35mm Offset</h2>
-                        <span><a href="">Remove</a></span>
-                      </div>
-                    </td>
-                    <td><div class="shop-mar"><h1>$101.00</h1></div></td>
-                    <td><div class="shop-mar"><h1>$2,424.00</h1></div></td>
+                    <td > </td>
+                    <td> </td>
+                    <td> </td>
+                    <td><td><div class="shop-mar">Cart Total:<h1 class="finaltotal">$0.00</h1></div></td>
                   </tr>
+                 
                 </tbody>
               </table>
             </div>
@@ -352,9 +327,54 @@
 
 
 
-
-
 @endsection
 @section('custom_scripts')
-<!--  -->
+
+
+<script type="text/javascript">
+    calcualteToal();
+    function calcualteToal(){
+        var tot=0;
+        $('.quantity').each(function(){
+
+            var qty = $(this).val();
+            var key = $(this).data('key');
+            var price = $('.row'+key).find('.eachprice').data('price') * qty;
+            tot =  tot+price;
+        })
+        text =  "$"+tot.toFixed(2);
+        $('.finaltotal').text(text)
+    }
+
+    $('.quantity').change(function(){
+
+        // var modelid = $(this).data('modelid');
+        var qty = $(this).val();
+        var key = $(this).data('key');
+        // var productid = $(this).data('productid');
+        var price = $('.row'+key).find('.eachprice').data('price') * qty;
+        text =  "$"+price.toFixed(2);
+        $('.row'+key).find('.eachtotal').text(text);
+        calcualteToal();
+        // var prodtype ='wheel';
+        // var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+"     "+price+"/ea";
+
+        // $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype}, success: function(result){
+        //     if(result =='success'){
+        //         $(modelid).find('.modal-msg').text(modalMsg);
+        //         $(modelid).modal("show");
+        //     }
+        //     // $(".se-pre-con").hide(); 
+        // }});
+    })
+    $('.removeItem').click(function(){
+        $.ajax({url: "/removeItem",data:{'qty':qty,'productid':productid,'prodtype':prodtype}, success: function(result){
+            if(result =='success'){
+                $(modelid).find('.modal-msg').text(modalMsg);
+                $(modelid).modal("show");
+            }
+            // $(".se-pre-con").hide(); 
+        }});
+    });
+</script>
 @endsection

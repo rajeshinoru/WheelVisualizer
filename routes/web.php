@@ -138,4 +138,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/CartItems', 'CartController@index')->name('index');
 Route::get('/addToCart', 'CartController@store')->name('store');
 Route::get('/updateCart', 'CartController@update')->name('update');
+Route::get('/clearCart', 'CartController@clearCart')->name('clearCart');
+Route::get('/removeItem/{type}/{id}', 'CartController@destroy')->name('removeItem');
+
 
