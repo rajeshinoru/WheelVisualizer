@@ -41,8 +41,6 @@
                 <h1>{{implode(', ',json_decode(base64_decode(@Request::get('brand')?:''))?:[])}} Wheels</h1>
             </div>
         </div>
-
-
             <div class="row main-pro">
                 <div class="col-sm-3">
                     <div class="header-bottom col-sm-12">
@@ -259,7 +257,7 @@
                                     <div class="row main-model-body" >
                                         <div class="col-sm-12 model-car modal_canvas" id="modal_canvas_{{$key}}">
 
-                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-imagename="{{$car_images->image}}">
+                                            <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-carid="{{$car_images->car_id}}" data-imagename="{{$car_images->image}}">
 
                                         </div>
                                         @if(file_exists(front_back_path($wheel->image)))
@@ -353,29 +351,35 @@
 
 <script type="text/javascript">
     var boxes;
+    // $(".se-pre-con").bind('ajaxStart', function(){
+    //     $(this).show();
+    // }).bind('ajaxStop', function(){
+    //     $(this).hide();
+    // });
     $(document).ready(function(){
-        getWheelPosition('0')
+        if("{{@$car_images}}"){
+            getWheelPosition('0')
+        }
     });
-    function getWheelPosition(key){ 
-        // console.log(img.naturalWidth);
-        // imgSize(key);
-        // alert($('#car_image_'+key).width());
+    function getWheelPosition(key){  
+        $(".se-pre-con").show();
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
-        // alert(imagePath)
-        // alert(imagePath);
-        // console.log("python3 {{public_path().'/js/detect-wheel.py'}}");
-        // var regex = new RegExp(); 
-        // var res = regex.exec("python3 {{public_path().'/js/detect-wheel.py'}}");
-        // console.log(res);
-        $.ajax({url: "/runPython",data:{'image':imagePath}, success: function(result){
-            boxes = JSON.parse(result)
+        carid = $('#car_image_'+key).attr('data-carid'); 
+        $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
+            // console.log(typeof result)
+
+            boxes = JSON.parse(result.toString())
+            console.log('RESPONSE RECEIVED')
+            $(".se-pre-con").hide();
             // WheelMapping(JSON.parse(result));
             // setWheelPosition(result,key);
         }});
     }
 
     function WheelMapping(key){
-
+        if(boxes == 'undefined'){
+            getWheelPosition(key)
+        }
         console.log('boxes',boxes)
         if(boxes[0][0] < 400 ){
 
@@ -388,14 +392,58 @@
 
             b = boxes[0];
         }
-        d = f[3]-f[2];
+           // d=f[3]-f[2];
+        // if(d > 21){
+        //     f[3] = f[2]+14;//+(f[2]/2);
+        // }
+
+        // d = f[3]-f[2];
         var front = $('#image-diameter-front-'+key);
-        front.css('left',f[0]-15+'px');
-        front.css('top',f[1]+'px');
+        front.css('left',f[0]-18+'px');
+        front.css('top',f[1]-1+'px');
+        var extraWidth=0;
+        if(front.width() - f[2] > 4)
+        {
+            extraWidth=(front.width() - f[2])/2;
+        }
+        console.log(extraWidth)
+        front.width(front.width()+extraWidth+'px');
+        // ,front[0]['clientWidth'],f[2]);
+        // back.css('width',front.clientWidth-20+'px');
+        
+
+        // var front = $('#image-diameter-front-'+key);
+        // front.css('left',f[0]-19+'px'); //
+        // front.css('top',f[1]+2+'px');
+        // front.width(f[2]+'px');
+        // front.height(f[3]+'px');
+        // // front.css('padding','5px')
+        // d=b[3]-b[2];
+        // if(b[2] < 50){
+        //     b[2] = 60;
+        // }
+        // if(d > 21){
+        //     b[3] = b[3]-15;//+(b[2]/2);
+        // }
+
+        // var back = $('#image-diameter-back-'+key);
+        // back.css('left',b[0]-12+'px'); //
+        // back.css('top',b[1]+9+'px'); //
+        // back.width(b[2]+'px');
+        // back.height(b[3]+'px');
+
+
+
 
         var back = $('#image-diameter-back-'+key);
-        back.css('left',b[0]-10+'px');
-        back.css('top',b[1]+5+'px');
+        back.css('left',b[0]-11.5+'px');
+        back.css('top',b[1]+8.5+'px');
+        // back.css('width',b[2]+'px');
+
+
+
+
+
     }
 
 

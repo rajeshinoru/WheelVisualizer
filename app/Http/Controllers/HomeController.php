@@ -92,7 +92,7 @@ class HomeController extends Controller
             if(isset($request->search))
                 $Wheels = $Wheels->where('brand', 'LIKE', '%'.json_decode(base64_decode($request->search)).'%');  
 
-            $Wheels = $Wheels->inRandomOrder()->paginate(9); 
+            $Wheels = $Wheels->paginate(9); 
 
             ///Brand with count
             $brands = Wheel::select('brand', \DB::raw('count(*) as total'))->groupBy('brand')->get()->sortBy('brand'); 
@@ -114,7 +114,7 @@ class HomeController extends Controller
 
                 $car_id = json_decode(base64_decode($request->car_id)); 
 
-                $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($car_id)
+                $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($car_id)->where('image', 'LIKE', '%.png%')
                 ->with(['CarViflist' => function($query) {
                     $query->select('vif', 'yr','make','model','body','drs','whls');
 
@@ -1403,9 +1403,10 @@ public function vftp_to_sql_test($filename){
 
 public function runPython(Request $request){ 
 
+    
     // python3 detect_circles.py --image images/car.png
     // dd("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
-    $process = new Process("python3 ".public_path()."/js/detect-wheel.py ".$request->image." ".public_path());
+    $process = new Process("python3 ".public_path()."/js/detect-wheel.py ".$request->image." ".public_path()." ".$request->carid);
 
     $process->run(); 
 

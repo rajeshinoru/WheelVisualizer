@@ -289,92 +289,79 @@ function getUrlVars() {
 
 // Wheel Diameter Zoom In and Zoom Out  
 
+var diameterStepCount=0;
+var diameterStepLimit=8;
+var currentKey=0;
+
 $('.diameter-up').click(function() {
     var key = $(this).attr('data-id');
-    var $front = $("#image-diameter-front-" + key);
-    var $back = $("#image-diameter-back-" + key);
-
-    var frontWidth = parseInt($front.width());
-    var frontHeight = parseInt($front.height());
-
-    if (frontHeight >= 80 && frontHeight <= 500) {
-
-        var backWidth = frontHeight * (3 / 4); //parseInt($back.width());
-        var backHeight = frontHeight * (3 / 4); //parseInt($back.height());
-
-        var frontMarginTop = parseInt($front.css('margin').replace('px', ''));
-        frontMarginTop = parseInt(frontMarginTop - 10) + 'px';
-
-        var backMarginTop = parseInt($back.css('margin').replace('px', ''));
-        backMarginTop = parseInt(backMarginTop - 7) + 'px';
-
-        $front.width(parseInt(frontHeight + 20) + 'px');
-        $front.height(parseInt(frontHeight + 20) + 'px');
-        $front.css('margin', frontMarginTop);
-        $back.width(parseInt(backWidth + 15) + 'px');
-        $back.height(parseInt(backHeight + 15) + 'px');
-        $back.css('margin', backMarginTop);
-
+    if(key != currentKey){
+        diameterStepCount=0;
+        diameterStepLimit=8;
+        currentKey=key;
     }
+    if(diameterStepCount < diameterStepLimit){
+            var front = document.getElementById("image-diameter-front-" + key); 
+            var frontWidth = front.clientWidth; 
+            front.style.width = (frontWidth + 20) + "px"; 
+
+            frontTop = parseInt($(front).css("top"), 10);
+            frontLeft = parseInt($(front).css("left"), 10);
+            frontTop = frontTop -10;
+            frontLeft = frontLeft -10;
+            $(front).css({top: frontTop, left: frontLeft});
+
+            var back = document.getElementById("image-diameter-back-" + key); 
+            var backWidth = back.clientWidth; 
+            back.style.width = (backWidth + 20) + "px";
+
+            backTop = parseInt($(back).css("top"), 10);
+            backLeft = parseInt($(back).css("left"), 10);
+            backTop = backTop -10;
+            backLeft = backLeft -10;
+            $(back).css({top: backTop, left: backLeft});
+
+        diameterStepCount = diameterStepCount + 1;
+    }
+    // console.log(diameterStepCount,front.clientWidth);
+
 });
 $('.diameter-down').click(function() {
-
     var key = $(this).attr('data-id');
-    var $front = $("#image-diameter-front-" + key);
-    var $back = $("#image-diameter-back-" + key);
-
-    var frontWidth = parseInt($front.width());
-    var frontHeight = parseInt($front.height());
-
-    var backWidth = frontHeight * (3 / 4); //parseInt($back.width());
-    var backHeight = frontHeight * (3 / 4); //parseInt($back.height());
-
-
-    var frontMarginTop = parseInt($front.css('margin').replace('px', ''));
-
-    if (frontMarginTop == -10) {
-        frontWidth -= 16;
-        frontHeight -= 16;
+    if(key != currentKey){
+        diameterStepCount=0;
+        diameterStepLimit=8;
+        currentKey=key;
     }
+    if(diameterStepCount > 0){
+
+            var front = document.getElementById("image-diameter-front-" + key); 
+            var frontWidth = front.clientWidth; 
+            front.style.width = (frontWidth - 20) + "px"; 
 
 
-    if (frontMarginTop == -10) {
-        frontMarginTop = parseInt(frontMarginTop + 10) + 'px';
-        $front.css('margin', frontMarginTop);
-        $front.css('width', '80px');
-        $front.css('height', '');
-    } else {
-        if (parseInt(frontHeight - 20) > 80) {
-            $front.width(parseInt(frontHeight - 20) + 'px');
-            $front.height(parseInt(frontHeight - 20) + 'px');
-            frontMarginTop = parseInt(frontMarginTop + 10) + 'px';
-            $front.css('margin', frontMarginTop);
-        }
+            frontTop = parseInt($(front).css("top"), 10);
+            frontLeft = parseInt($(front).css("left"), 10);
+            frontTop = frontTop +10;
+            frontLeft = frontLeft +10;
+            $(front).css({top: frontTop, left: frontLeft});
+
+            var back = document.getElementById("image-diameter-back-" + key); 
+            var currWidth = back.clientWidth; 
+            back.style.width = (currWidth - 20) + "px";
+
+
+            backTop = parseInt($(back).css("top"), 10);
+            backLeft = parseInt($(back).css("left"), 10);
+            backTop = backTop +10;
+            backLeft = backLeft +10;
+            $(back).css({top: backTop, left: backLeft});
+
+            diameterStepCount = diameterStepCount - 1;
     }
-
-    var backMarginTop = parseInt($back.css('margin').replace('px', ''));
-
-    if (backMarginTop == -7) {
-        backWidth -= 4;
-        backHeight -= 4;
-    }
-
-    if (backMarginTop == -7) {
-        backMarginTop = parseInt(backMarginTop + 7) + 'px';
-        $back.css('margin', backMarginTop);
-        $back.css('width', '65px');
-        $back.css('height', '');
-
-    } else {
-        if (parseInt(backHeight - 15) > 65) {
-            $back.width(parseInt(backHeight - 15) + 'px');
-            $back.height(parseInt(backHeight - 15) + 'px');
-            backMarginTop = parseInt(backMarginTop + 7) + 'px';
-            $back.css('margin', backMarginTop);
-        }
-    }
-
+    // console.log(diameterStepCount,front.clientWidth);
 });
+
 
 
 if ($(".chosen-select").length > 0) {
