@@ -8949,3 +8949,47 @@ ol.carousel-indicators {
   }
 }
 /* Shopping Cart End */
+/* Checkout Cart Start */
+.shop-cart .table .shop-mar2 h1 {
+    color: #121214;
+    font-family: poppins !important;
+    font-size: 12px !important;
+    margin: 0px;
+}
+.shop-mar2
+{
+  margin:4px 0px !important;
+}
+#heading2 h1 {
+    font-family: Montserrat;
+    color: #121214;
+    font-size: 18px !important;
+    text-align: left;
+    font-weight: 700 !important;
+}
+.bill-page label
+{
+  color: #121214;
+  font-family: poppins !important;
+  font-size: 12px !important;
+}
+.agree-para
+{
+    color: #121214;
+    font-family: poppins !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+}
+.col-sm-9.agree-check label
+{
+  color: #121214;
+  font-family: poppins !important;
+  font-size: 12px !important;
+  line-height: 30px !important;
+  padding-left: 0px !important;
+}
+.col-sm-12.agree-check label
+{
+  padding-left: 0px !important;
+}
+/* Checkout Cart End */
