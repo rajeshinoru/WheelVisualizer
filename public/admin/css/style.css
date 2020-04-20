@@ -32,7 +32,8 @@ html, body {
     outline:0px solid
 }
  img {
-    max-width:100%;
+    /*max-width:100%;*/
+    max-width: 250px;
     height:auto
 }
  .fix {

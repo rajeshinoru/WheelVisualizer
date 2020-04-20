@@ -132,3 +132,10 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
 });
+
+
+// Shopping Cart
+Route::get('/CartItems', 'CartController@index')->name('index');
+Route::get('/addToCart', 'CartController@store')->name('store');
+Route::get('/updateCart', 'CartController@update')->name('update');
+

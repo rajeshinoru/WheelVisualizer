@@ -234,7 +234,7 @@
         background: #ecb23d !important;
     }
 
-    .product-quantity #input-quantity {
+    .product-quantity .input-quantity {
         border: 1px solid #eaeaea;
         font-size: 14px;
         float: left;
@@ -514,9 +514,9 @@
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="text" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2" id="input-quantity" class="form-control">
+                                                    <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2"   class="input-quantity form-control">
                                                     <input type="hidden" name="product_id" value="46">
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#DiffProductCart{{$diffKey}}">Add to Cart</button>
+                                                    <button type="button" class="btn btn-info addToCart"  data-modelid="#DiffProductCart{{$diffKey}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade" id="DiffProductCart{{$diffKey}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
@@ -557,9 +557,9 @@
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="number" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="qty-" class="form-control">
-                                                    <input type="hidden" name="product_id" value="{{@$product->id}}">
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ProductCart{{$productKey}}">Add to Cart</button>
+                                                    <input type="number" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="" class="form-control input-quantity">
+                                                    <input type="hidden" name="product_id" value="46">
+                                                    <button type="button" class="btn btn-info addToCart"  data-modelid="#ProductCart{{$productKey}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade" id="ProductCart{{$productKey}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
@@ -805,5 +805,15 @@ $('.spinner .btn:last-of-type').on('click', function() {
             delay : 5
         });
     // })
+</script>
+
+
+<script type="text/javascript">
+    
+    $('.addToCart').click(function(){
+        alert($(this).attr('data-modelid'))
+    })
+
+
 </script>
 @endsection
