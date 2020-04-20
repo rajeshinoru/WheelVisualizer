@@ -4164,7 +4164,7 @@ html, body {
     margin-top: 0px !important;
 }
  .menu-switcher-pro .btn-info:active, .menu-switcher-pro .btn-info:focus, .menu-switcher-pro .btn-info:hover, .menu-switcher-pro .btn-info:visited, .header-drl-controller-btn.btn-info:active:focus{
-     background: #ecb23d !important;
+     background: transparent !important;
      outline:none;
 }
  .mini-navbar .single-review-st-text img {
@@ -4852,7 +4852,11 @@ html, body {
  .mini-navbar .sidebar-nav .metismenu li a i {
      font-size: 15px;
 }
-
+.main-logo 
+{
+    width: 138px !important;
+    height: auto !important;
+}
 
 
  @media (min-width: 360px) and (max-width: 767px) 

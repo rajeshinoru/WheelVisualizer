@@ -206,11 +206,7 @@
         font-weight: 700 !important;
     }
 
-    #produst,
-    #special-product,
-    footer,
-    #bott,
-    .container.brand-logo {
+    #produst,#special-product,footer,#bott,.container.brand-logo {
         display: none !important;
     }
 
@@ -250,94 +246,387 @@
             </ul>
         </div>
     </div>
-    @if(Setting::get('homepage_content1'))
-    <?=Setting::get('homepage_content1','')?>
-    @else
-    <!---------------- This Section will show when settings not found---------------->
+</div>
+
+
+<section class="shopping-cart-page">
     <div class="container">
-        <div class="title-header">
+        <div class="shopping-page title-header">
             <div id="heading" class="title">
-                <h1>Welcome to Discounted Wheel Warehouse - Wheels, Tires, Rims</h1>
+                <h1>Checkout</h1>
             </div>
         </div>
-        <hr>
     </div>
-
     <div class="container">
-        <div class="row pay">
-            <div class="col-sm-3 payments-card"><img src="image/pay1.png"></div>
-            <div class="col-sm-3 payments-card"><img src="image/pay2.png"></div>
-            <div class="col-sm-3 payments3-card"><img src="image/pay3.png"></div>
-            <div class="col-sm-3 payments-card"><img src="image/pay4.png"></div>
+      <div class="row">
+        <div class="col-sm-9" id="heading2"><h1> Order Items</h1></div>
+        <div class="col-sm-3" id="heading2"><h1>Your Cart</h1></div>
+      </div>
+      <div class="row">
+      <div class="col-sm-9">
+        <div class="shop-cart">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="shop-head">
+                    <th></th>
+                    <th>Qty</th>
+                    <th>Description</th>
+                    <th>Price Each</th>
+                    <th>Item Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="shopping-cart-image"><img src="../image/wheel.jpg" class="shop-img"></td>
+                    <td>
+                      <div class="shop-mar">
+                        <div class="form-group product-quantity">
+                            <input type="number" name="quantity" value="1" size="2" id="qty-" class="form-control">
+                            <input type="hidden" name="product_id" value="15">
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="shop-mar">
+                        <h1>H123-Lyon-1353</h1>
+                        <h2>HTR Wheels H123 Lyon 17x7.5 Gloss Black Machine 35mm Offset</h2>
+                        <span><a href="">Remove</a></span>
+                      </div>
+                    </td>
+                    <td><div class="shop-mar"><h1>$101.00</h1></div></td>
+                    <td><div class="shop-mar"><h1>$2,424.00</h1></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="prod-headinghome">
-            <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
+        <div class="col-sm-3">
+          <div class="shop-cart">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr class="shop-head">
+                      <th>Price Details</th>
+                      <th>Item Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="shop-mar2"><h1>Sub Total</h1></div></td>
+                      <td><div class="shop-mar2"><h1>$3,380.00</h1></div></td>
+                    </tr>
+                    <tr>
+                      <td><div class="shop-mar2"><h1>Fees</h1></div></td>
+                      <td><div class="shop-mar2"><h1>$0.00</h1></div></td>
+                    </tr>
+                    <tr>
+                      <td><div class="shop-mar2"><h1>Tax</h1></div></td>
+                      <td><div class="shop-mar2"><h1>TBD</h1></div></td>
+                    </tr>
+                    <tr>
+                      <td><div class="shop-mar2"><h1>Shipping</h1></div></td>
+                      <td><div class="shop-mar2"><h1>TBD</h1></div></td>
+                    </tr>
+                    <tr>
+                      <td><div class="shop-mar2"><h1><b>Total</b></h1></div></td>
+                      <td><div class="shop-mar2"><h1><b>$3,380.00</b></h1></div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <div class="container">
-        <div class="row pro-img">
-            <div class="col-sm-4 wheel-img"><img src="image/image-1.png"></div>
-            <div class="col-sm-4 wheel-img"><img src="image/image-2.png"></div>
-            <div class="col-sm-4 wheel-img"><img src="image/image-3.png"></div>
         </div>
-    </div>
-    <!---------------- This Section will show when settings not found---------------->
+      </section>
 
-    @endif
+      <section class="shopping-cart-page">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-9" id="heading2"><h1>Billing Address</h1></div>
+              <div class="col-sm-3" id="heading2"><h1></h1></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9">
+                <div class="shop-cart bill-page">
+                      <form class="needs-validation" novalidate>
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="First name" value="" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Last name" value="" required>
+                          </div>
+                        </div>
 
-</div>
-<!-- Start - This is for Duynamic Products from database -->
-<div class="container">
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <label for="firstName">Company Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Company Name" value="" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                          </div>
+                        </div>
 
-    <div class="hometabled">
-        <div class="pTopBar">
-            <div class="pTopCell HotDeals">Hot Deals Save 30%-75%</div>
-            <div class="pTopCell Phone"><a href="tel:1-800-901-6003" title="Telephone 1-800-901-6003">1-800-901-6003</a></div>
-        </div>
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <label for="firstName">Day Phone</label>
+                            <input type="tel" class="form-control" id="firstName" placeholder="Day Phone" value="" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="lastName">Cell Phone</label>
+                            <input type="tel" class="form-control" id="lastName" placeholder="Cell Phone" value="" required>
+                          </div>
+                        </div>
 
-    </div>
-</div>
-<!-- End - This is for Duynamic Products from database  -->
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <label for="firstName">Address</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="1234 Main St" value="" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-5 mb-3">
+                            <label for="country">Country</label>
+                            <select class="form-control" id="country" required>
+                              <option value="">Choose...</option>
+                              <option>United States</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">State</label>
+                            <select class="form-control" id="state" required>
+                              <option value="">Choose...</option>
+                              <option>California</option>
+                            </select>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="zip">Zip</label>
+                            <input type="text" class="form-control" id="zip" placeholder="" required>
+                          </div>
+                        </div>
+
+                      </form>
+                  </div>
+                </div>
+
+              <div class="col-sm-3"></div>
+              </div>
+              </div>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-9" id="heading2"><h1>Shipping Address</h1></div>
+                  <div class="col-sm-3" id="heading2"><h1></h1></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-9">
+                    <div class="shop-cart bill-page">
+                           <label class="checkbox-inline"><input type="checkbox" value=""> Same as billing</label>
+                      </div>
+                    </div>
+
+                  <div class="col-sm-3"></div>
+                  </div>
+                  </div>
+
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-9" id="heading2"><h1>Payment Method</h1></div>
+                      <div class="col-sm-3" id="heading2"><h1></h1></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-9">
+                        <div class="shop-cart bill-page">
+                              <form class="needs-validation" novalidate>
+                                <div class="row">
+                                  <div class="col-md-6 mb-3">
+                                    <label for="country">Payment Method</label>
+                                    <select class="form-control" id="country" required>
+                                      <option value="">Choose...</option>
+                                      <option>Visa</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-md-6 mb-3">
+                                    <label for="firstName">Card Number</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="Card Number" value="" required>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 mb-3">
+                                    <label for="country">Expiration Date</label>
+                                    <select class="form-control" id="country" required>
+                                      <option value="">Choose...</option>
+                                      <option>April</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-md-6 mb-3">
+                                    <label for="state">Expiration Year</label>
+                                    <select class="form-control" id="state" required>
+                                      <option value="">Choose...</option>
+                                      <option>2020</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 mb-3">
+                                    <label for="firstName">Card Verification Code</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="Card Verification Code" value="" required>
+                                  </div>
+                                  <div class="col-md-6 mb-3">
+                                    <label for="lastName">Bank Phone Number on Back of Card</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Bank Phone Number on Back of Card" value="" required>
+                                  </div>
+                                </div>
+                              </form>
+                          </div>
+                        </div>
+
+                      <div class="col-sm-3"></div>
+                      </div>
+                      </div>
+
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-sm-9" id="heading2"><h1>Vehicle Information</h1></div>
+                          <div class="col-sm-3" id="heading2"><h1></h1></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-9">
+                            <div class="shop-cart bill-page">
+                                  <form class="needs-validation" novalidate>
+                                    <div class="row">
+                                      <div class="col-md-6 mb-3">
+                                        <label for="country">Select Make</label>
+                                        <select class="form-control" id="country" required>
+                                          <option value="">Choose...</option>
+                                          <option>Product</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-md-6 mb-3">
+                                        <label for="country">Select Year</label>
+                                        <select class="form-control" id="country" required>
+                                          <option value="">Choose...</option>
+                                          <option>2020</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-6 mb-3">
+                                        <label for="country">Select Model</label>
+                                        <select class="form-control" id="country" required>
+                                          <option value="">Choose...</option>
+                                          <option>Model</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-md-6 mb-3">
+                                        <label for="state">Select Trim</label>
+                                        <select class="form-control" id="state" required>
+                                          <option value="">Choose...</option>
+                                          <option>Trim</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-4 mb-3">
+                                        <label for="country">Is Vehicle Modified?</label>
+                                        <select class="form-control" id="country" required>
+                                          <option value="">Choose...</option>
+                                          <option>Yes</option>
+                                          <option>No</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-md-4 mb-3">
+                                        <label for="country">Big Brake Kit?</label>
+                                        <select class="form-control" id="country" required>
+                                          <option value="">Choose...</option>
+                                          <option>Yes</option>
+                                          <option>No</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-md-4 mb-3">
+                                        <label for="country">Raised or Lowered?</label>
+                                        <select class="form-control" id="country" required>
+                                          <option value="">Choose...</option>
+                                          <option>Yes</option>
+                                          <option>No</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12 mb-3">
+                                        <label for="comment">Modified Please Explain :</label>
+                                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                                      </div>
+                                    </div>
+                                  </form>
+                              </div>
+                            </div>
+
+                          <div class="col-sm-3"></div>
+                          </div>
+                          </div>
+
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-sm-9" id="heading2"><h1>Notes</h1></div>
+                              <div class="col-sm-3" id="heading2"><h1></h1></div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-9">
+                                <div class="shop-cart bill-page">
+                                      <form class="needs-validation" novalidate>
+
+                                        <div class="row">
+                                          <div class="col-md-12 mb-3">
+                                            <label for="comment">Notes for this order :</label>
+                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                          </div>
+                                        </div>
+                                      </form>
+                                  </div>
+                                </div>
+
+                              <div class="col-sm-3"></div>
+                              </div>
+                              </div>
+
+                              <div class="container">
+                                <div class="row">
+                                  <div class="col-sm-9" id="heading2"><h1>Notes</h1></div>
+                                  <div class="col-sm-3" id="heading2"><h1></h1></div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-9 agree-check">
+                                    <p class="agree-para">I agree to the Terms and Conditions of the Return Policy. On Tire Orders no contact with the customer is necessary, tracking numbers will be sent to the supplied email address. On all Wheel orders we must contact all customers by phone to confirm vehicle details and verify payment method. This order will only ship out after verbal contact has been made with the customer by phone. Expect a call today or the next business day during business hours. I am aware if I am trying to use a fraudulent Credit Card I will be prosecuted to the full extent of the law. Choice of Law; Jurisdiction; Venue: You agree that your purchase of goods shall be construed in accordance with, and governed by, the laws of the State of California as applied to contracts signed, delivered, and performed solely within that State. You agree that any action or proceeding commenced as the result of claims arising from or relating to your purchase of goods shall be brought and filed in the County of Orange, State of California.</p>
+                                     <label class="checkbox-inline"><input type="checkbox" value=""> I agree to the above Terms & Conditions</label>
+                                     <br>
+                                     <button class="btn btn-info checkout-btn" type="button"><i class="fa fa-shopping-cart"></i> Place Your Order</button>
+                                    </div>
+
+                                  <div class="col-sm-3"></div>
+                                  </div>
+                                  </div>
+
+            </section>
 
 
 
-@if(Setting::get('homepage_content2'))
-<div class="container">
-    <?=Setting::get('homepage_content2','')?>
-</div>
-@else
-<!---------------- Start - This Section will show when settings not found---------------->
-<div class="container">
-    <div class="prod-headinghome">
-        <h2>We offer the hassle free fitment to make things EASY</h2>
-        <p>Our Wheel Fitment Specialists or Tire Fitment Specialist can get you into those aftermarket wheels or tires fast. Our staff strives on giving the best service to our customers and have 20 years experience in wheel and tire fitment. We are the absolute authority on getting you fitted with the best choice of rims or tires for your Car, Truck or SUV. We offer online fitment that is quick and painless and will show you exactly which rims or tires will fit your vehicle.</p>
-        <h2>Fast Shipping plus Low already Discounted Prices</h2>
-        <p>Discounted Wheel Warehouse offers Fast Shipping on all its products. Whether your looking for some good quality cheap tires or just a set of car rims. We can get them to you quickly with our Fast shipping. Our price is already heavily discounted. No need to look elsewhere Discounted Wheel Warehouse will already have the best price for any wheels or wheel and tire package your looking for.</p>
-        <h2>Home of the Wheel and Tire Package</h2>
-        <p>Discounted wheel Warehouse is the home of the Wheel and Tire Package. We have been offering rims combined with tires also known as the "Wheel and Tire Package" since our existence. The best way to buy wheels and tire for your Car, Truck or SUV is a Wheel and Tire Package. We correctly fit the wheels using plus sizing, then correctly fit the plus sized tires for your vehicle. Our highly trained staff mounts and Road-Force Balances the wheels and tires for you into a wheel and tire package. All the customer has to do is dismount their stock/oem wheels and mount the wheels and tires right out of the box, it's super easy.</p>
-        <h2>Full Range of rims and tires for every Car, Truck or SUV</h2>
-        <p>We carry rims in the following sizes: 15 inch, 16 inch, 17 inch, 18 inch, 19 inch, 20 inch, 22 inch, 24 inch, 26 inch, 28 inch, 30 inch and a whopping 32 inch beast of a wheel. We have custom wheels, black wheels, off road wheels, staggered fitment wheels and 3 piece wheels. Our Tires range from 13 inch all the way to 32 inch. We have name brand high quality tires like Michelin, BFGoodrich all the way to Yokohama. We also carry a vast amount of Value low cost tires also known as cheap tires. We have brands like Fullrun and Lexani for our high quality discount tires.</p>
-    </div>
-    <div class="prod-headinghome">
-        <h2>Useful Links for Custom Wheel Purchasing</h2>
-        <p><a href=""><b>Package Deal</b></a> - This link has information about what comes with a wheel and tire package.</p>
-        <p><a href=""><b>LOW or HIGH ?</b></a> - This link is information on how to determine if you have a FWD offset or a RWD offset on your Vehicle.</p>
-        <p><a href=""><b>Lip Sizes</b></a> - Explains the difference in wheel lip sizes and what to expect when your wheel arrives.</p>
-        <p><a href=""><b>Wheel Fitment</b></a> - This link explains Plus Sizing and how we are able to properly fit your rims and tires for your vehicle.</p>
-        <p><a href=""><b>Offset and Bolt Patterns</b></a> - Reference to help aid in determining Bolt patterns and offsets for all vehicles.</p>
-        <p><a href=""><b>Order Status</b></a> - View information on the status of your order.</p>
-    </div>
-    <div class="prod-heading-center">
-        <p>Discounted Wheel Warehouse your best place to buy:</p>
-        <p>Aftermarket Rims and Tires for your Car, Truck or Suv, Wheel and Tire Packages</p>
-    </div>
-</div>
-<!---------------- End - This Section will show when settings not found---------------->
-@endif
+
+
 
 @endsection
 @section('custom_scripts')
