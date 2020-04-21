@@ -191,7 +191,7 @@ class TireController extends Controller
             $vehicle='';
         }
         // dd($vehicle);
-        $tire = Tire::select('prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
+        $tire = Tire::select('id','prodimage','warranty','detailtitle','prodbrand','tiresize','prodmodel',
                 'speedrating','loadindex','utqg','partno','originalprice','yousave','set_amount','vehicle_type','price','saletype','qtyavail','dry_performance','wet_performance','mileage_performance','ride_comfort','quiet_ride',
                 'winter_performance','fuel_efficiency','braking','responsiveness','sport','off_road','youtube1','youtube2','youtube3','youtube4','proddesc','benefits1','benefits2','benefits3','benefits4','benefitsimage1','benefitsimage2','benefitsimage3','benefitsimage4','badge1','badge2','badge3','detaildesctype','detaildescfeatures')
                 ->where('id',base64_decode($tire_id))
@@ -202,7 +202,7 @@ class TireController extends Controller
                 ->with(['Brand'])
                 ->get();
 
-        $similar_tires = Tire::select('detailtitle','prodimage','id','warranty','tiresize',
+        $similar_tires = Tire::select('id','detailtitle','prodimage','id','warranty','tiresize',
                 'speedrating','loadindex','utqg','partno','price','prodmodel')
                 // ->where('prodbrand',$tire->prodbrand)
                 ->where('tiresize',$tire->tiresize)

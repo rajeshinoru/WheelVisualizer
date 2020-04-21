@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\WheelProduct;
+use App\Tire;
 class CartController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class CartController extends Controller
     public function index()
     {   
         $cart = Session::get('cart')?:[];
+        // dd($cart);
         $cartData=$cart;
         foreach ($cart as $key => $item) {
             if($item['type']=='wheel'){
@@ -24,7 +26,7 @@ class CartController extends Controller
                 $cartData[$key]['data']=Tire::find($item['id']);
             }
         }
-        
+
         return view('shopping_cart',compact('cart','cartData')); 
     }
 
@@ -46,8 +48,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $cart = Session::get('cart');
+        $cart = Session::get('cart')??[];
         $flag=0;
         foreach ($cart as $key => $item) {
             if($item['id'] == $request->productid && $item['type'] == $request->prodtype){
@@ -62,14 +63,16 @@ class CartController extends Controller
             }
         }
         if($flag==0){
-            $cart[]= array(
+            array_push($cart, array(
                 "id" => $request->productid,
                 "type" => $request->prodtype,
                 "qty" => $request->qty,
                 "price" => $request->price,
-            );
+            ));
         }
         Session::put('cart', $cart);
+
+        // dd($cart);
         Session::flash('success','Product Added to Cart!');
         //dd(Session::get('cart'));
         return 'success';

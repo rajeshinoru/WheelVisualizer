@@ -647,7 +647,7 @@
                     @endif
                 </div>
                 <div class="col-sm-{{12/$divClass}} shop-details">
-                    <h1 class="product-name">{{@$tire->detailtitle}}</h1>
+                    <h1 class="product-name tire-detail-title">{{@$tire->detailtitle}}</h1>
                     <div class="rating-section product-rating-status text-left">
                         <div class="rating">
                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span>
@@ -704,14 +704,41 @@
                     <div class="row product-quantity">
                         <div class="col-sm-4 view-one">
                             <div class="input-group spinner">
-                                <input type="text" class="form-control" value="1" min="0" max="10">
+                                <input type="text" name="quantity[]" class="quantity form-control" value="1" min="1" max="10">
                                 <div class="input-group-btn-vertical">
                                 <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
                                 <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 view-two"><button class="btn btn-info" type="button">Add to Cart</button></div>
+                        <div class="col-sm-4 view-two">
+                            <button class="btn btn-info addToCart" type="button" data-productid="{{$tire->id}}" data-price="{{roundCurrency(@$tire->price)}}"  data-modelid="#TireProductModal">Add to Cart</button>
+                                                    <!-- model Start -->
+                                                    <div class="modal fade " id="TireProductModal" role="dialog">
+                                                        <div class="modal-dialog wheel-view">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title text-left">Items Added to Cart</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
+                                                                  <h2 class="modal-title">The following items have been added to your cart:</h2>
+                                                                  <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                                                    <form class="form-horizontal">
+                                                                        <div class="form-group has-success has-feedback text-center">
+                                                                            <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
+                                                                            <button class="btn btn-info" type="button">Add Matching Tires</button>
+                                                                            <a class="btn btn-info cart-btn" href="{{url
+                                                                            ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
+                                                                        </div>
+                                                                    </form>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Model End  -->
+                        </div>
                         <div class="col-sm-4 view-three"><button class="btn btn-info" type="button">FINANCE</button></div>
                     </div>
 
@@ -1170,4 +1197,29 @@ $('.spinner .btn:last-of-type').on('click', function() {
 
 })
 </script>
+
+
+
+<script type="text/javascript">
+    
+    $('.addToCart').click(function(){
+        var modelid="#TireProductModal";
+        var qty = $('.quantity').val();
+        var productid = $(this).data('productid');
+        var price = $(this).data('price'); 
+        var prodtype ='tire';
+        var modalMsg = "Qty: "+qty+", "+$('.tire-detail-title').text()+" "+price+"/ea";
+
+        $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype,'price':price}, success: function(result){
+            if(result =='success'){
+                $(modelid).find('.modal-msg').text(modalMsg);
+                $(modelid).modal("show");
+            }
+            // $(".se-pre-con").hide(); 
+        }});
+    })
+
+
+</script>
+
 @endsection
