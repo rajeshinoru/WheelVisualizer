@@ -517,7 +517,7 @@
                                                     <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2"   class="input-quantity quantity form-control">
                                                     <button type="button" class="btn btn-info addToCart" data-productid="{{$diffproduct->id}}" data-price="{{roundCurrency(@$diffproduct->price)}}"  data-modelid="#DiffProductCart{{$diffKey}}">Add to Cart</button>
                                                     <!-- model Start -->
-                                                    <div class="modal fade" id="DiffProductCart{{$diffKey}}" role="dialog">
+                                                    <div class="modal fade " id="DiffProductCart{{$diffKey}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -530,10 +530,10 @@
                                                                   <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
-                                                                            <button class="btn btn-info" type="button">Continue Shopping</button>
+                                                                            <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
                                                                             <button class="btn btn-info" type="button">Add Matching Tires</button>
                                                                             <a class="btn btn-info cart-btn" href="{{url
-                                                                            ('/CartItems')}}" type="button"><i class="fa fa-shopping-cart"></i> View Cart</a>
+                                                                            ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
                                                                     </form>
                                                                   </div>
@@ -573,9 +573,10 @@
                                                                   <p class=" modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
-                                                                            <button class="btn btn-info" type="button">Continue Shopping</button>
+                                                                            <button class="btn btn-info" type="button" data-dismiss="modal" >Continue Shopping</button>
                                                                             <button class="btn btn-info" type="button">Add Matching Tires</button>
-                                                                            <button class="btn btn-info cart-btn" type="button"><i class="fa fa-shopping-cart"></i> View Cart</button>
+                                                                            <a class="btn btn-info cart-btn" href="{{url
+                                                                            ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
                                                                     </form>
                                                                   </div>
@@ -815,10 +816,11 @@ $('.spinner .btn:last-of-type').on('click', function() {
         var qty = $(this).prev('.quantity').val();
         var productid = $(this).data('productid');
         var price = $(this).data('price');
+        alert(price);
         var prodtype ='wheel';
-        var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+"     "+price+"/ea";
+        var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+" "+price+"/ea";
 
-        $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype}, success: function(result){
+        $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype,'price':price}, success: function(result){
             if(result =='success'){
                 $(modelid).find('.modal-msg').text(modalMsg);
                 $(modelid).modal("show");

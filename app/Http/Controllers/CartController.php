@@ -15,13 +15,17 @@ class CartController extends Controller
     public function index()
     {   
         $cart = Session::get('cart')?:[];
-        $wheelproducts = new WheelProduct;
-        if (array_key_exists("wheel",$cart)){
-            $productIds = array_keys($cart['wheel']);
-            $wheelproducts = $wheelproducts->whereIn('id',$productIds)->get();
-            
+        $cartData=$cart;
+        foreach ($cart as $key => $item) {
+            if($item['type']=='wheel'){
+                $cartData[$key]['data']=WheelProduct::find($item['id']);
+            }
+            if($item['type']=='tire'){
+                $cartData[$key]['data']=Tire::find($item['id']);
+            }
         }
-        return view('shopping_cart',compact('cart','wheelproducts')); 
+        
+        return view('shopping_cart',compact('cart','cartData')); 
     }
 
     /**
@@ -44,12 +48,27 @@ class CartController extends Controller
     {
         // dd($request->all());
         $cart = Session::get('cart');
-        $cart[$request->prodtype][$request->productid]= array(
-            "id" => $request->productid,
-            "type" => $request->prodtype,
-            "qty" => $request->qty,
-        );
-
+        $flag=0;
+        foreach ($cart as $key => $item) {
+            if($item['id'] == $request->productid && $item['type'] == $request->prodtype){
+                $flag=1;
+                $cart[$key]= array(
+                    "id" => $request->productid,
+                    "type" => $request->prodtype,
+                    "qty" => $request->qty,
+                    "price" => $request->price,
+                );
+                break;
+            }
+        }
+        if($flag==0){
+            $cart[]= array(
+                "id" => $request->productid,
+                "type" => $request->prodtype,
+                "qty" => $request->qty,
+                "price" => $request->price,
+            );
+        }
         Session::put('cart', $cart);
         Session::flash('success','Product Added to Cart!');
         //dd(Session::get('cart'));
@@ -85,9 +104,20 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $cart = Session::get('cart');
+        // dd($cart);
+        foreach ($cart as $key => $item) {
+            if($item['id'] == $request->productid && $item['type'] == $request->prodtype){
+                $flag=1;
+                $cart[$key]['qty']= $request->qty;
+                Session::put('cart', $cart);
+                return 'success';
+            }
+        }
+        return 'failed';
+
     }
 
     /**
@@ -99,48 +129,22 @@ class CartController extends Controller
     public function destroy($type,$id)
     {
         $cart = Session::get('cart');
-        unset($cart[$type][$id]);
+        foreach ($cart as $key => $item) {
+            if($item['id'] == $id && $item['type'] == $type){
+                unset($cart[$key]);
+            }
+        }
+        $cart = array_values($cart);
         Session::put('cart', $cart);
         Session::flash('success','Removed one Item!!');
-        //dd(Session::get('cart'));
         return redirect()->back();
     }
 
-    public function addToCart(Request $request, $id)
-    {
-        $product = DB::select('select * from products where id='.$id);
-        $cart = Session::get('cart');
-        $cart[$product[0]->id] = array(
-            "id" => $product[0]->id,
-            "nama_product" => $product[0]->nama_product,
-            "harga" => $product[0]->harga,
-            "pict" => $product[0]->pict,
-            "qty" => 1,
-        );
-
-        Session::put('cart', $cart);
-        Session::flash('success','barang berhasil ditambah ke keranjang!');
-        //dd(Session::get('cart'));
-        return redirect()->back();
-    }
+   
     public function clearCart(Request $cartdata)
     {
         $cart = Session::put('cart',null);
         return redirect()->back();
     }
-    public function updateCart(Request $cartdata)
-    {
-        $cart = Session::get('cart');
 
-        foreach ($cartdata->all() as $id => $val) 
-        {
-            if ($val > 0) {
-                $cart[$id]['qty'] += $val;
-            } else {
-                unset($cart[$id]);
-            }
-        }
-        Session::put('cart', $cart);
-        return redirect()->back();
-    }
 }

@@ -360,10 +360,10 @@
                     </div>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-inverse btn-block btn-lg"><i class="fa fa-shopping-cart"></i>
+                    <a href="{{url('/CartItems')}}" class="btn btn-inverse btn-block btn-lg"><i class="fa fa-shopping-cart"></i>
                         <span class="cart-heading">Cart</span>
                         <span id="cart-total">0</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -271,39 +271,49 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @forelse(@$wheelproducts as $pkey=> $product)
-                  <tr class="row{{$pkey}}">
-                    <td class="shopping-cart-image"><img src="{{ViewWheelProductImage(@$product->prodimage)}}" class="shop-img"></td>
+                    @forelse(@$cartData as $itemKey=> $item) 
+                        <?php $itemData = $item['data']; ?>
+                  <tr class="row{{$itemKey}}">
+                    <td class="shopping-cart-image">
+                        @if($item['type']=='wheel')
+                            <img src="{{ViewWheelProductImage(@$itemData->prodimage)}}" class="shop-img">
+                        @else
+                            <img src="{{ViewTireImage(@$itemData->prodimage)}}" class="shop-img">
+                        @endif
+                    </td>
                     <td>
                       <div class="shop-mar">
                         <div class="form-group product-quantity">
-                            <input type="number" name="quantity[]" value="{{@$cart['wheel'][$product->id]['qty']}}" size="2" class="form-control quantity" data-key="{{$pkey}}" min="1" max="8">
-                            <input type="hidden" name="product_id[]" value="{{$product->id}}">
+                            <input type="number" name="quantity[]" value="{{@$item['qty']}}" size="2" class="form-control quantity" data-key="{{$itemKey}}" min="1" max="8">
+                            <input type="hidden" name="productid[]" class="productid" value="{{$itemData->id}}">
+                            <input type="hidden" name="prodtype[]"  class="prodtype" value="{{@$item['type']}}">
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="shop-mar">
-                        <h1>{{$product->partno}}</h1>
-                        <h2>{{$product->detailtitle}}</h2>
-                        <span><a href="{{url('/removeItem/')}}/{{@$cart['wheel'][$product->id]['type']}}/{{@$cart['wheel'][$product->id]['id']}}">Remove</a></span>
+                        <h1>{{$itemData->partno}}</h1>
+                        <h2>{{$itemData->detailtitle}}</h2>
+                        <span><a href="{{url('/removeItem/')}}/{{@$item['type']}}/{{@$item['id']}}">Remove</a></span>
                       </div>
                     </td>
-                    <td><div class="shop-mar"><h1 class="eachprice" data-price="{{$product->price}}" >{{roundCurrency($product->price)}}</h1></div></td>
-                    <td><div class="shop-mar"><h1 class="eachtotal">{{roundCurrency($product->price * @$cart['wheel'][$product->id]['qty'])}}</h1></div></td>
+                    <td><div class="shop-mar"><h1 class="eachprice" data-price="{{$itemData->price}}" >{{roundCurrency($itemData->price)}}</h1></div></td>
+                    <td><div class="shop-mar"><h1 class="eachtotal">{{roundCurrency($itemData->price * @$item['qty'])}}</h1></div></td>
                   </tr>
                   @empty
                   <tr>
-                    <td colspan="4"><div class="shop-mar">Your Cart is Empty!!</h1></div></td>
+                    <td colspan="5" style="text-align: center;">
+                        <div class="shop-mar">
+                            <h1>Your Cart is Empty!!</h1>
+                        </div>
+                    </td>
                   </tr>
 
                   @endforelse
 
                   <tr>
-                    <td > </td>
-                    <td> </td>
-                    <td> </td>
-                    <td><td><div class="shop-mar">Cart Total:<h1 class="finaltotal">$0.00</h1></div></td>
+                    <td  colspan="4" > <div class="shop-mar" style="text-align:right;"><h1>Cart Total: </h1></div></td>
+                    <td><div class="shop-mar"><h1 class="finaltotal">$0.00</h1></div></td>
                   </tr>
                  
                 </tbody>
@@ -315,7 +325,7 @@
                 <button class="btn btn-info cart-btn" type="button">shipping Quote</button>
                 <button class="btn btn-info cart-btn" type="button">Finance Team</button>
                 <button class="btn btn-info cart-btn" type="button">Paypal <sup>checkout</sup></button>
-                <button class="btn btn-info checkout-btn" type="button"><i class="fa fa-shopping-cart"></i> checkout</button>
+                <a href="{{url('/checkout')}}" class="btn btn-info checkout-btn" type="button" ><i class="fa fa-shopping-cart"></i> checkout</a>
                 </div>
               </form>
           </div>
@@ -332,8 +342,8 @@
 
 
 <script type="text/javascript">
-    calcualteToal();
-    function calcualteToal(){
+    calculateTotal();
+    function calculateTotal(){
         var tot=0;
         $('.quantity').each(function(){
 
@@ -346,35 +356,38 @@
         $('.finaltotal').text(text)
     }
 
+    function updateCart(qty,productid,prodtype){
+        // $(".se-pre-con").show(); 
+        console.log(qty,productid,prodtype)
+        $.ajax({url: "/updateCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype}, success: function(result){
+            if(result =='success'){
+                // $(modelid).find('.modal-msg').text(modalMsg);
+                // $(modelid).modal("show");
+                // $(".se-pre-con").hide(); 
+            }
+            // $(".se-pre-con").hide(); 
+        }});
+    }
+    
     $('.quantity').change(function(){
 
         // var modelid = $(this).data('modelid');
         var qty = $(this).val();
+        if(qty < 1){
+            $(this).val(1); 
+            qty=1;
+        }
         var key = $(this).data('key');
-        // var productid = $(this).data('productid');
+        var productid =  $('.row'+key).find('.productid').val();
+        var prodtype = $('.row'+key).find('.prodtype').val();
         var price = $('.row'+key).find('.eachprice').data('price') * qty;
         text =  "$"+price.toFixed(2);
         $('.row'+key).find('.eachtotal').text(text);
-        calcualteToal();
-        // var prodtype ='wheel';
-        // var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+"     "+price+"/ea";
+        updateCart(qty,productid,prodtype);
+        calculateTotal();
 
-        // $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype}, success: function(result){
-        //     if(result =='success'){
-        //         $(modelid).find('.modal-msg').text(modalMsg);
-        //         $(modelid).modal("show");
-        //     }
-        //     // $(".se-pre-con").hide(); 
-        // }});
+
     })
-    $('.removeItem').click(function(){
-        $.ajax({url: "/removeItem",data:{'qty':qty,'productid':productid,'prodtype':prodtype}, success: function(result){
-            if(result =='success'){
-                $(modelid).find('.modal-msg').text(modalMsg);
-                $(modelid).modal("show");
-            }
-            // $(".se-pre-con").hide(); 
-        }});
-    });
+
 </script>
 @endsection
