@@ -19,8 +19,8 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');
 Route::get('/wheels', 'HomeController@wheels')->name('wheels');
-Route::get('/shoppingcart', 'HomeController@shopping_cart')->name('shopping_cart');
-Route::get('/checkout', 'HomeController@checkout')->name('checkout');
+// Route::get('/shoppingcart', 'HomeController@shopping_cart')->name('shopping_cart');
+// Route::get('/checkout', 'HomeController@checkout')->name('checkout');
 Route::get('/wheelview/{wheel_id?}', 'HomeController@wheelview')->name('wheelview');
 Route::get('/wheelbrand/{wheel_id?}', 'HomeController@wheelbrand')->name('wheelbrand');
 Route::get('/csvuplaod', 'HomeController@csv_upload')->name('csvuplaod');
@@ -139,6 +139,10 @@ Route::get('/CartItems', 'CartController@index')->name('index');
 Route::get('/addToCart', 'CartController@store')->name('store');
 Route::get('/updateCart', 'CartController@update')->name('update');
 Route::get('/clearCart', 'CartController@clearCart')->name('clearCart');
+Route::get('/getCartCount', 'CartController@getCartCount')->name('getCartCount');
 Route::get('/removeItem/{type}/{id}', 'CartController@destroy')->name('removeItem');
+
+
+Route::get('/checkout', 'CartController@checkout')->name('checkout');
 
 

@@ -386,10 +386,21 @@ $('.carousel[data-type="multi"] .item').each(function(){
     next.children(':first-child').clone().appendTo($(this));
   }
 });
-
+ function getCartCount(){
+        $.ajax({url: "/getCartCount",data:{}, success: function(result){
+            if(result){
+                $("#cart-total").text(result);
+            }else{
+                $("#cart-total").text(0);
+            }
+            // $(".se-pre-con").hide(); 
+        }});
+ }
         
 $(function(){ 
   $(".wheelImage").popImg(); 
+   getCartCount();
+  
 })
 
 
@@ -426,4 +437,9 @@ if($('.read_more_text').length > 0 ){
     moreLess(100);
 
 }
+
  // Read More Script Ends
+
+
+
+

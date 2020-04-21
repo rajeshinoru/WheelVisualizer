@@ -149,5 +149,41 @@ class CartController extends Controller
         $cart = Session::put('cart',null);
         return redirect()->back();
     }
+   
+    public function getCartCount(Request $cartdata)
+    {
+        $cart = Session::get('cart')??[];
+        return count($cart);
+    }
+
+    public function checkout()
+    {   
+        $cart = Session::get('cart')?:[];
+        // dd($cart);
+        $cartData=$cart;
+        $subtotal =0;
+        $total =0;
+        foreach ($cartData as $key => $item) {
+            if($item['type']=='wheel'){
+                $cartData[$key]['data']=WheelProduct::find($item['id']);
+            }
+            if($item['type']=='tire'){
+                $cartData[$key]['data']=Tire::find($item['id']);
+            } 
+            $subtotal+=$cartData[$key]['qty']*$cartData[$key]['data']->price;
+        }
+        $payment['subtotal']=$subtotal;
+
+        $payment['fees']=0;
+
+        $payment['tax']=0;
+
+        $payment['shipping']=0;
+
+        $payment['total']=$subtotal+($payment['fees']+$payment['tax']+$payment['shipping']);
+        // dd($cartData);
+        return view('checkout',compact('cart','cartData','payment')); 
+    }
+
 
 }
