@@ -339,8 +339,8 @@
 
 @endsection
 @section('custom_scripts')
-
-
+<script src="{{asset('/js/cart_quantity.js')}}"></script>
+<!-- 
 <script type="text/javascript">
     calculateTotal();
     function calculateTotal(){
@@ -388,6 +388,5 @@
 
 
     })
-
-</script>
+</script> -->
 @endsection

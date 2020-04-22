@@ -816,7 +816,7 @@ $('.spinner .btn:last-of-type').on('click', function() {
         var qty = $(this).prev('.quantity').val();
         var productid = $(this).data('productid');
         var price = $(this).data('price');
-        alert(price);
+        // alert(price);
         var prodtype ='wheel';
         var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+" "+price+"/ea";
 

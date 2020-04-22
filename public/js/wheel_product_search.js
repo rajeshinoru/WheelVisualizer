@@ -186,3 +186,101 @@ function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeB
     });
 }
 
+
+
+// ************************************Checkout Page VehicleFilters Started********************************************
+
+
+// Year based filters for Makes 
+$(document).on('change', '.CheckoutYear,.CheckoutMake,.CheckoutModel', function() {
+    var changeBy = $(this).attr('name');
+
+    var make = $('.CheckoutMake').val();
+    var year = $('.CheckoutYear').val();
+    var model = $('.CheckoutModel').val();
+    var submodel = $('.CheckoutSubmodel').val();
+    WheelNavFilters(year, make, model,submodel, changeBy);
+});
+
+function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
+    $.ajax({
+        method: "GET",
+        url: '/getFiltersByVehicle',
+        data: {
+            year: year,
+            make: make,
+            model: model,
+            changeBy: changeBy
+        }
+    }).done(function(data) {
+
+        $('.CheckoutSubmodel').empty().append('<option value="">Select Trim</option>');
+
+        if (changeBy == '' || changeBy == 'year' || changeBy == 'make') {
+            $('.CheckoutModel').empty().append('<option value="">Select Model</option>');
+        }
+        if (changeBy == '' || changeBy == 'make') {
+            $('.CheckoutYear').empty().append('<option value="">Select Year</option>');
+        }
+
+        if (changeBy == '') {
+            data.data['year'].map(function(value, key) {
+                isSelected = (value.year == year) ? 'selected' : '';
+                $('.CheckoutYear').append('<option value="' + value.year + '" ' + isSelected + '>' + value.year + '</option>');
+            });
+            data.data['model'].map(function(value, key) {
+                isSelected = (value.model == model) ? 'selected' : '';
+                $('.CheckoutModel').append('<option value="' + value.model + '" ' + isSelected + '>' + value.model + '</option>');
+            });
+            data.data['submodel'].map(function(value, key) {
+                isSelected = (value.submodel == submodel) ? 'selected' : '';
+                $('.CheckoutSubmodel').append('<option value="' + value.submodel + '"' + isSelected + '>' + value.submodel  + '</option>');
+            });
+        } else {
+            var arrayData = $.map(data.data, function(value, index) {
+                return [value];
+            });
+
+            arrayData.map(function(value, key) {
+                if (changeBy == 'make') {
+                    $('.CheckoutYear').append('<option value="' + value.year + '">' + value.year + '</option>');
+                }
+                if (changeBy == 'year') {
+                    $('.CheckoutModel').append('<option value="' + value.model + '">' + value.model + '</option>');
+                }
+                if (changeBy == 'model') {
+                    // $('.CheckoutSubmodel').append('<option value="' + value.submodel + '">' + value.submodel + '</option>');
+
+                    var submodelBody = value.submodel + '-' + value.body;
+                    $('.CheckoutSubmodel').append('<option value="'+ submodelBody+'">'+submodelBody+ '</option>');
+                }
+            });
+        }
+
+        if(make != null && changeBy !=''){
+
+            // $('.CheckoutMake').append('<option value="' + make + '" selected>' + make + '</option>');
+            // $('.CheckoutMake').trigger("chosen:updated");
+        }
+
+        // $('.CheckoutYear').trigger("chosen:updated");
+        // $('.CheckoutModel').trigger("chosen:updated");
+        // $('.DriveBody').trigger("chosen:updated");
+        // if (changeBy == 'make') {
+        //     $('.CheckoutYear').focus();
+        //     $('.CheckoutYear').childrens('option').show();
+        // }
+        // if (changeBy == 'year') {
+        //     $('.CheckoutModel').focus();
+        //     $('.CheckoutModel').childrens('option').show();
+        // }
+        // if (changeBy == 'model') {
+        //     $('.CheckoutSubmodel').focus();
+        //     $('.CheckoutSubmodel').childrens('option').show();
+        // }
+    }).fail(function(msg) {
+        alert("fails");
+    });
+}
+
+

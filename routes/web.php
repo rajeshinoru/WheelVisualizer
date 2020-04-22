@@ -146,3 +146,4 @@ Route::get('/removeItem/{type}/{id}', 'CartController@destroy')->name('removeIte
 Route::get('/checkout', 'CartController@checkout')->name('checkout');
 
 
+Route::resource('order', 'OrderController');

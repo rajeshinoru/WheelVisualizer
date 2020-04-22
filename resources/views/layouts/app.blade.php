@@ -36,7 +36,9 @@
         <section>
             <div class="container-fluid home-page">
                 @include('include.header')
+                @include('include.flash')
                 @yield('content')
+
                 @include('include.brands')
                 @include('include.footer')
             </div>
