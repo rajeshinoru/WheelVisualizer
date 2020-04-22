@@ -745,7 +745,7 @@
                         <td>{{roundCurrency(@$tire->price)}}</td>
                         <td>
                             <a href="{{url('/tireview/'.base64_encode($tire->id))}}" class="btn btn-default cart-1">Details</a>
-                            <button type="button" class="btn btn-default cart-2">Add</button>
+                            <button type="button" class="btn btn-default cart-2 addToCart" data-productid="{{@$tire->id}}" data-producttitle="{{@$tire->detailtitle}}" data-price="{{@$tire->price}}" >Add</button>
                         </td>
                     </tr>
                     @endforeach
@@ -753,6 +753,8 @@
             </table>
         </div>
     </div>
+
+
 </section>
 
 
@@ -790,4 +792,32 @@ function moreLess(initiallyVisibleCharacters) {
 moreLess(100);
 </script>
 <!-- Read More Script End-->
+
+
+
+
+<script type="text/javascript">
+    
+    $('.addToCart').click(function(){
+        var modelid="#TireProductModal";
+        var qty = 4;
+        var productid = $(this).data('productid');
+        var producttitle = $(this).data('producttitle');
+        var price = $(this).data('price'); 
+        var prodtype ='tire';
+        var modalMsg = "Qty: "+qty+", "+producttitle+" "+price+"/ea";
+
+        $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype,'price':price}, success: function(result){
+            if(result =='success'){
+                $(modelid).find('.modal-msg').text(modalMsg);
+                $(modelid).modal("show");
+            }
+            // $(".se-pre-con").hide(); 
+        }});
+    })
+
+
+</script>
+
+
 @endsection
