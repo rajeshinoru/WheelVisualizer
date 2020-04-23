@@ -400,7 +400,7 @@
 
                                                     </tr>
 
-                                                    @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
+                                                        @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
                                                     <?php $offsetClass='offset_'.$diffproduct->id; ?>
                                                     <?php $patternClass='pattern_'.$diffproduct->boltpattern1.'_'.$diffproduct->id; ?>
                                                     <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}} ">
@@ -515,9 +515,9 @@
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
                                                     <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2"   class="input-quantity quantity form-control">
-                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$diffproduct->id}}" data-price="{{roundCurrency(@$diffproduct->price)}}"  data-modelid="#DiffProductCart{{$diffKey}}">Add to Cart</button>
+                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$diffproduct->id}}" data-price="{{roundCurrency(@$diffproduct->price)}}"  data-modelid="#DiffProductCart{{$diffKey}}-{{$diffproduct->id}}">Add to Cart</button>
                                                     <!-- model Start -->
-                                                    <div class="modal fade " id="DiffProductCart{{$diffKey}}" role="dialog">
+                                                    <div class="modal fade " id="DiffProductCart{{$diffKey}}-{{$diffproduct->id}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">

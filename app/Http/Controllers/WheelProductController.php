@@ -30,26 +30,25 @@ class WheelProductController extends Controller
 
             $branddesc = [];
             $vehicle = '';
-            $viflist='';
             $car_images='';
             
-            //Color based cars 
-            if(isset($request->flag) && $request->flag == 'searchByVehicle'){
-                $viflist = Viflist::select('vif', 'yr','make','model','body','drs','whls')->where('yr', $request->year)
-                    ->where('make', $request->make)
-                    ->where('model', $request->model)->first();
-                    // dd($viflist);
-                    if($viflist != null){
-                        $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($viflist->vif)->where('image', 'LIKE', '%.png%')
-                        ->with(['CarViflist' => function($query) {
-                            $query->select('vif', 'yr','make','model','body','drs','whls');
+            // //Color based cars 
+            // if(isset($request->flag) && $request->flag == 'searchByVehicle'){
+            //     $viflist = Viflist::select('vif', 'yr','make','model','body','drs','whls')->where('yr', $request->year)
+            //         ->where('make', $request->make)
+            //         ->where('model', $request->model)->first();
+            //         // dd($viflist);
+            //         if($viflist != null){
+            //             $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($viflist->vif)->where('image', 'LIKE', '%.png%')
+            //             ->with(['CarViflist' => function($query) {
+            //                 $query->select('vif', 'yr','make','model','body','drs','whls');
 
-                        },'CarColor'])->first();
-                    }
+            //             },'CarColor'])->first();
+            //         }
                 
 
 
-            }
+            // }
 
 
 
@@ -81,7 +80,7 @@ class WheelProductController extends Controller
             elseif (isset($request->flag) && $request->flag == 'searchByVehicle')
             {
 
-                $vehicle = Vehicle::select('vehicle_id', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $request->year)
+                $vehicle = Vehicle::select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $request->year)
                     ->where('make', $request->make)
                     ->where('model', $request->model);
 
@@ -98,6 +97,15 @@ class WheelProductController extends Controller
                     }
                 }
                 $vehicle = $vehicle->first(); 
+                // dd($vehicle);
+                if($vehicle->vif != null){
+                    $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($vehicle->vif)->where('image', 'LIKE', '%.png%')
+                    ->with(['CarViflist' => function($query) {
+                        $query->select('vif', 'yr','make','model','body','drs','whls');
+
+                    },'CarColor'])->first();
+                }
+
                 // dd($vehicle);
                 $chassis_models = ChassisModel::where('model_id', $vehicle->dr_model_id)->first();
                 // dd($chassis_models);

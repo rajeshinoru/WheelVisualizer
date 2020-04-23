@@ -193,8 +193,9 @@
                                             <!-- <div class="price">
                                                 <span class="price-new">Starting at : {{roundCurrency(@$product->price)}}</span>
                                             </div> -->
+
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($product->prodimage)))?'disabled':''}}" {{(!file_exists(front_back_path($product->prodimage)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($product->prodimage)))?'disabled1':''}}" {{(!file_exists(front_back_path($product->prodimage)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
                                         @endif
                                         </div>
                                         <div class="button-group">

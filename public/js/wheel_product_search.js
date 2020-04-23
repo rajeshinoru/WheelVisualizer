@@ -199,10 +199,10 @@ $(document).on('change', '.CheckoutYear,.CheckoutMake,.CheckoutModel', function(
     var year = $('.CheckoutYear').val();
     var model = $('.CheckoutModel').val();
     var submodel = $('.CheckoutSubmodel').val();
-    WheelNavFilters(year, make, model,submodel, changeBy);
+    CheckoutNavFilters(year, make, model,submodel, changeBy);
 });
 
-function WheelNavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
+function CheckoutNavFilters(year = '', make = '', model = '',submodel = '', changeBy = '') {
     $.ajax({
         method: "GET",
         url: '/getFiltersByVehicle',

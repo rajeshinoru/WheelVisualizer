@@ -73,7 +73,7 @@ class CartController extends Controller
         Session::put('cart', $cart);
 
         // dd($cart);
-        Session::flash('success','Product Added to Cart!');
+        // Session::flash('success','Product Added to Cart!');
         //dd(Session::get('cart'));
         return 'success';
     }
