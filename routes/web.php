@@ -37,6 +37,9 @@ Route::get('/renameFrontBackImages', 'HomeController@renameFrontBackImages');
 Route::get('/carimagestosqlLive', 'HomeController@carimagestosqlLive');
 
 Route::get('/New_Vehicle_Import', 'VehicleController@New_Vehicle_Import');
+Route::get('/vif_update', 'VehicleController@vif_update');
+
+
 Route::get('/csv_vftp0028', 'HomeController@csv_vftp0028');
 Route::get('/csv_vftp0017', 'HomeController@csv_vftp0017');
 Route::get('/csv_vftp0018', 'HomeController@csv_vftp0018');

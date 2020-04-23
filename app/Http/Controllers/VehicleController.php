@@ -253,4 +253,26 @@ class VehicleController extends Controller
         // fclose($fw);
         return 'hiii';
     }
+
+    public function vif_update(){
+         $in_file = public_path('/storage/viflist_data/Vif-Matching.csv'); 
+
+        if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
+        // $fw = fopen($out_file, "w");
+        $key = 1;
+        while( ($data = fgetcsv($fr, 1000, ",")) !== FALSE ) {
+                if($data[1] != 'VehicleID'){
+                    $vahicle = Vehicle::where('vehicle_id',$data[1])->where('base_vehicle_id',$data[2])->update(
+                        [
+                            'vif' => (isset($data[9])&&$data[9]!='')?$data[9]:null
+                        ]
+                    );
+                    echo $key."<br>";
+                    $key++;
+                }
+            }
+        fclose($fr);
+        // fclose($fw);
+        return 'hiii';
+    }
 }

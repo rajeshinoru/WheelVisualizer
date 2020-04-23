@@ -1,5 +1,4 @@
 <div class="container">
-	<br>
 	<div class="row">
 		
 		@if ($message = Session::get('success'))
