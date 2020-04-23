@@ -195,7 +195,7 @@
                                             </div> -->
 
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($product->prodimage)))?'disabled1':''}}" {{(!file_exists(front_back_path($product->prodimage)))?'':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path($product->prodimage)))?'disabled1':''}}" {{(!file_exists(front_back_path($product->prodimage)))?'data-toggle=modal':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
                                         @endif
                                         </div>
                                         <div class="button-group">
@@ -223,7 +223,7 @@
                     @if($car_images)
                     <!-- Model Car Start -->
 
-                    <div class="modal fade" id="myModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="myModal{{$key}}"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -344,4 +344,106 @@
 
 @endsection
 @section('custom_scripts')
+    <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
+    <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('js/slick.js') }}"></script>
+    <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
+<script type="text/javascript">
+ var boxes;
+    // $(".se-pre-con").bind('ajaxStart', function(){
+    //     $(this).show();
+    // }).bind('ajaxStop', function(){
+    //     $(this).hide();
+    // });
+    $(document).ready(function(){
+        if("{{@$car_images}}"){
+            getWheelPosition('0')
+        }
+    });
+    function getWheelPosition(key){  
+        $(".se-pre-con").show();
+        imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
+        carid = $('#car_image_'+key).attr('data-carid'); 
+        $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
+            // console.log(typeof result)
+
+            boxes = JSON.parse(result.toString())
+            console.log('RESPONSE RECEIVED')
+            $(".se-pre-con").hide();
+            // WheelMapping(JSON.parse(result));
+            // setWheelPosition(result,key);
+        }});
+    }
+
+    function WheelMapping(key){
+        if(boxes == 'undefined'){
+            getWheelPosition(key)
+        }
+        console.log('boxes',boxes)
+        if(boxes[0][0] < 400 ){
+
+            f = boxes[0];
+
+            b = boxes[1];
+        }else{
+
+            f = boxes[1];
+
+            b = boxes[0];
+        }
+           // d=f[3]-f[2];
+        // if(d > 21){
+        //     f[3] = f[2]+14;//+(f[2]/2);
+        // }
+
+        // d = f[3]-f[2];
+        var front = $('#image-diameter-front-'+key);
+        front.css('left',f[0]-18+'px');
+        front.css('top',f[1]-1+'px');
+        var extraWidth=0;
+        if(front.width() - f[2] > 4)
+        {
+            extraWidth=(front.width() - f[2])/2;
+        }
+        console.log(extraWidth)
+        front.width(front.width()+extraWidth+'px');
+        // ,front[0]['clientWidth'],f[2]);
+        // back.css('width',front.clientWidth-20+'px');
+        
+
+        // var front = $('#image-diameter-front-'+key);
+        // front.css('left',f[0]-19+'px'); //
+        // front.css('top',f[1]+2+'px');
+        // front.width(f[2]+'px');
+        // front.height(f[3]+'px');
+        // // front.css('padding','5px')
+        // d=b[3]-b[2];
+        // if(b[2] < 50){
+        //     b[2] = 60;
+        // }
+        // if(d > 21){
+        //     b[3] = b[3]-15;//+(b[2]/2);
+        // }
+
+        // var back = $('#image-diameter-back-'+key);
+        // back.css('left',b[0]-12+'px'); //
+        // back.css('top',b[1]+9+'px'); //
+        // back.width(b[2]+'px');
+        // back.height(b[3]+'px');
+
+
+
+
+        var back = $('#image-diameter-back-'+key);
+        back.css('left',b[0]-11.5+'px');
+        back.css('top',b[1]+8.5+'px');
+        // back.css('width',b[2]+'px');
+
+
+
+
+
+    }
+
+</script>
 @endsection
