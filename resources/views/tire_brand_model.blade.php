@@ -850,6 +850,7 @@ moreLess(100);
                 $(modelid).find('.modal-msg').text(modalMsg);
                 $(modelid).modal("show");
             }
+            getCartCount();
             // $(".se-pre-con").hide(); 
         }});
     })
