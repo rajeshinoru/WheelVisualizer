@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('OrderItems','OrderItems.Tire','OrderItems.WheelProduct')->paginate(10);
+        $orders = Order::with('OrderItems')->paginate(10);
         // dd($orders);
         return view('admin.orders.index',compact('orders'));
     }

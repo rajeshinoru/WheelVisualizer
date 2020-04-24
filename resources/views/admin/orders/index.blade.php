@@ -10,13 +10,13 @@
         margin: 6%;
         padding: 20px;
     }
-/*    td.scrollable {
+    td.scrollable {
         width: 100%;
         height: 100%;
         margin: 0;
         padding: 0;
         overflow: auto !important;
-    }*/
+    }
 
 </style>
 
@@ -67,7 +67,6 @@
                                                                         <table class="table table-bordered"> 
                                                                           <tr>
                                                                             <th>Type</th>
-                                                                            <th>PartNo</th>
                                                                             <th>Name</th>
                                                                             <th>Each Price</th>
                                                                             <th>Quantity</th>
@@ -75,14 +74,14 @@
                                                                           </tr>
                                                                           @foreach($order->OrderItems as $orderKey =>$item)
                                                                           <tr>
-                                                                            <td>{{@$item->producttype}}</td>
+                                                                            <td>{{ucfirst(@$item->producttype)}}</td>
                                                                             @if(@$item->producttype == 'tire')
-                                                                            <td>{{@$item->Tire->partno}}</td>
-                                                                            <td>{{@$item->producttype}}</td>
+                                                                            <!-- <td>{{@$item->Tires()->partno}}</td> -->
+                                                                            <td>{{@$item->Tires()->prodtitle}}</td>
                                                                             @endif
                                                                             @if(@$item->producttype == 'wheel')
-                                                                            <td>{{@$item->WheelProduct->prodimage}}</td>
-                                                                            <td>{{@$item->producttype}}</td>
+                                                                            <!-- <td>{{@$item->WheelProducts()->partno}}</td> -->
+                                                                            <td>{{@$item->WheelProducts()->prodtitle}}</td>
                                                                             @endif
                                                                             <td>{{roundCurrency(@$item->price)}}</td>
                                                                             <td>{{@$item->qty}}</td>

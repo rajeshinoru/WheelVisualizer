@@ -9,12 +9,12 @@ class OrderItem extends Model
 
 	protected $fillable = ['orderid','producttype','productid','qty','price','total'];
 	
-	public function WheelProduct(){
+	public function WheelProducts(){
 
-			return $this->belongsTo('App\WheelProduct','id','productid');
+			return WheelProduct::find($this->productid);
 	}
-	public function Tire(){
+	public function Tires(){
 		
-			return $this->belongsTo('App\Tire','id','productid');
+			return Tire::find($this->productid);
 	}
 }
