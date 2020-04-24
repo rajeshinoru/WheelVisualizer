@@ -26,7 +26,7 @@ class WheelProductController extends Controller
         try
         {
 
-            $products = WheelProduct::select('id', 'prodbrand', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
+            $products = WheelProduct::with('wheel')->select('id', 'prodbrand', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
             $branddesc = [];
             $vehicle = '';
@@ -98,7 +98,7 @@ class WheelProductController extends Controller
                 }
                 $vehicle = $vehicle->first(); 
                 // dd($vehicle);
-                if($vehicle->vif != null){
+                if(@$vehicle->vif != null){
                     $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($vehicle->vif)->where('image', 'LIKE', '%.png%')
                     ->with(['CarViflist' => function($query) {
                         $query->select('vif', 'yr','make','model','body','drs','whls');
@@ -282,7 +282,13 @@ class WheelProductController extends Controller
                 ->orderBy('price', 'ASC')
                 ->get()
                 ->unique('prodtitle');
+            // dd($products);
 
+            // foreach ($products as $key => $p) {
+            //     $w[] = Wheel::where('part_no',$p->partno_old)->first();
+            // }
+
+            //     dd($w);
             $products = MakeCustomPaginator($products, $request, 9);
             
             $flag=@$request->flag?:null;

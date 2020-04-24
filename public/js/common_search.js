@@ -167,6 +167,7 @@ $('.car_color').on('click', function() {
             code: code
         }
     }).done(function(data) {
+        console.log(data)
         if (data.data != null) {
             $('.car_image_' + vif).attr('src', data.data.image);
         }

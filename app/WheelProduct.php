@@ -11,5 +11,11 @@ class WheelProduct extends Model
 	    return $this->hasMany('App\WheelProduct','wheeldiameter','wheeldiameter');
 	}
 
+	public function wheel() {
+	    return $this->hasOne('App\Wheel','part_no','partno_old');
+	}
+
+
+
 	
 }

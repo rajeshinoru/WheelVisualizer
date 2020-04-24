@@ -825,6 +825,8 @@ $('.spinner .btn:last-of-type').on('click', function() {
                 $(modelid).find('.modal-msg').text(modalMsg);
                 $(modelid).modal("show");
             }
+
+            getCartCount();
             // $(".se-pre-con").hide(); 
         }});
     })

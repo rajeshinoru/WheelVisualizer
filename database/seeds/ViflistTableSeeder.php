@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Viflist;
 use App\Vehicle;
+use App\WheelProduct;
 
 class ViflistTableSeeder extends Seeder
 {
@@ -52,27 +53,51 @@ class ViflistTableSeeder extends Seeder
 	    //     $this->command->info('Viflist table seeded!');
 
 
+	    // set_time_limit(999999999);
+	    // $this->command->info('Viflist table seeding started!');
+     //    $in_file = public_path('/storage/viflist_data/Vif-Matching.csv'); 
+
+     //    if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
+     //    // $fw = fopen($out_file, "w");
+     //    $key = 1;
+     //    while( ($data = fgetcsv($fr, 1000, ",")) !== FALSE ) {
+     //            if($data[1] != 'VehicleID'){
+     //                $vahicle = Vehicle::where('vehicle_id',$data[1])->where('base_vehicle_id',$data[2])->update(
+     //                    [
+     //                        'vif' => (isset($data[9])&&$data[9]!='')?$data[9]:null
+     //                    ]
+     //                );
+     //                $this->command->info($key);
+     //                $key++;
+     //            }
+     //        }
+     //    fclose($fr);
+     //    // fclose($fw);
+     //    // return 'hiii';
+	    //     $this->command->info('Viflist table seeded!');
+
 	    set_time_limit(999999999);
-	    $this->command->info('Viflist table seeding started!');
-        $in_file = public_path('/storage/viflist_data/Vif-Matching.csv'); 
+	    $this->command->info('Part Numbers table seeding started!');
+        $in_file = public_path('/storage/tires_data/Wheel-Visualizer-Correct-Website-PartNumbers.csv'); 
 
         if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
         // $fw = fopen($out_file, "w");
         $key = 1;
         while( ($data = fgetcsv($fr, 1000, ",")) !== FALSE ) {
                 if($data[1] != 'VehicleID'){
-                    $vahicle = Vehicle::where('vehicle_id',$data[1])->where('base_vehicle_id',$data[2])->update(
+                    $vahicle = WheelProduct::where('partno',$data[6])->update(
                         [
-                            'vif' => (isset($data[9])&&$data[9]!='')?$data[9]:null
+                            'partno_old' => (isset($data[1])&&$data[1]!='')?$data[1]:null
                         ]
                     );
-                    $this->command->info($key);
+                    $this->command->info($data[6]."  ----  ".$data[1]);
                     $key++;
                 }
             }
         fclose($fr);
         // fclose($fw);
         // return 'hiii';
-	        $this->command->info('Viflist table seeded!');
+	        $this->command->info('Part Numbers table seeded!');
+
     }
 }

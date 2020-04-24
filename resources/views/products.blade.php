@@ -1,8 +1,35 @@
+
 @extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 @endsection
 @section('content')
+
+<style>
+.modal_canvas{
+    min-height: 427px !important;
+}
+.col-sm-12.wheel-des p
+{
+    font-family: poppins !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #000 !important;
+    margin: 0px 0px !important;
+    text-align:justify;
+}
+.col-sm-12.wheel-des b a
+{
+  font-size: 12px !important;
+  font-family: Montserrat !important;
+  color: #0e1661 !important;
+}
+.wheel-des
+{
+    padding: 20px 20px !important;
+}
+</style>
+
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -195,7 +222,7 @@
                                             </div> -->
 
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path($product->prodimage)))?'disabled1':''}}" {{(!file_exists(front_back_path($product->prodimage)))?'data-toggle=modal':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
+                                        <button class="btn btn-primary {{(!file_exists(front_back_path(@$product->wheel['image'])))?'disabled':''}}" {{(!file_exists(front_back_path(@$product->wheel['image'])))?' ':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
                                         @endif
                                         </div>
                                         <div class="button-group">
@@ -248,15 +275,17 @@
                                             <img id="car_image_{{$key}}" class="car_image_{{$key}} car_image_{{$car_images->car_id}} car_image_responsive" src="{{asset($car_images->image)}}" data-carid="{{$car_images->car_id}}" data-imagename="{{$car_images->image}}">
 
                                         </div>
-                                        @if(file_exists(front_back_path($product->prodimage)))
+                                        @if(@$product->wheel)
+                                        @if(file_exists(front_back_path(@$product->wheel['image'])))
                                         <div class="car-wheel">
                                             <div class="front" >
-                                                <img class="frontimg" src="{{front_back_path($product->prodimage)}}" id="image-diameter-front-{{$key}}" >
+                                                <img class="frontimg" src="{{front_back_path(@$product->wheel['image'])}}" id="image-diameter-front-{{$key}}" >
                                             </div>
                                             <div class="back">
-                                                <img src="{{front_back_path($product->prodimage)}}" id="image-diameter-back-{{$key}}">
+                                                <img src="{{front_back_path(@$product->wheel['image'])}}" id="image-diameter-back-{{$key}}">
                                             </div>
                                         </div>
+                                        @endif
                                         @endif
 
 
@@ -349,7 +378,8 @@
     <script src="{{ asset('js/slick.js') }}"></script>
     <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
 <script type="text/javascript">
- var boxes;
+    var boxes;
+    var wheelwidth;
     // $(".se-pre-con").bind('ajaxStart', function(){
     //     $(this).show();
     // }).bind('ajaxStop', function(){
@@ -363,6 +393,7 @@
     function getWheelPosition(key){  
         $(".se-pre-con").show();
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
+        // alert(imagePath)
         carid = $('#car_image_'+key).attr('data-carid'); 
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
             // console.log(typeof result)
@@ -400,13 +431,13 @@
         var front = $('#image-diameter-front-'+key);
         front.css('left',f[0]-18+'px');
         front.css('top',f[1]-1+'px');
-        var extraWidth=0;
-        if(front.width() - f[2] > 4)
-        {
-            extraWidth=(front.width() - f[2])/2;
-        }
-        console.log(extraWidth)
-        front.width(front.width()+extraWidth+'px');
+        // var extraWidth=0;
+        // if(front.width() - f[2] > 4)
+        // {
+        //     extraWidth=(front.width() - f[2])/2;
+        // }
+        // console.log(extraWidth)
+        // front.width(front.width()+extraWidth+'px');
         // ,front[0]['clientWidth'],f[2]);
         // back.css('width',front.clientWidth-20+'px');
         
@@ -438,6 +469,7 @@
         back.css('left',b[0]-11.5+'px');
         back.css('top',b[1]+8.5+'px');
         // back.css('width',b[2]+'px');
+
 
 
 
