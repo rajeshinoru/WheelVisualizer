@@ -22,7 +22,13 @@ Route::resource('wheel', 'Resource\WheelResource');
 Route::resource('car', 'Resource\CarResource');
 Route::resource('brands', 'Resource\TireBrandsResource');
 Route::resource('wheelproduct', 'Resource\WheelProductResource');
-Route::resource('tire', 'Resource\TireResource');
+Route::resource('tire', 'Resource\TireResource'); 
+
+
+Route::resource('user', 'Resource\UserResource');
+
+
+Route::get('orders', 'OrderController@index');
 
 
 // Routes for Tires

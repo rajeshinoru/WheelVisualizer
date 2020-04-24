@@ -61,6 +61,10 @@
                         <li>
                             <a  href="{{url('admin/user')}}" aria-expanded="false"><i class="fa fa-user "></i> Users  </a>
                         </li>
+
+                        <li>
+                            <a  href="{{url('admin/orders')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> Orders  </a>
+                        </li>
                         <li>
                             <a  href="{{url('admin/wheel')}}" aria-expanded="false"><i class="fa fa-cogs "></i> Wheels  </a>
                         </li>
