@@ -17,7 +17,10 @@
         padding: 0;
         overflow: auto !important;
     }
-
+    .items-modal{
+      width: 1000px !important;
+    }
+/*1131px*/
 </style>
 
 <div class="product-status mg-b-15">
@@ -37,18 +40,19 @@
                                     <th>Shipping Address</th>
                                     <th>Vehicle</th>
                                     <th>Notes</th>
-                                    <th>Subtotal</th>
+                                    <!-- <th>Subtotal</th> -->
                                     <th>Fees</th>
                                     <th>Tax</th>
                                     <th>Shipping</th>
                                     <th>Total</th>
                                     <th>Payment Status</th>
                                     <th>Order Status</th>
+                                    <th>Ordered At</th>
                                 </tr>
                             </thead> 
                             @forelse(@$orders as $key => $order) 
                             <tr>
-                                <td>{{@$key++}}</td>
+                                <td>{{@$key+1}}</td>
                                 <td>{{@$order->firstname}}</td>
                                 <td>
 
@@ -56,7 +60,7 @@
                                 
                                                     <!-- model Start -->
                                                     <div class="modal fade " id="items{{$key}}" role="dialog">
-                                                        <div class="modal-dialog">
+                                                        <div class="items-modal modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -79,7 +83,7 @@
                                                                             <!-- <td>{{@$item->Tires()->partno}}</td> -->
                                                                             <td>{{@$item->Tires()->prodtitle}}</td>
                                                                             @endif
-                                                                            @if(@$item->producttype == 'wheel')
+                                                                             @if(@$item->producttype == 'wheel')
                                                                             <!-- <td>{{@$item->WheelProducts()->partno}}</td> -->
                                                                             <td>{{@$item->WheelProducts()->prodtitle}}</td>
                                                                             @endif
@@ -164,7 +168,11 @@
                                                     <!-- Model End  -->
                                 </td>
                                 <td>
+                                  @if(@$order->same_shipping != 'yes')
                                                     <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#shipping{{$key}}">View</button>
+                                  @else
+                                    Same as Billing Address
+                                  @endif
                                                     <!-- model Start -->
                                                     <div class="modal fade " id="shipping{{$key}}" role="dialog">
                                                         <div class="modal-dialog">
@@ -268,13 +276,14 @@ Modified Please Explain :
 
                                 <td><textarea class="form-control" cols="15" readonly="">{{@$order->notes}}
                                         </textarea></td>
-                                <td>{{roundCurrency(@$order->subtotal)}}</td>
+                                <!-- <td>{{roundCurrency(@$order->subtotal)}}</td> -->
                                 <td>{{roundCurrency(@$order->fees)}}</td>
                                 <td>{{roundCurrency(@$order->tax)}}</td>
                                 <td>{{roundCurrency(@$order->shipping)}}</td>
                                 <td>{{roundCurrency(@$order->total)}}</td>
                                 <td>{{@$order->payment_status?'Paid':'Not Paid'}}</td>
                                 <td>{{@$order->status}}</td>
+                                <td>{{@$order->created_at}}</td>
                             </tr>
                             @empty
                             <tr>

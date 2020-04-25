@@ -92,7 +92,7 @@ class OrderController extends Controller
                         "producttype" => $item['type'],
                         "productid" => $item['id'],
                         "qty" => $item['qty'],
-                        "price" => $item['price'],
+                        "price" => $cart[$key]['data']->price,
                         "total" => $total,
                     ]);
 
