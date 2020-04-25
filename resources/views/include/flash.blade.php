@@ -1,6 +1,15 @@
+<style type="text/css">
+.alert
+{
+  margin:20px 0px !important;
+}
+
+</style>
 <div class="container">
+
 	<div class="row">
 		
+	<div class="col-sm-6 col-sm-offset-3">
 		@if ($message = Session::get('success'))
 		<div class="alert alert-success alert-block">
 			<button type="button" class="close" data-dismiss="alert">×</button>	
@@ -39,6 +48,6 @@
 			Please check the form below for errors
 		</div>
 		@endif
-
+	</div>
 	</div>
 </div>
