@@ -20,6 +20,9 @@
     .items-modal{
       width: 1000px !important;
     }
+    .td-center{
+        text-align: center !important;
+    }
 /*1131px*/
 </style>
 
@@ -54,7 +57,7 @@
                             <tr>
                                 <td>{{@$key+1}}</td>
                                 <td>{{@$order->firstname}}</td>
-                                <td>
+                                <td class="td-center">
 
                                                     <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#items{{$key}}">{{@$order->OrderItems->count()}} Items</button>
                                 
@@ -71,7 +74,8 @@
                                                                         <table class="table table-bordered"> 
                                                                           <tr>
                                                                             <th>Type</th>
-                                                                            <th>Name</th>
+                                                                            <th>Image</th>
+                                                                            <th>Detail</th>
                                                                             <th>Each Price</th>
                                                                             <th>Quantity</th>
                                                                             <th>Total</th>
@@ -79,16 +83,10 @@
                                                                           @foreach($order->OrderItems as $orderKey =>$item)
                                                                           <tr>
                                                                             <td>{{ucfirst(@$item->producttype)}}</td>
-                                                                            @if(@$item->producttype == 'tire')
-                                                                            <!-- <td>{{@$item->Tires()->partno}}</td> -->
-                                                                            <td>{{@$item->Tires()->prodtitle}}</td>
-                                                                            @endif
-                                                                             @if(@$item->producttype == 'wheel')
-                                                                            <!-- <td>{{@$item->WheelProducts()->partno}}</td> -->
-                                                                            <td>{{@$item->WheelProducts()->prodtitle}}</td>
-                                                                            @endif
+                                                                            <td><img src="{{ViewImage(@$item->ProductDetail()->prodimage)}}"></td>
+                                                                            <td>{{@$item->ProductDetail()->detailtitle}}</td>
                                                                             <td>{{roundCurrency(@$item->price)}}</td>
-                                                                            <td>{{@$item->qty}}</td>
+                                                                            <td  class="td-center">{{@$item->qty}}</td>
                                                                             <td>{{roundCurrency(@$item->total)}}</td>
                                                                           </tr>
                                                                           @endforeach
@@ -103,7 +101,7 @@
                                                     </div>
                                                     <!-- Model End  -->                    
                                 </td>
-                                <td>
+                                <td class="td-center">
                                                     <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#billing{{$key}}">View</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade " id="billing{{$key}}" role="dialog">
@@ -167,7 +165,7 @@
                                                     </div>
                                                     <!-- Model End  -->
                                 </td>
-                                <td>
+                                <td class="td-center">
                                   @if(@$order->same_shipping != 'yes')
                                                     <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#shipping{{$key}}">View</button>
                                   @else
@@ -249,10 +247,10 @@
                                                                 <div class="modal-body">
                                                                 <h4 class="modal-title">
 <pre>
-Make    : {{@$order->make}},
-Year    : {{@$order->year}},
-Model   : {{@$order->model}},
-Trim    : {{@$order->trim}},
+Make                    : {{@$order->make}},
+Year                    : {{@$order->year}},
+Model                   : {{@$order->model}},
+Trim                    : {{@$order->trim}},
 
 Is Vehicle Modified?    : {{@$order->vehicle_modified}}<br>
 Big Brake Kit?          : {{@$order->big_brake_kit}}<br>

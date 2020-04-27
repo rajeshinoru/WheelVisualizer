@@ -9,12 +9,13 @@ class OrderItem extends Model
 
 	protected $fillable = ['orderid','producttype','productid','qty','price','total'];
 	
-	public function WheelProducts(){
+	public function ProductDetail(){
+			if($this->producttype == 'tire'){
 
-			return WheelProduct::find($this->productid);
-	}
-	public function Tires(){
-		
-			return Tire::find($this->productid);
+				return Tire::find($this->productid);
+			}else{
+
+				return WheelProduct::find($this->productid);
+			}
 	}
 }
