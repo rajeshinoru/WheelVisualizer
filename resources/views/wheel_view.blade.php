@@ -601,10 +601,14 @@
                             <div class="new-model-button">
                                 <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img2">
                                 <div class="wheel_view_ship">
-                                    <button class="btn btn-info" type="button"><a>Shopping Cart</a></button>
+                                    <a href="{{url('/CartItems')}}" >
+                                        <button class="btn btn-info" type="button"   >Shopping Cart</button>
+                                    </a>
                                 </div>
                                 <div class="wheel_view_ship">
+                                    <a href="{{url('/CartItems')}}" >
                                     <button class="btn btn-info" type="button"><a>Finance Them</a></button>
+                                    </a>
                                 </div>
                                 <div class="wheel_view_ship">
                                     <button class="btn btn-info" type="button"><a>Wheel Visualizer</a></button>

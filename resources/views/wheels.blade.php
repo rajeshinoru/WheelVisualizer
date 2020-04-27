@@ -351,6 +351,7 @@
 
 <script type="text/javascript">
     var boxes;
+    var widthAdjusted=true;
     // $(".se-pre-con").bind('ajaxStart', function(){
     //     $(this).show();
     // }).bind('ajaxStop', function(){
@@ -377,15 +378,18 @@
     }
 
     function WheelMapping(key){
+
         if(boxes == 'undefined'){
             getWheelPosition(key)
         }
-        console.log('boxes',boxes)
+        
+        // console.log('boxes',boxes)
         if(boxes[0][0] < 400 ){
 
             f = boxes[0];
 
             b = boxes[1];
+            
         }else{
 
             f = boxes[1];
@@ -401,13 +405,17 @@
         var front = $('#image-diameter-front-'+key);
         front.css('left',f[0]-18+'px');
         front.css('top',f[1]-1+'px');
-        var extraWidth=0;
-        if(front.width() - f[2] > 4)
-        {
-            extraWidth=(front.width() - f[2])/2;
+        if(widthAdjusted){
+            console.log(widthAdjusted)
+            var extraWidth=0;
+            if(front.width() - f[2] > 4)
+            {
+                extraWidth=(front.width() - f[2])/2;
+            }
+            console.log(extraWidth)
+            front.width(front.width()+extraWidth+'px');
+            widthAdjusted = false;
         }
-        console.log(extraWidth)
-        front.width(front.width()+extraWidth+'px');
         // ,front[0]['clientWidth'],f[2]);
         // back.css('width',front.clientWidth-20+'px');
         

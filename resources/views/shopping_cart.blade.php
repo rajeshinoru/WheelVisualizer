@@ -321,8 +321,8 @@
             </div>
               <form class="form-horizontal">
                 <div class="form-group has-success has-feedback text-right">
-                <button class="btn btn-info cart-btn" type="button">Continue Shopping</button>
-                <button class="btn btn-info cart-btn" type="button">shipping Quote</button>
+                    <a href="{{url('/')}}"><button class="btn btn-info cart-btn" type="button">Continue Shopping</button></a>
+                <button class="btn btn-info cart-btn" type="button">Shipping Quote</button>
                 <button class="btn btn-info cart-btn" type="button">Finance Team</button>
                 <button class="btn btn-info cart-btn" type="button">Paypal <sup>checkout</sup></button>
                 <a href="{{url('/checkout')}}" class="btn btn-info checkout-btn {{(count($cartData))?'':'disabled'}}" type="button" ><i class="fa fa-shopping-cart"></i> checkout</a>
