@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
+Route::get('/aboutus', 'HomeController@aboutus')->name('aboutus');
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');

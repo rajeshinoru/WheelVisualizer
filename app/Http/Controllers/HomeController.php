@@ -47,6 +47,10 @@ class HomeController extends Controller
         $Wheels = Wheel::select('brand','image','wheeldiameter','wheelwidth','style')->inRandomOrder()->paginate(12); ;
         return view('forms',compact('Wheels')); 
     }
+    public function aboutus()
+    { 
+        return view('aboutus'); 
+    } 
 
     public function shopping_cart()
     { 

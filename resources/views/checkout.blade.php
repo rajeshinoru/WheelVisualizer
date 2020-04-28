@@ -711,6 +711,73 @@
             </div>
         </div> -->
         <div class="container">
+<div class="chkoutContainer chkoutPayMethod">
+<div class="containerTitle">Payment Method</div>
+<map name="ccMap">
+<area alt="Visa" title="Visa" href="javascript:pMethodIcon('Visa');" coords="3,56,72,8" shape="rect">
+<area alt="MasterCard" title="MasterCard" href="javascript:pMethodIcon('MasterCard');" coords="144,8,79,56" shape="rect">
+<area alt="American Express" title="American Express" href="javascript:pMethodIcon('American Express');" coords="151,8,217,56" shape="rect">
+</map>
+<div class="paymentIconsC">
+<img src="/images/CC-NL3.png" class="reactive" align="absmiddle" usemap="#ccMap">
+<a href="javascript:pMethodIcon('Affirm');"><img src="https://cdn-assets.affirm.com/images/buttons/42x205-white.svg" align="absmiddle" class="reactive"></a>
+</div>
+<div id="pmethodSelector" class="inputSet">
+<label>Payment Method</label>
+<select name="pmethod" id="pmethod" class="chkoutInput chkoutSelect">
+<option value="" data-ptype=""></option>
+<option value="American Express" data-ptype="CC">American Express</option>
+<option value="MasterCard" data-ptype="CC">MasterCard</option>
+<option value="Visa" data-ptype="CC">Visa</option>
+<option value="Affirm" data-ptype="AFFIRM">Affirm Monthly Payments</option>
+<option value="Authorization Code" data-ptype="AUTH">Authorization Code</option>
+<option value="Tax Refund Pre Paid" data-ptype="CC">Tax Refund Pre Paid Card</option>
+</select>
+</div>
+<div class="payMethod payCC hidden">
+<div class="inputSet">
+<label>Card Number</label>
+<input type="text" name="ccnum" id="ccnum" class="chkoutInput integer" maxlength="16" autocomplete="cc-number">
+</div>
+<div class="inputSet">
+<label>Expiration Date</label>
+<select name="ccexpm" id="ccexpm" class="chkoutInput chkoutSelect" autocomplete="cc-exp-month">
+<option value="">- Month -</option>
+<option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+</select><span class="ccmmyrspcr"></span><select name="ccexpy" id="ccexpy" class="chkoutInput" autocomplete="cc-exp-year">
+<option value="">- Year -</option>
+<option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option>
+</select>
+</div>
+<div class="inputSet">
+<label>Card Verification Code</label>
+<input type="text" name="ccv" id="ccv" class="chkoutInput integer" maxlength="4" autocomplete="cc-csc">
+</div>
+<div class="inputSet">
+<label>Bank Phone Number on Back of Card</label>
+<input type="tel" name="bankphone" id="bankphone" class="chkoutInput" maxlength="25">
+</div>
+</div>
+<div class="payMethod payAuth hidden">
+<div class="inputSet">
+<label>Authorization Code</label>
+<input type="text" name="authcode" id="authcode" class="chkoutInput integer" maxlength="30" autocomplete="off">
+</div>
+<div class="payAuthButtons">
+<span id="setAuthCode"><a onclick="if (!window.__cfRLUnblockHandlers) return false; validateAuthCode('set')" class="tsc_c3b_small tsc_c3b_grey tsc_button authCodeSet">Apply Code</a></span>
+<span id="clearAuthCode" class="hidden"><a onclick="if (!window.__cfRLUnblockHandlers) return false; validateAuthCode('clear')" class="tsc_c3b_small tsc_c3b_grey tsc_button authCodeClear">Remove Code</a></span>
+</div>
+</div>
+<div class="payMethod payAffirm hidden">
+<div class="affirmPaymentInfo">
+<div class="affirm-as-low-as" data-page-type="payment" data-learnmore-show="false" data-amount="672502"></div>
+</div>
+</div>
+</div>
+
+
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col-sm-9" id="heading2">
                     <h1>Vehicle Information</h1>

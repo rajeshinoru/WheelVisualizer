@@ -362,7 +362,6 @@
     <!---------------- This Section will show when settings not found---------------->
 
     @endif
-
 </div>
 <!-- Start - This is for Duynamic Products from database -->
 <div class="container">
