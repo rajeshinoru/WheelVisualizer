@@ -6,10 +6,6 @@
         border: 1px solid #ddd9d9 !important;
     }
 
-    b {
-        font-weight: bold;
-    }
-
     .wheel-list {
         column-width: 15em;
         padding: 10px 15px !important;
@@ -59,7 +55,6 @@
     .col-sm-3.payments-card {
         text-align: center !important;
     }
-
     .prod-headinghome p {
         text-align: justify;
         margin: 10px 0px;
@@ -179,8 +174,8 @@
         font-weight: 700 !important;
     }
 
-    .prod-headinghome b {
-        color: #0e1661 !important;
+    .prod-heading p {
+        color: rgb(18, 18, 20) !important;
         font-family: Montserrat !important;
         font-size: 12px !important;
     }
@@ -205,7 +200,23 @@
         font-family: Montserrat !important;
         font-weight: 700 !important;
     }
+    .prod-heading-bold{
+        font-family: open sans,Arial,sans-serif;
+        color: #121214;
+    }
 
+
+    b {
+        font-weight: bold;
+    }
+
+    .h1-nl {
+        font-size: 20px;
+    }
+    hr{
+        border: 0.5px solid #ccc !important;
+    }
+    
     #produst,
     #special-product,
     footer,
@@ -217,6 +228,10 @@
     .container-fluid.home-page {
         padding: 0px 0px !important;
         background: #f1f1f1 !important;
+    }
+
+    .prod-heading-bold a{
+        color: #337ab7 !important;
     }
 </style>
 <div class="banner-search">
@@ -249,16 +264,26 @@
             </ul>
         </div>
     </div>
+
+
 </div>
 <div class="container">
     <div align="center">
+        <div class="h2-layout">
+            <div id="h2-div1" class="h2-cell">
+                <h1 class="h1-nl">
+                    Discounted Wheel Warehouse, About Us, Customer Service
+                </h1>
+            </div>
+        </div>
+        <hr>
         <div class="prod-heading-bold">
             <p><img src="{{asset('image/About-Us.jpg')}}" alt="About Us Discounted Wheel Warehouse" style="max-width: 100%; height: auto;" width="421" height="270"></p>
             <p><b>Our hours are Mon-Fri 7:00AM - 6:00PM Pacific Standard Time</b></p>
             <p><b> Call Today - 1-800-901-6003</b></p>
             <p><b>About Discounted Wheel Warehouse, also see <a href="Discounted_Wheel_Warehouse_Contact_us.cfm" style="text-decoration: none;">Contact Us</a></b></p>
         </div>
-        <div class="prod-heading">
+        <div class="prod-headinghome" >
             <p>Discounted Wheel Warehouse is located in the greater Las Vegas area. Discounted Wheel Warehouse has 20 years of combined experience in the custom wheels industry.</p>
             <p>Discounted Wheel Warehouse leads the industry by offering the following commitments to our valued customers.</p>
             <p><b>Low Prices</b> - We have succeeded in bringing very low prices to our valued customers. Our prices are hundreds lower than MSRP. The savings get even better in the 22 inch and 24 inch categories. Visit our competitors for the same product we offer to verify that Discounted Wheel Warehouse truly has the lowest price.</p>
