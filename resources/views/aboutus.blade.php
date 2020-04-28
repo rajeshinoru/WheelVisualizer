@@ -281,7 +281,7 @@
             <p><img src="{{asset('image/About-Us.jpg')}}" alt="About Us Discounted Wheel Warehouse" style="max-width: 100%; height: auto;" width="421" height="270"></p>
             <p><b>Our hours are Mon-Fri 7:00AM - 6:00PM Pacific Standard Time</b></p>
             <p><b> Call Today - 1-800-901-6003</b></p>
-            <p><b>About Discounted Wheel Warehouse, also see <a href="Discounted_Wheel_Warehouse_Contact_us.cfm" style="text-decoration: none;">Contact Us</a></b></p>
+            <p><b>About Discounted Wheel Warehouse, also see <a href="{{url('/contactus')}}" style="text-decoration: none;">Contact Us</a></b></p>
         </div>
         <div class="prod-headinghome" >
             <p>Discounted Wheel Warehouse is located in the greater Las Vegas area. Discounted Wheel Warehouse has 20 years of combined experience in the custom wheels industry.</p>

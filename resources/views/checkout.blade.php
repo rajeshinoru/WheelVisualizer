@@ -711,7 +711,7 @@
             </div>
         </div> -->
         <div class="container">
-<div class="chkoutContainer chkoutPayMethod">
+<!-- <div class="chkoutContainer chkoutPayMethod">
 <div class="containerTitle">Payment Method</div>
 <map name="ccMap">
 <area alt="Visa" title="Visa" href="javascript:pMethodIcon('Visa');" coords="3,56,72,8" shape="rect">
@@ -775,7 +775,7 @@
 </div>
 </div>
 
-
+ -->
         </div>
         <div class="container">
             <div class="row">

@@ -514,7 +514,7 @@
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 0}}" size="2"   class="input-quantity quantity form-control">
+                                                    <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 1}}" size="2"   class="input-quantity quantity form-control">
                                                     <button type="button" class="btn btn-info addToCart" data-productid="{{$diffproduct->id}}" data-price="{{roundCurrency(@$diffproduct->price)}}"  data-modelid="#DiffProductCart{{$diffKey}}-{{$diffproduct->id}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade " id="DiffProductCart{{$diffKey}}-{{$diffproduct->id}}" role="dialog">
@@ -557,7 +557,7 @@
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="number" name="quantity" value="{{@$product->qtyavail ?? 0}}" size="2" id="" class="form-control quantity input-quantity">
+                                                    <input type="number" name="quantity" value="{{@$product->qtyavail ?? 1}}" size="2" id="" class="form-control quantity input-quantity">
                                                     <button type="button" class="btn btn-info addToCart" data-productid="{{$product->id}}"  data-price="{{roundCurrency(@$product->price)}}" data-modelid="#ProductCart{{$productKey}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade" id="ProductCart{{$productKey}}" role="dialog">
