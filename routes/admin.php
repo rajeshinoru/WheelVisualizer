@@ -28,6 +28,8 @@ Route::resource('tire', 'Resource\TireResource');
 Route::resource('user', 'Resource\UserResource');
 
 
+Route::resource('enquiry', 'EnquiryController');
+
 Route::get('orders', 'OrderController@index');
 
 

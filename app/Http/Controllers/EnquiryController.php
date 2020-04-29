@@ -14,7 +14,9 @@ class EnquiryController extends Controller
      */
     public function index()
     {
-        //
+        $enquiries = Enquiry::paginate(10);
+        // dd($orders);
+        return view('admin.enquiry.index',compact('enquiries'));
     }
 
     /**
@@ -95,6 +97,13 @@ class EnquiryController extends Controller
      */
     public function destroy(Enquiry $enquiry)
     {
-        //
+       
+        try {
+            $enquiry->delete();
+            return back()->with('sucess', 'Enquiry deleted successfully');
+        } 
+        catch (Exception $e) {
+            return back()->with('error', 'Enquiry Not Found');
+        }
     }
 }

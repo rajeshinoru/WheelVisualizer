@@ -65,6 +65,10 @@
                         <li>
                             <a  href="{{url('admin/orders')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> Orders  </a>
                         </li>
+
+                        <li>
+                            <a  href="{{url('admin/enquiry')}}" aria-expanded="false"><i class="fa fa-envelope "></i> Enquiries  </a>
+                        </li>
                         <li>
                             <a  href="{{url('admin/wheel')}}" aria-expanded="false"><i class="fa fa-cogs "></i> Wheels  </a>
                         </li>
