@@ -383,3 +383,14 @@ function img($img){
 		return asset('storage/'.$img);
 	}
 }
+
+
+
+function enquiries_list(){     
+	return array(
+		'1'=>'Sales Department Discounted Wheel Warehouse',
+		'2'=>'For Local Retail Sales Questions',
+		'3'=>'For Financing Questions',
+		'4'=>'For Existing Order Questions',
+	);
+}

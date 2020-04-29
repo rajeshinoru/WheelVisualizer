@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/aboutus', 'HomeController@aboutus')->name('aboutus');
 Route::get('/contactus', 'HomeController@contactus')->name('contactus');
+
+
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');
@@ -144,3 +146,6 @@ Route::get('/checkout', 'CartController@checkout')->name('checkout');
 
 
 Route::resource('order', 'OrderController');
+
+
+Route::resource('enquiry', 'EnquiryController');

@@ -296,8 +296,8 @@
                 </div>
             </div>
             <hr>
-            <form id="contact-form" action="" method="post">
-
+            <form id="contact-form" action="{{url('/enquiry')}}" method="post">
+                {{@csrf_field()}}
                 <div class="messages"></div>
 
                 <div class="controls col-md-6 col-md-offset-3">
@@ -305,12 +305,12 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="form_name">E-Mail Request to *</label>
-                                <select class="form-control chosen-select" name="request_to" required="">
+                                <select class="form-control chosen-select" name="request_to" required=""> 
                                     <option value="">Select one...</option>
-                                    <option value="Sales Department Discounted Wheel Warehouse"> Sales Department Discounted Wheel Warehouse </option>
-                                    <option value="For Local Retail Sales Questions"> For Local Retail Sales Questions </option>
-                                    <option value="For Financing Questions"> For Financing Questions </option>
-                                    <option value="For Existing Order Questions </option"> For Existing Order Questions </option>
+                                    @foreach(enquiries_list() as $key => $value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                    @endforeach
+                                    
 
                                 </select>
                                 <div class="help-block with-errors"></div>
@@ -341,7 +341,6 @@
                     </div>
 
                     <input type="submit" class="btn btn-success checkout-btn btn-send" value="Send message">
-
                 </div>
             </form>
         </div>
