@@ -395,15 +395,27 @@
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
         // alert(imagePath)
         carid = $('#car_image_'+key).attr('data-carid'); 
+        console.time();
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
             // console.log(typeof result)
-
+        console.time();
             boxes = JSON.parse(result.toString())
-            console.log('RESPONSE RECEIVED')
-            $(".se-pre-con").hide();
+            console.log('RESPONSE RECEIVED')    
+            var delay = 3000;
+            setTimeout(function() 
+
+                {  
+
+                    $(".se-pre-con").hide();
+
+                },
+                delay
+            ) ;    
+            console.time();
             // WheelMapping(JSON.parse(result));
             // setWheelPosition(result,key);
-        }});
+        }});    
+            // console.time();
     }
 
     function WheelMapping(key){
