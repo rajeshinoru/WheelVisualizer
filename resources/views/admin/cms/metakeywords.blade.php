@@ -21,8 +21,7 @@
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
                                                     <form action="{{url('admin/cms/setting')}}" class=" needsclick addcourse" method="POST" id="demo1-upload"  enctype="multipart/form-data">
                                                          <!-- onsubmit="return summernoteForm($('#test123'))" -->
-                                                        {{csrf_field()}}
-<form enctype="multipart/form-data">
+                                                        {{csrf_field()}} 
       <table class="table table-bordered" id="tbl_posts">
         <thead>
           <tr>
@@ -60,8 +59,7 @@
             <td><a class="btn btn-xs delete-record" data-id="3"><i class="glyphicon glyphicon-trash"></i></a></td>
           </tr>
         </tbody>
-      </table>
-  </form>
+      </table> 
   <div style="display:none;">
     <table id="sample_table">
       <tr id="">

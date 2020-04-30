@@ -352,21 +352,19 @@
 <script type="text/javascript">
     var boxes;
     var widthAdjusted=true;
-    // $(".se-pre-con").bind('ajaxStart', function(){
-    //     $(this).show();
-    // }).bind('ajaxStop', function(){
-    //     $(this).hide();
-    // });
+    var $loading = $('.se-pre-con');
+
     $(document).ready(function(){
         if("{{@$car_images}}"){
             getWheelPosition('0')
         }
     });
     function getWheelPosition(key){  
-        // $(".se-pre-con").show();
+        $(".se-pre-con").show();
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
         carid = $('#car_image_'+key).attr('data-carid'); 
         console.log('Before Call',new Date($.now()))
+        $loading.show();
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
             // console.log(typeof result)
             console.log('After Response',new Date($.now()))
@@ -375,6 +373,7 @@
             var delay = 1000;
             setTimeout(function() 
                 {  
+                $loading.fadeOut("slow");
                 console.log('Waiting Time Closed')    
                 },
                 delay
