@@ -14,7 +14,9 @@ class MetaKeywordController extends Controller
      */
     public function index()
     {
-        //
+
+        $metakeywords=MetaKeyword::paginate(10);
+        return view('admin.metakeywords.index',compact('metakeywords'));
     }
 
     /**
@@ -35,7 +37,31 @@ class MetaKeywordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        
+        $this->validate($request, [
+            'pages'=>'required|array',
+            'keys'=>'required|array',
+            'contents'=>'required|array',
+        ]);
+        try{  
+
+            $data = $request->except(['_token']);
+
+            foreach ($request->pages as $key => $page) { 
+
+                MetaKeyword::create([
+                    "page" => $request->pages[$key],
+                    "key" => $request->keys[$key],
+                    "value" => $request->contents[$key]
+                ]);
+            }
+ 
+ 
+                return back()->with('success','Meta Keywords saved successfully'); 
+        }catch(Exception $e){
+                return back()->with('error','Something Went Wrong!!'); 
+        }
     }
 
     /**

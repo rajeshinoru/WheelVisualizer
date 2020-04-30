@@ -86,6 +86,10 @@
                         <li>
                             <a  href="{{url('admin/tire')}}" aria-expanded="false"><i class="fa fa-list "></i> Tires  </a>
                         </li>
+
+                        <li>
+                            <a  href="{{url('admin/metakeywords')}}" aria-expanded="false"><i class="fa fa-tag "></i>  Meta Keywords   </a>
+                        </li> 
 <!--                         <li>
                             <a  href="{{url('admin/setting')}}" aria-expanded="false"><i class="fa fa-cog "></i> Settings  </a>
                         </li> -->
@@ -94,7 +98,6 @@
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Header Page" href="{{url('admin/cms/setting')}}"> <i class="fa fa-cog"></i>  Application Setting </a></li> 
                                 <li><a title="Home Page" href="{{url('admin/cms/home')}}"> <i class="fa fa-home"></i>  Home Page Setting</a></li> 
-                                <li><a title="Meta Keywords" href="{{url('admin/cms/metakeywords')}}"> <i class="fa fa-tag"></i>  Meta Keywords </a></li> 
                             </ul>
                         </li>
 

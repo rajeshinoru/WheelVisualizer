@@ -33,6 +33,8 @@ Route::resource('enquiry', 'EnquiryController');
 Route::get('orders', 'OrderController@index');
 
 
+Route::resource('metakeywords', 'MetaKeywordController');
+
 // Routes for Tires
 Route::get('/tire/{id?}/model', 'Resource\TireResource@getTiresByModel')->name('tire.model');  
 

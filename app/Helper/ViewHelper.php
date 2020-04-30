@@ -410,3 +410,15 @@ function meta_attributes($key=''){
 			);
 	return $list;
 }
+
+function meta_pages($key=''){     
+	$list  = array(
+				'Home',
+				'Wheels',
+				'Tires',
+				'Visualiser',
+				'About',
+				'Contact',
+			);
+	return $list;
+}
