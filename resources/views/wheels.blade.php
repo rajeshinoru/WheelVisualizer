@@ -363,27 +363,22 @@
         }
     });
     function getWheelPosition(key){  
-        $(".se-pre-con").show();
+        // $(".se-pre-con").show();
         imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
         carid = $('#car_image_'+key).attr('data-carid'); 
-        console.log('1',new Date($.now()))
+        console.log('Before Call',new Date($.now()))
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
             // console.log(typeof result)
-        console.log('2',new Date($.now()))
+            console.log('After Response',new Date($.now()))
             boxes = JSON.parse(result.toString())
-            console.log('RESPONSE RECEIVED')    
-            var delay = 3000;
+            console.log('Response Binded ')   
+            var delay = 1000;
             setTimeout(function() 
-
                 {  
-
-                    $(".se-pre-con").hide();
-        console.log('4',new Date($.now()))
-
+                console.log('Waiting Time Closed')    
                 },
                 delay
             ) ;    
-        console.log('3',new Date($.now()))
             // WheelMapping(JSON.parse(result));
             // setWheelPosition(result,key);
         }});  

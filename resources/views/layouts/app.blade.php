@@ -63,10 +63,10 @@
     <script src="{{ asset('js/zoomple.js') }}"></script>
     <script type="text/javascript">
         // Wait for window load
-        $(window).load(function() {
-            // Animate loader off screen
-            $(".se-pre-con").fadeOut("slow");;
-        });
+        // $(window).load(function() {
+        //     // Animate loader off screen
+        //     $(".se-pre-con").fadeOut("slow");;
+        // });
     </script>
 
 
@@ -147,6 +147,22 @@
     <script src="{{ asset('js/popImg.js') }}"></script>
     <script src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
 
+
+    <script type="text/javascript">
+        
+
+    var $loading = $('.se-pre-con').show();
+    $(document)
+      .ajaxStart(function () {
+        $loading.show();
+      })
+      .ajaxStop(function () {
+        $loading.hide();
+        console.log('Loader Closed')   
+      });
+
+
+    </script>
 </body>
 
 </html>
