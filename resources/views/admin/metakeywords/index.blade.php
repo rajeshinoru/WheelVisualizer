@@ -20,8 +20,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap drp-lst">
                     <h4>Meta Keywords By Pages</h4>
-
+                    <div style="text-align:right;padding-bottom: 20px">
+                        
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addPageModal">Add New Page</button>
+                    </div>
 
                     <!-- model Start -->
                     <div class="modal fade " id="addPageModal" role="dialog">
