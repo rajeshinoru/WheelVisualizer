@@ -66,7 +66,6 @@
                                                                 <h4 class="modal-title">
 <pre>
 {{$enquiry->message}}
-
 </pre>
                                                                 </h4> 
                                                                         <div class="form-group has-success has-feedback text-center">
@@ -91,7 +90,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5">No Orders found</td>
+                                <td colspan="5">No Enquiry found</td>
                             </tr>
                             @endforelse
                         </table>

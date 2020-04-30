@@ -93,7 +93,8 @@
                             <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-file "></i> CMS Pages</a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Header Page" href="{{url('admin/cms/setting')}}"> <i class="fa fa-cog"></i>  Application Setting </a></li> 
-                                <li><a title="Home Page" href="{{url('admin/cms/home')}}"> <i class="fa fa-home"></i>  Home Page </a></li> 
+                                <li><a title="Home Page" href="{{url('admin/cms/home')}}"> <i class="fa fa-home"></i>  Home Page Setting</a></li> 
+                                <li><a title="Meta Keywords" href="{{url('admin/cms/metakeywords')}}"> <i class="fa fa-tag"></i>  Meta Keywords </a></li> 
                             </ul>
                         </li>
 
