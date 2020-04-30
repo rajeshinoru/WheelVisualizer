@@ -399,3 +399,14 @@ function enquiries_list($key=''){
 	}
 	return $list;
 }
+
+
+function meta_attributes($key=''){     
+	$list  = array(
+				'description',
+				'keywords',
+				'author',
+				'viewport',
+			);
+	return $list;
+}

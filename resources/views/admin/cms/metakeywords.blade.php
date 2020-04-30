@@ -7,9 +7,12 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Application Details</a></li>
+                                <li class="active"><a href="#description">Meta Keywords By Pages</a></li>
                             </ul>
                            
+    <div class="clearfix">
+        <a class="btn btn-primary pull-right add-record" data-added="0"><i class="glyphicon glyphicon-plus"></i> Add Row</a>
+      </div>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
@@ -19,68 +22,57 @@
                                                     <form action="{{url('admin/cms/setting')}}" class=" needsclick addcourse" method="POST" id="demo1-upload"  enctype="multipart/form-data">
                                                          <!-- onsubmit="return summernoteForm($('#test123'))" -->
                                                         {{csrf_field()}}
-                                                        <div class="row">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Logo</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input type="file" accept="image/*" name="site_logo" class="dropify form-control-file" aria-describedby="fileHelp"  data-default-file="{{asset(Setting::get('site_logo'))}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Title</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input name="site_title" type="text" class="form-control" placeholder="Site Title" value="{{Setting::get('site_title','')}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Contact</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input name="site_contact" type="text" class="form-control" placeholder="+91" value="{{Setting::get('site_contact','')}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Site Email</div>
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <input name="site_email" type="text" class="form-control" placeholder="Enter the email" value="{{Setting::get('site_email','')}}">
-                                                                        </div>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Header </div>
-                                                                    <div class="col-md-8">
-                                                                        <textarea class="form-control summernote" name="header_content" rows="5">
-                                                                            {{Setting::get('header_content','')}}
-                                                                        </textarea>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-4">Footer </div>
-                                                                    <div class="col-md-8">
-                                                                        <textarea class="form-control summernote" name="footer_content" rows="5">
-                                                                            {{Setting::get('footer_content','')}}
-                                                                        </textarea>
-                                                                    </div>
-                                                            </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div class="payment-adress">
-                                                                    <a href="{{url('/admin/home')}}" class="btn btn-danger waves-effect waves-light">Cancel</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        </div>
+<form enctype="multipart/form-data">
+      <table class="table table-bordered" id="tbl_posts">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Page Name</th>
+            <th>Meta Key</th>
+            <th>Content</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tbl_posts_body">
+          <tr id="rec-1">
+            <td><span class="sn">1</span>.</td>
+            <td>Sanitary Inspector</td>
+            <td>02</td>
+            <td>21 to 42 years</td>
+            <td>5200-20200/-</td>
+            <td><a class="btn btn-xs delete-record" data-id="1"><i class="glyphicon glyphicon-trash"></i></a></td>
+          </tr>
+          <tr id="rec-2">
+            <td><span class="sn">2</span>.</td>
+            <td>Tax & Revenue Superintendent</td>
+            <td>02</td>
+            <td>21 to 42 years</td>
+            <td>5200-20200/-</td>
+            <td><a class="btn btn-xs delete-record" data-id="2"><i class="glyphicon glyphicon-trash"></i></a></td>
+          </tr>
+          
+          <tr id="rec-3">
+            <td><span class="sn">3</span>.</td>
+            <td>Tax & Revenue Inspector</td>
+            <td>04</td>
+            <td>21 to 42 years</td>
+            <td>5200-20200/-</td>
+            <td><a class="btn btn-xs delete-record" data-id="3"><i class="glyphicon glyphicon-trash"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+  </form>
+  <div style="display:none;">
+    <table id="sample_table">
+      <tr id="">
+       <td><span class="sn"></span>.</td>
+       <td>ABC Posts</td>
+       <td>04</td>
+       <td>21 to 42 years</td>
+       <td>5200-20200/-</td>
+       <td><a class="btn btn-xs delete-record" data-id="0"><i class="glyphicon glyphicon-trash"></i></a></td>
+     </tr>
+   </table>
                                                     </form>
                                                 </div>
                                             </div>
@@ -102,6 +94,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="password" class="form-control" placeholder="Password">
+                                              
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="password" class="form-control" placeholder="Confirm Password">
@@ -147,4 +140,39 @@
                 </div>
             </div>
         </div>
+
+@endsection
+
+@section('custom_scripts')
+<script type="text/javascript">
+    jQuery(document).delegate('a.delete-record', 'click', function(e) {
+     e.preventDefault();    
+     var didConfirm = confirm("Are you sure You want to delete");
+     if (didConfirm == true) {
+      var id = jQuery(this).attr('data-id');
+      var targetDiv = jQuery(this).attr('targetDiv');
+      jQuery('#rec-' + id).remove();
+      
+    //regnerate index number on table
+    $('#tbl_posts_body tr').each(function(index) {
+      //alert(index);
+      $(this).find('span.sn').html(index+1);
+    });
+    return true;
+  } else {
+    return false;
+  }
+});
+jQuery(document).delegate('a.add-record', 'click', function(e) {
+     e.preventDefault();    
+     var content = jQuery('#sample_table tr'),
+     size = jQuery('#tbl_posts >tbody >tr').length + 1,
+     element = null,    
+     element = content.clone();
+     element.attr('id', 'rec-'+size);
+     element.find('.delete-record').attr('data-id', size);
+     element.appendTo('#tbl_posts_body');
+     element.find('.sn').html(size);
+   });
+</script> 
 @endsection
