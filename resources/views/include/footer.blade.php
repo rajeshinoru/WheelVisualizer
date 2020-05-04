@@ -35,17 +35,17 @@
         <div class="container">
             <div align="center">
                 <div class="footer-phone">Discounted Wheel Warehouse 1-800-901-6003</div>
-                <div class="main">Contact Us <a href="">sales@discountedwheelwarehouse.com</a></div>
+                <div class="main">Contact Us <a href="">{{Setting::get('site_email','sales@discountedwheelwarehouse.com')}}</a></div>
             </div>
             <div class="footercustom-menu" align="center">
                 <div class="zfooterMenu">
                     <ul>
-                        <li><a href="">Custom Wheels</a></li>
-                        <li><a href="">Discount Tires</a></li>
+                        <li><a href="{{url('/wheelproducts')}}">Custom Wheels</a></li>
+                        <li><a href="{{url('/tirelist')}}">Discount Tires</a></li>
                         <li><a href="">Information Links</a></li>
                         <li><a href="">Rims Financing</a></li>
-                        <li><a href="">Contact Us</a></li>
-                        <li><a href="">About Us</a></li>
+                        <li><a href="{{url('/contactus')}}">Contact Us</a></li>
+                        <li><a href="{{url('/aboutus')}}">About Us</a></li>
                         <li><a href="">Vehicle Search</a></li>
                         <li><a href="">Home</a></li>
                     </ul>

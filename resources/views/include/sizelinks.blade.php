@@ -20,15 +20,15 @@
                 <li><a class="sizelinks" >8-Lug Wheels</a></li>
                 <li><a class="sizelinks" >Dually Wheels</a></li>
                 <li><a class="sizelinks" >Classic Wheels</a></li>
-                <li><a class="sizelinks" >Vehicle Gallery</a></li>
+                <li><a class="sizelinks" href="{{url('/wheels')}}" >Vehicle Gallery</a></li>
                 <li><a class="sizelinks" >Videos</a></li>
                 <li><a class="sizelinks" >Reviews</a></li>
-                <li><a class="sizelinks" >Bolt Patterns</a></li>
-                <li><a class="sizelinks" >Canada Shipping</a></li>
+                <li><a class="sizelinks" href="{{url('/boltpatterns')}}">Bolt Patterns</a></li>
+                <li><a class="sizelinks" href="{{url('/canadashipping')}}" >Canada Shipping</a></li>
                 <li><a class="sizelinks" >Feedback</a></li>
-                <li><a class="sizelinks" >Privacy Policy</a></li>
-                <li><a class="sizelinks" >Return Policy</a></li>
-                <li><a class="sizelinks" >Shipping Info</a></li>
+                <li><a class="sizelinks" href="{{url('/privacypolicy')}}" >Privacy Policy</a></li>
+                <li><a class="sizelinks" href="{{url('/returnpolicy')}}" >Return Policy</a></li>
+                <li><a class="sizelinks" href="{{url('/shippinginfo')}}">Shipping Info</a></li>
                 <li><a class="sizelinks" >Order Status</a></li>
             </ul>
         </div>

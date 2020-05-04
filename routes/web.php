@@ -17,6 +17,11 @@ Auth::routes();
 
 Route::get('/aboutus', 'HomeController@aboutus')->name('aboutus');
 Route::get('/contactus', 'HomeController@contactus')->name('contactus');
+Route::get('/shippinginfo', 'HomeController@shippinginfo')->name('shippinginfo');
+Route::get('/canadashipping', 'HomeController@canadashipping')->name('canadashipping');
+Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolicy');
+Route::get('/returnpolicy', 'HomeController@returnpolicy')->name('returnpolicy');
+Route::get('/boltpatterns', 'HomeController@boltpatterns')->name('boltpatterns');
 
 
 Route::get('/dashboard', 'HomeController@index')->name('home');

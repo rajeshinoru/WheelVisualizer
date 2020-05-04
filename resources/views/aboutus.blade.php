@@ -57,36 +57,6 @@
 
 @include('include.sizelinks')
 
-<div class="container" style="display:none;">
-    <div align="center">
-        <div class="h2-layout">
-            <div id="h2-div1" class="h2-cell">
-                <h1 class="h1-nl">
-                    Discounted Wheel Warehouse, About Us, Customer Service
-                </h1>
-            </div>
-        </div>
-        <hr>
-        <div class="prod-heading-bold">
-            <p><img src="{{asset('image/About-Us.jpg')}}" alt="About Us Discounted Wheel Warehouse" style="max-width: 100%; height: auto;" width="421" height="270"></p>
-            <p><b>Our hours are Mon-Fri 7:00AM - 6:00PM Pacific Standard Time</b></p>
-            <p><b> Call Today - 1-800-901-6003</b></p>
-            <p><b>About Discounted Wheel Warehouse, also see <a href="{{url('/contactus')}}" style="text-decoration: none;">Contact Us</a></b></p>
-        </div>
-        <div class="prod-headinghome" >
-            <p>Discounted Wheel Warehouse is located in the greater Las Vegas area. Discounted Wheel Warehouse has 20 years of combined experience in the custom wheels industry.</p>
-            <p>Discounted Wheel Warehouse leads the industry by offering the following commitments to our valued customers.</p>
-            <p><b>Low Prices</b> - We have succeeded in bringing very low prices to our valued customers. Our prices are hundreds lower than MSRP. The savings get even better in the 22 inch and 24 inch categories. Visit our competitors for the same product we offer to verify that Discounted Wheel Warehouse truly has the lowest price.</p>
-            <p><b>Fast Shipping</b> - Discounted Wheel Warehouse provides fast shipping on all Wheel and Tire Package orders in the continental United States.</p>
-            <p><b>Warranty Services</b> - Our custom wheels typically carry a 2 year manufacturer warranty against defects. Our brand name tires carry a 30,000 mile warranty or better.</p>
-            <p><b>Customer Service</b> - We strive to make your buying experience as painless and smooth as possible. We have one price, and that price is all you will pay for your wheel and tire package delivered to your door.</p>
-            <p><b>Low Prices</b> - Did we say low prices already? Discounted Wheel Warehouse needs to make revenue; however, we also need to build a large client base that keeps growing. You, the satisfied customer, are our best marketing agent. By bringing you low prices and stellar customer service, we perpetuate our growth through customer referrals.</p>
-        </div>
-    </div>
-</div>
-
-
-
 <!-- About Section Start -->
 <section id="about-us" class="about-page">
   <div class="container">

@@ -60,6 +60,27 @@ class HomeController extends Controller
     { 
         return view('shopping_cart'); 
     }
+    public function shippinginfo()
+    { 
+        return view('shippinginfo'); 
+    }
+    public function canadashipping()
+    { 
+        return view('canadashipping'); 
+    }
+
+    public function privacypolicy()
+    { 
+        return view('privacypolicy'); 
+    }    
+    public function returnpolicy()
+    { 
+        return view('returnpolicy'); 
+    }
+    public function boltpatterns()
+    { 
+        return view('boltpatterns'); 
+    }
 
 
     public function checkout()

@@ -252,6 +252,8 @@ function ViewBenefitImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/tires/models/'.$url))){
 			return asset('/storage/tires/models/'.$url);
+		}elseif(file_exists(public_path('/storage/tires/benefits/'.$url))){
+			return asset('/storage/tires/benefits/'.$url);
 		}else{
 			return asset('/storage/tires/models/Checkmark.png');
 		}

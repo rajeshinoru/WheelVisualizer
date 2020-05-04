@@ -405,9 +405,8 @@
               @endif
                 <div class="col-sm-{{12/$divClass}} tire-details">
                   <div class="prod-headinghome">
-                      <h2>{{@$tire->prodmodel}}</h2>
-                      
-                      <p class="read_more_text" data-length="650">{{@$tire->prodlandingdesc}}</p>
+                        <h2>{{@$tire->prodmodel}}</h2>
+                        <p class="read_more_text" data-length="650">{{@$tire->prodlandingdesc}}</p>
                         @if(ViewTireBadgeImage(@$tire->badge1))
                         <img src="{{ViewTireBadgeImage(@$tire->badge1)}}" width="70px" height="70px">
                         @endif
@@ -449,7 +448,7 @@
 
                   </div>
                   @if(ViewProductImage(@$tire->prodimage1) || ViewProductImage(@$tire->prodimage2) || ViewProductImage(@$tire->prodimage3))
-                  <ul class="nav nav-tabs nav-img slider-tires-{{12/$divClass}} " >
+                  <ul class="nav nav-tabs nav-img slider-tires-{{12/$divClass}}" >
                     @if(ViewProductImage(@$tire->prodimage1))
                     <li class="active"><a data-toggle="tab" href="#home"><img src="{{ViewProductImage(@$tire->prodimage1)}}"></a></li>
                     @endif
