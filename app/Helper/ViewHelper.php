@@ -5,6 +5,7 @@ use App\Viflist;
 use App\Tire;
 use App\Vehicle;
 use App\WheelProduct;
+use App\MetaKeyword;
 
 use Illuminate\Http\Request;
 
@@ -421,4 +422,24 @@ function meta_pages($key=''){
 				'Contact',
 			);
 	return $list;
+}
+
+
+function MetaViewer($page='Home',$customData=[]){
+	$tags = "";
+	$keywords =MetaKeyword::where('page',$page)->get();
+	foreach ($keywords as $key => $keyword) {
+		$tags.="
+	<meta name=".$keyword->key." content=".$keyword->value.">";
+	}
+
+	if(count($customData) > 0){
+		foreach ($customData as $key => $value) {
+			$tags.="
+		<meta name=".$key." content=".$value.">";
+		}
+	}
+
+	return $tags;
+
 }

@@ -1,8 +1,10 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
-
-</section>
-
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+@endsection 
+@section('metakeywords')
+<?=@MetaViewer('Tires');?>
+@endsection 
+@section('content') 
 <section id="falken-des">
     <div class="container">
         @if(@$tire->Brand)

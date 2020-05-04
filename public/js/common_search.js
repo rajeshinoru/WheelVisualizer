@@ -441,6 +441,20 @@ if($('.read_more_text').length > 0 ){
 
  // Read More Script Ends
 
-
+$('.sizelinks').click(function(){ 
+    var category = $(this).data('category');    
+    var value = $(this).data('value');
+    var paramValue=[];
+    if(category == 'inch'){
+        paramValue.push(value)
+        var paramValue = window.btoa(JSON.stringify(paramValue)); 
+        window.location.href = '/wheelproducts?diameter='+paramValue;
+    } 
+    if(category == 'finish'){
+        paramValue.push(value)
+        var paramValue = window.btoa(JSON.stringify(paramValue)); 
+        window.location.href = '/wheelproducts?finish='+paramValue;
+    } 
+})
 
 

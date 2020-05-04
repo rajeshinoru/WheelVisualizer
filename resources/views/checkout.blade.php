@@ -217,37 +217,10 @@
     }
 </style>
 <!-- New Design End -->
-<div class="banner-search">
-    <div class="container">
-        <div class="wheel-list ban-ser">
-            <ul>
-                <li><a href="">17 inch Specials</a></li>
-                <li><a href="">18 inch Specials</a></li>
-                <li><a href="">20 inch Specials</a></li>
-                <li><a href="">22 inch Specials</a></li>
-                <li><a href="">24 inch Specials</a></li>
-                <li><a href="">26 inch Specials</a></li>
-                <li><a href="">Black Wheels</a></li>
-                <li><a href="">Tuner Wheels</a></li>
-                <li><a href="">3-Piece Wheels</a></li>
-                <li><a href="">Off Road Wheels</a></li>
-                <li><a href="">8-Lug Wheels</a></li>
-                <li><a href="">Dually Wheels</a></li>
-                <li><a href="">Classic Wheels</a></li>
-                <li><a href="">Vehicle Gallery</a></li>
-                <li><a href="">Videos</a></li>
-                <li><a href="">Reviews</a></li>
-                <li><a href="">Bolt Patterns</a></li>
-                <li><a href="">Canada Shipping</a></li>
-                <li><a href="">Feedback</a></li>
-                <li><a href="">Privacy Policy</a></li>
-                <li><a href="">Return Policy</a></li>
-                <li><a href="">Shipping Info</a></li>
-                <li><a href="">Order Status</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+
+@include('include.sizelinks')
+
+
 <section class="shopping-cart-page">
     <div class="container">
         <div class="shopping-page title-header">

@@ -1,5 +1,12 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+
+@endsection 
+@section('metakeywords')
+<?=@MetaViewer('Contact');?>
+@endsection 
+@section('content')
+
 <style type="text/css">
     .contact-container {
         border: 1px solid #ccc;
@@ -63,37 +70,8 @@
 </style>
 
 <br>
-<div class="banner-search">
-    <div class="container">
-        <div class="wheel-list ban-ser">
-            <ul>
-                <li><a href="">17 inch Specials</a></li>
-                <li><a href="">18 inch Specials</a></li>
-                <li><a href="">20 inch Specials</a></li>
-                <li><a href="">22 inch Specials</a></li>
-                <li><a href="">24 inch Specials</a></li>
-                <li><a href="">26 inch Specials</a></li>
-                <li><a href="">Black Wheels</a></li>
-                <li><a href="">Tuner Wheels</a></li>
-                <li><a href="">3-Piece Wheels</a></li>
-                <li><a href="">Off Road Wheels</a></li>
-                <li><a href="">8-Lug Wheels</a></li>
-                <li><a href="">Dually Wheels</a></li>
-                <li><a href="">Classic Wheels</a></li>
-                <li><a href="">Vehicle Gallery</a></li>
-                <li><a href="">Videos</a></li>
-                <li><a href="">Reviews</a></li>
-                <li><a href="">Bolt Patterns</a></li>
-                <li><a href="">Canada Shipping</a></li>
-                <li><a href="">Feedback</a></li>
-                <li><a href="">Privacy Policy</a></li>
-                <li><a href="">Return Policy</a></li>
-                <li><a href="">Shipping Info</a></li>
-                <li><a href="">Order Status</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+
+@include('include.sizelinks')
 
 <section class="old-contact" style="display:none;">
 
@@ -117,7 +95,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="form_name">E-Mail Request to *</label>
-                                <select class="form-control chosen-select" name="request_to" required="">
+                                <select class="form-control" name="request_to" required="">
                                     <option value="">Select one...</option>
                                     @foreach(enquiries_list() as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
@@ -261,7 +239,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="form_name">E-Mail Request to *</label>
-                            <select class="form-control chosen-select" name="request_to" required="">
+                            <select class="form-control " name="request_to" required="">
                                 <option value="">Select one...</option>
                                 @foreach(enquiries_list() as $key => $value)
                                 <option value="{{$key}}">{{$value}}</option>

@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    @yield('metakeywords')
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -148,7 +150,7 @@
     <script src="{{ asset('js/wheel_visualiser.js') }}"></script>
     <script src="{{ asset('js/common_search.js') }}"></script>
     <script src="{{ asset('js/popImg.js') }}"></script>
-    <script src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
+    <!-- <script src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script> -->
 
 </body>
 

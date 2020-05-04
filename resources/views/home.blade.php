@@ -1,84 +1,12 @@
-@extends('layouts.app') @section('shop_by_vehicle_css')
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
+@extends('layouts.app') 
+@section('shop_by_vehicle_css')
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+@endsection 
+@section('metakeywords')
+<?=@MetaViewer('Home');?>
+@endsection 
+@section('content')
 
-<div class="header-content-title">
-</div>
-<div class="content-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="top-column col-sm-12">
-                <div class="slideshow-panel col-sm-12">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="image/Banner.jpg" alt="Wheel">
-                                <!-- Static Header -->
-                                <div class="header-text hidden-xs">
-                                    <div class="col-md-12 text-center">
-                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
-                                        <br>
-                                        <h3><span>Vividly Designed And Made For Speed.</span></h3>
-                                        <br>
-                                        <div class="">
-                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
-                                    </div>
-                                </div>
-                                <!-- /header-text -->
-                            </div>
-                            <div class="item">
-                                <img src="image/Banner-1.jpg" alt="Wheel">
-                                <!-- Static Header -->
-                                <div class="header-text hidden-xs">
-                                    <div class="col-md-12 text-center">
-                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
-                                        <br>
-                                        <h3><span>Because So Much Is Riding Your Tires.</span></h3>
-                                        <br>
-                                        <div class="">
-                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
-                                    </div>
-                                </div>
-                                <!-- /header-text -->
-                            </div>
-                            <div class="item">
-                                <img src="image/Banner-2.jpg" alt="Wheel">
-                                <!-- Static Header -->
-                                <div class="header-text hidden-xs">
-                                    <div class="col-md-12 text-center">
-                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
-                                        <br>
-                                        <h3><span>Give Your Car A True Custom Look.</span></h3>
-                                        <br>
-                                        <div class="">
-                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
-                                    </div>
-                                </div>
-                                <!-- /header-text -->
-                            </div>
-                        </div>
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                    <!-- /carousel -->
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-<br>
 <!-- New Design Start -->
 <style>
     .ban-ser {
@@ -294,75 +222,87 @@
     }
 </style>
 <!-- New Design End -->
-<div class="banner-search">
-    <div class="container">
-        <div class="wheel-list ban-ser">
-            <ul>
-                <li><a href="">17 inch Specials</a></li>
-                <li><a href="">18 inch Specials</a></li>
-                <li><a href="">20 inch Specials</a></li>
-                <li><a href="">22 inch Specials</a></li>
-                <li><a href="">24 inch Specials</a></li>
-                <li><a href="">26 inch Specials</a></li>
-                <li><a href="">Black Wheels</a></li>
-                <li><a href="">Tuner Wheels</a></li>
-                <li><a href="">3-Piece Wheels</a></li>
-                <li><a href="">Off Road Wheels</a></li>
-                <li><a href="">8-Lug Wheels</a></li>
-                <li><a href="">Dually Wheels</a></li>
-                <li><a href="">Classic Wheels</a></li>
-                <li><a href="">Vehicle Gallery</a></li>
-                <li><a href="">Videos</a></li>
-                <li><a href="">Reviews</a></li>
-                <li><a href="">Bolt Patterns</a></li>
-                <li><a href="">Canada Shipping</a></li>
-                <li><a href="">Feedback</a></li>
-                <li><a href="">Privacy Policy</a></li>
-                <li><a href="">Return Policy</a></li>
-                <li><a href="">Shipping Info</a></li>
-                <li><a href="">Order Status</a></li>
-            </ul>
-        </div>
-    </div>
-    @if(Setting::get('homepage_content1'))
-    <?=Setting::get('homepage_content1','')?>
-    @else
-    <!---------------- This Section will show when settings not found---------------->
-    <div class="container">
-        <div class="title-header">
-            <div id="heading" class="title">
-                <h1>Welcome to Discounted Wheel Warehouse - Wheels, Tires, Rims</h1>
-            </div>
-        </div>
-        <hr>
-    </div>
-
-    <div class="container">
-        <div class="row pay">
-            <div class="col-sm-3 payments-card"><img src="image/pay1.png"></div>
-            <div class="col-sm-3 payments-card"><img src="image/pay2.png"></div>
-            <div class="col-sm-3 payments3-card"><img src="image/pay3.png"></div>
-            <div class="col-sm-3 payments-card"><img src="image/pay4.png"></div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="prod-headinghome">
-            <p>Welcome to Discounted wheel Warehouse. We offer a huge selection of rims and tires to suit your needs. We carry 15 inch wheels all the way to a whopping 32 inch custom wheel. We offer quality discount tires at a price range for all. Don't miss our Closeout section as we have the best blowout deals to offer. Whether you're looking for rims or tires Discounted Wheel Warehouse has the best deal on the world wide web. We also have all the latest news and information on our Blog concerning custom wheels or car rims and all aspects of tires.</p>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row pro-img">
-            <div class="col-sm-4 wheel-img"><img src="image/image-1.png"></div>
-            <div class="col-sm-4 wheel-img"><img src="image/image-2.png"></div>
-            <div class="col-sm-4 wheel-img"><img src="image/image-3.png"></div>
-        </div>
-    </div>
-    <!---------------- This Section will show when settings not found---------------->
-
-    @endif
+<div class="header-content-title">
 </div>
+<div class="content-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="top-column col-sm-12">
+                <div class="slideshow-panel col-sm-12">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="image/Banner.jpg" alt="Wheel">
+                                <!-- Static Header -->
+                                <div class="header-text hidden-xs">
+                                    <div class="col-md-12 text-center">
+                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
+                                        <br>
+                                        <h3><span>Vividly Designed And Made For Speed.</span></h3>
+                                        <br>
+                                        <div class="">
+                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                                    </div>
+                                </div>
+                                <!-- /header-text -->
+                            </div>
+                            <div class="item">
+                                <img src="image/Banner-1.jpg" alt="Wheel">
+                                <!-- Static Header -->
+                                <div class="header-text hidden-xs">
+                                    <div class="col-md-12 text-center">
+                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
+                                        <br>
+                                        <h3><span>Because So Much Is Riding Your Tires.</span></h3>
+                                        <br>
+                                        <div class="">
+                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                                    </div>
+                                </div>
+                                <!-- /header-text -->
+                            </div>
+                            <div class="item">
+                                <img src="image/Banner-2.jpg" alt="Wheel">
+                                <!-- Static Header -->
+                                <div class="header-text hidden-xs">
+                                    <div class="col-md-12 text-center">
+                                        <h2><strong>WHEEL VISUALIZER</strong></h2>
+                                        <br>
+                                        <h3><span>Give Your Car A True Custom Look.</span></h3>
+                                        <br>
+                                        <div class="">
+                                            <a class="btn btn-theme btn-sm btn-min-block" href="#">CONTACT US</a><a class="btn btn-theme btn-sm btn-min-block" href="#">READ MORE</a></div>
+                                    </div>
+                                </div>
+                                <!-- /header-text -->
+                            </div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                    <!-- /carousel -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+
+@include('include.sizelinks')
+
 <!-- Start - This is for Duynamic Products from database -->
 <div class="container">
 

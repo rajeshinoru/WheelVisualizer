@@ -2,7 +2,11 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
-@endsection
+
+@endsection 
+@section('metakeywords')
+<?=@MetaViewer('Wheels');?>
+@endsection 
 @section('content')
 
 <style>
@@ -135,7 +139,8 @@
                                             <div class="panel-body">
                                                 <ul style="list-style-type: none;">
                                                     @forelse($wheelfinish as $finish)
-                                                    <li><input type="checkbox" name="finish[]" class="finish" value="{{$finish->prodfinish}}" @if(in_array($finish->prodfinish,json_decode(base64_decode(@Request::get('finish')?:''))?:[])) checked @endif> {{$finish->prodfinish.'('.$finish->total.')'}} </li>
+                                                    <li><input type="checkbox" name="finish[]" class="finish" value="{{$finish->prodfinish}}" 
+                                                        @if(in_array($finish->prodfinish,json_decode(base64_decode(@Request::get('finish')?:''))?:[])) checked @endif> {{$finish->prodfinish.'('.$finish->total.')'}} </li>
                                                     @empty
                                                     <li>No Finish Available</li>
                                                     @endforelse

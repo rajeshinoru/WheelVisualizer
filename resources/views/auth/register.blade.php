@@ -249,13 +249,21 @@
     transition: all 0.5s ease 0s;
     cursor: pointer;
 }
+
+.main-logo 
+{
+    width: 200px !important;
+    height: auto !important;
+}
+
+
 </style>
 @endsection
 @section('content')
 <div class="container">
   <div class="row main-register">
       <div class="col-md-12 register-page">
-          <div class="text-center"><a href="index.php"><img src="image/logo.png" class="img-fluid"></a></div>
+          <div class="text-center"><a href="{{url('/')}}"><img src="{{url(Setting::get('site_logo','/admin/img/logo/logo.png'))}}" class="main-logo"></a></div>
           <form class="loginSectionform" action="{{url('register')}}" method="POST">
             {{csrf_field()}}
               <div class="form-group">

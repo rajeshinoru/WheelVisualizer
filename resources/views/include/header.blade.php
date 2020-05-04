@@ -14,7 +14,7 @@
                     <div id="top-links" class="pull-right">
                         <ul class="list-inline">
                             @if(@Auth::user()=='')
-                            <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
+                            <li class="header-phone pull-left"><a href="{{url('/register')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
                             <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
                             @else
                             <li class="header-phone pull-left">

@@ -4,7 +4,10 @@
 <link rel="stylesheet" href="{{asset('choosen/css/chosen.min.css') }}">
 
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
-@endsection
+@endsection 
+@section('metakeywords')
+<?=@MetaViewer('Visualiser');?>
+@endsection 
 @section('content')
 
 <style>
