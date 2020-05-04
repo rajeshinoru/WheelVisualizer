@@ -61,14 +61,17 @@
 
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/zoomple.js') }}"></script>
+
+    @if(!Request::has('car_id'))
     <script type="text/javascript">
         // Wait for window load
         $(window).load(function() {
             // Animate loader off screen
-            $(".se-pre-con").fadeOut("slow");;
+            $(".se-pre-con").fadeOut("slow");
+            console.log('First Loader Closed')
         });
     </script>
-
+    @endif
 
     @yield('custom_scripts')
     @yield('header_scripts')
