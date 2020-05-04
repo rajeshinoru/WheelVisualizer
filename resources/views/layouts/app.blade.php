@@ -62,7 +62,7 @@
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/zoomple.js') }}"></script>
 
-    @if(!Request::has('car_id'))
+    @if(!(Request::has('car_id') || @Request::get('flag') == 'searchByVehicle'))
     <script type="text/javascript">
         // Wait for window load
         $(window).load(function() {

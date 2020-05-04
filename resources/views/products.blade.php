@@ -389,6 +389,8 @@
     $(document).ready(function(){
         if("{{@$car_images}}"){
             getWheelPosition('0')
+        }else{
+                $loading.fadeOut("slow");
         }
     });
     function getWheelPosition(key){  
