@@ -255,6 +255,7 @@
                     @if($car_images)
 
                     <input type="hidden" id="car_image_name" value="{{@$car_images->image}}">
+                    <input type="hidden" id="car_image_id" value="{{@$car_images->car_id}}">
                     <!-- Model Car Start -->
 
                     <div class="modal fade" id="myModal{{$key}}"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -404,7 +405,7 @@
         // $(".se-pre-con").show();
         imagePath = "{{public_path()}}/"+$('#car_image_name').val();
         // alert(imagePath)
-        carid = $('#car_image_'+key).attr('data-carid'); 
+        carid = $('#car_image_id').val(); 
         $loading.show();
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
             // console.log(typeof result)
