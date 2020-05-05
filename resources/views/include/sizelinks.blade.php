@@ -21,11 +21,11 @@
                 <li><a class="sizelinks" >Dually Wheels</a></li>
                 <li><a class="sizelinks" >Classic Wheels</a></li>
                 <li><a class="sizelinks" href="{{url('/wheels')}}" >Vehicle Gallery</a></li>
-                <li><a class="sizelinks" >Videos</a></li>
-                <li><a class="sizelinks" >Reviews</a></li>
+                <li><a class="sizelinks" href="{{url('/videos')}}" >Videos</a></li>
+                <li><a class="sizelinks" href="{{url('/reviews')}}" >Reviews</a></li>
                 <li><a class="sizelinks" href="{{url('/boltpatterns')}}">Bolt Patterns</a></li>
                 <li><a class="sizelinks" href="{{url('/canadashipping')}}" >Canada Shipping</a></li>
-                <li><a class="sizelinks" >Feedback</a></li>
+                <li><a class="sizelinks" href="{{url('/feedback')}}" >Feedback</a></li>
                 <li><a class="sizelinks" href="{{url('/privacypolicy')}}" >Privacy Policy</a></li>
                 <li><a class="sizelinks" href="{{url('/returnpolicy')}}" >Return Policy</a></li>
                 <li><a class="sizelinks" href="{{url('/shippinginfo')}}">Shipping Info</a></li>

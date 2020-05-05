@@ -338,7 +338,7 @@
 
 <br>
 
-@include('include.sizelinks')
+
 
 <!-- Contact Us Section Start -->
 <section id="contact-us" class="contact-page">

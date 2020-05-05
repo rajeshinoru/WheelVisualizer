@@ -80,8 +80,21 @@ class HomeController extends Controller
     public function boltpatterns()
     { 
         return view('boltpatterns'); 
+    }    
+    public function reviews()
+    { 
+        return view('reviews'); 
+    }  
+    public function feedback()
+    { 
+        return view('feedback'); 
     }
 
+
+    public function videos()
+    { 
+        return view('videos'); 
+    }
 
     public function checkout()
     { 

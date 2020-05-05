@@ -22,7 +22,9 @@ Route::get('/canadashipping', 'HomeController@canadashipping')->name('canadaship
 Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolicy');
 Route::get('/returnpolicy', 'HomeController@returnpolicy')->name('returnpolicy');
 Route::get('/boltpatterns', 'HomeController@boltpatterns')->name('boltpatterns');
-
+Route::get('/reviews', 'HomeController@reviews')->name('reviews');
+Route::get('/feedback', 'HomeController@feedback')->name('feedback');
+Route::get('/videos', 'HomeController@videos')->name('videos');
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
@@ -154,3 +156,7 @@ Route::resource('order', 'OrderController');
 
 
 Route::resource('enquiry', 'EnquiryController');
+
+
+Route::post('/review', 'FeedbackController@store')->name('review.store');
+Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
