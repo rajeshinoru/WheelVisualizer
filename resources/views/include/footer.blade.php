@@ -46,8 +46,8 @@
                         <li><a href="">Rims Financing</a></li>
                         <li><a href="{{url('/contactus')}}">Contact Us</a></li>
                         <li><a href="{{url('/aboutus')}}">About Us</a></li>
-                        <li><a href="">Vehicle Search</a></li>
-                        <li><a href="">Home</a></li>
+                        <li><a href="{{url('/wheels')}}">Vehicle Search</a></li>
+                        <li><a href="{{url('/')}}">Home</a></li>
                     </ul>
                 </div>
             </div>

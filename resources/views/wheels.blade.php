@@ -35,7 +35,7 @@
 }
 </style>
 
-
+@include('include.sizelinks')
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">

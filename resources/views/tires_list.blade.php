@@ -7,6 +7,8 @@
     min-height: 445px !important;
 }
 </style>
+
+@include('include.sizelinks')
 <section id="tire-list">
     <div class="container">
         <!-- <div class="row">

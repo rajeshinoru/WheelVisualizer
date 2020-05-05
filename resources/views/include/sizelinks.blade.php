@@ -1,4 +1,43 @@
 <style type="text/css">
+   .ban-ser {
+    margin-top: 10px;
+        border: 1px solid #ddd9d9 !important;
+    }
+
+    .wheel-list {
+        column-width: 15em;
+        padding: 10px 15px !important;
+    }
+
+    .wheel-list li a {
+        color: #474646;
+        display: block;
+        font-size: 12px !important;
+        text-align: center;
+        font-family: Montserrat !important;
+    }
+
+    .wheel-list ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .wheel-list li {
+        padding: 3px;
+        margin: 3px;
+        margin-top: 3px;
+        margin-top: 3px;
+        border: 1px solid #ccc;
+        box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, .05);
+        background-color: #fff;
+        border-radius: 2px !important;
+    }
+
+    .wheel-list ul li:first-child {
+        margin-top: 0;
+    }
+
     .sizelinks{
         cursor: pointer;
     }

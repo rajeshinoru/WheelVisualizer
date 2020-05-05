@@ -34,6 +34,7 @@
 }
 </style>
 
+@include('include.sizelinks')
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
     <div class="container pro">
@@ -408,7 +409,7 @@
         carid = $('#car_image_id').val(); 
         $loading.show();
         $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, 
-            success: function(result){
+            success: function(result){  
                 // console.log(typeof result)
                 console.log('After Response',new Date($.now()))
                 boxes = JSON.parse(result.toString())

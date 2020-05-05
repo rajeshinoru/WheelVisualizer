@@ -5,6 +5,9 @@
 <?=@MetaViewer('Tires');?>
 @endsection 
 @section('content') 
+
+@include('include.sizelinks')
+
 <section id="falken-des">
     <div class="container">
         @if(@$tire->Brand)
