@@ -237,6 +237,7 @@
 
                     @if($car_images)
                     <!-- Model Car Start -->
+                    <input type="hidden" id="car_image_name" value="{{@$car_images->image}}">
 
                     <div class="modal fade" id="myModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -360,11 +361,14 @@
     $(document).ready(function(){
         if("{{@$car_images}}"){
             getWheelPosition('0')
+        }else{
+                $loading.fadeOut("slow");
         }
     });
     function getWheelPosition(key){  
         $(".se-pre-con").show();
-        imagePath = "{{public_path()}}/"+$('#car_image_'+key).attr('data-imagename');
+        imagePath = "{{public_path()}}/"+$('#car_image_name').val();
+        // alert(imagePath)
         carid = $('#car_image_'+key).attr('data-carid'); 
         console.log('Before Call',new Date($.now()))
         $loading.show();
