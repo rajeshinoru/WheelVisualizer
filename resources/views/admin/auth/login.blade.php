@@ -245,13 +245,23 @@
     transition: all 0.5s ease 0s;
     cursor: pointer;
 }
+
+
+.main-logo 
+{
+    width: 200px !important;
+    height: auto !important;
+}
+
 </style>
 @endsection
-@section('content')
+@section('content') 
 <div class="container">
 <div class="row main-login">
     <div class="col-md-12 login-page">
-        <div class="text-center"><a href="{{url('admin/login')}}"><img src="{{ asset('image/logo.png') }}" class="img-fluid"></a></div>
+        <div class="text-center"><a href="{{url('admin/login')}}">
+          <img src="{{url(Setting::get('site_logo','/admin/img/logo/logo.png'))}}" class="main-logo">
+        </a></div>
         <div class="text-center">Admin</div>
         <form class="loginSectionform" action="{{url('admin/login')}}" method="POST">
           {{csrf_field()}}

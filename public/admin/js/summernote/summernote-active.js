@@ -6,10 +6,11 @@ $(document).ready(function() {
 });
 
 $('form').submit(function(){
-	if($('.summernote').length() > 0){
+	// console.log($('.summernote'))
+	if($('.summernote')){
 
 		$('.summernote').each(function( index ) {
-			alert($( this ).code());
+			// alert($( this ).code());
 			$( this ).html($( this ).code());
 		});
 	}

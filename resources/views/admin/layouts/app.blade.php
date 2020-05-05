@@ -289,6 +289,13 @@
             $(list).find('a').click();
             $(list).addClass('active');
         });
+
+
+
+
+        $('.logout-btn').click(function(){  
+            $('#adminLogout').submit();
+        });
     </script>
 </body>
 

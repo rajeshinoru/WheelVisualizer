@@ -373,22 +373,28 @@
         carid = $('#car_image_id').val();
         console.log('Before Call',new Date($.now()))
         $loading.show();
-        $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, success: function(result){
-            // console.log(typeof result)
-            console.log('After Response',new Date($.now()))
-            boxes = JSON.parse(result.toString())
-            console.log('Response Binded ')   
-            var delay = 1000;
-            setTimeout(function() 
-                {  
-                $loading.fadeOut("slow");
-                console.log('Waiting Time Closed')    
-                },
-                delay
-            ) ;    
-            // WheelMapping(JSON.parse(result));
-            // setWheelPosition(result,key);
-        }});  
+        $.ajax({url: "/runPython",data:{'image':imagePath,'carid':carid}, 
+            success: function(result){
+                // console.log(typeof result)
+                console.log('After Response',new Date($.now()))
+                boxes = JSON.parse(result.toString())
+                console.log('Response Binded ')   
+                var delay = 1000;
+                setTimeout(function() 
+                    {  
+                    $loading.fadeOut("slow");
+                    console.log('Waiting Time Closed')    
+                    },
+                    delay
+                ) ;    
+                // WheelMapping(JSON.parse(result));
+                // setWheelPosition(result,key);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            
+                    $loading.fadeOut("slow");
+            }
+        });  
     }
 
     function WheelMapping(key){

@@ -40,8 +40,8 @@
 
                                                     <form id="adminLogout" action="{{ url('/logout') }}" method="POST">
                                                         {{csrf_field()}}
-
-                                                        <a onclick="$('#adminLogout').submit()"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                        
+                                                        <a class="logout-btn" style="cursor: pointer;"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                     </form>
 
                                                 </li>
