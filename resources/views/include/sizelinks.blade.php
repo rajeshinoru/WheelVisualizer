@@ -68,7 +68,7 @@
                 <li><a class="sizelinks" href="{{url('/privacypolicy')}}" >Privacy Policy</a></li>
                 <li><a class="sizelinks" href="{{url('/returnpolicy')}}" >Return Policy</a></li>
                 <li><a class="sizelinks" href="{{url('/shippinginfo')}}">Shipping Info</a></li>
-                <li><a class="sizelinks" >Order Status</a></li>
+                <li><a class="sizelinks" href="{{url('/orderstatus')}}">Order Status</a></li>
             </ul>
         </div>
     </div>

@@ -25,6 +25,9 @@ Route::get('/boltpatterns', 'HomeController@boltpatterns')->name('boltpatterns')
 Route::get('/reviews', 'HomeController@reviews')->name('reviews');
 Route::get('/feedback', 'HomeController@feedback')->name('feedback');
 Route::get('/videos', 'HomeController@videos')->name('videos');
+Route::get('/orderstatus', 'HomeController@orderstatus')->name('orderstatus');
+Route::post('/orderstatus', 'HomeController@checkorderstatus')->name('checkorderstatus');
+Route::get('/vieworderstatus/{orderid}', 'HomeController@vieworderstatus')->name('vieworderstatus');
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');

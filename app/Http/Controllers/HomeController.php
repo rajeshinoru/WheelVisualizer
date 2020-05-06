@@ -13,6 +13,7 @@ use App\CarColour;
 use App\Wheel;
 use App\Tire;
 use App\WheelProduct;
+use App\Order;
 use Artisan;
 class HomeController extends Controller
 {
@@ -94,6 +95,25 @@ class HomeController extends Controller
     public function videos()
     { 
         return view('videos'); 
+    }
+    public function orderstatus()
+    { 
+        return view('orderstatus'); 
+    } 
+    public function vieworderstatus($orderid='')
+    { 
+        $order = Order::with('OrderItems')->find(base64_decode($orderid));
+ 
+        return view('vieworderstatus',compact('order')); 
+    } 
+    public function checkorderstatus(Request $request)
+    { 
+        $order = Order::with('OrderItems')->where('email',$request->email)->first();
+        if($request->ajax()){
+            return ['order'=>$order];
+        }else{
+            return redirect('/orderstatus/'.base64_encode($order->id));
+        } 
     }
 
     public function checkout()
