@@ -96,6 +96,11 @@ class HomeController extends Controller
     { 
         return view('videos'); 
     }
+
+    public function lipsizes()
+    { 
+        return view('lipsizes'); 
+    }
     public function orderstatus()
     { 
         return view('orderstatus'); 
@@ -109,11 +114,17 @@ class HomeController extends Controller
     public function checkorderstatus(Request $request)
     { 
         $order = Order::with('OrderItems')->where('email',$request->email)->first();
-        if($request->ajax()){
-            return ['order'=>$order];
+
+        if($order != null){
+
+            if($request->ajax()){
+                return ['order'=>$order];
+            }else{
+                return redirect('/vieworderstatus/'.base64_encode($order->id));
+            } 
         }else{
-            return redirect('/orderstatus/'.base64_encode($order->id));
-        } 
+            return back()->with('error','No Orders Found!!');
+        }
     }
 
     public function checkout()

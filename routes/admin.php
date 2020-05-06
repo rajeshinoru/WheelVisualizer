@@ -27,6 +27,7 @@ Route::resource('tire', 'Resource\TireResource');
 
 Route::resource('user', 'Resource\UserResource');
 
+Route::resource('feedback', 'FeedbackController');
 
 Route::resource('enquiry', 'EnquiryController');
 

@@ -14,7 +14,10 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        
+        $feedbacks = Feedback::paginate(10);
+        // dd($orders);
+        return view('admin.feedback.index',compact('feedbacks'));
     }
 
     /**
