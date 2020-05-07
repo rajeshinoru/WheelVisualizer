@@ -155,8 +155,16 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Order $order)
-    {
-        dd($request,$order);
+    { 
+
+        if($order != null){
+            $order->status=$request->status;
+            $order->save();
+            return ['status' => true,'msg'=>'Status Updated Successfully!!'];
+        }else{
+
+            return ['status' => false,'msg'=>'Status Updated Failed!!'];
+        }
     }
 
     /**

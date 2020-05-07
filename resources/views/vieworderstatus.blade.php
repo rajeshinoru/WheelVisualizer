@@ -155,16 +155,30 @@ ol.progtrckr li.progtrckr-todo:before {
         </div>
         <form> 
             <div class="messages"></div>
-            <div class="controls col-md-12">
+            <div class="controls col-md-4">
+                <div class="row">
+                    <table class="table"> 
+                      <tr>
+                        <td>Email</td>
+                        <td>{{@$order->email}}</td> 
+                      </tr>
+                      <tr>
+                        <td>Ordered At</td>
+                        <td>{{@$order->created_at}}</td> 
+                      </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="controls col-md-8">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
                             <ol class="progtrckr" data-progtrckr-steps="5">
-                                <li class="progtrckr-done">Order Received</li> 
-                                <li class="progtrckr-todo">Order Processing</li> 
-                                <li class="progtrckr-todo">In Production</li> 
-                                <li class="progtrckr-todo">Shipped</li> 
-                                <li class="progtrckr-todo">Delivered</li>
+                                <li class="progtrckr-{{$order->status > 1?'done':'todo'}}">Order Received</li> 
+                                <li class="progtrckr-{{$order->status >= 2?'done':'todo'}}">Order Processing</li> 
+                                <li class="progtrckr-{{$order->status >= 3?'done':'todo'}}">In Production</li> 
+                                <li class="progtrckr-{{$order->status >= 4?'done':'todo'}}">Shipped</li> 
+                                <li class="progtrckr-{{$order->status >= 5?'done':'todo'}}">Delivered</li>
                             </ol>
                         </div>
                     </div>

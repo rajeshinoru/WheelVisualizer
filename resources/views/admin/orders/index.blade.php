@@ -318,19 +318,12 @@ $(".order_status").change(function(){
             data:{"status":status  }, 
             success: function(result){  
                 // console.log(typeof result)
-                console.log('After Response',new Date($.now()))
-                boxes = JSON.parse(result.toString())
-                console.log('Response Binded ')   
-                var delay = 1000;
-                setTimeout(function() 
-                    {  
-                    $loading.fadeOut("slow");
-                    console.log('Waiting Time Closed')    
-                    },
-                    delay
-                ) ;    
-                // WheelMapping(JSON.parse(result));
-                // setWheelPosition(result,key);
+                 $('#custom-msg').html(`
+                  <div class="alert alert-success">
+                          <button type="button" class="close" data-dismiss="alert">×</button>
+                          `+result.msg+`
+                  </div>`);
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
             

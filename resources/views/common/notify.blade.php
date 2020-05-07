@@ -23,3 +23,6 @@
         {{ Session::get('flash_success') }}
     </div>
 @endif
+<div id="custom-msg">
+    
+</div>

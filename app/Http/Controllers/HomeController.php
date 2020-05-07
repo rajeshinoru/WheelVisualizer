@@ -122,7 +122,7 @@ class HomeController extends Controller
     } 
     public function checkorderstatus(Request $request)
     { 
-        $order = Order::with('OrderItems')->where('email',$request->email)->first();
+        $order = Order::with('OrderItems')->where('email',$request->email)->orderBy('id','desc')->first();
 
         if($order != null){
 
