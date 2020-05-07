@@ -359,7 +359,7 @@
                                                         <div class="col-sm-12 tire-menu tire-two">
 <ul>
     <li><a href="{{url('/orderstatus')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Order Status</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Package Deal</a></li>
+    <li><a href="{{url('/packagedeal')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Package Deal</a></li>
     <li><a href="{{url('/videos')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Videos</a></li>
     <li><a href="{{url('/wheelproducts')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Pages</a></li>
     <li><a href="{{url('/tirelist')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire Pages</a></li>
@@ -399,7 +399,7 @@
 
                                 </ul>
                             </li>
-                            <li class=""><a href="">RIMS FINANCING</a></li>
+                            <li class=""><a href="{{url('/rimfinancing')}}">RIMS FINANCING</a></li>
                             <li class=""><a href="{{url('/wheels')}}">WHEEL VISUALIZER</a></li>
                             <li class=""><a href="{{url('/aboutus')}}">ABOUT</a></li>
                             <li class=""><a href="{{url('/contactus')}}">CONTACT</a></li>

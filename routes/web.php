@@ -27,6 +27,8 @@ Route::get('/feedback', 'HomeController@feedback')->name('feedback');
 Route::get('/videos', 'HomeController@videos')->name('videos');
 
 Route::get('/lipsizes', 'HomeController@lipsizes')->name('lipsizes');
+Route::get('/packagedeal', 'HomeController@packagedeal')->name('packagedeal');
+Route::get('/rimfinancing', 'HomeController@rimfinancing')->name('rimfinancing');
 
 Route::get('/orderstatus', 'HomeController@orderstatus')->name('orderstatus');
 Route::post('/orderstatus', 'HomeController@checkorderstatus')->name('checkorderstatus');

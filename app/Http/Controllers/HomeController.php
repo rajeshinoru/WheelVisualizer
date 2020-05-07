@@ -101,6 +101,15 @@ class HomeController extends Controller
     { 
         return view('lipsizes'); 
     }
+    public function packagedeal()
+    { 
+        return view('packagedeal'); 
+    }
+
+    public function rimfinancing()
+    { 
+        return view('rimfinancing'); 
+    }
     public function orderstatus()
     { 
         return view('orderstatus'); 
