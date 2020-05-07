@@ -33,6 +33,7 @@ Route::resource('enquiry', 'EnquiryController');
 
 Route::get('orders', 'OrderController@index');
 
+Route::get('order/update/{order}', 'OrderController@update');
 
 Route::resource('metakeywords', 'MetaKeywordController');
 

@@ -280,7 +280,15 @@ Modified Please Explain :
                                 <td>{{roundCurrency(@$order->shipping)}}</td>
                                 <td>{{roundCurrency(@$order->total)}}</td>
                                 <td>{{@$order->payment_status?'Paid':'Not Paid'}}</td>
-                                <td>{{@$order->status}}</td>
+                                <td>
+                                                        <!-- <div class="dropdown"> -->
+                                                            <select  name="order_status[]" class="form-group form-control order_status" data-order_id="{{@$order->id}}"> 
+                                                                @foreach(OrderStatus() as $orderKey => $status)
+                                                                <option value="{{$orderKey}}" {{($order->status == $orderKey)?'selected':''}}>{{$status}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        <!-- </div> -->
+                                </td>
                                 <td>{{@$order->created_at}}</td>
                             </tr>
                             @empty
@@ -301,12 +309,35 @@ Modified Please Explain :
 @section('custom_scripts')
 <script type="text/javascript">
 
-// $(".form-control-file").click(function(){
-//     // $new = $(this).clone().removeClass('dropify');
-//     // $(this).after($new);
+$(".order_status").change(function(){
+  var status = $(this).val();  
 
-//   $(this).parent().closest('.dropify-wrapper').find('.hidden-file-input').click();
-// });
+  var order_id = $(this).data('order_id');
+        $.ajax({
+            url: "/admin/order/update/"+order_id,
+            data:{"status":status  }, 
+            success: function(result){  
+                // console.log(typeof result)
+                console.log('After Response',new Date($.now()))
+                boxes = JSON.parse(result.toString())
+                console.log('Response Binded ')   
+                var delay = 1000;
+                setTimeout(function() 
+                    {  
+                    $loading.fadeOut("slow");
+                    console.log('Waiting Time Closed')    
+                    },
+                    delay
+                ) ;    
+                // WheelMapping(JSON.parse(result));
+                // setWheelPosition(result,key);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            
+                    // $loading.fadeOut("slow");
+            }
+        });  
+});
 
     
 </script>

@@ -160,11 +160,11 @@ ol.progtrckr li.progtrckr-todo:before {
                     <div class="col-lg-12">
                         <div class="form-group">
                             <ol class="progtrckr" data-progtrckr-steps="5">
-                                <li class="progtrckr-done">Order Processing</li><!--
-                             --><li class="progtrckr-todo">Pre-Production</li><!--
-                             --><li class="progtrckr-todo">In Production</li><!--
-                             --><li class="progtrckr-todo">Shipped</li><!--
-                             --><li class="progtrckr-todo">Delivered</li>
+                                <li class="progtrckr-done">Order Received</li> 
+                                <li class="progtrckr-todo">Order Processing</li> 
+                                <li class="progtrckr-todo">In Production</li> 
+                                <li class="progtrckr-todo">Shipped</li> 
+                                <li class="progtrckr-todo">Delivered</li>
                             </ol>
                         </div>
                     </div>

@@ -445,3 +445,31 @@ function MetaViewer($page='Home',$customData=[]){
 	return $tags;
 
 }
+
+function OrderStatus($status='',$condition=''){     
+	$list  = array(
+				'-1'=>'RETURNED',
+				'0'=>'CANCELLED',
+				'1'=>'ORDERED',
+				'2'=>'PROCESSING',
+				'3'=>'PRODUCTION',
+				'4'=>'SHIPPED',
+				'5'=>'DELIVERED',
+			);
+
+	if($status !=''){
+		if($condition!=''){
+			if($condition == 'greater'){
+				return array_slice($list, array_search($status, array_keys($list)));
+			}elseif($condition == 'all'){
+				return $list;
+			}else{
+				return $list;
+			}
+		}else{
+			return $list[$status];
+		}
+	}
+
+	return $list;
+}

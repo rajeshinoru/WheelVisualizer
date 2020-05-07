@@ -137,6 +137,7 @@
 </head>
 
 <body>
+    {{csrf_field()}}
     @include('admin.include.sidebar')
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
