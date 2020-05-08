@@ -73,6 +73,12 @@
                         <li>
                             <a  href="{{url('admin/feedback')}}" aria-expanded="false"><i class="fa fa-comments-o "></i> Feedbacks  </a>
                         </li>
+
+
+                        <li>
+                            <a  href="{{url('admin/post')}}" aria-expanded="false"><i class="fa fa-sticky-note-o"></i> Posts  </a>
+                        </li>
+
                         <li>
                             <a  href="{{url('admin/wheel')}}" aria-expanded="false"><i class="fa fa-cogs "></i> Wheels  </a>
                         </li>
