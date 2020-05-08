@@ -46,7 +46,7 @@ class PostController extends Controller
                 $data['postby']='Admin';
 
                 $post = Post::create($data);  
-                $post->image = $request->image->store('/posts');
+                $post->image = $request->image->store('posts');
                 $post->save();
 
                 return back()->with('success','Post Created Successfully!!');
