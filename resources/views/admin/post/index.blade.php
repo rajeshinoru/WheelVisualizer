@@ -24,7 +24,7 @@
     }
 
     .td-center {
-        text-align: center !important;
+        text-align: center !important; 
     }
 
     .admin-form .btn.btn-default {
@@ -59,9 +59,32 @@
                             <tr>
                                 <td>{{@$key+1}}</td>
                                 <td>{{@$post->postby}}</td>
-                                <td class="td-center">
-                                    <?=@$order->content?>
-                                </td>
+                                <td class="td-center"> 
+                                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#content{{$key}}">View</button> 
+
+                                                    <div class="modal fade " id="content{{$key}}" role="dialog">
+                                                        <div class="modal-dialog items-modal">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title text-left">Content</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                <h4 class="modal-title">
+<pre> 
+<?=@$post->content?>
+</pre>
+                                                                </h4> 
+                                                                        <div class="form-group has-success has-feedback text-center">
+                                                                            <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Close</button>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                </td> 
+                                <td><img class="wheelImage" src="{{asset('storage/'.@$post->image)}}" width="100px" height="100px"></td>
                                 <td>
                                     <select name="post_status[]" class="form-group form-control post_status" data-order_id="{{@$post->id}}">
                                         <option value="0" {{($post->is_visibile ==  0)?'selected':''}}>No</option>
@@ -90,29 +113,49 @@
                                 </div>
                                 <div class="modal-body">
                                     <div id="dropzone1" class="pro-ad addcoursepro">
-                                        <form action="{{url('admin/cms/home')}}" class=" needsclick addcourse" method="POST" id="demo1-upload" enctype="multipart/form-data">
+                                        <form action="{{url('admin/post')}}" class=" needsclick addcourse" method="POST" id="demo1-upload" enctype="multipart/form-data">
                                             {{csrf_field()}}
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="col-md-3">Home Page Content - I </div>
-                                                    <div class="col-md-9">
-                                                        <textarea class="form-control summernote" name="homepage_content1" rows="5">
-                                                        {{Setting::get('homepage_content1','')}}
-                                                        </textarea>
+                                                    <div class="col-md-2">Title of Post </div>
+                                                    <div class="col-md-10">
+                                                        <input type="text" name="title" class="form-control" placeholder="Give the title of the post" required="">
                                                     </div>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="col-md-3">Home Page Content - II </div>
-                                                    <div class="col-md-9">
-                                                        <textarea class="form-control summernote" name="homepage_content2" rows="5">
-                                                        {{Setting::get('homepage_content2','')}}
+                                                    <div class="col-md-2">Content</div>
+                                                    <div class="col-md-10">
+                                                        <textarea class="form-control summernote required" name="content" rows="5" required=""> 
                                                         </textarea>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-2">Featured Image</div>
+                                                    <div class="col-md-10"> 
+                                                        <input type="file" class="form-control" name="image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-2">Is Visible?</div>
+                                                    <div class="col-md-10"> 
+                                    <select name="is_visibile" class="form-group form-control is_visibile" >
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
                                             <br>
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -122,7 +165,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="payment-adress">
-                                                        <a href="{{url('/admin/home')}}" class="btn btn-danger waves-effect waves-light">Cancel</a>
+                                                        <a  class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cancel</a>
                                                     </div>
                                                 </div>
                                             </div>

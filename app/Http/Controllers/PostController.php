@@ -36,7 +36,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title'=>'required|max:255',
+            'content'=>'required|min:1', 
+        ]);
+        try{  
+
+                $data = $request->except(['_token']);
+                $data['postby']='Admin';
+
+                $post = Post::create($data);  
+                $post->image = $request->image->store('/posts');
+                $post->save();
+
+                return back()->with('success','Post Created Successfully!!');
+
+            }catch(Exception $e){
+                return back()->withInput(Input::all())->with('error',$e->getMessage());
+            }
     }
 
     /**
