@@ -349,7 +349,7 @@
                             <li class="dropdown dropdown-tire">
                                 <!-- <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a> -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">INFORMATION <span class="caret"></span></a>
-                                <ul class="dropdown-menu multi-colum-nav">
+                                <ul class="dropdown-menu multi-colum-nav info-nav">
                                     <div class="row">
                                         <div class="col-sm-12 tire-menu-list">
                                             <div class="col-sm-10">
