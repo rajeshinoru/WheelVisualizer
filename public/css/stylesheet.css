@@ -8050,6 +8050,11 @@ button {
     background: #f4f4f4 !important;
     border: none !important;
 }
+.dropdown-menu.multi-colum-nav.info-nav {
+    width: 1180px !important;
+    background: #f4f4f4 !important;
+    border-top: 5px solid #ecb23d !important;
+}
 button.btn.btn-inverse.btn-block.btn-lg {
     font-size: 12px !important;
     line-height: 18px !important;
@@ -8993,3 +8998,108 @@ ol.carousel-indicators {
   padding-left: 0px !important;
 }
 /* Checkout Cart End */
+
+/* Blog Start */
+#blog
+{
+    padding: 20px 0px !important;
+}
+#blog-heading h1
+{
+  font-family: Montserrat;
+  color: #121214;
+  font-size: 18px !important;
+  text-align: center;
+  font-weight: 700 !important;
+  margin: 20px 0px !important;
+}
+.blog-border
+{
+  padding: 10px 15px !important;
+  border: 1px solid #ddd9d9 !important;
+}
+.wheel-blog {
+    text-align: center;
+}
+.wheel-blog h1 {
+    margin: 0px !important;
+}
+.wheel-blog h1 a {
+    color: #0e1661 !important;
+    text-align: center;
+    font-family: Montserrat !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+.wheel-blog p
+{
+  color: #121214;
+  line-height: 30px !important;
+  font-family: poppins !important;
+  font-size: 12px !important;
+}
+.wheel-blog p a {
+    color: #0e1661 !important;
+}
+.blog.btn {
+    background: #ecb23d !important;
+    border: none !important;
+    border-radius: 0px !important;
+}
+.blog.btn a{
+    color: #fff !important;
+}
+#blog .cont-form {border: 1px solid #ccc;box-shadow: 0 0 4px 0 rgba(0,0,0,0.2);border-radius: 5px;}
+#blog #contact-form label{float: left;color: #121214;line-height: 30px !important;font-family: poppins !important;font-size: 12px !important;}
+.with-errors {
+    color: #121214;
+    line-height: 30px !important;
+    font-family: poppins !important;
+    font-size: 12px !important;
+}
+.with-errors a
+{
+  color: #0e1661 !important;
+}
+.post-button {
+    background: #0e1661 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.wheel-blog-comment img {
+    width: 50% !important;
+    border-radius: 50%;
+}
+.post-img
+{
+  text-align:center;
+}
+.wheel-blog-comment h1
+{
+  color: #0e1661 !important;
+  text-align: left;
+  font-family: Montserrat !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin:20px 0px;
+}
+.wheel-blog-comment p
+{
+  color: #121214;
+  line-height: 30px !important;
+  font-family: poppins !important;
+  font-size: 12px !important;
+}
+.thumbnail {
+    padding: 20px 20px !important;
+}
+.captcha.form-group img {
+    border-radius: 0px;
+    width: 25% !important;
+}
+.wheel-blog-comment span {
+    color: #ccc !important;
+    font-size: 15px !important;
+}
+/* Blog End */

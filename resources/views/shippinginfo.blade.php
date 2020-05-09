@@ -371,7 +371,7 @@
             </div>
 
             <div class="col-sm-4 cont-img">
-                <div class="contacttablecell"><img src="{{asset('/image/UPS-Shipping-Time2.png')}}" class="ri" width="567" height="372"></div>
+                <div class="contacttablecell"><img src="{{asset('/image/UPS-Shipping-Time2.png')}}" class="ri" width="100%" height="auto"></div>
             </div>
 
         </div>
