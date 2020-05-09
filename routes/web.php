@@ -29,6 +29,8 @@ Route::get('/videos', 'HomeController@videos')->name('videos');
 Route::get('/lipsizes', 'HomeController@lipsizes')->name('lipsizes');
 Route::get('/packagedeal', 'HomeController@packagedeal')->name('packagedeal');
 Route::get('/rimfinancing', 'HomeController@rimfinancing')->name('rimfinancing');
+Route::get('/bloglist', 'HomeController@bloglist')->name('bloglist');
+Route::get('/blogview', 'HomeController@blogview')->name('blogview');
 
 Route::get('/orderstatus', 'HomeController@orderstatus')->name('orderstatus');
 Route::post('/orderstatus', 'HomeController@checkorderstatus')->name('checkorderstatus');

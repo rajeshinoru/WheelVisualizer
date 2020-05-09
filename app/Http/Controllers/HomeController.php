@@ -113,7 +113,18 @@ class HomeController extends Controller
     public function orderstatus()
     { 
         return view('orderstatus'); 
+    }     
+
+    public function bloglist()
+    { 
+        return view('bloglist'); 
     } 
+
+    public function blogview()
+    { 
+        return view('blogview'); 
+    } 
+
     public function vieworderstatus($orderid='')
     { 
         $order = Order::with('OrderItems')->find(base64_decode($orderid));
