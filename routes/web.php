@@ -32,6 +32,8 @@ Route::get('/rimfinancing', 'HomeController@rimfinancing')->name('rimfinancing')
 Route::get('/bloglist', 'HomeController@bloglist')->name('bloglist');
 Route::get('/blogview', 'HomeController@blogview')->name('blogview');
 
+
+
 Route::get('/orderstatus', 'HomeController@orderstatus')->name('orderstatus');
 Route::post('/orderstatus', 'HomeController@checkorderstatus')->name('checkorderstatus');
 Route::get('/vieworderstatus/{orderid}', 'HomeController@vieworderstatus')->name('vieworderstatus');
@@ -84,6 +86,8 @@ Route::get('/UploadInventories', 'InventoryController@UploadInventories');
 
 Route::get('/getUploadInventories', 'InventoryController@getUploadInventories');
 Route::get('/CopyTableToServer', 'InventoryController@CopyTableToServer');
+
+Route::get('/automationUpdate', 'InventoryController@automationUpdate')->name('automationUpdate');
 
 Route::get('/Wheel_Import', 'WheelController@Wheel_Import');
 Route::get('/Tires_data_import', 'TireController@Tires_data_import');

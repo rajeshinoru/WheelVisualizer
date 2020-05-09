@@ -167,10 +167,52 @@ class InventoryController extends Controller
     fclose($inpfile); // Close individual CSV file 
 
     }
+ 
+
+    public $storeArr=array();
+
+    public function recursiveScan($dir,$storeArr) {
+        $tree = glob(rtrim($dir, '/') . '/*');
+  
+
+        if (is_array($tree)) {
+            foreach($tree as $file) {
+                if(is_dir($file)) {
+                    $this->recursiveScan($file,$this->storeArr);
+                }elseif (is_file($file)) {
+
+                    $folderPath = explode('/', $file);
+ 
+                    $this->storeArr[$folderPath[6]][] = $file;
+                    // array_push($this->storeArr[],$file);
+                }
+            }
+        }
+        return $this->storeArr;
+    }
+
+    public function automationUpdate(Request $request){
+ 
+        $sourcePath = '/bala/Bala - web/Wheel Client/03_10_inventories_data/vftp_local';
+
+        // $readFolders = glob($sourcePath); 
+
+        $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
+
+        foreach($allFiles as $folderKey => $folder) {
+            // foreach($folder as $key => $selectedFile) { 
+            //     dd($selectedFile);
+            // }
+            dd(end($folder));
+        }
+ 
+    }
 
 
+    // public function automationUpdate(Request $request){
 
-
+    //     $this->listFolderFiles('/bala/Bala - web/Wheel Client/03_10_inventories_data');
+    // }
 
 
 
