@@ -14,6 +14,7 @@ use App\Wheel;
 use App\Tire;
 use App\WheelProduct;
 use App\Order;
+use App\Post;
 use Artisan;
 class HomeController extends Controller
 {
@@ -117,7 +118,8 @@ class HomeController extends Controller
 
     public function bloglist()
     { 
-        return view('bloglist'); 
+        $posts = Post::paginate(10);
+        return view('bloglist',compact('posts')); 
     } 
 
     public function blogview()

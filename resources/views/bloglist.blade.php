@@ -10,7 +10,12 @@
 <style>
 
 .container-fluid.home-page{padding: 0px 0px !important;background: #f1f1f1 !important;}
-
+.caption{
+    overflow: hidden;
+    white-space: normal;
+    height: 10.5em; /* exactly 2 lines */
+    text-overflow: -o-ellipsis-lastline;
+}
 </style>
 <br>
 
@@ -26,208 +31,20 @@
     </div>
     <div class="blog-border">
             <div class="row">
+              @foreach(@$posts as $key => $post)
               <div class="col-md-3 wheel-blog">
                 <div class="thumbnail">
-                	  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                    <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                    <img src="image/wheel.jpg" alt="Blog" style="width:40%">
+                	  <h1><a href="">{{@$post->title}}</a></h1>
+                    <p>Posted <a href="">{{$post->created_at}} By <a href="">Dww</a></p>
+                    <img src="{{asset('storage/'.@$post->image)}}" alt="Blog" style="width:40%">
                     <div class="caption">
-                      <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
+                      <p class="para"><?=@$post->content?></p>
                     </div>
                     <button class="blog btn"><a href="blogview">Read More</a></button>
                     <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
                 </div>
               </div>
-              <div class="col-md-3 wheel-blog">
-                <div class="thumbnail">
-                	  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                    <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                    <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                    <div class="caption">
-                      <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                    </div>
-                    <button class="blog btn"><a href="blogview">Read More</a></button>
-                    <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-                </div>
-              </div>
-              <div class="col-md-3 wheel-blog">
-                <div class="thumbnail">
-                	  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                    <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                    <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                    <div class="caption">
-                      <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                    </div>
-                    <button class="blog btn"><a href="blogview">Read More</a></button>
-                    <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-                </div>
-              </div>
-              <div class="col-md-3 wheel-blog">
-                <div class="thumbnail">
-                	  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                    <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                    <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                    <div class="caption">
-                      <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                    </div>
-                    <button class="blog btn"><a href="blogview">Read More</a></button>
-                    <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-                </div>
-              </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-3 wheel-blog">
-              <div class="thumbnail">
-                  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                  <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                  <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                  <div class="caption">
-                    <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                  </div>
-                  <button class="blog btn"><a href="blogview">Read More</a></button>
-                  <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-              </div>
-            </div>
-            <div class="col-md-3 wheel-blog">
-              <div class="thumbnail">
-                  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                  <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                  <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                  <div class="caption">
-                    <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                  </div>
-                  <button class="blog btn"><a href="blogview">Read More</a></button>
-                  <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-              </div>
-            </div>
-            <div class="col-md-3 wheel-blog">
-              <div class="thumbnail">
-                  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                  <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                  <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                  <div class="caption">
-                    <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                  </div>
-                  <button class="blog btn"><a href="blogview">Read More</a></button>
-                  <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-              </div>
-            </div>
-            <div class="col-md-3 wheel-blog">
-              <div class="thumbnail">
-                  <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                  <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                  <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                  <div class="caption">
-                    <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                  </div>
-                  <button class="blog btn"><a href="blogview">Read More</a></button>
-                  <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-              </div>
-            </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 wheel-blog">
-            <div class="thumbnail">
-                <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                <div class="caption">
-                  <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                </div>
-                <button class="blog btn"><a href="blogview">Read More</a></button>
-                <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-            </div>
-          </div>
-          <div class="col-md-3 wheel-blog">
-            <div class="thumbnail">
-                <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                <div class="caption">
-                  <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                </div>
-                <button class="blog btn"><a href="blogview">Read More</a></button>
-                <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-            </div>
-          </div>
-          <div class="col-md-3 wheel-blog">
-            <div class="thumbnail">
-                <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                <div class="caption">
-                  <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                </div>
-                <button class="blog btn"><a href="blogview">Read More</a></button>
-                <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-            </div>
-          </div>
-          <div class="col-md-3 wheel-blog">
-            <div class="thumbnail">
-                <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-                <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-                <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-                <div class="caption">
-                  <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-                </div>
-                <button class="blog btn"><a href="blogview">Read More</a></button>
-                <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-            </div>
-          </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3 wheel-blog">
-          <div class="thumbnail">
-              <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-              <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-              <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-              <div class="caption">
-                <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-              </div>
-              <button class="blog btn"><a href="blogview">Read More</a></button>
-              <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-          </div>
-        </div>
-        <div class="col-md-3 wheel-blog">
-          <div class="thumbnail">
-              <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-              <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-              <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-              <div class="caption">
-                <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-              </div>
-              <button class="blog btn"><a href="blogview">Read More</a></button>
-              <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-          </div>
-        </div>
-        <div class="col-md-3 wheel-blog">
-          <div class="thumbnail">
-              <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-              <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-              <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-              <div class="caption">
-                <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-              </div>
-              <button class="blog btn"><a href="blogview">Read More</a></button>
-              <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-          </div>
-        </div>
-        <div class="col-md-3 wheel-blog">
-          <div class="thumbnail">
-              <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-              <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-              <img src="image/wheel.jpg" alt="Blog" style="width:40%">
-              <div class="caption">
-                <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-              </div>
-              <button class="blog btn"><a href="blogview">Read More</a></button>
-              <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
-          </div>
-        </div>
-      </div>
+              @endforeach 
     </div>
   </div>
 </section>
