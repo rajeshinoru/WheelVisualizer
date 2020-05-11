@@ -193,19 +193,221 @@ class InventoryController extends Controller
 
     public function automationUpdate(Request $request){
  
+        $fieldsArray = array(
+
+            "vftp0010"=>array(
+                "partno" =>"0",
+                "vendor_partno" =>"1",
+                "mpn" =>null,
+                "description" =>"3",
+                "brand" =>"2",
+                "model" =>null,
+                "location_code" =>"6",
+                "available_qty" =>"5",
+                "price" =>"4", 
+            ),
+
+            "vftp0011"=>array(
+                "partno" =>"0",
+                "vendor_partno" =>null,
+                "mpn" =>null,
+                "description" =>"1",
+                "brand" =>null,
+                "model" =>null,
+                "location_code" =>null,
+                "available_qty" =>array("Jacksonville"=>"3","Columbia"=>"4","Tallahassee"=>"5",),
+                "price" =>"2", 
+            ),
+            "vftp0012"=>array(
+                "partno" =>"0",
+                "vendor_partno" =>null,
+                "mpn" =>"6",
+                "description" =>"1",
+                "brand" =>"2",
+                "model" =>null,
+                "location_code" =>null,
+                "available_qty" =>"4",
+                "price" =>"3", 
+            ),
+            // "vftp0013"=>array(
+            //     "partno" =>"0",
+            //     "vendor_partno" =>null,
+            //     "mpn" =>"6",
+            //     "description" =>"1",
+            //     "brand" =>"2",
+            //     "model" =>null,
+            //     "location_code" =>null,
+            //     "available_qty" =>"4",
+            //     "price" =>"3", 
+            // ),
+            "vftp0014"=>array(
+                "partno" =>"0",
+                "vendor_partno" =>null,
+                "mpn" =>"2",
+                "description" =>"1",
+                "brand" =>"3",
+                "model" =>null,
+                "location_code" =>null,
+                "available_qty" =>"4",
+                "price" =>"5",
+            ),
+            "vftp0015"=>array(
+                "partno" =>"0",
+                "vendor_partno" =>null,
+                "mpn" =>"2",
+                "description" =>"3",
+                "brand" =>null,
+                "model" =>null,
+                "location_code" =>"8",
+                "available_qty" =>"7",
+                "price" =>null,
+            )
+        );
+
+        $vendor_info = array(
+                "vftp0010"=>array(
+                    '8'  =>array ( "Omni","OS8","OS-Inv_AmarilloTX"),
+                    '10' =>array ( "Omni","OS10","OS-Inv_BillingsMT"),
+                    '11' =>array ( "Omni","OS11","OS-Inv_DallasTX"),
+                    '15' =>array ( "Omni","OS15","OS-Inv_DallasTX"),
+                    '19' =>array ( "Omni","OS19","OS-Inv_DallasTX"),
+                    '20' =>array ( "Omni","OS20","OS-Inv_DallasTX"),
+                    '22' =>array ( "Omni","OS22","OS-Inv_DallasTX"),
+                    '61' =>array ( "Omni","OS61","OS-Inv_DallasTX"),
+                    '62' =>array ( "Omni","OS62","OS-Inv_SaltLakeCityUT"),
+                    '71' =>array ( "Omni","OS71","OS-Inv_CommerceCA"),
+                    '72' =>array ( "Omni","OS71","OS-Inv_CommerceCA"),
+                ),
+                "vftp0011"=>array(
+                    'Jacksonville' => array("Barons","BTJACK","BT-Inv_JacksonvilleFL"),
+                    'Columbia' => array("Barons","BTCOLU","BT-Inv_ColumbiaSC"),
+                    'Tallahasee' => array("Barons","BTTALLA","BT-Inv_TallahaseeFL"),
+                ),
+                "vftp0012"=>array(
+                    'LongIsland' => array("Future","FTOLDB","FT-Inv_OldBethpageNY"),
+                    'Philadelphia' => array("Future","FTPHIL","FT-Inv_PhiladelphiaPA"),
+                    'Schenectady' => array("Future","FTSCHEN","FT-Inv_SchenectadyNY"),
+                ),
+        );
+
         $sourcePath = '/bala/Bala - web/Wheel Client/03_10_inventories_data/vftp_local';
 
         // $readFolders = glob($sourcePath); 
 
         $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
-
+        // dd($allFiles);
         foreach($allFiles as $folderKey => $folder) {
-            // foreach($folder as $key => $selectedFile) { 
-            //     dd($selectedFile);
-            // }
-            dd(end($folder));
+
+            $fields = $fieldsArray[$folderKey];
+            foreach($folder as $key => $selectedFile) { 
+
+
+                $filepath = $selectedFile;
+                $inpfile = fopen($filepath, "r");
+                // Open and Read individual CSV file
+                if (($inpfile = fopen($filepath, 'r')) !== false) {
+                    // Collect CSV each row records
+                    $flag = 0;
+                    while (($data = fgetcsv($inpfile, 10000)) !== false) {
+
+                        if($flag != 0){
+                            $insertData = array(
+
+                                'filename'=>$folderKey,
+
+                                 'partno'=>($fields['partno']!=null)?$data[$fields['partno']]:null,                         //PartNo
+
+                                 'vendor_partno'=>($fields['vendor_partno']!=null)?$data[$fields['vendor_partno']]:null,        //VendorPartNo
+
+                                 'mpn'=>($fields['mpn']!=null)?$data[$fields['mpn']]:null,                 //MPN
+
+                                 'description'=>($fields['description']!=null)?$data[$fields['description']]:null,         //Description
+
+                                 'brand'=>($fields['brand']!=null)?$data[$fields['brand']]:null,               //Brand
+
+                                 'model'=>($fields['model']!=null)?$data[$fields['model']]:null,               //Model
+
+                                 'location_code'=>($fields['location_code']!=null)?$data[$fields['location_code']]:null,       //Location Code
+
+                                 'available_qty'=>($fields['available_qty']!=null)?$data[$fields['available_qty']]:null,       //Available QTY
+
+                                 'price'=>($fields['price']!=null)?$data[$fields['price']]:null,               //Price
+                            );
+
+
+                            if($folderKey == "vftp0010"){
+
+                                $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
+                                $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
+                                $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
+
+                                $exists = \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+
+                                if($exists->count()){
+
+                                    // dd($exists,$insertData);
+                                    \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                }else{
+
+                                    \DB::table('inventories_test')->insert($insertData);
+                                }
+                                
+
+                            }elseif($folderKey == "vftp0011"){ 
+
+
+                                foreach ($vendor_info[$folderKey] as $key => $vendor) {
+                                    
+                                    $insertData['drop_shipper']=$vendor[$key][0];
+                                    $insertData['ds_vendor_code']=$vendor[$key][1];
+                                    $insertData['location_name']=$vendor[$key][2];
+
+                                    $exists = \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+
+                                    if($exists->count()){
+                                        
+                                        \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                    }else{
+
+                                        \DB::table('inventories_test')->insert($insertData);
+                                    }
+                                }
+                                
+                            }elseif($folderKey == "vftp0012"){
+
+
+                                foreach ($vendor_info[$folderKey] as $key => $vendor) {
+                                    
+                                    $insertData['drop_shipper']=$vendor[$key][0];
+                                    $insertData['ds_vendor_code']=$vendor[$key][1];
+                                    $insertData['location_name']=$vendor[$key][2];
+
+                                    $exists = \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+
+                                    if($exists->count()){
+                                        
+                                        \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                    }else{
+
+                                        \DB::table('inventories_test')->insert($insertData);
+                                    }
+                                }
+
+                            }elseif($folderKey == "vftp0013"){
+
+                            }elseif($folderKey == "vftp0014"){
+
+                            }elseif($folderKey == "vftp0015"){
+
+                            }
+                        }
+                        $flag=1;
+                    }
+                }
+
+            }
         }
- 
+        return "success";
     }
 
 
