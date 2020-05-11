@@ -288,6 +288,16 @@ class InventoryController extends Controller
                     'Philadelphia' => array("Future","FTPHIL","FT-Inv_PhiladelphiaPA"),
                     'Schenectady' => array("Future","FTSCHEN","FT-Inv_SchenectadyNY"),
                 ),
+
+                "vftp0014"=>array("TWI","TWI1","TWI-Inv_TroyMI"),
+                "vftp0015"=>array(
+                    '1' =>   array("Reliable","RTNJ","RT-Inv_BlackwoodNJ"),
+                    '3' =>   array("Reliable","RTGAM","RT-Inv_MaconGA"),
+                    '5' =>   array("Reliable","RTNY","RT-Inv_SyracuseNY"),
+                    '7' =>   array("Reliable","RTGAD","RT-Inv_DoravilleGA"),
+                    '9' =>   array("Reliable","RTCT","RT-Inv_HartfordCT"),
+                    '41' =>  array("Reliable","RTMD","RT-Inv_JessupMD"),
+                ),
         );
 
         $sourcePath = '/bala/Bala - web/Wheel Client/03_10_inventories_data/vftp_local';
@@ -296,8 +306,11 @@ class InventoryController extends Controller
 
         $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
         // dd($allFiles);
-        unset($allFiles['vftp0010']);
-        unset($allFiles['vftp0011']);
+        // unset($allFiles['vftp0010']);
+        // unset($allFiles['vftp0011']);
+        // unset($allFiles['vftp0012']);
+        // unset($allFiles['vftp0013']);
+        // unset($allFiles['vftp0014']);
 
         foreach($allFiles as $folderKey => $folder) {
 
@@ -338,7 +351,7 @@ class InventoryController extends Controller
                             );
 
 
-                            if($folderKey == "vftp0010"){
+                            if($folderKey == "vftp0010" || $folderKey == "vftp0015"){
 
                                 $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
                                 $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
@@ -378,13 +391,13 @@ class InventoryController extends Controller
                                 
                             }elseif($folderKey == "vftp0012"){
 
+                                    $fullfile = explode('/', $selectedFile);
+                                    $filename = explode(".",end($fullfile));
+                                    $locName = $filename[0];
 
-                                    $filename = explode(".",end(explode('/', $selectedFile)));
-                                    $locName = @$filename[0];
-
-                                    $insertData['drop_shipper']=$vendor_info[$folderKey][$locName]][0];
-                                    $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName]][1];
-                                    $insertData['location_name']=$vendor_info[$folderKey][$locName]][2];
+                                    $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
+                                    $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
+                                    $insertData['location_name']=$vendor_info[$folderKey][$locName][2];
                                     
                                     $exists = \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
@@ -400,6 +413,23 @@ class InventoryController extends Controller
                             }elseif($folderKey == "vftp0013"){
 
                             }elseif($folderKey == "vftp0014"){
+
+
+                                $insertData['drop_shipper']=$vendor_info[$folderKey][0];
+                                $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
+                                $insertData['location_name']=$vendor_info[$folderKey][2];
+
+                                $exists = \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+
+                                if($exists->count()){
+
+                                    // dd($exists,$insertData);
+                                    \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                }else{
+
+                                    \DB::table('inventories_test')->insert($insertData);
+                                }
+                                
 
                             }elseif($folderKey == "vftp0015"){
 
