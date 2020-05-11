@@ -296,6 +296,9 @@ class InventoryController extends Controller
 
         $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
         // dd($allFiles);
+        unset($allFiles['vftp0010']);
+        unset($allFiles['vftp0011']);
+
         foreach($allFiles as $folderKey => $folder) {
 
             $fields = $fieldsArray[$folderKey];
@@ -376,12 +379,13 @@ class InventoryController extends Controller
                             }elseif($folderKey == "vftp0012"){
 
 
-                                foreach ($vendor_info[$folderKey] as $key => $vendor) {
-                                    
-                                    $insertData['drop_shipper']=$vendor[$key][0];
-                                    $insertData['ds_vendor_code']=$vendor[$key][1];
-                                    $insertData['location_name']=$vendor[$key][2];
+                                    $filename = explode(".",end(explode('/', $selectedFile)));
+                                    $locName = @$filename[0];
 
+                                    $insertData['drop_shipper']=$vendor_info[$folderKey][$locName]][0];
+                                    $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName]][1];
+                                    $insertData['location_name']=$vendor_info[$folderKey][$locName]][2];
+                                    
                                     $exists = \DB::table('inventories_test')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
                                     if($exists->count()){
@@ -391,7 +395,7 @@ class InventoryController extends Controller
 
                                         \DB::table('inventories_test')->insert($insertData);
                                     }
-                                }
+                                
 
                             }elseif($folderKey == "vftp0013"){
 
