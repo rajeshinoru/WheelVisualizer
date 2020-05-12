@@ -1029,13 +1029,12 @@ class InventoryController extends Controller
         }else{
             $sourcePath ='/home/vftp'; 
         }
-
-        // dd($sourcePath);
+ 
 
         // $readFolders = glob($sourcePath); 
 
         $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
-        // dd($allFiles);
+        
         // unset($allFiles['vftp0010']);
         // unset($allFiles['vftp0011']);
         // unset($allFiles['vftp0012']);
@@ -1087,8 +1086,7 @@ class InventoryController extends Controller
                                     $dataValue = explode('|', $data[0]);
                                 }else{
                                     $dataValue =  $data;
-                                }
-                                // dd($data,$dataValue);
+                                } 
 
                                 $insertData = array(
 
@@ -1123,11 +1121,9 @@ class InventoryController extends Controller
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
                                     $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
-                                    $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
-                                    // dd($insertData,$vendor_info[$folderKey]);
+                                    $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get(); 
                                     if($exists->count()){
-
-                                        // dd($exists,$insertData);
+ 
                                         \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
                                     }else{
 
@@ -1136,15 +1132,13 @@ class InventoryController extends Controller
                                 }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
 
 
-                                    foreach ($vendor_info[$folderKey] as $key => $vendor) {
-                                          // dd($key);
+                                    foreach ($vendor_info[$folderKey] as $key => $vendor) { 
                                         $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
                                         $insertData['location_code']=$key; 
 
                                         $insertData['drop_shipper']=$vendor[0];
                                         $insertData['ds_vendor_code']=$vendor[1];
-                                        $insertData['location_name']=$vendor[2];
-                                        // dd($insertData,$data);
+                                        $insertData['location_name']=$vendor[2]; 
                                         $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
                                         if($exists->count()){
@@ -1170,8 +1164,7 @@ class InventoryController extends Controller
 
                                         $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
                                         $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
-                                        $insertData['location_name']=$vendor_info[$folderKey][$locName][2];
-                                        // dd($insertData);
+                                        $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
                                         $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
                                         if($exists->count()){
@@ -1192,8 +1185,7 @@ class InventoryController extends Controller
                                     $insertData['location_name']=$vendor_info[$folderKey][2];
 
                                     $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
-
-                                        // dd($exists,$insertData);
+ 
                                     if($exists->count()){
 
                                         \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
@@ -1207,8 +1199,7 @@ class InventoryController extends Controller
 
      
                                     $insertData['partno'] = preg_replace("/[^A-Za-z0-9]/", '',$insertData['partno']);
-                                    foreach ($vendor_info[$folderKey] as $key => $vendor) {
-                                          // dd($key);
+                                    foreach ($vendor_info[$folderKey] as $key => $vendor) { 
                                         $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
                                         $insertData['location_code']=$key; 
 
@@ -1216,8 +1207,7 @@ class InventoryController extends Controller
 
                                         $insertData['drop_shipper']=$vendor[0];
                                         $insertData['ds_vendor_code']=$vendor[1];
-                                        $insertData['location_name']=$vendor[2];
-                                        // dd($insertData,$data);
+                                        $insertData['location_name']=$vendor[2]; 
                                         $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
                                         if($exists->count()){
