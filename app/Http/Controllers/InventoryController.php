@@ -1090,7 +1090,7 @@ class InventoryController extends Controller
 
                                 $insertData = array(
 
-                                    'filename'=>$folderKey,
+                                    // 'filename'=>$folderKey,
 
                                      'partno'=>($fields['partno']!=null)?$dataValue[$fields['partno']]:null,                         //PartNo
 
