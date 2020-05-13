@@ -68,13 +68,13 @@ return [
                 
             'driver' => 'ftp',
                         
-            'host' => 'ftp.discountedwheelwarehouse.net',
+            'host' => env('VFTP_HOST'),
                         
-            'username' => 'api',
+            'username' => env('VFTP_USERNAME'),
                         
-            'password' => '862457Dev!', 
-            
-            'port'     => 21, 
+            'password' => env('VFTP_PASSWORD'),
+
+            'port'     =>  env('VFTP_PORT'), 
         ],
     ],
 

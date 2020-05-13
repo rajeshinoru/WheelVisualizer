@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\InventoriesFeed::class,
+        // Commands\InventoriesFeed::class,
+        Commands\InventoryAutoUpdate::class,
     ];
 
     /**
@@ -26,8 +27,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-       $schedule->command('feed:inventories')
-            ->everyTenMinutes();
+       // $schedule->command('feed:inventories')
+       //      ->everyTenMinutes();
+       $schedule->command('autoupdate:inventories')
+            ->dailyAt('05:00');
     }
 
     /**
