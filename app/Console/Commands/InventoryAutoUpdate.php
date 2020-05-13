@@ -38,7 +38,7 @@ class InventoryAutoUpdate extends Command
     public function inventoryFeedUpdate($newData,$db_ext){
 
 
-        $tablename = "inventories_test";
+        $tablename = "inventories";
 
 
         $exists = \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
