@@ -193,6 +193,47 @@ class InventoryController extends Controller
         return $this->storeArr;
     }
 
+
+    public function inventoryFeedUpdate($newData,$db_ext){
+
+
+        $tablename = "inventories_test";
+
+
+        $exists = \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
+
+        if($exists->count()){
+
+            $newData['updated_at']=\Carbon\Carbon::now();
+            \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
+        
+        }else{
+
+            $newData['created_at']=\Carbon\Carbon::now();
+            $newData['updated_at']=\Carbon\Carbon::now();
+            \DB::table($tablename)->insert($newData);
+        
+        
+        }
+
+
+        // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
+
+
+
+        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
+
+
+        // if($sap_exists){
+        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        // }else{
+
+        //     $db_ext->table('inventories')->insert($newData);   
+        // }
+
+
+    }
+
     public function automationUpdate(Request $request){
  
         $fieldsArray = array(
@@ -1025,15 +1066,17 @@ class InventoryController extends Controller
     
         $allFiles =array();
 
-        $currentUrl = $_SERVER['HTTP_HOST'];
+        // $currentUrl = $_SERVER['HTTP_HOST'];
 
         // if(strpos($currentUrl, 'localhost') == false){
         //     $sourcePath ='/bala/Bala - web/Wheel Client/03_10_inventories_data/vftp_local'; 
         //     $tablename = "inventories_test";
         //     $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
         // }else{
- 
-            $tablename = "inventories";
+
+
+
+            $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
 
             $host = env('VFTP_HOST','ftp.discountedwheelwarehouse.net');
             $username = env('VFTP_USERNAME','api');
@@ -1149,14 +1192,8 @@ class InventoryController extends Controller
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
                                     $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
-                                    $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get(); 
-                                    if($exists->count()){
- 
-                                        \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
-                                    }else{
+                                    $this->inventoryFeedUpdate($insertData,$db_ext);
 
-                                        \DB::table($tablename)->insert($insertData);
-                                    }
                                 }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
 
 
@@ -1167,15 +1204,10 @@ class InventoryController extends Controller
                                         $insertData['drop_shipper']=$vendor[0];
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
-                                        $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+                                       
 
-                                        if($exists->count()){
-                                            
-                                            \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
-                                        }else{
+                                    $this->inventoryFeedUpdate($insertData,$db_ext);
 
-                                            \DB::table($tablename)->insert($insertData);
-                                        }
                                     }
                                     
                                 }elseif($folderKey == "vftp0012" || $folderKey == "vftp0029"  ){
@@ -1193,16 +1225,8 @@ class InventoryController extends Controller
                                         $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
                                         $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
                                         $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
-                                        $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
-                                        if($exists->count()){
-                                            
-                                            \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
-                                        }else{
-
-                                            \DB::table($tablename)->insert($insertData);
-                                        }
-                                    
+                                    $this->inventoryFeedUpdate($insertData,$db_ext);                                    
 
                                 }elseif($folderKey == "vftp0013"){
 
@@ -1212,16 +1236,8 @@ class InventoryController extends Controller
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
                                     $insertData['location_name']=$vendor_info[$folderKey][2];
 
-                                    $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
- 
-                                    if($exists->count()){
 
-                                        \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
-                                    }else{
-
-                                        \DB::table($tablename)->insert($insertData);
-                                    }
-                                    
+                                    $this->inventoryFeedUpdate($insertData,$db_ext);
 
                                 }elseif($folderKey == "vftp0028"){ 
 
@@ -1236,15 +1252,8 @@ class InventoryController extends Controller
                                         $insertData['drop_shipper']=$vendor[0];
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
-                                        $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
-                                        if($exists->count()){
-                                            
-                                            \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
-                                        }else{
-
-                                            \DB::table($tablename)->insert($insertData);
-                                        }
+                                    $this->inventoryFeedUpdate($insertData,$db_ext);
                                     }
                                     
                                 }
