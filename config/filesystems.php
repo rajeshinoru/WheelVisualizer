@@ -64,6 +64,18 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'vftp' => [ 
+                
+            'driver' => 'ftp',
+                        
+            'host' => 'ftp.discountedwheelwarehouse.net',
+                        
+            'username' => 'api',
+                        
+            'password' => '862457Dev!', 
+            
+            'port'     => 21, 
+        ],
     ],
 
 ];

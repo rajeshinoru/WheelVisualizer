@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Inventory;
 use App\InventoryMigration;
 use Illuminate\Http\Request;
+use Storage;
 
 class InventoryController extends Controller
 {
@@ -1021,19 +1022,29 @@ class InventoryController extends Controller
                     "CAD" =>array("VisionWheels","N/A","N/A"),
                 ),
         );
+    
+        $allFiles =array();
 
         $currentUrl = $_SERVER['HTTP_HOST'];
 
         if(strpos($currentUrl, 'localhost') == false){
             $sourcePath ='/bala/Bala - web/Wheel Client/03_10_inventories_data/vftp_local'; 
+            $tablename = "inventories_test";
+            $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
         }else{
             $sourcePath ='/home/vftp'; 
+            $tablename = "inventories";
+
+            $vftp = Storage::disk('vftp');
+
+            $vftpFolders = $vftp->directories('/');
+
+            foreach ($vftpFolders as $key => $vftpFolder) {
+                $allFiles[$vftpFolder] = $vftp->files('/'.$vftpFolder);          
+            } 
         }
- 
-
-        // $readFolders = glob($sourcePath); 
-
-        $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
+  
+        // dd($allFiles);
         
         // unset($allFiles['vftp0010']);
         // unset($allFiles['vftp0011']);
@@ -1044,14 +1055,14 @@ class InventoryController extends Controller
         // unset($allFiles['vftp0016']);
         // unset($allFiles['vftp0017']);
         // unset($allFiles['vftp0018']);
-        unset($allFiles['vftp0019']);
-        unset($allFiles['vftp0020']);
-        unset($allFiles['vftp0021']);
+        // unset($allFiles['vftp0019']);
+        // unset($allFiles['vftp0020']);
+        // unset($allFiles['vftp0021']);
         unset($allFiles['vftp0022']);//Sheet converting Issue 
         // unset($allFiles['vftp0023']);
-        unset($allFiles['vftp0024']);
-        unset($allFiles['vftp0025']);
-        unset($allFiles['vftp0026']);
+        // unset($allFiles['vftp0024']);
+        // unset($allFiles['vftp0025']);
+        // unset($allFiles['vftp0026']);
         // unset($allFiles['vftp0027']);
         // unset($allFiles['vftp0028']);
         // unset($allFiles['vftp0029']);
@@ -1061,18 +1072,22 @@ class InventoryController extends Controller
         // unset($allFiles['vftp0033']);
         unset($allFiles['vftp0034']);
         unset($allFiles['vftp0035']);
-        
 
         foreach($allFiles as $folderKey => $folder) {
 
-            $fields = $fieldsArray[$folderKey];
             foreach($folder as $key => $selectedFile) { 
                 $filepathArray = explode('/', $selectedFile);
                 $selectedFileName = end($filepathArray);
+                // ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030"]
+                if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
 
-                $isMigrate = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first(); 
-                if(!$isMigrate && (strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false)){
+                    $isMigrate = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first(); 
+                }else{
+                    $isMigrate = false;
+                } 
+                if((!$isMigrate && (strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false))){
 
+                    $fields = $fieldsArray[$folderKey];
                     $filepath = $selectedFile;
                     $inpfile = fopen($filepath, "r");
                     // Open and Read individual CSV file
@@ -1121,13 +1136,13 @@ class InventoryController extends Controller
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
                                     $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
-                                    $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get(); 
+                                    $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get(); 
                                     if($exists->count()){
  
-                                        \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                        \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
                                     }else{
 
-                                        \DB::table('inventories')->insert($insertData);
+                                        \DB::table($tablename)->insert($insertData);
                                     }
                                 }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
 
@@ -1139,14 +1154,14 @@ class InventoryController extends Controller
                                         $insertData['drop_shipper']=$vendor[0];
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
-                                        $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+                                        $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
                                         if($exists->count()){
                                             
-                                            \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                            \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
                                         }else{
 
-                                            \DB::table('inventories')->insert($insertData);
+                                            \DB::table($tablename)->insert($insertData);
                                         }
                                     }
                                     
@@ -1165,14 +1180,14 @@ class InventoryController extends Controller
                                         $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
                                         $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
                                         $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
-                                        $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+                                        $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
                                         if($exists->count()){
                                             
-                                            \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                            \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
                                         }else{
 
-                                            \DB::table('inventories')->insert($insertData);
+                                            \DB::table($tablename)->insert($insertData);
                                         }
                                     
 
@@ -1184,14 +1199,14 @@ class InventoryController extends Controller
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
                                     $insertData['location_name']=$vendor_info[$folderKey][2];
 
-                                    $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+                                    $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
  
                                     if($exists->count()){
 
-                                        \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                        \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
                                     }else{
 
-                                        \DB::table('inventories')->insert($insertData);
+                                        \DB::table($tablename)->insert($insertData);
                                     }
                                     
 
@@ -1208,14 +1223,14 @@ class InventoryController extends Controller
                                         $insertData['drop_shipper']=$vendor[0];
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
-                                        $exists = \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
+                                        $exists = \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->where('location_code',$insertData['location_code'])->get();
 
                                         if($exists->count()){
                                             
-                                            \DB::table('inventories')->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
+                                            \DB::table($tablename)->where('partno',$insertData['partno'])->where('location_code',$insertData['location_code'])->update($insertData);
                                         }else{
 
-                                            \DB::table('inventories')->insert($insertData);
+                                            \DB::table($tablename)->insert($insertData);
                                         }
                                     }
                                     
@@ -1223,11 +1238,17 @@ class InventoryController extends Controller
                             }
                             $flag=1;
                         }
-                        InventoryMigration::create(['foldername'=>$folderKey,'filename'=>$selectedFileName]);
+                        $migratedFile = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first();
+                        if($migratedFile){
+                            $migratedFile->update(['foldername'=>$folderKey,'filename'=>$selectedFileName]);
+                        }else{
+                            InventoryMigration::create(['foldername'=>$folderKey,'filename'=>$selectedFileName]);
+                        }
                     }
+
                 }
             }
-        }
+        } 
         return "success";
     }
 
