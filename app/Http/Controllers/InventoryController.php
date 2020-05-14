@@ -1267,7 +1267,11 @@ class InventoryController extends Controller
                         }
                         $migratedFile = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first();
                         if($migratedFile){
-                            $migratedFile->update(['foldername'=>$folderKey,'filename'=>$selectedFileName]);
+                            
+                            $migratedFile->foldername = $folderKey;
+                            $migratedFile->filename = $selectedFileName;
+                            $migratedFile->save();
+
                         }else{
                             InventoryMigration::create(['foldername'=>$folderKey,'filename'=>$selectedFileName]);
                         }
