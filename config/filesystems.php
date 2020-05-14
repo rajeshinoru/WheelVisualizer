@@ -75,6 +75,9 @@ return [
             'password' => env('VFTP_PASSWORD'),
 
             'port'     =>  env('VFTP_PORT'), 
+            
+            'timeout' => 39600,
+        
         ],
     ],
 

@@ -62,15 +62,15 @@ class InventoryAutoUpdate extends Command
 
 
 
-        $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
+        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
 
 
-        if($sap_exists){
-            $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-        }else{
+        // if($sap_exists){
+        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        // }else{
 
-            $db_ext->table('inventories')->insert($newData);   
-        }
+        //     $db_ext->table('inventories')->insert($newData);   
+        // }
 
 
     }
@@ -989,7 +989,7 @@ class InventoryAutoUpdate extends Command
                 if((!$isMigrate && (strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false))){
 
 
-                    $this->info("File Name : ",$selectedFile);
+                    // $this->info("File Name : ",$selectedFile);
 
                     $fields = $fieldsArray[$folderKey];
 
@@ -1117,7 +1117,11 @@ class InventoryAutoUpdate extends Command
                         }
                         $migratedFile = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first();
                         if($migratedFile){
-                            $migratedFile->update(['foldername'=>$folderKey,'filename'=>$selectedFileName]);
+                            
+                            $migratedFile->foldername = $folderKey;
+                            $migratedFile->filename = $selectedFileName;
+                            $migratedFile->save();
+
                         }else{
                             InventoryMigration::create(['foldername'=>$folderKey,'filename'=>$selectedFileName]);
                         }
