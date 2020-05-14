@@ -216,24 +216,26 @@ class InventoryController extends Controller
         
         }
 
-
         // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
 
 
 
-        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
+        $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
 
 
-        // if($sap_exists){
-        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-        // }else{
+        if($sap_exists){
+            $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        }else{
 
-        //     $db_ext->table('inventories')->insert($newData);   
-        // }
+            $db_ext->table('inventories')->insert($newData);   
+        }
     }
 
-    public function automationUpdate(Request $request){
- 
+    public function automationUpdate(Request $request)
+    {
+        ini_set('max_execution_time',39600);
+        set_time_limit(39600);
+
         $fieldsArray = array(
 
             "vftp0010"=>array(
@@ -1125,6 +1127,8 @@ class InventoryController extends Controller
 
                 $filepathArray = explode('/', $selectedFile);
                 $selectedFileName = end($filepathArray);
+
+
                 // ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030"]
                 if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
 
@@ -1133,6 +1137,9 @@ class InventoryController extends Controller
                     $isMigrate = false;
                 } 
                 if((!$isMigrate && (strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false))){
+
+
+                    // $this->info("File Name : ",$selectedFile);
 
                     $fields = $fieldsArray[$folderKey];
 

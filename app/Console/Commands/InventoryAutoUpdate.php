@@ -38,7 +38,7 @@ class InventoryAutoUpdate extends Command
     public function inventoryFeedUpdate($newData,$db_ext){
 
 
-        $tablename = "inventories_test";
+        $tablename = "inventories";
 
 
         $exists = \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
@@ -62,15 +62,15 @@ class InventoryAutoUpdate extends Command
 
 
 
-        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
+        $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
 
 
-        // if($sap_exists){
-        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-        // }else{
+        if($sap_exists){
+            $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        }else{
 
-        //     $db_ext->table('inventories')->insert($newData);   
-        // }
+            $db_ext->table('inventories')->insert($newData);   
+        }
 
 
     }
@@ -85,7 +85,7 @@ class InventoryAutoUpdate extends Command
     {
         ini_set('max_execution_time',39600);
         set_time_limit(39600);
-        
+
         $fieldsArray = array(
 
             "vftp0010"=>array(
