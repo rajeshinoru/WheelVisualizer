@@ -230,8 +230,6 @@ class InventoryController extends Controller
 
         //     $db_ext->table('inventories')->insert($newData);   
         // }
-
-
     }
 
     public function automationUpdate(Request $request){
