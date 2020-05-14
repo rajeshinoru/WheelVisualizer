@@ -83,7 +83,9 @@ class InventoryAutoUpdate extends Command
      */
     public function handle()
     {
- 
+        ini_set('max_execution_time',39600);
+        set_time_limit(39600);
+        
         $fieldsArray = array(
 
             "vftp0010"=>array(
