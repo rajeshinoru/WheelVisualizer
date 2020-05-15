@@ -13,10 +13,11 @@
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
-        "hesto/multi-auth": "^2.0",
+        "hesto/multi-auth": "^2.0", 
+        "maatwebsite/excel": "~2.1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "maatwebsite/excel": "~2.1.0"
+        "symfony/process": "^4.4"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

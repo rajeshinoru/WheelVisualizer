@@ -1154,6 +1154,13 @@ class InventoryController extends Controller
                     if (($inpfile = fopen($filepath, 'r')) !== false) {
                         // Collect CSV each row records
                         $flag = 0;
+                        $test=array();
+                        $test[]=fgetcsv($inpfile, 10000);
+                        $test[]=fgetcsv($inpfile, 10000);
+                                                $test[]=fgetcsv($inpfile, 10000);
+                                                                        $test[]=fgetcsv($inpfile, 10000);
+                                                                                                $test[]=fgetcsv($inpfile, 10000);
+                        dd($test);
                         while (($data = fgetcsv($inpfile, 10000)) !== false) {
                             if($flag != 0){
 
