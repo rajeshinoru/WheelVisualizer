@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Excel;
 
 use Illuminate\Http\Request;
 use App\Viflist;
@@ -1515,4 +1516,23 @@ public function runPython(Request $request){
     // Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
     }
 
+
+
+
+    public function convertExcelToCSV()
+    {
+        $address = public_path('storage/tires_data/Tire-MasterUPDATED.XLSX');
+        // dd($address);
+        Excel::load($address, function($reader) {
+            $results = $reader->get();
+            dd($results);
+        });
+
+        return Excel::download(new ListExport, 'list.csv');
+
+        
+    }
+
 }
+
+

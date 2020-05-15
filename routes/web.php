@@ -69,6 +69,7 @@ Route::get('/csv_vftp0018', 'HomeController@csv_vftp0018');
 Route::get('/csv_vftp0030', 'HomeController@csv_vftp0030');
 Route::get('/csv_vftp0032', 'HomeController@csv_vftp0032');
 Route::get('/csv_vftp0022', 'HomeController@csv_vftp0022');
+Route::get('/convertExcelToCSV', 'HomeController@convertExcelToCSV');
 
 Route::get('/vftp_to_sql/{filename?}', 'HomeController@vftp_to_sql');
 Route::get('/vftp_to_sql_test/{filename}', 'HomeController@vftp_to_sql_test');
