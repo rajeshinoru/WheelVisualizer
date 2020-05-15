@@ -1520,16 +1520,24 @@ public function runPython(Request $request){
 
 
     public function convertExcelToCSV()
-    {
-        $address = public_path('storage/tires_data/Tire-MasterUPDATED.XLSX');
+    { 
+        $excelFile = public_path('storage/3.6.20.xlsx');
         // dd($address);
-        Excel::load($address, function($reader) {
-            $results = $reader->get();
-            dd($results);
-        });
-
-        return Excel::download(new ListExport, 'list.csv');
-
+        // Excel::load($address, function($reader) {
+        //     $results = $reader->get();
+        //     // dd($results);
+        //     return Excel::download($results, 'list.csv');
+        // });
+    $test=Excel::selectSheets('3.6.20')->load($excelFile, function($reader) {
+        // $reader->ignoreEmpty();
+        $results = $reader->get()->toArray();
+        foreach($results as $key => $value){
+            dd($value,array_values($value));
+                // var_dump($value, '<br>'); 
+        }
+    })->get();
+        // return Excel::download(new ListExport, 'list.csv');
+    dd($test);
         
     }
 

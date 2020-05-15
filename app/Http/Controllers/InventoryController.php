@@ -1283,7 +1283,6 @@ class InventoryController extends Controller
         return "success";
     }
 
-
     // public function automationUpdate(Request $request){
 
     //     $this->listFolderFiles('/bala/Bala - web/Wheel Client/03_10_inventories_data');
