@@ -272,17 +272,17 @@ class InventoryController extends Controller
                 "available_qty" =>"4",
                 "price" =>"3", 
             ),
-            // "vftp0013"=>array(
-            //     "partno" =>"0",
-            //     "vendor_partno" =>null,
-            //     "mpn" =>"6",
-            //     "description" =>"1",
-            //     "brand" =>"2",
-            //     "model" =>null,
-            //     "location_code" =>null,
-            //     "available_qty" =>"4",
-            //     "price" =>"3", 
-            // ),
+            "vftp0013"=>array(
+                "partno" =>"1",
+                "vendor_partno" =>null,
+                "mpn" =>null,
+                "description" =>"2",
+                "brand" =>null,
+                "model" =>null,
+                "location_code" =>null,
+                "available_qty" =>"3",
+                "price" =>"4",
+            ),
             "vftp0014"=>array(
                 "partno" =>"0",
                 "vendor_partno" =>null,
@@ -397,36 +397,17 @@ class InventoryController extends Controller
                 ),
                 "price" =>"2", 
             ),
-            // "vftp0022"=>array(
-            //     "partno" =>"0",
-            //     "vendor_partno" =>null,
-            //     "mpn" =>null,
-            //     "description" =>"1",
-            //     "brand" =>"4",
-            //     "model" =>null,
-            //     "location_code" =>null,
-            //     "available_qty" =>array(
-            //         "ATL" =>"5",
-            //         "CHAR" =>"6",
-            //         "CHI" =>"7",
-            //         "COL" =>"8",
-            //         "DAL" =>"9",
-            //         "DEN" =>"10",
-            //         "HOUS" =>"11",
-            //         "IND" =>"12",
-            //         "JACKFL" =>"13",
-            //         "KSCITY" =>"14",
-            //         "LA" =>"15",
-            //         "LA2" =>"16",
-            //         "NASH" =>"17",
-            //         "NJ" =>"18",
-            //         "NORL" =>"19",
-            //         "PHXAZ" =>"20",
-            //         "SANT" =>"21",
-            //         "SEAWA" =>"22",
-            //     ),
-            //     "price" =>"2", 
-            // ),
+            "vftp0022"=>array(
+                "partno" =>"4",
+                "vendor_partno" =>null,
+                "mpn" =>null,
+                "description" =>"2",
+                "brand" =>"0",
+                "model" =>null,
+                "location_code" =>null,
+                "available_qty" =>"5",
+                "price" =>"7", 
+            ),
 
             "vftp0023"=>array(
                 "partno" =>"0",
@@ -629,6 +610,7 @@ class InventoryController extends Controller
                     'Philadelphia' => array("Future","FTPHIL","FT-Inv_PhiladelphiaPA"),
                     'Schenectady' => array("Future","FTSCHEN","FT-Inv_SchenectadyNY"),
                 ),
+                "vftp0013"=>array("Economy","ETDALL","ET-Inv_DallasTX"),
                 "vftp0014"=>array("TWI","TWI1","TWI-Inv_TroyMI"),
                 "vftp0015"=>array(
                     '1' =>   array("Reliable","RTNJ","RT-Inv_BlackwoodNJ"),
@@ -720,8 +702,7 @@ class InventoryController extends Controller
                     "SANT" =>   array("TheWheelGroup","WG218","WG-Inv_SanAntonioTX"),
                     "SEAWA" =>  array("TheWheelGroup","WG114","WG-Inv_SeattleWA"),
                 ),
-                "vftp0022"=>array( 
-                ),
+                "vftp0022"=>array("KMTires","KMHICK","KM-Inv_HickoryNC"),
                 "vftp0023"=>array( 
                     "ATL" =>array("MHT","MHTATL","MHT-Inv_NORCROSSGA"),
                     "BAL39" =>array("MHT","MHTBAL39","MHT-Inv_BALTIMOREMD"),
@@ -1094,9 +1075,9 @@ class InventoryController extends Controller
   
         // dd($allFiles);
         
-        // unset($allFiles['vftp0010']);
-        // unset($allFiles['vftp0011']);
-        // unset($allFiles['vftp0012']);
+        unset($allFiles['vftp0010']);
+        unset($allFiles['vftp0011']);
+        unset($allFiles['vftp0012']);
         // unset($allFiles['vftp0013']);//Column converting Issue 
         // unset($allFiles['vftp0014']);
         // unset($allFiles['vftp0015']);
@@ -1106,7 +1087,7 @@ class InventoryController extends Controller
         // unset($allFiles['vftp0019']);
         // unset($allFiles['vftp0020']);
         // unset($allFiles['vftp0021']);
-        // unset($allFiles['vftp0022']);//Sheet converting Issue 
+        unset($allFiles['vftp0022']);//Sheet converting Issue 
         // unset($allFiles['vftp0023']);
         // unset($allFiles['vftp0024']);
         // unset($allFiles['vftp0025']);
@@ -1127,8 +1108,7 @@ class InventoryController extends Controller
 
                 $filepathArray = explode('/', $selectedFile);
                 $selectedFileName = end($filepathArray);
-
-
+ 
                 // ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030"]
                 if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
 
@@ -1136,11 +1116,11 @@ class InventoryController extends Controller
                 }else{
                     $isMigrate = false;
                 } 
+                // if((!$isMigrate && (strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false))){
+
                 if(!$isMigrate){
 
-                    if(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false){
 
-                    }
                     // $this->info("File Name : ",$selectedFile);
 
                     $fields = $fieldsArray[$folderKey];
@@ -1151,131 +1131,246 @@ class InventoryController extends Controller
                         $filepath = $ftpUrl.$selectedFile;
                     // }
                      
-                    $test=\Excel::load($filepath, function($reader) {
-                        // $reader->ignoreEmpty();
-                        $results = $reader->get()->toArray();
-                        foreach($results as $key => $value){
-                            dd($value,array_values($value));
-                                // var_dump($value, '<br>'); 
-                        }
-                    })->get();
 
                     // Open and Read individual CSV file
                     if (($inpfile = fopen($filepath, 'r')) !== false) {
                         // Collect CSV each row records
                         $flag = 0;
 
-                        while (($data = fgetcsv($inpfile, 10000)) !== false) {
-                            if($flag != 0){
+                        // dd(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false,$selectedFileName);
 
-                                if($folderKey == "vftp0030"){
-                                    $dataValue = explode('|', $data[0]);
-                                }else{
-                                    $dataValue =  $data;
-                                } 
+                        if(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false){
 
-                                $insertData = array(
+                            while (($data = fgetcsv($inpfile, 10000)) !== false) {
+                                // dd($data);
+                                if($flag != 0){
 
-                                    // 'filename'=>$folderKey,
+                                    if($folderKey == "vftp0030"){
+                                        $dataValue = explode('|', $data[0]);
+                                    }else{
+                                        $dataValue =  $data;
+                                    } 
 
-                                     'partno'=>($fields['partno']!=null)?$dataValue[$fields['partno']]:null,                         //PartNo
+                                    $insertData = array(
 
-                                     'vendor_partno'=>($fields['vendor_partno']!=null)?$dataValue[$fields['vendor_partno']]:null,        //VendorPartNo
+                                        // 'filename'=>$folderKey,
 
-                                     'mpn'=>($fields['mpn']!=null)?$dataValue[$fields['mpn']]:null,                 //MPN
+                                         'partno'=>($fields['partno']!=null)?$dataValue[$fields['partno']]:null,                         //PartNo
 
-                                     'description'=>($fields['description']!=null)?$dataValue[$fields['description']]:null,         //Description
+                                         'vendor_partno'=>($fields['vendor_partno']!=null)?$dataValue[$fields['vendor_partno']]:null,        //VendorPartNo
 
-                                     'brand'=>($fields['brand']!=null)?$dataValue[$fields['brand']]:null,               //Brand
+                                         'mpn'=>($fields['mpn']!=null)?$dataValue[$fields['mpn']]:null,                 //MPN
 
-                                     'model'=>($fields['model']!=null)?$dataValue[$fields['model']]:null,               //Model
+                                         'description'=>($fields['description']!=null)?$dataValue[$fields['description']]:null,         //Description
 
-                                     'location_code'=>($fields['location_code']!=null)?trim($dataValue[$fields['location_code']]," "):null,       //Location Code
+                                         'brand'=>($fields['brand']!=null)?$dataValue[$fields['brand']]:null,               //Brand
 
-                                     'price'=>($fields['price']!=null)?$dataValue[$fields['price']]:0,               //Price
-                                );  
+                                         'model'=>($fields['model']!=null)?$dataValue[$fields['model']]:null,               //Model
 
+                                         'location_code'=>($fields['location_code']!=null)?trim($dataValue[$fields['location_code']]," "):null,       //Location Code
 
-
-                                if(gettype($fields['available_qty']) != 'array'){
-
-                                        $insertData['available_qty']=($fields['available_qty']!=null)?$dataValue[$fields['available_qty']]:0; 
-
-                                } 
-
-                                if($folderKey == "vftp0010" || $folderKey == "vftp0015"  || $folderKey == "vftp0023" || $folderKey == "vftp0030" || $folderKey == "vftp0032" || $folderKey == "vftp0033"){
-
-                                    $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
-                                    $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
-                                    $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
-
-                                }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
+                                         'price'=>($fields['price']!=null)?$dataValue[$fields['price']]:0,               //Price
+                                    );  
 
 
-                                    foreach ($vendor_info[$folderKey] as $key => $vendor) { 
-                                        $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
-                                        $insertData['location_code']=$key; 
 
-                                        $insertData['drop_shipper']=$vendor[0];
-                                        $insertData['ds_vendor_code']=$vendor[1];
-                                        $insertData['location_name']=$vendor[2]; 
-                                       
+                                    if(gettype($fields['available_qty']) != 'array'){
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
+                                            $insertData['available_qty']=($fields['available_qty']!=null)?$dataValue[$fields['available_qty']]:0; 
 
-                                    }
-                                    
-                                }elseif($folderKey == "vftp0012" || $folderKey == "vftp0029"  ){
+                                    } 
 
-                                        $fullfile = explode('/', $selectedFile);
-                                        $filename = explode(".",end($fullfile));
-                                        $locName = $filename[0];
+                                    if($folderKey == "vftp0010" || $folderKey == "vftp0015"  || $folderKey == "vftp0023" || $folderKey == "vftp0030" || $folderKey == "vftp0032" || $folderKey == "vftp0033"){
 
-                                        if($folderKey == "vftp0029"){
-                                            $filenameArray = explode('_',$locName);
-                                            $locName = $filenameArray[2];
+                                        $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
+                                        $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
+                                        $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
+                                        $this->inventoryFeedUpdate($insertData,$db_ext);
+
+                                    }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
+
+
+                                        foreach ($vendor_info[$folderKey] as $key => $vendor) { 
+                                            $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
+                                            $insertData['location_code']=$key; 
+
+                                            $insertData['drop_shipper']=$vendor[0];
+                                            $insertData['ds_vendor_code']=$vendor[1];
+                                            $insertData['location_name']=$vendor[2]; 
+                                           
+
+                                        $this->inventoryFeedUpdate($insertData,$db_ext);
+
                                         }
+                                        
+                                    }elseif($folderKey == "vftp0012" || $folderKey == "vftp0029"  ){
+
+                                            $fullfile = explode('/', $selectedFile);
+                                            $filename = explode(".",end($fullfile));
+                                            $locName = $filename[0];
+
+                                            if($folderKey == "vftp0029"){
+                                                $filenameArray = explode('_',$locName);
+                                                $locName = $filenameArray[2];
+                                            }
 
 
-                                        $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
-                                        $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
-                                        $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
+                                            $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
+                                            $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
+                                            $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);                                    
+                                        $this->inventoryFeedUpdate($insertData,$db_ext);                                    
 
-                                }elseif($folderKey == "vftp0013"){
+                                    }elseif($folderKey == "vftp0013"){
 
-                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0027"){
+                                    }elseif($folderKey == "vftp0014" || $folderKey == "vftp0027"){
 
-                                    $insertData['drop_shipper']=$vendor_info[$folderKey][0];
-                                    $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
-                                    $insertData['location_name']=$vendor_info[$folderKey][2];
+                                        $insertData['drop_shipper']=$vendor_info[$folderKey][0];
+                                        $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
+                                        $insertData['location_name']=$vendor_info[$folderKey][2];
 
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
+                                        $this->inventoryFeedUpdate($insertData,$db_ext);
 
-                                }elseif($folderKey == "vftp0028"){ 
+                                    }elseif($folderKey == "vftp0028"){ 
 
-     
-                                    $insertData['partno'] = preg_replace("/[^A-Za-z0-9]/", '',$insertData['partno']);
-                                    foreach ($vendor_info[$folderKey] as $key => $vendor) { 
-                                        $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
-                                        $insertData['location_code']=$key; 
+         
+                                        $insertData['partno'] = preg_replace("/[^A-Za-z0-9]/", '',$insertData['partno']);
+                                        foreach ($vendor_info[$folderKey] as $key => $vendor) { 
+                                            $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
+                                            $insertData['location_code']=$key; 
 
-                                        $insertData['price']=$dataValue[($fieldsArray[$folderKey]['available_qty'][$key])+1];
+                                            $insertData['price']=$dataValue[($fieldsArray[$folderKey]['available_qty'][$key])+1];
 
-                                        $insertData['drop_shipper']=$vendor[0];
-                                        $insertData['ds_vendor_code']=$vendor[1];
-                                        $insertData['location_name']=$vendor[2]; 
+                                            $insertData['drop_shipper']=$vendor[0];
+                                            $insertData['ds_vendor_code']=$vendor[1];
+                                            $insertData['location_name']=$vendor[2]; 
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
+                                        $this->inventoryFeedUpdate($insertData,$db_ext);
+                                        }
+                                        
                                     }
-                                    
                                 }
+                                $flag=1;
                             }
-                            $flag=1;
+                        }else{
+                        
+                            \Excel::load($filepath, function($reader) {
+                                // $reader->ignoreEmpty();
+                                $results = $reader->get()->toArray();
+                                dd($results);
+                                foreach($results as $key => $data){
+                                    if($flag != 0){
+
+                                        if($folderKey == "vftp0030"){
+                                            $dataValue = explode('|', $data[0]);
+                                        }else{
+                                            $dataValue =  $data;
+                                        } 
+
+                                        $insertData = array(
+
+                                            // 'filename'=>$folderKey,
+
+                                             'partno'=>($fields['partno']!=null)?$dataValue[$fields['partno']]:null,                         //PartNo
+
+                                             'vendor_partno'=>($fields['vendor_partno']!=null)?$dataValue[$fields['vendor_partno']]:null,        //VendorPartNo
+
+                                             'mpn'=>($fields['mpn']!=null)?$dataValue[$fields['mpn']]:null,                 //MPN
+
+                                             'description'=>($fields['description']!=null)?$dataValue[$fields['description']]:null,         //Description
+
+                                             'brand'=>($fields['brand']!=null)?$dataValue[$fields['brand']]:null,               //Brand
+
+                                             'model'=>($fields['model']!=null)?$dataValue[$fields['model']]:null,               //Model
+
+                                             'location_code'=>($fields['location_code']!=null)?trim($dataValue[$fields['location_code']]," "):null,       //Location Code
+
+                                             'price'=>($fields['price']!=null)?$dataValue[$fields['price']]:0,               //Price
+                                        );  
+                                        if(gettype($fields['available_qty']) != 'array'){
+
+                                                $insertData['available_qty']=($fields['available_qty']!=null)?$dataValue[$fields['available_qty']]:0; 
+
+                                        } 
+
+                                        if($folderKey == "vftp0010" || $folderKey == "vftp0015"  || $folderKey == "vftp0023" || $folderKey == "vftp0030" || $folderKey == "vftp0032" || $folderKey == "vftp0033"){
+
+                                            $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
+                                            $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
+                                            $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
+                                            $this->inventoryFeedUpdate($insertData,$db_ext);
+
+                                        }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
+
+
+                                            foreach ($vendor_info[$folderKey] as $key => $vendor) { 
+                                                $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
+                                                $insertData['location_code']=$key; 
+
+                                                $insertData['drop_shipper']=$vendor[0];
+                                                $insertData['ds_vendor_code']=$vendor[1];
+                                                $insertData['location_name']=$vendor[2]; 
+                                               
+
+                                            $this->inventoryFeedUpdate($insertData,$db_ext);
+
+                                            }
+                                            
+                                        }elseif($folderKey == "vftp0012" || $folderKey == "vftp0029"  ){
+
+                                                $fullfile = explode('/', $selectedFile);
+                                                $filename = explode(".",end($fullfile));
+                                                $locName = $filename[0];
+
+                                                if($folderKey == "vftp0029"){
+                                                    $filenameArray = explode('_',$locName);
+                                                    $locName = $filenameArray[2];
+                                                }
+
+
+                                                $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
+                                                $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
+                                                $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
+
+                                            $this->inventoryFeedUpdate($insertData,$db_ext);                                    
+
+                                        }elseif($folderKey == "vftp0013"){
+
+                                        }elseif($folderKey == "vftp0014" || $folderKey == "vftp0027"){
+
+                                            $insertData['drop_shipper']=$vendor_info[$folderKey][0];
+                                            $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
+                                            $insertData['location_name']=$vendor_info[$folderKey][2];
+
+
+                                            $this->inventoryFeedUpdate($insertData,$db_ext);
+
+                                        }elseif($folderKey == "vftp0028"){ 
+
+             
+                                            $insertData['partno'] = preg_replace("/[^A-Za-z0-9]/", '',$insertData['partno']);
+                                            foreach ($vendor_info[$folderKey] as $key => $vendor) { 
+                                                $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
+                                                $insertData['location_code']=$key; 
+
+                                                $insertData['price']=$dataValue[($fieldsArray[$folderKey]['available_qty'][$key])+1];
+
+                                                $insertData['drop_shipper']=$vendor[0];
+                                                $insertData['ds_vendor_code']=$vendor[1];
+                                                $insertData['location_name']=$vendor[2]; 
+
+                                            $this->inventoryFeedUpdate($insertData,$db_ext);
+                                            }
+                                            
+                                        }
+                                    }
+                                    $flag=1;
+                                }
+                            })->get();
+ 
                         }
+
                         $migratedFile = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first();
                         if($migratedFile){
                             

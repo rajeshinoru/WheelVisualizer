@@ -103,6 +103,12 @@ class HomeController extends Controller
     { 
         return view('lipsizes'); 
     }
+    
+    public function wheelconfig()
+    { 
+        return view('wheelconfig'); 
+    }
+    
     public function packagedeal()
     { 
         return view('packagedeal'); 
