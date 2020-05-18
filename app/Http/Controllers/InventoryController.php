@@ -1097,7 +1097,7 @@ class InventoryController extends Controller
         // unset($allFiles['vftp0010']);
         // unset($allFiles['vftp0011']);
         // unset($allFiles['vftp0012']);
-        unset($allFiles['vftp0013']);//Column converting Issue 
+        // unset($allFiles['vftp0013']);//Column converting Issue 
         // unset($allFiles['vftp0014']);
         // unset($allFiles['vftp0015']);
         // unset($allFiles['vftp0016']);
@@ -1106,7 +1106,7 @@ class InventoryController extends Controller
         // unset($allFiles['vftp0019']);
         // unset($allFiles['vftp0020']);
         // unset($allFiles['vftp0021']);
-        unset($allFiles['vftp0022']);//Sheet converting Issue 
+        // unset($allFiles['vftp0022']);//Sheet converting Issue 
         // unset($allFiles['vftp0023']);
         // unset($allFiles['vftp0024']);
         // unset($allFiles['vftp0025']);
@@ -1136,9 +1136,11 @@ class InventoryController extends Controller
                 }else{
                     $isMigrate = false;
                 } 
-                if((!$isMigrate && (strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false))){
+                if(!$isMigrate){
 
+                    if(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false){
 
+                    }
                     // $this->info("File Name : ",$selectedFile);
 
                     $fields = $fieldsArray[$folderKey];
@@ -1149,18 +1151,20 @@ class InventoryController extends Controller
                         $filepath = $ftpUrl.$selectedFile;
                     // }
                      
+                    $test=\Excel::load($filepath, function($reader) {
+                        // $reader->ignoreEmpty();
+                        $results = $reader->get()->toArray();
+                        foreach($results as $key => $value){
+                            dd($value,array_values($value));
+                                // var_dump($value, '<br>'); 
+                        }
+                    })->get();
 
                     // Open and Read individual CSV file
                     if (($inpfile = fopen($filepath, 'r')) !== false) {
                         // Collect CSV each row records
                         $flag = 0;
-                        $test=array();
-                        $test[]=fgetcsv($inpfile, 10000);
-                        $test[]=fgetcsv($inpfile, 10000);
-                                                $test[]=fgetcsv($inpfile, 10000);
-                                                                        $test[]=fgetcsv($inpfile, 10000);
-                                                                                                $test[]=fgetcsv($inpfile, 10000);
-                        dd($test);
+
                         while (($data = fgetcsv($inpfile, 10000)) !== false) {
                             if($flag != 0){
 
