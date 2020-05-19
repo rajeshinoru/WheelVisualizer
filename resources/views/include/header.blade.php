@@ -348,7 +348,7 @@
 
                             <li class="dropdown dropdown-tire">
                                 <!-- <a href="{{url('/tirelist')}}">DISCOUNT TIRES <span class="caret"></span></a> -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">INFORMATION <span class="caret"></span></a>
+                                <a href="{{url('/informations')}}" class="dropdown-toggle" data-toggle="dropdown">INFORMATION <span class="caret"></span></a>
                                 <ul class="dropdown-menu multi-colum-nav info-nav">
                                     <div class="row">
                                         <div class="col-sm-12 tire-menu-list">
@@ -358,6 +358,7 @@
 
                                                         <div class="col-sm-12 tire-menu tire-two">
 <ul>
+    <li><a href="{{url('/informations')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> All </a></li>
     <li><a href="{{url('/orderstatus')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Order Status</a></li>
     <li><a href="{{url('/packagedeal')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Package Deal</a></li>
     <li><a href="{{url('/videos')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Videos</a></li>

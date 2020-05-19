@@ -38,6 +38,7 @@ class SettingsController extends Controller
             //     'homepage_content1' => 'required',
             //     'homepage_content2' => 'required',
             // ]);
+            Setting::set('information',$request->information);
             Setting::set('packagedeal',$request->packagedeal);
             Setting::set('shippinginfo',$request->shippinginfo);
             Setting::set('returnpolicy',$request->returnpolicy);
@@ -45,7 +46,7 @@ class SettingsController extends Controller
             Setting::set('privacypolicy',$request->privacypolicy);
             Setting::set('lipsizes',$request->lipsizes);
             Setting::set('wheelconfig',$request->wheelconfig);
-            
+
         }else{
 
             $this->validate($request,[

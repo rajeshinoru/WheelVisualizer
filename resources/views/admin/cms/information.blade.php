@@ -21,6 +21,16 @@
                                                         {{csrf_field()}}
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="col-md-3">Information All Page</div>
+                                                                    <div class="col-md-9">
+                                                                        <textarea class="form-control summernote" name="information" rows="2">
+                                                                            {{Setting::get('information','')}}
+                                                                        </textarea>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                     <div class="col-md-3">Package Deal Page</div>
                                                                     <div class="col-md-9">
                                                                         <textarea class="form-control summernote" name="packagedeal" rows="2">
