@@ -99,6 +99,11 @@ class HomeController extends Controller
         return view('videos'); 
     }
 
+    public function informations()
+    { 
+        return view('informations'); 
+    }
+    
     public function lipsizes()
     { 
         return view('lipsizes'); 

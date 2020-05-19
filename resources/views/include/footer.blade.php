@@ -42,8 +42,8 @@
                     <ul>
                         <li><a href="{{url('/wheelproducts')}}">Custom Wheels</a></li>
                         <li><a href="{{url('/tirelist')}}">Discount Tires</a></li>
-                        <li><a href="">Information Links</a></li>
-                        <li><a href="">Rims Financing</a></li>
+                        <li><a href="{{url('/informations')}}">Information Links</a></li>
+                        <li><a href="{{url('/rimfinancing')}}">Rims Financing</a></li>
                         <li><a href="{{url('/contactus')}}">Contact Us</a></li>
                         <li><a href="{{url('/aboutus')}}">About Us</a></li>
                         <li><a href="{{url('/wheels')}}">Vehicle Search</a></li>
