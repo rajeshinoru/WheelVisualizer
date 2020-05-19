@@ -359,6 +359,13 @@
 <section id="contact-us" class="contact-page">
     <div class="container">
 
+
+
+        @if(Setting::get('returnpolicy') != "")
+            <?=Setting::get('returnpolicy')?>
+        @else
+
+
         <div class="about-page title-header">
             <div id="heading" class="title">
                 <h1>Return Policy - Discounted Wheel Warehouse</h1>
@@ -420,7 +427,7 @@
         </div>
       </div> 
     </div>
-
+        @endif
     </div>
 </section>
 <!-- Contact Us Section End -->

@@ -348,6 +348,10 @@
 <section id="contact-us" class="contact-page">
     <div class="container">
 
+        @if(Setting::get('packagedeal') != "")
+            <?=Setting::get('packagedeal')?>
+        @else
+
         <div class="about-page title-header">
             <div id="heading" class="title">
                 <h1>Wheel and Tire Packages - Discounted Wheel Warehouse</h1>
@@ -437,6 +441,7 @@
             </div>
         </div>
 
+        @endif
     </div>
 </section>
 <!-- Contact Us Section End -->

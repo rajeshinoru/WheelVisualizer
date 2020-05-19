@@ -90,12 +90,19 @@
 
     <div class="row main-contact-2">      
         <div class="col-sm-6">
+
+
+        @if(Setting::get('feedback') != "")
+            <?=Setting::get('feedback')?>
+        @else
+
           <div class="contact-head">
                 <div class="contacttablecell"><img src="{{asset('/image/Feedback.jpg')}}" class="review-img" ></div>
 
             <p>At Discounted Wheel Warehouse we want to hear from you good or bad. Please leave Comments below of your good or bad experience and what we can do to make it better for you.</p>
             
           </div>
+        @endif
       </div>
 
       <div class="col-sm-6 cont-form">

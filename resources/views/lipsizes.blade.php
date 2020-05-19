@@ -344,6 +344,10 @@
 <section id="contact-us" class="contact-page row">
     <div class="container">
 
+        @if(Setting::get('lipsizes') != "")
+            <?=Setting::get('lipsizes')?>
+        @else
+
         <div class="about-page title-header">
             <div id="heading" class="title">
                 <h1>Custom Wheel Lip Sizes and differences</h1>
@@ -443,7 +447,7 @@
             <div class="col-sm-2"></div>
         </div>
     </div>
-
+    @endif
     </div>
 </section>
 <!-- Contact Us Section End -->

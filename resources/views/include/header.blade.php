@@ -367,7 +367,7 @@
     <li><a href="{{url('/wheels')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Vehicle Gallery</a></li>
     <li><a href="{{url('/shippinginfo')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Shipping Info</a></li>
     <li><a href="{{url('/bloglist')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Blog</a></li>
-    <li><a href="{{url('/returnplicy')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Return Policy</a></li>
+    <li><a href="{{url('/returnpolicy')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Return Policy</a></li>
     <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> 3-Piece Wheels</a></li>
     <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> 8-Lug Wheels</a></li>
     <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Black Wheels</a></li>

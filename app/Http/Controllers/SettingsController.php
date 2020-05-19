@@ -32,6 +32,20 @@ class SettingsController extends Controller
             Setting::set('homepage_content1', $request->homepage_content1);
             Setting::set('homepage_content2', $request->homepage_content2);
 
+        }elseif($category == 'information'){
+
+            // $this->validate($request,[
+            //     'homepage_content1' => 'required',
+            //     'homepage_content2' => 'required',
+            // ]);
+            Setting::set('packagedeal',$request->packagedeal);
+            Setting::set('shippinginfo',$request->shippinginfo);
+            Setting::set('returnpolicy',$request->returnpolicy);
+            Setting::set('feedback',$request->feedback);
+            Setting::set('privacypolicy',$request->privacypolicy);
+            Setting::set('lipsizes',$request->lipsizes);
+            Setting::set('wheelconfig',$request->wheelconfig);
+            
         }else{
 
             $this->validate($request,[

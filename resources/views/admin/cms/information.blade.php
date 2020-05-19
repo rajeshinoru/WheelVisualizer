@@ -11,8 +11,6 @@
                                 <!-- <li><a href="#reviews"> Acount Information</a></li> -->
                                 <!-- <li><a href="#INFORMATION">Social Information</a></li> -->
                             </ul>
-                           
-<!-- form class dropzone dropzone-custom -->
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
@@ -34,10 +32,10 @@
                                                         <br>
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-3">Package Deal Page</div>
+                                                                    <div class="col-md-3">Shipping Info Page</div>
                                                                     <div class="col-md-9">
-                                                                        <textarea class="form-control summernote" name="packagedeal" rows="5">
-                                                                            {{Setting::get('packagedeal','')}}
+                                                                        <textarea class="form-control summernote" name="shippinginfo" rows="5">
+                                                                            {{Setting::get('shippinginfo','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
@@ -45,10 +43,10 @@
                                                         <br>
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-3">Package Deal Page</div>
+                                                                    <div class="col-md-3">Return Policy Page</div>
                                                                     <div class="col-md-9">
-                                                                        <textarea class="form-control summernote" name="packagedeal" rows="5">
-                                                                            {{Setting::get('packagedeal','')}}
+                                                                        <textarea class="form-control summernote" name="returnpolicy" rows="5">
+                                                                            {{Setting::get('returnpolicy','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
@@ -56,10 +54,10 @@
                                                         <br>
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-3">Package Deal Page</div>
+                                                                    <div class="col-md-3">Feedback Page</div>
                                                                     <div class="col-md-9">
-                                                                        <textarea class="form-control summernote" name="packagedeal" rows="5">
-                                                                            {{Setting::get('packagedeal','')}}
+                                                                        <textarea class="form-control summernote" name="feedback" rows="5">
+                                                                            {{Setting::get('feedback','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
@@ -67,10 +65,32 @@
                                                         <br>
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                    <div class="col-md-3">Package Deal Page</div>
+                                                                    <div class="col-md-3">Privacy Policy Page</div>
                                                                     <div class="col-md-9">
-                                                                        <textarea class="form-control summernote" name="packagedeal" rows="5">
-                                                                            {{Setting::get('packagedeal','')}}
+                                                                        <textarea class="form-control summernote" name="privacypolicy" rows="5">
+                                                                            {{Setting::get('privacypolicy','')}}
+                                                                        </textarea>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="col-md-3">Lip Sizes Page</div>
+                                                                    <div class="col-md-9">
+                                                                        <textarea class="form-control summernote" name="lipsizes" rows="5">
+                                                                            {{Setting::get('lipsizes','')}}
+                                                                        </textarea>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="col-md-3">Wheel Configuration Page</div>
+                                                                    <div class="col-md-9">
+                                                                        <textarea class="form-control summernote" name="wheelconfig" rows="5">
+                                                                            {{Setting::get('wheelconfig','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
