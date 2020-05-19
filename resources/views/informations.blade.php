@@ -283,7 +283,15 @@
 
 <!-- About Section Start -->
 <section id="about-us" class="about-page">
+
+
     <div class="container">
+
+
+        @if(Setting::get('information') != "")
+            <?=Setting::get('information')?>
+        @else
+
         <div class="about-page title-header">
             <div id="heading" class="title">
                 <h1>Wheel and Tire information links - Discounted Wheel Warehouse</h1>
@@ -364,6 +372,8 @@
         </div>
       </div> -->
         </div>
+
+        @endif
     </div>
 </section>
 <!-- About Section End -->
