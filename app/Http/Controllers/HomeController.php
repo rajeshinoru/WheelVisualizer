@@ -1539,7 +1539,6 @@ public function runPython(Request $request){
         // $reader->ignoreEmpty();
         $results = $reader->get()->toArray();
         foreach($results as $key => $value){
-            dd($value);
             $pro = WheelProduct::where('partno',$value['partno'])->first();
             $pro->prodimage =  $value['prodimage'];
             $pro->save(); 
