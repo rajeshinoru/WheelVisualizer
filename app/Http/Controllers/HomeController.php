@@ -103,7 +103,7 @@ class HomeController extends Controller
     { 
         return view('informations'); 
     }
-    
+
     public function lipsizes()
     { 
         return view('lipsizes'); 
@@ -1532,23 +1532,22 @@ public function runPython(Request $request){
 
     public function convertExcelToCSV()
     { 
-        $excelFile = public_path('storage/3.6.20.xlsx');
-        // dd($address);
-        // Excel::load($address, function($reader) {
-        //     $results = $reader->get();
-        //     // dd($results);
-        //     return Excel::download($results, 'list.csv');
-        // });
-    $test=Excel::selectSheets('3.6.20')->load($excelFile, function($reader) {
+        $excelFile = public_path('/storage/Missing-Wheel-Images-Final.xlsx');
+        // dd($excelFile);
+
+    $test=Excel::selectSheets('Sheet1')->load($excelFile, function($reader) {
         // $reader->ignoreEmpty();
         $results = $reader->get()->toArray();
         foreach($results as $key => $value){
-            dd($value,array_values($value));
-                // var_dump($value, '<br>'); 
+            dd($value);
+            $pro = WheelProduct::where('partno',$value['partno'])->first();
+            $pro->prodimage =  $value['prodimage'];
+            $pro->save(); 
+            echo "<br>ID:".$pro->id;
+                 
         }
     })->get();
-        // return Excel::download(new ListExport, 'list.csv');
-    dd($test);
+        
         
     }
 

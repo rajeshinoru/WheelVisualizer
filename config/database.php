@@ -87,6 +87,9 @@ return [
             'password' => env('SQLSRV_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
+            'collation' => 'utf8_unicode_ci',
+            'strict' => false,
+            'engine' => null,
         ]
 
     ],
