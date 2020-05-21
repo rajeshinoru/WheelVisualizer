@@ -1068,12 +1068,17 @@ class InventoryController extends Controller
             $vftpFolders = $vftp->directories('/');
 
             // dd($vftpFolders);
-            foreach ($vftpFolders as $key => $vftpFolder) {
-                $allFiles[$vftpFolder] = $vftp->files('/'.$vftpFolder);          
-            } 
+            // foreach ($vftpFolders as $key => $vftpFolder) {
+            //     $allFiles[$vftpFolder] = $vftp->files('/'.$vftpFolder);  
+            //     // Storage::disk('public')->put(str_replace("outgoing/", "", $value), Storage::disk('vftp')->get($value));         
+            // } 
         // }
-  
-        // dd($allFiles);
+    foreach ($vftpFolders as $key => $vftpFolder) { 
+        foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
+            // dd($fileAddress);
+            Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
+        }
+    }  
         
         unset($allFiles['vftp0010']);
         unset($allFiles['vftp0011']);
