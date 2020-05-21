@@ -200,9 +200,9 @@ class InventoryController extends Controller
         $tablename = "inventories_test";
 
 
-        $exists = \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->get(); 
+        $exists = \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
-        if($exists->count()){
+        if($exists){
 
             $newData['updated_at']=\Carbon\Carbon::now();
             \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
@@ -1047,17 +1047,17 @@ class InventoryController extends Controller
     
         $allFiles =array();
 
-            $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
- 
-            $vftp = Storage::disk('vftp');
-            $vftpFolders = $vftp->directories('/');
- 
-            foreach ($vftpFolders as $key => $vftpFolder) { 
-                foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
-                    // dd($fileAddress);
-                    Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
-                }
-            }  
+        $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
+
+        $vftp = Storage::disk('vftp');
+        $vftpFolders = $vftp->directories('/');
+
+        foreach ($vftpFolders as $key => $vftpFolder) { 
+            foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
+                // dd($fileAddress);
+                Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
+            }
+        }  
         
 
         // unset($allFiles['vftp0010']);
@@ -1117,7 +1117,7 @@ class InventoryController extends Controller
                         if(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false){
 
                             while (($data = fgetcsv($inpfile, 10000)) !== false) {
-                                dd($data);
+                                // dd($data);
                                 if($flag != 0){
 
                                     if($folderKey == "vftp0030"){
