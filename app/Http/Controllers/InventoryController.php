@@ -1059,10 +1059,10 @@ class InventoryController extends Controller
 
             $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
 
-            $host = env('VFTP_HOST','ftp.discountedwheelwarehouse.net');
-            $username = env('VFTP_USERNAME','api');
-            $password = env('VFTP_PASSWORD','862457Dev!'); 
-            $ftpUrl = 'ftp://'.$username.':'.$password.'@'.$host.'/';
+            // $host = env('VFTP_HOST','ftp.discountedwheelwarehouse.net');
+            // $username = env('VFTP_USERNAME','api');
+            // $password = env('VFTP_PASSWORD','862457Dev!'); 
+            // $ftpUrl = 'ftp://'.$username.':'.$password.'@'.$host.'/';
  
             $vftp = Storage::disk('vftp');
             $vftpFolders = $vftp->directories('/');
@@ -1080,37 +1080,40 @@ class InventoryController extends Controller
         }
     }  
         
-        unset($allFiles['vftp0010']);
-        unset($allFiles['vftp0011']);
-        unset($allFiles['vftp0012']);
-        // unset($allFiles['vftp0013']);//Column converting Issue 
-        // unset($allFiles['vftp0014']);
-        // unset($allFiles['vftp0015']);
-        // unset($allFiles['vftp0016']);
-        // unset($allFiles['vftp0017']);
-        // unset($allFiles['vftp0018']);
-        // unset($allFiles['vftp0019']);
-        // unset($allFiles['vftp0020']);
-        // unset($allFiles['vftp0021']);
-        unset($allFiles['vftp0022']);//Sheet converting Issue 
-        // unset($allFiles['vftp0023']);
-        // unset($allFiles['vftp0024']);
-        // unset($allFiles['vftp0025']);
-        // unset($allFiles['vftp0026']);
-        // unset($allFiles['vftp0027']);
-        // unset($allFiles['vftp0028']);
-        // unset($allFiles['vftp0029']);
-        // unset($allFiles['vftp0030']);
-        // unset($allFiles['vftp0031']);
-        // unset($allFiles['vftp0032']);
-        // unset($allFiles['vftp0033']);
-        unset($allFiles['vftp0034']);
-        unset($allFiles['vftp0035']);
 
-        foreach($allFiles as $folderKey => $folder) {
+        dd("finished");
+        // unset($allFiles['vftp0010']);
+        // unset($allFiles['vftp0011']);
+        // unset($allFiles['vftp0012']);
+        // // unset($allFiles['vftp0013']);//Column converting Issue 
+        // // unset($allFiles['vftp0014']);
+        // // unset($allFiles['vftp0015']);
+        // // unset($allFiles['vftp0016']);
+        // // unset($allFiles['vftp0017']);
+        // // unset($allFiles['vftp0018']);
+        // // unset($allFiles['vftp0019']);
+        // // unset($allFiles['vftp0020']);
+        // // unset($allFiles['vftp0021']);
+        // unset($allFiles['vftp0022']);//Sheet converting Issue 
+        // // unset($allFiles['vftp0023']);
+        // // unset($allFiles['vftp0024']);
+        // // unset($allFiles['vftp0025']);
+        // // unset($allFiles['vftp0026']);
+        // // unset($allFiles['vftp0027']);
+        // // unset($allFiles['vftp0028']);
+        // // unset($allFiles['vftp0029']);
+        // // unset($allFiles['vftp0030']);
+        // // unset($allFiles['vftp0031']);
+        // // unset($allFiles['vftp0032']);
+        // // unset($allFiles['vftp0033']);
+        // unset($allFiles['vftp0034']);
+        // unset($allFiles['vftp0035']);
 
-            foreach($folder as $key => $selectedFile) { 
+        foreach($vftp->directories('/') as $folderKey => $vftpFolder) {
 
+            foreach($vftp->files('/'.$vftpFolder) as $key => $selectedFile) { 
+                // dd($vftp->get($selectedFile));
+                // dd($selectedFile);
                 $filepathArray = explode('/', $selectedFile);
                 $selectedFileName = end($filepathArray);
  
@@ -1138,10 +1141,10 @@ class InventoryController extends Controller
                      
 
                     // Open and Read individual CSV file
-                    if (($inpfile = fopen($filepath, 'r')) !== false) {
+                    if (($inpfile = fopen($vftp->get($selectedFile), 'r')) !== false) {
                         // Collect CSV each row records
                         $flag = 0;
-
+                        dd($inpfile);
                         // dd(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false,$selectedFileName);
 
                         if(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false){
