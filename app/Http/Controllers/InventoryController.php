@@ -89,7 +89,7 @@ class InventoryController extends Controller
 
     public function  getUploadInventories(Request $request){
         $db_ext = \DB::connection('sqlsrv');
-        $inv = $db_ext->table('inventories')->first();
+        $inv = $db_ext->table('inventories')->whereNotNull('updated_at')->count();
         dd($inv);
     }
 
