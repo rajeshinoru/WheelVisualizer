@@ -64,7 +64,7 @@ class InventoryAutoUpdate extends Command
         $tablename = "inventories";
 
                     \Log::info("Part No : ".$newData['partno']." location_code : ".$newData['location_code']);
-                    
+
         $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
         if($exists){

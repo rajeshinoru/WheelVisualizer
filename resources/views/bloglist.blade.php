@@ -40,7 +40,7 @@
                     <div class="caption">
                       <p class="para"><?=@$post->content?></p>
                     </div>
-                    <button class="blog btn"><a href="blogview">Read More</a></button>
+                    <button class="blog btn"><a href="{{url('/blogview')}}/{{base64_encode($post->id)}}">Read More</a></button>
                     <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
                 </div>
               </div>

@@ -32,7 +32,7 @@ Route::get('/wheelconfig', 'HomeController@wheelconfig')->name('wheelconfig');
 Route::get('/packagedeal', 'HomeController@packagedeal')->name('packagedeal');
 Route::get('/rimfinancing', 'HomeController@rimfinancing')->name('rimfinancing');
 Route::get('/bloglist', 'HomeController@bloglist')->name('bloglist');
-Route::get('/blogview', 'HomeController@blogview')->name('blogview');
+Route::get('/blogview/{id}', 'HomeController@blogview')->name('blogview');
 
 
 

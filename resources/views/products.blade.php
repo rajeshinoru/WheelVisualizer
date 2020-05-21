@@ -232,9 +232,11 @@
                                         @endif
                                         </div>
                                         <div class="button-group">
-                                            <button class="btn-cart" type="button" title="Add to Cart" href="{{url('/wheelproductview',$product->id)}}{{@$flag?'/'.$flag:''}}"><i class="fa fa-shopping-cart"></i>
+                                            <a href="{{url('/wheelproductview',$product->id)}}{{@$flag?'/'.$flag:''}}">
+                                            <button class="btn-cart" type="button" title="Add to Cart"><i class="fa fa-shopping-cart"></i>
                                                 <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
                                             </button>
+                                            </a>
                                             <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
                                                 <span title="Add to Wish List">Add to Wish List</span>
                                             </button>

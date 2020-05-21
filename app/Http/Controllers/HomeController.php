@@ -134,9 +134,11 @@ class HomeController extends Controller
         return view('bloglist',compact('posts')); 
     } 
 
-    public function blogview()
+    public function blogview($id)
     { 
-        return view('blogview'); 
+        $post = Post::find(base64_decode($id));
+        // dd($post);
+        return view('blogview',compact('post')); 
     } 
 
     public function vieworderstatus($orderid='')

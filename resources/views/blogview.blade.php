@@ -28,15 +28,10 @@
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 wheel-blog">
           <div class="thumbnail">
-              <h1><a href="">SUV Wheels: Niche Elan</a></h1>
-              <p>Posted <a href="">Jan-29-20</a> at 8:46 AM By <a href="">Dww</a></p>
-              <div class="caption">
-                <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p>
-              </div>
-              <img src="image/wheel.jpg" alt="Blog" style="width:25%">
-              <div class="caption">
-                <p>The Niche Elan is a great wheel style for drivers who take pride in their vehicle's looks. Sporting a modern, parallel-spoke design that passes over the outer lip, these robust street rims are a great way to add visual impact to your pickup truck or SUV. Elan custom wheels are currently available in 20-inch, 22-inch, and 24-inch sizes, and in your choice of chrome, full gloss black, or gloss black with milled accents. As you can see above, the latter option offers a striking contrast to accentuate your SUV's sleek yet magnificent looks. Robust and well-built, Niche Elan custom wheels are a great choice for the proud truck onwer.</p>
-                <p>When you're in search of stylish custom wheels for your truck, crossover, or SUV, you can always find great deals here at Discounted Wheel Warehouse.</p>
+              <h1><a href="">{{$post->title}}</a></h1>
+              <p>Posted <a href="">{{$post->created_at}} By <a href="">Dww</a></p>
+              <div class="caption"> 
+                <?=$post->content?>
               </div>
               <p> Posted in: <a href="">Wheels and Rims</a> | <a href="">Post a Comments</a></p>
           </div>
@@ -45,7 +40,7 @@
     </div>
 
 
-    <div class="blog-border2">
+    <div class="blog-border2 hide">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 wheel-blog-comment">
           <div class="thumbnail">
