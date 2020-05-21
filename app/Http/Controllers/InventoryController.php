@@ -185,7 +185,7 @@ class InventoryController extends Controller
 
                     $folderPath = explode('/', $file);
  
-                    $this->storeArr[$folderPath[6]][] = $file;
+                    $this->storeArr[$folderPath[8]][] = $file;
                     // array_push($this->storeArr[],$file);
                 }
             }
@@ -1047,41 +1047,19 @@ class InventoryController extends Controller
     
         $allFiles =array();
 
-        // $currentUrl = $_SERVER['HTTP_HOST'];
-
-        // if(strpos($currentUrl, 'localhost') == false){
-        //     $sourcePath ='/bala/Bala - web/Wheel Client/03_10_inventories_data/vftp_local'; 
-        //     $tablename = "inventories_test";
-        //     $allFiles = $this->recursiveScan($sourcePath,$this->storeArr);  
-        // }else{
-
-
-
             $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
-
-            // $host = env('VFTP_HOST','ftp.discountedwheelwarehouse.net');
-            // $username = env('VFTP_USERNAME','api');
-            // $password = env('VFTP_PASSWORD','862457Dev!'); 
-            // $ftpUrl = 'ftp://'.$username.':'.$password.'@'.$host.'/';
  
             $vftp = Storage::disk('vftp');
             $vftpFolders = $vftp->directories('/');
-
-            // dd($vftpFolders);
-            // foreach ($vftpFolders as $key => $vftpFolder) {
-            //     $allFiles[$vftpFolder] = $vftp->files('/'.$vftpFolder);  
-            //     // Storage::disk('public')->put(str_replace("outgoing/", "", $value), Storage::disk('vftp')->get($value));         
-            // } 
-        // }
-    foreach ($vftpFolders as $key => $vftpFolder) { 
-        foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
-            // dd($fileAddress);
-            Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
-        }
-    }  
+ 
+            foreach ($vftpFolders as $key => $vftpFolder) { 
+                foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
+                    // dd($fileAddress);
+                    Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
+                }
+            }  
         
 
-        dd("finished");
         // unset($allFiles['vftp0010']);
         // unset($allFiles['vftp0011']);
         // unset($allFiles['vftp0012']);
@@ -1109,48 +1087,37 @@ class InventoryController extends Controller
         // unset($allFiles['vftp0034']);
         // unset($allFiles['vftp0035']);
 
-        foreach($vftp->directories('/') as $folderKey => $vftpFolder) {
+        $allFiles = $this->recursiveScan(public_path('/storage/vftp'),$this->storeArr);
 
-            foreach($vftp->files('/'.$vftpFolder) as $key => $selectedFile) { 
-                // dd($vftp->get($selectedFile));
-                // dd($selectedFile);
+        foreach($allFiles as $folderKey => $vftpFolder) {
+
+            foreach($vftpFolder as $key => $selectedFile) {  
                 $filepathArray = explode('/', $selectedFile);
-                $selectedFileName = end($filepathArray);
- 
-                // ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030"]
+                $selectedFileName = end($filepathArray); 
+
                 if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
 
                     $isMigrate = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first(); 
                 }else{
                     $isMigrate = false;
-                } 
-                // if((!$isMigrate && (strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false))){
+                }  
 
                 if(!$isMigrate){
 
 
                     // $this->info("File Name : ",$selectedFile);
 
-                    $fields = $fieldsArray[$folderKey];
-
-                    // if(strpos($currentUrl, 'localhost') == false){
-                        // $filepath = $selectedFile;
-                    // }else{
-                        $filepath = $ftpUrl.$selectedFile;
-                    // }
-                     
+                    $fields = $fieldsArray[$folderKey]; 
 
                     // Open and Read individual CSV file
-                    if (($inpfile = fopen($vftp->get($selectedFile), 'r')) !== false) {
+                    if (($inpfile = fopen($selectedFile, 'r')) !== false) {
                         // Collect CSV each row records
-                        $flag = 0;
-                        dd($inpfile);
-                        // dd(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false,$selectedFileName);
+                        $flag = 0; 
 
                         if(strpos($selectedFileName, ".CSV") !== false || strpos($selectedFileName, ".csv") !== false){
 
                             while (($data = fgetcsv($inpfile, 10000)) !== false) {
-                                // dd($data);
+                                dd($data);
                                 if($flag != 0){
 
                                     if($folderKey == "vftp0030"){
@@ -1266,7 +1233,7 @@ class InventoryController extends Controller
                             \Excel::load($filepath, function($reader) {
                                 // $reader->ignoreEmpty();
                                 $results = $reader->get()->toArray();
-                                dd($results);
+                                // dd($results);
                                 foreach($results as $key => $data){
                                     if($flag != 0){
 
