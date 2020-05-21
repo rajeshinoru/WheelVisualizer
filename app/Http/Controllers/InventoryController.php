@@ -200,18 +200,18 @@ class InventoryController extends Controller
         $tablename = "inventories_test";
 
 
-        $exists = \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+        $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
         if($exists){
 
             $newData['updated_at']=\Carbon\Carbon::now();
-            \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
+            Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
         
         }else{
 
             $newData['created_at']=\Carbon\Carbon::now();
             $newData['updated_at']=\Carbon\Carbon::now();
-            \DB::table($tablename)->insert($newData);
+            Inventory::create($newData);
         
         
         }
