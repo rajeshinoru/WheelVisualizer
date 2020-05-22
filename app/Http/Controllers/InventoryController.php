@@ -198,7 +198,7 @@ class InventoryController extends Controller
 
 
         $table = "inventories"; 
-        
+
         $newData['created_at']=\Carbon\Carbon::now();
         $newData['updated_at']=\Carbon\Carbon::now();
 
@@ -226,7 +226,7 @@ class InventoryController extends Controller
 
         \DB::statement($query);
         
-        $db_ext->statement($query);
+        // $db_ext->statement($query);
 
 
 
@@ -279,6 +279,17 @@ class InventoryController extends Controller
 
     public function automationUpdate(Request $request)
     {
+
+        for ($i = 0; $i < $numberOfProcess; $i++) {
+             $process = new Process('php ' . base_path('artisan') . " task {$i}");
+             $process->setTimeout(0);
+             $process->disableOutput();
+             $process->start();
+             $processes[] = $process;
+        }
+
+
+
         ini_set('max_execution_time',39600);
         set_time_limit(39600);
 
@@ -1098,12 +1109,12 @@ class InventoryController extends Controller
         $vftp = Storage::disk('vftp');
         $vftpFolders = $vftp->directories('/');
 
-        // foreach ($vftpFolders as $key => $vftpFolder) { 
-        //     foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
-        //         // dd($fileAddress);
-        //         Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
-        //     }
-        // }  
+        foreach ($vftpFolders as $key => $vftpFolder) { 
+            foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
+                // dd($fileAddress);
+                Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
+            }
+        }  
         
 
         // unset($allFiles['vftp0010']);

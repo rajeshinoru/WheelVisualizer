@@ -106,7 +106,7 @@ class WheelProductController extends Controller
                     },'CarColor'])->first();
                 }
 
-                // dd($vehicle);
+                // dd($vehicle,$car_images);
                 $chassis_models = ChassisModel::where('model_id', $vehicle->dr_model_id)->first();
                 // dd($chassis_models);
 

@@ -966,34 +966,10 @@ class InventoryAutoUpdate extends Command
         }  
         
 
-        // unset($allFiles['vftp0010']);
-        // unset($allFiles['vftp0011']);
-        // unset($allFiles['vftp0012']);
-        // // unset($allFiles['vftp0013']);//Column converting Issue 
-        // // unset($allFiles['vftp0014']);
-        // // unset($allFiles['vftp0015']);
-        // // unset($allFiles['vftp0016']);
-        // // unset($allFiles['vftp0017']);
-        // // unset($allFiles['vftp0018']);
-        // // unset($allFiles['vftp0019']);
-        // // unset($allFiles['vftp0020']);
-        // // unset($allFiles['vftp0021']);
-        // unset($allFiles['vftp0022']);//Sheet converting Issue 
-        // // unset($allFiles['vftp0023']);
-        // // unset($allFiles['vftp0024']);
-        // // unset($allFiles['vftp0025']);
-        // // unset($allFiles['vftp0026']);
-        // // unset($allFiles['vftp0027']);
-        // // unset($allFiles['vftp0028']);
-        // // unset($allFiles['vftp0029']);
-        // // unset($allFiles['vftp0030']);
-        // // unset($allFiles['vftp0031']);
-        // // unset($allFiles['vftp0032']);
-        // // unset($allFiles['vftp0033']);
-        // unset($allFiles['vftp0034']);
-        // unset($allFiles['vftp0035']);
-
         $allFiles = $this->recursiveScan(public_path('/storage/vftp'),$this->storeArr);
+
+        unset($allFiles['vftp0034']);
+        unset($allFiles['vftp0035']);
 
         foreach($allFiles as $folderKey => $vftpFolder) {
 
