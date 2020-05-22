@@ -86,7 +86,7 @@ class InventoryAutoUpdate extends Command
         $exists = \DB::select($existQuery);
 
         if($exists){
-            $query = "UPDATE  {$table}  SET 'price' = '".$newData['price']."','available_qty' = '".$newData['available_qty']."','updated_at' = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
+            $query = "UPDATE  {$table}  SET price = '".$newData['price']."',available_qty = '".$newData['available_qty']."',updated_at = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
         }else{
             $query = "INSERT INTO {$table} ('{$columnsString}') VALUES ('{$valuesString}')";
         
