@@ -197,24 +197,69 @@ class InventoryController extends Controller
     public function inventoryFeedUpdate($newData,$db_ext){
 
 
-        $tablename = "inventories_test";
+        $table = "inventories_test"; 
+        $newData['created_at']=\Carbon\Carbon::now();
+        $newData['updated_at']=\Carbon\Carbon::now();
 
+        \Log::info("Log : ".$newData['partno']);
 
-        $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+        $columns = array_keys($newData);
+
+        $columnsString = implode("`,`", $columns);
+
+        $values = array_values($newData);
+        $valuesString = implode("','", $values);
+
+        // dd($valuesString,$columnsString);
+
+        $existQuery ="select partno,location_code from {$table} where partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
+
+        $exists = \DB::select($existQuery);
 
         if($exists){
-
-            $newData['updated_at']=\Carbon\Carbon::now();
-            Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
-        
+            $query = "UPDATE  {$table}  SET `price` = '".$newData['price']."',`available_qty` = '".$newData['available_qty']."',`updated_at` = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
         }else{
-
-            $newData['created_at']=\Carbon\Carbon::now();
-            $newData['updated_at']=\Carbon\Carbon::now();
-            Inventory::create($newData);
-        
+            $query = "INSERT INTO {$table} (`{$columnsString}`) VALUES ('{$valuesString}')";
         
         }
+        
+        \DB::statement($query);
+        
+        $db_ext->statement($query);
+
+
+
+
+        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+
+
+        // if($sap_exists){
+        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        // }else{
+
+        //     $db_ext->table('inventories')->insert($newData);   
+        // }
+
+
+
+
+        // $this->insertOrUpdate('inventories_test', array($newData),$exclude);
+
+        // $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+
+        // if($exists){
+
+        //     $newData['updated_at']=\Carbon\Carbon::now();
+        //     Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
+        
+        // }else{
+
+        //     $newData['created_at']=\Carbon\Carbon::now();
+        //     $newData['updated_at']=\Carbon\Carbon::now();
+        //     Inventory::create($newData);
+        
+        
+        // }
 
         // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
 
@@ -1052,12 +1097,12 @@ class InventoryController extends Controller
         $vftp = Storage::disk('vftp');
         $vftpFolders = $vftp->directories('/');
 
-        foreach ($vftpFolders as $key => $vftpFolder) { 
-            foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
-                // dd($fileAddress);
-                Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
-            }
-        }  
+        // foreach ($vftpFolders as $key => $vftpFolder) { 
+        //     foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
+        //         // dd($fileAddress);
+        //         Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
+        //     }
+        // }  
         
 
         // unset($allFiles['vftp0010']);
@@ -1364,12 +1409,54 @@ class InventoryController extends Controller
         return "success";
     }
 
-    // public function automationUpdate(Request $request){
 
-    //     $this->listFolderFiles('/bala/Bala - web/Wheel Client/03_10_inventories_data');
-    // }
+    public function insertOrUpdate($table, $rows, array $exclude = [])
+    {
+        // We assume all rows have the same keys so we arbitrarily pick one of them.
+        $columns = array_keys($rows[0]);
 
+        $columnsString = implode('`,`', $columns);
+        $values = $this->buildSQLValuesFrom($rows);
+        $updates = $this->buildSQLUpdatesFrom($columns, $exclude);
+        $params = array_flatten($rows);
 
+        $query = "insert into {$table} (`{$columnsString}`) values {$values} on duplicate key update {$updates}";
+        // dd($query);
+        $res = \DB::statement($query, $params);
 
+    }
+
+    /**
+     * Build proper SQL string for the values.
+     *
+     * @param array $rows
+     * @return string
+     */
+    protected function buildSQLValuesFrom(array $rows)
+    {
+        $values = collect($rows)->reduce(function ($valuesString, $row) {
+            return $valuesString .= '(' . rtrim(str_repeat("?,", count($row)), ',') . '),';
+        }, '');
+
+        return rtrim($values, ',');
+    }
+
+    /**
+     * Build proper SQL string for the on duplicate update scenario.
+     *
+     * @param       $columns
+     * @param array $exclude
+     * @return string
+     */
+    protected function buildSQLUpdatesFrom($columns, array $exclude)
+    {
+        $updateString = collect($columns)->reject(function ($column) use ($exclude) {
+            return in_array($column, $exclude);
+        })->reduce(function ($updates, $column) {
+            return $updates .= "`{$column}`=VALUES(`{$column}`),";
+        }, '');
+
+        return trim($updateString, ',');
+    }
 
 }

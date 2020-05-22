@@ -60,41 +60,73 @@ class InventoryAutoUpdate extends Command
 
     public function inventoryFeedUpdate($newData,$db_ext){
 
+ 
 
-        $tablename = "inventories";
+        \Log::info("Part No : ".$newData['partno']." location_code : ".$newData['location_code']);
 
-                    \Log::info("Part No : ".$newData['partno']." location_code : ".$newData['location_code']);
 
-        $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+        $table = "inventories"; 
+
+        $newData['created_at']=\Carbon\Carbon::now();
+        $newData['updated_at']=\Carbon\Carbon::now();
+
+        // \Log::info("Log : ".$newData['partno']);
+
+        $columns = array_keys($newData);
+
+        $columnsString = implode("`,`", $columns);
+
+        $values = array_values($newData);
+        $valuesString = implode("','", $values);
+
+        // dd($valuesString,$columnsString);
+
+        $existQuery ="select partno,location_code from {$table} where partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
+
+        $exists = \DB::select($existQuery);
 
         if($exists){
-
-            $newData['updated_at']=\Carbon\Carbon::now();
-            Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
-        
+            $query = "UPDATE  {$table}  SET `price` = '".$newData['price']."',`available_qty` = '".$newData['available_qty']."',`updated_at` = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
         }else{
-
-            $newData['created_at']=\Carbon\Carbon::now();
-            $newData['updated_at']=\Carbon\Carbon::now();
-            Inventory::create($newData);
-        
+            $query = "INSERT INTO {$table} (`{$columnsString}`) VALUES ('{$valuesString}')";
         
         }
+        
+        \DB::statement($query);
+        
+        $db_ext->statement($query);
 
 
-        // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
+        // $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+
+        // if($exists){
+
+        //     $newData['updated_at']=\Carbon\Carbon::now();
+        //     Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
+        
+        // }else{
+
+        //     $newData['created_at']=\Carbon\Carbon::now();
+        //     $newData['updated_at']=\Carbon\Carbon::now();
+        //     Inventory::create($newData);
+        
+        
+        // }
+
+
+        // // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
 
 
 
-        $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
 
-        if($sap_exists){
-            $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-        }else{
+        // if($sap_exists){
+        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        // }else{
 
-            $db_ext->table('inventories')->insert($newData);   
-        }
+        //     $db_ext->table('inventories')->insert($newData);   
+        // }
 
 
     }
