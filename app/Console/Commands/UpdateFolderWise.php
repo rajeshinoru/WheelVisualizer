@@ -40,8 +40,7 @@ class UpdateFolderWise extends Command
     }
 
     public $storeArr=array();
-
-    public $currentFolder="";
+ 
 
     public function recursiveScan($dir,$storeArr) {
         $tree = glob(rtrim($dir, '/') . '/*');
@@ -63,7 +62,7 @@ class UpdateFolderWise extends Command
         return $this->storeArr;
     }
 
-    public function inventoryFeedUpdate($newData,$db_ext){
+    public function inventoryFeedUpdate($currentFolder,$newData,$db_ext){
 
  
 
@@ -143,8 +142,10 @@ class UpdateFolderWise extends Command
     {
   
 
-        $folderKey = $this->argument('folder');
+        $folderKey = $this->argument('folder'); 
+
         $currentFolder = $folderKey;
+
 
         \Log::info("FOLDER NAME ".$folderKey);
 
@@ -1036,7 +1037,7 @@ class UpdateFolderWise extends Command
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
                                     $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
+                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                                 }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
 
@@ -1050,7 +1051,7 @@ class UpdateFolderWise extends Command
                                         $insertData['location_name']=$vendor[2]; 
                                        
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
+                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                                     }
                                     
@@ -1070,7 +1071,7 @@ class UpdateFolderWise extends Command
                                         $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
                                         $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);                                    
+                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
                                 }elseif($folderKey == "vftp0013"){
 
@@ -1081,7 +1082,7 @@ class UpdateFolderWise extends Command
                                     $insertData['location_name']=$vendor_info[$folderKey][2];
 
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
+                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                                 }elseif($folderKey == "vftp0028"){ 
 
@@ -1097,7 +1098,7 @@ class UpdateFolderWise extends Command
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
 
-                                    $this->inventoryFeedUpdate($insertData,$db_ext);
+                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
                                     }
                                     
                                 }
@@ -1150,7 +1151,7 @@ class UpdateFolderWise extends Command
                         //                 $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
                         //                 $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
                         //                 $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
-                        //                 $this->inventoryFeedUpdate($insertData,$db_ext);
+                        //                 $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                         //             }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
 
@@ -1164,7 +1165,7 @@ class UpdateFolderWise extends Command
                         //                     $insertData['location_name']=$vendor[2]; 
                                            
 
-                        //                 $this->inventoryFeedUpdate($insertData,$db_ext);
+                        //                 $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                         //                 }
                                         
@@ -1184,7 +1185,7 @@ class UpdateFolderWise extends Command
                         //                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
                         //                     $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
 
-                        //                 $this->inventoryFeedUpdate($insertData,$db_ext);                                    
+                        //                 $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
                         //             }elseif($folderKey == "vftp0013"){
 
@@ -1195,7 +1196,7 @@ class UpdateFolderWise extends Command
                         //                 $insertData['location_name']=$vendor_info[$folderKey][2];
 
 
-                        //                 $this->inventoryFeedUpdate($insertData,$db_ext);
+                        //                 $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                         //             }elseif($folderKey == "vftp0028"){ 
 
@@ -1211,7 +1212,7 @@ class UpdateFolderWise extends Command
                         //                     $insertData['ds_vendor_code']=$vendor[1];
                         //                     $insertData['location_name']=$vendor[2]; 
 
-                        //                 $this->inventoryFeedUpdate($insertData,$db_ext);
+                        //                 $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
                         //                 }
                                         
                         //             }
