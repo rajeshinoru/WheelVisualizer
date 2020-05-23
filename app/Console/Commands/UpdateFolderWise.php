@@ -41,6 +41,8 @@ class UpdateFolderWise extends Command
 
     public $storeArr=array();
 
+    public $currentFolder="";
+
     public function recursiveScan($dir,$storeArr) {
         $tree = glob(rtrim($dir, '/') . '/*');
   
@@ -65,7 +67,7 @@ class UpdateFolderWise extends Command
 
  
 
-        \Log::info("Part No : ".$newData['partno']." location_code : ".$newData['location_code']);
+        \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
 
         $table = "inventories"; 
@@ -73,7 +75,7 @@ class UpdateFolderWise extends Command
         $newData['created_at']=\Carbon\Carbon::now();
         $newData['updated_at']=\Carbon\Carbon::now();
 
-        \Log::info("Log : ".$newData['partno']);
+        // \Log::info("Log : ".$newData['partno']);
 
         $columns = array_keys($newData);
 
@@ -142,6 +144,7 @@ class UpdateFolderWise extends Command
   
 
         $folderKey = $this->argument('folder');
+        $currentFolder = $folderKey;
 
         \Log::info("FOLDER NAME ".$folderKey);
 
