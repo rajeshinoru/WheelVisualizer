@@ -78,7 +78,7 @@ class UpdateFolderWise extends Command
 
         $columns = array_keys($newData);
 
-        $columnsString = implode("','", $columns);
+        $columnsString = implode(",", $columns);
 
         $values = array_values($newData);
         $valuesString = implode("','", $values);
@@ -92,7 +92,7 @@ class UpdateFolderWise extends Command
         if($exists){
             $query = "UPDATE  {$table}  SET price = '".$newData['price']."',available_qty = '".$newData['available_qty']."',updated_at = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
         }else{
-            $query = "INSERT INTO {$table} ('{$columnsString}') VALUES ('{$valuesString}')";
+            $query = "INSERT INTO {$table} ({$columnsString}) VALUES ('{$valuesString}')";
         
         }
 
@@ -968,6 +968,8 @@ class UpdateFolderWise extends Command
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
  
+
+
 
         // dd($allFiles);
         foreach ($allFiles as $index => $selectedFile) { 

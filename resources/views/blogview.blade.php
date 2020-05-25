@@ -40,7 +40,7 @@
     </div>
 
 
-    <div class="blog-border2 hide">
+    <div class="blog-border2">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 wheel-blog-comment">
           <div class="thumbnail">

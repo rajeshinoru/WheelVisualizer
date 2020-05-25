@@ -177,3 +177,9 @@ Route::resource('enquiry', 'EnquiryController');
 
 Route::post('/review', 'FeedbackController@store')->name('review.store');
 Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
+
+
+
+Route::get('/InventoryCommand',function(){
+        \Artisan::call('autoupdate:inventories');
+});

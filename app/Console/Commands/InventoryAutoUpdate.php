@@ -940,6 +940,9 @@ class InventoryAutoUpdate extends Command
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp'),$this->storeArr);
 
+        unset($allFiles['vftp0020']);
+        unset($allFiles['vftp0021']);
+        unset($allFiles['vftp0025']);
         unset($allFiles['vftp0034']);
         unset($allFiles['vftp0035']);
 
