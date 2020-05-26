@@ -1068,7 +1068,7 @@ class UpdateFolderWise extends Command
                                             $locName = $filenameArray[2];
                                         }
 
-
+                                        $insertData['location_code']=$locName;
                                         $insertData['drop_shipper']=$vendor_info[$folderKey][$locName][0];
                                         $insertData['ds_vendor_code']=$vendor_info[$folderKey][$locName][1];
                                         $insertData['location_name']=$vendor_info[$folderKey][$locName][2]; 
