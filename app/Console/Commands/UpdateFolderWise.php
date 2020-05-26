@@ -76,46 +76,46 @@ class UpdateFolderWise extends Command
 
         // \Log::info("Log : ".$newData['partno']);
 
-        $columns = array_keys($newData);
+        // $columns = array_keys($newData);
 
-        $columnsString = implode(",", $columns);
+        // $columnsString = implode(",", $columns);
 
-        $values = array_values($newData);
-        $valuesString = implode("','", $values);
+        // $values = array_values($newData);
+        // $valuesString = implode("','", $values);
 
         // dd($valuesString,$columnsString);
 
-        $existQuery ="select partno,location_code from {$table} where partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
+        // $existQuery ="select partno,location_code from {$table} where partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
 
-        $exists = \DB::select($existQuery);
+        // $exists = \DB::select($existQuery);
 
-        if($exists){
-            $query = "UPDATE  {$table}  SET price = '".$newData['price']."',available_qty = '".$newData['available_qty']."',updated_at = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
-        }else{
-            $query = "INSERT INTO {$table} ({$columnsString}) VALUES ('{$valuesString}')";
+        // if($exists){
+        //     $query = "UPDATE  {$table}  SET price = '".$newData['price']."',available_qty = '".$newData['available_qty']."',updated_at = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
+        // }else{
+        //     $query = "INSERT INTO {$table} ({$columnsString}) VALUES ('{$valuesString}')";
         
-        }
+        // }
 
-        \DB::statement($query);
+        // \DB::statement($query);
         
         // $db_ext->statement($query);
 
 
-        // $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+        $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
-        // if($exists){
+        if($exists){
 
-        //     $newData['updated_at']=\Carbon\Carbon::now();
-        //     Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
+            $newData['updated_at']=\Carbon\Carbon::now();
+            Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
         
-        // }else{
+        }else{
 
-        //     $newData['created_at']=\Carbon\Carbon::now();
-        //     $newData['updated_at']=\Carbon\Carbon::now();
-        //     Inventory::create($newData);
+            $newData['created_at']=\Carbon\Carbon::now();
+            $newData['updated_at']=\Carbon\Carbon::now();
+            Inventory::create($newData);
         
         
-        // }
+        }
 
 
         // // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
@@ -149,8 +149,8 @@ class UpdateFolderWise extends Command
 
         \Log::info("FOLDER NAME ".$folderKey);
 
-        ini_set('max_execution_time',39600);
-        set_time_limit(39600);
+        ini_set('max_execution_time',1200);
+        set_time_limit(1200);
 
         $fieldsArray = array(
 
@@ -963,7 +963,7 @@ class UpdateFolderWise extends Command
     
         $allFiles =array();
 
-        $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
+        // $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
 
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
