@@ -116,23 +116,23 @@ class InventoryAutoUpdate extends Command
 
         $foldersArray = array(
             "vftp0010",
-            "vftp0011",
-            "vftp0012",
-            "vftp0013",
-            "vftp0014",
-            "vftp0015",
-            "vftp0016",
-            "vftp0017",
-            "vftp0018",
-            "vftp0022",
-            "vftp0023",
-            "vftp0027",
-            "vftp0028",
-            "vftp0029",
-            "vftp0030",
-            "vftp0031",
-            "vftp0032",
-            "vftp0033"
+            // "vftp0011",
+            // "vftp0012",
+            // "vftp0013",
+            // "vftp0014",
+            // "vftp0015",
+            // "vftp0016",
+            // "vftp0017",
+            // "vftp0018",
+            // "vftp0022",
+            // "vftp0023",
+            // "vftp0027",
+            // "vftp0028",
+            // "vftp0029",
+            // "vftp0030",
+            // "vftp0031",
+            // "vftp0032",
+            // "vftp0033"
         );
 
         // $vendor_info = array(
