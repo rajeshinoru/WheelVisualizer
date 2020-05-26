@@ -62,7 +62,7 @@ class UpdateFolderWise extends Command
         return $this->storeArr;
     }
 
-    public function inventoryFeedUpdate($currentFolder,$newData,$db_ext){
+    public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){
 
  
 
@@ -964,7 +964,7 @@ class UpdateFolderWise extends Command
         $allFiles =array();
 
         // $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
-
+        $db_ext='';
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
  
