@@ -98,7 +98,7 @@ class UpdateFolderWise extends Command
 
         \DB::statement($query);
         
-        $db_ext->statement($query);
+        // $db_ext->statement($query);
 
 
         // $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
