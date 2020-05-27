@@ -80,21 +80,23 @@ class UpdateFolderWise extends Command
             $newData['updated_at']=\Carbon\Carbon::now();
 
 
-            $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+            Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
 
-            if($exists){
+            // $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
-                $newData['updated_at']=\Carbon\Carbon::now();
-                Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
-            
-            }else{
+            // if($exists){
 
-                $newData['created_at']=\Carbon\Carbon::now();
-                $newData['updated_at']=\Carbon\Carbon::now();
-                Inventory::create($newData);
+            //     $newData['updated_at']=\Carbon\Carbon::now();
+            //     Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
+            
+            // }else{
+
+            //     $newData['created_at']=\Carbon\Carbon::now();
+            //     $newData['updated_at']=\Carbon\Carbon::now();
+            //     Inventory::create($newData);
             
             
-            }
+            // }
 
         }else{
  
@@ -115,18 +117,21 @@ class UpdateFolderWise extends Command
                 $data['created_at']=\Carbon\Carbon::now();
                 $data['updated_at']=\Carbon\Carbon::now();
 
-                $exists = Inventory::where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 
-                if($exists){
-                    $queryString .= "UPDATE  `{$table}`  SET `price` = '".$data['price']."',`available_qty` = '".$data['available_qty']."',`updated_at` = '".$data['updated_at']."' WHERE `partno`='".$data['partno']."' and `location_code`='".$data['location_code']."';";
-                }else{
-                    $queryString .= "INSERT INTO `{$table}` (`{$columnsString}`) VALUES ('{$valuesString}');";
+
+                Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data );
+                // $exists = Inventory::where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
+
+                // if($exists){
+                //     $queryString .= "UPDATE  `{$table}`  SET `price` = '".$data['price']."',`available_qty` = '".$data['available_qty']."',`updated_at` = '".$data['updated_at']."' WHERE `partno`='".$data['partno']."' and `location_code`='".$data['location_code']."';";
+                // }else{
+                //     $queryString .= "INSERT INTO `{$table}` (`{$columnsString}`) VALUES ('{$valuesString}');";
                 
-                }
+                // }
 
             }
             // dd($queryString);
-            \DB::statement($queryString);
+            // \DB::statement($queryString);
 
 
         }
@@ -1147,7 +1152,7 @@ class UpdateFolderWise extends Command
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
 
-                                        
+
                                         $insertDataArray[]=$insertData;
 
                                     }
