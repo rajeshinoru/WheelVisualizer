@@ -66,13 +66,70 @@ class UpdateFolderWise extends Command
 
  
 
-        \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
 
         $table = "inventories"; 
         
-        $newData['created_at']=\Carbon\Carbon::now();
-        $newData['updated_at']=\Carbon\Carbon::now();
+
+        if(array_keys($newData) !== range(0, count($newData) - 1)) {
+
+
+            \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
+
+            $newData['created_at']=\Carbon\Carbon::now();
+            $newData['updated_at']=\Carbon\Carbon::now();
+
+
+            $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+
+            if($exists){
+
+                $newData['updated_at']=\Carbon\Carbon::now();
+                Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
+            
+            }else{
+
+                $newData['created_at']=\Carbon\Carbon::now();
+                $newData['updated_at']=\Carbon\Carbon::now();
+                Inventory::create($newData);
+            
+            
+            }
+
+        }else{
+ 
+
+            $columns = array_keys($newData[0]);
+
+            $columnsString = implode("`,`", $columns);
+
+            $values = array_values($newData[0]);
+            $valuesString = implode("','", $values);
+
+            $queryString = ""; 
+            // dd($newData);
+            foreach ($newData as $key => $data) {
+                
+                \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
+
+                $data['created_at']=\Carbon\Carbon::now();
+                $data['updated_at']=\Carbon\Carbon::now();
+
+                $exists = Inventory::where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
+
+                if($exists){
+                    $queryString .= "UPDATE  `{$table}`  SET `price` = '".$data['price']."',`available_qty` = '".$data['available_qty']."',`updated_at` = '".$data['updated_at']."' WHERE `partno`='".$data['partno']."' and `location_code`='".$data['location_code']."';";
+                }else{
+                    $queryString .= "INSERT INTO `{$table}` (`{$columnsString}`) VALUES ('{$valuesString}');";
+                
+                }
+
+            }
+            // dd($queryString);
+            \DB::statement($queryString);
+
+
+        }
 
         // \Log::info("Log : ".$newData['partno']);
 
@@ -101,21 +158,6 @@ class UpdateFolderWise extends Command
         // $db_ext->statement($query);
 
 
-        $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
-
-        if($exists){
-
-            $newData['updated_at']=\Carbon\Carbon::now();
-            Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
-        
-        }else{
-
-            $newData['created_at']=\Carbon\Carbon::now();
-            $newData['updated_at']=\Carbon\Carbon::now();
-            Inventory::create($newData);
-        
-        
-        }
 
 
         // // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
@@ -1042,7 +1084,7 @@ class UpdateFolderWise extends Command
                                     $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                                 }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031"){ 
-
+                                    $insertDataArray=[];
 
                                     foreach ($vendor_info[$folderKey] as $key => $vendor) { 
                                         $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
@@ -1051,12 +1093,15 @@ class UpdateFolderWise extends Command
                                         $insertData['drop_shipper']=$vendor[0];
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
-                                       
+                                        $insertDataArray[]=$insertData;
 
-                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                                     }
                                     
+                                    // dd($insertDataArray);
+
+                                    $this->inventoryFeedUpdate($currentFolder,$insertDataArray,$db_ext);
+
                                 }elseif($folderKey == "vftp0012" || $folderKey == "vftp0029"  ){
 
                                         $fullfile = explode('/', $selectedFile);
@@ -1090,6 +1135,8 @@ class UpdateFolderWise extends Command
 
      
                                     $insertData['partno'] = preg_replace("/[^A-Za-z0-9]/", '',$insertData['partno']);
+                                     $insertDataArray=[];
+
                                     foreach ($vendor_info[$folderKey] as $key => $vendor) { 
                                         $insertData['available_qty']=$dataValue[$fieldsArray[$folderKey]['available_qty'][$key]]; 
                                         $insertData['location_code']=$key; 
@@ -1100,9 +1147,12 @@ class UpdateFolderWise extends Command
                                         $insertData['ds_vendor_code']=$vendor[1];
                                         $insertData['location_name']=$vendor[2]; 
 
-                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
+                                        
+                                        $insertDataArray[]=$insertData;
+
                                     }
                                     
+                                    $this->inventoryFeedUpdate($currentFolder,$insertDataArray,$db_ext);
                                 }
                             }
                             $flag=1;
