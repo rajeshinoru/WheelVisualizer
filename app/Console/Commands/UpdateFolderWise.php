@@ -64,9 +64,6 @@ class UpdateFolderWise extends Command
 
     public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){
 
- 
-
-
 
         $table = "inventories"; 
         
@@ -81,22 +78,7 @@ class UpdateFolderWise extends Command
 
 
             Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
-
-            // $exists = Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
-
-            // if($exists){
-
-            //     $newData['updated_at']=\Carbon\Carbon::now();
-            //     Inventory::where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData);
-            
-            // }else{
-
-            //     $newData['created_at']=\Carbon\Carbon::now();
-            //     $newData['updated_at']=\Carbon\Carbon::now();
-            //     Inventory::create($newData);
-            
-            
-            // }
+ 
 
         }else{
  
@@ -993,11 +975,12 @@ class UpdateFolderWise extends Command
         $db_ext='';
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
- 
 
+        if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
 
+            $allFiles = array(end($allFiles));
+        }
 
-        // dd($allFiles);
         foreach ($allFiles as $index => $selectedFile) { 
 
             // dd($selectedFile);
@@ -1005,14 +988,15 @@ class UpdateFolderWise extends Command
             $filepathArray = explode('/', $selectedFile);
             $selectedFileName = end($filepathArray); 
 
-            if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
+            // if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
 
-                $isMigrate = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first(); 
-            }else{
-                $isMigrate = false;
-            }  
+            //     $isMigrate = InventoryMigration::where('foldername',$folderKey)->where('filename',$selectedFileName)->first(); 
+            // }else{
+            //     $isMigrate = false;
+            // }  
 
-            if(!$isMigrate){
+            // if(!$isMigrate){
+
 
                 $fields = $fieldsArray[$folderKey]; 
 
@@ -1281,7 +1265,8 @@ class UpdateFolderWise extends Command
                     }
                 }
 
-            }
+            
+            // }
         } 
     }
 }
