@@ -1560,27 +1560,29 @@ public function vftp_to_sql_test($filename){
        
         // $excelData = \Excel::load($excelFile)->get()->toArray();
 
-    $test=Excel::selectSheets('wheel_products')->load($excelFile, function($reader) {
-        $reader->ignoreEmpty();
-        $results = $reader->get()->toArray();
- 
-        foreach($results as $key => $row){
-            $pro = WheelProduct::where('partno',$row['partno'])->first();
-            $pro->partno_old =  $row['partno_old'];
-            $pro->updated_at =  \Carbon\Carbon::now(); 
-            $pro->save(); 
-            echo "<br>{$key} - ID:".$pro->id;
-                 
-        }
-    })->get();
-        // foreach($excelData as $key => $value){
-        //     $pro = WheelProduct::where('partno',$value['partno'])->first();
-        //     $pro->prodimage =  $value['prodimage'];
-        //     $pro->save(); 
-        //     echo "<br>ID:".$pro->id;
-                 
-        // }
+        $test=Excel::selectSheets('wheel_products')->load($excelFile, function($reader) {
+            $reader->ignoreEmpty();
+            $results = $reader->get()->toArray();
+     
+            foreach($results as $key => $row){
+                $pro = WheelProduct::where('partno',$row['partno'])->first();
+                $pro->partno_old =  $row['partno_old'];
+                $pro->updated_at =  \Carbon\Carbon::now(); 
+                $pro->save(); 
+                echo "<br>{$key} - ID:".$pro->id;
+                     
+            }
+        })->get(); 
         
+        
+    }
+
+
+    public function findMisMatchedWheels()
+    { 
+        
+            $wheelproducts = WheelProduct::has('wheel')->get(); 
+            dd($wheelproducts);
         
     }
 

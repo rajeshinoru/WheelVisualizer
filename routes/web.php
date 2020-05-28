@@ -85,6 +85,7 @@ Route::get('/tsf', 'HomeController@tsf');
 Route::get('/canvas', 'HomeController@canvas');
 Route::get('/runPython', 'HomeController@runPython');
 Route::get('/upodateWheelsPartNo', 'HomeController@upodateWheelsPartNo');
+Route::get('/findMisMatchedWheels', 'HomeController@findMisMatchedWheels');
 
 Route::get('/UploadInventories', 'InventoryController@UploadInventories');
 
