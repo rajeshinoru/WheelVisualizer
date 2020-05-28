@@ -1510,23 +1510,22 @@ public function vftp_to_sql_test($filename){
 
 
 
-public function runPython(Request $request){ 
+    public function runPython(Request $request){ 
 
-    
-    // python3 detect_circles.py --image images/car.png
-    // dd("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
-    $process = new Process("python3 ".public_path()."/js/detect-wheel.py ".$request->image." ".public_path()." ".$request->carid);
+        // python3 detect_circles.py --image images/car.png
+        // dd("python3 ".public_path()."/js/detect-wheel.py --image ".$request->image);
+        $process = new Process("python3 ".public_path()."/js/detect-wheel.py ".$request->image." ".public_path()." ".$request->carid);
 
-    $process->run(); 
+        $process->run(); 
 
-    // executes after the command finishes
-    if (!$process->isSuccessful()) {
-        throw new ProcessFailedException($process);
-    }
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
 
-    return response()->json($process->getOutput());
-    // return $process->getOutput();
-    // Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
+        return response()->json($process->getOutput());
+        // return $process->getOutput();
+        // Result (string): {'neg': 0.204, 'neu': 0.531, 'pos': 0.265, 'compound': 0.1779}
     }
 
 
@@ -1548,6 +1547,39 @@ public function runPython(Request $request){
                  
         }
     })->get();
+        
+        
+    }
+
+
+
+
+    public function upodateWheelsPartNo()
+    { 
+        $excelFile = public_path('/storage/wheel_products_match-with-partno_old-in-wheels.xlsx');
+       
+        // $excelData = \Excel::load($excelFile)->get()->toArray();
+
+    $test=Excel::selectSheets('wheel_products')->load($excelFile, function($reader) {
+        $reader->ignoreEmpty();
+        $results = $reader->get()->toArray();
+ 
+        foreach($results as $key => $row){
+            $pro = WheelProduct::where('partno',$row['partno'])->first();
+            $pro->partno_old =  $row['partno_old'];
+            $pro->updated_at =  \Carbon\Carbon::now(); 
+            $pro->save(); 
+            echo "<br>{$key} - ID:".$pro->id;
+                 
+        }
+    })->get();
+        // foreach($excelData as $key => $value){
+        //     $pro = WheelProduct::where('partno',$value['partno'])->first();
+        //     $pro->prodimage =  $value['prodimage'];
+        //     $pro->save(); 
+        //     echo "<br>ID:".$pro->id;
+                 
+        // }
         
         
     }
