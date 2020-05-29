@@ -1581,7 +1581,18 @@ public function vftp_to_sql_test($filename){
     public function findMisMatchedWheels()
     { 
         
-            $wheelproducts = WheelProduct::has('wheel')->get(); 
+            $wheelproducts = WheelProduct::doesnthave('wheel')->get(); 
+
+            foreach ($wheelproducts as $key => $product) {
+                $url = getWheelProductImage(@$product->prodimage);
+                // dd($url);
+                if(getWheelProductImage(@$product->prodimage)){
+                    $res = \File::copy($url,base_path('storage/app/public/crop/').$product->prodimage);                    
+                }
+
+                // dd($res);
+            }
+
             dd($wheelproducts);
         
     }

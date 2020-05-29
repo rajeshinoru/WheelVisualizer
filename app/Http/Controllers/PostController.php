@@ -46,7 +46,11 @@ class PostController extends Controller
                 $data['postby']='Admin';
 
                 $post = Post::create($data);  
-                $post->image = $request->image->store('posts');
+                
+                if($request->image){
+                    $post->image = $request->image->store('posts');
+                }
+
                 $post->save();
 
                 return back()->with('success','Post Created Successfully!!');
@@ -87,7 +91,28 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        // dd($post,$request->all());
+
+        $this->validate($request, [
+            'title'=>'required|max:255',
+            'content'=>'required|min:1', 
+        ]);
+        try{  
+                $post->title = $request->title;
+                $post->content = $request->content;
+                $post->is_visible = $request->is_visible;
+                
+                if($request->image){
+                    $post->image = $request->image->store('posts');
+                }
+                
+                $post->save();
+
+                return back()->with('success','Post Updated Successfully!!');
+
+            }catch(Exception $e){
+                return back()->withInput(Input::all())->with('error',$e->getMessage());
+            }
     }
 
     /**
@@ -98,6 +123,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        try{  
+            
+            $post->delete();
+
+            return back()->with('success','Post Deleted Successfully!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
     }
 }

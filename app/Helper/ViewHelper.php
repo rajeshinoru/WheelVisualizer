@@ -335,6 +335,25 @@ function ViewWheelProductImage($url=''){
 
 }
 
+function getWheelProductImage($url=''){
+	if($url != ''){
+		$wheel_products_url="storage/app/public/wheel_products/".$url;
+		$misc_url="storage/app/public/misc_images/".$url;
+		if(file_exists(base_path($wheel_products_url))){
+			return base_path($wheel_products_url);
+		}else{
+			if(file_exists(base_path($misc_url))){
+				return base_path($misc_url);
+			}else{
+				return false;
+			}
+		}
+	}else{
+			return false;
+	}
+
+}
+
 //***************************** Discount Wheels - Products Ends*************************************//
 
 

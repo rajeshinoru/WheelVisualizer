@@ -6,8 +6,7 @@ $(document).ready(function() {
 });
 
 $('form').submit(function(){
-	// console.log($('.summernote'))
-	if($('.summernote')){
+	if($(this).find('.summernote').length){
 
 		$('.summernote').each(function( index ) {
 			// alert($( this ).code());
