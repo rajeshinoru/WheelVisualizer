@@ -80,23 +80,25 @@
                         </li>
 
                         <li>
-                            <a  href="{{url('admin/wheel')}}" aria-expanded="false"><i class="fa fa-cogs "></i> Wheels  </a>
-                        </li>
-                        <li>
-                            <a  href="{{url('admin/car')}}" aria-expanded="false"><i class="fa fa-car "></i> Cars  </a>
-                        </li>
-                        <li>
-                            <a  href="{{url('admin/brands')}}" aria-expanded="false"><i class="fa fa-list "></i> Brands  </a>
+                            <a  href="{{url('admin/car')}}" aria-expanded="false"><i class="fa fa-car "></i> Cars   </a>
                         </li>
 
                         <li>
+                            <a  href="{{url('admin/wheel')}}" aria-expanded="false"><i class="fa fa-cogs "></i> Wheels  </a>
+                        </li>
+                        <li>
                             <a  href="{{url('admin/wheelproduct')}}" aria-expanded="false"><i class="fa fa-list "></i> Wheel Products  </a>
                         </li>
+
+
 
                         <li>
                             <a  href="{{url('admin/tire')}}" aria-expanded="false"><i class="fa fa-list "></i> Tires  </a>
                         </li>
 
+                        <li>
+                            <a  href="{{url('admin/brands')}}" aria-expanded="false"><i class="fa fa-list "></i> Tire Brands  </a>
+                        </li>
                         <li>
                             <a  href="{{url('admin/metakeywords')}}" aria-expanded="false"><i class="fa fa-tag "></i>  Meta Keywords   </a>
                         </li> 

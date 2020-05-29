@@ -14,7 +14,7 @@ class PostCommentController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -34,8 +34,31 @@ class PostCommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
-        //
+
+        // dd($request->all());
+        $request->validate([
+
+            'content'=>'required',
+
+        ]);
+
+   
+
+        $input = $request->all();
+
+        $input['user_id'] = @auth()->user()->id??null;
+        $input['comment_by'] = $request->name??'';
+
+    
+
+        PostComment::create($input);
+
+   
+
+        return back();
+
     }
 
     /**

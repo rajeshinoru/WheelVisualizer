@@ -177,6 +177,9 @@ Route::resource('order', 'OrderController');
 Route::resource('enquiry', 'EnquiryController');
 
 
+Route::resource('comment', 'PostCommentController');
+
+
 Route::post('/review', 'FeedbackController@store')->name('review.store');
 Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
 

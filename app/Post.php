@@ -11,4 +11,10 @@ class Post extends Model
 		'title','image','content','postby','user_id','is_visible'
 	];
 
+
+    public function comments()
+    {
+        return $this->hasMany('App\PostComment')->whereNull('comment_id');
+    }
+
 }

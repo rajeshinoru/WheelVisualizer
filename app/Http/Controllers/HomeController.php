@@ -130,13 +130,13 @@ class HomeController extends Controller
 
     public function bloglist()
     { 
-        $posts = Post::paginate(10);
+        $posts = Post::with('comments')->where('is_visible',1)->paginate(10);
         return view('bloglist',compact('posts')); 
     } 
 
     public function blogview($id)
     { 
-        $post = Post::find(base64_decode($id));
+        $post = Post::with('comments')->where('is_visible',1)->find(base64_decode($id));
         // dd($post);
         return view('blogview',compact('post')); 
     } 
