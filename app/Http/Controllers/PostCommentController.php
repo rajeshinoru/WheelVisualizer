@@ -35,16 +35,21 @@ class PostCommentController extends Controller
      */
     public function store(Request $request)
 
-    {
+    {  
 
-        // dd($request->all());
         $request->validate([
 
-            'content'=>'required',
+            'content'=>'required'
 
         ]);
 
-   
+        if(!$request->comment_id){
+
+            $request->validate([
+                'g-recaptcha-response' => 'required|captcha'
+
+            ]);
+        }
 
         $input = $request->all();
 

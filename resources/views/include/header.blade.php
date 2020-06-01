@@ -389,6 +389,7 @@
     <li><a href="{{url('/lipsizes')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Lip Sizes</a></li>
     <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Search</a></li>
     <li><a href="{{url('/wheelconfig')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Configurator</a></li>
+    <li><a href="{{url('/traction')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Traction</a></li>
 </ul>
                                                         </div>
                                                     </div>

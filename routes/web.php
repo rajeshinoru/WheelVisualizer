@@ -31,9 +31,11 @@ Route::get('/lipsizes', 'HomeController@lipsizes')->name('lipsizes');
 Route::get('/wheelconfig', 'HomeController@wheelconfig')->name('wheelconfig');
 Route::get('/packagedeal', 'HomeController@packagedeal')->name('packagedeal');
 Route::get('/rimfinancing', 'HomeController@rimfinancing')->name('rimfinancing');
+Route::get('/traction', 'HomeController@traction')->name('traction');
+
+
 Route::get('/bloglist', 'HomeController@bloglist')->name('bloglist');
 Route::get('/blogview/{id}', 'HomeController@blogview')->name('blogview');
-
 
 
 Route::get('/orderstatus', 'HomeController@orderstatus')->name('orderstatus');
@@ -188,3 +190,9 @@ Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
 Route::get('/InventoryCommand',function(){
         \Artisan::call('autoupdate:inventories');
 });
+
+
+Route::get('googleCaptcha', 'GoogleCaptchaController@googlecaptchaRegister');
+Route::post('googleCaptcha', 'GoogleCaptchaController@googlecaptchaRegisterPost');
+
+

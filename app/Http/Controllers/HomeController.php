@@ -127,6 +127,12 @@ class HomeController extends Controller
     { 
         return view('orderstatus'); 
     }     
+    
+    public function traction()
+    { 
+        return view('traction'); 
+    }
+
 
     public function bloglist()
     { 

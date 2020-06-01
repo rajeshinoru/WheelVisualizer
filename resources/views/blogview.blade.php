@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+<script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
 @section('metakeywords')
 <?=@MetaViewer('About');?>
@@ -57,7 +58,7 @@
               @include('blogcomments', ['comments' => $post->comments, 'post' => $post])
               <div class="row">
                 <div class="col-sm-12">
-                  <form id="contact-form" action="{{route('comment.store')}}" method="post" novalidate="true">
+                  <form id="comment-form" action="{{route('comment.store')}}" method="post" novalidate="true">
                     {{@csrf_field()}}
                     <input type="hidden" name="post_id" value="{{$post->id}}">
                       <div class="controls col-md-12">
@@ -75,13 +76,14 @@
                                   </div>
                               </div>
               
-<!--                               <div class="col-lg-6">
+                              <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="form_name"> Security Code</label>
-                                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your Security Code" required="required" data-error="Name is required.">
-                                    <div class="help-block with-errors"> (Enter the code shown in the image below) </div>
+                                    <label for="form_name"> Recaptcha:</label>
+										{!! NoCaptcha::renderJs() !!}
+          								{!! NoCaptcha::display() !!}
+                                    <div class="help-block with-errors alert alert-danger" id="human-verify"> Please verify you are human!! </div>
                                 </div>
-                              </div> -->
+                              </div>
                           </div>
  <!--                          <div class="captcha form-group">
                               <img src="image/captcha.png" alt="captcha code">
@@ -107,5 +109,29 @@
 
 @endsection
 @section('custom_scripts')
-<!--  -->
+<script type="text/javascript">
+
+$('#human-verify').hide();
+document.getElementById("comment-form").addEventListener("submit",function(evt)
+{
+
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) 
+	{ 
+	//reCaptcha not verified
+	// alert("please verify you are humann!"); 
+
+	$('#human-verify').show();
+
+	evt.preventDefault();
+	return false;
+	}else{
+
+	$('#human-verify').hide();
+	}
+	//captcha verified
+	//do the rest of your validations here
+
+});
+</script>
 @endsection
