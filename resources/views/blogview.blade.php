@@ -52,7 +52,7 @@
               <img src="image/default-profile.png">
             </div> -->
             <div class="col-sm-12">
-              <h1>Discounted Wheel Warehouse <span>2 Weeks ago</span></h1>
+              <!-- <h1>Discounted Wheel Warehouse <span>2 Weeks ago</span></h1> -->
               <!-- <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p> -->
               @include('blogcomments', ['comments' => $post->comments, 'post' => $post])
               <div class="row">
@@ -62,8 +62,8 @@
                     <input type="hidden" name="post_id" value="{{$post->id}}">
                       <div class="controls col-md-12">
                           <div class="form-group">
-                              <label for="form_message">Comment</label>
-                              <textarea id="form_message" name="content" class="form-control" placeholder="Message for me" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                              <label for="form_message">Add Comment</label>
+                              <textarea id="form_message" name="content" class="form-control" placeholder="Your Comments" rows="4" required="required" data-error="Please, leave us a message."></textarea>
                               <div class="help-block with-errors"></div>
                           </div>
                           <div class="row">
@@ -74,8 +74,6 @@
                                       <div class="help-block with-errors"></div>
                                   </div>
                               </div>
-                    }
-                    }
               
 <!--                               <div class="col-lg-6">
                                 <div class="form-group">
