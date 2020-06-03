@@ -307,7 +307,7 @@
 
                     <p><b><a href="{{url('/lipsizes')}}">Lip Sizes</a></b> - Explains the difference in wheel lip sizes and what to expect when your wheel arrives.</p>
 
-                    <p><b><a href="">Wheel Fitment</a></b> - This link explains Plus Sizing and how we are able to properly fit your wheels and tires for your vehicle.</p>
+                    <p><b><a href="{{url('/wheelfitment')}}">Wheel Fitment</a></b> - This link explains Plus Sizing and how we are able to properly fit your wheels and tires for your vehicle.</p>
 
                     <p><b><a href="">Offset and Bolt Patterns</a></b> - Reference to help aid in determining Bolt patterns and offsets for all vehicles.</p>
 

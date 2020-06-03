@@ -139,6 +139,10 @@ class HomeController extends Controller
     }
 
 
+    public function wheelfitment()
+    { 
+        return view('wheelfitment'); 
+    }
     public function bloglist()
     { 
         $posts = Post::with('comments')->where('is_visible',1)->paginate(10);
