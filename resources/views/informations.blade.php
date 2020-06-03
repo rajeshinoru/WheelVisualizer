@@ -303,7 +303,7 @@
                     <!-- <h1>About Discounted Wheel Warehouse, also see <a href="{{url('/contactus')}}" style="text-decoration: none;"> Contact Us </a></h1> -->
                     <p><b><a href="{{url('/packagedeal')}}">Package Deal</a></b> - This link has information about what comes with a wheel and tire package.</p>
 
-                    <p><b><a href="">LOW or HIGH?</a></b> - This link is information on how to determine if you have a FWD offset or a RWD offset on your Vehicle.</p>
+                    <p><b><a href="{{url('/lowhigh')}}">LOW or HIGH?</a></b> - This link is information on how to determine if you have a FWD offset or a RWD offset on your Vehicle.</p>
 
                     <p><b><a href="{{url('/lipsizes')}}">Lip Sizes</a></b> - Explains the difference in wheel lip sizes and what to expect when your wheel arrives.</p>
 
@@ -361,7 +361,7 @@
 
                     <p><b><a href="">Tire Speed Rating</a></b> - Tire speed ratings are a common way to categorize tires today. Learn here at Discounted Wheel Warehouse how to interpret tire speed ratings and what it means for your tires.</p>
 
-                    <p><b><a href="">Traction</a></b> - This guide covers some tire characteristics that affect dry, wet, snow, and mud traction. Learn what to look for in your next set of tires here at Discounted Wheel Warehouse.</p>
+                    <p><b><a href="{{url('/traction')}}">Traction</a></b> - This guide covers some tire characteristics that affect dry, wet, snow, and mud traction. Learn what to look for in your next set of tires here at Discounted Wheel Warehouse.</p>
                 </div>
             </div>
             <!--       <div class="col-sm-5 abt-img">

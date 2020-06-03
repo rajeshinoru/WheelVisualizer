@@ -133,6 +133,11 @@ class HomeController extends Controller
         return view('traction'); 
     }
 
+    public function lowhigh()
+    { 
+        return view('lowhigh'); 
+    }
+
 
     public function bloglist()
     { 

@@ -32,6 +32,7 @@ Route::get('/wheelconfig', 'HomeController@wheelconfig')->name('wheelconfig');
 Route::get('/packagedeal', 'HomeController@packagedeal')->name('packagedeal');
 Route::get('/rimfinancing', 'HomeController@rimfinancing')->name('rimfinancing');
 Route::get('/traction', 'HomeController@traction')->name('traction');
+Route::get('/lowhigh', 'HomeController@lowhigh')->name('lowhigh');
 
 
 Route::get('/bloglist', 'HomeController@bloglist')->name('bloglist');
