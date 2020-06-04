@@ -425,17 +425,20 @@
         </div>
         <div class="row main-contact">
 
-            <div class="col-sm-6 cont-para">
+            <div class="col-sm-4 cont-para">
                 <div class="prod-headinghome">
-                    <h4>Section Width</h4>
-                    <p>The first number in a tire size (before the slash) is the Section Width. This indicates the tire's cross-section width, measured as the distance from the widest point of the tire's outer sidewall to the widest point of its inner sidewall. A tire's section width is given in millimeters.</p>
+                    <h4>Load Index</h4>
+                    <p>TThe last part of a tire sidewall code is the service description. The number in the service description is the tire's Load Index, which refers to the tire's relative load-carrying capability and durability. Each load index value corresponds to a certain weight threshold, indicating the maximum load capacity that the tire is designed to carry. Most passenger tires have a load index ranging from 70 (max load of 739 lbs) to 110 (max load of 2,337 lbs).</p>
                 </div>
             </div>
 
-            <div class="col-sm-6 cont-para">
+            <div class="col-sm-4 cont-img">
+                <div class="contacttablecell" style="text-align: center;"><img src="{{asset('/image/Tire_Sidewall_Code-3.png')}}" class="ri"  ></div>
+            </div>
+            <div class="col-sm-4 cont-para">
                 <div class="prod-headinghome">
-                    <h4>Aspect Ratio</h4>
-                    <p>The second number in a tire size (after the slash) is the Sidewall Aspect Ratio, also referred to as the tire's profile. This is the ratio between the tire's sidewall height and its section width. A higher aspect ratio indicates a higher sidewall, while a lower aspect ratio indicates a lower sidewall. A higher sidewall profiles tends to provide greater ride comfort, while a lower sidewall profile offers more responsive handling.</p>
+                    <h4>Speed Rating</h4>
+                    <p>The letter after the load index in a service description refers to the tire's speed rating, or its high-speed capability and heat dissipation. Each speed rating corresponds to a particular speed threshold, indicating the highest speed that the tire can sustain without heat failure. Note that a tire does not necessarily perform effectively at its maximum speed. Most passenger and truck tires today have a speed rating of S (max speed of 112 mph), T (max speed of 118 mph), H (max speed of 130 mph), V (max speed of 149 mph), or W (max speed of 168 mph). Trailer tires generally have a maximum speed of 65 mph unless their speed rating indicates otherwise.</p>
                 </div>
             </div>
         </div>
