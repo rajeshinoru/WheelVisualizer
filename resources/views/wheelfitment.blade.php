@@ -405,9 +405,9 @@
         </div>
 
         <div class="row main-contact">      
-            <div class="col-sm-3 cont-img ">
+            <div class="col-sm-3 prod-headinghome" style="text-align: left !important;">  
                 <h4>Drivers choose Plus Sizing to improve:</h4>
-                <div class="contacttablecell" style="margin-left: 30px;">
+                <div class="contacttablecell" style="margin-left: 30px;color:#121214 !important;">
                     <ul>
                         <li>Steering response</li>
                         <li>Handling</li>
@@ -416,10 +416,10 @@
                     </ul>
                 </div>
             </div> 
-            <div class="col-sm-3 cont-img ">
+            <div class="col-sm-3 prod-headinghome" style="text-align: left !important;">  
                 <h4>Why "Inch Up"?</h4>
                 <p>"Inch Up" to improve your vehicle's performance and appearance.</p>
-                <div class="contacttablecell" style="margin-left: 30px;">
+                <div class="contacttablecell" style="margin-left: 30px;color:#121214 !important;">
                     <ul>
                         <li>Increased steering response</li>
                         <li>Improved dry handling</li>
@@ -428,10 +428,10 @@
                     </ul>
                 </div>
             </div>             
-            <div class="col-sm-3 cont-img ">
+            <div class="col-sm-3 prod-headinghome" style="text-align: left !important;">  
                 <h4>How Can You "Inch Up"?</h4>
                 <p>"Inch Up" with the experts in plus sizing.</p>
-                <div class="contacttablecell" style="margin-left: 30px;">
+                <div class="contacttablecell" style="margin-left: 30px;color:#121214 !important;">
                     <ul>
                         <li>Innovative technology</li>
                         <li>Precision fit</li>
@@ -448,19 +448,19 @@
         <div class="row main-contact">      
             <div class="col-sm-4 cont-para ">
                 <h4>1. Plus Zero</h4>
-                <div class="contacttablecell">
+                <div class="prod-headinghome">
                      <p>This method utilizes the same wheel diameter as Original Equipment (OE) but incorporates a tire with a larger than OE section width and smaller than OE aspect ratio. For example, replacing an OE 175/70R14 tire (on a 5.5-inch wheel) with a 195/60R14 tire would be a proper Plus Zero fitment. Note that this practice may require a replacement wheel in order to maintain proper rim width for the new tire.</p>
                 </div>
             </div> 
             <div class="col-sm-4 cont-para ">
                 <h4>2. Plus One</h4> 
-                <div class="contacttablecell">
+                <div class="prod-headinghome">
                      <p>This method utilizes a one-inch larger diameter wheel in conjunction with a tire of a one-step lower aspect ratio. An example of an appropriate Plus One fitment is to replace an OE 175/70R13 tire (23-inch overall diameter) with a 185/60R14 tire (22.9-inch overall diameter). Note that this method always requires a replacement wheel.</p>
                 </div>
             </div>          
             <div class="col-sm-4 cont-para ">
                 <h4>3. Plus Two</h4> 
-                <div class="contacttablecell">
+                <div class="prod-headinghome">
                      <p>This method utilizes a two-inch larger diameter wheel in conjunction with a tire of a two-step lower aspect ratio. An example of an appropriate Plus Two fitment is to replace an OE 175/70R13 tire (23-inch overall diameter) with a 195/50R15 tire (22.8-inch overall diameter).</p>
                 </div>
             </div> 

@@ -321,9 +321,9 @@
 
                     <p><b><a href="">Reading a Tire Sidewall Code</a></b> - A Tire Sidewall Code contains vital information about the tire's characteristics, including the tire's dimensions, load index. and speed rating. Reading a Tire Sidewall Code is key to identifying the best tire for your needs. This article breaks down the parts of a Tire Sidewall Code and explains what each part means.</p>
 
-                    <p><b><a href="">Tire Mounting and Balancing</a></b> - This article describes how Tire Mounting and Balancing is done at Discounted Wheel Warehouse. All your Tire Mounting and Balancing News and Information.</p>
+                    <p><b><a href="{{url('/tiremounting')}}">Tire Mounting and Balancing</a></b> - This article describes how Tire Mounting and Balancing is done at Discounted Wheel Warehouse. All your Tire Mounting and Balancing News and Information.</p>
 
-                    <p><b><a href="">Seasonal Tires</a></b> - Summer, winter, and all-season tires are specially designed to match the time of year they are made for driving in. This article explains the differences between the various Seasonal Tires available here at Discounted Wheel Warehouse. Find out whether summer tires, winter tires, or all-season tires are best for your needs.</p>
+                    <p><b><a href="{{url('/seasoneltires')}}">Seasonal Tires</a></b> - Summer, winter, and all-season tires are specially designed to match the time of year they are made for driving in. This article explains the differences between the various Seasonal Tires available here at Discounted Wheel Warehouse. Find out whether summer tires, winter tires, or all-season tires are best for your needs.</p>
 
                     <p><b><a href="">Types of Tires</a></b> - Cars and trucks use different types of tires for different driving needs. This article describes the characteristics of common Types of Tires available here at Discounted Wheel Warehouse. Get your information on the differences between touring passenger tires, performance passenger tires, highway-terrain truck tires, and mud-terrain truck tires.</p>
 

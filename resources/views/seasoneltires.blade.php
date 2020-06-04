@@ -67,7 +67,7 @@
         width: 100% !important;
     }
 
-    .col-sm-3.payments-card {
+    .col-sm-3.payments-card,.center {
         text-align: center !important;
     }
 
@@ -345,31 +345,69 @@
 <section id="contact-us" class="contact-page">
     <div class="container">
 
-        @if(Setting::get('privacypolicy') != "")
-            <?=Setting::get('privacypolicy')?>
+        @if(Setting::get('seasoneltires') != "")
+            <?=Setting::get('seasoneltires')?>
         @else
 
         <div class="about-page title-header">
             <div id="heading" class="title">
-                <h1>Privacy Policy - Discounted Wheel Warehouse</h1>
+                <h1>Seasonal Tires</h1>
             </div>
         </div>
         <div class="row main-contact">
 
+            <div class="col-sm-12 cont-img">
+                <div class="contacttablecell" style="text-align: center;"><img src="{{asset('/image/Seasonal_Tires.png')}}" class="ri"  ></div>
+            </div>
+
+        </div> 
+        <div class="row main-contact">
+
             <div class="col-sm-6 cont-para">
                 <div class="prod-headinghome">
-
-                <div class="about-page title-header">
-                    <div id="heading" class="title">
-                        <h4>We Respect your privacy!</h4>
-                    </div>
+                    <h4>Summer</h4>
+                    <p>Summer tires are made for driving in warm weather, and generally emphasize high-speed performance. They tend to have shallow tread depths and fewer lateral grooves, resulting in a rib-like tread pattern that puts as much rubber in contact with the road as possible. This increased tread contact area sharply improves driving stability and response, allowing for more precise steering and braking.</p>  
+                    <p>Summer tires excel on both wet and dry roads, and are also called three-season tires. The tread compounds used in summer tires are soft and flexible, so they adhere very well to both wet and dry pavement, improving response to driver input. Their longitudinal grooves evacuate water from under the treads to prevent hydroplaning. However, the rubber compounds in summer tires start to harden at temperatures below 40° F (5° C), becoming rigid, incapable of traction, and susceptible to cracking. This makes summer tires dangerous to use in extremely cold weather or on snowy roads.</p>
+                    <p>In climates with warm temperatures throughout the year, such as parts of Southern California, some drivers may opt to drive on summer tires year-round.</p>
                 </div>
-<p>Any and all the information collected on this site will be kept strictly confidential and will not be sold, reused, rented, disclosed, or loaned! Any information you provide will be held with the utmost care and will not be used in ways that you have not consented to. If you have any questions, please feel free to call or email us.</p>
+            </div>
+
+            <div class="col-sm-6 cont-img" >
+                <div class="contacttablecell"><img src="{{asset('/image/Seasonal_Tires-2.png')}}" class="ri"></div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row main-contact">
+
+            <div class="col-sm-6 cont-para">
+                <div class="prod-headinghome">
+                    <h4>Winter</h4>
+                    <p>Winter tires are made for driving in cold weather, and generally emphasize driver safety. They tend to have deep tread depths with extensive grooves and siping, providing a high quantity of biting edges that excel at gripping ice, snow, and slippery roads. These deep, wide grooves also help to channel slush and water away from the treads to prevent slip accidents. Winter tires may feature a three-peak Mountain Snowflake symbol, which indicates that the tire fulfills U.S. and Canadian tire standards for driving in substantial snow.</p>
+                    <p>Winter tires excel in snow traction, but are also designed for dry traction in very cold temperatures. The tread compounds used in winter tires are even softer than in summer tires, and remain soft and pliable at temperatures below 45° F (7° C). This allows winter tires to maintain traction when driving on snow-covered roads, keeping drivers safe and in control. However, the tread rubber becomes too soft at temperatures above 45° F (7° C), and rapidly wears out. This makes winter tires less desirable during the warmer seasons of the year.</p>
+                    <p>In climates with very pronounced seasons, such as Canada and parts of Europe, drivers generally switch between summer and winter tires during the year to adapt to hot summer days and heavy winter snowfalls.</p>
                 </div>
             </div>
 
             <div class="col-sm-6 cont-img">
-                <div class="contacttablecell"><img src="{{asset('/image/privacy-policy.jpg')}}" class="ri" ></div>
+                <div class="contacttablecell"><img src="{{asset('/image/Seasonal_Tires-3.png')}}" class="ri"  ></div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row main-contact">
+
+            <div class="col-sm-6 cont-para">
+                <div class="prod-headinghome">
+                    <h4>All-Season</h4>
+                    <p>All-season tires are made for driving in all parts of the year, and combine aspects of summer and winter tires to provide decent traction in dry, wet, and snowy conditions. All-season tires tend to have moderate tread depths with wide longitudinal grooves, providing moderate tread contact for driving stability as well as biting edges to provide grip on slippery roads. All-season tires may feature a M+S rating, which indicates that the tire fulfills U.S. and Canadian tire standards for driving on mud and light snow.</p> 
+                    <p>Because all-season tires are intended for year-round use, they generally have an emphasis on mileage and long tread life. The tread compounds in all-season tires remain flexible at colder temperatures than summer tires, yet also wear longer in warmer temperatures than winter tires. However, in exchange for their durability, all-season tire treads are less pliable, and they lack the responsive handling response of dedicated summer tires or the biting snow grip of dedicated winter tires. In fact, because their compounds are stiffer, all-season tires are actually outperformed by summer tires in wet conditions. All-season tires are compatible with a wide range of temperatures for day-to-day driving, but are not ideal for extreme heat or extreme cold.</p>
+                    <p>In climates with relatively mild seasons, especially in the United States, drivers tend to rely on all-season tires year-round rather than alternate between summer and winter tires.</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 cont-img">
+                <div class="contacttablecell"><img src="{{asset('/image/Seasonal_Tires-4.png')}}" class="ri"  ></div>
             </div>
 
         </div>

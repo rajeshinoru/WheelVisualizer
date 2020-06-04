@@ -138,11 +138,22 @@ class HomeController extends Controller
         return view('lowhigh'); 
     }
 
-
     public function wheelfitment()
     { 
         return view('wheelfitment'); 
     }
+
+    public function tiremounting()
+    { 
+        return view('tiremounting'); 
+    }
+    public function seasoneltires()
+    { 
+        return view('seasoneltires'); 
+    }
+
+
+
     public function bloglist()
     { 
         $posts = Post::with('comments')->where('is_visible',1)->paginate(10);
