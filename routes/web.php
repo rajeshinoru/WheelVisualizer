@@ -36,6 +36,7 @@ Route::get('/lowhigh', 'HomeController@lowhigh')->name('lowhigh');
 Route::get('/wheelfitment', 'HomeController@wheelfitment')->name('wheelfitment');
 Route::get('/tiremounting', 'HomeController@tiremounting')->name('tiremounting');
 Route::get('/seasoneltires', 'HomeController@seasoneltires')->name('seasoneltires');
+Route::get('/tiresidewall', 'HomeController@tiresidewall')->name('tiresidewall');
 
 
 Route::get('/bloglist', 'HomeController@bloglist')->name('bloglist');

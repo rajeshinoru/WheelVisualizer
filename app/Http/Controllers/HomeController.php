@@ -151,6 +151,10 @@ class HomeController extends Controller
     { 
         return view('seasoneltires'); 
     }
+    public function tiresidewall()
+    { 
+        return view('tiresidewall'); 
+    }
 
 
 

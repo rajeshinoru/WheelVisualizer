@@ -319,7 +319,7 @@
 
                     <p><b><a href="">Return Policy</a></b> - View our Return Policy</p>
 
-                    <p><b><a href="">Reading a Tire Sidewall Code</a></b> - A Tire Sidewall Code contains vital information about the tire's characteristics, including the tire's dimensions, load index. and speed rating. Reading a Tire Sidewall Code is key to identifying the best tire for your needs. This article breaks down the parts of a Tire Sidewall Code and explains what each part means.</p>
+                    <p><b><a href="{{url('/tiresidewall')}}">Reading a Tire Sidewall Code</a></b> - A Tire Sidewall Code contains vital information about the tire's characteristics, including the tire's dimensions, load index. and speed rating. Reading a Tire Sidewall Code is key to identifying the best tire for your needs. This article breaks down the parts of a Tire Sidewall Code and explains what each part means.</p>
 
                     <p><b><a href="{{url('/tiremounting')}}">Tire Mounting and Balancing</a></b> - This article describes how Tire Mounting and Balancing is done at Discounted Wheel Warehouse. All your Tire Mounting and Balancing News and Information.</p>
 
