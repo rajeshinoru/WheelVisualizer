@@ -333,6 +333,9 @@
     .col-sm-6.cont-img {
         padding: 0px !important;
         text-align: center;
+    }  
+    .index-img img  {
+        width: 100%;
     }
 </style>
 
@@ -357,16 +360,17 @@
         <div class="row main-contact">
 
 
-            <div class="col-sm-4 cont-details">
+            <div class="col-sm-6 cont-details">
                 <div class="prod-headinghome">
                     <p>Every tire is marked with an alphanumerical code on its sidewall that contains many of the tire's key characteristics. A tire sidewall code consists of two sections: the tire size, which includes the tire's dimensions and construction; and the service description, which includes the load index and speed rating. This page will explain how to read each part of a tire's sidewall code.</p>
                 </div>
             </div>
 
-            <div class="col-sm-8 cont-img">
+            <div class="col-sm-6 cont-img">
                 <div class="contacttablecell" style="text-align: center;"><img src="{{asset('/image/Tire_Sidewall_Code.png')}}" class="ri" width="580px" ></div>
             </div>
         </div> 
+        <hr>
         <div class="row main-contact">
 
             <div class="col-sm-6 cont-img">
@@ -423,7 +427,13 @@
                 </div>
             </div>
         </div>
+        <hr>
+
         <div class="row main-contact">
+
+            <div class="col-sm-4 cont-img index-img">
+                <div class="contacttablecell"><img src="{{asset('/image/Tire_Sidewall_Code-3.png')}}" class="ri"  ></div>
+            </div>
 
             <div class="col-sm-4 cont-para">
                 <div class="prod-headinghome">
@@ -432,15 +442,14 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 cont-img">
-                <div class="contacttablecell" style="text-align: center;"><img src="{{asset('/image/Tire_Sidewall_Code-3.png')}}" class="ri"  ></div>
-            </div>
             <div class="col-sm-4 cont-para">
                 <div class="prod-headinghome">
                     <h4>Speed Rating</h4>
                     <p>The letter after the load index in a service description refers to the tire's speed rating, or its high-speed capability and heat dissipation. Each speed rating corresponds to a particular speed threshold, indicating the highest speed that the tire can sustain without heat failure. Note that a tire does not necessarily perform effectively at its maximum speed. Most passenger and truck tires today have a speed rating of S (max speed of 112 mph), T (max speed of 118 mph), H (max speed of 130 mph), V (max speed of 149 mph), or W (max speed of 168 mph). Trailer tires generally have a maximum speed of 65 mph unless their speed rating indicates otherwise.</p>
                 </div>
             </div>
+
+
         </div>
         @endif
     </div>
