@@ -387,23 +387,57 @@
                 </div>
             </div>
 
-        </div>
-        <hr>
+        </div> 
         <div class="row main-contact">
 
             <div class="col-sm-6 cont-para">
                 <div class="prod-headinghome">
-                    <h4>All-Season</h4>
-                    <p>All-season tires are made for driving in all parts of the year, and combine aspects of summer and winter tires to provide decent traction in dry, wet, and snowy conditions. All-season tires tend to have moderate tread depths with wide longitudinal grooves, providing moderate tread contact for driving stability as well as biting edges to provide grip on slippery roads. All-season tires may feature a M+S rating, which indicates that the tire fulfills U.S. and Canadian tire standards for driving on mud and light snow.</p> 
-                    <p>Because all-season tires are intended for year-round use, they generally have an emphasis on mileage and long tread life. The tread compounds in all-season tires remain flexible at colder temperatures than summer tires, yet also wear longer in warmer temperatures than winter tires. However, in exchange for their durability, all-season tire treads are less pliable, and they lack the responsive handling response of dedicated summer tires or the biting snow grip of dedicated winter tires. In fact, because their compounds are stiffer, all-season tires are actually outperformed by summer tires in wet conditions. All-season tires are compatible with a wide range of temperatures for day-to-day driving, but are not ideal for extreme heat or extreme cold.</p>
-                    <p>In climates with relatively mild seasons, especially in the United States, drivers tend to rely on all-season tires year-round rather than alternate between summer and winter tires.</p>
+                    <h4>Section Width</h4>
+                    <p>The first number in a tire size (before the slash) is the Section Width. This indicates the tire's cross-section width, measured as the distance from the widest point of the tire's outer sidewall to the widest point of its inner sidewall. A tire's section width is given in millimeters.</p>
                 </div>
             </div>
 
-            <div class="col-sm-6 cont-img">
-                <div class="contacttablecell"><img src="{{asset('/image/Seasonal_Tires-4.png')}}" class="ri"  ></div>
+            <div class="col-sm-6 cont-para">
+                <div class="prod-headinghome">
+                    <h4>Aspect Ratio</h4>
+                    <p>The second number in a tire size (after the slash) is the Sidewall Aspect Ratio, also referred to as the tire's profile. This is the ratio between the tire's sidewall height and its section width. A higher aspect ratio indicates a higher sidewall, while a lower aspect ratio indicates a lower sidewall. A higher sidewall profiles tends to provide greater ride comfort, while a lower sidewall profile offers more responsive handling.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row main-contact">
+            <div class="col-sm-6 cont-para">
+                <div class="prod-headinghome">
+                    <h4>Internal Construction</h4>
+                    <p>The letter after the aspect ratio refers to the tire's internal construction. Passenger and light truck tires have an "R" to indicate radial ply construction, where the ply cords run up the sidewalls and directly across the tire from side to side, "radiating" from the tire's center. Very old tires may feature a "D" to indicate bias ply or diagonal construction, where the ply cords crisscross diagonally across the tire. Even older tires may have a "B" to indicate bias-belted construction, where the ply cords run diagonally over the tire and are reinforced with steel belts. The vast majority of tires today use radial ply construction.</p>
+
+                    <p>Some high-performance tires may include a "Z" before the "R" to indicate that the tire is rated for sustaining speeds greater than 149 mph. This dates back to older tire standards that placed the speed rating symbol next to the construction symbol. Aside from the Z speed rating, today's tires indicate the speed rating in their service description instead.
+
+                    </p>
+                </div>
             </div>
 
+            <div class="col-sm-6 cont-para">
+                <div class="prod-headinghome">
+                    <h4>Rim Diameter</h4>
+                    <p>The third number in a tire size (after the construction symbol) refers to the inside diameter of the tire for the purpose of wheel fitment. This number indicates which size of wheel the tire is compatible with, based on the wheel's diameter from bead seat to bead seat, measured in inches. A tire is designed solely to fit on a wheel that has a matching rim diameter, so a 16-inch tire may only be safely mounted on a 16-inch wheel.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row main-contact">
+
+            <div class="col-sm-6 cont-para">
+                <div class="prod-headinghome">
+                    <h4>Section Width</h4>
+                    <p>The first number in a tire size (before the slash) is the Section Width. This indicates the tire's cross-section width, measured as the distance from the widest point of the tire's outer sidewall to the widest point of its inner sidewall. A tire's section width is given in millimeters.</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 cont-para">
+                <div class="prod-headinghome">
+                    <h4>Aspect Ratio</h4>
+                    <p>The second number in a tire size (after the slash) is the Sidewall Aspect Ratio, also referred to as the tire's profile. This is the ratio between the tire's sidewall height and its section width. A higher aspect ratio indicates a higher sidewall, while a lower aspect ratio indicates a lower sidewall. A higher sidewall profiles tends to provide greater ride comfort, while a lower sidewall profile offers more responsive handling.</p>
+                </div>
+            </div>
         </div>
         @endif
     </div>
