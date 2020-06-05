@@ -5296,6 +5296,81 @@ h2.price {
         font-size: 10px !important;
    }
 }
+
+
+
+@media screen and (min-width: 767px) and (max-width: 1100px)
+{
+  #logo img
+ {
+    width: 20% !important;
+ }
+ .search
+ {
+   margin: 15px 0px !important;
+   float: right;
+ }
+ .homecelld .lazy.ri
+ {
+   height: 80px;
+   width: 80px;
+ }
+ .foot-icon li img
+ {
+  margin: 0px 0px !important;
+ }
+ ul.foot-icon
+ {
+  margin-bottom: 0px !important;
+ }
+ .cont-img
+ {
+    padding: 0px !important;
+ }
+ .cont-img
+ {
+    padding: 0px 0px !important;
+ }
+ .review-img
+ {
+    width: 100% !important;
+    height: auto !important;
+ }
+ #top-links, #top-links > ul
+ {
+   float:left !important;
+ }
+ .prod-heading-bold
+ {
+   padding:0px 0px !Important;
+ }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px)
+{
+  html
+  {
+    overflow-x: hidden;
+  }
+ .dropdown-menu.multi-colum-nav.info-nav
+ {
+   width: 750px !important;
+ }
+ .col-sm-12.tire-menu.tire-two ul
+ {
+  column-count: 4;
+ }
+ .dropdown-menu.multi-colum-nav li a
+ {
+  font-size: 10px !important;
+ }
+ .gridItem
+ {
+  width:auto !important;
+ }
+}
+
+
 @media (min-width: 360px) and (max-width: 767px) {
     .fal-logo img {
         margin: 5px 0px !important;
@@ -8606,6 +8681,8 @@ ol.carousel-indicators {
 }
 /* Wheel Product End */
 /* Media Query */
+
+
 
 @media (min-width: 768px) and (max-width: 1024px)
 {
