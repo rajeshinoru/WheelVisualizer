@@ -78,7 +78,16 @@ class UpdateFolderWise extends Command
 
 
             Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
-            $db_ext->table('inventories')->updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
+
+            $sap_exists = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+
+
+            if($sap_exists){
+                $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+            }else{
+
+                $db_ext->table('inventories')->insert($newData);   
+            }
  
 
         }else{
@@ -92,12 +101,23 @@ class UpdateFolderWise extends Command
                 $data['updated_at']=\Carbon\Carbon::now();
 
                 Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
-                $db_ext->table('inventories')->updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
+                
+                $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 
+
+                if($sap_exists_loop){
+                    $db_ext->table('inventories')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->update($data); 
+                }else{
+
+                    $db_ext->table('inventories')->insert($data);   
+                }
             } 
 
 
         }
+
+
+
 
         // \Log::info("Log : ".$newData['partno']);
 
@@ -132,15 +152,15 @@ class UpdateFolderWise extends Command
 
 
 
-        $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
 
-        if($sap_exists){
-            $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-        }else{
+        // if($sap_exists){
+        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        // }else{
 
-            $db_ext->table('inventories')->insert($newData);   
-        }
+        //     $db_ext->table('inventories')->insert($newData);   
+        // }
     }
 
     /**
