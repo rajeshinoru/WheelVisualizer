@@ -78,6 +78,7 @@ class UpdateFolderWise extends Command
 
 
             Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
+            $db_ext->table('inventories')->updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
  
 
         }else{
@@ -91,6 +92,7 @@ class UpdateFolderWise extends Command
                 $data['updated_at']=\Carbon\Carbon::now();
 
                 Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
+                $db_ext->table('inventories')->updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
 
             } 
 
@@ -126,19 +128,19 @@ class UpdateFolderWise extends Command
 
 
 
-        // // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
+        // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
 
 
 
-        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+        $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
 
-        // if($sap_exists){
-        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-        // }else{
+        if($sap_exists){
+            $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+        }else{
 
-        //     $db_ext->table('inventories')->insert($newData);   
-        // }
+            $db_ext->table('inventories')->insert($newData);   
+        }
     }
 
     /**
@@ -971,8 +973,8 @@ class UpdateFolderWise extends Command
     
         $allFiles =array();
 
-        // $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
-        $db_ext='';
+        $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
+        
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
 
