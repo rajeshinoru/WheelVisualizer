@@ -996,7 +996,7 @@ class UpdateFolderWise extends Command
     
         $allFiles =array();
 
-        $db_ext = ='';//\DB::connection('sqlsrv'); // SAP Server Connection
+        $db_ext ='';//\DB::connection('sqlsrv'); // SAP Server Connection
         
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
