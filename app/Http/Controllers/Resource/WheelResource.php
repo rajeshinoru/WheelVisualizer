@@ -49,8 +49,8 @@ class WheelResource extends Controller
             'finish' => 'required|max:255',
             'wheeldiameter' => 'required|max:255',
             'wheelwidth' => 'required|max:255',
-            'image' => 'required|mimes:jpg,png|max:5242880', 
-            'front_back_image' => 'required|mimes:png|max:5242880', 
+            'image' => 'required|mimes:jpg,jpeg,png|max:5242880', 
+            'front_back_image' => 'required|mimes:jpg,jpeg,png|max:5242880', 
         ]);
         try{  
 
@@ -128,6 +128,7 @@ class WheelResource extends Controller
             $data = request()->except(['_token','_method']);
             $wheel = Wheel::whereid($id)->first();
             $wheel->update($data);
+            $wheel = Wheel::whereid($id)->first();
             if($request->hasFile('image') && $request->hasFile('front_back_image') ){
                 $imagename = $request->image->getClientOriginalName();  
                 $split_name = explode('.', $imagename);

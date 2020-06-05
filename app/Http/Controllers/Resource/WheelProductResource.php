@@ -48,54 +48,39 @@ class WheelProductResource extends Controller
 
         try{  
 
-        $this->validate($request, [
-            'vif' => 'required|max:255|unique:viflists,vif', 
-            'yr' => 'required|max:255',
-            'make' => 'required|max:255',
-            'model' => 'required|max:255',
-            'trim' => 'required|max:255',
-            'whls' => 'required|max:255',
-            'body' => 'required|max:255',
-            'drs' => 'required|max:255',
-            'vin' => 'required|max:255',
-            'org' => 'required|max:255',
-            'send' => 'required|max:255',
-            'cc.*' => 'required|max:255',
-            'color_code.*' => 'required|max:255',
-            'evoxcode.*' => 'required|max:255',
-            'name.*' => 'required|max:255',
-            'simple.*' => 'required|max:255',
-            'rgb1.*' => 'required|max:255',
-            'car_image.*' => 'required|mimes:jpg,png|max:5242880',
+        $this->validate($request, [ 
+            'prodbrand'=>'required',
+            'prodtitle'=>'required',
+            'prodmodel'=>'required',
+            'prodfinish'=>'required',
+            'prodimage'=>'required|mimes:jpg,jpeg,png',
+            'partno'=>'required',
+            'wheeltype'=>'required',
+            'wheeldiameter'=>'required',
+            'wheelwidth'=>'required',
+            'weight'=>'required',
+            'length'=>'required',
+            'width'=>'required',
+            'height'=>'required',
+            'price'=>'required',
+            'saleprice'=>'required',
+            'qtyavail'=>'required',
         ]);
-            $viflist = WheelProduct::create($request->all());
+            $product = WheelProduct::create($request->all());
+            // dd($product);
+            if($request->hasFile('prodimage') ){
+                $imagename = $request->prodimage->getClientOriginalName();  
+                $request->prodimage->move(public_path('/storage/wheel_products'), $imagename); 
+                $product->prodimage = $imagename; 
+            } 
+            if($request->hasFile('prodimagedually') ){
+                $imagename = $request->prodimagedually->getClientOriginalName();  
+                $request->prodimagedually->move(public_path('/storage/wheel_products'), $imagename); 
+                $product->prodimagedually = $imagename; 
+            } 
+            $product->save(); 
 
-            foreach ($request->car_image as $key => $image) {
-                $ext = $request->car_image[$key]->getClientOriginalExtension();
-                $image_full_name = $request->vif.'_'.$request->cc[$key].'_032_'.$request->color_code[$key].'.'.$ext;
-                $request->car_image[$key]->move(public_path('/storage/cars'), $image_full_name);
-                $image_stored_path = 'storage/cars/'.$image_full_name;
-                
-                // Create a new record for the car images 
-                $car_image = CarImage::create([
-                    'car_id' => $request->vif,
-                    'cc' => $request->cc[$key],
-                    'color_code' => $request->color_code[$key],
-                    'image' => $image_stored_path,
-                ]);
-
-                // Create a new record for the car colors 
-                $car_color = CarColor::create([
-                    'vif' => $request->vif,
-                    'code' => $request->color_code[$key],
-                    'evoxcode' => $request->evoxcode[$key],
-                    'name' => $request->name[$key],
-                    'rgb1' => $request->rgb1[$key],
-                    'simple' => $request->simple[$key],
-                ]);
-            }
-
-            return back()->with('flash_success','Car Added successfully');
+            return back()->with('flash_success','Wheel Product Added successfully');
         }catch(Exception $e){
             return back()->with('flash_error',$e->getMessage());
         }
@@ -133,32 +118,44 @@ class WheelProductResource extends Controller
     public function update(Request $request, $id)
     {
 
+
         try{  
 
-        $this->validate($request, [
-            'vif' => 'required|max:255|unique:viflists,vif,' . $id,
-            'yr' => 'required|max:255',
-            'make' => 'required|max:255',
-            'model' => 'required|max:255',
-            'trim' => 'required|max:255',
-            'whls' => 'required|max:255',
-            'body' => 'required|max:255',
-            'drs' => 'required|max:255',
-            'vin' => 'required|max:255',
-            'org' => 'required|max:255',
-            'send' => 'required|max:255'
+        $this->validate($request, [ 
+            'prodbrand'=>'required',
+            'prodtitle'=>'required',
+            'prodmodel'=>'required',
+            'prodfinish'=>'required',
+            'prodimage'=>'required|mimes:jpg,jpeg,png',
+            'partno'=>'required',
+            'wheeltype'=>'required',
+            'wheeldiameter'=>'required',
+            'wheelwidth'=>'required',
+            'weight'=>'required',
+            'length'=>'required',
+            'width'=>'required',
+            'height'=>'required',
+            'price'=>'required',
+            'saleprice'=>'required',
+            'qtyavail'=>'required',
         ]);
-            $viflist = WheelProduct::find($id);
-            $car_images = $viflist->CarImages()->update([
-                'car_id' => $request->vif,
-            ]);
-            $car_colors = $viflist->CarColors()->update([
-                'vif' => $request->vif,
-            ]);
-            $viflist->update($request->except(['_method','_token']));
+            $product = WheelProduct::find($id);
+            // dd($product);
+            $updateData=$request->all();
 
+            if($request->hasFile('prodimage') ){
+                $imagename = $request->prodimage->getClientOriginalName();  
+                $request->prodimage->move(public_path('/storage/wheel_products'), $imagename); 
+                $updateData['prodimage'] = $imagename; 
+            } 
+            if($request->hasFile('prodimagedually') ){
+                $imagename = $request->prodimagedually->getClientOriginalName();  
+                $request->prodimagedually->move(public_path('/storage/wheel_products'), $imagename); 
+                $updateData['prodimagedually'] = $imagename; 
+            } 
+            $product->update($updateData);
 
-            return back()->with('flash_success','Car Updated successfully');
+            return back()->with('flash_success','Wheel Product Updated successfully');
         }catch(Exception $e){
             return back()->with('flash_error',$e->getMessage());
         }

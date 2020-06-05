@@ -276,7 +276,7 @@
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="fname">Type <span class="req">*</span></label>
-                                                                                    <input type="text" name="wheeltype" class="form-control" placeholder="Type" required="" value="{{old('wheeltype')}}">
+                                                                                    <input type="text" name="wheeltype" class="form-control" placeholder="Type (Eg: O,H,etc.)" required="" value="{{old('wheeltype')}}">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
