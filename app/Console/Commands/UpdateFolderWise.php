@@ -8,6 +8,7 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
 use App\Inventory;
+use App\RemoteInventory;
 use App\InventoryMigration;
 use Illuminate\Http\Request; 
 use Storage;
@@ -78,16 +79,17 @@ class UpdateFolderWise extends Command
 
 
             Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
+            RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
 
-            $sap_exists = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
+            // $sap_exists = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
 
-            if($sap_exists){
-                $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-            }else{
+            // if($sap_exists){
+            //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
+            // }else{
 
-                $db_ext->table('inventories')->insert($newData);   
-            }
+            //     $db_ext->table('inventories')->insert($newData);   
+            // }
  
 
         }else{
@@ -101,16 +103,17 @@ class UpdateFolderWise extends Command
                 $data['updated_at']=\Carbon\Carbon::now();
 
                 Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
+                RemoteInventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
                 
-                $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
+                // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 
 
-                if($sap_exists_loop){
-                    $db_ext->table('inventories')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->update($data); 
-                }else{
+                // if($sap_exists_loop){
+                //     $db_ext->table('inventories')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->update($data); 
+                // }else{
 
-                    $db_ext->table('inventories')->insert($data);   
-                }
+                //     $db_ext->table('inventories')->insert($data);   
+                // }
             } 
 
 
@@ -993,7 +996,7 @@ class UpdateFolderWise extends Command
     
         $allFiles =array();
 
-        $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
+        $db_ext = ='';//\DB::connection('sqlsrv'); // SAP Server Connection
         
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
