@@ -126,7 +126,7 @@ class WheelProductResource extends Controller
             'prodtitle'=>'required',
             'prodmodel'=>'required',
             'prodfinish'=>'required',
-            'prodimage'=>'required|mimes:jpg,jpeg,png',
+            // 'prodimage'=>'required|mimes:jpg,jpeg,png',
             'partno'=>'required',
             'wheeltype'=>'required',
             'wheeldiameter'=>'required',
@@ -144,6 +144,9 @@ class WheelProductResource extends Controller
             $updateData=$request->all();
 
             if($request->hasFile('prodimage') ){
+                $this->validate($request, [ 
+                    'prodimage'=>'mimes:jpg,jpeg,png',
+                ]);
                 $imagename = $request->prodimage->getClientOriginalName();  
                 $request->prodimage->move(public_path('/storage/wheel_products'), $imagename); 
                 $updateData['prodimage'] = $imagename; 
@@ -172,23 +175,13 @@ class WheelProductResource extends Controller
      
         try {
 
-            $viflist = WheelProduct::find($id); 
-
-            foreach ($viflist->CarImages as $key => $car) {
-
-                if(file_exists(url($car->image))){
-                    unlink(url($car->image));
-                }
-                $car->delete();
-            }
-            CarColor::where('vif',$viflist->vif)->delete();
-
-            $viflist->delete();
-            return back()->with('flash_sucess', 'Car deleted successfully');
+            $wheelproduct = WheelProduct::find($id); 
+            $wheelproduct->delete();
+            return back()->with('flash_success', 'Wheel Product deleted successfully');
         } 
         catch (Exception $e) {
 
-            return back()->with('flash_error', 'Car Not Found');
+            return back()->with('flash_error', 'Wheel Product Not Found');
         }   
     }
 
@@ -348,6 +341,94 @@ class WheelProductResource extends Controller
         catch (Exception $e) {
             return back()->with('flash_error', 'Car Images Not Found');
         }   
+    }
+
+
+    public function uploadcsv(Request $request){ 
+        try{   
+            $this->validate($request, [ 
+                'wheelproductsfile'=>'required',
+            ]); 
+
+            if($request->hasFile('wheelproductsfile') ){
+                $filename = $request->wheelproductsfile->getClientOriginalName();  
+                $request->wheelproductsfile->move(public_path('/storage/wheel_products_file'), $filename); 
+                // dd(base_path('storage/app/public/wheel_products_file/').$filename);
+                $filepath = base_path('storage/app/public/wheel_products_file/').$filename;  
+
+                if( !$fr = @fopen($filepath, "r") ) die("Failed to open file");
+                // $fw = fopen($out_file, "w");
+                $i=1;
+                while( ($data = fgetcsv($fr, 2000, ",")) !== FALSE ) {
+                        if($i != 1){ 
+                            $wheelproduct['prodtitle'] = $data[0]?:null;
+                            $wheelproduct['prodbrand'] = $data[1]?:null;
+                            $wheelproduct['prodmodel'] = $data[2]?:null;
+                            $wheelproduct['prodfinish'] = $data[3]?:null;
+                            $wheelproduct['prodmetadesc'] = $data[4]?:null;
+                            $wheelproduct['prodimage'] = $data[5]?:null;
+                            $wheelproduct['prodimageshow'] = $data[6]?:null;
+                            $wheelproduct['prodimagedually'] = $data[7]?:null;
+                            $wheelproduct['prodsortcode'] = $data[8]?:null;
+                            $wheelproduct['prodheaderid'] = $data[9]?:null;
+                            $wheelproduct['prodfooterid'] = $data[10]?:null;
+                            $wheelproduct['prodinfoid'] = $data[11]?:null;
+                            $wheelproduct['proddesc'] = $data[12]?:null;
+                            $wheelproduct['wheeltype'] = $data[13]?:null;
+                            $wheelproduct['duallyrear'] = $data[14]?:null;
+                            $wheelproduct['wheeldiameter'] = $data[15]?:null;
+                            $wheelproduct['wheelwidth'] = $data[16]?:null;
+                            $wheelproduct['boltpattern1'] = $data[17]?:null;
+                            $wheelproduct['boltpattern2'] = $data[18]?:null;
+                            $wheelproduct['boltpattern3'] = $data[19]?:null;
+                            $wheelproduct['detailtitle'] = $data[20]?:null;
+                            $wheelproduct['partno'] = $data[21]?:null;
+                            $wheelproduct['price'] = $data[22]?:null;
+                            $wheelproduct['price2'] = $data[23]?:null;
+                            $wheelproduct['cost'] = $data[24]?:null;
+                            $wheelproduct['rate'] = $data[25]?:null;
+                            $wheelproduct['saleprice'] = $data[26]?:null;
+                            $wheelproduct['saletype'] = $data[27]?:null;
+                            $wheelproduct['salestart'] = $data[28]?:null;
+                            $wheelproduct['saleexp'] = $data[29]?:null;
+                            $wheelproduct['weight'] = $data[30]?:null;
+                            $wheelproduct['length'] = $data[31]?:null;
+                            $wheelproduct['width'] = $data[32]?:null;
+                            $wheelproduct['height'] = $data[33]?:null;
+                            $wheelproduct['shpsep'] = $data[34]?:null;
+                            $wheelproduct['shpfree'] = $data[35]?:null;
+                            $wheelproduct['shpcode'] = $data[36]?:null;
+                            $wheelproduct['shpflatrate'] = $data[37]?:null;
+                            $wheelproduct['partno_old'] = $data[38]?:null;
+                            $wheelproduct['metadesc'] = $data[39]?:null;
+                            $wheelproduct['qtyavail'] = $data[40]?:null;
+                            $wheelproduct['proddetailid'] = $data[41]?:null;
+                            $wheelproduct['productid'] = $data[42]?:null;
+                            $wheelproduct['dropshippable'] = $data[43]?:null;
+                            $wheelproduct['vendorpartno'] = $data[44]?:null;
+                            $wheelproduct['dropshipper'] = $data[45]?:null;
+                            $wheelproduct['vendorpartno2'] = $data[46]?:null;
+                            $wheelproduct['dropshipper2'] = $data[47]?:null;
+                            $wheelproduct['staggonly'] = $data[48]?:null;
+                            $wheelproduct['rf_lc'] = $data[49]?:null;
+                            $wheelproduct['offset1'] = $data[50]?:null;
+                            $wheelproduct['offset2'] = $data[51]?:null;
+                            $wheelproduct['hubbore'] = $data[52]?:null;
+                            
+
+                            WheelProduct::updateOrCreate(['partno' =>$wheelproduct['partno']] , $wheelproduct ); 
+                        
+                        }
+                        $i++;
+                    }
+                fclose($fr);
+            }  
+
+            return back()->with('flash_success','Wheel Products Data Uploaded successfully');
+        }catch(Exception $e){
+            return back()->with('flash_error',$e->getMessage());
+        } 
+
     }
 
 }

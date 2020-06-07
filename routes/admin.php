@@ -22,8 +22,9 @@ Route::resource('wheel', 'Resource\WheelResource');
 Route::resource('car', 'Resource\CarResource');
 Route::resource('brands', 'Resource\TireBrandsResource');
 Route::resource('wheelproduct', 'Resource\WheelProductResource');
+Route::post('wheelproduct/uploadcsv', 'Resource\WheelProductResource@uploadcsv');
 Route::resource('tire', 'Resource\TireResource'); 
-
+Route::post('tire/uploadcsv', 'Resource\TireResource@uploadcsv');
 
 Route::resource('user', 'Resource\UserResource');
 
