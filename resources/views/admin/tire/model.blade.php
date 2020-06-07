@@ -76,8 +76,8 @@
                                     <a class="btn btn-default look-a-like" data-toggle="modal" data-target="#myModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
-
-                                    <a class="btn btn-default" href="{{url('/admin/tire')}}/{{base64_encode(@$tire->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>View All</a>
+<!-- 
+                                    <a class="btn btn-default" href="{{url('/admin/tire')}}/{{base64_encode(@$tire->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>View All</a> -->
                                 </td>
                             </tr>
                             <!--  Edit Model Start-->
@@ -97,169 +97,491 @@
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                         <div class="review-content-section">
                                                             <div id="dropzone1" class="pro-ad">
-                                                                <form action="{{route('admin.wheelproduct.update',@$tire->id)}}" class=""   method="POST" enctype="multipart/form-data">
-                                                                    {{@csrf_field()}}
-                                                                    <input type="hidden" name="_method" value="PATCH">
-
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                                                                            <div class="form-group">
-                                                                                <label for="fname">Product Title<span class="req">*</span></label>
-                                                                                <input type="text" name="prodtitle" class="form-control" placeholder="Product Title" required="" value="{{@$tire->prodtitle}}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="brand">Brand <span class="req">*</span></label>
-                                                                                <select class="form-control select2 Brand" name="prodbrand" required="">
-                                                                                    <option value="">Select Brand</option>
-                                                                                    @foreach(getWheelBrandList() as $brand)
+ 
+                                                                    <form action="{{url('/admin/tire/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
+                                                                        {{@csrf_field()}}
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="brand">Tire Brand <span class="req">*</span></label>
+                                                                                    <select class="form-control select2 Brand" name="prodbrand" required="">
+                                                                                        <option value="">Select Brand</option>
+                                                                                     @foreach(getTireBrandList() as $brand)
                                                                                     <option value="{{$brand}}">{{$brand}}</option>
                                                                                     @endforeach
                                                                                     
-                                                                                </select>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                               <div class="form-group">
+                                                                                    <label for="prodmodel">Product Model <span class="req">*</span></label>
+                                                                                    <input type="text" name="prodmodel" class="form-control" placeholder="Product Model" required="" value="{{old('prodmodel')}}">
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="fname">Model<span class="req">*</span></label>
-                                                                                <input type="text" name="prodmodel" class="form-control" placeholder="Model" required="" value="{{@$tire->prodmodel}}">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="prodtitle">Product title <span class="req">*</span></label>
+                                                                                    <input type="text" name="prodtitle" class="form-control" placeholder="Product title" required="" value="{{old('prodtitle')}}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                 
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="fname">Finish<span class="req">*</span></label>
-                                                                                <input type="text" name="prodfinish" class="form-control" placeholder="Finish" required="" value="{{@$tire->prodfinish}}">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="partno">Part Number <span class="req">*</span></label>
+                                                                                    <input type="text" name="partno" class="form-control" placeholder="Part Number" value="{{old('partno')}}" required="">
+                                                                                </div>
+                                                                            </div>                                                                                
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="detailtitle">Detailed Title  </label>
+                                                                                    <input type="text" name="detailtitle" class="form-control" placeholder="Detailed Title" value="{{old('detailtitle')}}"  >
+                                                                                </div>
+                                                                            </div>    
+                                                                        </div>   
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="prodimage">Product Image <span class="req">*</span></label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="prodimage" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('prodimage')}}">
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="prodlandingdesc">Product Landing Description </label>
+                                                                                    <textarea class="form-control" name="prodlandingdesc" >{{old('prodlandingdesc')}}</textarea> 
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="fname">Part No<span class="req">*</span></label>
-                                                                                <input type="text" name="partno" class="form-control" placeholder="Part Number" required="" value="{{@$tire->partno}}">
+                                                                        <div class="row">
+                                                                            
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="proddesc">Product Description </label>
+                                                                                    <textarea class="form-control" name="proddesc" >{{old('proddesc')}}</textarea> 
+                                                                                </div>
+                                                                            </div>                                                     
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="prodmetadesc">Product Meta Description </label>
+                                                                                    <textarea class="form-control" name="prodmetadesc" >{{old('prodmetadesc')}}</textarea> 
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="fname">Type<span class="req">*</span></label>
-                                                                                <input type="text" name="wheeltype" class="form-control" placeholder="Type" required="" value="{{@$tire->wheeltype}}">
+                                                                        <div class="row">
+                                                                            
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="partno_old"> Old Partnumber  </label>
+                                                                                    <input type="text" name="partno_old" class="form-control" placeholder="Old Partnumber" value="{{old('partno_old')}}"  >
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="qtyavail">Quantity Available  <span class="req">*</span></label>
+                                                                                    <input type="text" name="qtyavail" class="form-control" placeholder="Quantity Available" value="{{old('qtyavail')}}"  required="">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div> 
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="tirediameter">Tire Diameter <span class="req">*</span></label>
+                                                                                    <input type="number" name="tirediameter" class="form-control" placeholder="Diameter" value="{{old('tirediameter')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="tirewidth">Tire Width <span class="req">*</span></label>
+                                                                                    <input type="number" name="tirewidth" class="form-control" placeholder="Width " value="{{old('tirewidth')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="tireprofile">Tire Profile <span class="req">*</span></label>
+                                                                                    <input type="number" name="tirewidth" class="form-control" placeholder="Profile " value="{{old('tirewidth')}}" required="">
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="lname">Diameter <span class="req">*</span></label>
-                                                                                <input type="text" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{@$tire->wheeldiameter}}" required="">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="tiresize">Tire Size <span class="req">*</span></label>
+                                                                                    <input type="text" name="tiresize" class="form-control" placeholder="Size" value="{{old('tiresize')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="speedrating">SpeedRating </label>
+                                                                                    <input type="text" name="speedrating" class="form-control" placeholder="Speed Rating " value="{{old('speedrating')}}" >
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="loadindex">Loadindex  </label>
+                                                                                    <input type="text" name="loadindex" class="form-control" placeholder="Load Index " value="{{old('loadindex')}}" >
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="fname">Width <span class="req">*</span></label>
-                                                                                <input type="text" name="wheelwidth" class="form-control" placeholder="Width " value="{{@$tire->wheelwidth}}" required="">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="fname">Offsets<span class="req">*</span></label>
-                                                                                <input type="text" name="offset1" class="form-control" placeholder="Offset1" required="" value="{{@$tire->offset1}}">
+                                                                        <div class="row"> 
 
-                                                                                <input type="text" name="offset2" class="form-control" placeholder="Offset2" required="" value="{{@$tire->offset2}}">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="ply">Ply</label>
+                                                                                    <input type="text" name="ply" class="form-control" placeholder="Ply" value="{{old('ply')}}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="utqg">UTQG</label>
+                                                                                    <input type="text" name="utqg" class="form-control" placeholder="UTQG" value="{{old('utqg')}}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="warranty">Warranty  </label>
+                                                                                    <input type="text" name="warranty" class="form-control" placeholder="Warranty " value="{{old('warranty')}}" >
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                        <div class="row"> 
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="lt"> LT</label> 
+                                                                                    <input type="text" step="any" name="lt" class="form-control" placeholder="LT ?" value="{{old('lt')}}" >
+                                                                            </div> 
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="xl"> xl</label> 
+                                                                                    <input type="text" step="any" name="xl" class="form-control" placeholder="XL ?" value="{{old('xl')}}" >
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="weight">Weight <span class="req">*</span> </label>
+                                                                                    <input type="number" step="any" name="weight" class="form-control" placeholder="Weight" value="{{old('weight')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="length">Length <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="length" class="form-control" placeholder="Length" value="{{old('length')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="width">Width <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="width" class="form-control" placeholder="width" value="{{old('width')}}" required="">
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="height">Height <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="height" class="form-control" placeholder="Height" value="{{old('height')}}" required="">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>  
+                                                                        <br>
+                                                                        <div class="row">
 
-<div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <div class="form-group">
-            <label for="fname">Bolt Pattern1 <span class="req">*</span></label>
-            <input type="text" name="boltpattern1" class="form-control" placeholder="Pattern1 " value="{{@$tire->boltpattern1}}" required="">
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <div class="form-group">
-            <label for="fname">Bolt Pattern2</label>
-            <input type="text" name="boltpattern2" class="form-control" placeholder="Pattern2 " value="{{@$tire->boltpattern2}}" required="">
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <div class="form-group">
-            <label for="fname">Bolt Pattern3</label>
-            <input type="text" name="boltpattern3" class="form-control" placeholder="Pattern3 " value="{{@$tire->boltpattern3}}" required="">
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <label for="fname">Image <span class="req">*</span></label><br>
-            <img src="{{asset(ViewImage(@$tire->prodimage))}}" width="100%" height="100%">
-        </div>
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="vehicle_type">Vehicle Type</label>
+                                                                                    <select class="form-control select2" name="vehicle_type">
+                                                                                        <option value="">Select One</option>
+                                                                                        <option value="Passenger">Passenger</option>
+                                                                                        <option value="Light Truck/SUV">Light Truck/SUV</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="detaildesctype">Detail Description  Type</label>
+                                                                                    <select class="form-control select2" name="detaildesctype">
+                                                                                        <option value="">Select One</option>
+                                                                                        <option value="Passenger"> Passenger </option>
+                                                                                        <option value="LT/SUV"> LT/SUV </option>
+                                                                                        <option value="All-Terrain"> All-Terrain </option>
+                                                                                        <option value="Commercial"> Commercial </option>
+                                                                                        <option value="Performance"> Performance </option>
+                                                                                        <option value="Competition"> Competition </option>
+                                                                                        <option value="MudTerrain"> MudTerrain </option>
+                                                                                        <option value="Winter"> Winter </option>
+                                                                                        <option value="Highway"> Highway </option>
+                                                                                        <option value="Summer"> Summer </option>
+                                                                                        <option value="UHP"> UHP </option>
+                                                                                        <option value="CUV/SUV"> CUV/SUV </option>
+                                                                                        <option value="SUV/CUV"> SUV/CUV </option>
+                                                                                        <option value="All-Weather"> All-Weather </option>
+                                                                                        <option value="Trailer"> Trailer </option>
+                                                                                        <option value="SUV"> SUV </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="detaildescfeatures">Detail Description Features</label>
+                                                                                    <textarea class="form-control" name="detaildescfeatures" >{{old('detaildescfeatures')}}</textarea> 
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="detaildesc">Detail Description</label>
+                                                                                    <textarea class="form-control" name="detaildesc" >{{old('detaildesc')}}</textarea> 
+                                                                                </div>
+                                                                            </div>   
+                                                                        </div> 
+                                                                        <br> 
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#pricedetails">Price Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price">Price <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price2">Price 2</label>
+                                                                                    <input type="number" step="any" name="price2" class="form-control" placeholder="Price 2" value="{{old('price2')}}" >
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="cost">Cost</label>
+                                                                                    <input type="number" step="any" name="cost" class="form-control" placeholder="Cost" value="{{old('cost')}}" >
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price">Rate</label>
+                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}" >
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>   
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="originalprice">Original Price <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="originalprice" class="form-control" placeholder="Original Price" value="{{old('originalprice')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="yousave">You Save</label>
+                                                                                    <input type="number" step="any" name="yousave" class="form-control" placeholder="Your Saved Amount" value="{{old('yousave')}}" >
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="set_amount">Set Amount</label>
+                                                                                    <input type="number" step="any" name="set_amount" class="form-control" placeholder="Set Amount" value="{{old('set_amount')}}" >
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div> 
+                                                                        <br> 
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#saledetails">Sale Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="saleprice">Sale Price <span class="req">*</span> </label>
+                                                                                    <input type="number" step="any" name="saleprice" class="form-control" placeholder="Sale Price" value="{{old('saleprice')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="saletype">Sale Type</label>
+                                                                                    
+                                                                                    <input type="number" step="any" name="saletype" class="form-control" placeholder="Sale Type" value="{{old('saletype')}}" >
+                                                                                </div>
+                                                                            </div>    
+                                                                            <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="cost">Cost</label>
+                                                                                    <input type="number" step="any" name="cost" class="form-control" placeholder="Cost" value="{{old('cost')}}"  >
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price">Rate</label>
+                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}"  >
+                                                                                </div>
+                                                                            </div>   -->
+                                                                        </div>  
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#vendordetails">Vendor Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="dropshipper">Dropshipper  </label>
+                                                                                    <input type="text" name="dropshipper" class="form-control" placeholder="dropshipper" value="{{old('dropshipper')}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="dropshipper2">Dropshipper 2  </label>
+                                                                                    <input type="text" name="dropshipper2" class="form-control" placeholder="dropshipper2" value="{{old('dropshipper2')}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="vendorpartno">Vendor Partnumber  </label>
+                                                                                    <input type="text" name="vendorpartno" class="form-control" placeholder="vendorpartno" value="{{old('vendorpartno')}}">
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="vendorpartno2">Vendor Partnumber2  </label>
+                                                                                    <input type="text" name="vendorpartno2" class="form-control" placeholder="vendorpartno2" value="{{old('vendorpartno2')}}">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>   
+                                                                        <br>
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#badgeimages">Badge Images</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="badge1">Badge Image 1  </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="badge1" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('badge1')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="badge2">Badge Image 2 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="badge2" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('badge2')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="badge3">Badge Image 3 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="badge3" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('badge3')}}">
+                                                                            </div>    
+                                                                        </div>  
+                                                                        <br>
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#badgeimages">Product Images</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="prodimage1">Product Image 1  </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="prodimage1" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('prodimage1')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="prodimage2">Product Image 2 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="prodimage2" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('prodimage2')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="prodimage3">Product Image 3 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="prodimage3" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('prodimage3')}}">
+                                                                            </div>    
+                                                                        </div> 
+                                                                        <br>
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#benefitsdetails">Benefits Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits1">Benefit 1 Description </label>
+                                                                                    <textarea class="form-control" name="benefits1" >{{old('benefits1')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage1">Benefit 1 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage1" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage1')}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits2">Benefit 2 Description </label>
+                                                                                    <textarea class="form-control" name="benefits2" >{{old('benefits2')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage2">Benefit 2 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage2" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage2')}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits3">Benefit 3 Description </label>
+                                                                                    <textarea class="form-control" name="benefits3" >{{old('benefits3')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage3">Benefit 3 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage3" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage3')}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits4">Benefit 4 Description </label>
+                                                                                    <textarea class="form-control" name="benefits4" >{{old('benefits4')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage4">Benefit 4 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage4" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage4')}}">
+                                                                            </div>
+                                                                        </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-            <input type="file" accept="image/*" name="front_back_image" class="btn btn-primary form-control" > 
-        </div>
-    </div>
-</div>
-<br>
-
-                                                                    <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="boldpattern1">Bold Pattern1 </label>
-                                                                                <input type="number" name="boldpattern1" class="form-control" placeholder="Pattern 1" value="{{@$tire->boldpattern1}}">
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#benefitsdetails">Performance Ratings Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="dry_performance">Dry Handling / Dry Traction/ Dry Performance</label>
+                                                                                    <input type="number" step="any" name="dry_performance" class="form-control" placeholder="Dry Handling / Dry Traction/ Dry Performance" value="{{old('dry_performance')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="wet_performance">Wet Braking/ Wet Traction/ Wet Performance</label>
+                                                                                    <input type="number" step="any" name="wet_performance" class="form-control" placeholder="Wet Braking/ Wet Traction/ Wet Performance" value="{{old('wet_performance')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="mileage_performance">Tread Life/ Mileage/ Wear </label>
+                                                                                    <input type="number" step="any" name="mileage_performance" class="form-control" placeholder="Tread Life/ Mileage/ Wear" value="{{old('mileage_performance')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="ride_comfort">Ride Comfort </label>
+                                                                                    <input type="number" step="any" name="ride_comfort" class="form-control" placeholder="Ride Comfort" value="{{old('ride_comfort')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div> 
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="payment-adress">
+                                                                                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="boldpattern2">Bold Pattern2</label>
-                                                                                <input type="number" name="boldpattern2" class="form-control" placeholder="Pattern 2" value="{{@$tire->boldpattern2}}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="boldpattern3">Bold Pattern3</label>
-                                                                                <input type="number" name="boldpattern3" class="form-control" placeholder="Pattern 3" value="{{@$tire->boldpattern3}}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                    <div class="row">
-                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="simpleoffset">Simple Offset</label>
-                                                                                <select class="form-control select2" name="simpleoffset">
-                                                                                    <option value="">Select Offset</option>
-                                                                                    <option value="High" {{(@$tire->simpleoffset == 'High')?'selected':''}}>High</option>
-                                                                                    <option value="Low" {{(@$tire->simpleoffset == 'Low')?'selected':''}}>Low</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="offset1">Offset 1</label>
-                                                                                <input type="number" name="offset1" class="form-control" placeholder="Offset 1" value="{{@$tire->offset1}}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                            <div class="form-group">
-                                                                                <label for="offset2">Offset 2</label>
-                                                                                <input type="number" name="offset2" class="form-control" placeholder="Offset 2" value="{{@$tire->offset2}}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <br>
-
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12">
-                                                                            <div class="payment-adress">
-                                                                                <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
+                                                                    </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -301,137 +623,487 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="review-content-section">
                                                                 <div id="dropzone1" class="pro-ad">
-                                                                    <form action="{{url('/admin/wheel/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
+
+                                                                    <form action="{{url('/admin/tire/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
                                                                         {{@csrf_field()}}
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="brand">Brand <span class="req">*</span></label>
-                                                                                    <select class="form-control select2 Brand" name="brand" required="">
+                                                                                    <label for="brand">Tire Brand <span class="req">*</span></label>
+                                                                                    <select class="form-control select2 Brand" name="prodbrand" required="">
                                                                                         <option value="">Select Brand</option>
- 
+                                                                                     @foreach(getTireBrandList() as $brand)
+                                                                                    <option value="{{$brand}}">{{$brand}}</option>
+                                                                                    @endforeach
+                                                                                    
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="fname">Type <span class="req">*</span></label>
-                                                                                    <input type="text" name="wheeltype" class="form-control" placeholder="Type" required="" value="{{old('wheeltype')}}">
+                                                                               <div class="form-group">
+                                                                                    <label for="prodmodel">Product Model <span class="req">*</span></label>
+                                                                                    <input type="text" name="prodmodel" class="form-control" placeholder="Product Model" required="" value="{{old('prodmodel')}}">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="lname">Part Number <span class="req">*</span></label>
-                                                                                    <input type="text" name="part_no" class="form-control" placeholder="Part Number" value="{{old('part_no')}}" required="">
+                                                                                    <label for="prodtitle">Product title <span class="req">*</span></label>
+                                                                                    <input type="text" name="prodtitle" class="form-control" placeholder="Product title" required="" value="{{old('prodtitle')}}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="fname">Style <span class="req">*</span></label>
-                                                                                    <input type="text" name="style" class="form-control" placeholder="Style " value="{{old('style')}}" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="finish">Finish <span class="req">*</span></label>
-                                                                                    <input type="text" name="finish" class="form-control" placeholder="Finish" value="{{old('finish')}}" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="hub">Hub</label>
-                                                                                    <input type="number" name="hub" class="form-control" placeholder="Hub " value="{{old('hub')}}">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="wheeldiameter">Diameter <span class="req">*</span></label>
-                                                                                    <input type="number" name="wheeldiameter" class="form-control" placeholder="Diameter" value="{{old('wheeldiameter')}}" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="wheelwidth">Width <span class="req">*</span></label>
-                                                                                    <input type="number" name="wheelwidth" class="form-control" placeholder="Width " value="{{old('wheelwidth')}}" required="">
-                                                                                </div>
+                                                                                 
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <label for="fname">Wheel Image <span class="req">*</span></label>
+                                                                                <div class="form-group">
+                                                                                    <label for="partno">Part Number <span class="req">*</span></label>
+                                                                                    <input type="text" name="partno" class="form-control" placeholder="Part Number" value="{{old('partno')}}" required="">
+                                                                                </div>
+                                                                            </div>                                                                                
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="detailtitle">Detailed Title  </label>
+                                                                                    <input type="text" name="detailtitle" class="form-control" placeholder="Detailed Title" value="{{old('detailtitle')}}"  >
+                                                                                </div>
+                                                                            </div>    
+                                                                        </div>   
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="prodimage">Product Image <span class="req">*</span></label>
                                                                                 <br>
-
-                                                                                <input type="file" accept="image/*" name="image" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('image')}}">
+                                                                                <input type="file" accept="image/*" name="prodimage" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('prodimage')}}">
                                                                             </div>
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <label for="fname">Front Back Image <span class="req">*</span></label>
-                                                                                <br>
-                                                                                <input type="file" accept="image/*" name="front_back_image" class="dropify form-control-file" aria-describedby="fileHelp" required="" data-default-file="{{old('front_back_image')}}">
-                                                                                <br>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                        <div class="row">
-                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="boldpattern1">Bold Pattern1</label>
-                                                                                    <input type="number" name="boldpattern1" class="form-control" placeholder="Pattern 1" value="{{old('boldpattern1')}}">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="boldpattern2">Bold Pattern2</label>
-                                                                                    <input type="number" name="boldpattern2" class="form-control" placeholder="Pattern 2" value="{{old('boldpattern2')}}">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="boldpattern3">Bold Pattern3</label>
-                                                                                    <input type="number" name="boldpattern3" class="form-control" placeholder="Pattern 3" value="{{old('boldpattern3')}}">
+                                                                                    <label for="prodlandingdesc">Product Landing Description </label>
+                                                                                    <textarea class="form-control" name="prodlandingdesc" >{{old('prodlandingdesc')}}</textarea> 
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-
-
+                                                                        <div class="row">
+                                                                            
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="proddesc">Product Description </label>
+                                                                                    <textarea class="form-control" name="proddesc" >{{old('proddesc')}}</textarea> 
+                                                                                </div>
+                                                                            </div>                                                     
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="prodmetadesc">Product Meta Description </label>
+                                                                                    <textarea class="form-control" name="prodmetadesc" >{{old('prodmetadesc')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="partno_old"> Old Partnumber  </label>
+                                                                                    <input type="text" name="partno_old" class="form-control" placeholder="Old Partnumber" value="{{old('partno_old')}}"  >
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="qtyavail">Quantity Available  <span class="req">*</span></label>
+                                                                                    <input type="text" name="qtyavail" class="form-control" placeholder="Quantity Available" value="{{old('qtyavail')}}"  required="">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div> 
                                                                         <div class="row">
                                                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="simpleoffset">Simple Offset</label>
-                                                                                    <select class="form-control select2" name="simpleoffset">
-                                                                                        <option value="">Select Offset</option>
-                                                                                        <option value="High">High</option>
-                                                                                        <option value="Low">Low</option>
+                                                                                    <label for="tirediameter">Tire Diameter <span class="req">*</span></label>
+                                                                                    <input type="number" name="tirediameter" class="form-control" placeholder="Diameter" value="{{old('tirediameter')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="tirewidth">Tire Width <span class="req">*</span></label>
+                                                                                    <input type="number" name="tirewidth" class="form-control" placeholder="Width " value="{{old('tirewidth')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="tireprofile">Tire Profile <span class="req">*</span></label>
+                                                                                    <input type="number" name="tirewidth" class="form-control" placeholder="Profile " value="{{old('tirewidth')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="tiresize">Tire Size <span class="req">*</span></label>
+                                                                                    <input type="text" name="tiresize" class="form-control" placeholder="Size" value="{{old('tiresize')}}" required="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="speedrating">SpeedRating </label>
+                                                                                    <input type="text" name="speedrating" class="form-control" placeholder="Speed Rating " value="{{old('speedrating')}}" >
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="loadindex">Loadindex  </label>
+                                                                                    <input type="text" name="loadindex" class="form-control" placeholder="Load Index " value="{{old('loadindex')}}" >
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row"> 
+
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="ply">Ply</label>
+                                                                                    <input type="text" name="ply" class="form-control" placeholder="Ply" value="{{old('ply')}}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="utqg">UTQG</label>
+                                                                                    <input type="text" name="utqg" class="form-control" placeholder="UTQG" value="{{old('utqg')}}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="warranty">Warranty  </label>
+                                                                                    <input type="text" name="warranty" class="form-control" placeholder="Warranty " value="{{old('warranty')}}" >
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                        <div class="row"> 
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="lt"> LT</label> 
+                                                                                    <input type="text" step="any" name="lt" class="form-control" placeholder="LT ?" value="{{old('lt')}}" >
+                                                                            </div> 
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="xl"> xl</label> 
+                                                                                    <input type="text" step="any" name="xl" class="form-control" placeholder="XL ?" value="{{old('xl')}}" >
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="weight">Weight <span class="req">*</span> </label>
+                                                                                    <input type="number" step="any" name="weight" class="form-control" placeholder="Weight" value="{{old('weight')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="length">Length <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="length" class="form-control" placeholder="Length" value="{{old('length')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="width">Width <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="width" class="form-control" placeholder="width" value="{{old('width')}}" required="">
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="height">Height <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="height" class="form-control" placeholder="Height" value="{{old('height')}}" required="">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>  
+                                                                        <br>
+                                                                        <div class="row">
+
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="vehicle_type">Vehicle Type</label>
+                                                                                    <select class="form-control select2" name="vehicle_type">
+                                                                                        <option value="">Select One</option>
+                                                                                        <option value="Passenger">Passenger</option>
+                                                                                        <option value="Light Truck/SUV">Light Truck/SUV</option>
                                                                                     </select>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="offset1">Offset 1</label>
-                                                                                    <input type="number" name="offset1" class="form-control" placeholder="Offset 1" value="{{old('offset1')}}">
+                                                                                    <label for="detaildesctype">Detail Description  Type</label>
+                                                                                    <select class="form-control select2" name="detaildesctype">
+                                                                                        <option value="">Select One</option>
+                                                                                        <option value="Passenger"> Passenger </option>
+                                                                                        <option value="LT/SUV"> LT/SUV </option>
+                                                                                        <option value="All-Terrain"> All-Terrain </option>
+                                                                                        <option value="Commercial"> Commercial </option>
+                                                                                        <option value="Performance"> Performance </option>
+                                                                                        <option value="Competition"> Competition </option>
+                                                                                        <option value="MudTerrain"> MudTerrain </option>
+                                                                                        <option value="Winter"> Winter </option>
+                                                                                        <option value="Highway"> Highway </option>
+                                                                                        <option value="Summer"> Summer </option>
+                                                                                        <option value="UHP"> UHP </option>
+                                                                                        <option value="CUV/SUV"> CUV/SUV </option>
+                                                                                        <option value="SUV/CUV"> SUV/CUV </option>
+                                                                                        <option value="All-Weather"> All-Weather </option>
+                                                                                        <option value="Trailer"> Trailer </option>
+                                                                                        <option value="SUV"> SUV </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="detaildescfeatures">Detail Description Features</label>
+                                                                                    <textarea class="form-control" name="detaildescfeatures" >{{old('detaildescfeatures')}}</textarea> 
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="detaildesc">Detail Description</label>
+                                                                                    <textarea class="form-control" name="detaildesc" >{{old('detaildesc')}}</textarea> 
+                                                                                </div>
+                                                                            </div>   
+                                                                        </div> 
+                                                                        <br> 
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#pricedetails">Price Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price">Price <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price2">Price 2</label>
+                                                                                    <input type="number" step="any" name="price2" class="form-control" placeholder="Price 2" value="{{old('price2')}}" >
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="cost">Cost</label>
+                                                                                    <input type="number" step="any" name="cost" class="form-control" placeholder="Cost" value="{{old('cost')}}" >
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price">Rate</label>
+                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}" >
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>   
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="originalprice">Original Price <span class="req">*</span></label>
+                                                                                    <input type="number" step="any" name="originalprice" class="form-control" placeholder="Original Price" value="{{old('originalprice')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="yousave">You Save</label>
+                                                                                    <input type="number" step="any" name="yousave" class="form-control" placeholder="Your Saved Amount" value="{{old('yousave')}}" >
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="set_amount">Set Amount</label>
+                                                                                    <input type="number" step="any" name="set_amount" class="form-control" placeholder="Set Amount" value="{{old('set_amount')}}" >
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div> 
+                                                                        <br> 
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#saledetails">Sale Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="saleprice">Sale Price <span class="req">*</span> </label>
+                                                                                    <input type="number" step="any" name="saleprice" class="form-control" placeholder="Sale Price" value="{{old('saleprice')}}" required="">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="saletype">Sale Type</label>
+                                                                                    
+                                                                                    <input type="number" step="any" name="saletype" class="form-control" placeholder="Sale Type" value="{{old('saletype')}}" >
+                                                                                </div>
+                                                                            </div>    
+                                                                            <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="cost">Cost</label>
+                                                                                    <input type="number" step="any" name="cost" class="form-control" placeholder="Cost" value="{{old('cost')}}"  >
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="price">Rate</label>
+                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}"  >
+                                                                                </div>
+                                                                            </div>   -->
+                                                                        </div>  
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#vendordetails">Vendor Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="dropshipper">Dropshipper  </label>
+                                                                                    <input type="text" name="dropshipper" class="form-control" placeholder="dropshipper" value="{{old('dropshipper')}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="dropshipper2">Dropshipper 2  </label>
+                                                                                    <input type="text" name="dropshipper2" class="form-control" placeholder="dropshipper2" value="{{old('dropshipper2')}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="vendorpartno">Vendor Partnumber  </label>
+                                                                                    <input type="text" name="vendorpartno" class="form-control" placeholder="vendorpartno" value="{{old('vendorpartno')}}">
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="vendorpartno2">Vendor Partnumber2  </label>
+                                                                                    <input type="text" name="vendorpartno2" class="form-control" placeholder="vendorpartno2" value="{{old('vendorpartno2')}}">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>   
+                                                                        <br>
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#badgeimages">Badge Images</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="badge1">Badge Image 1  </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="badge1" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('badge1')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="badge2">Badge Image 2 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="badge2" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('badge2')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="badge3">Badge Image 3 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="badge3" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('badge3')}}">
+                                                                            </div>    
+                                                                        </div>  
+                                                                        <br>
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#badgeimages">Product Images</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="prodimage1">Product Image 1  </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="prodimage1" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('prodimage1')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="prodimage2">Product Image 2 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="prodimage2" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('prodimage2')}}">
+                                                                            </div>    
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                 <label for="prodimage3">Product Image 3 </label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="prodimage3" class="dropify form-control-file" aria-describedby="fileHelp"   data-default-file="{{old('prodimage3')}}">
+                                                                            </div>    
+                                                                        </div> 
+                                                                        <br>
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#benefitsdetails">Benefits Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits1">Benefit 1 Description </label>
+                                                                                    <textarea class="form-control" name="benefits1" >{{old('benefits1')}}</textarea> 
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="offset2">Offset 2</label>
-                                                                                    <input type="number" name="offset2" class="form-control" placeholder="Offset 2" value="{{old('offset2')}}">
-                                                                                </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage1">Benefit 1 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage1" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage1')}}">
                                                                             </div>
                                                                         </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits2">Benefit 2 Description </label>
+                                                                                    <textarea class="form-control" name="benefits2" >{{old('benefits2')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage2">Benefit 2 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage2" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage2')}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits3">Benefit 3 Description </label>
+                                                                                    <textarea class="form-control" name="benefits3" >{{old('benefits3')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage3">Benefit 3 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage3" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage3')}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="benefits4">Benefit 4 Description </label>
+                                                                                    <textarea class="form-control" name="benefits4" >{{old('benefits4')}}</textarea> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                <label for="benefitsimage4">Benefit 4 Image</label>
+                                                                                <br>
+                                                                                <input type="file" accept="image/*" name="benefitsimage4" class="dropify form-control-file" aria-describedby="fileHelp" data-default-file="{{old('benefitsimage4')}}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#benefitsdetails">Performance Ratings Details</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="dry_performance">Dry Handling / Dry Traction/ Dry Performance</label>
+                                                                                    <input type="number" step="any" name="dry_performance" class="form-control" placeholder="Dry Handling / Dry Traction/ Dry Performance" value="{{old('dry_performance')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="wet_performance">Wet Braking/ Wet Traction/ Wet Performance</label>
+                                                                                    <input type="number" step="any" name="wet_performance" class="form-control" placeholder="Wet Braking/ Wet Traction/ Wet Performance" value="{{old('wet_performance')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="mileage_performance">Tread Life/ Mileage/ Wear </label>
+                                                                                    <input type="number" step="any" name="mileage_performance" class="form-control" placeholder="Tread Life/ Mileage/ Wear" value="{{old('mileage_performance')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="ride_comfort">Ride Comfort </label>
+                                                                                    <input type="number" step="any" name="ride_comfort" class="form-control" placeholder="Ride Comfort" value="{{old('ride_comfort')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div> 
                                                                         <br>
                                                                         <div class="row">
                                                                             <div class="col-lg-12">
                                                                                 <div class="payment-adress">
                                                                                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
-
                                                                                 </div>
                                                                             </div>
                                                                         </div>
