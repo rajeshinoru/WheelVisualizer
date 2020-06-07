@@ -20,7 +20,7 @@ class CarResource extends Controller
     */
     public function index()
     {
-        $cars = Viflist::has('CarImages')->orderBy('id','DESC')->paginate(10); 
+        $cars = Viflist::has('CarImages')->orderBy('id','DESC')->paginate(5); 
         // $cars = Viflist::with('CarImages')->paginate(10);
         $brands = Wheel::select('brand')->distinct('brand')->get();
         $makes = Viflist::select('make')->distinct('make')->get();

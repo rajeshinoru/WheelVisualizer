@@ -194,7 +194,10 @@ class TireResource extends Controller
                 // dd(base_path('storage/app/public/uploaded_csv/').$filename);
                 $filepath = base_path('storage/app/public/uploaded_csv/').$filename;  
 
-                if( !$fr = @fopen($filepath, "r") ) die("Failed to open file");
+                if( !$fr = @fopen($filepath, "r") ){
+
+                    return back()->with('flash_error',"File Could not be read!!");
+                }
                 // $fw = fopen($out_file, "w");
                 $i=1;
                 
@@ -277,21 +280,21 @@ class TireResource extends Controller
                                 $tire['prodimage1'] = isset($data[71])?$data[71]:null;  
                                 $tire['prodimage2'] = isset($data[72])?$data[72]:null;  
                                 $tire['prodimage3'] = isset($data[73])?$data[73]:null;  
-                                $tire['dry_performance'] =(isset($data[74]) && $74[74] != '')?$data[74]:0; 
-                                $tire['wet_performance'] = (isset($data[75]) && $75[75] !='')?$data[75]:0; 
-                                $tire['mileage_performance'] = (isset($data[76]) && $76[76] !='')?$data[76]:0; 
-                                $tire['ride_comfort'] = (isset($data[77]) && $77[77] !='')?$data[77]:0;    
-                                $tire['quiet_ride'] = (isset($data[78]) && $78[78] !='')?$data[78]:0;  
-                                $tire['winter_performance'] = (isset($data[79]) && $79[79] !='')?$data[79]:0;  
-                                $tire['fuel_efficiency'] = (isset($data[80]) && $80[80] !='')?$data[80]:0; 
-                                $tire['braking'] = (isset($data[81]) && $81[81] !='')?$data[81]:0; 
-                                $tire['responsiveness'] = (isset($data[82]) && $82[82] !='')?$data[82]:0;  
-                                $tire['sport'] = (isset($data[83]) && $83[83] !='')?$data[83]:0;   
-                                $tire['off_road'] = (isset($data[84]) && $84[84] !='')?$data[84]:0;    
+                                $tire['dry_performance'] =(isset($data[74]) && $data[74] != '')?$data[74]:0; 
+                                $tire['wet_performance'] = (isset($data[75]) && $data[75] !='')?$data[75]:0; 
+                                $tire['mileage_performance'] = (isset($data[76]) && $data[76] !='')?$data[76]:0; 
+                                $tire['ride_comfort'] = (isset($data[77]) && $data[77] !='')?$data[77]:0;    
+                                $tire['quiet_ride'] = (isset($data[78]) && $data[78] !='')?$data[78]:0;  
+                                $tire['winter_performance'] = (isset($data[79]) && $data[79] !='')?$data[79]:0;  
+                                $tire['fuel_efficiency'] = (isset($data[80]) && $data[80] !='')?$data[80]:0; 
+                                $tire['braking'] = (isset($data[81]) && $data[81] !='')?$data[81]:0; 
+                                $tire['responsiveness'] = (isset($data[82]) && $data[82] !='')?$data[82]:0;  
+                                $tire['sport'] = (isset($data[83]) && $data[83] !='')?$data[83]:0;   
+                                $tire['off_road'] = (isset($data[84]) && $data[84] !='')?$data[84]:0;    
                                 $tire['youtube1'] = isset($data[85])?$data[85]:null;    
                                 $tire['youtube2'] = isset($data[86])?$data[86]:null;    
                                 $tire['youtube3'] = isset($data[87])?$data[87]:null;    
-                                $tire['youtube4'] = isset($data[]88)?$data[88]:null;    
+                                $tire['youtube4'] = isset($data[88])?$data[88]:null;    
 
                                 Tire::updateOrCreate(['partno' =>$tire['partno']] , $tire ); 
 
