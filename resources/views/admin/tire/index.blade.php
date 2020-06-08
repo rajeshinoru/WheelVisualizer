@@ -86,7 +86,7 @@
                                 <td>{{@$tire->prodtitle}}</td>
                                 <td>{{@$tire->prodbrand}}</td>
                                 <td>{{@$tire->prodmodel}}</td>
-                                <td><img class="wheelImage" src="{{ViewImage(@$tire->prodimage)}}" width="100px" height="100px"></td>
+                                <td><img class="wheelImage" src="{{ViewTireImage(@$tire->prodimage)}}" width="100px" height="100px"></td>
                                <!--  <td>{{@$tire->tiresize}}</td>
                                 <td>{{@$tire->tirewidth?:'-'}}</td>
                                 <td>{{@$tire->tireprofile?:'-'}}</td>
@@ -151,10 +151,9 @@
                                                                                     <label for="brand">Tire Brand <span class="req">*</span></label>
                                                                                     <select class="form-control select2 Brand" name="prodbrand" required="">
                                                                                         <option value="">Select Brand</option>
-                                                                                     @foreach(getTireBrandList() as $brand)
-                                                                                    <option value="{{$brand}}">{{$brand}}</option>
-                                                                                    @endforeach
-                                                                                    
+                                                                                        @foreach(getTireBrandList() as $brand)
+                                                                                        <option value="{{$brand}}">{{$brand}}</option>
+                                                                                        @endforeach
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -171,18 +170,7 @@
                                                                                     <label for="prodtitle">Product title <span class="req">*</span></label>
                                                                                     <input type="text" name="prodtitle" class="form-control" placeholder="Product title" required="" value="{{old('prodtitle')}}">
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                 
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="partno">Part Number <span class="req">*</span></label>
-                                                                                    <input type="text" name="partno" class="form-control" placeholder="Part Number" value="{{old('partno')}}" required="">
-                                                                                </div>
-                                                                            </div>                                                                                
+                                                                            </div>             
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="detailtitle">Detailed Title  </label>
@@ -220,13 +208,20 @@
                                                                         </div>
                                                                         <div class="row">
                                                                             
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="partno">Part Number <span class="req">*</span></label>
+                                                                                    <input type="text" name="partno" class="form-control" placeholder="Part Number" value="{{old('partno')}}" required="">
+                                                                                </div>
+                                                                            </div>   
+
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="partno_old"> Old Partnumber  </label>
                                                                                     <input type="text" name="partno_old" class="form-control" placeholder="Old Partnumber" value="{{old('partno_old')}}"  >
                                                                                 </div>
                                                                             </div>   
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="qtyavail">Quantity Available  <span class="req">*</span></label>
                                                                                     <input type="text" name="qtyavail" class="form-control" placeholder="Quantity Available" value="{{old('qtyavail')}}"  required="">
@@ -300,8 +295,12 @@
                                                                                     <input type="text" step="any" name="lt" class="form-control" placeholder="LT ?" value="{{old('lt')}}" >
                                                                             </div> 
                                                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                                                <label for="xl"> xl</label> 
+                                                                                <label for="xl"> XL</label> 
                                                                                     <input type="text" step="any" name="xl" class="form-control" placeholder="XL ?" value="{{old('xl')}}" >
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <label for="prodsortcode"> Product Sort Code</label> 
+                                                                                    <input type="text" step="any" name="prodsortcode" class="form-control" placeholder="Product Sort Code " value="{{old('prodsortcode')}}" >
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
@@ -617,6 +616,82 @@
                                                                                     <input type="number" step="any" name="ride_comfort" class="form-control" placeholder="Ride Comfort" value="{{old('ride_comfort')}}"  >
                                                                                 </div>
                                                                             </div>  
+                                                                        </div> 
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="quiet_ride">Quiet Ride/ Noise Comfort/ Quietness</label>
+                                                                                    <input type="number" step="any" name="quiet_ride" class="form-control" placeholder="Quiet Ride/ Noise Comfort/ Quietness" value="{{old('quiet_ride')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="winter_performance">Winter Performance/ Snow Traction/ Snow </label>
+                                                                                    <input type="number" step="any" name="winter_performance" class="form-control" placeholder="Winter Performance/ Snow Traction/ Snow " value="{{old('winter_performance')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="fuel_efficiency">Fuel Efficiency / Eco </label>
+                                                                                    <input type="number" step="any" name="fuel_efficiency" class="form-control" placeholder="Fuel Efficiency / Eco" value="{{old('fuel_efficiency')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="braking">Braking </label>
+                                                                                    <input type="number" step="any" name="braking" class="form-control" placeholder="Braking" value="{{old('braking')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div> 
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="responsiveness">Responsiveness</label>
+                                                                                    <input type="number" step="any" name="responsiveness" class="form-control" placeholder="Responsiveness" value="{{old('responsiveness')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="sport">Sport</label>
+                                                                                    <input type="number" step="any" name="sport" class="form-control" placeholder="Sport " value="{{old('sport')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="off_road">Off Road</label>
+                                                                                    <input type="number" step="any" name="off_road" class="form-control" placeholder="Off Road" value="{{old('off_road')}}"  >
+                                                                                </div>
+                                                                            </div>   
+                                                                        </div> 
+                                                                        <br>
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#youtubelinks">Youtube Links</a></li>
+                                                                        </ul>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="youtube1">Video 1</label>
+                                                                                    <input type="text" step="any" name="youtube1" class="form-control" placeholder="Embedded URL" value="{{old('youtube1')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="youtube2">Video 2</label>
+                                                                                    <input type="text" step="any" name="youtube2" class="form-control" placeholder="Embedded URL" value="{{old('youtube2')}}"  >
+                                                                                </div>
+                                                                            </div>  
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="youtube3">Video 3</label>
+                                                                                    <input type="text" step="any" name="youtube3" class="form-control" placeholder="Embedded URL" value="{{old('youtube3')}}"  >
+                                                                                </div>
+                                                                            </div> 
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="youtube4">Video 4</label>
+                                                                                    <input type="text" step="any" name="youtube4" class="form-control" placeholder="Embedded URL" value="{{old('youtube4')}}"  >
+                                                                                </div>
+                                                                            </div>    
                                                                         </div> 
                                                                         <br>
                                                                         <div class="row">

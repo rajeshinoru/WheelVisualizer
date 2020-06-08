@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tire extends Model
 {
-
-
 		protected $fillable = [
-	
+
 				'partno',
 				'prodtitle',
 				'prodbrand',
@@ -66,6 +64,8 @@ class Tire extends Model
 				'badge2',
 				'badge3',
 				'originalprice',
+				'yousave',
+				'set_amount',
 				'detaildesctype',
 				'detaildescfeatures',
 				'detaildesc',
@@ -92,6 +92,10 @@ class Tire extends Model
 				'responsiveness',
 				'sport',
 				'off_road',
+				'youtube1',
+				'youtube2',
+				'youtube3',
+				'youtube4',
 	];
 
 

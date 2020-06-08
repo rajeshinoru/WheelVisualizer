@@ -40,35 +40,117 @@ class TireResource extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // dd($request->all()); 
+    {  
         $this->validate($request, [
-            'brand' => 'required|max:255', 
-            'wheeltype' => 'required|max:255',
-            'part_no' => 'required|unique:wheels,part_no',
-            'style' => 'required|max:255',
-            'finish' => 'required|max:255',
-            'wheeldiameter' => 'required|max:255',
-            'wheelwidth' => 'required|max:255',
-            'image' => 'required|mimes:jpg,png|max:5242880', 
-            'front_back_image' => 'required|mimes:png|max:5242880', 
+
+            'prodbrand'=>'required',
+            'prodmodel'=>'required',
+            'prodtitle'=>'required',
+            'prodimage'=>'required',
+            'partno'=>'required|unique:tires,partno',
+            'qtyavail'=>'required',
+            'tirediameter'=>'required',
+            'tirewidth'=>'required',
+            'tirewidth'=>'required',
+            'tiresize'=>'required',
+            'weight'=>'required',
+            'length'=>'required',
+            'width'=>'required',
+            'height'=>'required',
+            'price'=>'required',
+            'originalprice'=>'required',
+            'saleprice'=>'required',
+            'prodimage' =>'mimes:png,jpg,jpeg',
+            'badge1' =>'mimes:png,jpg,jpeg',
+            'badge2' =>'mimes:png,jpg,jpeg',
+            'badge3' =>'mimes:png,jpg,jpeg',
+            'prodimage1' =>'mimes:png,jpg,jpeg',
+            'prodimage2' =>'mimes:png,jpg,jpeg',
+            'prodimage3' =>'mimes:png,jpg,jpeg',
+            'benefitsimage1' =>'mimes:png,jpg,jpeg',
+            'benefitsimage2' =>'mimes:png,jpg,jpeg',
+            'benefitsimage3' =>'mimes:png,jpg,jpeg',
+            'benefitsimage4' =>'mimes:png,jpg,jpeg', 
         ]);
         try{  
 
-            $imagename = $request->image->getClientOriginalName();  
-            $split_name = explode('.', $imagename);
+            $tire = Tire::create($request->all());
+            // dd($product);
+            if($request->hasFile('prodimage') ){
+                $imagename = $request->prodimage->getClientOriginalName();  
+                $request->prodimage->move(public_path('/storage/tires'), $imagename); 
+                $tire->prodimage = $imagename; 
+            } 
 
-            $front_back_image = $split_name[0].'.png';
-            $request->image->move(public_path('/storage/wheels'), $imagename);
-            $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image);  
-            $wheel = Tire::create($request->all());
-            $wheel->image = 'storage/wheels/'.$imagename;
-            $wheel->frontimage = 'storage/wheels/front_back/'.$front_back_image;
-            $wheel->rearimage = 'storage/wheels/front_back/'.$front_back_image;
-            $wheel->save();
+            // 3 Prod Images Uploading Here //
 
-            return back()->with('flash_success','Tire Added successfully');
-        }catch(Exception $e){
+            if($request->hasFile('prodimage1') ){
+                $imagename = $request->prodimage1->getClientOriginalName();  
+                $request->prodimage1->move(public_path('/storage/tires/models/'.$tire->prodmodel), $imagename); 
+                $tire->prodimage1 = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('prodimage2') ){
+                $imagename = $request->prodimage2->getClientOriginalName();  
+                $request->prodimage2->move(public_path('/storage/tires/models/'.$tire->prodmodel), $imagename); 
+                $tire->prodimage2 = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('prodimage3') ){
+                $imagename = $request->prodimage3->getClientOriginalName();  
+                $request->prodimage3->move(public_path('/storage/tires/models/'.$tire->prodmodel), $imagename); 
+                $tire->prodimage3 = $tire->prodmodel."/".$imagename; 
+            } 
+            
+            // Badge Images Uploading here
+
+            if($request->hasFile('badge1') ){
+                $imagename = $request->badge1->getClientOriginalName();  
+                $request->badge1->move(public_path('/storage/tires/badges/'), $imagename); 
+                $tire->badge1 = $imagename; 
+            } 
+
+            if($request->hasFile('badge2') ){
+                $imagename = $request->badge2->getClientOriginalName();  
+                $request->badge2->move(public_path('/storage/tires/badges/'), $imagename); 
+                $tire->badge2 = $imagename; 
+            } 
+
+            if($request->hasFile('badge3') ){
+                $imagename = $request->badge3->getClientOriginalName();  
+                $request->badge3->move(public_path('/storage/tires/badges/'), $imagename); 
+                $tire->badge3 = $imagename; 
+            } 
+            // Benefits Images Uploading here
+
+            if($request->hasFile('benefitsimage1') ){
+                $imagename = $request->benefitsimage1->getClientOriginalName();  
+                $request->benefitsimage1->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $tire->benefitsimage1 = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('benefitsimage2') ){
+                $imagename = $request->benefitsimage2->getClientOriginalName();  
+                $request->benefitsimage2->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $tire->benefitsimage2 = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('benefitsimage3') ){
+                $imagename = $request->benefitsimage3->getClientOriginalName();  
+                $request->benefitsimage3->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $tire->benefitsimage3 = $tire->prodmodel."/".$imagename; 
+            } 
+            if($request->hasFile('benefitsimage4') ){
+                $imagename = $request->benefitsimage4->getClientOriginalName();  
+                $request->benefitsimage4->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $tire->benefitsimage4 = $tire->prodmodel."/".$imagename; 
+            } 
+
+            $tire->save(); 
+
+            return back()->with('flash_success','Wheel Product Added successfully');
+
+        }catch(Exception $e){ 
             return back()->with('flash_error',$e->getMessage());
         }
     }
@@ -112,38 +194,116 @@ class TireResource extends Controller
     {  
         // dd($request->all());
         $this->validate($request, [
-            // 'year' => 'required|max:255',
-            'brand' => 'required|max:255', 
-            'wheeltype' => 'required|max:255',
-            'part_no' => 'required',
-            'style' => 'required|max:255',
-            'finish' => 'required|max:255',
-            'wheeldiameter' => 'required|max:255',
-            'wheelwidth' => 'required|max:255',
-            // 'image' => 'required|mimes:jpg,png|max:5242880', 
-            // 'front_back_image' => 'required|mimes:png|max:5242880', 
-            // 'image' => 'required|mimes:jpg,png|max:5242880', 
-            // 'front_back_image' => 'required|mimes:png|max:5242880', 
+
+            'prodbrand'=>'required',
+            'prodmodel'=>'required',
+            'prodtitle'=>'required',
+            'prodimage'=>'required',
+            'partno'=>'required|unique:tires,partno,' . $id,
+            'qtyavail'=>'required',
+            'tirediameter'=>'required',
+            'tirewidth'=>'required',
+            'tirewidth'=>'required',
+            'tiresize'=>'required',
+            'weight'=>'required',
+            'length'=>'required',
+            'width'=>'required',
+            'height'=>'required',
+            'price'=>'required',
+            'originalprice'=>'required',
+            'saleprice'=>'required',
+            'prodimage' =>'mimes:png,jpg,jpeg',
+            'badge1' =>'mimes:png,jpg,jpeg',
+            'badge2' =>'mimes:png,jpg,jpeg',
+            'badge3' =>'mimes:png,jpg,jpeg',
+            'prodimage1' =>'mimes:png,jpg,jpeg',
+            'prodimage2' =>'mimes:png,jpg,jpeg',
+            'prodimage3' =>'mimes:png,jpg,jpeg',
+            'benefitsimage1' =>'mimes:png,jpg,jpeg',
+            'benefitsimage2' =>'mimes:png,jpg,jpeg',
+            'benefitsimage3' =>'mimes:png,jpg,jpeg',
+            'benefitsimage4' =>'mimes:png,jpg,jpeg', 
         ]);
-        try{   
-            $data = request()->except(['_token','_method']);
-            $wheel = Tire::whereid($id)->first();
-            $wheel->update($data);
-            if($request->hasFile('image') && $request->hasFile('front_back_image') ){
-                // $imagename = $request->image->getClientOriginalName();  
-                // $split_name = explode('.', $imagename);
-                // $front_back_image = $split_name[0].'.png';
-                // $request->image->move(public_path('/storage/wheels'), $imagename);
-                // $request->front_back_image->move(public_path('/storage/wheels/front_back'), $front_back_image); 
+        try{  
 
-                // $wheel->image = 'storage/wheels/'.$imagename;
-                // $wheel->frontimage = 'storage/wheels/front_back/'.$front_back_image;
-                // $wheel->rearimage = 'storage/wheels/front_back/'.$front_back_image; 
+            $tire = Tire::find($id);
+            $updateData = $request->all();
+            // dd($product);
+            if($request->hasFile('prodimage') ){
+                $imagename = $request->prodimage->getClientOriginalName();  
+                $request->prodimage->move(public_path('/storage/tires'), $imagename); 
+                $updateData['prodimage'] = $imagename; 
             } 
-            $wheel->save(); 
 
-            return back()->with('flash_success','Tire Updated successfully');
-        }catch(Exception $e){
+            // 3 Prod Images Uploading Here //
+
+            if($request->hasFile('prodimage1') ){
+                $imagename = $request->prodimage1->getClientOriginalName();  
+                $request->prodimage1->move(public_path('/storage/tires/models/'.$tire->prodmodel), $imagename); 
+                $updateData['prodimage1'] = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('prodimage2') ){
+                $imagename = $request->prodimage2->getClientOriginalName();  
+                $request->prodimage2->move(public_path('/storage/tires/models/'.$tire->prodmodel), $imagename); 
+                $updateData['prodimage2'] = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('prodimage3') ){
+                $imagename = $request->prodimage3->getClientOriginalName();  
+                $request->prodimage3->move(public_path('/storage/tires/models/'.$tire->prodmodel), $imagename); 
+                $updateData['prodimage3'] = $tire->prodmodel."/".$imagename; 
+            } 
+            
+            // Badge Images Uploading here
+
+            if($request->hasFile('badge1') ){
+                $imagename = $request->badge1->getClientOriginalName();  
+                $request->badge1->move(public_path('/storage/tires/badges/'), $imagename); 
+                $updateData['badge1'] = $imagename; 
+            } 
+
+            if($request->hasFile('badge2') ){
+                $imagename = $request->badge2->getClientOriginalName();  
+                $request->badge2->move(public_path('/storage/tires/badges/'), $imagename); 
+                $updateData['badge2'] = $imagename; 
+            } 
+
+            if($request->hasFile('badge3') ){
+                $imagename = $request->badge3->getClientOriginalName();  
+                $request->badge3->move(public_path('/storage/tires/badges/'), $imagename); 
+                $updateData['badge3'] = $imagename; 
+            } 
+            // Benefits Images Uploading here
+
+            if($request->hasFile('benefitsimage1') ){
+                $imagename = $request->benefitsimage1->getClientOriginalName();  
+                $request->benefitsimage1->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $updateData['benefitsimage1'] = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('benefitsimage2') ){
+                $imagename = $request->benefitsimage2->getClientOriginalName();  
+                $request->benefitsimage2->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $updateData['benefitsimage2'] = $tire->prodmodel."/".$imagename; 
+            } 
+
+            if($request->hasFile('benefitsimage3') ){
+                $imagename = $request->benefitsimage3->getClientOriginalName();  
+                $request->benefitsimage3->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $updateData['benefitsimage3'] = $tire->prodmodel."/".$imagename; 
+            } 
+            if($request->hasFile('benefitsimage4') ){
+                $imagename = $request->benefitsimage4->getClientOriginalName();  
+                $request->benefitsimage4->move(public_path('/storage/tires/benefits/'.$tire->prodmodel), $imagename); 
+                $updateData['benefitsimage4'] = $tire->prodmodel."/".$imagename; 
+            } 
+
+            $tire->update($updateData); 
+
+            return back()->with('flash_success','Tire Data Updated successfully');
+
+        }catch(Exception $e){ 
             return back()->with('flash_error',$e->getMessage());
         }
     }
@@ -159,7 +319,7 @@ class TireResource extends Controller
         
         try {
             Tire::find($id)->delete();
-            return back()->with('flash_sucess', 'Tire deleted successfully');
+            return redirect('/admin/tire')->with('flash_sucess', 'Tire deleted successfully');
         } 
         catch (Exception $e) {
             return back()->with('flash_error', 'Tire Not Found');
@@ -175,7 +335,7 @@ class TireResource extends Controller
             return view('admin.tire.model',compact('tires','tire'));
         } 
         catch (Exception $e) {
-            dd($e);
+            // dd($e);
             return back()->with('flash_error', 'Tire Not Found');
         }
     }
@@ -202,8 +362,7 @@ class TireResource extends Controller
                 $i=1;
                 
                 while( ($data = fgetcsv($fr, 2000000, ",")) !== FALSE ) {
-                    if($i != 1){
-                        // dd($data[55]);
+                    if($i != 1){ 
                         if((isset($data[0])&&$data[0]!='')){
 
                                 $tire['partno'] = isset($data[0])?$data[0]:null;  
