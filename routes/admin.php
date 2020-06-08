@@ -58,6 +58,6 @@ Route::delete('/car/images/{id}', 'Resource\CarResource@destroyCarImages')->name
 // Route::post('/setting/store', 'SettingsController@store')->name('settings.store'); 
 
 
-Route::get('/cms','CMSPageController@index'); 
+Route::resource('cms','CMSPageController'); 
 Route::get('/cms/{category?}','SettingsController@index')->name('cms.index'); 
 Route::post('/cms/{category?}', 'SettingsController@store')->name('cms.store'); 

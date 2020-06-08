@@ -36,7 +36,25 @@ class CMSPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $this->validate($request, [
+            'title'=>'required|max:255',
+            'content'=>'required|min:1', 
+            'routename'=>'required|min:1', 
+        ]);
+        try{  
+
+                $data = $request->except(['_token']);
+                $data['pagecategory']='topnav';
+
+                $post = CMSPage::create($data);  
+                  
+                return back()->with('success','Page Created Successfully!!');
+
+            }catch(Exception $e){
+                return back()->withInput(Input::all())->with('error',$e->getMessage());
+            }
     }
 
     /**
@@ -68,9 +86,25 @@ class CMSPageController extends Controller
      * @param  \App\CMSPage  $cMSPage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CMSPage $cMSPage)
+    public function update(Request $request,$id)
     {
-        //
+        $this->validate($request, [
+            'title'=>'required|max:255',
+            'content'=>'required|min:1', 
+            'routename'=>'required|min:1', 
+        ]);
+        try{  
+            
+                $data = $request->except(['_token']); 
+
+                $page = CMSPage::find($id);
+                $page->update($data);  
+                  
+                return back()->with('success','Page Updated Successfully!!');
+
+            }catch(Exception $e){
+                return back()->withInput(Input::all())->with('error',$e->getMessage());
+            }
     }
 
     /**
@@ -79,8 +113,18 @@ class CMSPageController extends Controller
      * @param  \App\CMSPage  $cMSPage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CMSPage $cMSPage)
+    public function destroy($id)
     {
+        try{  
+            
+            $cMSPage = CMSPage::find($id); 
+            $cMSPage->delete();
+
+            return back()->with('success','Page Deleted Successfully!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
         //
     }
 }
