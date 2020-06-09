@@ -351,7 +351,7 @@
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="saleprice">Sale Price <span class="req">*</span> </label>
-                                                                                    <input type="number" step="any" name="saleprice" class="form-control" placeholder="Sale Price" value="{{@$wheel->saleprice}}" >
+                                                                                    <input type="number" step="any" name="saleprice" class="form-control" placeholder="Sale Price" value="{{@$wheel->saleprice}}" required="">
                                                                                 </div>
                                                                             </div>    
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
