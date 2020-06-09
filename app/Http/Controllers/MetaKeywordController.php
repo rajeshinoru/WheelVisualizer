@@ -132,4 +132,50 @@ class MetaKeywordController extends Controller
             return back()->with('flash_error', 'MetaKeyword Not Found');
         }
     }
+
+
+    public function uploadcsv(Request $request){ 
+        try{   
+            $this->validate($request, [ 
+                'uploadedfile'=>'required',
+            ]); 
+
+            if($request->hasFile('uploadedfile') ){
+                $filename = $request->uploadedfile->getClientOriginalName();  
+                $request->uploadedfile->move(public_path('/storage/uploaded_csv'), $filename); 
+                // dd(base_path('storage/app/public/uploaded_csv/').$filename);
+                $filepath = base_path('storage/app/public/uploaded_csv/').$filename;  
+
+                if( !$fr = @fopen($filepath, "r") ){
+
+                    return back()->with('flash_error',"File Could not be read!!");
+                }
+                // $fw = fopen($out_file, "w");
+                $i=1;
+                
+                while( ($data = fgetcsv($fr, 2000000, ",")) !== FALSE ) {
+                    if($i != 1){ 
+                        if((isset($data[0])&&$data[0]!='')){
+
+                                $metakey['page'] = isset($data[0])?$data[0]:null;  
+                                $metakey['key'] = isset($data[1])?$data[1]:null;   
+                                $metakey['value'] = isset($data[2])?$data[2]:null;   
+                                
+                                MetaKeyword::updateOrCreate(['page' =>$metakey['page'],'key' =>$metakey['key']] , $metakey ); 
+
+
+                        }
+                    }
+                    $i++;
+                }
+                fclose($fr);
+            }
+
+            return back()->with('flash_success','Meta Data Uploaded successfully');
+        }catch(Exception $e){
+            return back()->with('flash_error',$e->getMessage());
+        } 
+
+    }
+
 }

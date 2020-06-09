@@ -16,6 +16,7 @@ use App\Tire;
 use App\WheelProduct;
 use App\Order;
 use App\Post;
+use App\MetaKeyword;
 use Artisan;
 class HomeController extends Controller
 {
@@ -1625,6 +1626,32 @@ public function vftp_to_sql_test($filename){
 
             dd($wheelproducts);
         
+    }
+
+
+    public function exportTable(Request $request){
+
+        if($request->module == 'MetaKeyword'){
+
+            $data = MetaKeyword::all();
+
+        }elseif($request->module == 'Tire'){
+
+            $data = Tire::all();
+
+        }elseif($request->module == 'WheelProduct'){
+
+            $data = WheelProduct::all();
+        }
+        Excel::create($request->module, function($excel) use($data,$request) {
+
+            $excel->sheet($request->module, function($sheet) use($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->export('csv');
     }
 
 }

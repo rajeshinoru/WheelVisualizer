@@ -39,6 +39,7 @@ Route::get('orders', 'OrderController@index');
 Route::get('order/update/{order}', 'OrderController@update');
 
 Route::resource('metakeywords', 'MetaKeywordController');
+Route::post('metakeywords/uploadcsv', 'MetaKeywordController@uploadcsv');
 
 // Routes for Tires
 Route::get('/tire/{id?}/model', 'Resource\TireResource@getTiresByModel')->name('tire.model');  
@@ -61,3 +62,6 @@ Route::delete('/car/images/{id}', 'Resource\CarResource@destroyCarImages')->name
 Route::resource('cms','CMSPageController'); 
 Route::get('/cms/{category?}','SettingsController@index')->name('cms.index'); 
 Route::post('/cms/{category?}', 'SettingsController@store')->name('cms.store'); 
+
+
+Route::get('/exportTable/{category?}', 'HomeController@exportTable'); 

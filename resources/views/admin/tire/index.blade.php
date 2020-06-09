@@ -47,11 +47,14 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Tires</h4>
-                    <div class="add-product">
-                        <a data-toggle="modal" data-target="#myModal">Add Tire</a>
-                    </div>
-                    <div class="upload-csv">
-                        <a data-toggle="modal" data-target="#csvModal">Upload CSV Data</a>
+                    <div style="text-align:right;padding-bottom: 20px">
+                        
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Product</button>
+                        
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#csvModal">Upload CSV </button>
+                    
+                    <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Tire">Export CSV </a>
+                    
                     </div>
                     <div class="asset-inner">
                         <table>
