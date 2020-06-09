@@ -136,10 +136,75 @@
                                 <td>{{@$metakey->page}}</td>
                                 <td>{{@$metakey->key}}</td>
                                 <td>{{@$metakey->value}}</td>
-                                <td><a class="btn btn-xs delete-record" data-id="0"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                <td>
+                                    <form action="{{ route('admin.metakeywords.destroy', $metakey->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="_method" value="DELETE">
+
+                                    <a class="btn btn-default look-a-like" data-toggle="modal" data-target="#editPageModal{{@$key}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </form>
+                                </td>
                             </tr>
+
+
+
+                    <!-- model Start -->
+                    <div class="modal fade " id="editPageModal{{@$key}}" role="dialog">
+                        <div class="Add-modal modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title text-left">Update Meta Keywords</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4 class="modal-title">
+                                        <form action="{{route('admin.metakeywords.update',$metakey->id)}}" class=" needsclick addcourse" method="POST" id="demo1-upload" enctype="multipart/form-data"> 
+                                                                    {{@csrf_field()}}
+                                                                    <input type="hidden" name="_method" value="PATCH">
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                        <div class="form-group  dropdown">
+                                                            <select required="" class="form-control browser-default custom-select" name="page">
+                                                                <option value="">Select a Page</option>
+                                                                @foreach(meta_pages() as $key => $attr)
+                                                                <option value="{{$attr}}" {{($metakey->page == $attr)?'selected':''}}>{{ucfirst($attr)}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div> 
+                                                    </div>
+                                                <div class="col-md-6">
+                                                        <div class="form-group dropdown">
+                                                            <select required="" class="form-control browser-default custom-select" name="key">
+                                                                <option value="">Select a Key</option>
+                                                                @foreach(meta_attributes() as $key => $attr)
+                                                                <option value="{{$attr}}" {{($metakey->key == $attr)?'selected':''}}>{{ucfirst($attr)}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div> 
+                                                    </div>
+                                            </div> 
+                                            <div class="row form-group ">
+                                                <div class="col-md-12">
+                                                <textarea class="form-control browser-default" name="content" placeholder="Enter Content" required="">{{$metakey->value}}</textarea>
+                                                </div>
+                                            </div>
+                                              <div class="td-center">
+                                                  
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                              </div>
+                                        </form>
+ 
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                             @endforeach
                         </table>
+                        {{$metakeywords->links()}}
                     </div>
                 </div>
             </div>

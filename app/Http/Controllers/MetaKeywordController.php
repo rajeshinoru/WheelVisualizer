@@ -93,9 +93,27 @@ class MetaKeywordController extends Controller
      * @param  \App\MetaKeyword  $metaKeyword
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MetaKeyword $metaKeyword)
-    {
-        //
+    public function update(Request $request, $id)
+    { 
+
+        $this->validate($request, [
+            'page'=>'required',
+            'key'=>'required',
+            'content'=>'required',
+        ]);
+        try{  
+
+            $metakey = MetaKeyword::find($id); 
+            $metakey->page = $request->page;
+            $metakey->key = $request->key;
+            $metakey->value = $request->content;
+            $metakey->save();
+
+            return back()->with('flash_success','Meta Keywords Updated successfully');
+
+        }catch(Exception $e){ 
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
@@ -104,8 +122,14 @@ class MetaKeywordController extends Controller
      * @param  \App\MetaKeyword  $metaKeyword
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MetaKeyword $metaKeyword)
+    public function destroy($id)
     {
-        //
+        try { 
+            MetaKeyword::find($id)->delete();
+            return back()->with('flash_success', 'MetaKeyword deleted successfully');
+        } 
+        catch (Exception $e) {
+            return back()->with('flash_error', 'MetaKeyword Not Found');
+        }
     }
 }

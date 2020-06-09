@@ -360,17 +360,17 @@
                                                                                     
                                                                                     <input type="number" step="any" name="saletype" class="form-control" placeholder="Sale Type" value="{{@$wheel->saletype}}" >
                                                                                 </div>
-                                                                            </div>    
+                                                                            </div>   
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="cost">Cost</label>
-                                                                                    <input type="number" step="any" name="cost" class="form-control" placeholder="Cost" value="{{@$wheel->cost}}"  >
+                                                                                    <label for="salestart">Sale StartAt</label>
+                                                                                    <input class="form-control" type="datetime-local"  name="salestart" value="{{@$wheel->salestart}}"  >
                                                                                 </div>
                                                                             </div>   
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="price">Rate</label>
-                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{@$wheel->price}}"  >
+                                                                                    <label for="saleexp">Sale ExpireAt</label>
+                                                                                    <input class="form-control" type="datetime-local"  name="saleexp" value="{{@$wheel->saleexp}}"  >
                                                                                 </div>
                                                                             </div>  
                                                                         </div>  
@@ -701,18 +701,19 @@
                                                                                     <input type="number" step="any" name="saletype" class="form-control" placeholder="Sale Type" value="{{old('saletype')}}" >
                                                                                 </div>
                                                                             </div>    
+
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="cost">Cost</label>
-                                                                                    <input type="number" step="any" name="cost" class="form-control" placeholder="Cost" value="{{old('cost')}}"  >
+                                                                                    <label for="salestart">Sale StartAt</label>
+                                                                                    <input class="form-control" type="datetime-local"  name="salestart" value="{{old('salestart')}}"  >
                                                                                 </div>
                                                                             </div>   
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="price">Rate</label>
-                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}"  >
+                                                                                    <label for="saleexp">Sale ExpireAt</label>
+                                                                                    <input class="form-control" type="datetime-local"  name="saleexp" value="{{old('saleexp')}}"  >
                                                                                 </div>
-                                                                            </div>  
+                                                                            </div>   
                                                                         </div>  
                                                                         <ul id="myTabedu1" class="tab-review-design">
                                                                             <li class="active"><a href="#vendordetails">Vendor Details</a></li>

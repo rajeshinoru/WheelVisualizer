@@ -1,7 +1,9 @@
-@extends('layouts.app') @section('shop_by_vehicle_css')
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+@extends('layouts.app')
 
+@section('shop_by_vehicle_css')
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 @endsection
+
 @section('metakeywords')
 <?=@MetaViewer('Contact');?>
 @endsection

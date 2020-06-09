@@ -319,7 +319,7 @@ class TireResource extends Controller
         
         try {
             Tire::find($id)->delete();
-            return redirect('/admin/tire')->with('flash_sucess', 'Tire deleted successfully');
+            return redirect('/admin/tire')->with('flash_success', 'Tire deleted successfully');
         } 
         catch (Exception $e) {
             return back()->with('flash_error', 'Tire Not Found');

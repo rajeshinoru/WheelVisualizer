@@ -354,14 +354,14 @@
                                                                             </div>    
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="cost">Cost</label>
-                                                                                    <input type="number" step="any" name="cost" class="form-control" placeholder="Cost" value="{{old('cost')}}"  >
+                                                                                    <label for="salestart">Sale StartAt</label>
+                                                                                    <input class="form-control" type="datetime-local"  name="salestart" value="{{old('salestart')}}"  >
                                                                                 </div>
                                                                             </div>   
                                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="price">Rate</label>
-                                                                                    <input type="number" step="any" name="price" class="form-control" placeholder="Price" value="{{old('price')}}"  >
+                                                                                    <label for="saleexp">Sale ExpireAt</label>
+                                                                                    <input class="form-control" type="datetime-local"  name="saleexp" value="{{old('saleexp')}}"  >
                                                                                 </div>
                                                                             </div>  
                                                                         </div>  
