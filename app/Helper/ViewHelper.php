@@ -153,7 +153,8 @@ function front_back_path($imgPath){
 	$imageArray = explode('/', $imgPath);
 	$imageArrayname = explode('.', end($imageArray));  
 	if($imageArray != null){
-		return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+		// return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+		return 'storage/XD-Series-XD828-C.png';
 	}else{
 		return $imgPath;
 	}
