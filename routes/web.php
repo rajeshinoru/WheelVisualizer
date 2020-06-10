@@ -38,6 +38,9 @@ Route::get('/tiremounting', 'HomeController@tiremounting')->name('tiremounting')
 Route::get('/seasoneltires', 'HomeController@seasoneltires')->name('seasoneltires');
 Route::get('/tiresidewall', 'HomeController@tiresidewall')->name('tiresidewall');
 
+Route::get('/cmspage/{routename}', 'HomeController@cmspage');
+
+
 
 Route::get('/bloglist', 'HomeController@bloglist')->name('bloglist');
 Route::get('/blogview/{id}', 'HomeController@blogview')->name('blogview');

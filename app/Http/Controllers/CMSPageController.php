@@ -45,8 +45,7 @@ class CMSPageController extends Controller
         ]);
         try{  
 
-                $data = $request->except(['_token']);
-                $data['pagecategory']='topnav';
+                $data = $request->except(['_token']); 
 
                 $post = CMSPage::create($data);  
                   

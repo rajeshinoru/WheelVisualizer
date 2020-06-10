@@ -405,6 +405,11 @@
                             <li class=""><a href="{{url('/wheels')}}">WHEEL VISUALIZER</a></li>
                             <li class=""><a href="{{url('/aboutus')}}">ABOUT</a></li>
                             <li class=""><a href="{{url('/contactus')}}">CONTACT</a></li>
+
+
+                            @foreach(getCMSPages('TopNavbar') as $key => $page)
+                                <li class=""><a href="{{url('/cmspage')}}/{{$page->routename}}">{{$page->title}}</a></li>
+                            @endforeach
                             <!-- <li class=""><a href="">ENQUIRY</a></li> -->
 
                         </ul>

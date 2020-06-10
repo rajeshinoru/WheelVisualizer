@@ -6,6 +6,7 @@ use App\Tire;
 use App\Vehicle;
 use App\WheelProduct;
 use App\MetaKeyword;
+use App\CMSPage;
 
 use Illuminate\Http\Request;
 
@@ -491,4 +492,35 @@ function OrderStatus($status='',$condition=''){
 	}
 
 	return $list;
+}
+
+
+function cmspagecategories($key=''){     
+	$list  = array(
+				'TopNavbar',
+				'InformationPage',
+				'ShortcutLinks',
+			);
+	return $list;
+}
+
+function getCMSPages($category=''){  
+
+	$list = CMSPage::where('pagecategory',$category)->get();
+	if($list){
+		return $list;
+	}else{
+		return null;
+	}
+
+}
+function viewCMSPage($routename=''){  
+
+	$page = CMSPage::where('routename',$routename)->first();
+	if($page){
+		return $page->content;
+	}else{
+		return null;
+	}
+
 }

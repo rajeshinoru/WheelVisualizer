@@ -59,9 +59,9 @@ Route::delete('/car/images/{id}', 'Resource\CarResource@destroyCarImages')->name
 // Route::post('/setting/store', 'SettingsController@store')->name('settings.store'); 
 
 
-Route::resource('cms','CMSPageController'); 
-Route::get('/cms/{category?}','SettingsController@index')->name('cms.index'); 
-Route::post('/cms/{category?}', 'SettingsController@store')->name('cms.store'); 
+Route::resource('cmspage','CMSPageController'); 
+Route::get('cms/{category?}','SettingsController@index'); 
+Route::post('cms/{category?}', 'SettingsController@store'); 
 
 
 Route::get('/exportTable/{category?}', 'HomeController@exportTable'); 

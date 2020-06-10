@@ -111,7 +111,7 @@
                                 <li><a title="Header Page" href="{{url('admin/cms/setting')}}"> <i class="fa fa-cog"></i>  Application Setting </a></li> 
                                 <li><a title="Home Page" href="{{url('admin/cms/home')}}"> <i class="fa fa-home"></i>  Home Page Setting</a></li> 
                                 <li><a title="Information Page" href="{{url('admin/cms/information')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  Information Tab Setting</a></li> 
-                                <li><a title="All Pages" href="{{url('admin/cms')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  All Pages</a></li> 
+                                <li><a title="All Pages" href="{{url('admin/cmspage')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  All Pages</a></li> 
                             </ul>
                         </li>
 

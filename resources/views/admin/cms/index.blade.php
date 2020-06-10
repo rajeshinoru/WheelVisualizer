@@ -62,6 +62,7 @@
                             <thead>
                                 <tr>
                                     <th>S.No</th>
+                                    <th>Page Category</th>
                                     <th>Title</th>
                                     <th>Route Name</th>
                                     <th>Content</th> 
@@ -72,7 +73,8 @@
                             @forelse(@$pages as $key => $page)
                             <tr>
                                 <td>{{@$key+1}}</td>
-                                <td>{{@$page->title}}</td> 
+                                <td>{{@$page->pagecategory}}</td>   
+                                <td>{{@$page->title}}</td>   
                                 <td>{{@$page->routename}}</td> 
                                 <td class="td-center">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#content{{$key}}">View</button>
@@ -105,13 +107,13 @@
 
 
                                     <a type="button" class="btn btn-danger delete-post" data-key="{{$key}}"><i class="fa fa-trash"></i></a>
-                                    <form id="delete-form-{{$key}}" action="{{route('admin.cms.destroy',$page->id)}}" method="POST" novalidate="">
+                                    <form id="delete-form-{{$key}}" action="{{route('admin.cmspage.destroy',$page->id)}}" method="POST" novalidate="">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
                             </tr>
-      <div class="modal fade" id="editModal{{$key}}" role="dialog">
+                    <div class="modal fade" id="editModal{{$key}}" role="dialog">
                         <div class="modal-dialog admin-form">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -120,7 +122,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div id="dropzone1" class="pro-ad addcoursepro">
-                                        <form action="{{ route('admin.cms.update', $page->id)}}" class=" needsclick addcourse" method="POST" id="update-post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.cmspage.update', $page->id)}}" class=" needsclick addcourse" method="POST" id="update-post" enctype="multipart/form-data">
                                             {{csrf_field()}}
                                             {{method_field('PATCH')}}
                                             <div class="row">
@@ -128,6 +130,20 @@
                                                     <div class="col-md-2">Title of Page </div>
                                                     <div class="col-md-10">
                                                         <input type="text" name="title" class="form-control" placeholder="Give the title of the page" required="" value="{{$page->title}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-2">Page Category </div>
+                                                    <div class="col-md-10">
+                                                        <select name="pagecategory" class="form-group form-control" required=""> 
+                                                            <option value="">Select One</option>
+                                                            @foreach(cmspagecategories() as $category)
+                                                            <option value="{{$category}}" {{($category == $page->pagecategory)?'selected':''}}>{{$category}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,13 +207,27 @@
                                 </div>
                                 <div class="modal-body">
                                     <div id="dropzone1" class="pro-ad addcoursepro">
-                                        <form action="{{ route('admin.cms.store')}}" class=" needsclick addcourse" method="POST" id="demo1-upload" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.cmspage.store')}}" class=" needsclick addcourse" method="POST" id="demo1-upload" enctype="multipart/form-data">
                                             {{csrf_field()}}
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="col-md-2">Title of Page </div>
                                                     <div class="col-md-10">
                                                         <input type="text" name="title" class="form-control" placeholder="Give the title of the page" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-2">Page Category </div>
+                                                    <div class="col-md-10">
+                                                        <select name="pagecategory" class="form-group form-control" required=""> 
+                                                            <option value="">Select One</option>
+                                                            @foreach(cmspagecategories() as $category)
+                                                            <option value="{{$category}}">{{$category}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,6 +241,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <br>
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="col-md-2">Route Name</div>

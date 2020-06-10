@@ -18,6 +18,7 @@ use App\WheelProduct;
 use App\Order;
 use App\Post;
 use App\MetaKeyword;
+use App\CMSPage;
 use Artisan;
 class HomeController extends Controller
 {
@@ -1661,7 +1662,7 @@ public function vftp_to_sql_test($filename){
 
             $data = Post::all();
         }
-        
+
 
         // $data = $this->usersGenerator();
         return (new FastExcel($data))->download($request->module.'.csv');
@@ -1678,6 +1679,10 @@ public function vftp_to_sql_test($filename){
         // })->export('csv');
     }
 
+    public function cmspage(Request $request,$routename='')
+    { 
+        return view('cmspage',compact('routename'));
+    }
 }
 
 
