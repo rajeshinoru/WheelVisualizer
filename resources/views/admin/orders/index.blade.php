@@ -32,6 +32,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Orders</h4>
+                    <div style="text-align:right;padding-bottom: 20px"> 
+                    <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Order">Export CSV </a>
+                    
+                    </div>
                     <div class="asset-inner">
                         <table>
                             <thead>
