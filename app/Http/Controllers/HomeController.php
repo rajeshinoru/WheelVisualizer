@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Excel;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 use Illuminate\Http\Request;
 use App\Viflist;
@@ -1628,30 +1629,53 @@ public function vftp_to_sql_test($filename){
         
     }
 
-
+    // public function usersGenerator() {
+    //     foreach (WheelProduct::cursor() as $user) {
+    //         yield $user;
+    //     }
+    // }
     public function exportTable(Request $request){
 
         if($request->module == 'MetaKeyword'){
 
             $data = MetaKeyword::all();
-
         }elseif($request->module == 'Tire'){
 
             $data = Tire::all();
-
         }elseif($request->module == 'WheelProduct'){
 
             $data = WheelProduct::all();
+        }elseif($request->module == 'Wheel'){
+
+            $data = Wheel::all();
+        }elseif($request->module == 'CarImage'){
+
+            $data = CarImage::all();
+        }elseif($request->module == 'CarColour'){
+
+            $data = CarColour::all();
+        }elseif($request->module == 'Order'){
+
+            $data = Order::all();
+        }elseif($request->module == 'Post'){
+
+            $data = Post::all();
         }
-        Excel::create($request->module, function($excel) use($data,$request) {
+        
 
-            $excel->sheet($request->module, function($sheet) use($data) {
+        // $data = $this->usersGenerator();
+        return (new FastExcel($data))->download($request->module.'.csv');
 
-                $sheet->fromArray($data);
 
-            });
+        // Excel::create($request->module, function($excel) use($data,$request) {
 
-        })->export('csv');
+        //     $excel->sheet($request->module, function($sheet) use($data) {
+
+        //         $sheet->fromArray($data);
+
+        //     });
+
+        // })->export('csv');
     }
 
 }

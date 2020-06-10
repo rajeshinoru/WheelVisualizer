@@ -17,14 +17,19 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap drp-lst">
                     <h4>Cars List</h4>
-                    <div class="add-product">
-                        <a data-toggle="modal" data-target="#myModal">Add Car</a>
+                    <div style="text-align:right;padding-bottom: 20px">
+                        
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Car</button>
+                         
+                    
+                    <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=CarImage">Export CSV </a>
+                    
                     </div>
                     <div class="asset-inner">
                         <table>
                             <thead>
                                 <tr>
-                                    <th> S.No</th>
+                                    <th>S.No</th>
                                     <th>Year </th>
                                     <th>Make </th>
                                     <th>Model </th>

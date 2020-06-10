@@ -309,15 +309,15 @@
 
                     <p><b><a href="{{url('/wheelfitment')}}">Wheel Fitment</a></b> - This link explains Plus Sizing and how we are able to properly fit your wheels and tires for your vehicle.</p>
 
-                    <p><b><a href="">Offset and Bolt Patterns</a></b> - Reference to help aid in determining Bolt patterns and offsets for all vehicles.</p>
+                    <p><b><a href="{{url('/boltpatterns')}}">Offset and Bolt Patterns</a></b> - Reference to help aid in determining Bolt patterns and offsets for all vehicles.</p>
 
-                    <p><b><a href="">Contact Us</a></b> - Email Addresses and Store hours of operation.</p>
+                    <p><b><a href="{{url('/contactus')}}">Contact Us</a></b> - Email Addresses and Store hours of operation.</p>
 
-                    <p><b><a href="">About Us</a></b> - About Us </p>
+                    <p><b><a href="{{url('/aboutus')}}">About Us</a></b> - About Us </p>
 
-                    <p><b><a href="">Order Status</a></b> - View information on the status of your order.</p>
+                    <p><b><a href="{{url('/orderstatus')}}">Order Status</a></b> - View information on the status of your order.</p>
 
-                    <p><b><a href="">Return Policy</a></b> - View our Return Policy</p>
+                    <p><b><a href="{{url('/returnpolicy')}}">Return Policy</a></b> - View our Return Policy</p>
 
                     <p><b><a href="{{url('/tiresidewall')}}">Reading a Tire Sidewall Code</a></b> - A Tire Sidewall Code contains vital information about the tire's characteristics, including the tire's dimensions, load index. and speed rating. Reading a Tire Sidewall Code is key to identifying the best tire for your needs. This article breaks down the parts of a Tire Sidewall Code and explains what each part means.</p>
 
