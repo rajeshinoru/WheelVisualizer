@@ -499,7 +499,7 @@ function cmspagecategories($key=''){
 	$list  = array(
 				'TopNavbar',
 				'InformationPage',
-				'ShortcutLinks',
+				// 'ShortcutLinks',
 			);
 	return $list;
 }
