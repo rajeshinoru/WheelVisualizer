@@ -39,6 +39,7 @@ Route::get('/seasoneltires', 'HomeController@seasoneltires')->name('seasoneltire
 Route::get('/tiresidewall', 'HomeController@tiresidewall')->name('tiresidewall');
 
 Route::get('/cmspage/{routename}', 'HomeController@cmspage');
+Route::get('/informations/{routename}', 'HomeController@cmspage');
 
 
 

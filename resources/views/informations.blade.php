@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 @endsection
 @section('metakeywords')
-<?=@MetaViewer('About');?>
+<?=@MetaViewer('Information');?>
 @endsection
 @section('content')
 
@@ -293,11 +293,7 @@
 
     <div class="container">
 
-
-        @if(Setting::get('information') != "")
-            <?=Setting::get('information')?>
-        @else
-
+ 
         <div class="about-page title-header">
             <div id="heading" class="title">
                 <h1>Wheel and Tire information links - Discounted Wheel Warehouse</h1>
@@ -310,11 +306,9 @@
 
                     @foreach(getCMSPages('InformationPage') as $page)
 
-                        <p><b><a href="{{url('/cmspage')}}/{{$page->routename}}">{{$page->title}}</a></b> - {{@$page->description}}</p>
+                        <p><b><a href="{{url('/informations')}}/{{$page->routename}}">{{$page->title}}</a></b> - {{@$page->description}}</p>
 
                     @endforeach
-
-                    -------------------------------------------------------------------------------
 
                     <!-- <h1>About Discounted Wheel Warehouse, also see <a href="{{url('/contactus')}}" style="text-decoration: none;"> Contact Us </a></h1> -->
                     <!-- <p><b><a href="{{url('/packagedeal')}}">Package Deal</a></b> - This link has information about what comes with a wheel and tire package.</p> -->
@@ -347,37 +341,37 @@
 
                     <!-- <p><b><a href="">Parts of a Tire</a></b> - Today's tires are intricate structures with multiple layers and materials. Learn here at Discounted Wheel Warehouse about the different parts of a tire and how each part helps to help the tire function.</p> -->
 
-                    <p><b><a href="">Tire Load Ratings</a></b> - There are two Tire Load Ratings used to measure a tire's load-carrying capability. This page will explain how to interpret Tire Load Ratings, the relationship between load capacity and air pressure, the differences between a tire's Load Range and Load Index, and how to determine the right tires for your load-carrying needs.</p>
+                    <!-- <p><b><a href="">Tire Load Ratings</a></b> - There are two Tire Load Ratings used to measure a tire's load-carrying capability. This page will explain how to interpret Tire Load Ratings, the relationship between load capacity and air pressure, the differences between a tire's Load Range and Load Index, and how to determine the right tires for your load-carrying needs.</p> -->
 
-                    <p><b><a href="">Tire Rolling Resistance</a></b> - Tire Rolling Resistance can make a difference in your car's fuel economy. Learn how Tire Rolling Resistance affects fuel efficiency, and how you can reduce tire rolling resistance to get the most out of your gas tank. We at Discounted Wheel Warehouse stock Low Rolling Resistance and fuel-economy tires for all your tire fuel efficiency needs, all at affordable prices.</p>
+                    <!-- <p><b><a href="">Tire Rolling Resistance</a></b> - Tire Rolling Resistance can make a difference in your car's fuel economy. Learn how Tire Rolling Resistance affects fuel efficiency, and how you can reduce tire rolling resistance to get the most out of your gas tank. We at Discounted Wheel Warehouse stock Low Rolling Resistance and fuel-economy tires for all your tire fuel efficiency needs, all at affordable prices.</p> -->
 
-                    <p><b><a href="">Tire Tread Elements</a></b> - A tire's tread pattern is a careful arrangement of ribs, blocks, grooves, notches, and sipes that defines the tire's handling and ride characteristics. Learn here at Discounted Wheel Warehouse about the differences between symmetrical, asymmetric, and directional tires, and how each type of tread pattern affects the tire's function.</p>
+                    <!-- <p><b><a href="">Tire Tread Elements</a></b> - A tire's tread pattern is a careful arrangement of ribs, blocks, grooves, notches, and sipes that defines the tire's handling and ride characteristics. Learn here at Discounted Wheel Warehouse about the differences between symmetrical, asymmetric, and directional tires, and how each type of tread pattern affects the tire's function.</p> -->
 
-                    <p><b><a href="">Types of Wheel Finishes</a></b> - Custom wheels come in a variety of finishes and finishing methods today. Learn more about the differences between machined, painted, polished, and chromed aftermarket wheels available here at Discounted Wheel Warehouse.</p>
+                    <!-- <p><b><a href="">Types of Wheel Finishes</a></b> - Custom wheels come in a variety of finishes and finishing methods today. Learn more about the differences between machined, painted, polished, and chromed aftermarket wheels available here at Discounted Wheel Warehouse.</p> -->
 
-                    <p><b><a href="">Tire Rotation</a></b> - Tire Rotation is an important part of maintenance that encourages even tread wear and balanced handling. Learn how tires are rotated here at Discounted Wheel Warehouse and the various rotation patterns used for front-wheel drive, rear-wheel drive, directional tires, and staggered-fitment tires.</p>
+                    <!-- <p><b><a href="">Tire Rotation</a></b> - Tire Rotation is an important part of maintenance that encourages even tread wear and balanced handling. Learn how tires are rotated here at Discounted Wheel Warehouse and the various rotation patterns used for front-wheel drive, rear-wheel drive, directional tires, and staggered-fitment tires.</p> -->
 
-                    <p><b><a href="">Centerbore and Hub-Centric Fitment</a></b> - Wheel centerbore plays a major role in vehicle fitment. Learn here at Discounted Wheel Warehouse about the difference between hub-centric fitment and lug-centric fitment, and why hub rings are important for aftermarket wheels.</p>
+                    <!-- <p><b><a href="">Centerbore and Hub-Centric Fitment</a></b> - Wheel centerbore plays a major role in vehicle fitment. Learn here at Discounted Wheel Warehouse about the difference between hub-centric fitment and lug-centric fitment, and why hub rings are important for aftermarket wheels.</p> -->
 
-                    <p><b><a href="">Lifespan of a Tire</a></b> - A tire's lifespan is determined by treadwear and natural rubber aging. Learn here at Discounted Wheel Warehouse about some common factors that affect a tire's lifespan, and when your tires need replacing.</p>
+                    <!-- <p><b><a href="">Lifespan of a Tire</a></b> - A tire's lifespan is determined by treadwear and natural rubber aging. Learn here at Discounted Wheel Warehouse about some common factors that affect a tire's lifespan, and when your tires need replacing.</p> -->
 
-                    <p><b><a href="">Parts of a Wheel</a></b> - A wheel consists of three basic areas: the hub, the spokes, and the rim. Learn at Discounted Wheel Warehouse about the parts of a wheel and the significance of each one.</p>
+                    <!-- <p><b><a href="">Parts of a Wheel</a></b> - A wheel consists of three basic areas: the hub, the spokes, and the rim. Learn at Discounted Wheel Warehouse about the parts of a wheel and the significance of each one.</p> -->
 
-                    <p><b><a href="">Tire Inflation Pressure</a></b> - Tire air pressure affects a tire's handling response, road grip, load capacity, ride comfort, and rolling resistance. Learn here at Discounted Wheel Warehouse about the dangers of underinflated and overinflated tires, as well as some guidelines for checking and setting your tires.</p>
+                    <!-- <p><b><a href="">Tire Inflation Pressure</a></b> - Tire air pressure affects a tire's handling response, road grip, load capacity, ride comfort, and rolling resistance. Learn here at Discounted Wheel Warehouse about the dangers of underinflated and overinflated tires, as well as some guidelines for checking and setting your tires.</p> -->
 
-                    <p><b><a href="">Ride Quality</a></b> - This article describes several ways that your tires can affect ride quality. Learn here at Discounted Wheel Warehouse about the relationship between your tires and ride comfort.</p>
+                    <!-- <p><b><a href="">Ride Quality</a></b> - This article describes several ways that your tires can affect ride quality. Learn here at Discounted Wheel Warehouse about the relationship between your tires and ride comfort.</p> -->
 
-                    <p><b><a href="">UTQG Ratings</a></b> - Uniform Tire Quality Grade (UTQG) ratings help to inform you of a tire's treadwear, traction, and temperature characteristics. Learn here at Discounted Wheel Warehouse about the three parts of a UTQG rating and what each rating means for a tire.</p>
+                    <!-- <p><b><a href="">UTQG Ratings</a></b> - Uniform Tire Quality Grade (UTQG) ratings help to inform you of a tire's treadwear, traction, and temperature characteristics. Learn here at Discounted Wheel Warehouse about the three parts of a UTQG rating and what each rating means for a tire.</p> -->
 
-                    <p><b><a href="">Wheel Care</a></b> - Cleaning your tires and wheels regularly is key to keeping then in good condition. Learn some wheel care tips here at Discounted Wheel Warehouse for keeping your tires and custom wheels intact.</p>
+                    <!-- <p><b><a href="">Wheel Care</a></b> - Cleaning your tires and wheels regularly is key to keeping then in good condition. Learn some wheel care tips here at Discounted Wheel Warehouse for keeping your tires and custom wheels intact.</p> -->
 
-                    <p><b><a href="">Tread Wear</a></b> - A tire's treadwear determines how long it can be used before needing to be replaced. Learn here at Discounted Wheel Warehouse about factors that can affect tire treadwear and how to identify these factors.</p>
+                    <!-- <p><b><a href="">Tread Wear</a></b> - A tire's treadwear determines how long it can be used before needing to be replaced. Learn here at Discounted Wheel Warehouse about factors that can affect tire treadwear and how to identify these factors.</p> -->
 
-                    <p><b><a href="">Wheel Construction</a></b> - The method used to create a wheel affects its weight and strength. Learn here at Discounted Wheel Warehouse about cast, flow-formed, and forged wheels, and determine which is the right one for you.</p>
+                    <!-- <p><b><a href="">Wheel Construction</a></b> - The method used to create a wheel affects its weight and strength. Learn here at Discounted Wheel Warehouse about cast, flow-formed, and forged wheels, and determine which is the right one for you.</p> -->
 
-                    <p><b><a href="">Tire Speed Rating</a></b> - Tire speed ratings are a common way to categorize tires today. Learn here at Discounted Wheel Warehouse how to interpret tire speed ratings and what it means for your tires.</p>
+                    <!-- <p><b><a href="">Tire Speed Rating</a></b> - Tire speed ratings are a common way to categorize tires today. Learn here at Discounted Wheel Warehouse how to interpret tire speed ratings and what it means for your tires.</p> -->
 
-                    <p><b><a href="{{url('/traction')}}">Traction</a></b> - This guide covers some tire characteristics that affect dry, wet, snow, and mud traction. Learn what to look for in your next set of tires here at Discounted Wheel Warehouse.</p>
+                    <!-- <p><b><a href="{{url('/traction')}}">Traction</a></b> - This guide covers some tire characteristics that affect dry, wet, snow, and mud traction. Learn what to look for in your next set of tires here at Discounted Wheel Warehouse.</p> -->
                 </div>
             </div>
             <!--       <div class="col-sm-5 abt-img">
@@ -388,8 +382,7 @@
         </div>
       </div> -->
         </div>
-
-        @endif
+ 
     </div>
 </section>
 <!-- About Section End -->
@@ -397,5 +390,6 @@
 
 @endsection
 @section('custom_scripts')
-<!--  -->
+
+
 @endsection

@@ -24,5 +24,15 @@
 
 @endsection
 @section('custom_scripts')
-<!--  -->
+<script type="text/javascript">
+    
+$('img').each(function(){
+
+    if($(this).data('filename')){
+        $(this).attr('style','');
+        // $(this).attr('style','width:100%;');
+    }
+})
+
+</script>
 @endsection
