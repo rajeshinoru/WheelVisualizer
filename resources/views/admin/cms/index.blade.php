@@ -47,7 +47,11 @@
     }
     /*1131px*/
 </style>
-
+<style type="text/css">
+    td{
+    word-break: break-all !important;
+    }
+</style>
 <div class="product-status mg-b-15">
     <div class="container-fluid">
         <div class="row">
@@ -65,6 +69,7 @@
                                     <th>Page Category</th>
                                     <th>Title</th>
                                     <th>Route Name</th>
+                                    <th>Description</th>
                                     <th>Content</th> 
                                     <th>Created At</th>
                                     <th>Actions</th>
@@ -76,6 +81,7 @@
                                 <td>{{@$page->pagecategory}}</td>   
                                 <td>{{@$page->title}}</td>   
                                 <td>{{@$page->routename}}</td> 
+                                <td class="description">{{@$page->description}}</td> 
                                 <td class="td-center">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#content{{$key}}">View</button>
 
@@ -162,7 +168,16 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="col-md-2">Route Name</div>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control" name="routename" value="{{@$page->routename}}">
+                                                        <input type="text" class="form-control" name="routename" value="{{@$page->routename}}" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-2">Description</div>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" name="description" value="{{@$page->description}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -236,7 +251,7 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="col-md-2">Content</div>
                                                     <div class="col-md-10">
-                                                        <textarea class="form-control summernote required" name="content" rows="5" required="">
+                                                        <textarea class="form-control summernote required" name="content" rows="5" required="" class="Content of the Page">
                                                         </textarea>
                                                     </div>
                                                 </div>
@@ -246,7 +261,16 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="col-md-2">Route Name</div>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control" name="routename">
+                                                        <input type="text" class="form-control" name="routename" placeholder="Route name must be unique">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-2">Description</div>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" name="description" placeholder="Enter Description" >
                                                     </div>
                                                 </div>
                                             </div>
