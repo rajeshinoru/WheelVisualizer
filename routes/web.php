@@ -200,6 +200,10 @@ Route::get('/InventoryCommand',function(){
         \Artisan::call('autoupdate:inventories');
 });
 
+Route::get('/404',function(){
+        return view('errors.404');
+});
+
 
 Route::get('googleCaptcha', 'GoogleCaptchaController@googlecaptchaRegister');
 Route::post('googleCaptcha', 'GoogleCaptchaController@googlecaptchaRegisterPost');

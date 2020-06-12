@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\CMSPage;
+use App\Slider;
 use Illuminate\Http\Request;
 
-class CMSPageController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CMSPageController extends Controller
      */
     public function index()
     {
-        $pages = CMSPage::paginate(5);
-        return view('admin.cms.index',compact('pages'));
+        $sliders = Slider::paginate(10);
+        return view('admin.slider.index',compact('sliders'));
     }
 
     /**
@@ -36,20 +36,26 @@ class CMSPageController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
-        $this->validate($request, [
-            'title'=>'required|max:255',
-            'content'=>'required|min:1', 
-            'routename'=>'required|min:1', 
+        $this->validate($request, [ 
+            'image'=>'required', 
+            'title'=>'max:255',
+            'description'=>'max:255',
+            'page'=>'required|max:255',
+            'order'=>'required|max:255',
         ]);
         try{  
 
                 $data = $request->except(['_token']); 
 
-                $post = CMSPage::create($data);  
-                  
-                return back()->with('success','Page Created Successfully!!');
+                $slider = Slider::create($data);  
+                
+                if($request->image){
+                    $slider->image = $request->image->store('sliders');
+                }
+
+                $slider->save();
+
+                return back()->with('success','Slider Created Successfully!!');
 
             }catch(Exception $e){
                 return back()->withInput(Input::all())->with('error',$e->getMessage());
@@ -59,10 +65,10 @@ class CMSPageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CMSPage  $cMSPage
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(CMSPage $cMSPage)
+    public function show(Post $post)
     {
         //
     }
@@ -70,10 +76,10 @@ class CMSPageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CMSPage  $cMSPage
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(CMSPage $cMSPage)
+    public function edit(Post $post)
     {
         //
     }
@@ -82,24 +88,34 @@ class CMSPageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CMSPage  $cMSPage
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Slider $slider)
     {
-        $this->validate($request, [
-            'title'=>'required|max:255',
-            'content'=>'required|min:1', 
-            'routename'=>'required|min:1', 
+        // dd($post,$request->all());
+
+        $this->validate($request, [ 
+            // 'image'=>'required', 
+            'title'=>'max:255',
+            'description'=>'max:255',
+            'page'=>'required|max:255',
+            'order'=>'required|max:255',
         ]);
-        try{  
-            
+        try{   
+                
                 $data = $request->except(['_token']); 
 
-                $page = CMSPage::find($id);
-                $page->update($data);  
-                  
-                return back()->with('success','Page Updated Successfully!!');
+                $slider->fill($data);  
+
+                // dd($slider);
+                if(@$request->image){
+                    $slider->image = $request->image->store('sliders');
+                }
+                
+                $slider->save();
+
+                return back()->with('success','Slider Updated Successfully!!');
 
             }catch(Exception $e){
                 return back()->withInput(Input::all())->with('error',$e->getMessage());
@@ -109,21 +125,19 @@ class CMSPageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CMSPage  $cMSPage
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         try{  
             
-            $cMSPage = CMSPage::find($id); 
-            $cMSPage->delete();
+            $post->delete();
 
-            return back()->with('success','Page Deleted Successfully!!');
+            return back()->with('success','Post Deleted Successfully!!');
 
         }catch(Exception $e){
             return back()->withInput(Input::all())->with('error',$e->getMessage());
         }
-        //
     }
 }

@@ -65,3 +65,6 @@ Route::post('cms/{category?}', 'SettingsController@store');
 
 
 Route::get('/exportTable/{category?}', 'HomeController@exportTable'); 
+
+
+Route::resource('slider','SliderController'); 

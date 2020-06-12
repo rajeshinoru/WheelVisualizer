@@ -7,6 +7,7 @@ use App\Vehicle;
 use App\WheelProduct;
 use App\MetaKeyword;
 use App\CMSPage;
+use App\Slider;
 
 use Illuminate\Http\Request;
 
@@ -523,4 +524,30 @@ function viewCMSPage($routename=''){
 		return null;
 	}
 
+}
+
+
+function getSliders($page){
+
+	$sliders = Slider::where('page',$page)->orderby('order')->get();
+
+	return $sliders;
+
+	// return [
+	// 	[
+	// 	"image"=>"image/Banner.jpg",
+	// 	"title"=>"WHEEL VISUALIZER",
+	// 	"description"=>"Vividly Designed And Made For Speed."
+	// 	],
+	// 	[
+	// 	"image"=>"image/Banner-1.jpg",
+	// 	"title"=>"WHEEL VISUALIZER",
+	// 	"description"=>"Because So Much Is Riding Your Tires."
+	// 	],
+	// 	[
+	// 	"image"=>"image/Banner-2.jpg",
+	// 	"title"=>"WHEEL VISUALIZER",
+	// 	"description"=>"Give Your Car A True Custom Look."
+	// 	],
+	// ];
 }
