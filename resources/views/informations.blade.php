@@ -277,11 +277,7 @@
         padding: 20px 0px !important;
     }
 
-
-    img{
-        width: 100% !important;
-        height: 100% !important;
-    }
+ 
 </style>
 <br>
 

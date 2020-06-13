@@ -61,13 +61,13 @@
                 <li><a class="sizelinks" >Classic Wheels</a></li>
                 <li><a class="sizelinks" href="{{url('/wheels')}}" >Vehicle Gallery</a></li>
                 <li><a class="sizelinks" href="{{url('/videos')}}" >Videos</a></li>
-                <li><a class="sizelinks" href="{{url('/reviews')}}" >Reviews</a></li>
-                <li><a class="sizelinks" href="{{url('/boltpatterns')}}">Bolt Patterns</a></li>
-                <li><a class="sizelinks" href="{{url('/canadashipping')}}" >Canada Shipping</a></li>
-                <li><a class="sizelinks" href="{{url('/feedback')}}" >Feedback</a></li>
-                <li><a class="sizelinks" href="{{url('/privacypolicy')}}" >Privacy Policy</a></li>
-                <li><a class="sizelinks" href="{{url('/returnpolicy')}}" >Return Policy</a></li>
-                <li><a class="sizelinks" href="{{url('/shippinginfo')}}">Shipping Info</a></li>
+                <li><a class="sizelinks" href="{{url('/informations/reviews')}}" >Reviews</a></li>
+                <li><a class="sizelinks" href="{{url('/informations/boltpatterns')}}">Bolt Patterns</a></li>
+                <li><a class="sizelinks" href="{{url('/informations/canadashipping')}}" >Canada Shipping</a></li>
+                <li><a class="sizelinks" href="{{url('/informations/feedback')}}" >Feedback</a></li>
+                <li><a class="sizelinks" href="{{url('/informations/privacypolicy')}}" >Privacy Policy</a></li>
+                <li><a class="sizelinks" href="{{url('/informations/returnpolicy')}}" >Return Policy</a></li>
+                <li><a class="sizelinks" href="{{url('/informations/shippinginfo')}}">Shipping Info</a></li>
                 <li><a class="sizelinks" href="{{url('/orderstatus')}}">Order Status</a></li>
             </ul>
         </div>

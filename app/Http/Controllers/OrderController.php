@@ -75,7 +75,6 @@ class OrderController extends Controller
             if(count($cart) > 0){
 
                 $order = Order::create($data);
-
                 $subtotal =0;
                 $updateOrder=[];
                 foreach ($cart as $key => $item) {
@@ -99,6 +98,8 @@ class OrderController extends Controller
 
                 }
 
+                $updateOrder['userid'] = Auth::user()->id;
+                
                 $updateOrder['subtotal']=$subtotal;
 
                 $updateOrder['fees']=0;

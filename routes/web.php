@@ -51,7 +51,7 @@ Route::get('/orderstatus', 'HomeController@orderstatus')->name('orderstatus');
 Route::post('/orderstatus', 'HomeController@checkorderstatus')->name('checkorderstatus');
 Route::get('/vieworderstatus/{orderid}', 'HomeController@vieworderstatus')->name('vieworderstatus');
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
+// Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::get('/forms', 'HomeController@forms')->name('forms');
 Route::get('/wheels', 'HomeController@wheels')->name('wheels');
@@ -196,6 +196,17 @@ Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
 
 
 
+Route::middleware(['auth'])->group(function () {
+     
+  Route::get('/dashboard', 'UserController@index')->name('dashboard');
+  Route::get('/profile', 'UserController@profile')->name('profile');
+  Route::get('/orders', 'UserController@orders')->name('orders');
+});
+
+
+
+
+
 Route::get('/InventoryCommand',function(){
         \Artisan::call('autoupdate:inventories');
 });
@@ -204,8 +215,5 @@ Route::get('/404',function(){
         return view('errors.404');
 });
 
-
-Route::get('googleCaptcha', 'GoogleCaptchaController@googlecaptchaRegister');
-Route::post('googleCaptcha', 'GoogleCaptchaController@googlecaptchaRegisterPost');
-
+ 
 

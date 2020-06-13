@@ -13,16 +13,31 @@
                 <div class="col-sm-6">
                     <div id="top-links" class="pull-right">
                         <ul class="list-inline">
-                            @if(@Auth::user()=='')
-                            <li class="header-phone pull-left"><a href="{{url('/register')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
-                            <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
+                            @if(Auth::user() != null)
+                                <li class="header-phone pull-left"><a href="{{url('/dashboard')}}"><i class="fa fa-tachometer" aria-hidden="true"></i><span>My Dashboard</span></a></li>
+
+                                    <ul class="dropdown-menu multi-colum-nav info-nav">
+                                        <div class="row">
+                                            <div class="col-sm-12 tire-menu-list">
+                                                <div class="col-sm-10">
+                                                    <div class="vehicle-list">
+                                                        <div class="row">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                <li class="header-phone pull-left">
+                                    <form action="{{ url('/logout') }}" method="POST">
+                                        {{csrf_field()}}
+                                        <button type="submit"><i class="fa fa-sign-out"></i> Sign out</button>
+                                    </form>
+                                </li>
                             @else
-                            <li class="header-phone pull-left">
-                                <form action="{{ url('/logout') }}" method="POST">
-                                    {{csrf_field()}}
-                                    <button type="submit"><i class="fa fa-sign-out"></i> Sign out</button>
-                                </form>
-                            </li>
+                                <li class="header-phone pull-left"><a href="{{url('/register')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
+                                <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
                             @endif
                             <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li>
                         </ul>
@@ -357,39 +372,39 @@
                                                     <div class="row">
 
                                                         <div class="col-sm-12 tire-menu tire-two">
-<ul>
-    <li><a href="{{url('/orderstatus')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Order Status</a></li> 
-    <li><a href="{{url('/videos')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Videos</a></li>
-    <li><a href="{{url('/wheelproducts')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Pages</a></li>
-    <li><a href="{{url('/tirelist')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire Pages</a></li>
-    <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Classic Wheels</a></li> -->
-    <li><a href="{{url('/wheels')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Vehicle Gallery</a></li>
-    <li><a href="{{url('/shippinginfo')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Shipping Info</a></li>
-    <li><a href="{{url('/bloglist')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Blog</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> 3-Piece Wheels</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> 8-Lug Wheels</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Black Wheels</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Dually Wheels</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tuner Wheels</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Off Road Wheels</a></li>
-    <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Custom Grilles</a></li>
-    <li><a href="{{url('/feedback')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Feedback</a></li>
-    <li><a href="{{url('/privacypolicy')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Privacy Policy</a></li>
-    <li><a href="{{url('/returnpolicy')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Return Policy</a></li>
-    <!-- <li><a href="{{url('/boltpatterns')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Bolt Patterns</a></li> -->
-    <li><a class="sizelinks" data-category="inch" data-value="17" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 17 inch Specials</a></li>
-    <li><a class="sizelinks" data-category="inch" data-value="18" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 18 inch Specials</a></li>
-    <li><a class="sizelinks" data-category="inch" data-value="20" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 20 inch Specials</a></li>
-    <li><a class="sizelinks" data-category="inch" data-value="22" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 22 inch Specials</a></li>
-    <li><a class="sizelinks" data-category="inch" data-value="24" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 24 inch Specials</a></li>
-    <li><a class="sizelinks" data-category="inch" data-value="26" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 26 inch Specials</a></li>
-    <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Closeouts</a></li> -->
-    <!-- <li><a href="{{url('/lipsizes')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Lip Sizes</a></li> -->
-    <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Search</a></li> -->
-    <!-- <li><a href="{{url('/wheelconfig')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Configurator</a></li> -->
-    <!-- <li><a href="{{url('/traction')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Traction</a></li> -->
-    <li><a href="{{url('/informations')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> More Informations... </a></li>
-</ul>
+                                                            <ul>
+                                                                <li><a href="{{url('/orderstatus')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Order Status</a></li> 
+                                                                <li><a href="{{url('/wheelproducts')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Pages</a></li>
+                                                                <li><a href="{{url('/tirelist')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tire Pages</a></li>
+                                                                <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Classic Wheels</a></li> -->
+                                                                <li><a href="{{url('/wheels')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Vehicle Gallery</a></li>
+                                                                <li><a href="{{url('/videos')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Videos</a></li>
+                                                                <li><a href="{{url('/bloglist')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Blog</a></li>
+                                                                <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> 3-Piece Wheels</a></li>
+                                                                <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> 8-Lug Wheels</a></li>
+                                                                <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Black Wheels</a></li>
+                                                                <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Dually Wheels</a></li>
+                                                                <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Tuner Wheels</a></li>
+                                                                <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Off Road Wheels</a></li>
+                                                                <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Custom Grilles</a></li>
+                                                                <!-- <li><a href="{{url('/boltpatterns')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Bolt Patterns</a></li> -->
+                                                                <li><a class="sizelinks" data-category="inch" data-value="17" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 17 inch Specials</a></li>
+                                                                <li><a class="sizelinks" data-category="inch" data-value="18" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 18 inch Specials</a></li>
+                                                                <li><a class="sizelinks" data-category="inch" data-value="20" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 20 inch Specials</a></li>
+                                                                <li><a class="sizelinks" data-category="inch" data-value="22" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 22 inch Specials</a></li>
+                                                                <li><a class="sizelinks" data-category="inch" data-value="24" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 24 inch Specials</a></li>
+                                                                <li><a class="sizelinks" data-category="inch" data-value="26" ><i class="fa fa-angle-double-right" aria-hidden="true"></i> 26 inch Specials</a></li>
+                                                                <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Closeouts</a></li> -->
+                                                                <!-- <li><a href="{{url('/lipsizes')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Lip Sizes</a></li> -->
+                                                                <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Search</a></li> -->
+                                                                <!-- <li><a href="{{url('/wheelconfig')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Wheel Configurator</a></li> -->
+                                                                <!-- <li><a href="{{url('/traction')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Traction</a></li> -->
+                                                                <li><a href="{{url('/informations/shippinginfo')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Shipping Info</a></li>
+                                                                <li><a href="{{url('/informations/feedback')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Feedback</a></li>
+                                                                <li><a href="{{url('/informations/privacypolicy')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Privacy Policy</a></li>
+                                                                <li><a href="{{url('/informations/returnpolicy')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Return Policy</a></li>
+                                                                <li><a href="{{url('/informations')}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> More Informations... </a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -400,10 +415,10 @@
 
                                 </ul>
                             </li>
-                            <li class=""><a href="{{url('/rimfinancing')}}">RIMS FINANCING</a></li>
                             <li class=""><a href="{{url('/wheels')}}">WHEEL VISUALIZER</a></li>
-                            <li class=""><a href="{{url('/aboutus')}}">ABOUT</a></li>
-                            <li class=""><a href="{{url('/contactus')}}">CONTACT</a></li>
+                            <!-- <li class=""><a href="{{url('/rimfinancing')}}">RIMS FINANCING</a></li> -->
+                            <!-- <li class=""><a href="{{url('/aboutus')}}">ABOUT</a></li> -->
+                            <!-- <li class=""><a href="{{url('/contactus')}}">CONTACT</a></li> -->
 
 
                             @foreach(getCMSPages('TopNavbar') as $key => $page)
