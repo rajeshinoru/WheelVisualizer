@@ -693,17 +693,17 @@ class HomeController extends Controller
                     'benefitsimage4'=>$path,
                 ]);
 
-                Tire::where('prodimage1','like', '%' . $lastPart. '%')->update([
-                    'prodimage1'=>$path,
-                ]);
+                // Tire::where('prodimage1','like', '%' . $lastPart. '%')->update([
+                //     'prodimage1'=>$path,
+                // ]);
 
-                Tire::where('prodimage2','like', '%' . $lastPart. '%')->update([
-                    'prodimage2'=>$path,
-                ]);
+                // Tire::where('prodimage2','like', '%' . $lastPart. '%')->update([
+                //     'prodimage2'=>$path,
+                // ]);
 
-                Tire::where('prodimage3','like', '%' . $lastPart. '%')->update([
-                    'prodimage3'=>$path,
-                ]);
+                // Tire::where('prodimage3','like', '%' . $lastPart. '%')->update([
+                //     'prodimage3'=>$path,
+                // ]);
                 echo $lastPart."<br>";
             }
         }

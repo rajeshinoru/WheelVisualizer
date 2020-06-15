@@ -560,7 +560,7 @@ class TireController extends Controller
  function tires_update(){
 
 
-        $in_file = public_path('/storage/tires_data/tires_updated.csv'); 
+        $in_file = public_path('/storage/tires_data/Updated-Benefits.csv'); 
 
 
         if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
@@ -569,17 +569,19 @@ class TireController extends Controller
         while( ($data = fgetcsv($fr, 2000000, ",")) !== FALSE ) {
                 if($i != 1){
                     // dd($data[55]);
-                    if((isset($data[2])&&$data[2]!='')){
+                    if((isset($data[0])&&$data[0]!='')){
 
-                        $tire =Tire::where('partno',$data[2])->first();
-                        if($tire!=null){
-                            $tire->prodimage1 = isset($data[3])?$data[3]:null;  
-                            $tire->prodimage2 = isset($data[4])?$data[4]:null;  
-                            $tire->prodimage3 = isset($data[5])?$data[5]:null;  
-                            $tire->save(); 
+                        $tires =Tire::where('prodtitle',$data[0])->update([
+                            "benefits1"=>$data[1],
+                            "benefits2"=>$data[2],
+                            "benefits3"=>$data[3],
+                            "benefits4"=>$data[4],
+                            "benefitsimage1"=>$data[5],
+                            "benefitsimage2"=>$data[6],
+                            "benefitsimage3"=>$data[7],
+                            "benefitsimage4"=>$data[8]
 
-                        }
-                    // echo $tire->id."-----------".$tire->partno."<br>";
+                        ]);
                     }else{
 
                         echo "break<br>";
