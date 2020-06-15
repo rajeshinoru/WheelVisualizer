@@ -77,44 +77,48 @@ class UpdateFolderWise extends Command
             $newData['created_at']=\Carbon\Carbon::now();
             $newData['updated_at']=\Carbon\Carbon::now();
 
+            if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
 
-            Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
-            RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
+                Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
+                // RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
 
-            // $sap_exists = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
-
-
-            // if($sap_exists){
-            //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-            // }else{
-
-            //     $db_ext->table('inventories')->insert($newData);   
-            // }
- 
-
-        }else{
- 
- 
-            foreach ($newData as $key => $data) {
-                
-                \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
-
-                $data['created_at']=\Carbon\Carbon::now();
-                $data['updated_at']=\Carbon\Carbon::now();
-
-                Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
-                RemoteInventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
-                
-                // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
+                // $sap_exists = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
 
 
-                // if($sap_exists_loop){
-                //     $db_ext->table('inventories')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->update($data); 
+                // if($sap_exists){
+                //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
                 // }else{
 
-                //     $db_ext->table('inventories')->insert($data);   
+                //     $db_ext->table('inventories')->insert($newData);   
                 // }
-            } 
+            }
+
+        }else{
+            
+
+ 
+                foreach ($newData as $key => $data) {
+                    if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
+                        
+                        \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
+
+                        $data['created_at']=\Carbon\Carbon::now();
+                        $data['updated_at']=\Carbon\Carbon::now();
+
+                        Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
+                        // RemoteInventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
+                        
+                        // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
+
+
+                        // if($sap_exists_loop){
+                        //     $db_ext->table('inventories')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->update($data); 
+                        // }else{
+
+                        //     $db_ext->table('inventories')->insert($data);   
+                        // }
+                    }
+                } 
 
 
         }
@@ -347,15 +351,15 @@ class UpdateFolderWise extends Command
                 "price" =>"2", 
             ),
             "vftp0022"=>array(
-                "partno" =>"4",
+                "partno" =>"2",
                 "vendor_partno" =>null,
                 "mpn" =>null,
-                "description" =>"2",
+                "description" =>"1",
                 "brand" =>"0",
                 "model" =>null,
                 "location_code" =>null,
-                "available_qty" =>"5",
-                "price" =>"7", 
+                "available_qty" =>"3",
+                "price" =>"6", 
             ),
 
             "vftp0023"=>array(
@@ -1001,10 +1005,16 @@ class UpdateFolderWise extends Command
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp/'.$folderKey),$this->storeArr);
 
+        // dd($allFiles,$folderKey);
+
         if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
 
             $allFiles = array(end($allFiles));
         }
+
+
+
+
 
         foreach ($allFiles as $index => $selectedFile) { 
 
@@ -1148,6 +1158,24 @@ class UpdateFolderWise extends Command
                                     }
                                     
                                     $this->inventoryFeedUpdate($currentFolder,$insertDataArray,$db_ext);
+                                }elseif($folderKey == "vftp0022"){ 
+ 
+                                       
+                                    $insertData['drop_shipper']=$vendor_info[$folderKey][0];
+                                    $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
+                                    $insertData['location_name']=$vendor_info[$folderKey][2];
+
+                                    if(is_numeric($dataValue[4])&&is_numeric($dataValue[5])){
+
+                                        $insertData['price']=(float)($dataValue[4])+(float)( $dataValue[5] );
+                                    }else{
+                                        $insertData['price']=(float)$dataValue[4];
+                                    } 
+
+
+                                    // dd($insertData);
+
+                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
                                 }
                             }
                             $flag=1;
@@ -1270,6 +1298,24 @@ class UpdateFolderWise extends Command
                                     }
                                     
                                     $this->inventoryFeedUpdate($currentFolder,$insertDataArray,$db_ext);
+                                }elseif($folderKey == "vftp0022"){ 
+ 
+                                       
+                                    $insertData['drop_shipper']=$vendor_info[$folderKey][0];
+                                    $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
+                                    $insertData['location_name']=$vendor_info[$folderKey][2];
+
+                                    if(is_numeric($dataValue[4])&&is_numeric($dataValue[5])){
+
+                                        $insertData['price']=(float)($dataValue[4])+(float)( $dataValue[5] );
+                                    }else{
+                                        $insertData['price']=(float)$dataValue[4];
+                                    } 
+
+
+                                    // dd($insertData);
+
+                                    $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
                                 }
                             }
                             $flag=1;
