@@ -82,7 +82,7 @@
                 </button>
             </div>
             <div class="row new-nav">
-                <div class="col-sm-10 nav-bar">
+                <div class="col-sm-8 nav-bar">
                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
                         <ul class="nav navbar-nav navbar">
                             <li class="dropdown dropdown-nav">
@@ -135,9 +135,9 @@
                                                                 <option value="">Select Trim</option>
                                                             </select>
                                                         </div>
-                                                        <div class="dropdown">
+                                               <!--          <div class="dropdown">
                                                             <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                        </div>
+                                                        </div> -->
                                                         <a href="">
                                                             <button type="submit" class="btn vehicle-go">GO</button>
                                                         </a>
@@ -188,9 +188,9 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="dropdown">
+                                                        <!-- <div class="dropdown">
                                                             <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                        </div>
+                                                        </div> -->
                                                         <a href="">
                                                             <button type="submit" class="btn vehicle-go">GO</button>
                                                         </a>
@@ -278,9 +278,9 @@
 
                                                             </select>
                                                         </div>
-                                                        <div class="dropdown">
+                                                 <!--        <div class="dropdown">
                                                             <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                        </div>
+                                                        </div> -->
 
                                                         <a href="">
                                                             <button type="submit" class="btn vehicle-go">GO</button>
@@ -320,9 +320,9 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="dropdown">
+                                                 <!--        <div class="dropdown">
                                                             <input required="" type="text" class="form-control" name="zip" placeholder="Enter ZIP">
-                                                        </div>
+                                                        </div> -->
                                                         <a href="">
                                                             <button type="submit" class="btn vehicle-go">GO</button>
                                                         </a>
@@ -429,6 +429,7 @@
                         </ul>
                     </div>
                 </div>
+                 
                 <div class="col-sm-2">
                     <a href="{{url('/CartItems')}}" class="btn btn-inverse btn-block btn-lg"><i class="fa fa-shopping-cart"></i>
                         <span class="cart-heading">Cart</span>

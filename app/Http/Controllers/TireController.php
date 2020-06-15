@@ -7,6 +7,8 @@ use App\ChassisModel;
 use App\Vehicle;
 use Illuminate\Http\Request;
 use DB;
+use Session;
+
 class TireController extends Controller
 {
     /**
@@ -172,9 +174,22 @@ class TireController extends Controller
         }
 
         $tires = MakeCustomPaginator($tires, $request, 8);
+
+
+            if($vehicle){
+                Session::put('user.vehicle',$vehicle);
+            }else{
+
+                Session::put('user.vehicle',null);
+            }
+
+
+ 
+                $zipcode =Session::get('user.zipcode'); 
+
         // dd($tires);
         // dd($speedratings,json_decode(base64_decode($request->tirespeedrating)));
-        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices','request'));
+        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices','request','zipcode'));
     }
 
     /**

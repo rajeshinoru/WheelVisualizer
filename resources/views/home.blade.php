@@ -240,8 +240,8 @@
                         <div class="carousel-inner">
 
                             @foreach(getSliders('Home') as $skey => $slider)
-
                                 <div class="item {{($skey == 0)?'active':''}}">
+                                <a href="{{@$slider->redirectlink?url(@$slider->redirectlink):''}}" target="_blank"> 
                                     <img src="{{asset('/storage/'.$slider->image)}}" alt="Wheel">
                                     <!-- Static Header -->
                                     <div class="header-text hidden-xs">
@@ -255,6 +255,7 @@
                                             </div> -->
                                         </div>
                                     </div>
+                            </a>
                                     <!-- /header-text -->
                                 </div>
                             @endforeach
@@ -277,128 +278,135 @@
 </div>
 <br>
 
-@include('include.sizelinks')
+@if(Setting::get('header_content'))
+    <div class="container">
+        <?=Setting::get('header_content','')?>
+    </div>
+@else
 
-<!-- Start - This is for Duynamic Products from database -->
-<div class="container">
 
-    <div class="hometabled">
-        <div class="pTopBar">
-            <div class="pTopCell HotDeals">Hot Deals Save 30%-75%</div>
-            <div class="pTopCell Phone"><a href="tel:1-800-901-6003" title="Telephone 1-800-901-6003">1-800-901-6003</a></div>
-        </div>
+    @include('include.sizelinks')
 
-        <div class="asItems wheels">
-            <ul class="gridList wheels suggested">
+    <!-- Start - This is for Duynamic Products from database -->
+    <div class="container">
 
-                @forelse($Wheels as $key => $wheel)
+        <div class="hometabled">
+            <div class="pTopBar">
+                <div class="pTopCell HotDeals">Hot Deals Save 30%-75%</div>
+                <div class="pTopCell Phone"><a href="tel:1-800-901-6003" title="Telephone 1-800-901-6003">1-800-901-6003</a></div>
+            </div>
 
-                <?php if($key == count($Wheels)/2 ) break; ?>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>{{$wheel->wheeldiameter}} Diameter</b></div>
-                </li>
+            <div class="asItems wheels">
+                <ul class="gridList wheels suggested">
 
-                @empty
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>17 inch Only $69</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>18 inch Only $79</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>20 inch Only $203</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>22 inch Only $237</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>24 inch Only $261</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>26 inch Only $329</b></div>
-                </li>
+                    @forelse($Wheels as $key => $wheel)
 
-                @endforelse
-            </ul>
-        </div>
-        <div class="asItems wheels">
-            <ul class="gridList wheels suggested">
+                    <?php if($key == count($Wheels)/2 ) break; ?>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>{{$wheel->wheeldiameter}} Diameter</b></div>
+                    </li>
 
-                @forelse($Wheels as $key => $wheel)
+                    @empty
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>17 inch Only $69</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>18 inch Only $79</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>20 inch Only $203</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>22 inch Only $237</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>24 inch Only $261</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>26 inch Only $329</b></div>
+                    </li>
 
-                <?php if($key < count($Wheels)/2 ) continue; ?>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>205/50R17 $45</b></div>
-                </li>
+                    @endforelse
+                </ul>
+            </div>
+            <div class="asItems wheels">
+                <ul class="gridList wheels suggested">
 
-                @empty
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>205/50R17 $45</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>225/40R18 $50</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>245/35R20 $60</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>265/35R22 $100</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>305/35R24 $125</b></div>
-                </li>
-                <li class="gridItem homeapge1">
-                    <div class="homecelld">
-                        <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                    </div>
-                    <div class="homecelld" style="margin-top: 4px;"><b>305/35R26 $125</b></div>
-                </li>
-                @endforelse
-            </ul>
+                    @forelse($Wheels as $key => $wheel)
+
+                    <?php if($key < count($Wheels)/2 ) continue; ?>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="{{asset(@$wheel->image)}}" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>205/50R17 $45</b></div>
+                    </li>
+
+                    @empty
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>205/50R17 $45</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>225/40R18 $50</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>245/35R20 $60</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>265/35R22 $100</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>305/35R24 $125</b></div>
+                    </li>
+                    <li class="gridItem homeapge1">
+                        <div class="homecelld">
+                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
+                        </div>
+                        <div class="homecelld" style="margin-top: 4px;"><b>305/35R26 $125</b></div>
+                    </li>
+                    @endforelse
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- End - This is for Duynamic Products from database  -->
-
+    <!-- End - This is for Duynamic Products from database  -->
+@endif
 
 
 @if(Setting::get('homepage_content2'))

@@ -32,6 +32,64 @@
 {
     padding: 20px 20px !important;
 }
+
+
+
+
+
+
+
+    .modal-header {
+        background: #0e1661 !important;
+        color: #fff !important;
+    }
+
+    .btn.btn-info
+    {
+        background: #ecb23d !important;
+        font-family:Montserrat !important;
+        font-size:12px !important;
+    }
+
+    .btn.btn-info:hover {
+        background: #0e1661 !important;
+    }
+ 
+    .reward-block .btn
+    {
+        width:100% !important;
+    }
+    .modal-dialog.tire-view {
+        width: 300px !important;
+    }
+
+    .form-group.has-success.has-feedback {
+        margin: 0px 0px !important;
+    }
+
+    .modal-dialog.tire-view.btn.btn-info {
+        margin: 10px 0px !important;
+    }
+
+    .form-group.has-success.has-feedback {
+        margin: 10px 0px !important;
+    }
+    .col-sm-5.control-label
+    {
+        color: #000 !important;
+        font-family: Montserrat !important;
+        font-size: 12px !important;
+    }
+    .modal-dialog.tire-view .modal-header
+    {
+        padding: 10px !important;
+        border-bottom:none;
+    }
+
+
+
+
+
 </style>
 
 @include('include.sizelinks')
@@ -193,6 +251,12 @@
                                 @endif
                             @endif
                         </p>
+                            <p> 
+                                @if(@$zipcode)
+                                Your Zipcode: 
+                                    <b>{{@$zipcode}}</b> 
+                                @endif 
+                            </p>
                       </div>
                       <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
                   </div>
@@ -377,6 +441,31 @@
 
                     </div>
                 </div>
+                <div class="modal fade" id="zipcodeModal" role="dialog">
+                    <div class="modal-dialog tire-view">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Zipcode</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" id="zipcodeForm">
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="col-sm-5 control-label" for="inputSuccess">Your Zipcode</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control"  name="zipcode" required="">
+                                            {{@csrf_field()}}
+                                        </div>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <button class="btn btn-info" id="zipcodeSubmit" type="button">Continue</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -384,10 +473,39 @@
 
 @endsection
 @section('custom_scripts')
-    <script src="{{ asset('js/ajax/jquery.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/ajax/jquery.min.js') }}"></script> -->
     <script src="{{ asset('choosen/js/chosen.jquery.min.js') }}"></script>
     <script src="{{ asset('js/slick.js') }}"></script>
     <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
+
+<script type="text/javascript">
+    
+
+$(document).ready(function () {
+
+    $("#zipcodeSubmit").click(function () {
+        $.ajax({
+            url: "/zipcodeUpdate",
+            method:'POST',
+            data:$('#zipcodeForm').serialize(), 
+            success: function(result){  
+                console.log(result);
+                if(result == 'success'){
+                    $("#zipcodeModal").modal('hide');
+                    window.location.reload();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            
+                    
+            }
+        }); 
+    }); 
+});
+
+</script>
+
+
 <script type="text/javascript">
     var boxes;
     var wheelwidth;
@@ -399,9 +517,16 @@
     // });
     $(document).ready(function(){
         if("{{@$car_images}}"){
-            getWheelPosition('0')
+            getWheelPosition('0');
+
         }else{
                 $loading.fadeOut("slow");
+        } 
+        
+        if("{{$zipcode}}"){ 
+            $("#zipcodeModal").modal('hide');
+        }else{
+            $("#zipcodeModal").modal('show');
         }
     });
     function getWheelPosition(key){  

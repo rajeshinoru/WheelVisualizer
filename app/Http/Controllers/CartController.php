@@ -184,6 +184,20 @@ class CartController extends Controller
         // dd($cartData);
         return view('checkout',compact('cart','cartData','payment')); 
     }
+    
+    public function zipcodeUpdate(Request $request)
+    { 
 
+        Session::put('user.zipcode', $request->zipcode); 
+
+        return 'success';
+    }
+
+    public function zipcodeClear(Request $request)
+    { 
+        Session::put('user.zipcode', null);
+
+        return back();
+    }
 
 }

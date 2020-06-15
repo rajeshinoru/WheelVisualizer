@@ -217,6 +217,13 @@
 
                             @endif
                         </p>
+
+                            <p> 
+                                @if(@$zipcode)
+                                Your Zipcode: 
+                                    <b>{{@$zipcode}}</b> 
+                                @endif 
+                            </p>
                       </div>
                       <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
                   </div>
@@ -299,26 +306,38 @@
 @section('custom_scripts')
 
 
-<!--
-
-<script>
-    $(function() {
-        $("#slider-3").slider({
-            range: true,
-            min: 0,
-            max: 500,
-            values: [1, 200],
-            slide: function(event, ui) {
-                console.log(ui.values);
-                $("#price").val("$" + ui.values[0] + " - $" + ui.values[1]);
-            }
-        });
-        $("#price").val("$" + $("#slider-3").slider("values", 0) +
-            " - $" + $("#slider-3").slider("values", 1));
+<script type="text/javascript">
+    
+ $(document).ready(function(){
+        if("{{$zipcode}}"){ 
+            $("#zipcodeModal").modal('hide');
+        }else{
+            $("#zipcodeModal").modal('show');
+        }
     });
-</script>
- -->
+$(document).ready(function () {
 
+    $("#zipcodeSubmit").click(function () {
+        $.ajax({
+            url: "/zipcodeUpdate",
+            method:'POST',
+            data:$('#zipcodeForm').serialize(), 
+            success: function(result){  
+                console.log(result);
+                if(result == 'success'){
+                    $("#zipcodeModal").modal('hide');
+                    window.location.reload();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            
+                    
+            }
+        }); 
+    }); 
+});
+
+</script>
 
 
 @endsection

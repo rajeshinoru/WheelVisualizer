@@ -70,6 +70,7 @@
                                     <th>Title</th>
                                     <th>Image</th>
                                     <th>Description</th>
+                                    <th>Redirect To</th>
                                     <th>Order</th>
                                     <th>Actions</th>
                                 </tr>
@@ -82,6 +83,7 @@
 
                                 <td><img class="wheelImage" id="featured-img-list-{{$key}}"  src="{{asset('storage/'.@$slider->image)}}" width="100px" height="100px"></td>
                                 <td>{{@$slider->description}}</td>
+                                <td><a href="{{url('/'.@$slider->redirectlink)}}" target="_blank"> Redirect To </a></td>
                                 <td>{{@$slider->order}}</td> 
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
@@ -158,8 +160,15 @@
                                                         <input type="number" name="order" class="form-control"   min=0 value="{{@$slider->order}}" >
                                                     </div>
                                                 </div> 
-                                            </div> 
-                                            <br>
+                                            </div>  
+                                            <div class="row"> 
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="title">Redirect Link</label>
+                                                        <input type="text" name="redirectlink" class="form-control" placeholder="Give the routename Except '{{url('/')}}'" value="{{@$slider->redirectlink}}">
+                                                    </div>
+                                                </div> 
+                                            </div>
                                             <br> 
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -248,7 +257,15 @@
                                                         <input type="number" name="order" class="form-control"   min=0 >
                                                     </div>
                                                 </div> 
-                                            </div> 
+                                            </div>  
+                                            <div class="row"> 
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="title">Redirect Link</label>
+                                                        <input type="text" name="redirectlink" class="form-control" placeholder="Give the routename Except '{{url('/')}}'"  >
+                                                    </div>
+                                                </div> 
+                                            </div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-lg-6">

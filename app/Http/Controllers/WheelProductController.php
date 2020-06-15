@@ -10,7 +10,7 @@ use App\Chassis;
 use App\ChassisModel;
 use App\PlusSize;
 use Illuminate\Http\Request;
-
+use Session;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class WheelProductController extends Controller
@@ -25,6 +25,11 @@ class WheelProductController extends Controller
 
         try
         {
+
+
+             // if(count($request->all()?:[]) < 1 ){ 
+             //    Session::put('user',null);
+             // }
 
             $products = WheelProduct::with('wheel')->select('id', 'prodbrand', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
@@ -294,11 +299,20 @@ class WheelProductController extends Controller
             $flag=@$request->flag?:null;
 
 
+            // dd($zipcode);
+
+            if($vehicle){
+                Session::put('user.vehicle',$vehicle);
+            }else{
+
+                Session::put('user.vehicle',null);
+            }
 
 
+            $zipcode =Session::get('user.zipcode');
+            // dd($zipcode);
 
-
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','viflist','car_images'));
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','viflist','car_images','zipcode'));
 
         }
         catch(ModelNotFoundException $notfound)
