@@ -55,7 +55,7 @@ class UpdateFolderWise extends Command
 
                 $filename = strtoupper($file);
     
-                   if ( (strpos($filename, '.XLS') !== false) || (strpos($filename, '.CSV')  ) ){ 
+                   if ( (strpos($filename, '.XLSX') !== false) || (strpos($filename, '.XLS') !== false) || (strpos($filename, '.CSV')  ) ){ 
                         $this->storeArr[] = $file;
                    }
                     // array_push($this->storeArr[],$file);
@@ -561,6 +561,18 @@ class UpdateFolderWise extends Command
                 "available_qty" =>"7",
                 "price" =>"8",  
             ),
+
+            "vftp0036"=>array(
+                "partno" =>"0",
+                "vendor_partno" =>null,
+                "mpn" =>null,
+                "description" =>"3",
+                "brand" =>"1",
+                "model" =>"2",
+                "location_code" =>null,
+                "available_qty" =>"10",
+                "price" =>"11",  
+            ),
         );
 
         $vendor_info = array(
@@ -990,7 +1002,6 @@ class UpdateFolderWise extends Command
                     "3289"=>array("TBC","TBC3289","TBC-Inv_PflugervilleTX"),
                 ),
 
-
                 "vftp0033"=>array(
                     "AL" =>array("VisionWheels","VWAL","VW-Inv_DecaturAL"),
                     "CA" =>array("VisionWheels","VWCA","VW-Inv_CoronaCA"),
@@ -1000,7 +1011,9 @@ class UpdateFolderWise extends Command
                     "ON" =>array("VisionWheels","VWON","VW-Inv_OntarioCA"),
                     "US" =>array("VisionWheels","N/A","N/A"),
                     "CAD" =>array("VisionWheels","N/A","N/A"),
-                ),
+                ),        
+
+                "vftp0036"=>array("Asanti","ASCA","AS-Inv_FullertonCA"),
         );
     
         $allFiles =array();
@@ -1135,7 +1148,7 @@ class UpdateFolderWise extends Command
 
                                 }elseif($folderKey == "vftp0013"){
 
-                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027"){
+                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036"){
 
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
@@ -1190,17 +1203,18 @@ class UpdateFolderWise extends Command
                         }
                     }else{
                     
+
                         $excelData = \Excel::load($selectedFile)->get()->toArray();
 
-                        foreach($excelData as $key => $data){
+                        // dd('hhl');
+                        foreach($excelData as $key => $data){ 
                             if($flag != 0){
-                                $data = array_values($data);
 
                                 if($folderKey == "vftp0030"){
                                     $dataValue = explode('|', $data[0]);
                                 }else{
                                     $dataValue =  $data;
-                                }  
+                                } 
 
                                 $insertData = array(
 
@@ -1224,12 +1238,15 @@ class UpdateFolderWise extends Command
                                 );  
 
 
+                                // $insertData['price'] = $this->clean($insertData['price']);
 
                                 if(gettype($fields['available_qty']) != 'array'){
 
                                         $insertData['available_qty']=($fields['available_qty']!=null)?$dataValue[$fields['available_qty']]:0; 
 
+
                                 } 
+                                    dd($insertData);
 
                                 if($folderKey == "vftp0010" || $folderKey == "vftp0015"  || $folderKey == "vftp0023" || $folderKey == "vftp0030" || $folderKey == "vftp0032" || $folderKey == "vftp0033"){
 
@@ -1275,7 +1292,9 @@ class UpdateFolderWise extends Command
 
                                     $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
-                                }elseif($folderKey == "vftp0013" || $folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" ){
+                                }elseif($folderKey == "vftp0013"){
+
+                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036"){
 
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
