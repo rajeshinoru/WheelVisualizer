@@ -53,9 +53,11 @@ class UpdateFolderWise extends Command
                     $this->recursiveScan($file,$this->storeArr);
                 }elseif (is_file($file)) {
 
-                    $folderPath = explode('/', $file);
- 
-                    $this->storeArr[] = $file;
+                $filename = strtoupper($file);
+    
+                   if ( (strpos($filename, '.XLS') !== false) || (strpos($filename, '.CSV')  ) ){ 
+                        $this->storeArr[] = $file;
+                   }
                     // array_push($this->storeArr[],$file);
                 }
             }
@@ -73,24 +75,19 @@ class UpdateFolderWise extends Command
 
 
             \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
+            $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
             $newData['created_at']=\Carbon\Carbon::now();
             $newData['updated_at']=\Carbon\Carbon::now();
 
+            $newData['available_qty'] = $this->clean($newData['available_qty']);
+            $newData['price'] = $this->clean($newData['price']);
+            
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
 
                 Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
                 // RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
-
-                // $sap_exists = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
-
-
-                // if($sap_exists){
-                //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-                // }else{
-
-                //     $db_ext->table('inventories')->insert($newData);   
-                // }
+ 
             }
 
         }else{
@@ -98,9 +95,15 @@ class UpdateFolderWise extends Command
 
  
                 foreach ($newData as $key => $data) {
-                    if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
+
+                    $data['available_qty'] = $this->clean($data['available_qty']);
+                    $data['price'] = $this->clean($data['price']);
+
+
+                    if(is_numeric($data['available_qty'])&&is_numeric($data['price'])){
                         
                         \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
+                        $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
 
                         $data['created_at']=\Carbon\Carbon::now();
                         $data['updated_at']=\Carbon\Carbon::now();
@@ -170,6 +173,16 @@ class UpdateFolderWise extends Command
         // }
     }
 
+    function clean($string) {
+       // $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+       $convString = preg_replace('/[^A-Za-z0-9\-.]/', '', $string); // Removes special chars.
+
+       if (strpos($convString, '-') !== false) {
+            $convString = 0;
+       }
+       return $convString;
+    }
     /**
      * Execute the console command.
      *
@@ -349,6 +362,17 @@ class UpdateFolderWise extends Command
                     "SEAWA" =>"22",
                 ),
                 "price" =>"2", 
+            ),
+            "vftp0019"=>array(
+                "partno" =>"0",
+                "vendor_partno" =>null,
+                "mpn" =>null,
+                "description" =>"3",
+                "brand" =>null,
+                "model" =>null,
+                "location_code" =>null,
+                "available_qty" =>"7",
+                "price" =>"6", 
             ),
             "vftp0022"=>array(
                 "partno" =>"2",
@@ -634,27 +658,8 @@ class UpdateFolderWise extends Command
                     "PHXAZ" =>  array("TheWheelGroup","WG113","WG-Inv_PhoenixAZ"),
                     "SANT" =>   array("TheWheelGroup","WG218","WG-Inv_SanAntonioTX"),
                     "SEAWA" =>  array("TheWheelGroup","WG114","WG-Inv_SeattleWA"),
-                ),
-                "vftp0018"=>array(
-                    "ATL" =>    array("TheWheelGroup","WG312","WG-Inv_AtlantaGA"),
-                    "CHAR" =>   array("TheWheelGroup","WG307","WG-Inv_CharlotteNC"),
-                    "CHI" =>    array("TheWheelGroup","WG317","WG-Inv_ChicagoIL"),
-                    "COL" =>    array("TheWheelGroup","WG204","WG-Inv_ColumbusOH"),
-                    "DAL" =>    array("TheWheelGroup","WG211","WG-Inv_DallasTX"),
-                    "DEN" =>    array("TheWheelGroup","WG126","WG-Inv_DenverCO"),
-                    "HOUS" =>   array("TheWheelGroup","WG210","WG-Inv_HoustonTX"),
-                    "IND" =>    array("TheWheelGroup","WG324","WG-Inv_IndianapolisIN"),
-                    "JACKFL" => array("TheWheelGroup","WG206","WG-Inv_JacksonvilleFL"),
-                    "KSCITY" => array("TheWheelGroup","WG221","WG-Inv_KansasCityMO"),
-                    "LA" => array("TheWheelGroup","WG328","WG-Inv_OntarioCA"),
-                    "LA2" =>    array("TheWheelGroup","WG329","WG-Inv_Ontario2CA"),
-                    "NASH" =>   array("TheWheelGroup","WG302","WG-Inv_NashvilleTN"),
-                    "NJ" => array("TheWheelGroup","WG305","WG-Inv_NewBrunswickNJ"),
-                    "NORL" =>   array("TheWheelGroup","WG325","WG-Inv_NewOrleansLA"),
-                    "PHXAZ" =>  array("TheWheelGroup","WG113","WG-Inv_PhoenixAZ"),
-                    "SANT" =>   array("TheWheelGroup","WG218","WG-Inv_SanAntonioTX"),
-                    "SEAWA" =>  array("TheWheelGroup","WG114","WG-Inv_SeattleWA"),
-                ),
+                ), 
+                "vftp0019"=>array("Turbo","TBCA","TB-Inv_IrwindaleCA"),
                 "vftp0022"=>array("KMTires","KMHICK","KM-Inv_HickoryNC"),
                 "vftp0023"=>array( 
                     "ATL" =>array("MHT","MHTATL","MHT-Inv_NORCROSSGA"),
@@ -1074,12 +1079,15 @@ class UpdateFolderWise extends Command
                                 );  
 
 
+                                // $insertData['price'] = $this->clean($insertData['price']);
 
                                 if(gettype($fields['available_qty']) != 'array'){
 
                                         $insertData['available_qty']=($fields['available_qty']!=null)?$dataValue[$fields['available_qty']]:0; 
 
+
                                 } 
+                                    // dd($insertData);
 
                                 if($folderKey == "vftp0010" || $folderKey == "vftp0015"  || $folderKey == "vftp0023" || $folderKey == "vftp0030" || $folderKey == "vftp0032" || $folderKey == "vftp0033"){
 
@@ -1127,7 +1135,7 @@ class UpdateFolderWise extends Command
 
                                 }elseif($folderKey == "vftp0013"){
 
-                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0027"){
+                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027"){
 
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
@@ -1267,7 +1275,7 @@ class UpdateFolderWise extends Command
 
                                     $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
-                                }elseif($folderKey == "vftp0013" || $folderKey == "vftp0014" || $folderKey == "vftp0027"){
+                                }elseif($folderKey == "vftp0013" || $folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" ){
 
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
