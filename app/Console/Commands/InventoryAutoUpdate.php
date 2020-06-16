@@ -124,6 +124,7 @@ class InventoryAutoUpdate extends Command
             "vftp0016",
             "vftp0017",
             "vftp0018",
+            "vftp0019",
             "vftp0022",
             "vftp0023",
             "vftp0027",
@@ -132,7 +133,24 @@ class InventoryAutoUpdate extends Command
             "vftp0030",
             "vftp0031",
             "vftp0032",
-            "vftp0033"
+            "vftp0033",
+            "vftp0036",
+            "vftp0037",
+            "vftp0040",
+            "vftp0042",
+            "vftp0043",
+            "vftp0044",
+            "vftp0045",
+            "vftp0046",
+            "vftp0047",
+            "vftp0048",
+            "vftp0049",
+            "vftp0050",
+            "vftp0051",
+            "vftp0052",
+            "vftp0053",
+            "vftp0054",
+            "vftp0055"
         );
 
         // $vendor_info = array(
