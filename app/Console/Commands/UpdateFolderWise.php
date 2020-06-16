@@ -1202,7 +1202,7 @@ class UpdateFolderWise extends Command
                             $flag=1;
                         }
                     }else{
-                    
+
 
                         $excelData = \Excel::load($selectedFile)->get()->toArray();
 
@@ -1215,7 +1215,7 @@ class UpdateFolderWise extends Command
                                 }else{
                                     $dataValue =  $data;
                                 } 
-
+                                dd($dataValue);
                                 $insertData = array(
 
                                     // 'filename'=>$folderKey,
