@@ -33,12 +33,7 @@
     padding: 20px 20px !important;
 }
 
-
-
-
-
-
-
+ 
     .modal-header {
         background: #0e1661 !important;
         color: #fff !important;
@@ -215,8 +210,9 @@
             </div>
 
             <div class="col-sm-9 col-sm-9 main-pro-inner">
+                <div class="row">
               @if(@$vehicle || @$flag=='searchByWheelSize')
-              <div class="wheel-list-change-tab">
+              <div class="wheel-list-change-tab ">
                   <div class="row">
                       <div class="col-md-8 left-head">
                         <p> 
@@ -250,7 +246,16 @@
                                     @if(@$request->maxoffset)<b> to {{@$request->maxoffset}}</b> @endif
                                 @endif
                             @endif
-                        </p>
+                        </p> 
+                      </div>
+                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
+                  </div>
+              </div>
+              @endif
+              @if(@$zipcode)
+              <div class="wheel-list-change-tab ">
+                  <div class="row">
+                      <div class="col-md-8 left-head"> 
                             <p> 
                                 @if(@$zipcode)
                                 Your Zipcode: 
@@ -258,10 +263,11 @@
                                 @endif 
                             </p>
                       </div>
-                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
+                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
                   </div>
               </div>
               @endif
+                </div>
                 <div class="row">
                     @forelse($products as $key => $product)
                         <?php $product = (object)$product; ?>
@@ -522,7 +528,7 @@ $(document).ready(function () {
         }else{
                 $loading.fadeOut("slow");
         } 
-        
+
         if("{{$zipcode}}"){ 
             $("#zipcodeModal").modal('hide');
         }else{

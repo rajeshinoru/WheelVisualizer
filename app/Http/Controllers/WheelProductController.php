@@ -27,10 +27,13 @@ class WheelProductController extends Controller
         {
 
 
-             // if(count($request->all()?:[]) < 1 ){ 
-             //    Session::put('user',null);
-             // }
-
+             if($request->flag == 'searchByWheelSize'){ 
+                Session::put('user.searchByWheelSize',$request->all());
+             }
+             if($request->flag == 'searchByVehicle'){ 
+                Session::put('user.searchByVehicle',$request->all());
+             }
+ 
             $products = WheelProduct::with('wheel')->select('id', 'prodbrand', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
             $branddesc = [];

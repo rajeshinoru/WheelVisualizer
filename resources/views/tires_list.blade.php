@@ -6,6 +6,53 @@
 .product-layouts {
     min-height: 445px !important;
 }
+
+    .modal-header {
+        background: #0e1661 !important;
+        color: #fff !important;
+    }
+
+    .btn.btn-info
+    {
+        background: #ecb23d !important;
+        font-family:Montserrat !important;
+        font-size:12px !important;
+    }
+
+    .btn.btn-info:hover {
+        background: #0e1661 !important;
+    }
+ 
+    .reward-block .btn
+    {
+        width:100% !important;
+    }
+    .modal-dialog.tire-view {
+        width: 300px !important;
+    }
+
+    .form-group.has-success.has-feedback {
+        margin: 0px 0px !important;
+    }
+
+    .modal-dialog.tire-view.btn.btn-info {
+        margin: 10px 0px !important;
+    }
+
+    .form-group.has-success.has-feedback {
+        margin: 10px 0px !important;
+    }
+    .col-sm-5.control-label
+    {
+        color: #000 !important;
+        font-family: Montserrat !important;
+        font-size: 12px !important;
+    }
+    .modal-dialog.tire-view .modal-header
+    {
+        padding: 10px !important;
+        border-bottom:none;
+    }
 </style>
 
 @include('include.sizelinks')
@@ -178,57 +225,69 @@
             </div>
             <div class="col-sm-9">
 
-              @if(@$vehicle || @count($request->all())>0)
-              <div class="wheel-list-change-tab">
-                  <div class="row">
-                      <div class="col-md-8 left-head">
-                        <p> 
-                            @if(@$vehicle)
-                            Your Selected Vehicle: 
-                                <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
-                            OEM Tire Size:
-                                <b>{{@$chassis_model->tire_size}}</b> ,
-
-                            Speed Rating:
-                                <b>{{@$chassis_model->speed_index}}</b> ,
-
-                            Load Index:
-                                <b>{{@$chassis_model->load_index}}</b> 
-                            <br>
-                            @endif
-                            @if(@count($request->all())>0 && @$request->width)
-
-                            Your Selected  
-                            @if(@$request->width)
-
-                            Width:
-                                <b>{{@$request->width}}</b> ,
-                            @endif
-
-                            @if(@$request->profile)
-                            Profile:
-                                <b>{{@$request->profile}}</b> ,
-                            @endif
-
-                            @if(@$request->diameter)
-                            Diameter:
-                                <b>{{@$request->diameter}}</b> ,
-                            @endif
-
-                            @endif
-                        </p>
-
+                <div class="row">
+                  @if(@$vehicle || @count($request->all())>0)
+                  <div class="wheel-list-change-tab ">
+                      <div class="row">
+                          <div class="col-md-8 left-head">
                             <p> 
-                                @if(@$zipcode)
-                                Your Zipcode: 
-                                    <b>{{@$zipcode}}</b> 
-                                @endif 
-                            </p>
+                                @if(@$vehicle)
+                                Your Selected Vehicle: 
+                                    <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                                OEM Tire Size:
+                                    <b>{{@$chassis_model->tire_size}}</b> ,
+
+                                Speed Rating:
+                                    <b>{{@$chassis_model->speed_index}}</b> ,
+
+                                Load Index:
+                                    <b>{{@$chassis_model->load_index}}</b> 
+                                <br>
+                                @endif
+                                @if(@count($request->all())>0 && @$request->width)
+
+                                Your Selected  
+                                @if(@$request->width)
+
+                                Width:
+                                    <b>{{@$request->width}}</b> ,
+                                @endif
+
+                                @if(@$request->profile)
+                                Profile:
+                                    <b>{{@$request->profile}}</b> ,
+                                @endif
+
+                                @if(@$request->diameter)
+                                Diameter:
+                                    <b>{{@$request->diameter}}</b> ,
+                                @endif
+
+                                @endif
+                            </p> 
+                          </div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
                       </div>
-                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
                   </div>
-              </div>
-              @endif
+                  @endif
+                </div>
+                <div class="row">
+                  @if(@$zipcode)
+                  <div class="wheel-list-change-tab ">
+                      <div class="row">
+                          <div class="col-md-8 left-head"> 
+                                <p> 
+                                    @if(@$zipcode)
+                                    Your Zipcode: 
+                                        <b>{{@$zipcode}}</b> 
+                                    @endif 
+                                </p>
+                          </div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
+                      </div>
+                  </div>
+                  @endif
+                </div>
                 <div class="row">
                     @forelse($tires as $key =>$tire)
                     <?php $tire=(object)$tire; ?>
@@ -295,6 +354,31 @@
                         'maxprice'=> @Request::get('maxprice'), 
                         'diameter'=> @Request::get('diameter')])->links()}}
                         
+                    </div>
+                </div>
+
+                <div class="modal fade" id="zipcodeModal" role="dialog">
+                    <div class="modal-dialog tire-view">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Zipcode</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" id="zipcodeForm">
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="col-sm-5 control-label" for="inputSuccess">Your Zipcode</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control"  name="zipcode" required="">
+                                            {{@csrf_field()}}
+                                        </div>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <button class="btn btn-info" id="zipcodeSubmit" type="button">Continue</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

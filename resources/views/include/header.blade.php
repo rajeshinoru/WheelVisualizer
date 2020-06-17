@@ -56,7 +56,7 @@
                                 <li class="header-phone pull-left"><a href="{{url('/register')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
                                 <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
                             @endif
-                            <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li>
+                            <!-- <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                                                             <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
                                                                 <option value="">Select Make</option>
                                                                 @foreach(getVehicleMakeList() as $key => $make)
-                                                                <option value="{{$make}}">{{$make}}</option>
+                                                                <option value="{{$make}}" {{(\Session::get('user.searchByVehicle')['make'] == $make)?'selected':''}}>{{$make}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
