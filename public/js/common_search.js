@@ -177,15 +177,21 @@ $('.car_color').on('click', function() {
 });
 
 // Global Search by wheels name in 
-$('.header-search-btn').on('click', function() {
-    var search = $('#header-search-input').val();
-    if (search != '') {
-        updateParamsToUrl('search', search);
-    } else {
-        removeParamsFromUrl('search');
-    }
-});
+// $('.header-search-btn').on('click', function() {
+//     var search = $('#header-search-input').val();
+//     if (search != '') {
+//         updateParamsToUrl('search', search);
+//     } else {
+//         removeParamsFromUrl('search');
+//     }
+// });
 
+// Global Search by wheels name in 
+$('.header-clear-btn').on('click', function() {
+ 
+        removeParamsFromUrl('search'); 
+        // removeParamsFromUrl('for');  
+});
 
 
 // Common  Function to change the params values in the current url
@@ -252,7 +258,7 @@ function removeParamsFromUrl(paramKey) {
     if (size == 0) {
         window.location.href = window.location.origin + window.location.pathname;
     } else {
-        nextUrl += '?'; // ? for started to attach the query string to url
+        newURL = ''; // ? for started to attach the query string to url
 
         // This is for search,selection by any one of ways => BRAND or SEARCH Keyword
         if (paramKey == 'search' && params['brand'] != undefined) {
@@ -261,20 +267,28 @@ function removeParamsFromUrl(paramKey) {
         if (paramKey == 'brand' && params['search'] != undefined) {
             params['search'] = '';
         }
+        if(paramKey == 'search' && params['for'] != undefined){
+            params['search'] ='';
+            params['for'] ='';
+        }
 
         // Attach the query params to the nextURL 
         $.each(params, function(key, value) {
             if (value != '') {
                 if (i == size) {
-                    nextUrl += key + '=' + value;
+                    newURL += key + '=' + value;
                 } else {
-                    nextUrl += key + '=' + value + '&';
+                    newURL += key + '=' + value + '&';
                 }
             }
 
             i++;
         });
 
+        if(newURL != ''){
+            nextUrl = "?"+newURL
+        }
+        // console.log(nextUrl);
         window.location.href = nextUrl;
     }
 }

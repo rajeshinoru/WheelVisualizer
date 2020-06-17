@@ -1,3 +1,20 @@
+
+<style type="text/css">
+    #header-search .btn-danger {
+    background: red !important;
+    border: none;
+    color: #fff;
+    text-transform: none;
+    padding: 13px 33px;
+    margin: 0;
+    height: 44px;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 0px !important;
+    font-family: Montserrat !important;
+    letter-spacing: 0px;
+}
+</style>
 <header>
     <nav id="top">
         <div class="container">
@@ -59,12 +76,32 @@
                 </div>
 
                 <div class="col-sm-6 search-bar">
-                    <div class="search">
-                        <div id="header-search" class="input-group">
-                            <input type="text" name="search" value="{{json_decode(base64_decode(@Request::get('search')))}}" id="header-search-input" placeholder="Search" class="form-control input-lg" />
-                            <span class="input-group-btn"><button type="button" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Search</button></span>
+                    <form class="form" method="POST" action="{{url('/search')}}">
+                        {{@csrf_field()}}
+                        <div class="search"> 
+                            <div id="header-search" class="input-group">
+                                <div class="col-sm-4 dropdown" style="border-right: 1px solid Black; padding: 2px ;">
+                                    <select required="" class="form-control browser-default custom-select" name="search_for">
+                                        <option value="">Select One</option> 
+                                        <option value="Tire" {{(base64_decode(@Request::get('for')) == 'Tire')?'selected':''}}>Search for Tire</option> 
+                                        <option value="Wheel" {{(base64_decode(@Request::get('for')) == 'Wheel')?'selected':''}}>Search for Wheel</option> 
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" name="search" value="{{base64_decode(@Request::get('search'))}}" id="header-search-input" placeholder="Type to Search" class="form-control input-lg" />
+                                </div>
+
+                                <div class="col-sm-{{(base64_decode(@Request::get('for')))?'2':'4'}}" style="border: 1px; padding: 2px;">
+                                    <span class="input-group-btn pull-right"><button type="submit" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>Search</button></span>
+                                </div>
+                                @if(base64_decode(@Request::get('for')))
+                                <div class="col-sm-{{(base64_decode(@Request::get('for')))?'2':'0'}}" style="border: 1px; padding: 2px;">
+                                    <span class="input-group-btn pull-right"><button type="button" class="btn btn-danger btn-lg header-clear-btn"> Clear</button></span>
+                                </div>
+                                @endif
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

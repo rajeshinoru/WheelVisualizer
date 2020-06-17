@@ -152,7 +152,35 @@ class TireController extends Controller
             ->groupBy('price')
             ->get()
             ->sortBy('price');
+
+
+
+            if (isset($request->search) && $request->search) {
+                $searchText = base64_decode($request->search);
+
+                    $tires = $tires
+                            ->Where('partno', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('prodbrand', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('prodmodel', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('tirewidth', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('tireprofile', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('tirediameter', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('tiresize', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('speedrating', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('loadindex', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('price', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('tiretype', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('originalprice', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('benefits1', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('benefits2', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('benefits3', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('benefits4', 'LIKE', '%' . $searchText . '%')
+                            ;
+            }
+            // dd($tires->get());
+
         $tires = $tires
+            ->orderBy('qtyavail', 'DESC')
             ->orderBy('price', 'ASC')
             ->get()
             ->unique('prodtitle');
@@ -173,7 +201,10 @@ class TireController extends Controller
                 ->pluck('total','prodbrand');
         }
 
-        $tires = MakeCustomPaginator($tires, $request, 8);
+
+
+
+            $tires = MakeCustomPaginator($tires, $request, 8);
 
 
             if($vehicle){

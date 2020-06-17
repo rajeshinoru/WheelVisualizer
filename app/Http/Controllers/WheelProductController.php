@@ -279,11 +279,30 @@ class WheelProductController extends Controller
 
             if (isset($request->width) && $request->width) 
                     $products = $products->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
+ 
 
-            if (isset($request->search) && $request->search) 
-                    $products = $products->where('prodbrand', 'LIKE', '%' . json_decode(base64_decode($request->search)) . '%');
+
+            if (isset($request->search) && $request->search) {
+                $searchText = base64_decode($request->search);
+                    $products = $products
+                            ->Where('prodtitle', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('prodbrand', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('prodmodel', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('prodfinish', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('wheeldiameter', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('wheelwidth', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('boltpattern1', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('boltpattern2', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('boltpattern3', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('detailtitle', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('partno', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('price', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('offset1', 'LIKE', '%' . $searchText . '%') 
+                            ;
+            }
 
             $products = $products
+                ->orderBy('qtyavail', 'DESC')
                 ->orderBy('price', 'ASC')
                 ->get()
                 ->unique('prodtitle');

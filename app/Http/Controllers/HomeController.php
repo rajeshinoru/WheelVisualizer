@@ -44,6 +44,30 @@ class HomeController extends Controller
 
         return view('home',compact('Wheels','years'));
     }
+    public function search(Request $request)
+    {  
+            
+        if($request->search_for == 'Tire'){ 
+            return redirect('/tirelist?search='.base64_encode($request->search).'&for='.base64_encode($request->search_for));
+            // $tires=new Tire;
+            // $columns = $tires->getTableColumns(); 
+            // $tires = $tires->where('id','>',0);
+            // foreach ($columns as $key => $column) {
+            //     $tires->where($column, 'LIKE', "%{$request->search}%"); 
+            // }  
+            // $tires = $tires->paginate(5);
+            // return view('tires_list',compact('tires'));
+
+        }elseif($request->search_for == 'Wheel'){
+            return redirect('/wheelproducts?search='.base64_encode($request->search).'&for='.base64_encode($request->search_for));
+
+        }else{
+            return redirect('/?search='.base64_encode($request->search));
+        } 
+
+        // return view('home',compact('Wheels','years'));
+    }
+
     public function forms()
     {
         return view('forms');

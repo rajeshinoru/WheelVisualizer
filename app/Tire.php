@@ -98,6 +98,9 @@ class Tire extends Model
 				'youtube4',
 	];
 
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
 
     public function ChassisModels(){
     	return $this->hasMany('App\ChassisModel','tire_size','spec3');
