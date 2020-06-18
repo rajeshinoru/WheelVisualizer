@@ -73,6 +73,11 @@ class TireController extends Controller
                     ->whereIn('speedrating',$higherRating );
         }else{
 
+
+            if($request->has('width') && $request->has('profile') && $request->has('diameter')){
+                Session::put('user.searchByTireSize',$request->all());
+            }
+
             if($request->has('width')){
                 $tires = $tires->where('tirewidth',$request->width);
             }

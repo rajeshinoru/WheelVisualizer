@@ -767,7 +767,7 @@
                                 <label for="country">Select Make</label>
                               <select required="" class="form-control browser-default custom-select CheckoutMake" name="make">
                                   <option value="">Select Make</option>
-                                  @foreach(getVehicleMakeList() as $key => $make)
+                                  @foreach(getVehicleList('make') as $key => $make)
                                   <option value="{{$make}}">{{$make}}</option>
                                   @endforeach
                               </select>

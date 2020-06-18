@@ -531,7 +531,7 @@
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
-                                                                            <button class="btn btn-info" type="button">Add Matching Tires</button>
+                                                                            <button class="btn btn-info matching-tire" type="button">Add Matching Tires</button>
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
@@ -541,6 +541,8 @@
                                                         </div>
                                                     </div>
                                                     <!-- Model End  -->
+
+
                                                 </div>
                                             </div>
                                             <h1 class="instock-head">Availability:<b>{{@$diffproduct->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
@@ -595,7 +597,29 @@
                                 </div>
                                 @endforeach
                             </div>
-
+                           <!--  <div class="modal fade " id="matching-tire" role="dialog">
+                                <div class="modal-dialog wheel-view">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title text-left">Wheel & Tire Options</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                          <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2>
+                                          <h2 class="modal-title">The following items have been added to your cart:</h2>
+                                          <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                            <form class="form-horizontal">
+                                                <div class="form-group has-success has-feedback text-center">
+                                                    <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
+                                                    <button class="btn btn-info matching-tire" type="button">Add Matching Tires</button>
+                                                    <a class="btn btn-info cart-btn" href="{{url
+                                                    ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
+                                                </div>
+                                            </form>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div> -->
                         </div>
                         <div class="col-sm-4 wheel-View-but">
                             <div class="new-model-button">

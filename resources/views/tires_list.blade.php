@@ -227,7 +227,7 @@
 
                 <div class="row">
                   @if(@$vehicle || @count($request->all())>0)
-                  <div class="wheel-list-change-tab ">
+                  <div class="wheel-list-change-tab">
                       <div class="row">
                           <div class="col-md-8 left-head">
                             <p> 

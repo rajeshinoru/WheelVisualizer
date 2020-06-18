@@ -6,6 +6,7 @@ use App\Vehicle;
 use App\Chassis;
 use App\ChassisModel;
 use Illuminate\Http\Request;
+use Session;
 
 class VehicleController extends Controller
 {
@@ -129,6 +130,11 @@ class VehicleController extends Controller
     {
         try{
 
+
+             // if($request->flag == 'searchByVehicle'){ 
+                Session::put('user.searchByVehicle',$request->all());
+             // }
+ 
 
             $vehicle = Vehicle::select('id','vehicle_id','year','make','model','submodel','dr_chassis_id','dr_model_id','year_make_model_submodel')
             ->where('year',$request->year)

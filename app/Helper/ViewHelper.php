@@ -290,6 +290,52 @@ function getMakeList(){
         return $make;
 }
 
+
+//***************************** Discount Tires Starts*************************************//
+
+
+function getTireList($columnname=''){
+		if($columnname){ 
+			//width=305&profile=55&diameter=20
+			$selectedwidth = Session::get('user.searchByTireSize')['width'];
+			$selectedprofile = Session::get('user.searchByTireSize')['profile'];
+			$selecteddiameter = Session::get('user.searchByTireSize')['diameter']; 
+
+            $tires = new Tire;  
+
+             if ($columnname == 'width'){
+
+             	$data = $tires->select('tirewidth')
+                ->distinct('tirewidth') 
+                ->orderBy('tirewidth', 'DESC')
+                ->pluck('tirewidth');
+             }
+
+
+             if (isset($selectedwidth) && $columnname == 'profile') {
+				$data = $tires->select('tireprofile')
+                ->distinct('tireprofile')
+                ->wheretirewidth($selectedwidth)
+                ->orderBy('tireprofile', 'DESC')
+                ->pluck('tireprofile');
+             }
+
+
+            // // Width change  or Loading Filter
+            if (isset($selectedwidth) && isset($selectedprofile) && $columnname == 'diameter') {
+            	 $data = $tires->select('tirediameter')
+                ->distinct('tirediameter')
+                ->where('tirewidth', $selectedwidth)
+                ->where('tireprofile', $selectedprofile)
+                ->pluck('tirediameter');
+            	
+            }
+
+            return $data??[];
+		}
+		return []; 
+}
+
 function getTireBrandList(){
 
         $tires = Tire::select('prodbrand')->distinct('prodbrand')->pluck('prodbrand')->toArray(); 
@@ -297,20 +343,77 @@ function getTireBrandList(){
         return $tires;
 }
 
-function getTireWidthList(){
-        $tires = Tire::select('tirewidth')->distinct('tirewidth')->pluck('tirewidth')->toArray(); 
-        rsort($tires);
-        return $tires;
-}
 
+//***************************** Discount Tires Ends*************************************//
 
 //***************************** Discount Wheels - Products Starts*************************************//
 
 // -------------> Shop By Size 
-function getWheelDiameterList(){
-        $wheels = WheelProduct::select('wheeldiameter')->distinct('wheeldiameter')->pluck('wheeldiameter')->toArray(); 
-        rsort($wheels);
-        return $wheels;
+function getWheelList($columnname=''){
+		if($columnname){ 
+			$selectedwheeldiameter = Session::get('user.searchByWheelSize')['wheeldiameter'];
+			$selectedwheelwidth = Session::get('user.searchByWheelSize')['wheelwidth'];
+			$selectedboltpattern = Session::get('user.searchByWheelSize')['boltpattern'];
+			$selectedminoffset = Session::get('user.searchByWheelSize')['minoffset'];
+			$selectedmaxoffset = Session::get('user.searchByWheelSize')['maxoffset'];
+
+            $products = new WheelProduct;  
+
+             if ($columnname == 'wheeldiameter'){
+
+             	$data = $products->select('wheeldiameter')
+                ->distinct('wheeldiameter') 
+                ->orderBy('wheeldiameter', 'DESC')
+                ->pluck('wheeldiameter');
+             }
+
+
+             if (isset($selectedwheeldiameter) && $columnname == 'wheelwidth') 
+             	$data = $products->select('wheelwidth')
+                ->distinct('wheelwidth')
+                ->wherewheeldiameter($selectedwheeldiameter)
+                ->orderBy('wheelwidth', 'DESC')
+                ->pluck('wheelwidth');
+
+            // Width change  or Loading Filter
+            if (isset($selectedwheeldiameter) && isset($selectedwheelwidth) && $columnname == 'boltpattern') 
+            	 $data = $products->select('boltpattern1')
+                ->distinct('boltpattern1')
+                ->where('wheelwidth', $selectedwheelwidth)
+                ->where('wheeldiameter', $selectedwheeldiameter)
+                ->pluck('boltpattern1');
+
+            // boltpattern change  or Loading Filter
+            if (isset($selectedwheeldiameter) && isset($selectedwheelwidth) && isset($selectedboltpattern) && $columnname == 'minoffset'){
+
+                
+                 $data = $products->select('offset1')
+                ->distinct('offset1')
+                ->where('wheelwidth', $selectedwheelwidth)
+                ->where('boltpattern1', $selectedboltpattern)
+                ->where('wheeldiameter', $selectedwheeldiameter)
+                ->orderBy('offset1','ASC')
+                ->pluck('offset1');
+
+            } 
+
+            // minoffset change  or Loading Filter
+            if (isset($selectedwheeldiameter) && isset($selectedwheelwidth) && isset($selectedboltpattern) && isset($selectedminoffset) && $columnname == 'maxoffset'){
+
+                
+                $data = $products->select('offset1')
+                ->distinct('offset1')
+                ->where('wheelwidth', $selectedwheelwidth)
+                ->where('boltpattern1', $selectedboltpattern)
+                ->where('wheeldiameter', $selectedwheeldiameter)
+                ->where('offset1', '>',$selectedminoffset)
+                ->orderBy('offset1','ASC')
+                ->pluck('offset1');
+            }
+
+            return $data??[];
+		}
+		return [];
 }
 // -------------> Shop By Brand 
 function getWheelBrandList(){
@@ -359,10 +462,48 @@ function getWheelProductImage($url=''){
 //***************************** Discount Wheels - Products Ends*************************************//
 
 
-function getVehicleMakeList(){
+function getVehicleList($columnname=''){
+		if($columnname){
+	        // $make = Vehicle::select($columnname)->distinct($columnname)->orderBy($columnname,'Asc')->pluck($columnname);
+	        // return $make;
+			$selectedMake = Session::get('user.searchByVehicle')['make'];
+			$selectedYear = Session::get('user.searchByVehicle')['year'];
+			$selectedModel = Session::get('user.searchByVehicle')['model'];
 
-        $make = Vehicle::select('make')->distinct('make')->orderBy('make','Asc')->pluck('make');
-        return $make;
+            $vehicle = new Vehicle; 
+            // dd($request->all(),$vehicle);
+            // Make change or Loading filter
+            if($columnname == 'make'){
+                $data = $vehicle->select('make')->distinct('make')->orderBy('make','DESC')->pluck('make');//->wheremake($request->make)
+            }
+
+            if(isset($selectedMake) && $columnname == 'year'){
+				$data = $vehicle->select('year')->distinct('year')->wheremake($selectedMake)->orderBy('year','DESC')->pluck('year');
+            }
+
+            if(isset($selectedMake) && isset($selectedYear) && $columnname == 'model'){
+				$data = $vehicle->select('model')->distinct('model')->wheremake($selectedMake)->where('year',$selectedYear)->orderBy('model','DESC')->pluck('model');
+            }
+
+
+            if(isset($selectedMake) && isset($selectedYear) && isset($selectedModel) && $columnname == 'submodel'){
+
+				$data = $vehicle->select('submodel','body')->distinct('submodel','body')->wheremake($selectedMake)->where('year',$selectedYear)->where('model',$selectedModel)->orderBy('submodel','DESC')->pluck('submodel','body');
+            }
+
+            // Year change  or Loading Filter
+            // if(isset($request->make) && isset($request->year) && $request->changeBy == 'year' || $request->changeBy == ''){
+				// $data = $vehicle->select('model')->distinct('model')->where('year',$request->year)->wheremake($request->make)->orderBy('model','ASC')->get();
+            // }
+
+            // // Model change  or Loading Filter
+            // if(isset($request->make) && isset($request->year) && isset($request->model) && $request->changeBy == 'model' || $request->changeBy == ''){
+				// $data = $vehicle->select('submodel','body')->distinct('submodel','body')->where('year',$request->year)->wheremake($request->make)->wheremodel($request->model)->orderBy('submodel','ASC')->get();
+            // }
+
+            return $data??[];
+		}
+		return [];
 }
 
 

@@ -393,7 +393,7 @@
                     </div>
                                                         <div class="col-sm-12 tire-menu tire-two">
                                                             <ul class="vehicle-list">
-                                                                @foreach(getVehicleMakeList() as $key => $vehicle)
+                                                                @foreach(getVehicleList('make') as $key => $vehicle)
                                                                 <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{$vehicle}}</a></li>
                                                                 @endforeach
                                                             </ul>
