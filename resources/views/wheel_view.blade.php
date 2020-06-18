@@ -3,6 +3,11 @@
 @endsection
 @section('content')
 <style>
+
+
+    .modal-img.btn-info:hover{
+            background: #080e31 !important;
+    }
     .hometabled {
         margin: 25px 0px !important;
     }
@@ -231,7 +236,7 @@
     }
 
     .btn.btn-info {
-        background: #ecb23d !important;
+        background: #ecb23d;
     }
 
     .product-quantity .input-quantity {
@@ -531,7 +536,8 @@
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
-                                                                            <button class="btn btn-info matching-tire" type="button">Add Matching Tires</button>
+                                                                            
+                                                                            <a class="btn btn-info matching-tire">Add Matching Tires</a>
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
@@ -576,7 +582,7 @@
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info" type="button" data-dismiss="modal" >Continue Shopping</button>
-                                                                            <button class="btn btn-info" type="button">Add Matching Tires</button>
+                                                                            <a class="btn btn-info matching-tire">Add Matching Tires</a>
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
@@ -597,7 +603,7 @@
                                 </div>
                                 @endforeach
                             </div>
-                           <!--  <div class="modal fade " id="matching-tire" role="dialog">
+                            <div class="modal fade " id="matching-tire-modal" role="dialog">
                                 <div class="modal-dialog wheel-view">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -605,21 +611,23 @@
                                             <h4 class="modal-title text-left">Wheel & Tire Options</h4>
                                         </div>
                                         <div class="modal-body">
-                                          <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2>
-                                          <h2 class="modal-title">The following items have been added to your cart:</h2>
-                                          <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
-                                            <form class="form-horizontal">
-                                                <div class="form-group has-success has-feedback text-center">
-                                                    <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
-                                                    <button class="btn btn-info matching-tire" type="button">Add Matching Tires</button>
-                                                    <a class="btn btn-info cart-btn" href="{{url
-                                                    ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
-                                                </div>
-                                            </form>
+                                          <h2 class="modal-title"><b>Select wheel & tire package type:</b></h2>
+
+                                            <h2 class="modal-img">
+                                                <a href="" class="btn btn-info">
+
+                                                    <img class="" src="{{url(Setting::get('wheeltirepackage','/image/WheelTirePackage.jpg'))}}">
+                                                </a>
+                                            </h2>
+                                            <h2 class="modal-img">
+                                                <a href="" class="btn btn-info">
+                                                    <img class="" src="{{url(Setting::get('wheeltirepackage','/image/WheelTireCombo.jpg'))}}">
+                                                </a>
+                                            </h2>
                                           </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="col-sm-4 wheel-View-but">
                             <div class="new-model-button">
@@ -859,6 +867,11 @@ $('.spinner .btn:last-of-type').on('click', function() {
         }});
     })
 
+    $('.matching-tire').click(function(){
+        $('.modal').modal("hide");
+        $('#matching-tire-modal').modal();
+
+    });
 
 </script>
 @endsection
