@@ -83,7 +83,7 @@ class UpdateFolderWise extends Command
 
             $newData['available_qty'] = $this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
-            
+            dd($newData);
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
                 Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
@@ -177,9 +177,9 @@ class UpdateFolderWise extends Command
     function clean($string) {
        // $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
 
-       $convString = preg_replace('/[^A-Za-z0-9\-.]/', '', $string); // Removes special chars.
+       $convString = preg_replace('/[^0-9\-.]/', '', $string); // Removes special chars.
 
-       if (strpos($convString, '-') !== false) {
+       if (strpos($convString, '-') !== false || $convString =='') {
             $convString = 0;
        }
        return $convString;
@@ -606,6 +606,17 @@ class UpdateFolderWise extends Command
                 "price" =>null,  
             ),
 
+            "vftp0038"=>array(
+                "partno" =>"1",
+                "vendor_partno" =>null,
+                "mpn" =>null,
+                "description" =>"2",
+                "brand" =>null,
+                "model" =>"0",
+                "location_code" =>null,
+                "available_qty" =>"12",
+                "price" =>"3",  
+            ),
             "vftp0040"=>array(
                 "partno" =>"0",
                 "vendor_partno" =>null,
@@ -1225,6 +1236,7 @@ class UpdateFolderWise extends Command
      
                 "vftp0036"=>array("Asanti","ASCA","AS-Inv_FullertonCA"),
                 "vftp0037"=>array("DWG","DWCA","DWG-Inv_BaldwinParkCA"),
+                "vftp0038"=>array("Giovanna","GOCA","GIO-Inv_SantaFeSpringsCA"),   
                 "vftp0040"=>array("Lexani","LXCA","LX-Inv_PalmDesertCA"),
                 "vftp0042"=>array("BSI","BSCA","BSI-Inv_SantaFeSpringsCA"),        
 
@@ -1397,7 +1409,7 @@ class UpdateFolderWise extends Command
 
                                     $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
-                                }elseif($folderKey == "vftp0013" || $folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036" || $folderKey == "vftp0037" || $folderKey == "vftp0040" || $folderKey == "vftp0042" || $folderKey == "vftp0044" || $folderKey == "vftp0045" || $folderKey == "vftp0047" || $folderKey == "vftp0048"  || $folderKey == "vftp0050"  || $folderKey == "vftp0051" || $folderKey == "vftp0053"  || $folderKey == "vftp0055"  ){
+                                }elseif($folderKey == "vftp0013" || $folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036" || $folderKey == "vftp0037" || $folderKey == "vftp0038"  || $folderKey == "vftp0040" || $folderKey == "vftp0042" || $folderKey == "vftp0044" || $folderKey == "vftp0045" || $folderKey == "vftp0047" || $folderKey == "vftp0048"  || $folderKey == "vftp0050"  || $folderKey == "vftp0051" || $folderKey == "vftp0053"  || $folderKey == "vftp0055"  ){
 
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
