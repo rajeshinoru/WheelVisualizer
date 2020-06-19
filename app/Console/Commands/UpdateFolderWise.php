@@ -83,7 +83,7 @@ class UpdateFolderWise extends Command
 
             $newData['available_qty'] = $this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
-            dd($newData);
+            // dd($newData);
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
                 Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
