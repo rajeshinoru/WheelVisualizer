@@ -448,7 +448,7 @@
         @foreach( @$bpproducts as $bpkey => $bpproduct)
         <option value="pattern_{{@$bpproduct->boltpattern1}}_{{@$bpproduct->id}}" data-title="{{@$bpproduct->detailtitle}}" data-product="bp_tab_{{@$bpproduct->id}}" {{(@$bpproduct->boltpattern1 == @$diffproduct->boltpattern1)?'selected':''}} >
 
-            {{(@@$bpproduct->boltpattern2 )?convertBoltPattern(@$bpproduct->boltpattern1).' & '.convertBoltPattern(@$bpproduct->boltpattern2):convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
+            {{(@$bpproduct->boltpattern2 )?convertBoltPattern(@$bpproduct->boltpattern1).' & '.convertBoltPattern(@$bpproduct->boltpattern2):convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
         @endforeach
     </select>
     @else
