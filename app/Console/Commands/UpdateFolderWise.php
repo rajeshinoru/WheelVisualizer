@@ -1279,7 +1279,7 @@ class UpdateFolderWise extends Command
         }
 
 
-
+        // dd($allFiles);
 
 
         foreach ($allFiles as $index => $selectedFile) { 
@@ -1397,9 +1397,7 @@ class UpdateFolderWise extends Command
 
                                     $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
-                                }elseif($folderKey == "vftp0013"){
-
-                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036" || $folderKey == "vftp0037" || $folderKey == "vftp0040" || $folderKey == "vftp0042" || $folderKey == "vftp0044" || $folderKey == "vftp0045" || $folderKey == "vftp0047" || $folderKey == "vftp0048"  || $folderKey == "vftp0050"  || $folderKey == "vftp0051" || $folderKey == "vftp0053"  || $folderKey == "vftp0055"  ){
+                                }elseif($folderKey == "vftp0013" || $folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036" || $folderKey == "vftp0037" || $folderKey == "vftp0040" || $folderKey == "vftp0042" || $folderKey == "vftp0044" || $folderKey == "vftp0045" || $folderKey == "vftp0047" || $folderKey == "vftp0048"  || $folderKey == "vftp0050"  || $folderKey == "vftp0051" || $folderKey == "vftp0053"  || $folderKey == "vftp0055"  ){
 
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
@@ -1585,9 +1583,7 @@ class UpdateFolderWise extends Command
 
                                     $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
-                                }elseif($folderKey == "vftp0013"){
-
-                                }elseif($folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036" || $folderKey == "vftp0037" || $folderKey == "vftp0040" || $folderKey == "vftp0042" || $folderKey == "vftp0044" || $folderKey == "vftp0045"  || $folderKey == "vftp0047" || $folderKey == "vftp0048" || $folderKey == "vftp0050" || $folderKey == "vftp0051" || $folderKey == "vftp0053"  || $folderKey == "vftp0055"  ){
+                                }elseif($folderKey == "vftp0013" || $folderKey == "vftp0014" || $folderKey == "vftp0019" || $folderKey == "vftp0027" || $folderKey == "vftp0036" || $folderKey == "vftp0037" || $folderKey == "vftp0040" || $folderKey == "vftp0042" || $folderKey == "vftp0044" || $folderKey == "vftp0045"  || $folderKey == "vftp0047" || $folderKey == "vftp0048" || $folderKey == "vftp0050" || $folderKey == "vftp0051" || $folderKey == "vftp0053"  || $folderKey == "vftp0055"  ){
 
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][1];
