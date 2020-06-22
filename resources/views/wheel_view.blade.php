@@ -922,7 +922,7 @@ $('.spinner .btn:last-of-type').on('click', function() {
         var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+" "+price+"/ea";
 
         $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype,'price':price}, success: function(result){
-            if(result =='success'){
+            if(result['status'] =='success'){ 
                 $(modelid).find('.modal-msg').text(modalMsg);
                 $(modelid).modal("show");
             }

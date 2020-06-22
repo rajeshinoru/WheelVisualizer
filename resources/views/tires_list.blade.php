@@ -315,7 +315,8 @@
                                 </div>
                                 <div class="thumb-description">
                                     <div class="caption">
-                                        <h4 class="tire-type"><a href="{{url('/tireview')}}/{{base64_encode(@$tire->id)}}/{{base64_encode(@$vehicle->id)}}">
+                                        <h4 class="tire-type"><a href="
+    {{url('/tireview')}}/{{base64_encode(@$tire->id)}}/{{base64_encode(@$vehicle->id)}}/{{base64_encode(@$wheelpackage)}}">
                                                 {{@$tire->prodtitle}}<br>
                                                 <br>
                                                 Size : {{@$tire->tiresize}}<br>

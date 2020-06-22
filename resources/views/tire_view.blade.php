@@ -1149,7 +1149,7 @@
                     <form class="form-horizontal">
                         <div class="form-group has-success has-feedback text-center">
                             <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
-                            <button class="btn btn-info" type="button">Add Matching Tires</button>
+                            <!-- <button class="btn btn-info" type="button">Add Matching Tires</button> -->
                             <a class="btn btn-info cart-btn" href="{{url
                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                         </div>
@@ -1205,17 +1205,25 @@ $('.spinner .btn:last-of-type').on('click', function() {
 
 <script type="text/javascript">
     
-    $('.addToCart').click(function(){
+    $('.addToCart').click(function(){ 
+ 
+        if("{{@base64_decode($wheelpackage)}}")
+        {
+            var qty = 4;
+        }else{
+
+            var qty = $('.quantity').val();
+        }
+
         var modelid="#TireProductModal";
-        var qty = $('.quantity').val();
         var productid = $(this).data('productid');
         var price = $(this).data('price'); 
         var prodtype ='tire';
         var modalMsg = "Qty: "+qty+", "+$('.tire-detail-title').text()+" "+price+"/ea";
 
         $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype,'price':price}, success: function(result){
-            if(result =='success'){
-                $(modelid).find('.modal-msg').text(modalMsg);
+            if(result['status'] =='success'){
+                $(modelid).find('.modal-msg').html(result['message']+'<br>'+modalMsg);
                 $(modelid).modal("show");
             }
             getCartCount();

@@ -872,8 +872,8 @@
                 'price': price
             },
             success: function(result) {
-                console.log(result);
-                if (result == 'success') {
+                console.log(result);            
+                if(result['status'] =='success'){
                     $(modelid).find('.modal-msg').text(modalMsg);
                     $(modelid).modal("show");
                 }

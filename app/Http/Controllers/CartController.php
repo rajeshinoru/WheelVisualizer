@@ -72,10 +72,17 @@ class CartController extends Controller
         }
         Session::put('cart', $cart);
 
+        $msg = '';
+        if(Session::get('user.packagetype') == 'wheeltirepackage' && $request->prodtype == 'tire'){
+                $msg = '<br><b>This completes your Wheel and Tire Package, which will come mounted and balanced, ready to be installed on your vehicle</b><br>'; 
+        }
+        // Session::put('user.packagetype') == null;
+        // Session::flash('alert-class', 'alert-danger'); 
+
         // dd($cart);
         // Session::flash('success','Product Added to Cart!');
         //dd(Session::get('cart'));
-        return 'success';
+        return ['status'=>'success','message'=>$msg];
     }
 
     /**

@@ -101,6 +101,12 @@ class TireController extends Controller
             // $plussizes = $vehicle->Plussizes->where('wheel_size',$vehicle->ChassisModels->rim_size)->pluck('tire1'); 
             // dd($plussizes);
             $tires = $tires->whereIn('tiresize',$plussizes);
+
+            if($tires->count() > 0){
+                Session::put('user.packagetype','wheeltirepackage');
+            }else{
+                return back()->with('error','Matching Tires Not Found');
+            }
             // dd($tires->get());
         }else{
             $plussizes=[];
@@ -250,7 +256,7 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tireview(Request $request,$tire_id='',$vehicle_id='')
+    public function tireview(Request $request,$tire_id='',$vehicle_id='',$wheelpackage='')
     {
         if($vehicle_id!=''){
             $vehicle = Vehicle::with('ChassisModels')->where('id',base64_decode($vehicle_id))->first();
@@ -280,7 +286,7 @@ class TireController extends Controller
                 // ->orWhere('tirediameter',$tire->tirediameter)
                 ->get()
                 ->unique('prodmodel');
-        return view('tire_view',compact('tire','diff_tires','similar_tires','vehicle'));
+        return view('tire_view',compact('tire','diff_tires','similar_tires','vehicle','wheelpackage'));
     }
 
     /**
