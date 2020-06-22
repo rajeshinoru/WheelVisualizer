@@ -617,15 +617,15 @@ class InventoryAutoUpdate extends Command
 
         // $db_ext = \DB::connection('sqlsrv'); // SAP Server Connection
 
-        // $vftp = Storage::disk('vftp');
-        // $vftpFolders = $vftp->directories('/');
+        $vftp = Storage::disk('vftp');
+        $vftpFolders = $vftp->directories('/');
 
-        // foreach ($vftpFolders as $key => $vftpFolder) { 
-        //     foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
-        //         // dd($fileAddress);
-        //         Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
-        //     }
-        // }  
+        foreach ($vftpFolders as $key => $vftpFolder) { 
+            foreach ($vftp->files('/'.$vftpFolder) as $key1 => $fileAddress) {
+                // dd($fileAddress);
+                Storage::disk('public')->put("/vftp/".$fileAddress, $vftp->get("/".$fileAddress));
+            }
+        }  
         
 
         $allFiles = $this->recursiveScan(public_path('/storage/vftp'),$this->storeArr);

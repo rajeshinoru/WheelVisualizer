@@ -1285,7 +1285,7 @@ class UpdateFolderWise extends Command
 
         // dd($allFiles,$folderKey);
 
-        if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032"])){
+        if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032","vftp0046","vftp0049","vftp0050","vftp0054","vftp0055"])){
 
             $allFiles = array(end($allFiles));
         }
@@ -1296,7 +1296,7 @@ class UpdateFolderWise extends Command
 
         foreach ($allFiles as $index => $selectedFile) { 
 
-            // dd($selectedFile);
+            dd($selectedFile);
 
             $filepathArray = explode('/', $selectedFile);
             $selectedFileName = end($filepathArray); 

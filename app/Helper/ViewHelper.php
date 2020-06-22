@@ -469,7 +469,7 @@ function getWheelProductImage($url=''){
 //***************************** Discount Wheels - Products Ends*************************************//
 
 
-function getVehicleList($columnname=''){
+function getVehicleList($columnname='',$sortorder='asc'){
 		if($columnname){
 	        // $make = Vehicle::select($columnname)->distinct($columnname)->orderBy($columnname,'Asc')->pluck($columnname);
 	        // return $make;
@@ -480,6 +480,8 @@ function getVehicleList($columnname=''){
             $vehicle = new Vehicle; 
             // dd($request->all(),$vehicle);
             // Make change or Loading filter
+
+            $vehicle = $vehicle->orderby($columnname,$sortorder);
             if($columnname == 'make'){
                 $data = $vehicle->select('make')->distinct('make')->orderBy('make','DESC')->pluck('make');//->wheremake($request->make)
             }

@@ -311,21 +311,19 @@ class WheelProductController extends Controller
 
             if (isset($request->search) && $request->search) {
                 $searchText = base64_decode($request->search);
-                    $products = $products
-                            ->Where('prodtitle', 'LIKE', '%' . $searchText . '%')
+                if(is_numeric($searchText)){
+
+                    $products = $products 
+                            ->orWhere('wheeldiameter', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('wheelwidth', 'LIKE', '%' . $searchText . '%');
+                }else{
+                    $products = $products 
                             ->orWhere('prodbrand', 'LIKE', '%' . $searchText . '%')
                             ->orWhere('prodmodel', 'LIKE', '%' . $searchText . '%')
                             ->orWhere('prodfinish', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('wheeldiameter', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('wheelwidth', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('boltpattern1', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('boltpattern2', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('boltpattern3', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('detailtitle', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('partno', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('price', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('offset1', 'LIKE', '%' . $searchText . '%') 
                             ;
+                }
+                
             }
 
             $products = $products

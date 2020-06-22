@@ -158,7 +158,7 @@
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
                                                                 <option value="">Select Year</option>
-                                                                @foreach(getVehicleList('year') as $key => $year)
+                                                                @foreach(getVehicleList('year','desc') as $key => $year)
                                                                 <option value="{{$year}}" {{(\Session::get('user.searchByVehicle')['year'] == $year)?'selected':''}}>{{$year}}</option>
                                                                 @endforeach
                                                             </select>
@@ -323,7 +323,7 @@
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select NavYear" name="year">
                                                                 <option value="">Select Year</option>
-                                                                @foreach(getVehicleList('year') as $key => $year)
+                                                                @foreach(getVehicleList('year','desc') as $key => $year)
                                                                 <option value="{{$year}}" {{(\Session::get('user.searchByVehicle')['year'] == $year)?'selected':''}}>{{$year}}</option>
                                                                 @endforeach
                                                             </select>
