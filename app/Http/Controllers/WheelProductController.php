@@ -10,8 +10,9 @@ use App\Chassis;
 use App\ChassisModel;
 use App\PlusSize;
 use Illuminate\Http\Request;
-use Session;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+
+use Session;
 
 class WheelProductController extends Controller
 {
@@ -20,6 +21,28 @@ class WheelProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function findVehicle($data){
+                $vehicle = Vehicle::with('Plussizes','ChassisModels')->select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $data->year)
+                    ->where('make', $data->make)
+                    ->where('model', $data->model);
+
+                if(@$data->submodel){
+
+                    $submodelBody = explode('-',$data->submodel);
+                    // dd($submodelBody);
+                    if(count($submodelBody) == 2 ){
+
+                        $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
+                    }elseif(count($submodelBody) == 3 ){
+
+                        $vehicle = $vehicle->where('submodel',$submodelBody[0].'-'.$submodelBody[1])->where('body',$submodelBody[2]);
+                    }
+                }
+                $vehicle = $vehicle->first(); 
+                return $vehicle;
+    }
+
     public function index(Request $request)
     {
 
@@ -88,23 +111,24 @@ class WheelProductController extends Controller
             elseif (isset($request->flag) && $request->flag == 'searchByVehicle')
             {
 
-                $vehicle = Vehicle::select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $request->year)
-                    ->where('make', $request->make)
-                    ->where('model', $request->model);
+                $vehicle = $this->findVehicle($request);
+                //Vehicle::select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $request->year)
+                    // ->where('make', $request->make)
+                    // ->where('model', $request->model);
 
-                if($request->has('submodel')){
+                // if($request->has('submodel')){
 
-                    $submodelBody = explode('-',$request->submodel);
-                    // dd($submodelBody);
-                    if(count($submodelBody) == 2 ){
+                //     $submodelBody = explode('-',$request->submodel);
+                //     // dd($submodelBody);
+                //     if(count($submodelBody) == 2 ){
 
-                        $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
-                    }elseif(count($submodelBody) == 3 ){
+                //         $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
+                //     }elseif(count($submodelBody) == 3 ){
 
-                        $vehicle = $vehicle->where('submodel',$submodelBody[0].'-'.$submodelBody[1])->where('body',$submodelBody[2]);
-                    }
-                }
-                $vehicle = $vehicle->first(); 
+                //         $vehicle = $vehicle->where('submodel',$submodelBody[0].'-'.$submodelBody[1])->where('body',$submodelBody[2]);
+                //     }
+                // }
+                // $vehicle = $vehicle->first(); 
                 // dd($vehicle);
                 if(@$vehicle->vif != null){
                     $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($vehicle->vif)->where('image', 'LIKE', '%.png%')
@@ -171,7 +195,7 @@ class WheelProductController extends Controller
                 $products = $products->whereBetween('wheeldiameter',[$diameterPart1,$diameterPart2]);
                 $products = $products->whereBetween('wheelwidth',[$widthPart1,$widthPart2]);
 
-                $request->flag = 'searchByWheelSize';
+                // $request->flag = 'searchByWheelSize';
                 // dd($plusSizesArray,$boltpattern,$diameterPart);
             }
 
@@ -428,7 +452,7 @@ class WheelProductController extends Controller
 
         // $wheelproducts = WheelProduct::select();
 
-        if($flag == 'searchByWheelSize'){
+        if($flag == 'searchByWheelSize' || $flag == 'searchByVehicle'){
             $products = WheelProduct::select($selectFields)->where('id', $product_id)
                 ->with(['DifferentOffsets'=>function($q)use($wheel){ 
                     $q->where('prodtitle', $wheel->prodtitle);
@@ -458,14 +482,56 @@ class WheelProductController extends Controller
                 ->unique('wheeldiameter');
                 // dd($products);
         }
+
+        $vehicle = (object)Session::get('user.searchByVehicle')??[];
+        $wheelsize = (object)Session::get('user.searchByWheelSize')??[];
         $similar_products = WheelProduct::select('prodimage','prodbrand','id','prodtitle','price')
             ->where('prodbrand', $wheel->prodbrand)
             ->get()
             ->unique('prodtitle');
         // dd($products[0]->DifferentOffsets);
-        return view('wheel_view', compact('wheel', 'products', 'similar_products','flag'));
+        return view('wheel_view', compact('wheel', 'products', 'similar_products','flag','vehicle','wheelsize'));
     }
 
+    public function wheeltirepackage(Request $request, $product_id = '',$flag='')
+    {
+
+        $selectFields=['id','prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc'];
+
+        $wheel = WheelProduct::where('id', $product_id)->first();
+
+        // $wheelproducts = WheelProduct::select();
+
+        if($flag == 'searchByVehicle'){
+            // dd((object)Session::get('user.searchByVehicle')??[]);
+            $vehicle = $this->findVehicle((object)Session::get('user.searchByVehicle')??[]); 
+            // $rimsize = getWheelDiameterToRim($wheel->wheeldiameter,$wheel->wheelwidth);
+            // $plussizes = $vehicle->Plussizes->where('wheel_size',$rimsize)->pluck('tire1');
+            // dd($plussizes,$vehicle->ChassisModels->rim_size);
+            // dd();
+            return redirect('/tirelist/'.base64_encode($vehicle->ChassisModels->id).'/'.base64_encode($vehicle->vehicle_id).'/'.base64_encode($wheel->id));
+            // return redirect('/tirelist/'.base64_encode($vehicle->ChassisModels->id).'/'.base64_encode($vehicle->vehicle_id));
+
+        }else{
+            // $rimsize = getWheelDiameterToRim($wheel->wheeldiameter,$wheel->wheelwidth);
+            // $plussizes = PlusSize::where('wheel_size',$rimsize)->get();
+            
+        }
+
+        // dd($vehicle);
+
+        foreach ($plussizes as $key => $value) {
+            # code...
+        }
+        $vehicle = (object)Session::get('user.searchByVehicle')??[];
+        $wheelsize = (object)Session::get('user.searchByWheelSize')??[];
+        $similar_products = WheelProduct::select('prodimage','prodbrand','id','prodtitle','price')
+            ->where('prodbrand', $wheel->prodbrand)
+            ->get()
+            ->unique('prodtitle');
+        // dd($products[0]->DifferentOffsets);
+        return view('wheel_view', compact('wheel', 'products', 'similar_products','flag','vehicle','wheelsize'));
+    }
     public function getFiltersByProductWheelSize(Request $request)
     {
         try

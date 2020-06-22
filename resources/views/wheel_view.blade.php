@@ -351,12 +351,70 @@
     <!-- Cart Start -->
     <div class="container">
 
+                <div class="row">
+                  @if(@$vehicle || @$flag=='searchByWheelSize')
+                  <div class="wheel-list-change-tab ">
+                      <div class="row">
+                          <div class="col-md-8 left-head">
+                            <p> 
+                                @if(@$vehicle && @$flag!='searchByWheelSize')
+                                Your Selected Vehicle: 
+                                    <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                                <br>
+                                @else
+                                @if(@$flag == 'searchByWheelSize')
+
+                                    Your Selected  
+                                    @if(@$wheelsize->wheeldiameter)
+
+                                    Diameter:
+                                        <b>{{@$wheelsize->wheeldiameter}}</b> ,
+                                    @endif
+
+                                    @if(@$wheelsize->wheelwidth)
+                                    Width:
+                                        <b>{{@$wheelsize->wheelwidth}}</b> ,
+                                    @endif
+
+                                    @if(@$wheelsize->boltpattern)
+                                    Bolt Pattern:
+                                        <b>{{showBoltPattern(@$wheelsize->boltpattern)}}</b> ,
+                                    @endif
+
+                                    @if(@$wheelsize->minoffset)
+                                    Offset:
+                                        <b>{{@$wheelsize->minoffset}}</b> 
+                                        @if(@$wheelsize->maxoffset)<b> to {{@$wheelsize->maxoffset}}</b> @endif
+                                    @endif
+                                @endif
+                                @endif
+                            </p> 
+                          </div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
+                      </div>
+                  </div>
+                  @endif
+                  @if(@$zipcode)
+                  <div class="wheel-list-change-tab ">
+                      <div class="row">
+                          <div class="col-md-8 left-head"> 
+                                <p> 
+                                    @if(@$zipcode)
+                                    Your Zipcode: 
+                                        <b>{{@$zipcode}}</b> 
+                                    @endif 
+                                </p>
+                          </div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
+                      </div>
+                  </div>
+                  @endif
+                </div>
         <div class="hometabled">
             <div class="pTopBar">
                 <div class="pTopCell HotDeals">Hot Deals Save 30%-75%</div>
                 <div class="pTopCell Phone"><a href="tel:1-800-901-6003" title="Telephone 1-800-901-6003">1-800-901-6003</a></div>
             </div>
-
             <div class="row">
 
                 <div class="col-sm-3 wheel-img">
@@ -493,6 +551,9 @@
                                                         <td>PN</td>
                                                         <td>{{@$product->partno}}</td>
                                                     </tr>
+
+                                                    Omni
+
                                                     <tr>
                                                         <td>Bolt Pattern</td>
                                                         <td>{{showBoltPattern($product->boltpattern1,$product->boltpattern2,$product->boltpattern3)}}</td>
@@ -537,7 +598,9 @@
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
                                                                             
+                                                                            @if($flag == 'searchByVehicle')
                                                                             <a class="btn btn-info matching-tire">Add Matching Tires</a>
+                                                                            @endif
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
@@ -582,7 +645,9 @@
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info" type="button" data-dismiss="modal" >Continue Shopping</button>
+                                                                            @if($flag == 'searchByVehicle')
                                                                             <a class="btn btn-info matching-tire">Add Matching Tires</a>
+                                                                            @endif
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
@@ -614,12 +679,12 @@
                                           <h2 class="modal-title"><b>Select wheel & tire package type:</b></h2>
 
                                             <h2 class="modal-img">
-                                                <a href="" class="btn btn-info">
+                                                <a href="{{url('/wheeltirepackage/'.$wheel->id.'/'.$flag)}}" class="btn btn-info">
 
                                                     <img class="" src="{{url(Setting::get('wheeltirepackage','/image/WheelTirePackage.jpg'))}}">
                                                 </a>
                                             </h2>
-                                            <h2 class="modal-img">
+                                             <h2 class="modal-img">
                                                 <a href="" class="btn btn-info">
                                                     <img class="" src="{{url(Setting::get('wheeltirepackage','/image/WheelTireCombo.jpg'))}}">
                                                 </a>

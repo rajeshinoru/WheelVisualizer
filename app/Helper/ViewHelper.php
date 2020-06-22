@@ -283,6 +283,13 @@ function getRimToWheelDiameter($rimSize=''){
 		$diameter = $rim[1]; 
         return $diameter;
 }
+// Rim size to Wheel Diameter Conversion
+function getWheelDiameterToRim($diameter='',$width=''){
+
+		// $rim = explode('x', $rimSize);
+		$rim = $width ." x ". $diameter; 
+        return $rim;
+}
 
 function getMakeList(){
 

@@ -73,47 +73,47 @@ Route::get('/carImagesMovingToFolderLive', 'HomeController@carImagesMovingToFold
 Route::get('/renameFrontBackImages', 'HomeController@renameFrontBackImages');
 Route::get('/carimagestosqlLive', 'HomeController@carimagestosqlLive');
 
-Route::get('/New_Vehicle_Import', 'VehicleController@New_Vehicle_Import');
-Route::get('/vif_update', 'VehicleController@vif_update');
+// Route::get('/New_Vehicle_Import', 'VehicleController@New_Vehicle_Import');
+// Route::get('/vif_update', 'VehicleController@vif_update');
 
 
-Route::get('/csv_vftp0028', 'HomeController@csv_vftp0028');
-Route::get('/csv_vftp0017', 'HomeController@csv_vftp0017');
-Route::get('/csv_vftp0018', 'HomeController@csv_vftp0018');
-Route::get('/csv_vftp0030', 'HomeController@csv_vftp0030');
-Route::get('/csv_vftp0032', 'HomeController@csv_vftp0032');
-Route::get('/csv_vftp0022', 'HomeController@csv_vftp0022');
-Route::get('/convertExcelToCSV', 'HomeController@convertExcelToCSV');
+// Route::get('/csv_vftp0028', 'HomeController@csv_vftp0028');
+// Route::get('/csv_vftp0017', 'HomeController@csv_vftp0017');
+// Route::get('/csv_vftp0018', 'HomeController@csv_vftp0018');
+// Route::get('/csv_vftp0030', 'HomeController@csv_vftp0030');
+// Route::get('/csv_vftp0032', 'HomeController@csv_vftp0032');
+// Route::get('/csv_vftp0022', 'HomeController@csv_vftp0022');
+// Route::get('/convertExcelToCSV', 'HomeController@convertExcelToCSV');
 
-Route::get('/vftp_to_sql/{filename?}', 'HomeController@vftp_to_sql');
-Route::get('/vftp_to_sql_test/{filename}', 'HomeController@vftp_to_sql_test');
+// Route::get('/vftp_to_sql/{filename?}', 'HomeController@vftp_to_sql');
+// Route::get('/vftp_to_sql_test/{filename}', 'HomeController@vftp_to_sql_test');
 
-Route::get('/redundancy_check/{filename}', 'HomeController@redundancy_check');
-Route::get('/mergeUniqueFiles', 'HomeController@mergeUniqueFiles');
+// Route::get('/redundancy_check/{filename}', 'HomeController@redundancy_check');
+// Route::get('/mergeUniqueFiles', 'HomeController@mergeUniqueFiles');
 
 //OpenCv Test Routes
-Route::get('/opencv', 'HomeController@opencv');
-Route::get('/tsf', 'HomeController@tsf');
-Route::get('/canvas', 'HomeController@canvas');
+// Route::get('/opencv', 'HomeController@opencv');
+// Route::get('/tsf', 'HomeController@tsf');
+// Route::get('/canvas', 'HomeController@canvas');
 Route::get('/runPython', 'HomeController@runPython');
-Route::get('/upodateWheelsPartNo', 'HomeController@upodateWheelsPartNo');
-Route::get('/findMisMatchedWheels', 'HomeController@findMisMatchedWheels');
+// Route::get('/upodateWheelsPartNo', 'HomeController@upodateWheelsPartNo');
+// Route::get('/findMisMatchedWheels', 'HomeController@findMisMatchedWheels');
 
-Route::get('/UploadInventories', 'InventoryController@UploadInventories');
+// Route::get('/UploadInventories', 'InventoryController@UploadInventories');
 
-Route::get('/getUploadInventories', 'InventoryController@getUploadInventories');
-Route::get('/CopyTableToServer', 'InventoryController@CopyTableToServer');
+// Route::get('/getUploadInventories', 'InventoryController@getUploadInventories');
+// Route::get('/CopyTableToServer', 'InventoryController@CopyTableToServer');
 
-Route::get('/automationUpdate', 'InventoryController@automationUpdate')->name('automationUpdate');
+// Route::get('/automationUpdate', 'InventoryController@automationUpdate')->name('automationUpdate');
 
-Route::get('/Wheel_Import', 'WheelController@Wheel_Import');
-Route::get('/Tires_data_import', 'TireController@Tires_data_import');
-Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
-Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
-Route::get('/Chassis_Import', 'ChassisController@Chassis_Import');
-Route::get('/ChassisModel_Import', 'ChassisModelController@ChassisModel_Import');
-Route::get('/PlusSize_Import', 'PlusSizeController@PlusSize_Import');
-Route::get('/MinusSize_Import', 'MinusSizeController@MinusSize_Import');
+// Route::get('/Wheel_Import', 'WheelController@Wheel_Import');
+// Route::get('/Tires_data_import', 'TireController@Tires_data_import');
+// Route::get('/Falken_Detail_Import', 'TireDetailController@Falken_Detail_Import');
+// Route::get('/Vehicle_Import', 'VehicleController@Vehicle_Import');
+// Route::get('/Chassis_Import', 'ChassisController@Chassis_Import');
+// Route::get('/ChassisModel_Import', 'ChassisModelController@ChassisModel_Import');
+// Route::get('/PlusSize_Import', 'PlusSizeController@PlusSize_Import');
+// Route::get('/MinusSize_Import', 'MinusSizeController@MinusSize_Import');
 
 Route::resource('wheel', 'WheelController');
 
@@ -130,7 +130,7 @@ Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->nam
 
 // Tires Module Routes
 Route::get('/tires', 'TireController@index')->name('tires');
-Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
+Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}/{is_tirepackage?}', 'TireController@list')->name('tirelist');
 Route::get('/tireview/{tire_id}/{vehicle_id?}', 'TireController@tireview')->name('tireview');
 Route::get('/tirebrand/{brand_name?}', 'TireController@brand')->name('tirebrand');
 Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
@@ -150,6 +150,9 @@ Route::get('/wheelproducts', 'WheelProductController@index')->name('wheelproduct
 Route::get('/wheelproductview/{product_id?}/{flag?}', 'WheelProductController@wheelproductview')->name('wheelproductview');
 // Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 // Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
+
+Route::get('/wheeltirepackage/{product_id?}/{flag?}', 'WheelProductController@wheeltirepackage')->name('wheeltirepackage');
+
 
 // Filters By Wheel sizes
 Route::get('/getFiltersByProductWheelSize', 'WheelProductController@getFiltersByProductWheelSize')->name('getFiltersByProductWheelSize');

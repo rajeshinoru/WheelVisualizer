@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tire;
 use App\ChassisModel;
 use App\Vehicle;
+use App\WheelProduct;
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -26,7 +27,7 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list(Request $request,$chassis_model_id='',$vehicle_id='')
+    public function list(Request $request,$chassis_model_id='',$vehicle_id='',$wheelpackage='')
     {
 
         $tires = new Tire;
@@ -64,9 +65,8 @@ class TireController extends Controller
                 $tires = $tires->where('price','<',json_decode(base64_decode($request->maxprice)));
             }
         }
-
-
-        if( $chassis_model_id!='' && $vehicle_id!=''){
+ 
+        if( $chassis_model_id!='' && $vehicle_id!='' && $wheelpackage==''){
             $higherRating = getHigherSpeedRating($chassis_model->speed_index)['list'];
             $tires = $tires->where('tiresize',$chassis_model->tire_size)
                     ->where('loadindex','>=', $chassis_model->load_index)
@@ -90,7 +90,21 @@ class TireController extends Controller
                 $tires = $tires->where('tirediameter',$request->diameter);
             }
         }
+        
+        if($wheelpackage){ 
 
+            $wheel = WheelProduct::find(base64_decode($wheelpackage));
+            $rimsize = getWheelDiameterToRim($wheel->wheeldiameter,$wheel->wheelwidth);
+            $plussizes = $vehicle->Plussizes->where('wheel_size',$rimsize)->pluck('tire1');
+            // dd($wheel);
+
+            // $plussizes = $vehicle->Plussizes->where('wheel_size',$vehicle->ChassisModels->rim_size)->pluck('tire1'); 
+            // dd($plussizes);
+            $tires = $tires->whereIn('tiresize',$plussizes);
+            // dd($tires->get());
+        }else{
+            $plussizes=[];
+        }
 
         // Load index search in the Sidebar
 
@@ -184,6 +198,9 @@ class TireController extends Controller
             }
             // dd($tires->get());
 
+
+
+
         $tires = $tires
             ->orderBy('qtyavail', 'DESC')
             ->orderBy('price', 'ASC')
@@ -225,7 +242,7 @@ class TireController extends Controller
 
         // dd($tires);
         // dd($speedratings,json_decode(base64_decode($request->tirespeedrating)));
-        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices','request','zipcode'));
+        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices','request','zipcode','wheelpackage','plussizes'));
     }
 
     /**

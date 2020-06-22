@@ -236,12 +236,25 @@
                                     <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
                                 OEM Tire Size:
                                     <b>{{@$chassis_model->tire_size}}</b> ,
-
+                                @if(@$vehicle && empty($wheelpackage))
+                                <br>
                                 Speed Rating:
                                     <b>{{@$chassis_model->speed_index}}</b> ,
 
                                 Load Index:
                                     <b>{{@$chassis_model->load_index}}</b> 
+                                @endif
+
+                                @if(@$wheelpackage)
+                                <br>
+
+                                Showing Plus Sized Tires: 
+                                    <b>
+                                        @foreach($plussizes as $k => $size)
+                                            {{@$size}}
+                                        @endforeach
+                                    </b> 
+                                @endif
                                 <br>
                                 @endif
                                 @if(@count($request->all())>0 && @$request->width)

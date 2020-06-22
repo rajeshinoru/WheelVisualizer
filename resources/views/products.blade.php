@@ -211,62 +211,62 @@
 
             <div class="col-sm-9 col-sm-9 main-pro-inner">
                 <div class="row">
-              @if(@$vehicle || @$flag=='searchByWheelSize')
-              <div class="wheel-list-change-tab ">
-                  <div class="row">
-                      <div class="col-md-8 left-head">
-                        <p> 
-                            @if(@$vehicle)
-                            Your Selected Vehicle: 
-                                <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
-                            <br>
-                            @endif
-                            @if(@$flag == 'searchByWheelSize' && @$request->wheeldiameter)
-
-                                Your Selected  
-                                @if(@$request->wheeldiameter)
-
-                                Diameter:
-                                    <b>{{@$request->wheeldiameter}}</b> ,
-                                @endif
-
-                                @if(@$request->wheelwidth)
-                                Width:
-                                    <b>{{@$request->wheelwidth}}</b> ,
-                                @endif
-
-                                @if(@$request->boltpattern)
-                                Bolt Pattern:
-                                    <b>{{showBoltPattern(@$request->boltpattern)}}</b> ,
-                                @endif
-
-                                @if(@$request->minoffset)
-                                Offset:
-                                    <b>{{@$request->minoffset}}</b> 
-                                    @if(@$request->maxoffset)<b> to {{@$request->maxoffset}}</b> @endif
-                                @endif
-                            @endif
-                        </p> 
-                      </div>
-                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
-                  </div>
-              </div>
-              @endif
-              @if(@$zipcode)
-              <div class="wheel-list-change-tab ">
-                  <div class="row">
-                      <div class="col-md-8 left-head"> 
+                  @if(@$vehicle || @$flag=='searchByWheelSize')
+                  <div class="wheel-list-change-tab ">
+                      <div class="row">
+                          <div class="col-md-8 left-head">
                             <p> 
-                                @if(@$zipcode)
-                                Your Zipcode: 
-                                    <b>{{@$zipcode}}</b> 
-                                @endif 
-                            </p>
+                                @if(@$vehicle)
+                                Your Selected Vehicle: 
+                                    <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                                <br>
+                                @endif
+                                @if(@$flag == 'searchByWheelSize' && @$request->wheeldiameter)
+
+                                    Your Selected  
+                                    @if(@$request->wheeldiameter)
+
+                                    Diameter:
+                                        <b>{{@$request->wheeldiameter}}</b> ,
+                                    @endif
+
+                                    @if(@$request->wheelwidth)
+                                    Width:
+                                        <b>{{@$request->wheelwidth}}</b> ,
+                                    @endif
+
+                                    @if(@$request->boltpattern)
+                                    Bolt Pattern:
+                                        <b>{{showBoltPattern(@$request->boltpattern)}}</b> ,
+                                    @endif
+
+                                    @if(@$request->minoffset)
+                                    Offset:
+                                        <b>{{@$request->minoffset}}</b> 
+                                        @if(@$request->maxoffset)<b> to {{@$request->maxoffset}}</b> @endif
+                                    @endif
+                                @endif
+                            </p> 
+                          </div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
                       </div>
-                      <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
                   </div>
-              </div>
-              @endif
+                  @endif
+                  @if(@$zipcode)
+                  <div class="wheel-list-change-tab ">
+                      <div class="row">
+                          <div class="col-md-8 left-head"> 
+                                <p> 
+                                    @if(@$zipcode)
+                                    Your Zipcode: 
+                                        <b>{{@$zipcode}}</b> 
+                                    @endif 
+                                </p>
+                          </div>
+                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
+                      </div>
+                  </div>
+                  @endif
                 </div>
                 <div class="row">
                     @forelse($products as $key => $product)
