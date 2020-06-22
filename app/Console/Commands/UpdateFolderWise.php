@@ -784,14 +784,14 @@ class UpdateFolderWise extends Command
                 "price" =>null,  
             ),
             "vftp0055"=>array(
-                "partno" =>"2",
+                "partno" =>"0",
                 "vendor_partno" =>null,
                 "mpn" =>null,
-                "description" =>"4",
+                "description" =>"2",
                 "brand" =>null,
                 "model" =>null,
                 "location_code" =>null,
-                "available_qty" =>"6",  
+                "available_qty" =>"4",  
                 "price" =>null,  
             ),
         );
