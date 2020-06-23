@@ -176,10 +176,10 @@ class TireResource extends Controller
     {
         try {
             
-            $wheel = Tire::find($id);
-            return response()->json(['status' => true,'data'=>$wheel]); 
+            $tire = Tire::find($id);
+            return response()->json(['status' => true,'data'=>$tire]); 
         } catch (Exception $e) {
-            return response()->json(['status' => fasle,'data'=>$wheel]); 
+            return response()->json(['status' => fasle,'data'=>$tire]); 
         }
     }
 

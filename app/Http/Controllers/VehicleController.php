@@ -39,7 +39,23 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+
+            'make'=>'required',
+            'year'=>'required',
+            'model'=>'required',
+            'submodel'=>'required'
+        ]);
+        try{  
+
+            $vehicle = Vehicle::create($request->all());
+            
+            return back()->with('flash_success','Vehicle Added successfully');
+
+        }catch(Exception $e){ 
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
@@ -71,9 +87,28 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vehicle $vehicle)
+    public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request, [
+
+            'make'=>'required',
+            'year'=>'required',
+            'model'=>'required',
+            'submodel'=>'required'
+        ]);
+        try{  
+            
+            $vehicle = Vehicle::find($id);
+ 
+            $vehicle->update($request->all()); 
+ 
+            
+            return back()->with('flash_success','Vehicle Updated successfully');
+
+        }catch(Exception $e){ 
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
@@ -82,9 +117,15 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vehicle $vehicle)
+    public function destroy($id)
     {
-        //
+        try {
+            Vehicle::find($id)->delete();
+            return back()->with('flash_success', 'Vehicle deleted successfully');
+        } 
+        catch (Exception $e) {
+            return back()->with('flash_error', 'Vehicle Not Found');
+        }
     }
     /**
      * Search the records by filters.
@@ -175,6 +216,75 @@ class VehicleController extends Controller
             return response()->json(['error' => $error->getMessage()]); 
         }
     }
+
+
+
+
+    public function uploadcsv(Request $request){ 
+        try{   
+            $this->validate($request, [ 
+                'vehicleuploadedfile'=>'required',
+            ]); 
+
+            if($request->hasFile('vehicleuploadedfile') ){
+                $filename = $request->vehicleuploadedfile->getClientOriginalName();  
+                $request->vehicleuploadedfile->move(public_path('/storage/uploaded_csv'), $filename); 
+                // dd(base_path('storage/app/public/uploaded_csv/').$filename);
+                $filepath = base_path('storage/app/public/uploaded_csv/').$filename;  
+
+                if( !$fr = @fopen($filepath, "r") ){
+
+                    return back()->with('flash_error',"File Could not be read!!");
+                }
+                // $fw = fopen($out_file, "w");
+                $i=1;
+                
+                while( ($data = fgetcsv($fr, 2000000, ",")) !== FALSE ) {
+                    if($i != 1){ 
+                        if((isset($data[0])&&$data[0]!='')){
+                            $vehicle = new Vehicle;
+                            $vehicle->dummy = $data[0];
+                            $vehicle->vehicle_id = $data[1];
+                            $vehicle->base_vehicle_id = $data[2];
+                            $vehicle->year = $data[3];
+                            $vehicle->make = $data[4];
+                            $vehicle->model = $data[5];
+                            $vehicle->submodel = $data[6];
+                            $vehicle->dr_chassis_id = $data[7];
+                            $vehicle->sort_by_vehicle_type = $data[8];
+                            $vehicle->year_make_model_submodel = $data[9];
+                            $vehicle->make_model_submodel = $data[10];
+                            $vehicle->wheel_type = $data[11];
+                            $vehicle->rf_lc = $data[12];
+                            $vehicle->offroad = $data[13];
+                            $vehicle->drive_type = $data[14];
+                            $vehicle->body_type = $data[15];
+                            $vehicle->body_number_doors = $data[16];
+                            $vehicle->bed_length = $data[17];
+                            $vehicle->vehicle_type = $data[18];
+                            $vehicle->liter = $data[19];
+                            $vehicle->region_id = $data[20];
+                            $vehicle->region = $data[21];
+                            $vehicle->custom_note = $data[22];
+                            $vehicle->body = $data[23];
+                            $vehicle->option = $data[24];
+                            $vehicle->dr_chassis_id_1 = $data[25];
+                            $vehicle->dr_model_id = $data[26];
+                            $vehicle->save(); 
+                        }
+                    }
+                    $i++;
+                }
+                fclose($fr);
+            }
+
+            return back()->with('flash_success','Vehicle Data Uploaded successfully');
+        }catch(Exception $e){
+            return back()->with('flash_error',$e->getMessage());
+        } 
+
+    }
+
 
     public function Vehicle_Import(){
          $in_file = public_path('/storage/tires_data/vehicle.csv'); 
