@@ -19,6 +19,7 @@ use App\Order;
 use App\Post;
 use App\MetaKeyword;
 use App\CMSPage;
+use App\Vehicle;
 use Artisan;
 class HomeController extends Controller
 {
@@ -1685,6 +1686,9 @@ public function vftp_to_sql_test($filename){
         }elseif($request->module == 'Post'){
 
             $data = Post::all();
+        }elseif($request->module == 'Vehicle'){
+
+            $data = Vehicle::all();
         }
 
 

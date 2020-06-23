@@ -99,6 +99,11 @@
                         <li>
                             <a  href="{{url('admin/brands')}}" aria-expanded="false"><i class="fa fa-list "></i> Tire Brands  </a>
                         </li>
+
+                        <li>
+                            <a  href="{{url('admin/vehicle')}}" aria-expanded="false"><i class="fa fa-list "></i> Vehicles  </a>
+                        </li>
+
                         <li>
                             <a  href="{{url('admin/metakeywords')}}" aria-expanded="false"><i class="fa fa-tag "></i>  Meta Keywords   </a>
                         </li> 

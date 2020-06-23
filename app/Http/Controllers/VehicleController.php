@@ -17,7 +17,8 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
+        $vehicles = Vehicle::orderby('make')->paginate(10); 
+        return view('admin.vehicle.index',compact('vehicles'));
     }
 
     /**
