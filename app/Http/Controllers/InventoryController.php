@@ -96,10 +96,10 @@ class InventoryController extends Controller
         // $db_ext = \DB::connection('sqlsrv');
         // $inv = $db_ext->table('inventories')->whereNotNull('updated_at')->count();
 
-        $count = RemoteInventory::whereNotNull('updated_at')->count();
+        // $count = RemoteInventory::whereNotNull('updated_at')->count();
         $last = RemoteInventory::orderBy('updated_at','DESC')->first();
         
-        dd($count,$last);
+        dd($last);
     }
 
     public function  CopyTableToServer(Request $request){
