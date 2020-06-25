@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RemoteInventory;
 use App\Inventory;
 use App\InventoryMigration;
 use Illuminate\Http\Request;
