@@ -201,6 +201,7 @@ Route::post('/review', 'FeedbackController@store')->name('review.store');
 Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
 
 
+  Route::get('/guest', 'UserController@guest')->name('guest');
 
 Route::middleware(['auth'])->group(function () {
      

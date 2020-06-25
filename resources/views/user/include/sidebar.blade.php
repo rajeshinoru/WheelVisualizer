@@ -11,6 +11,7 @@
                         <li>
                             <a  href="{{url('/')}}" aria-expanded="false"><i class="fa fa-home "></i> Back To Home</a>
                         </li> 
+                        @if(Auth::user())
                         <li>
                             <a  href="{{url('/dashboard')}}" aria-expanded="false"><i class="fa fa-user "></i> Dashboard  </a>
                         </li>
@@ -20,6 +21,11 @@
                         <li>
                             <a  href="{{url('/orders')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> My Orders  </a>
                         </li>
+                        @else
+                        <li>
+                            <a  href="{{url('/guest/orders')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> Orders Status </a>
+                        </li>
+                        @endif
                     </ul>
                 </nav>
             </div>

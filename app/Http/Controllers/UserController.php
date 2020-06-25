@@ -33,5 +33,11 @@ class UserController extends Controller
         // dd($orders);
 
         return view('user.orders',compact('user','orders'));
-    }	
+    }
+    
+    public function guest()
+    { 
+        return view('user.dashboard');
+    }   
+
 }

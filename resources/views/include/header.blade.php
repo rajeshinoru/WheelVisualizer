@@ -55,6 +55,7 @@
                             @else
                                 <li class="header-phone pull-left"><a href="{{url('/register')}}"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
                                 <li class="header-phone pull-left"><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
+                                <li class="header-phone pull-left"><a href="{{url('/guest')}}"><i class="fa fa-sign-in"></i><span>Guest Login</span></a></li>
                             @endif
                             <!-- <li class="header-phone pull-left"><a href=""><i class="fa fa-heart"></i><span>Wishlist</span></a></li> -->
                         </ul>
