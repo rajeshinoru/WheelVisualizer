@@ -289,6 +289,10 @@
                                                 @if(@Request::get('width'))
                                                     <br> {{'Width : '.$product->wheelwidth}}
                                                 @endif
+                                                    <!-- <br> {{'Diameter : '.$product->wheeldiameter}}
+                                                    <br> {{'Width : '.$product->wheelwidth}}
+                                                    <br> {{'prodmodel : '.$product->prodmodel}}
+                                                     -->
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
                                                 </a>
                                               </h4>

@@ -87,7 +87,7 @@ class UpdateFolderWise extends Command
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
                 Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
-                // RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
+                RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
  
             }
 
@@ -110,7 +110,7 @@ class UpdateFolderWise extends Command
                         $data['updated_at']=\Carbon\Carbon::now();
 
                         Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
-                        // RemoteInventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
+                        RemoteInventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
                         
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 

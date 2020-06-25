@@ -181,33 +181,26 @@ class TireController extends Controller
 
 
             if (isset($request->search) && $request->search) {
+
                 $searchText = base64_decode($request->search);
 
-                if(is_numeric($searchText)){
-
-                    $tires = $tires 
-                            ->where('tirewidth', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('tireprofile', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('tirediameter', 'LIKE', '%' . $searchText . '%');
-                }else{
-                    $tires = $tires 
-                            ->Where('prodbrand', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('prodmodel', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('tiresize', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('speedrating', 'LIKE', '%' . $searchText . '%');
+                $searchTerms = explode(' ', $searchText);
+                $tires = new Tire; 
+                // $tires = $tires->where('id','>',0);
+                foreach ($searchTerms as $key => $term) {
+ 
+                        $tires = $tires
+                            ->orWhere('tirewidth', 'LIKE', '%' . $term . '%') //->orderBy('tirewidth','ASC')
+                            ->orWhere('tireprofile', 'LIKE', '%' . $term . '%') //->orderBy('tireprofile','ASC')
+                            ->orWhere('tirediameter', 'LIKE', '%' . $term . '%') //->orderBy('tirediameter','ASC') 
+                            ->orWhere('prodbrand', 'LIKE', '%' . $term . '%') //->orderBy('prodbrand','ASC')
+                            ->orWhere('prodmodel', 'LIKE', '%' . $term . '%') //->orderBy('prodmodel','ASC')
+                            ->orWhere('tiresize', 'LIKE', '%' . $term . '%') //->orderBy('tiresize','ASC')
+                            ->orWhere('speedrating', 'LIKE', '%' . $term . '%')
+                            ->orWhere('keywords', 'LIKE', '%' . $term . '%') //->orderBy('keywords','ASC') 
+                            ;
                 }
 
-
-
-                            // ->orWhere('loadindex', 'LIKE', '%' . $searchText . '%')
-                            // ->orWhere('price', 'LIKE', '%' . $searchText . '%')
-                            // ->orWhere('tiretype', 'LIKE', '%' . $searchText . '%')
-                            // ->orWhere('originalprice', 'LIKE', '%' . $searchText . '%')
-                            // ->orWhere('benefits1', 'LIKE', '%' . $searchText . '%')
-                            // ->orWhere('benefits2', 'LIKE', '%' . $searchText . '%')
-                            // ->orWhere('benefits3', 'LIKE', '%' . $searchText . '%')
-                            // ->orWhere('benefits4', 'LIKE', '%' . $searchText . '%')
-                            // ;
             }
             // dd($tires->get());
 

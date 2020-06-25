@@ -224,9 +224,9 @@
                 <!-- Side End -->
             </div>
             <div class="col-sm-9">
+                  @if(@$vehicle || @$request->width)
 
                 <div class="row">
-                  @if(@$vehicle || @count($request->all())>0)
                   <div class="wheel-list-change-tab">
                       <div class="row">
                           <div class="col-md-8 left-head">
@@ -282,10 +282,10 @@
                           <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/tirelist')}}">Change</a></button></div>
                       </div>
                   </div>
-                  @endif
                 </div>
-                <div class="row">
+                  @endif
                   @if(@$zipcode)
+                <div class="row">
                   <div class="wheel-list-change-tab ">
                       <div class="row">
                           <div class="col-md-8 left-head"> 
@@ -299,8 +299,8 @@
                           <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
                       </div>
                   </div>
-                  @endif
                 </div>
+                  @endif
                 <div class="row">
                     @forelse($tires as $key =>$tire)
                     <?php $tire=(object)$tire; ?>

@@ -308,23 +308,36 @@ class WheelProductController extends Controller
                     $products = $products->whereIn('wheelwidth', json_decode(base64_decode($request->width)));
  
 
-
             if (isset($request->search) && $request->search) {
-                $searchText = base64_decode($request->search);
-                if(is_numeric($searchText)){
 
-                    $products = $products 
-                            ->orWhere('wheeldiameter', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('wheelwidth', 'LIKE', '%' . $searchText . '%');
-                }else{
-                    $products = $products 
-                            ->orWhere('prodbrand', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('prodmodel', 'LIKE', '%' . $searchText . '%')
-                            ->orWhere('prodfinish', 'LIKE', '%' . $searchText . '%')
-                            ;
+                $searchText = base64_decode($request->search);
+
+                $searchTerms = explode(' ', $searchText);
+                $products = new WheelProduct; 
+                // $tires = $tires->where('id','>',0);
+                foreach ($searchTerms as $key => $term) {
+                        $products = $products 
+                            ->where('detailtitle', 'LIKE', '%' . $term . '%');
                 }
-                
+
+                if($products->count() <= 0){
+                    // dd($products->count());
+                    $products = new WheelProduct; 
+                    foreach ($searchTerms as $key => $term) {
+     
+                            $products = $products
+                                ->orWhere('wheeldiameter', 'LIKE', '%' . $term . '%') //->orderBy('tirewidth','ASC')
+                                ->orWhere('wheelwidth', 'LIKE', '%' . $term . '%') //->orderBy('tireprofile','ASC')
+                                ->orWhere('prodbrand', 'LIKE', '%' . $term . '%') //->orderBy('tirediameter','ASC') 
+                                ->orWhere('prodmodel', 'LIKE', '%' . $term . '%') //->orderBy('prodbrand','ASC')
+                                ->orWhere('prodfinish', 'LIKE', '%' . $term . '%') //->orderBy('prodmodel','ASC')
+                                // ->where('detailtitle', 'LIKE', '%' . $term . '%') //->orderBy('prodmodel','ASC')
+                                ;
+                    }
+                }
+
             }
+
 
             $products = $products
                 ->orderBy('qtyavail', 'DESC')
