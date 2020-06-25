@@ -101,7 +101,7 @@ Route::get('/runPython', 'HomeController@runPython');
 
 // Route::get('/UploadInventories', 'InventoryController@UploadInventories');
 
-// Route::get('/getUploadInventories', 'InventoryController@getUploadInventories');
+Route::get('/getUploadInventories', 'InventoryController@getUploadInventories');
 // Route::get('/CopyTableToServer', 'InventoryController@CopyTableToServer');
 
 // Route::get('/automationUpdate', 'InventoryController@automationUpdate')->name('automationUpdate');

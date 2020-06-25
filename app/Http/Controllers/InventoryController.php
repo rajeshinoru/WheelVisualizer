@@ -92,9 +92,13 @@ class InventoryController extends Controller
 
 
     public function  getUploadInventories(Request $request){
-        $db_ext = \DB::connection('sqlsrv');
-        $inv = $db_ext->table('inventories')->whereNotNull('updated_at')->count();
-        dd($inv);
+        // $db_ext = \DB::connection('sqlsrv');
+        // $inv = $db_ext->table('inventories')->whereNotNull('updated_at')->count();
+
+        $count = RemoteInventory::whereNotNull('updated_at')->count();
+        $last = RemoteInventory::orderBy('updated_at','DESC')->first();
+        
+        dd($count,$last);
     }
 
     public function  CopyTableToServer(Request $request){
