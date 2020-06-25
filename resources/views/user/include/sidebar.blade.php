@@ -23,7 +23,7 @@
                         </li>
                         @else
                         <li>
-                            <a  href="{{url('/guest/orders')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> Orders Status </a>
+                            <a  href="{{url('/guest/orderstatus')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> Orders Status </a>
                         </li>
                         @endif
                     </ul>

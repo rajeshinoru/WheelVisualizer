@@ -69,7 +69,7 @@
                                                                             <th>Quantity</th>
                                                                             <th>Total</th>
                                                                           </tr>
-                                                                          @foreach($order->OrderItems as $orderKey =>$item)
+                                                                          @foreach(@$order->OrderItems as $orderKey =>$item)
                                                                           <tr>
                                                                             <td>{{ucfirst(@$item->producttype)}}</td>
                                                                             <td><img src="{{ViewImage(@$item->ProductDetail()->prodimage)}}"></td>
@@ -278,8 +278,7 @@ Modified Please Explain :
                             </tr>
                             @endforelse
                         </table>
-
-                        {{$orders->links()}}
+ 
                     </div>
                 </div>
             </div>

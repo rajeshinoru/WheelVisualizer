@@ -49,6 +49,9 @@ Route::get('/blogview/{id}', 'HomeController@blogview')->name('blogview');
 
 
 Route::get('/orderstatus', 'HomeController@orderstatus')->name('orderstatus');
+
+Route::get('/guest/orderstatus', 'HomeController@guestorderstatus')->name('guestorderstatus');
+
 Route::post('/orderstatus', 'HomeController@checkorderstatus')->name('checkorderstatus');
 Route::get('/vieworderstatus/{orderid}', 'HomeController@vieworderstatus')->name('vieworderstatus');
 
@@ -202,6 +205,7 @@ Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
 
 
   Route::get('/guest', 'UserController@guest')->name('guest');
+  Route::get('/guest/orders', 'UserController@guest_orders')->name('guest_orders');
 
 Route::middleware(['auth'])->group(function () {
      

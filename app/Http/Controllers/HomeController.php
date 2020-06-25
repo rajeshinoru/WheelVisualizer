@@ -150,11 +150,7 @@ class HomeController extends Controller
     public function rimfinancing()
     { 
         return view('rimfinancing'); 
-    }
-    public function orderstatus()
-    { 
-        return view('orderstatus'); 
-    }     
+    }   
     
     public function traction()
     { 
@@ -199,11 +195,19 @@ class HomeController extends Controller
         return view('blogview',compact('post')); 
     } 
 
+    public function orderstatus()
+    { 
+        return view('orderstatus'); 
+    }  
+    public function guestorderstatus()
+    { 
+        return view('user.orderstatus'); 
+    }  
     public function vieworderstatus($orderid='')
     { 
-        $order = Order::with('OrderItems')->find(base64_decode($orderid));
- 
-        return view('vieworderstatus',compact('order')); 
+        $orders = Order::with('OrderItems')->where('id',base64_decode($orderid))->get();
+        // dd($order);
+        return view('user.vieworderstatus',compact('orders')); 
     } 
     public function checkorderstatus(Request $request)
     { 

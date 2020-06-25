@@ -18,9 +18,10 @@
                                         <li class="nav-item">
                                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                 <img src="/admin/img/product/pro4.jpg" alt="" />
-                                                <span class="admin-name"> {{@Auth::user()->fname}} </span>
-                                                <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                                <span class="admin-name"> {{@Auth::user()->fname??'Guest'}} </span>
+                                                <i class="fa fa-angle-down edu-icon edu-down-arrow {{@Auth::user()->fname??'hide'}}"></i>
                                             </a>
+                                            @if(@Auth::user())
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                 <!-- <li>
                                                     <a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a>
@@ -41,6 +42,7 @@
 
                                                 </li>
                                             </ul>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>
