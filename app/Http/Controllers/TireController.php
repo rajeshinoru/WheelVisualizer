@@ -190,6 +190,7 @@ class TireController extends Controller
                 foreach ($searchTerms as $key => $term) {
  
                         $tires = $tires
+                            ->where('partno', 'LIKE', '%' . $term . '%') //->orderBy('tirewidth','ASC')
                             ->orWhere('tirewidth', 'LIKE', '%' . $term . '%') //->orderBy('tirewidth','ASC')
                             ->orWhere('tireprofile', 'LIKE', '%' . $term . '%') //->orderBy('tireprofile','ASC')
                             ->orWhere('tirediameter', 'LIKE', '%' . $term . '%') //->orderBy('tirediameter','ASC') 
