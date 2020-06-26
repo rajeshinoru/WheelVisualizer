@@ -75,8 +75,7 @@ class UpdateFolderWise extends Command
         if(array_keys($newData) !== range(0, count($newData) - 1)) {
 
 
-            \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
-            $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
+            // $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
             $newData['created_at']=\Carbon\Carbon::now();
             $newData['updated_at']=\Carbon\Carbon::now();
@@ -89,6 +88,7 @@ class UpdateFolderWise extends Command
                 Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
                 RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
  
+                \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
             }
 
         }else{
@@ -103,8 +103,7 @@ class UpdateFolderWise extends Command
 
                     if(is_numeric($data['available_qty'])&&is_numeric($data['price'])){
                         
-                        \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
-                        $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
+                        // $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
 
                         $data['created_at']=\Carbon\Carbon::now();
                         $data['updated_at']=\Carbon\Carbon::now();
@@ -112,6 +111,7 @@ class UpdateFolderWise extends Command
                         Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
                         RemoteInventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
                         
+                        \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 
 
