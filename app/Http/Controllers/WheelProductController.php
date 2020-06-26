@@ -369,7 +369,7 @@ class WheelProductController extends Controller
             $zipcode =Session::get('user.zipcode');
             // dd($zipcode);
 
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','viflist','car_images','zipcode'));
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode'));
 
         }
         catch(ModelNotFoundException $notfound)
