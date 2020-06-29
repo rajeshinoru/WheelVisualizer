@@ -3,11 +3,10 @@
 @endsection
 @section('content')
 <style>
-
-
-    .modal-img.btn-info:hover{
-            background: #080e31 !important;
+    .modal-img.btn-info:hover {
+        background: #080e31 !important;
     }
+
     .hometabled {
         margin: 25px 0px !important;
     }
@@ -341,323 +340,361 @@
     .col-sm-9.wheel_view_list .tab-content {
         margin-bottom: 0px !important;
     }
+
     .activetab .nav-tabs li.active a {
         background-color: #ecb23d !important;
         color: #ffff;
     }
 
-/* Star Rating Start */
-.btn-grey {
-    background-color: #d8d8d8;
-    color: #fff;
-}
-.rating-block {
-    background-color: #fafafa;
-    border: 1px solid #efefef;
-    padding: 15px 15px 20px 15px;
-    border-radius: 3px;
-}
-.bold {
-    font-weight: 700;
-}
-.padding-bottom-7 {
-    padding-bottom: 7px;
-}
-
-.review-block {
-    background-color: #fafafa;
-    border: 1px solid #efefef;
-    padding: 15px;
-    border-radius: 3px;
-    margin-bottom: 15px;
-}
-.review-block-name {
-    font-size: 12px;
-    margin: 10px 0;
-}
-.review-block-name a
-{
-  color: #121214;
-  font-size: 12px !important;
-  line-height: 30px !important;
-  font-family: Poppins !important;
-  color: #0e1661;
-}
-.review-block-date {
-  color: #121214;
-  font-size: 12px !important;
-  font-family: Poppins !important;
-}
-.btn.btn-default.btn-grey.btn-xs {
-    padding: 1px 5px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 3px;
-}
-.btn.btn-warning.btn-xs {
-    padding: 1px 5px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 3px;
-}
-.review-block-rate {
-    font-size: 13px;
-    margin-bottom: 15px;
-}
-.review-block-title {
-  margin-bottom: 10px;
-  color: #0e1661 !important;
-  font-family: Montserrat !important;
-  font-size: 15px !important;
-  font-weight: 700 !important;
-}
-.review-block-description {
-  color: #121214;
-  font-size: 12px !important;
-  line-height: 30px !important;
-  font-family: Poppins !important;
-}
-.rating-star {
-    list-style-type: none;
-}
-.rating-star li {
-    display: inline;
-}
-.range-head {
-    font-size: 15px;
-    font-weight: 500;
-    margin: 0px;
-}
-.range-head2 {
-    font-size: 15px;
-    font-weight: 500;
-    margin: 0px;
-}
-.review-heading {
-    background: #cccccc3d !important;
-    margin: 20px 0px !important;
-}
-.review-heading h4 {
-    color: #000;
-}
-
-@media (max-width: 767px) {
-    .star-rate .row {
-        display: contents;
+    /* Star Rating Start */
+    .btn-grey {
+        background-color: #d8d8d8;
+        color: #fff;
     }
-    .star-rate {
-        display: inline-flex;
+
+    .rating-block {
+        background-color: #fafafa;
+        border: 1px solid #efefef;
+        padding: 15px 15px 20px 15px;
+        border-radius: 3px;
     }
+
+    .bold {
+        font-weight: 700;
+    }
+
+    .padding-bottom-7 {
+        padding-bottom: 7px;
+    }
+
+    .review-block {
+        background-color: #fafafa;
+        border: 1px solid #efefef;
+        padding: 15px;
+        border-radius: 3px;
+        margin-bottom: 15px;
+    }
+
+    .review-block-name {
+        font-size: 12px;
+        margin: 10px 0;
+    }
+
+    .review-block-name a {
+        color: #121214;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: Poppins !important;
+        color: #0e1661;
+    }
+
+    .review-block-date {
+        color: #121214;
+        font-size: 12px !important;
+        font-family: Poppins !important;
+    }
+
+    .btn.btn-default.btn-grey.btn-xs {
+        padding: 1px 5px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+
+    .btn.btn-warning.btn-xs {
+        padding: 1px 5px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+
+    .review-block-rate {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .review-block-title {
+        margin-bottom: 10px;
+        color: #0e1661 !important;
+        font-family: Montserrat !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+    }
+
+    .review-block-description {
+        color: #121214;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: Poppins !important;
+    }
+
+    .rating-star {
+        list-style-type: none;
+    }
+
+    .rating-star li {
+        display: inline;
+    }
+
+    .range-head {
+        font-size: 15px;
+        font-weight: 500;
+        margin: 0px;
+    }
+
+    .range-head2 {
+        font-size: 15px;
+        font-weight: 500;
+        margin: 0px;
+    }
+
+    .review-heading {
+        background: #cccccc3d !important;
+        margin: 20px 0px !important;
+    }
+
+    .review-heading h4 {
+        color: #000;
+    }
+
+    @media (max-width: 767px) {
+        .star-rate .row {
+            display: contents;
+        }
+
+        .star-rate {
+            display: inline-flex;
+        }
+
+        #rating-review .pull-left .slider {
+            width: 75% !important;
+        }
+
+        .product-rating {
+            text-align: center;
+        }
+
+        .review-block {
+            text-align: center;
+        }
+
+        .rating-stars.text-left {
+            text-align: center !important;
+            padding: 5px 0px !important;
+        }
+
+        #stars {
+            margin-bottom: 0px;
+        }
+    }
+
+    #rating-review .pull-left {
+        width: 100%;
+    }
+
     #rating-review .pull-left .slider {
-        width: 75% !important;
+        width: 80%;
     }
-    .product-rating {
-    text-align: center;
-  }
-  .review-block
-  {
-    text-align: center;
-  }
-  .rating-stars.text-left {
-    text-align: center !important;
-    padding: 5px 0px !important;
-  }
-  #stars
-  {
-    margin-bottom: 0px;
-  }
-}
-#rating-review .pull-left {
-    width: 100%;
-}
-#rating-review .pull-left .slider {
-    width: 80%;
-}
-.second-star h5 {
-    margin: 0px;
-}
-.star-head {
-    margin: 20px 0px;
-    color: #0e1661 !important;
-    font-family: Montserrat !important;
-    font-size: 18px !important;
-    font-weight: 700 !important;
-}
-.second-star h5 {
-  line-height: 25px !important;
-color: #121214;
-font-size: 12px !important;
-font-family: Poppins !important;
-}
-hr {
-    margin-top: 0px !important;
-}
-#rating-review {
-    background: #f5f5f5 !important;
-    padding: 40px 0px !important;
-}
-.comment h2
-{
-  color: #0e1661 !important;
-  font-family: Montserrat !important;
-  font-size: 18px !important;
-  font-weight: 700 !important;
-  margin: 0px !important;
-}
-.comment-button {
-    text-align: right;
-}
-.rate-star {
-    line-height: 25px !important;
-    color: #121214;
-    font-size: 12px !important;
-    font-family: Poppins !important;
-}
-.pull-right.star-right {
-    line-height: 25px !important;
-    color: #121214;
-    font-size: 12px !important;
-    font-family: Poppins !important;
-}
-.review-block .user-image
-{
-  text-align: center;
-}
-.progress-bar {
-    background-color: #0e1661;
-}
-.comment-review .modal-header
-{
-  background: #0e1661 !important;
-}
-.comment-review .modal-body label {
-    color: #121214;
-    font-size: 12px !important;
-    line-height: 30px !important;
-    font-family: Poppins !important;
-}
-.clearfix {
-  clear:both;
-}
-.rating-stars ul {
-  list-style-type:none;
-  padding:0;
 
-  -moz-user-select:none;
-  -webkit-user-select:none;
-}
-.rating-stars ul > li.star {
-  display:inline-block;
+    .second-star h5 {
+        margin: 0px;
+    }
 
-}
-.rating-stars ul > li.star > i.fa {
-  font-size:18px;
-  color:#ccc;
-}
+    .star-head {
+        margin: 20px 0px;
+        color: #0e1661 !important;
+        font-family: Montserrat !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+    }
 
-.rating-stars ul > li.star.hover > i.fa {
-  color:#FFCC36;
-}
+    .second-star h5 {
+        line-height: 25px !important;
+        color: #121214;
+        font-size: 12px !important;
+        font-family: Poppins !important;
+    }
 
-.rating-stars ul > li.star.selected > i.fa {
-  color:#FF912C;
-}
+    hr {
+        margin-top: 0px !important;
+    }
 
-.progress-bar
-{
-  width: 0;
-  animation: progress 1.5s ease-in-out forwards;
+    #rating-review {
+        background: #f5f5f5 !important;
+        padding: 40px 0px !important;
+    }
 
-  .title
-  {
-    opacity: 0;
-    animation: show 0.35s forwards ease-in-out 0.5s;
-  }
-}
+    .comment h2 {
+        color: #0e1661 !important;
+        font-family: Montserrat !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        margin: 0px !important;
+    }
 
-@keyframes progress {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-@keyframes show  {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* Star Rating End */
+    .comment-button {
+        text-align: right;
+    }
 
+    .rate-star {
+        line-height: 25px !important;
+        color: #121214;
+        font-size: 12px !important;
+        font-family: Poppins !important;
+    }
+
+    .pull-right.star-right {
+        line-height: 25px !important;
+        color: #121214;
+        font-size: 12px !important;
+        font-family: Poppins !important;
+    }
+
+    .review-block .user-image {
+        text-align: center;
+    }
+
+    .progress-bar {
+        background-color: #0e1661;
+    }
+
+    .comment-review .modal-header {
+        background: #0e1661 !important;
+    }
+
+    .comment-review .modal-body label {
+        color: #121214;
+        font-size: 12px !important;
+        line-height: 30px !important;
+        font-family: Poppins !important;
+    }
+
+    .clearfix {
+        clear: both;
+    }
+
+    .rating-stars ul {
+        list-style-type: none;
+        padding: 0;
+
+        -moz-user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .rating-stars ul>li.star {
+        display: inline-block;
+
+    }
+
+    .rating-stars ul>li.star>i.fa {
+        font-size: 18px;
+        color: #ccc;
+    }
+
+    .rating-stars ul>li.star.hover>i.fa {
+        color: #FFCC36;
+    }
+
+    .rating-stars ul>li.star.selected>i.fa {
+        color: #FF912C;
+    }
+
+    .progress-bar {
+        width: 0;
+        animation: progress 1.5s ease-in-out forwards;
+
+        .title {
+            opacity: 0;
+            animation: show 0.35s forwards ease-in-out 0.5s;
+        }
+    }
+
+    @keyframes progress {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes show {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Star Rating End */
 </style>
 </section>
 <section id="tires-des">
     <!-- Cart Start -->
     <div class="container">
 
+        <div class="row">
+            @if(@$vehicle || @$flag=='searchByWheelSize')
+            <div class="wheel-list-change-tab ">
                 <div class="row">
-                  @if(@$vehicle || @$flag=='searchByWheelSize')
-                  <div class="wheel-list-change-tab ">
-                      <div class="row">
-                          <div class="col-md-8 left-head">
-                            <p>
-                                @if(@$vehicle && @$flag!='searchByWheelSize')
-                                Your Selected Vehicle:
-                                    <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
-                                <br>
-                                @else
-                                @if(@$flag == 'searchByWheelSize')
+                    <div class="col-md-8 left-head">
+                        <p>
+                            @if(@$vehicle && @$flag!='searchByWheelSize')
+                            Your Selected Vehicle:
+                            <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                            <br>
+                            @else
+                            @if(@$flag == 'searchByWheelSize')
 
-                                    Your Selected
-                                    @if(@$wheelsize->wheeldiameter)
+                            Your Selected
+                            @if(@$wheelsize->wheeldiameter)
 
-                                    Diameter:
-                                        <b>{{@$wheelsize->wheeldiameter}}</b> ,
-                                    @endif
+                            Diameter:
+                            <b>{{@$wheelsize->wheeldiameter}}</b> ,
+                            @endif
 
-                                    @if(@$wheelsize->wheelwidth)
-                                    Width:
-                                        <b>{{@$wheelsize->wheelwidth}}</b> ,
-                                    @endif
+                            @if(@$wheelsize->wheelwidth)
+                            Width:
+                            <b>{{@$wheelsize->wheelwidth}}</b> ,
+                            @endif
 
-                                    @if(@$wheelsize->boltpattern)
-                                    Bolt Pattern:
-                                        <b>{{showBoltPattern(@$wheelsize->boltpattern)}}</b> ,
-                                    @endif
+                            @if(@$wheelsize->boltpattern)
+                            Bolt Pattern:
+                            <b>{{showBoltPattern(@$wheelsize->boltpattern)}}</b> ,
+                            @endif
 
-                                    @if(@$wheelsize->minoffset)
-                                    Offset:
-                                        <b>{{@$wheelsize->minoffset}}</b>
-                                        @if(@$wheelsize->maxoffset)<b> to {{@$wheelsize->maxoffset}}</b> @endif
-                                    @endif
-                                @endif
-                                @endif
-                            </p>
-                          </div>
-                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
-                      </div>
-                  </div>
-                  @endif
-                  @if(@$zipcode)
-                  <div class="wheel-list-change-tab ">
-                      <div class="row">
-                          <div class="col-md-8 left-head">
-                                <p>
-                                    @if(@$zipcode)
-                                    Your Zipcode:
-                                        <b>{{@$zipcode}}</b>
-                                    @endif
-                                </p>
-                          </div>
-                          <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
-                      </div>
-                  </div>
-                  @endif
+                            @if(@$wheelsize->minoffset)
+                            Offset:
+                            <b>{{@$wheelsize->minoffset}}</b>
+                            @if(@$wheelsize->maxoffset)<b> to {{@$wheelsize->maxoffset}}</b> @endif
+                            @endif
+                            @endif
+                            @endif
+                        </p>
+                    </div>
+                    <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/wheelproducts')}}">Change</a></button></div>
                 </div>
+            </div>
+            @endif
+            @if(@$zipcode)
+            <div class="wheel-list-change-tab ">
+                <div class="row">
+                    <div class="col-md-8 left-head">
+                        <p>
+                            @if(@$zipcode)
+                            Your Zipcode:
+                            <b>{{@$zipcode}}</b>
+                            @endif
+                        </p>
+                    </div>
+                    <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>
+                </div>
+            </div>
+            @endif
+        </div>
         <div class="hometabled">
             <div class="pTopBar">
                 <div class="pTopCell HotDeals">Hot Deals Save 30%-75%</div>
@@ -668,7 +705,7 @@ hr {
                 <div class="col-sm-3 wheel-img">
                     <div class="wheel-des">
                         <a href="{{ViewWheelProductImage(@$wheel->prodimage)}}" class="zoomple">
-                        <img class="wheelImage"  src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
+                            <img class="wheelImage" src="{{ViewWheelProductImage(@$wheel->prodimage)}}" title="{{@$wheel->prodbrand}}" alt="{{@$wheel->prodbrand}}">
                         </a>
                         <h1>Lip Size Information</h1>
                         <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img">
@@ -695,7 +732,7 @@ hr {
 
                                     <div class="col-sm-6">
                                         <h2>Front & Rear</h2>
-                                        <div class="table-responsive wheel_view">
+                                        <div class="table-responsive wheel_view product-details">
                                             <table class="table">
                                                 <tbody>
                                                     @if(@$product->DifferentOffsets->count() > 1 )
@@ -711,7 +748,7 @@ hr {
 
                                                     </tr>
 
-                                                        @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
+                                                    @foreach(@$product->DifferentOffsets as $diffKey => $diffproduct)
                                                     <?php $offsetClass='offset_'.$diffproduct->id; ?>
                                                     <?php $patternClass='pattern_'.$diffproduct->boltpattern1.'_'.$diffproduct->id; ?>
                                                     <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}} ">
@@ -739,29 +776,29 @@ hr {
                                                         <td>Name</td>
                                                         <td>{{@$diffproduct->prodmodel}}</td>
                                                     </tr>
-                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
+                                                    <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}} partno">
                                                         <td>PN</td>
-                                                        <td>{{@$diffproduct->partno}}</td>
+                                                        <td class="partno-data" data-partno="{{@$diffproduct->partno}}">{{@$diffproduct->partno}}</td>
                                                     </tr>
                                                     <tr style="display: {{($diffKey > 0)?'none':''}}" class="dynamic {{$offsetClass}} {{$patternClass}}">
 
                                                         <td>Bolt Pattern</td>
-<td>
-    <?php $bpproducts = @$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1);
+                                                        <td>
+                                                            <?php $bpproducts = @$diffproduct->DifferentOffsets->where('wheelwidth',@$diffproduct->wheelwidth)->where('offset1',@$diffproduct->offset1);
          ?>
-    @if(count(@$bpproducts) > 1 )
-    <select class="form-control boltpattern_tab bp_tab_{{@$diffproduct->id}}">
-        @foreach( @$bpproducts as $bpkey => $bpproduct)
-        <option value="pattern_{{@$bpproduct->boltpattern1}}_{{@$bpproduct->id}}" data-title="{{@$bpproduct->detailtitle}}" data-product="bp_tab_{{@$bpproduct->id}}" {{(@$bpproduct->boltpattern1 == @$diffproduct->boltpattern1)?'selected':''}} >
+                                                            @if(count(@$bpproducts) > 1 )
+                                                            <select class="form-control boltpattern_tab bp_tab_{{@$diffproduct->id}}">
+                                                                @foreach( @$bpproducts as $bpkey => $bpproduct)
+                                                                <option value="pattern_{{@$bpproduct->boltpattern1}}_{{@$bpproduct->id}}" data-title="{{@$bpproduct->detailtitle}}" data-product="bp_tab_{{@$bpproduct->id}}" {{(@$bpproduct->boltpattern1 == @$diffproduct->boltpattern1)?'selected':''}}>
 
-            {{(@$bpproduct->boltpattern2 )?convertBoltPattern(@$bpproduct->boltpattern1).' & '.convertBoltPattern(@$bpproduct->boltpattern2):convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
-        @endforeach
-    </select>
-    @else
-    {{showBoltPattern(@$diffproduct->boltpattern1,@$diffproduct->boltpattern2,@$diffproduct->boltpattern3)}}
-    @endif
+                                                                    {{(@$bpproduct->boltpattern2 )?convertBoltPattern(@$bpproduct->boltpattern1).' & '.convertBoltPattern(@$bpproduct->boltpattern2):convertBoltPattern(@$bpproduct->boltpattern1)}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @else
+                                                            {{showBoltPattern(@$diffproduct->boltpattern1,@$diffproduct->boltpattern2,@$diffproduct->boltpattern3)}}
+                                                            @endif
 
-</td>
+                                                        </td>
 
                                                     </tr>
                                                     @endforeach
@@ -828,8 +865,8 @@ hr {
                                             <div class="form-head">
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
-                                                    <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 1}}" size="2"   class="input-quantity quantity form-control">
-                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$diffproduct->id}}" data-price="{{roundCurrency(@$diffproduct->price)}}"  data-modelid="#DiffProductCart{{$diffKey}}-{{$diffproduct->id}}">Add to Cart</button>
+                                                    <input type="number" name="quantity" value="{{@$diffproduct->qtyavail ?? 1}}" size="2" class="input-quantity quantity form-control">
+                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$diffproduct->id}}" data-price="{{roundCurrency(@$diffproduct->price)}}" data-modelid="#DiffProductCart{{$diffKey}}-{{$diffproduct->id}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade " id="DiffProductCart{{$diffKey}}-{{$diffproduct->id}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
@@ -839,12 +876,12 @@ hr {
                                                                     <h4 class="modal-title text-left">Items Added to Cart</h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                  <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
-                                                                  <h2 class="modal-title">The following items have been added to your cart:</h2>
-                                                                  <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                                                    <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
+                                                                    <h2 class="modal-title">The following items have been added to your cart:</h2>
+                                                                    <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
-                                                                            <button class="btn btn-info btn-close" type="button" data-dismiss="modal" >Continue Shopping</button>
+                                                                            <button class="btn btn-info btn-close" type="button" data-dismiss="modal">Continue Shopping</button>
 
                                                                             @if($flag == 'searchByVehicle')
                                                                             <a class="btn btn-info matching-tire">Add Matching Tires</a>
@@ -853,7 +890,7 @@ hr {
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
                                                                     </form>
-                                                                  </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -877,7 +914,7 @@ hr {
                                                 <div class="form-group product-quantity">
                                                     <label class="control-label" for="input-quantity">Qty</label>
                                                     <input type="number" name="quantity" value="{{@$product->qtyavail ?? 1}}" size="2" id="" class="form-control quantity input-quantity">
-                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$product->id}}"  data-price="{{roundCurrency(@$product->price)}}" data-modelid="#ProductCart{{$productKey}}">Add to Cart</button>
+                                                    <button type="button" class="btn btn-info addToCart" data-productid="{{$product->id}}" data-price="{{roundCurrency(@$product->price)}}" data-modelid="#ProductCart{{$productKey}}">Add to Cart</button>
                                                     <!-- model Start -->
                                                     <div class="modal fade" id="ProductCart{{$productKey}}" role="dialog">
                                                         <div class="modal-dialog wheel-view">
@@ -887,12 +924,12 @@ hr {
                                                                     <h4 class="modal-title text-left">Items Added to Cart</h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                  <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
-                                                                  <h2 class="modal-title">The following items have been added to your cart:</h2>
-                                                                  <p class=" modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
+                                                                    <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
+                                                                    <h2 class="modal-title">The following items have been added to your cart:</h2>
+                                                                    <p class=" modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                                                                     <form class="form-horizontal">
                                                                         <div class="form-group has-success has-feedback text-center">
-                                                                            <button class="btn btn-info" type="button" data-dismiss="modal" >Continue Shopping</button>
+                                                                            <button class="btn btn-info" type="button" data-dismiss="modal">Continue Shopping</button>
                                                                             @if($flag == 'searchByVehicle')
                                                                             <a class="btn btn-info matching-tire">Add Matching Tires</a>
                                                                             @endif
@@ -900,7 +937,7 @@ hr {
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
                                                                     </form>
-                                                                  </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -924,7 +961,7 @@ hr {
                                             <h4 class="modal-title text-left">Wheel & Tire Options</h4>
                                         </div>
                                         <div class="modal-body">
-                                          <h2 class="modal-title"><b>Select wheel & tire package type:</b></h2>
+                                            <h2 class="modal-title"><b>Select wheel & tire package type:</b></h2>
 
                                             <h2 class="modal-img">
                                                 <a href="{{url('/wheeltirepackage/'.$wheel->id.'/'.$flag)}}" class="btn btn-info">
@@ -932,12 +969,12 @@ hr {
                                                     <img class="" src="{{url(Setting::get('wheeltirepackage','/image/WheelTirePackage.jpg'))}}">
                                                 </a>
                                             </h2>
-                                             <h2 class="modal-img">
+                                            <h2 class="modal-img">
                                                 <a href="" class="btn btn-info">
                                                     <img class="" src="{{url(Setting::get('wheeltirepackage','/image/WheelTireCombo.jpg'))}}">
                                                 </a>
                                             </h2>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -946,13 +983,13 @@ hr {
                             <div class="new-model-button">
                                 <img src="{{url('image/wheel-brand.png')}}" class="wheel-brand-img2">
                                 <div class="wheel_view_ship">
-                                    <a href="{{url('/CartItems')}}" >
-                                        <button class="btn btn-info" type="button"   >Shopping Cart</button>
+                                    <a href="{{url('/CartItems')}}">
+                                        <button class="btn btn-info" type="button">Shopping Cart</button>
                                     </a>
                                 </div>
                                 <div class="wheel_view_ship">
-                                    <a href="{{url('/CartItems')}}" >
-                                    <button class="btn btn-info" type="button"><a>Finance Them</a></button>
+                                    <a href="{{url('/CartItems')}}">
+                                        <button class="btn btn-info" type="button"><a>Finance Them</a></button>
                                     </a>
                                 </div>
                                 <div class="wheel_view_ship">
@@ -1025,412 +1062,434 @@ hr {
 </section>
 
 <section id="rating-review">
-      <div class="container">
-            <div class="row review-heading2">
-              <div class="col-sm-6 comment">
+    <div class="container">
+        <div class="row review-heading2">
+            <div class="col-sm-6 comment">
                 <h2>Customer Review</h2>
-              </div>
-                <div class="col-sm-6 comment-button">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">write a Review</button>
-                </div>
-
-                <!-- Modal Start -->
-                <div class="modal comment-review fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">write a Review</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="comment">Comment:</label>
-                                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info cart-btn">Submit</button>
-                                <button type="button" class="btn btn-info btn-close" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal End -->
+            </div>
+            <div class="col-sm-6 comment-button">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">write a Review</button>
             </div>
 
-            <div class="row">
-                <div class="col-sm-4">
-                    <h4 class="star-head">Rating breakdown</h4>
-                    <div class="pull-left">
-                        <div class="pull-left" style="width: 35px; line-height: 1;">
-                            <div class="rate-star">5 <span class="glyphicon glyphicon-star"></span></div>
+            <!-- Modal Start -->
+            <div class="modal comment-review fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">write a Review</h4>
                         </div>
-                        <div class="pull-left slider">
-                            <div class="progress" style="height: 9px; margin: 8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 100%">
-                                    <span class="sr-only">80% Complete (danger)</span>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="comment">Comment:</label>
+                                    <textarea class="form-control" rows="5" id="comment"></textarea>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                        <div class="pull-right star-right" style="margin-left: 10px;">100</div>
-                    </div>
-
-                    <div class="pull-left">
-                        <div class="pull-left" style="width: 35px; line-height: 1;">
-                            <div class="rate-star">4 <span class="glyphicon glyphicon-star"></span></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info cart-btn">Submit</button>
+                            <button type="button" class="btn btn-info btn-close" data-dismiss="modal">Close</button>
                         </div>
-                        <div class="pull-left slider">
-                            <div class="progress" style="height: 9px; margin: 8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 80%">
-                                    <span class="sr-only">80% Complete (danger)</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pull-right star-right" style="margin-left: 10px;">80</div>
-                    </div>
-
-                    <div class="pull-left">
-                        <div class="pull-left" style="width: 35px; line-height: 1;">
-                            <div class="rate-star">3 <span class="glyphicon glyphicon-star"></span></div>
-                        </div>
-                        <div class="pull-left slider">
-                            <div class="progress" style="height: 9px; margin: 8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 60%">
-                                    <span class="sr-only">60% Complete (danger)</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pull-right star-right" style="margin-left: 10px;">60</div>
-                    </div>
-
-                    <div class="pull-left">
-                        <div class="pull-left" style="width: 35px; line-height: 1;">
-                            <div class="rate-star">4 <span class="glyphicon glyphicon-star"></span></div>
-                        </div>
-                        <div class="pull-left slider">
-                            <div class="progress" style="height: 9px; margin: 8px 0;">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 40%">
-                                    <span class="sr-only">40% Complete (danger)</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pull-right star-right" style="margin-left: 10px;">40</div>
-                    </div>
-
-                    <div class="pull-left">
-                        <div class="pull-left" style="width: 35px; line-height: 1;">
-                            <div class="rate-star">1 <span class="glyphicon glyphicon-star"></span></div>
-                        </div>
-                        <div class="pull-left slider">
-                            <div class="progress" style="height: 9px; margin: 8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 20%">
-                                    <span class="sr-only">20% Complete (danger)</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pull-right star-right" style="margin-left: 10px;">20</div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 second-star">
-                    <h4 class="star-head">Rating breakdown</h4>
-                    <div class="row product-rating">
-                        <div class="col-sm-4"><h5>Overall Rating Quality</h5></div>
-                        <div class="col-sm-4 text-warning">
-                          <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                              <li class='star' title='Poor' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Fair' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Good' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Excellent' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='WOW!!!' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-sm-4"><h5>500</h5></div>
-                    </div>
-                    <div class="row product-rating">
-                        <div class="col-sm-4"><h5>Overall Rating Quality</h5></div>
-                        <div class="col-sm-4 text-warning">
-                          <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                              <li class='star' title='Poor' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Fair' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Good' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Excellent' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='WOW!!!' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-sm-4"><h5>400</h5></div>
-                    </div>
-                    <div class="row product-rating">
-                        <div class="col-sm-4"><h5>Overall Rating Quality</h5></div>
-                        <div class="col-sm-4 text-warning">
-                          <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                              <li class='star' title='Poor' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Fair' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Good' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Excellent' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='WOW!!!' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-sm-4"><h5>300</h5></div>
-                    </div>
-                    <div class="row product-rating">
-                        <div class="col-sm-4"><h5>Overall Rating Quality</h5></div>
-                        <div class="col-sm-4 text-warning">
-                          <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                              <li class='star' title='Poor' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Fair' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Good' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Excellent' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='WOW!!!' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-sm-4"><h5>200</h5></div>
-                    </div>
-                    <div class="row product-rating">
-                        <div class="col-sm-4"><h5>Overall Rating Quality</h5></div>
-                        <div class="col-sm-4 text-warning">
-                          <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                              <li class='star' title='Poor' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Fair' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Good' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='Excellent' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                              <li class='star' title='WOW!!!' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-sm-4"><h5>100</h5></div>
                     </div>
                 </div>
             </div>
+            <!-- Modal End -->
+        </div>
 
-            <div class="row review-heading">
-                <div class="col-sm-12"><h4>Most Helpful Favorable Review</h4></div>
+        <div class="row">
+            <div class="col-sm-4">
+                <h4 class="star-head">Rating breakdown</h4>
+                <div class="pull-left">
+                    <div class="pull-left" style="width: 35px; line-height: 1;">
+                        <div class="rate-star">5 <span class="glyphicon glyphicon-star"></span></div>
+                    </div>
+                    <div class="pull-left slider">
+                        <div class="progress" style="height: 9px; margin: 8px 0;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 100%">
+                                <span class="sr-only">80% Complete (danger)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">100</div>
+                </div>
+
+                <div class="pull-left">
+                    <div class="pull-left" style="width: 35px; line-height: 1;">
+                        <div class="rate-star">4 <span class="glyphicon glyphicon-star"></span></div>
+                    </div>
+                    <div class="pull-left slider">
+                        <div class="progress" style="height: 9px; margin: 8px 0;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 80%">
+                                <span class="sr-only">80% Complete (danger)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">80</div>
+                </div>
+
+                <div class="pull-left">
+                    <div class="pull-left" style="width: 35px; line-height: 1;">
+                        <div class="rate-star">3 <span class="glyphicon glyphicon-star"></span></div>
+                    </div>
+                    <div class="pull-left slider">
+                        <div class="progress" style="height: 9px; margin: 8px 0;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 60%">
+                                <span class="sr-only">60% Complete (danger)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">60</div>
+                </div>
+
+                <div class="pull-left">
+                    <div class="pull-left" style="width: 35px; line-height: 1;">
+                        <div class="rate-star">4 <span class="glyphicon glyphicon-star"></span></div>
+                    </div>
+                    <div class="pull-left slider">
+                        <div class="progress" style="height: 9px; margin: 8px 0;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 40%">
+                                <span class="sr-only">40% Complete (danger)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">40</div>
+                </div>
+
+                <div class="pull-left">
+                    <div class="pull-left" style="width: 35px; line-height: 1;">
+                        <div class="rate-star">1 <span class="glyphicon glyphicon-star"></span></div>
+                    </div>
+                    <div class="pull-left slider">
+                        <div class="progress" style="height: 9px; margin: 8px 0;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 20%">
+                                <span class="sr-only">20% Complete (danger)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">20</div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
+
+            <div class="col-sm-4 second-star ">
+                <h4 class="star-head">Product Ratings</h4>
+                <div class="row product-rating">
+                    <div class="col-sm-4">
+                        <h5>Tread</h5>
+                    </div>
+                    <div class="col-sm-4 text-warning">
+                        <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="rating-text hide">Out of 5</h5>
+                    </div>
+                </div>
+                <div class="row product-rating">
+                    <div class="col-sm-4">
+                        <h5>Noise</h5>
+                    </div>
+                    <div class="col-sm-4 text-warning">
+                        <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="rating-text hide">Out of 5</h5>
+                    </div>
+                </div>
+                <div class="row product-rating">
+                    <div class="col-sm-4">
+                        <h5>Longevity</h5>
+                    </div>
+                    <div class="col-sm-4 text-warning">
+                        <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="rating-text hide">Out of 5</h5>
+                    </div>
+                </div>
+                <div class="row product-rating">
+                    <div class="col-sm-4">
+                        <h5>Grip</h5>
+                    </div>
+                    <div class="col-sm-4 text-warning">
+                        <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="rating-text hide">Out of 5</h5>
+                    </div>
+                </div>
+                <div class="row product-rating">
+                    <div class="col-sm-4">
+                        <h5>Wet</h5>
+                    </div>
+                    <div class="col-sm-4 text-warning">
+                        <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="rating-text hide">Out of 5</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row review-heading">
+            <div class="col-sm-12">
+                <h4>Most Helpful Favorable Review</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <hr />
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">
+                                June 26, 2020<br />
+                                1 day ago
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">
+                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
+                            </div>
+                        </div>
+                    </div>
                     <hr />
-                    <div class="review-block">
-                        <div class="row">
-                            <div class="col-sm-3 user-image">
-                                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
-                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                <div class="review-block-date">
-                                    June 26, 2020<br />
-                                    1 day ago
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="review-block-rate">
-                                  <div class='rating-stars text-left'>
-                                    <ul id='stars'>
-                                      <li class='star' title='Poor' data-value='1'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Fair' data-value='2'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Good' data-value='3'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Excellent' data-value='4'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='WOW!!!' data-value='5'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="review-block-title">this was nice in buy</div>
-                                <div class="review-block-description">
-                                    this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
-                                </div>
+                    <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">
+                                June 26, 2020<br />
+                                1 day ago
                             </div>
                         </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-sm-3 user-image">
-                                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
-                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                <div class="review-block-date">
-                                    June 26, 2020<br />
-                                    1 day ago
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-9">
-                                <div class="review-block-rate">
-                                  <div class='rating-stars text-left'>
-                                    <ul id='stars'>
-                                      <li class='star' title='Poor' data-value='1'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Fair' data-value='2'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Good' data-value='3'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Excellent' data-value='4'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='WOW!!!' data-value='5'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="review-block-title">this was nice in buy</div>
-                                <div class="review-block-description">
-                                    this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
-                                </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">
+                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
                             </div>
                         </div>
-                        <hr />
                     </div>
-                </div>
-                <div class="col-sm-6">
                     <hr />
-                    <div class="review-block">
-                        <div class="row">
-                            <div class="col-sm-3 user-image">
-                                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
-                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                <div class="review-block-date">
-                                    June 26, 2020<br />
-                                    1 day ago
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="review-block-rate">
-                                  <div class='rating-stars text-left'>
-                                    <ul id='stars'>
-                                      <li class='star' title='Poor' data-value='1'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Fair' data-value='2'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Good' data-value='3'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Excellent' data-value='4'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='WOW!!!' data-value='5'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="review-block-title">this was nice in buy</div>
-                                <div class="review-block-description">
-                                    this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-sm-3 user-image">
-                                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
-                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                <div class="review-block-date">
-                                    June 26, 2020<br />
-                                    1 day ago
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="review-block-rate">
-                                  <div class='rating-stars text-left'>
-                                    <ul id='stars'>
-                                      <li class='star' title='Poor' data-value='1'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Fair' data-value='2'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Good' data-value='3'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='Excellent' data-value='4'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                      <li class='star' title='WOW!!!' data-value='5'>
-                                        <i class='fa fa-star fa-fw'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="review-block-title">this was nice in buy</div>
-                                <div class="review-block-description">
-                                    this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                    </div>
                 </div>
             </div>
+            <div class="col-sm-6">
+                <hr />
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">
+                                June 26, 2020<br />
+                                1 day ago
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">
+                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">
+                                June 26, 2020<br />
+                                1 day ago
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">
+                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1467,23 +1526,23 @@ hr {
 
                             </div>
                             <div class="button-group">
-                                        <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
-                                            <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                        </button>
-                                        <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
-                                            <span title="Add to Wish List">Add to Wish List</span>
-                                        </button>
-                                        <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
-                                            <span title="Add to compare">Add to compare</span>
-                                        </button>
+                                <button class="btn-cart" type="button" title="Add to Cart" onclick="cart.add('46');"><i class="fa fa-shopping-cart"></i>
+                                    <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
+                                </button>
+                                <button class="btn-wishlist" title="Add to Wish List" onclick="wishlist.add('46');"><i class="fa fa-heart"></i>
+                                    <span title="Add to Wish List">Add to Wish List</span>
+                                </button>
+                                <button class="btn-compare" title="Add to compare" onclick="compare.add('46');"><i class="fa fa-exchange"></i>
+                                    <span title="Add to compare">Add to compare</span>
+                                </button>
 
-                                        <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
-                                            <span>Quick View</span>
-                                        </button>
+                                <button class="btn-quickview" type="button" title="Quick View"> <i class="fa fa-eye"></i>
+                                    <span>Quick View</span>
+                                </button>
                             </div>
                         </div>
                         <div class="thumb-description-price-details">
-                              <span class="price-new">{{roundCurrency(@$product->price)}}</span>
+                            <span class="price-new">{{roundCurrency(@$product->price)}}</span>
                         </div>
 
                     </div>
@@ -1496,28 +1555,28 @@ hr {
 @endsection
 @section('custom_scripts')
 <script>
-$(function(){
+    $(function() {
 
-$('.spinner .btn:first-of-type').on('click', function() {
-  var btn = $(this);
-  var input = btn.closest('.spinner').find('input');
-  if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {
-    input.val(parseInt(input.val(), 10) + 1);
-  } else {
-    btn.next("disabled", true);
-  }
-});
-$('.spinner .btn:last-of-type').on('click', function() {
-  var btn = $(this);
-  var input = btn.closest('.spinner').find('input');
-  if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {
-    input.val(parseInt(input.val(), 10) - 1);
-  } else {
-    btn.prev("disabled", true);
-  }
-});
+        $('.spinner .btn:first-of-type').on('click', function() {
+            var btn = $(this);
+            var input = btn.closest('.spinner').find('input');
+            if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {
+                input.val(parseInt(input.val(), 10) + 1);
+            } else {
+                btn.next("disabled", true);
+            }
+        });
+        $('.spinner .btn:last-of-type').on('click', function() {
+            var btn = $(this);
+            var input = btn.closest('.spinner').find('input');
+            if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {
+                input.val(parseInt(input.val(), 10) - 1);
+            } else {
+                btn.prev("disabled", true);
+            }
+        });
 
-})
+    })
 </script>
 
 <script type="text/javascript">
@@ -1547,7 +1606,7 @@ $('.spinner .btn:last-of-type').on('click', function() {
         $('.wheel_detail_title').text(title);
 
         var changeElement = selectedOption.data('product');
-        $('.'+changeElement).val($(this).val());
+        $('.' + changeElement).val($(this).val());
 
     });
     $(function() {
@@ -1555,107 +1614,120 @@ $('.spinner .btn:last-of-type').on('click', function() {
     })
 </script>
 <script type="text/javascript">
-
     // $(function() {
-        $('.zoomple').zoomple({
-            offset : {x:-150,y:-150},
-            zoomWidth : 300,
-            zoomHeight : 300,
-            roundedCorners : true,
-            delay : 5
-        });
+    $('.zoomple').zoomple({
+        offset: {
+            x: -150,
+            y: -150
+        },
+        zoomWidth: 300,
+        zoomHeight: 300,
+        roundedCorners: true,
+        delay: 5
+    });
     // })
 </script>
 
 
 <script type="text/javascript">
-
-    $('.addToCart').click(function(){
+    $('.addToCart').click(function() {
 
         var modelid = $(this).data('modelid');
         var qty = $(this).prev('.quantity').val();
         var productid = $(this).data('productid');
         var price = $(this).data('price');
         // alert(price);
-        var prodtype ='wheel';
-        var modalMsg = "Qty: "+qty+", "+$('.wheel_detail_title').text()+" "+price+"/ea";
+        var prodtype = 'wheel';
+        var modalMsg = "Qty: " + qty + ", " + $('.wheel_detail_title').text() + " " + price + "/ea";
 
-        $.ajax({url: "/addToCart",data:{'qty':qty,'productid':productid,'prodtype':prodtype,'price':price}, success: function(result){
-            if(result['status'] =='success'){
-                $(modelid).find('.modal-msg').text(modalMsg);
-                $(modelid).modal("show");
+        $.ajax({
+            url: "/addToCart",
+            data: {
+                'qty': qty,
+                'productid': productid,
+                'prodtype': prodtype,
+                'price': price
+            },
+            success: function(result) {
+                if (result['status'] == 'success') {
+                    $(modelid).find('.modal-msg').text(modalMsg);
+                    $(modelid).modal("show");
+                }
+
+                getCartCount();
+                // $(".se-pre-con").hide();
             }
-
-            getCartCount();
-            // $(".se-pre-con").hide();
-        }});
+        });
     })
 
-    $('.matching-tire').click(function(){
+    $('.matching-tire').click(function() {
         $('.modal').modal("hide");
         $('#matching-tire-modal').modal();
 
     });
 
 
-// Start Rating
-$(document).ready(function(){
+    // Start Rating
+    $(document).ready(function() {
 
-  /* 1. Visualizing things on Hover - See next part for action on click */
-  $('#stars li').on('mouseover', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('#stars li').on('mouseover', function() {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
 
-    // Now highlight all the stars that's not after the current hovered star
-    $(this).parent().children('li.star').each(function(e){
-      if (e < onStar) {
-        $(this).addClass('hover');
-      }
-      else {
-        $(this).removeClass('hover');
-      }
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function(e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                } else {
+                    $(this).removeClass('hover');
+                }
+            });
+
+        }).on('mouseout', function() {
+            $(this).parent().children('li.star').each(function(e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+
+        /* 2. Action to perform on click */
+        $('#stars li').on('click', function() {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            if($('.product-details').find('tr:visible')){ 
+                var partno = $('.product-details').find('tr:visible').find('.partno-data').data('partno');
+                console.log(partno);
+            }
+            // JUST RESPONSE (Not needed)
+            var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+            // alert(ratingValue)
+            var msg = "";
+            if (ratingValue > 1) {
+                msg = "Thanks! You rated this " + ratingValue + " stars.";
+            } else {
+                msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+            }
+            responseMessage(msg);
+
+        });
+
+
     });
 
-  }).on('mouseout', function(){
-    $(this).parent().children('li.star').each(function(e){
-      $(this).removeClass('hover');
-    });
-  });
 
-
-  /* 2. Action to perform on click */
-  $('#stars li').on('click', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    var stars = $(this).parent().children('li.star');
-
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass('selected');
+    function responseMessage(msg) {
+        $('.success-box').fadeIn(200);
+        $('.success-box div.text-message').html("<span>" + msg + "</span>");
     }
-
-    for (i = 0; i < onStar; i++) {
-      $(stars[i]).addClass('selected');
-    }
-
-    // JUST RESPONSE (Not needed)
-    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-    var msg = "";
-    if (ratingValue > 1) {
-        msg = "Thanks! You rated this " + ratingValue + " stars.";
-    }
-    else {
-        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
-    }
-    responseMessage(msg);
-
-  });
-
-
-});
-
-
-function responseMessage(msg) {
-  $('.success-box').fadeIn(200);
-  $('.success-box div.text-message').html("<span>" + msg + "</span>");
-}
-// Star Rating End
+    // Star Rating End
 </script>
 @endsection
