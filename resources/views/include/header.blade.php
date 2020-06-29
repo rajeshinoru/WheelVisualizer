@@ -373,9 +373,9 @@
                                                     <div class="vehicle-list">
                                                         <div class="dropdown">
                                                             <select required="" class="form-control browser-default custom-select NavWidth" name="width">
-                                                                <option value="">Select Width</option>
+                                                                <option value="" >Select Width</option>
                                                                 @foreach(getTireList('width') as $key => $width)
-                                                                <option value="{{$width}}"  {{(\Session::get('user.searchByTireSize')['width'] == $width)?'selected':''}}>{{$width}}</option>
+                                                                <option value="{{$width}}"  {{(\Session::get('user.searchByTireSize')['width'] == $width && $width!=0)?'selected':''}}>{{$width}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>

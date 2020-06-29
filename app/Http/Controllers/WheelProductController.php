@@ -326,6 +326,7 @@ class WheelProductController extends Controller
                     foreach ($searchTerms as $key => $term) {
      
                             $products = $products
+                                ->orWhere('partno', 'LIKE', '%' . $term . '%')
                                 ->orWhere('wheeldiameter', 'LIKE', '%' . $term . '%') //->orderBy('tirewidth','ASC')
                                 ->orWhere('wheelwidth', 'LIKE', '%' . $term . '%') //->orderBy('tireprofile','ASC')
                                 ->orWhere('prodbrand', 'LIKE', '%' . $term . '%') //->orderBy('tirediameter','ASC') 

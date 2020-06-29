@@ -1715,6 +1715,16 @@ public function vftp_to_sql_test($filename){
     { 
         return view('cmspage',compact('routename'));
     }
+    public function addStarRating(Request $request)
+    { 
+        dd($request->all());
+        // if($request->prodtype == 'wheel')
+        // {
+
+        // }
+
+        return 'success';
+    }
 }
 
 

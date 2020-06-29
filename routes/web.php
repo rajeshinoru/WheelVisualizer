@@ -215,6 +215,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+Route::post('/addStarRating', 'HomeController@addStarRating')->name('addStarRating');
 
 
 
