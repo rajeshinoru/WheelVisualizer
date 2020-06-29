@@ -34,6 +34,7 @@ class UserController extends Controller
 
         return view('user.orders',compact('user','orders'));
     }
+ 
     
     public function guest()
     { 

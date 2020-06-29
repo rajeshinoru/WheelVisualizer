@@ -189,10 +189,7 @@ class TireController extends Controller
                 // $tires = $tires->where('id','>',0);
                 foreach ($searchTerms as $key => $term) {
  
-                        $tires = $tires
-                            ->where('metadesc', 'LIKE', '%' . $term . '%');
- 
-                         // //->orderBy('tirewidth','ASC')
+                        $tires = $tires->where('metadesc', 'LIKE', '%' . $term . '%');
    
                 }
 

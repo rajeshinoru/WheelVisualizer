@@ -209,9 +209,10 @@ Route::post('/feedback', 'FeedbackController@store')->name('feedback.store');
 
 Route::middleware(['auth'])->group(function () {
      
-  Route::get('/dashboard', 'UserController@index')->name('dashboard');
-  Route::get('/profile', 'UserController@profile')->name('profile');
-  Route::get('/orders', 'UserController@orders')->name('orders');
+  Route::get('/dashboard', 'UserController@index')->name('user.dashboard');
+  Route::get('/profile', 'UserController@profile')->name('user.profile');
+  Route::get('/orders', 'UserController@orders')->name('user.orders');
+  Route::resource('ticket', 'TicketController');
 });
 
 

@@ -22,7 +22,7 @@
                             <a  href="{{url('/orders')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> My Orders  </a>
                         </li>
                         <li>
-                            <a  href="{{url('/tickets')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> My Tickets  </a>
+                            <a  href="{{url('/ticket')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> My Tickets  </a>
                         </li>
                         @else
                         <li>

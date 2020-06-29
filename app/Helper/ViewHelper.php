@@ -701,3 +701,56 @@ function getSliders($page){
 	// 	],
 	// ];
 }
+
+
+function TicketStatus($status='',$condition=''){     
+	$list  = array(
+				'1'=>'RAISED',
+				'2'=>'ACCEPTED',
+				'3'=>'RESOLVED',
+				'4'=>'HOLD', 
+			);
+
+	if($status !=''){
+		if($condition!=''){
+			if($condition == 'greater'){
+				return array_slice($list, array_search($status, array_keys($list)));
+			}elseif($condition == 'all'){
+				return $list;
+			}else{
+				return $list;
+			}
+		}else{
+			return $list[$status];
+		}
+	}
+
+	return $list;
+}
+
+ 
+
+
+
+
+function getTicketSubjects($key=''){     
+	$list  = array(
+		'1'=>'Issue on purchasing products through online',
+		'2'=>'Products Delivery Delay'
+	);
+
+	if($key!=''){
+		return $list[$key];
+	}
+	return $list;
+}
+
+
+
+
+
+function getTicketNumber($id=''){     
+	 
+	return "DWWTKT".date("y").date("m").str_pad($id, 4, '0', STR_PAD_LEFT);
+}
+

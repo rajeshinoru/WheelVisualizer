@@ -43,5 +43,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Order','userid','id');
     }
 
+    public function Tickets() {
+        return $this->hasMany('App\Ticket','userid','id');
+    }
+
 
 }
