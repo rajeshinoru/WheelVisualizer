@@ -790,7 +790,13 @@ function getFeatureRatings($partno,$ratingfeature){
 			}
 		}
 	} 
-	return array_sum($featureRatings)/count($featureRatings);
+	if(count($featureRatings)>0 && array_sum($featureRatings) >0){
+
+		return array_sum($featureRatings)/count($featureRatings);
+	}else{
+
+		return 0;
+	}
 }
 
 function getReviewRatings($partno,$ratingValue){
