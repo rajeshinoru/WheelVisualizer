@@ -1068,189 +1068,188 @@
                 <h2>Customer Review</h2>
             </div>
             <div class="col-sm-6 comment-button">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">write a Review</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ReviewModal">Write a Review</button>
             </div>
 
             <!-- Modal Start -->
-            <div class="modal comment-review fade" id="myModal" role="dialog">
+            <div class="modal comment-review fade" id="ReviewModal" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Write a Review</h4>
                         </div>
-                        <div class="modal-body">
                             <form action="{{url('/addStarRating')}}" method="POST">
                                 {{@csrf_field()}}
-                                <div class="row">
-                                    
-            <div class="col-sm-12 second-star ">
-                <h4 class="star-head">Product Ratings</h4>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Tread</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                                <li class='star' title='Poor' data-value='1' data-ratingname='tread'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2' data-ratingname='tread'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3' data-ratingname='tread'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4' data-ratingname='tread'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='tread'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Noise</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                                <li class='star' title='Poor' data-value='1' data-ratingname='noise' >
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2' data-ratingname='noise' >
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3' data-ratingname='noise' >
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4' data-ratingname='noise' >
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='noise' >
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Longevity</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                                <li class='star' title='Poor' data-value='1' data-ratingname='longevity'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2' data-ratingname='longevity'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3' data-ratingname='longevity'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4' data-ratingname='longevity'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='longevity'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Grip</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                                <li class='star' title='Poor' data-value='1' data-ratingname='grip'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2' data-ratingname='grip'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3' data-ratingname='grip'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4' data-ratingname='grip'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='grip'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Wet</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='stars'>
-                                <li class='star' title='Poor' data-value='1' data-ratingname='wet' >
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2' data-ratingname='wet'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3' data-ratingname='wet'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4' data-ratingname='wet'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='wet'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-            </div>
-                                </div>
+                                <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 second-star ">
+                                                <h4 class="star-head">Product Ratings</h4>
+                                                <div class="row product-rating">
+                                                    <div class="col-sm-4">
+                                                        <h5>Tread</h5>
+                                                    </div>
+                                                    <div class="col-sm-4 text-warning">
+                                                        <div class='rating-stars text-center'>
+                                                            <ul id='stars'>
+                                                                <li class='star' title='Poor' data-value='1' data-ratingname='tread'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Fair' data-value='2' data-ratingname='tread'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Good' data-value='3' data-ratingname='tread'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Excellent' data-value='4' data-ratingname='tread'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='tread'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <h5 class="rating-text hide">Out of 5</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row product-rating">
+                                                    <div class="col-sm-4">
+                                                        <h5>Noise</h5>
+                                                    </div>
+                                                    <div class="col-sm-4 text-warning">
+                                                        <div class='rating-stars text-center'>
+                                                            <ul id='stars'>
+                                                                <li class='star' title='Poor' data-value='1' data-ratingname='noise'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Fair' data-value='2' data-ratingname='noise'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Good' data-value='3' data-ratingname='noise'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Excellent' data-value='4' data-ratingname='noise'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='noise'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <h5 class="rating-text hide">Out of 5</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row product-rating">
+                                                    <div class="col-sm-4">
+                                                        <h5>Longevity</h5>
+                                                    </div>
+                                                    <div class="col-sm-4 text-warning">
+                                                        <div class='rating-stars text-center'>
+                                                            <ul id='stars'>
+                                                                <li class='star' title='Poor' data-value='1' data-ratingname='longevity'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Fair' data-value='2' data-ratingname='longevity'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Good' data-value='3' data-ratingname='longevity'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Excellent' data-value='4' data-ratingname='longevity'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='longevity'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <h5 class="rating-text hide">Out of 5</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row product-rating">
+                                                    <div class="col-sm-4">
+                                                        <h5>Grip</h5>
+                                                    </div>
+                                                    <div class="col-sm-4 text-warning">
+                                                        <div class='rating-stars text-center'>
+                                                            <ul id='stars'>
+                                                                <li class='star' title='Poor' data-value='1' data-ratingname='grip'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Fair' data-value='2' data-ratingname='grip'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Good' data-value='3' data-ratingname='grip'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Excellent' data-value='4' data-ratingname='grip'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='grip'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <h5 class="rating-text hide">Out of 5</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row product-rating">
+                                                    <div class="col-sm-4">
+                                                        <h5>Wet</h5>
+                                                    </div>
+                                                    <div class="col-sm-4 text-warning">
+                                                        <div class='rating-stars text-center'>
+                                                            <ul id='stars'>
+                                                                <li class='star' title='Poor' data-value='1' data-ratingname='wet'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Fair' data-value='2' data-ratingname='wet'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Good' data-value='3' data-ratingname='wet'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Excellent' data-value='4' data-ratingname='wet'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='wet'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <h5 class="rating-text hide">Out of 5</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-            <div class="row">
-                
-                                <div class="col-sm-12 form-group">
-                                    <label for="comment">Comment:</label>
-                                    <textarea class="form-control" rows="5" id="comment"></textarea>
-                                </div>
+                                        <div class="row">
 
-                                <input type="hidden" name="ratings[]" value="">
-                                <input type="hidden" name="partno" value="">
-                                <input type="hidden" name="prodtype" value="wheel">
-            </div>
+                                            <div class="col-sm-12 form-group">
+                                                <label for="comment">Comment:</label>
+                                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                            </div>
+        
+                                            <input type="hidden" id="ratings" name="ratings" value="">
+                                            <input type="hidden" id="partno" name="partno" value="">
+                                            <input type="hidden" id="prodtype" name="prodtype" value="wheel">
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-info" value="Submit"  >
+                                    <button type="button" class="btn btn-info btn-close" data-dismiss="modal">Close</button>
+                                </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-info " value="Submit" disabled=""> 
-                            <button type="button" class="btn btn-info btn-close" data-dismiss="modal">Close</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1339,7 +1338,7 @@
                     </div>
                     <div class="col-sm-4 text-warning">
                         <div class='rating-stars text-center'>
-                            <ul id='stars'>
+                            <ul id='fixedstars'>
                                 <li class='star' title='Poor' data-value='1'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
@@ -1368,7 +1367,7 @@
                     </div>
                     <div class="col-sm-4 text-warning">
                         <div class='rating-stars text-center'>
-                            <ul id='stars'>
+                            <ul id='fixedstars'>
                                 <li class='star' title='Poor' data-value='1'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
@@ -1397,7 +1396,7 @@
                     </div>
                     <div class="col-sm-4 text-warning">
                         <div class='rating-stars text-center'>
-                            <ul id='stars'>
+                            <ul id='fixedstars'>
                                 <li class='star' title='Poor' data-value='1'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
@@ -1426,7 +1425,7 @@
                     </div>
                     <div class="col-sm-4 text-warning">
                         <div class='rating-stars text-center'>
-                            <ul id='stars'>
+                            <ul id='fixedstars'>
                                 <li class='star' title='Poor' data-value='1'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
@@ -1455,7 +1454,7 @@
                     </div>
                     <div class="col-sm-4 text-warning">
                         <div class='rating-stars text-center'>
-                            <ul id='stars'>
+                            <ul id='fixedstars'>
                                 <li class='star' title='Poor' data-value='1'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
@@ -1849,6 +1848,7 @@
             });
         });
 
+        var elems = {};
 
         /* 2. Action to perform on click */
         $('#stars li').on('click', function() {
@@ -1864,40 +1864,25 @@
             }
 
             // JUST RESPONSE (Not needed)
-            var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10); 
-            var ratingName = parseInt($('#stars li.selected').last().data('ratingname'), 10);
+            var ratingValue = parseInt($(this).data('value'), 10);
+            var ratingName = $(this).data('ratingname');
+            // console.log(ratingName,ratingValue)
 
+            if ($('.product-details').find('tr:visible')) {
+                var partno = $('.product-details').find('tr:visible').find('.partno-data').data('partno');
+                // elems.push(ratingValue); 
+                elems[ratingName] = ratingValue;
 
-            if($('.product-details').find('tr:visible')){ 
-                var partno = $('.product-details').find('tr:visible').find('.partno-data').data('partno'); 
- 
+                $('#ratings').val(JSON.stringify(elems)); //store array
 
-                var allratings=[];
- 
-                allratings.push({ratingName:ratingValue});
+                $('#partno').val(partno);
 
-                $("#ratings").val(allratings.join(', '));
-                 
+                // var value = $('#ratings').val(); //retrieve array
+                // value = JSON.parse(value);
+                // console.log(value)
                 // var prodtype = 'wheel'; 
 
-                // $.ajax({
-                //     url: "/addStarRating",
-                //     data: { 
-                //         'partno': productid,
-                //         'prodtype': prodtype,
-                //         'ratingvalue': ratingvalue
-                //     },
-                //     success: function(result) {
-                //         console.log(result);
-                //         // if (result['status'] == 'success') {
-                //         //     $(modelid).find('.modal-msg').text(modalMsg);
-                //         //     $(modelid).modal("show");
-                //         // }
-
-                //         getCartCount();
-                //         // $(".se-pre-con").hide();
-                //     }
-                // });
+                
             }
 
 
