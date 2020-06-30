@@ -105,6 +105,10 @@
                         </li>
 
                         <li>
+                            <a  href="{{url('admin/ticket')}}" aria-expanded="false"><i class="fa fa-list "></i> Tickets  </a>
+                        </li>
+
+                        <li>
                             <a  href="{{url('admin/metakeywords')}}" aria-expanded="false"><i class="fa fa-tag "></i>  Meta Keywords   </a>
                         </li> 
                         <li>

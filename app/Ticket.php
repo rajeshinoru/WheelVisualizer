@@ -21,4 +21,8 @@ class Ticket extends Model
 				'closed_reason',
 				'closed_by',
 			];
+
+	public function Messages() {
+	    return $this->hasMany('App\TicketMessage','ticket_id');
+	}
 }

@@ -93,8 +93,8 @@ class TicketController extends Controller
     public function show(Ticket $ticket)
     {
         if($ticket->userid == Auth::user()->id){
-            $messages = $ticket->Messages()->get();
-            return view('ticket_view',compact('ticket','messages'));
+            $messages = $ticket->Messages()->get(); 
+            return view('user.ticket_view',compact('ticket','messages'));
         }
     }
 
@@ -131,4 +131,35 @@ class TicketController extends Controller
     {
         //
     }
+
+
+    public function message_store(Request $request)
+    {
+
+        $this->validate($request, [  
+            'description'=>'required|min:10', 
+            'postby'=>'required' ,
+            'ticket_id'=>'required' 
+        ]);
+        try{  
+
+                $data = $request->except(['_token']);
+                $ticket = Ticket::where('id',$request->ticket_id)->first();
+                if($request->postby == 'user'){
+                    TicketMessage::create([
+                        'ticket_id'=>$ticket->id,
+                        'description'=>$request->description,
+                        'postby'=>'user'
+                    ]);
+                } else{
+
+                }
+
+                return back()->with('success','Your Reply was sent successfully!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
+    }
+
 }

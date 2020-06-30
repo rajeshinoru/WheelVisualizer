@@ -17,6 +17,7 @@ Route::get('/', function () {
 })->name('home');
 
 
+Route::resource('ticket', 'Resource\TicketResource');
 Route::resource('user', 'Resource\UserResource');
 Route::resource('wheel', 'Resource\WheelResource');
 Route::resource('car', 'Resource\CarResource');
