@@ -1160,62 +1160,7 @@
                     <div class="pull-right star-right" style="margin-left: 10px;">{{getReviewRatings($wheel->partno,$i)}}</div>
                 </div>
                 @endfor
-
- <!--                <div class="pull-left">
-                    <div class="pull-left" style="width: 35px; line-height: 1;">
-                        <div class="rate-star">4 <span class="glyphicon glyphicon-star"></span></div>
-                    </div>
-                    <div class="pull-left slider">
-                        <div class="progress" style="height: 9px; margin: 8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 80%">
-                                <span class="sr-only">80% Complete (danger)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pull-right star-right" style="margin-left: 10px;">80</div>
-                </div>
-
-                <div class="pull-left">
-                    <div class="pull-left" style="width: 35px; line-height: 1;">
-                        <div class="rate-star">3 <span class="glyphicon glyphicon-star"></span></div>
-                    </div>
-                    <div class="pull-left slider">
-                        <div class="progress" style="height: 9px; margin: 8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 60%">
-                                <span class="sr-only">60% Complete (danger)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pull-right star-right" style="margin-left: 10px;">60</div>
-                </div>
-
-                <div class="pull-left">
-                    <div class="pull-left" style="width: 35px; line-height: 1;">
-                        <div class="rate-star">4 <span class="glyphicon glyphicon-star"></span></div>
-                    </div>
-                    <div class="pull-left slider">
-                        <div class="progress" style="height: 9px; margin: 8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 40%">
-                                <span class="sr-only">40% Complete (danger)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pull-right star-right" style="margin-left: 10px;">40</div>
-                </div>
-
-                <div class="pull-left">
-                    <div class="pull-left" style="width: 35px; line-height: 1;">
-                        <div class="rate-star">1 <span class="glyphicon glyphicon-star"></span></div>
-                    </div>
-                    <div class="pull-left slider">
-                        <div class="progress" style="height: 9px; margin: 8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 20%">
-                                <span class="sr-only">20% Complete (danger)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pull-right star-right" style="margin-left: 10px;">20</div>
-                </div> -->
+ 
             </div> 
 
             <div class="col-sm-4 second-star ">
@@ -1250,126 +1195,10 @@
                         <h5 class="rating-text hide">Out of 5</h5>
                     </div>
                 </div>
-                @endforeach
-<!--                 <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Noise</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='fixedstars'>
-                                <li class='star' title='Poor' data-value='1'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Longevity</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='fixedstars'>
-                                <li class='star' title='Poor' data-value='1'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Grip</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='fixedstars'>
-                                <li class='star' title='Poor' data-value='1'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <div class="col-sm-4">
-                        <h5>Wet</h5>
-                    </div>
-                    <div class="col-sm-4 text-warning">
-                        <div class='rating-stars text-center'>
-                            <ul id='fixedstars'>
-                                <li class='star' title='Poor' data-value='1'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Fair' data-value='2'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Good' data-value='3'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='Excellent' data-value='4'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                                <li class='star' title='WOW!!!' data-value='5'>
-                                    <i class='fa fa-star fa-fw'></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h5 class="rating-text hide">Out of 5</h5>
-                    </div>
-                </div> -->
+                @endforeach 
             </div>
         </div>
-
+        @if(@$wheel->Reviews)
         <div class="row review-heading">
             <div class="col-sm-12">
                 <h4>Most Helpful Favorable Review</h4>
@@ -1542,6 +1371,7 @@
                 </div>
             </div> -->
         </div>
+        @endif
     </div>
 </section>
 
