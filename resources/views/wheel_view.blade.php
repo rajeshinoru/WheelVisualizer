@@ -1198,7 +1198,7 @@
                 @endforeach 
             </div>
         </div>
-        @if(@$wheel->Reviews)
+        @if(@$wheel->Reviews->count() > 0)
         <div class="row review-heading">
             <div class="col-sm-12">
                 <h4>Most Helpful Favorable Review</h4>
