@@ -1,4 +1,4 @@
-@extends('user.layouts.app') @section('content')
+@extends('admin.layouts.app') @section('content')
 <style type="text/css">
    
     .items-modal{
