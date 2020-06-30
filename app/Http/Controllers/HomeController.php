@@ -1734,19 +1734,23 @@ public function vftp_to_sql_test($filename){
 
                 $review->save();
 
-                
                 if($request->has('ratings') && $request->category == 'wheel'){ 
-                    $ratings  = json_decode($request->ratings);
+                    $ratings  = (array)json_decode($request->ratings);
+
+                    $ratings = array_merge(getRatingList(),$ratings);
+                    
                     foreach ($ratings as $key => $value) {
                         $rating = new Rating;
                         $rating->review_id = $review->id;
                         $rating->feature = $key;
-                        $rating->rating = $value;
+                        $rating->rating = is_numeric($value)?:0;
                         $rating->save();
                     }
+                    $review->avgrating = array_sum($ratings)/count($ratings);
                 }
 
                
+                $review->save();
 
                 return back()->with('success','Thanks for Your Review & Ratings!!');
 

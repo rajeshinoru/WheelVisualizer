@@ -1143,23 +1143,25 @@
         </div>
 
         <div class="row">
-          <!--   <div class="col-sm-4">
+            <div class="col-sm-4">
                 <h4 class="star-head">Rating breakdown</h4>
+                @for($i=5;$i>0;$i--)
                 <div class="pull-left">
                     <div class="pull-left" style="width: 35px; line-height: 1;">
-                        <div class="rate-star">5 <span class="glyphicon glyphicon-star"></span></div>
+                        <div class="rate-star">{{$i}} <span class="glyphicon glyphicon-star"></span></div>
                     </div>
                     <div class="pull-left slider">
                         <div class="progress" style="height: 9px; margin: 8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 100%">
-                                <span class="sr-only">80% Complete (danger)</span>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="{{getReviewRatings($wheel->partno,$i)}}" style="max-width: {{getReviewRatings($wheel->partno,$i)}}%">
+                                <!-- <span class="sr-only">80% Complete (danger)</span> -->
                             </div>
                         </div>
                     </div>
-                    <div class="pull-right star-right" style="margin-left: 10px;">100</div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">{{getReviewRatings($wheel->partno,$i)}}</div>
                 </div>
+                @endfor
 
-                <div class="pull-left">
+ <!--                <div class="pull-left">
                     <div class="pull-left" style="width: 35px; line-height: 1;">
                         <div class="rate-star">4 <span class="glyphicon glyphicon-star"></span></div>
                     </div>
@@ -1213,32 +1215,32 @@
                         </div>
                     </div>
                     <div class="pull-right star-right" style="margin-left: 10px;">20</div>
-                </div>
-            </div> -->
+                </div> -->
+            </div> 
 
             <div class="col-sm-4 second-star ">
                 <h4 class="star-head">Product Ratings</h4>
-                @foreach($wheel->Reviews[0]->Ratings as $rkey => $rating)
+                @foreach(getRatingList() as $ratingkey => $ratingname)
                 <div class="row product-rating">
                     <div class="col-sm-4">
-                        <h5>{{getRatingList($rating->feature)}}</h5>
+                        <h5>{{$ratingname}}</h5>
                     </div>
                     <div class="col-sm-4 text-warning">
                         <div class='rating-stars text-center'>
                             <ul id='stars'>
-                                <li class='star {{($rating->rating >= 1 )?"selected":""}}' title='Poor' data-value='1'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 1 )?"selected":""}}' title='Poor' data-value='1'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{($rating->rating >= 2 )?"selected":""}}' title='Fair' data-value='2'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 2 )?"selected":""}}' title='Fair' data-value='2'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{($rating->rating >= 3 )?"selected":""}}' title='Good' data-value='3'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 3 )?"selected":""}}' title='Good' data-value='3'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{($rating->rating >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{($rating->rating >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
                             </ul>
@@ -1390,20 +1392,20 @@
                         <div class="col-sm-9">
                             <div class="review-block-rate">
                                 <div class='rating-stars text-left'>
-                                    <ul id='stars'>
-                                        <li class='star' title='Poor' data-value='1'>
+                                     <ul id='stars'>
+                                        <li class='star {{($review->avgrating >= 1 )?"selected":""}}' title='Poor' data-value='1'>
                                             <i class='fa fa-star fa-fw'></i>
                                         </li>
-                                        <li class='star' title='Fair' data-value='2'>
+                                        <li class='star {{($review->avgrating >= 2 )?"selected":""}}' title='Fair' data-value='2'>
                                             <i class='fa fa-star fa-fw'></i>
                                         </li>
-                                        <li class='star' title='Good' data-value='3'>
+                                        <li class='star {{($review->avgrating >= 3 )?"selected":""}}' title='Good' data-value='3'>
                                             <i class='fa fa-star fa-fw'></i>
                                         </li>
-                                        <li class='star' title='Excellent' data-value='4'>
+                                        <li class='star {{($review->avgrating >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
                                             <i class='fa fa-star fa-fw'></i>
                                         </li>
-                                        <li class='star' title='WOW!!!' data-value='5'>
+                                        <li class='star {{($review->avgrating >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
                                             <i class='fa fa-star fa-fw'></i>
                                         </li>
                                     </ul>
@@ -1411,7 +1413,7 @@
                             </div>
                             <div class="review-block-title">{{getLimitedWords($review->comment,5)}}</div>
                             <div class="review-block-description">
-                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
+                                {{@$review->comment}}
                             </div>
                         </div>
                     </div>

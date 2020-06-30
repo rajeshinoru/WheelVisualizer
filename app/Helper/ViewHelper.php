@@ -8,6 +8,8 @@ use App\WheelProduct;
 use App\MetaKeyword;
 use App\CMSPage;
 use App\Slider;
+use App\Review;
+use App\Rating;
 
 use Illuminate\Http\Request;
 
@@ -774,4 +776,30 @@ function getRatingList($key=''){
 		return $list[$key];
 	}
 	return $list;
+}
+
+
+function getFeatureRatings($partno,$ratingfeature){
+	$reviews = Review::with('Ratings')->where('partno',$partno)->where('category','wheel')->get();
+	$featureRatings = array(); 
+	foreach ($reviews as $key1 => $review) {
+		foreach ($review->Ratings as $key2 => $rating) {
+			if($rating->feature == $ratingfeature){
+
+ 				array_push($featureRatings,$rating->rating);
+			}
+		}
+	} 
+	return array_sum($featureRatings)/count($featureRatings);
+}
+
+function getReviewRatings($partno,$ratingValue){
+	$reviews = Review::with('Ratings')->
+		where('partno',$partno)->
+		where('category','wheel')->
+		where('avgrating','>=',$ratingValue)->
+		where('avgrating','<',$ratingValue+1)->
+		get();
+	 
+	return count($reviews);
 }
