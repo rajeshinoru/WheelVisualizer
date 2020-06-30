@@ -834,7 +834,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td>PN</td>
-                                                        <td>{{@$product->partno}}</td>
+                                                        
+                                                        <td class="partno-data" data-partno="{{@$product->partno}}">
                                                     </tr>
 
                                                     Omni
