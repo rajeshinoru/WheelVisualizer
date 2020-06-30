@@ -748,9 +748,30 @@ function getTicketSubjects($key=''){
 
 
 
-
 function getTicketNumber($id=''){     
 	 
 	return "DWWTKT".date("y").date("m").str_pad($id, 4, '0', STR_PAD_LEFT);
 }
 
+
+function getLimitedWords($inputstring='',$wordcount='5'){     
+	 $pieces = explode(" ", $inputstring);
+	return implode(" ", array_splice($pieces, 0, $wordcount));
+	// return "DWWTKT".date("y").date("m").str_pad($id, 4, '0', STR_PAD_LEFT);
+}
+
+
+function getRatingList($key=''){     
+	$list  = array(
+		"tread"=>"Tread",
+		"noise"=>"Noise",
+		"longevity"=>"Longevity",
+		"grip"=>"Grip",
+		"wet"=>"Wet", 
+	);
+
+	if($key!=''){
+		return $list[$key];
+	}
+	return $list;
+}

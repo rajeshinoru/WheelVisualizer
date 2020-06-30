@@ -476,7 +476,7 @@ class WheelProductController extends Controller
                     $q1->where('boltpattern1', $wheel->boltpattern1);
                     $q1->where('offset1', $wheel->offset1);
                     // $q1->get()->unique('boltpattern1');
-                },
+                },'Reviews','Reviews.Ratings'
                 ])
                 ->get();
         }else{
@@ -488,13 +488,13 @@ class WheelProductController extends Controller
                 'DifferentOffsets.DifferentOffsets'=>function($q1)use($wheel){ 
                     $q1->where('prodtitle', $wheel->prodtitle);
                     // $q1->get()->unique('boltpattern1');
-                },
+                },'Reviews','Reviews.Ratings'
                 ])
                 ->get()
                 ->unique('wheeldiameter');
                 // dd($products);
         }
-
+        // dd($products);
         $vehicle = (object)Session::get('user.searchByVehicle')??[];
         $wheelsize = (object)Session::get('user.searchByWheelSize')??[];
         $similar_products = WheelProduct::select('prodimage','prodbrand','id','prodtitle','price')

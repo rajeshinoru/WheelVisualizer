@@ -217,6 +217,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+Route::resource('enquiry', 'ReviewController');
 Route::post('/addStarRating', 'HomeController@addStarRating')->name('addStarRating');
 
 

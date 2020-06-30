@@ -20,6 +20,8 @@ use App\Post;
 use App\MetaKeyword;
 use App\CMSPage;
 use App\Vehicle;
+use App\Review;
+use App\Rating;
 use Artisan;
 class HomeController extends Controller
 {
@@ -1717,12 +1719,40 @@ public function vftp_to_sql_test($filename){
     }
     public function addStarRating(Request $request)
     { 
-        dd($request->all());
-        // if($request->prodtype == 'wheel')
-        // {
+        // dd($request->all()); 
 
-        // }
+        $this->validate($request, [  
+            'comment'=>'required|min:10',  
+        ]);
+        try{  
+ 
+                $review = new Review;
+                $review->comment = $request->comment;
+                $review->category = $request->category?:null;
+                $review->partno = $request->partno?:null;
+                // $review->product_id = $data->product_id?:null;
 
+                $review->save();
+
+                
+                if($request->has('ratings') && $request->category == 'wheel'){ 
+                    $ratings  = json_decode($request->ratings);
+                    foreach ($ratings as $key => $value) {
+                        $rating = new Rating;
+                        $rating->review_id = $review->id;
+                        $rating->feature = $key;
+                        $rating->rating = $value;
+                        $rating->save();
+                    }
+                }
+
+               
+
+                return back()->with('success','Thanks for Your Review & Ratings!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
         return 'success';
     }
 }

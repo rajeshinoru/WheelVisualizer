@@ -20,7 +20,10 @@ class WheelProduct extends Model
 	    return $this->hasOne('App\Wheel','part_no','partno_old');
 	}
 
-
+	public function Reviews() {
+	    return $this->hasMany('App\Review','partno','partno')->where('category','wheel');
+	}
+	
 
 	
 }
