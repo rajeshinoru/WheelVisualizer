@@ -109,6 +109,10 @@
                         </li>
 
                         <li>
+                            <a  href="{{url('admin/review')}}" aria-expanded="false"><i class="fa fa-list "></i> Reviews / Ratings  </a>
+                        </li>
+
+                        <li>
                             <a  href="{{url('admin/metakeywords')}}" aria-expanded="false"><i class="fa fa-tag "></i>  Meta Keywords   </a>
                         </li> 
                         <li>

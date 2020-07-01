@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Session;
 use App\WheelProduct;
 use App\Tire;
+
+use Ixudra\Curl\Facades\Curl;
+
 class CartController extends Controller
 {
     /**
@@ -195,7 +198,29 @@ class CartController extends Controller
     public function zipcodeUpdate(Request $request)
     { 
 
-        Session::put('user.zipcode', $request->zipcode); 
+        Session::put('user.zipcode', $request->zipcode);  
+
+        $url ="http://production.shippingapis.com/ShippingApi.dll";
+        $xml = "<CityStateLookupRequest USERID='502THEWH6849'><ZipCode ID='0'><Zip5>20024</Zip5></ZipCode></CityStateLookupRequest>";
+        $api = "CityStateLookup";
+         
+         
+        //The URL that you want to send your XML to.
+        $url = $url."?API=".$api."&XML=".$xml;
+
+        $response = Curl::to($url)->get();
+        // $cURLConnection = curl_init();
+
+        // curl_setopt($cURLConnection, CURLOPT_URL, $url);
+        // curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+        // $result = curl_exec($cURLConnection);
+        // curl_close($cURLConnection);
+ 
+        dd($response);
+        //Print out the response output.
+        // echo $result;
+
 
         return 'success';
     }

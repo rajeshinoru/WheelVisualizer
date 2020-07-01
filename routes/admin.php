@@ -34,6 +34,8 @@ Route::resource('feedback', 'FeedbackController');
 
 Route::resource('enquiry', 'EnquiryController');
 
+Route::resource('review', 'ReviewController');
+
 Route::resource('post', 'PostController');
 
 Route::get('orders', 'OrderController@index');

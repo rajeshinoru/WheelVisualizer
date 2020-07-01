@@ -21,7 +21,7 @@ class WheelProduct extends Model
 	}
 
 	public function Reviews() {
-	    return $this->hasMany('App\Review','partno','partno')->where('category','wheel');
+	    return $this->hasMany('App\Review','partno','partno')->where('category','wheel')->where('approval','1');
 	}
 	
 

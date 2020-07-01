@@ -14,7 +14,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::with('Ratings','Product')->paginate(10);
+        return view('admin.review.index',compact('reviews'));
     }
 
     /**
@@ -69,7 +70,23 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        //
+
+        // dd($post,$request->all());
+
+        $this->validate($request, [
+            'approval'=>'required',
+            'comment'=>'required|min:10', 
+        ]);
+        try{   
+                $review->comment = $request->comment;
+                $review->approval = $request->approval;
+                $review->save();
+
+                return back()->with('success','Review Updated Successfully!!');
+
+            }catch(Exception $e){
+                return back()->withInput(Input::all())->with('error',$e->getMessage());
+            }
     }
 
     /**
@@ -80,6 +97,15 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        try{  
+            
+            $review->Ratings()->delete();
+            $review->delete();
+
+            return back()->with('success','Review Deleted Successfully!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
     }
 }

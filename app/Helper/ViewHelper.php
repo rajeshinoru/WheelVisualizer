@@ -658,7 +658,6 @@ function cmspagecategories($key=''){
 }
 
 function getCMSPages($category=''){  
-
 	$list = CMSPage::where('pagecategory',$category)->get();
 	if($list){
 		return $list;
@@ -780,7 +779,7 @@ function getRatingList($key=''){
 
 
 function getFeatureRatings($partno,$ratingfeature){
-	$reviews = Review::with('Ratings')->where('partno',$partno)->where('category','wheel')->get();
+	$reviews = Review::with('Ratings')->where('approval','1')->where('partno',$partno)->where('category','wheel')->get();
 	$featureRatings = array(); 
 	foreach ($reviews as $key1 => $review) {
 		foreach ($review->Ratings as $key2 => $rating) {
@@ -801,6 +800,7 @@ function getFeatureRatings($partno,$ratingfeature){
 
 function getReviewRatings($partno,$ratingValue){
 	$reviews = Review::with('Ratings')->
+		where('approval','1')->
 		where('partno',$partno)->
 		where('category','wheel')->
 		where('avgrating','>=',$ratingValue)->
