@@ -200,30 +200,30 @@ class CartController extends Controller
 
         Session::put('user.zipcode', $request->zipcode);  
 
-        $url ='http://production.shippingapis.com/ShippingApi.dll';
-        $xml = '<CityStateLookupRequest USERID="502THEWH6849"><ZipCode ID="0"><Zip5>20024</Zip5></ZipCode></CityStateLookupRequest>';
-        $api = 'CityStateLookup';
+//         $url ='http://production.shippingapis.com/ShippingApi.dll';
+//         $xml = '<CityStateLookupRequest USERID="502THEWH6849"><ZipCode ID="0"><Zip5>20024</Zip5></ZipCode></CityStateLookupRequest>';
+//         $api = 'CityStateLookup';
          
          
-        //The URL that you want to send your XML to.
-        $url = $url."?API=".$api."&XML=".$xml;
+//         //The URL that you want to send your XML to.
+//         $url = $url."?API=".$api."&XML=".$xml;
  
-$headers = array(
-    "Content-type: text/xml",
-    "Content-length: " . strlen($xml),
-    "Connection: close",
-);
+// $headers = array(
+//     "Content-type: text/xml",
+//     "Content-length: " . strlen($xml),
+//     "Connection: close",
+// );
 
-$ch = curl_init(); 
-curl_setopt($ch, CURLOPT_URL,$url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+// $ch = curl_init(); 
+// curl_setopt($ch, CURLOPT_URL,$url);
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+// curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+// curl_setopt($ch, CURLOPT_POST, true);
+// curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-$data = curl_exec($ch); 
-dd($data);
+// $data = curl_exec($ch); 
+// dd($data);
         // $response = Curl::to($url)->get();
         // // $cURLConnection = curl_init();
         // // curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
