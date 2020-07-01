@@ -208,19 +208,19 @@ class CartController extends Controller
         //The URL that you want to send your XML to.
         $url = urlencode($url."?API=".$api."&XML=".$xml);
 
-        // $response = Curl::to($url)->get();
-        $cURLConnection = curl_init();
-        curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
-            'Header-Key: Header-Value',
-            'Header-Key-2: Header-Value-2'
-        ));
-        curl_setopt($cURLConnection, CURLOPT_URL, $url);
-        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+        $response = Curl::to($url)->get();
+        // $cURLConnection = curl_init();
+        // curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
+        //     'Header-Key: Header-Value',
+        //     'Header-Key-2: Header-Value-2'
+        // ));
+        // curl_setopt($cURLConnection, CURLOPT_URL, $url);
+        // curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 
-        $result = curl_exec($cURLConnection);
-        curl_close($cURLConnection);
+        // $result = curl_exec($cURLConnection);
+        // curl_close($cURLConnection);
  
-        dd($result);
+        dd($response);
         //Print out the response output.
         // echo $result;
 
