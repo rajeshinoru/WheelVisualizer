@@ -8,6 +8,7 @@ use App\Tire;
 use App\WheelProduct;
 use Illuminate\Http\Request;
 use Session;
+use Auth;
 class OrderController extends Controller
 {
     /**
@@ -45,13 +46,14 @@ class OrderController extends Controller
         $this->validate($request, [
             'firstname'=>'required|max:255',
             'lastname'=>'required|max:255',
-            'companyname'=>'required|max:255',
+            // 'companyname'=>'required|max:255',
             // 'email'=>'required|max:255',
             'dayphone'=>'required|max:255',
             'cellphone'=>'required|max:255',
             'address'=>'required|max:255',
             // 'address2'=>'required|max:255',
             'state'=>'required|max:255',
+            'city'=>'required|max:255',
             'zip'=>'required|max:255',
             'make'=>'required|max:255',
             'year'=>'required|max:255',
@@ -98,7 +100,7 @@ class OrderController extends Controller
 
                 }
 
-                $updateOrder['userid'] = Auth::user()->id;
+                $updateOrder['userid'] = Auth::user()->id??null;
                 
                 $updateOrder['subtotal']=$subtotal;
 

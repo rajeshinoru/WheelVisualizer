@@ -231,15 +231,15 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-9" id="heading2">
+            <div class="col-sm-6" id="heading2">
                 <h1> Order Items</h1>
-            </div>
-            <div class="col-sm-3" id="heading2">
+            </div> 
+            <div class="col-sm-6" id="heading2">
                 <h1>Your Cart</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-6">
                 <div class="shop-cart">
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -296,8 +296,8 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
+            </div>  
+            <div class="col-sm-6">
                 <div class="shop-cart cart-total-section">
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -378,18 +378,12 @@
 </section>
 <section class="shopping-cart-page">
     <form action="{{url('/order')}}" method="POST">
-      {{@csrf_field()}}
+        {{@csrf_field()}}
         <div class="container">
             <div class="row">
-                <div class="col-sm-9" id="heading2">
+                <div class="col-sm-6" id="heading2">
                     <h1>Billing Address</h1>
-                </div>
-                <div class="col-sm-3" id="heading2">
-                    <h1></h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
+
                     <div class="shop-cart bill-page billing-section">
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -403,8 +397,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="firstName">Company Name</label>
-                                <input type="text" class="form-control" id="companyname" name="companyname" placeholder="Company Name" value="" required>
+                                <label for="firstName">Company Name (Optional)</label>
+                                <input type="text" class="form-control" id="companyname" name="companyname" placeholder="Company Name" value="" >
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email <span class="text-muted">(Optional)</span></label>
@@ -432,7 +426,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="state">State</label>
                                 <select class="form-control" id="state" name="state" required>
                                     <option value="">Choose...</option>
@@ -493,27 +487,21 @@
                                     <option value="WY">Wyoming</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
+                                <label for="zip">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
                                 <label for="zip">Zip</label>
                                 <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
                             </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12" id="heading2">
-                    <h1>Shipping Address</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="shop-cart bill-page">
-                        <label class="checkbox-inline"><input type="checkbox" name="same_shipping" id="same_shipping" value="yes" checked=""> Same as billing address</label>
-                    </div>
-                    <div class="shop-cart bill-page shipping-section" style="display: none;">
+                <div class="col-sm-6" id="heading2">
+                    <h1>Shipping Address <label class="checkbox-inline"><input type="checkbox" name="same_shipping" id="same_shipping" value="yes"> Same as billing address</label> </h1>
+                    <div class="shop-cart bill-page shipping-section" style="display: block;">
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -527,8 +515,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="firstName">Company Name</label>
-                                <input type="text" class="form-control required" id="shipping_companyname" name="shipping_companyname" placeholder="Company Name" value="">
+                                <label for="firstName">Company Name (Optional)</label>
+                                <input type="text" class="form-control " id="shipping_companyname" name="shipping_companyname" placeholder="Company Name" value="">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email <span class="text-muted">(Optional)</span></label>
@@ -556,7 +544,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="state">State</label>
                                 <select class="form-control required" id="shipping_state" name="shipping_state">
                                     <option value="">Choose...</option>
@@ -617,13 +605,22 @@
                                     <option value="WY">Wyoming</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 mb-3">
+
+                            <div class="col-md-4 mb-3">
+                                <label for="zip">City</label>
+                                <input type="text" class="form-control required" id="shipping_city" name="shipping_city" placeholder="" >
+                            </div>
+                            <div class="col-md-4 mb-3">
                                 <label for="zip">Zip</label>
                                 <input type="text" class="form-control required" id="shipping_zip" name="shipping_zip" placeholder="">
                             </div>
                         </div>
                 
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
                 </div>
             </div>
         </div>
@@ -752,15 +749,9 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-sm-9" id="heading2">
+                <div class="col-sm-6" id="heading2">
                     <h1>Vehicle Information</h1>
-                </div>
-                <div class="col-sm-3" id="heading2">
-                    <h1></h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-9">
+
                     <div class="shop-cart bill-page">
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -768,7 +759,7 @@
                               <select required="" class="form-control browser-default custom-select CheckoutMake" name="make">
                                   <option value="">Select Make</option>
                                   @foreach(getVehicleList('make') as $key => $make)
-                                  <option value="{{$make}}">{{$make}}</option>
+                                  <option value="{{$make}}" {{(\Session::get('user.searchByVehicle')['make'] == $make)?'selected':''}} >{{$make}}</option>
                                   @endforeach
                               </select>
                             </div>
@@ -776,6 +767,9 @@
                                 <label for="country">Select Year</label>
                                     <select required="" class="form-control browser-default custom-select CheckoutYear" name="year">
                                         <option value="">Select Year</option>
+                                        @foreach(getVehicleList('year','desc') as $key => $year)
+                                            <option value="{{$year}}" {{(\Session::get('user.searchByVehicle')['year'] == $year)?'selected':''}}>{{$year}}</option>
+                                        @endforeach
                                     </select>
                             </div>
                         </div>
@@ -784,12 +778,20 @@
                                 <label for="country">Select Model</label>
                                     <select required="" class="form-control browser-default custom-select CheckoutModel" name="model">
                                         <option value="">Select Model</option>
+
+                                        @foreach(getVehicleList('model') as $key => $model)
+                                        <option value="{{$model}}" {{(\Session::get('user.searchByVehicle')['model'] == $model)?'selected':''}}>{{$model}}</option>
+                                        @endforeach
                                     </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="state">Select Trim</label>
                                     <select required="" class="form-control browser-default custom-select CheckoutSubmodel" name="trim">
                                         <option value="">Select Trim</option>
+
+                                        @foreach(getVehicleList('submodel') as $key => $submodel) 
+                                        <option value="{{$submodel."-".$key}}" {{(\Session::get('user.searchByVehicle')['submodel'] == $submodel."-".$key)?'selected':''}}>{{$submodel."-".$key}}</option>
+                                        @endforeach
                                     </select>
                             </div>
                         </div>
@@ -827,49 +829,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3"></div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9" id="heading2">
+                <div class="col-sm-6" id="heading2">
                     <h1>Notes</h1>
-                </div>
-                <div class="col-sm-3" id="heading2">
-                    <h1></h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-9">
+
                     <div class="shop-cart bill-page">
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="comment">Notes for this order :</label>
-                                <textarea class="form-control" rows="5" id="notes" name="notes"></textarea>
+                                <textarea class="form-control" rows="15" id="notes" name="notes"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3"></div>
-            </div>
-        </div>
+            </div> 
+        </div> 
         <div class="container">
             <div class="row">
-                <div class="col-sm-9" id="heading2">
+                <div class="col-sm-6" id="heading2">
                     <h1>Notes</h1>
                 </div>
-                <div class="col-sm-3" id="heading2">
+                <div class="col-sm-6" id="heading2">
                     <h1></h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-9 agree-check">
+                <div class="col-sm-12 agree-check">
                     <p class="agree-para">I agree to the Terms and Conditions of the Return Policy. On Tire Orders no contact with the customer is necessary, tracking numbers will be sent to the supplied email address. On all Wheel orders we must contact all customers by phone to confirm vehicle details and verify payment method. This order will only ship out after verbal contact has been made with the customer by phone. Expect a call today or the next business day during business hours. I am aware if I am trying to use a fraudulent Credit Card I will be prosecuted to the full extent of the law. Choice of Law; Jurisdiction; Venue: You agree that your purchase of goods shall be construed in accordance with, and governed by, the laws of the State of California as applied to contracts signed, delivered, and performed solely within that State. You agree that any action or proceeding commenced as the result of claims arising from or relating to your purchase of goods shall be brought and filed in the County of Orange, State of California.</p>
-                    <label class="checkbox-inline"><input type="checkbox" value="1" name="is_agree" required=""> I agree to the above Terms & Conditions</label>
-                    <br>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-12 agree-check">
+                <label class="checkbox-inline"><input type="checkbox" value="1" name="is_agree" required=""> I agree to the above Terms & Conditions</label> <br>
                     <button class="btn btn-info checkout-btn" type="submit"><i class="fa fa-shopping-cart"></i> Place Your Order</button>
                 </div>
-                <div class="col-sm-3"></div>
             </div>
         </div>
     </form>
