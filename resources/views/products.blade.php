@@ -261,11 +261,11 @@
                                     Your Zipcode: 
                                         <b>{{@$zipcode}}</b> 
                                     @endif 
-                                    @if(!empty(\Session::get('user.state'))
+                                    @if(!empty(\Session::get('user.state')))
                                     , State: 
                                         <b>{{\Session::get('user.state')}}</b> 
                                     @endif 
-                                    @if(!empty(\Session::get('user.city'))
+                                    @if(!empty(\Session::get('user.city')))
                                     , City: 
                                         <b>{{\Session::get('user.city')}}</b> 
                                     @endif 
