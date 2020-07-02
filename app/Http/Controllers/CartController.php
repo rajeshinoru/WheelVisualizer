@@ -227,6 +227,7 @@ class CartController extends Controller
             $state = (string) $xml->State;
             $city = (string) $xml->City;
 
+            dd($xml,$state,$city);
             Session::put('user.state', $state); 
             Session::put('user.city', $city); 
             Session::put('user.zipcode', $request->zipcode);  
