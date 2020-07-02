@@ -224,10 +224,11 @@ class CartController extends Controller
         if($response != false){
 
             $xml = simplexml_load_string($response);
-            $state = (string) $xml->State;
-            $city = (string) $xml->City;
+            $state = (string) $xml->ZipCode->State;
+            $city = (string) $xml->ZipCode->City;
 
-            dd($xml,$state,$city);
+
+            // dd($xml,$state,$city);
             Session::put('user.state', $state); 
             Session::put('user.city', $city); 
             Session::put('user.zipcode', $request->zipcode);  
