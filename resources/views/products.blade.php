@@ -290,7 +290,7 @@
 
                                     <div class="thumb-description">
                                         <div class="caption">
-                                            <h4><a href="{{url('/wheelproductview',$product->id)}}{{@$flag?'/'.$flag:''}}">{{$product->prodtitle}}
+                                            <h4><a href="{{url('/wheelproductview',$product->id)}}{{@$flag?'/'.$flag:''}}{{'/'.str_replace(' ', '+', $product->detailtitle)}}">{{$product->detailtitle}}
                                                 @if(@Request::get('diameter'))
                                                     <br> {{'Diameter : '.$product->wheeldiameter}}
                                                 @endif

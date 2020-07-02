@@ -294,6 +294,14 @@
                                     Your Zipcode: 
                                         <b>{{@$zipcode}}</b> 
                                     @endif 
+                                    @if(!empty(\Session::get('user.state')))
+                                    , State: 
+                                        <b>{{\Session::get('user.state')}}</b> 
+                                    @endif 
+                                    @if(!empty(\Session::get('user.city')))
+                                    , City: 
+                                        <b>{{\Session::get('user.city')}}</b> 
+                                    @endif 
                                 </p>
                           </div>
                           <div class="col-md-4 right-button"><button type="submit" class="btn vehicle-change"><a href="{{url('/zipcodeClear')}}">Change</a></button></div>

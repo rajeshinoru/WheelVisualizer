@@ -150,7 +150,7 @@ Route::get('/tires_update', 'TireController@tires_update')->name('tires_update')
 Route::get('/wheelproducts', 'WheelProductController@index')->name('wheelproducts');
 // Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}', 'TireController@list')->name('tirelist');
 
-Route::get('/wheelproductview/{product_id?}/{flag?}', 'WheelProductController@wheelproductview')->name('wheelproductview');
+Route::get('/wheelproductview/{product_id?}/{flag?}/{prodtitle?}', 'WheelProductController@wheelproductview')->name('wheelproductview');
 // Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 // Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
@@ -217,7 +217,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::resource('enquiry', 'ReviewController');
+
 Route::post('/addStarRating', 'HomeController@addStarRating')->name('addStarRating');
 
 

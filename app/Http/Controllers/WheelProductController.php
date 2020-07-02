@@ -57,7 +57,7 @@ class WheelProductController extends Controller
                 Session::put('user.searchByVehicle',$request->all());
              }
  
-            $products = WheelProduct::with('wheel')->select('id', 'prodbrand', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
+            $products = WheelProduct::with('wheel')->select('id', 'prodbrand','detailtitle', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
             $branddesc = [];
             $vehicle = '';
