@@ -198,12 +198,44 @@ class CartController extends Controller
     public function zipcodeUpdate(Request $request)
     { 
 
-        Session::put('user.zipcode', $request->zipcode);  
 
-        $url = "http://production.shippingapis.com/ShippingApi.dll?API=CityStateLookup&XML=%3CCityStateLookupRequest%20USERID=%22502THEWH6849%22%3E%3CZipCode%20ID=%220%22%3E%3CZip5%3E20024%3C/Zip5%3E%3C/ZipCode%3E%3C/CityStateLookupRequest%3E";
+        $url = "http://production.shippingapis.com/ShippingApi.dll?API=CityStateLookup&XML=%3CCityStateLookupRequest%20USERID=%22502THEWH6849%22%3E%3CZipCode%20ID=%220%22%3E%3CZip5%3E".$request->zipcode."%3C/Zip5%3E%3C/ZipCode%3E%3C/CityStateLookupRequest%3E";
+
+        /**** Sample Reponse
+
+
+        """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <CityStateLookupResponse>
+            <ZipCode ID="0">
+                <Zip5>20024</Zip5>
+                <City>WASHINGTON</City>
+                <State>DC</State>
+            </ZipCode>
+        </CityStateLookupResponse>
+        """
+
+        ***/
+
+
+
 
         $response = Curl::to($url)->get();
-        dd($response);
+        if($response != false){
+
+            $xml = simplexml_load_string($response);
+            $state = (string) $xml->State;
+            $city = (string) $xml->City;
+
+            Session::put('user.state', $state); 
+            Session::put('user.city', $city); 
+            Session::put('user.zipcode', $request->zipcode);  
+        } else{
+
+            Session::put('user.state', null); 
+            Session::put('user.city', null); 
+            Session::put('user.zipcode', null);  
+        }
 
 
         //         $url ='http://production.shippingapis.com/ShippingApi.dll';
@@ -237,17 +269,17 @@ class CartController extends Controller
         // // echo $result;
 
 
-        $ch = curl_init(); 
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        // $ch = curl_init(); 
+        // curl_setopt($ch, CURLOPT_URL,$url);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        $data = curl_exec($ch); 
-        dd($data);
-        
+        // $data = curl_exec($ch); 
+        // dd($data);
+
         return 'success';
     }
 
