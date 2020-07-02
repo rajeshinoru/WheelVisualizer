@@ -200,30 +200,26 @@ class CartController extends Controller
 
         Session::put('user.zipcode', $request->zipcode);  
 
-//         $url ='http://production.shippingapis.com/ShippingApi.dll';
-//         $xml = '<CityStateLookupRequest USERID="502THEWH6849"><ZipCode ID="0"><Zip5>20024</Zip5></ZipCode></CityStateLookupRequest>';
-//         $api = 'CityStateLookup';
-         
-         
-//         //The URL that you want to send your XML to.
-//         $url = $url."?API=".$api."&XML=".$xml;
- 
-// $headers = array(
-//     "Content-type: text/xml",
-//     "Content-length: " . strlen($xml),
-//     "Connection: close",
-// );
+        $url = "http://production.shippingapis.com/ShippingApi.dll?API=CityStateLookup&XML=%3CCityStateLookupRequest%20USERID=%22502THEWH6849%22%3E%3CZipCode%20ID=%220%22%3E%3CZip5%3E20024%3C/Zip5%3E%3C/ZipCode%3E%3C/CityStateLookupRequest%3E";
 
-// $ch = curl_init(); 
-// curl_setopt($ch, CURLOPT_URL,$url);
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-// curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-// curl_setopt($ch, CURLOPT_POST, true);
-// curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $response = Curl::to($url)->get();
+        dd($response);
 
-// $data = curl_exec($ch); 
-// dd($data);
+
+        //         $url ='http://production.shippingapis.com/ShippingApi.dll';
+        //         $xml = '<CityStateLookupRequest USERID="502THEWH6849"><ZipCode ID="0"><Zip5>20024</Zip5></ZipCode></CityStateLookupRequest>';
+        //         $api = 'CityStateLookup';
+                 
+                 
+        //         //The URL that you want to send your XML to.
+        //         $url = $url."?API=".$api."&XML=".$xml;
+         
+        // $headers = array(
+        //     "Content-type: text/xml",
+        //     "Content-length: " . strlen($xml),
+        //     "Connection: close",
+        // );
+
         // $response = Curl::to($url)->get();
         // // $cURLConnection = curl_init();
         // // curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
@@ -241,6 +237,17 @@ class CartController extends Controller
         // // echo $result;
 
 
+        $ch = curl_init(); 
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $data = curl_exec($ch); 
+        dd($data);
+        
         return 'success';
     }
 
