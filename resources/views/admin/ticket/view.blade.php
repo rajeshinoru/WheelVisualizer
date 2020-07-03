@@ -22,8 +22,20 @@
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="min-height: 680px;">
                 <div class="product-status-wrap drp-lst">
-                    <h4>Ticket : {{$ticket->ticketno}}</h4> 
-                    <h4>Subject : {{getTicketSubjects($ticket->subject)}}</h4> 
+                        <table class="table" >
+                        <tr>
+                            <td><h4>Ticket : {{$ticket->ticketno}}</h4></td>
+                            <td><h4>Subject : {{getTicketSubjects($ticket->subject)}}</h4>  </td>
+                            <td><h4>Invoice Number : {{$ticket->invoice}}</h4></td>
+                            <td>
+                                <h4>Status : {{$ticket->status}}<br><br>
+                                @if($ticket->status == 'HOLD' || $ticket->status == 'CLOSED' )
+                                    Reason : {{$ticket->closed_reason}}</h4>
+                                @endif
+                            </td> 
+                        </tr>  
+                        </table>
+                      
                     <div class="asset-inner"  style="min-height: 680px;">
                         <table class="table"> 
                             <tbody>
@@ -34,9 +46,9 @@
                                     {{($message->postby == 'user')?$ticket->firstname:'Admin'}} 
                                     <i class="fa fa-clock-o" aria-hidden="true"></i> {{$message->created_at->diffForHumans()}}
                                     </p> 
-                                    <p class="well">
-                                    {{$message->description}} 
-                                    </p> 
+                                    <div  class="col-md-12 well">
+                                    {{$message->description}}
+                                    </div > 
                                 </td>
                             </tr>
                             @endforeach
@@ -61,7 +73,7 @@
                                                     <br>
 
                                                     <div class="payment-adress">
-                                                        <a href="{{route('ticket.index')}}" class="btn btn-danger">Cancel</a>
+                                                        <a href="{{route('admin.ticket.index')}}" class="btn btn-danger">Cancel</a>
                                                     </div>
                                                 </div>
                                             </div>

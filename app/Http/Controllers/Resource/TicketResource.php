@@ -20,7 +20,7 @@ class TicketResource extends Controller
     {
 
  
-        $tickets = Ticket::paginate(10); 
+        $tickets = Ticket::orderBy('updated_at','DESC')->paginate(10); 
         
         return view('admin.ticket.index',compact('tickets'));
     }
@@ -53,6 +53,11 @@ class TicketResource extends Controller
 
                 $data = $request->except(['_token']);
                 $ticket = Ticket::where('id',$request->ticket_id)->first();
+                $ticket_messages = TicketMessage::where('ticket_id',$ticket->id)->where('postby','admin')->count();
+                if($ticket_messages == 0 || $ticket->status == 'RAISED'){
+                    $ticket->status = 'ACCEPTED';
+                    $ticket->save();
+                }
                 if($request->postby == 'admin'){
                     TicketMessage::create([
                         'ticket_id'=>$ticket->id,
@@ -102,8 +107,27 @@ class TicketResource extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Ticket $ticket)
-    {
-        //
+    { 
+
+        $this->validate($request, [  
+            'reason'=>'required|min:10', 
+            'status'=>'required'  
+        ]);
+        try{   
+                if($ticket){
+                    $ticket->status = $request->status;
+                    $ticket->closed_reason = $request->reason;
+                    $ticket->closed_by = 'admin';
+                    $ticket->save();
+                    return back()->with('success','Ticket Status Updated successfully!!');
+                } else{
+                    return back()->with('error','Ticket Not Found!!');
+                }
+
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
     }
 
     /**

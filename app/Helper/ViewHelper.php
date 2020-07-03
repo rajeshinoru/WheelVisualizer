@@ -710,6 +710,7 @@ function TicketStatus($status='',$condition=''){
 				'2'=>'ACCEPTED',
 				'3'=>'RESOLVED',
 				'4'=>'HOLD', 
+				'5'=>'CLOSED',
 			);
 
 	if($status !=''){

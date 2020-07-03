@@ -64,7 +64,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Add New Post</h4>
+                                    <h4 class="modal-title">Add New Ticket</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div id="dropzone1" class="pro-ad addcoursepro">

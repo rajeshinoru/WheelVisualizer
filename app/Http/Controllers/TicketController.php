@@ -21,7 +21,7 @@ class TicketController extends Controller
 
         $user = User::find(Auth::user()->id);
         $tickets = $user->Tickets()->paginate(10); 
-
+        
         return view('user.tickets',compact('user','tickets'));
     }
 
@@ -47,7 +47,7 @@ class TicketController extends Controller
         $this->validate($request, [
             'invoice'=>'required|max:255',
             'subject'=>'required', 
-            'description'=>'required|min:10', 
+            'description'=>'required|min:1', 
             // ticketno
             // userid
             // firstname
@@ -137,7 +137,7 @@ class TicketController extends Controller
     {
 
         $this->validate($request, [  
-            'description'=>'required|min:10', 
+            'description'=>'required|min:1', 
             'postby'=>'required' ,
             'ticket_id'=>'required' 
         ]);

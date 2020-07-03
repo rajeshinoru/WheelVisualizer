@@ -49,9 +49,66 @@
                                 <td>{{@$ticket->status}}</td>
                                 <td>{{@$ticket->updated_at}}</td>
                                 <td>
-                                                    <a class="btn btn-info" href="{{route('admin.ticket.show',$ticket->id)}}">View</button> 
+                                                    <a class="btn btn-info" href="{{route('admin.ticket.show',$ticket->id)}}">View</a> 
+                                            <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i> Edit</a>
                                 </td>
                             </tr>
+                            <div class="modal fade" id="editModal{{$key}}" role="dialog">
+                                <div class="modal-dialog admin-form">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Edit Ticket</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="dropzone1" class="pro-ad addcoursepro">
+                                                <form action="{{ route('admin.ticket.update', $ticket->id)}}" class=" needsclick addcourse" method="POST" id="update-post" enctype="multipart/form-data">
+                                                    {{csrf_field()}}
+                                                    {{method_field('PATCH')}} 
+                                                   <!--  
+                                                    <br>  -->
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-md-2 form-group "><label>Ticket Status?</label></div>
+                                                            <div class="col-md-10">
+                                                                <select name="status" class="form-group form-control status">
+                                                                    @foreach(TicketStatus() as $tkey => $status)
+                                                                    <option value="{{$status}}" {{($status == $ticket->status)?'selected':''}}>{{$status}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row reason" style="display: none;">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-md-2 form-group "><label>Reason?</label></div>
+                                                            <div class="col-md-10">
+                                                                <textarea class="form-group form-control required" name="reason" rows="5"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="payment-adress">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="payment-adress">
+                                                                <a class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                                    </div>
+                                </div>
+                            </div>
                             @empty
                             <tr>
                                 <td colspan="5">No Tickets found</td>
@@ -60,91 +117,36 @@
                         </table>
 
                         {{$tickets->links()}}
-
-                      <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog admin-form">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Add New Post</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div id="dropzone1" class="pro-ad addcoursepro">
-                                        <form action="{{route('ticket.store')}}" class=" needsclick addcourse" method="POST" id="demo1-upload" enctype="multipart/form-data">
-                                            {{csrf_field()}}
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="col-md-2">Ticket For </div>
-                                                    <div class="col-md-10">
-                                                        <select name="subject" class="form-group form-control subject">
-                                                            <option value="">Select One</option>
-                                                            @foreach(getTicketSubjects() as $key => $reason)
-                                                            <option value="{{$key}}">{{$reason}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="col-md-2">Invoice Number </div>
-                                                    <div class="col-md-10">
-                                                        <input type="text" name="invoice" class="form-control" placeholder="Give the Invoice Number" required="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="col-md-2">Email ( Used For Purchase )</div>
-                                                    <div class="col-md-10">
-                                                        <input class="form-control" type="email" name="email" placeholder="Give the Email ID"   required="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="col-md-2">Describe your needs</div>
-                                                    <div class="col-md-10">
-                                                        <textarea class="form-control" name="description" rows="5" required=""></textarea>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="payment-adress">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="payment-adress">
-                                                        <a class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cancel</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                            </div>
-                        </div>
-                    </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br>
-
-@endsection+
 
 
+
+@endsection
+
+@section('custom_scripts') 
+
+<script type="text/javascript"> 
+    $('.status').change(function() { 
+        var selectedOption = $(this).find('option:selected').val(); 
+        if(selectedOption == 'CLOSED' || selectedOption == 'HOLD')
+        {
+            $('.reason').show();
+            $('.reason').find('textarea').attr('required',true);
+        }else{
+            $('.reason').find('textarea').val('');
+            $('.reason').find('textarea').removeAttr('required');
+
+            $('.reason').hide();
+        }
+
+    });
+</script>
+@endsection
 
 
 
