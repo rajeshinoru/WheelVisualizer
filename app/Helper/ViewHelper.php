@@ -10,6 +10,8 @@ use App\CMSPage;
 use App\Slider;
 use App\Review;
 use App\Rating;
+use App\Country;
+use App\State;
 
 use Illuminate\Http\Request;
 
@@ -809,4 +811,13 @@ function getReviewRatings($partno,$ratingValue,$category){
 		get();
 	 
 	return count($reviews);
+}
+
+
+function getStates($code='US'){
+
+	$country = Country::where('code',$code)->first();
+	$states = State::where('country_id',$country->id)->get();
+	 
+	return $states;
 }
