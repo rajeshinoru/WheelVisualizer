@@ -1734,7 +1734,7 @@ public function vftp_to_sql_test($filename){
 
                 $review->save();
 
-                if($request->has('ratings') && $request->category == 'wheel'){ 
+                if($request->has('ratings') && ( $request->category == 'wheel' || $request->category == 'tire' )){ 
                     $ratings  = (array)json_decode($request->ratings);
 
                     $ratings = array_merge(getRatingList(),$ratings);
@@ -1743,7 +1743,7 @@ public function vftp_to_sql_test($filename){
                         $rating = new Rating;
                         $rating->review_id = $review->id;
                         $rating->feature = $key;
-                        $rating->rating = is_numeric($value)?:0;
+                        $rating->rating = is_numeric($value)?$value:0;
                         $rating->save();
                     }
                     $review->avgrating = array_sum($ratings)/count($ratings);

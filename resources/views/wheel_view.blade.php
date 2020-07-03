@@ -1,5 +1,6 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
+<link rel="stylesheet" href="{{ asset('css/rating.css') }}">
 @endsection
 @section('content')
 <style>
@@ -346,290 +347,6 @@
         color: #ffff;
     }
 
-    /* Star Rating Start */
-    .btn-grey {
-        background-color: #d8d8d8;
-        color: #fff;
-    }
-
-    .rating-block {
-        background-color: #fafafa;
-        border: 1px solid #efefef;
-        padding: 15px 15px 20px 15px;
-        border-radius: 3px;
-    }
-
-    .bold {
-        font-weight: 700;
-    }
-
-    .padding-bottom-7 {
-        padding-bottom: 7px;
-    }
-
-    .review-block {
-        background-color: #fafafa;
-        border: 1px solid #efefef;
-        padding: 15px;
-        border-radius: 3px;
-        margin-bottom: 15px;
-    }
-
-    .review-block-name {
-        font-size: 12px;
-        margin: 10px 0;
-    }
-
-    .review-block-name a {
-        color: #121214;
-        font-size: 12px !important;
-        line-height: 30px !important;
-        font-family: Poppins !important;
-        color: #0e1661;
-    }
-
-    .review-block-date {
-        color: #121214;
-        font-size: 12px !important;
-        font-family: Poppins !important;
-    }
-
-    .btn.btn-default.btn-grey.btn-xs {
-        padding: 1px 5px;
-        font-size: 12px;
-        line-height: 1.5;
-        border-radius: 3px;
-    }
-
-    .btn.btn-warning.btn-xs {
-        padding: 1px 5px;
-        font-size: 12px;
-        line-height: 1.5;
-        border-radius: 3px;
-    }
-
-    .review-block-rate {
-        font-size: 13px;
-        margin-bottom: 15px;
-    }
-
-    .review-block-title {
-        margin-bottom: 10px;
-        color: #0e1661 !important;
-        font-family: Montserrat !important;
-        font-size: 15px !important;
-        font-weight: 700 !important;
-    }
-
-    .review-block-description {
-        color: #121214;
-        font-size: 12px !important;
-        line-height: 30px !important;
-        font-family: Poppins !important;
-    }
-
-    .rating-star {
-        list-style-type: none;
-    }
-
-    .rating-star li {
-        display: inline;
-    }
-
-    .range-head {
-        font-size: 15px;
-        font-weight: 500;
-        margin: 0px;
-    }
-
-    .range-head2 {
-        font-size: 15px;
-        font-weight: 500;
-        margin: 0px;
-    }
-
-    .review-heading {
-        background: #cccccc3d !important;
-        margin: 20px 0px !important;
-    }
-
-    .review-heading h4 {
-        color: #000;
-    }
-
-    @media (max-width: 767px) {
-        .star-rate .row {
-            display: contents;
-        }
-
-        .star-rate {
-            display: inline-flex;
-        }
-
-        #rating-review .pull-left .slider {
-            width: 75% !important;
-        }
-
-        .product-rating {
-            text-align: center;
-        }
-
-        .review-block {
-            text-align: center;
-        }
-
-        .rating-stars.text-left {
-            text-align: center !important;
-            padding: 5px 0px !important;
-        }
-
-        #stars {
-            margin-bottom: 0px;
-        }
-    }
-
-    #rating-review .pull-left {
-        width: 100%;
-    }
-
-    #rating-review .pull-left .slider {
-        width: 80%;
-    }
-
-    .second-star h5 {
-        margin: 0px;
-    }
-
-    .star-head {
-        margin: 20px 0px;
-        color: #0e1661 !important;
-        font-family: Montserrat !important;
-        font-size: 18px !important;
-        font-weight: 700 !important;
-    }
-
-    .second-star h5 {
-        line-height: 25px !important;
-        color: #121214;
-        font-size: 12px !important;
-        font-family: Poppins !important;
-    }
-
-    hr {
-        margin-top: 0px !important;
-    }
-
-    #rating-review {
-        background: #f5f5f5 !important;
-        padding: 40px 0px !important;
-    }
-
-    .comment h2 {
-        color: #0e1661 !important;
-        font-family: Montserrat !important;
-        font-size: 18px !important;
-        font-weight: 700 !important;
-        margin: 0px !important;
-    }
-
-    .comment-button {
-        text-align: right;
-    }
-
-    .rate-star {
-        line-height: 25px !important;
-        color: #121214;
-        font-size: 12px !important;
-        font-family: Poppins !important;
-    }
-
-    .pull-right.star-right {
-        line-height: 25px !important;
-        color: #121214;
-        font-size: 12px !important;
-        font-family: Poppins !important;
-    }
-
-    .review-block .user-image {
-        text-align: center;
-    }
-
-    .progress-bar {
-        background-color: #0e1661;
-    }
-
-    .comment-review .modal-header {
-        background: #0e1661 !important;
-    }
-
-    .comment-review .modal-body label {
-        color: #121214;
-        font-size: 12px !important;
-        line-height: 30px !important;
-        font-family: Poppins !important;
-    }
-
-    .clearfix {
-        clear: both;
-    }
-
-    .rating-stars ul {
-        list-style-type: none;
-        padding: 0;
-
-        -moz-user-select: none;
-        -webkit-user-select: none;
-    }
-
-    .rating-stars ul>li.star {
-        display: inline-block;
-
-    }
-
-    .rating-stars ul>li.star>i.fa {
-        font-size: 18px;
-        color: #ccc;
-    }
-
-    .rating-stars ul>li.star.hover>i.fa {
-        color: #FFCC36;
-    }
-
-    .rating-stars ul>li.star.selected>i.fa {
-        color: #FF912C;
-    }
-
-    .progress-bar {
-        width: 0;
-        animation: progress 1.5s ease-in-out forwards;
-
-        .title {
-            opacity: 0;
-            animation: show 0.35s forwards ease-in-out 0.5s;
-        }
-    }
-
-    @keyframes progress {
-        from {
-            width: 0;
-        }
-
-        to {
-            width: 100%;
-        }
-    }
-
-    @keyframes show {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    /* Star Rating End */
 </style>
 </section>
 <section id="tires-des">
@@ -836,10 +553,9 @@
                                                         <td>PN</td>
                                                         
                                                         <td class="partno-data" data-partno="{{@$product->partno}}">
+                                                            {{@$product->partno?:'-'}}
+                                                        </td>
                                                     </tr>
-
-                                                    Omni
-
                                                     <tr>
                                                         <td>Bolt Pattern</td>
                                                         <td>{{showBoltPattern($product->boltpattern1,$product->boltpattern2,$product->boltpattern3)}}</td>
@@ -1153,12 +869,12 @@
                     </div>
                     <div class="pull-left slider">
                         <div class="progress" style="height: 9px; margin: 8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="{{getReviewRatings($wheel->partno,$i)}}" style="max-width: {{getReviewRatings($wheel->partno,$i)}}%">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="{{getReviewRatings($wheel->partno,$i,'wheel')}}" style="max-width: {{getReviewRatings($wheel->partno,$i,'wheel')}}%">
                                 <!-- <span class="sr-only">80% Complete (danger)</span> -->
                             </div>
                         </div>
                     </div>
-                    <div class="pull-right star-right" style="margin-left: 10px;">{{getReviewRatings($wheel->partno,$i)}}</div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">{{getReviewRatings($wheel->partno,$i,'wheel')}}</div>
                 </div>
                 @endfor
  
@@ -1174,19 +890,19 @@
                     <div class="col-sm-4 text-warning">
                         <div class='rating-stars text-center'>
                             <ul id='stars'>
-                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 1 )?"selected":""}}' title='Poor' data-value='1'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey,"wheel") >= 1 )?"selected":""}}' title='Poor' data-value='1'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 2 )?"selected":""}}' title='Fair' data-value='2'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey,"wheel") >= 2 )?"selected":""}}' title='Fair' data-value='2'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 3 )?"selected":""}}' title='Good' data-value='3'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey,"wheel") >= 3 )?"selected":""}}' title='Good' data-value='3'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey,"wheel") >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
-                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey) >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
+                                <li class='star {{(getFeatureRatings($wheel->partno,$ratingkey,"wheel") >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
                                     <i class='fa fa-star fa-fw'></i>
                                 </li>
                             </ul>

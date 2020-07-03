@@ -1,5 +1,8 @@
 @extends('layouts.app') @section('shop_by_vehicle_css')
-<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> @endsection @section('content')
+<link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
+
+<link rel="stylesheet" href="{{ asset('css/rating.css') }}">
+@endsection @section('content')
 
 <style>
     .hometabled {
@@ -1040,6 +1043,321 @@
         </div>
     </div>
 </section>
+
+
+<section id="rating-review">
+    <div class="container">
+        <div class="row review-heading2">
+            <div class="col-sm-6 comment">
+                <h2>Customer Review</h2>
+            </div>
+            <div class="col-sm-6 comment-button">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ReviewModal">Write a Review</button>
+            </div>
+
+            <!-- Modal Start -->
+            <div class="modal comment-review fade" id="ReviewModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Write a Review</h4>
+                        </div>
+                            <form action="{{url('/addStarRating')}}" method="POST">
+                                {{@csrf_field()}}
+                                <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 second-star ">
+                                                <h4 class="star-head">Product Ratings</h4>
+                                                @foreach(getRatingList() as $ratingKey =>$rating)
+                                                <div class="row product-rating">
+                                                    <div class="col-sm-4">
+                                                        <h5>{{$rating}}</h5>
+                                                    </div>
+                                                    <div class="col-sm-4 text-warning">
+                                                        <div class='rating-stars text-center'>
+                                                            <ul id='stars'>
+                                                                <li class='star' title='Poor' data-value='1' data-ratingname='{{$ratingKey}}'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Fair' data-value='2' data-ratingname='{{$ratingKey}}'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Good' data-value='3' data-ratingname='{{$ratingKey}}'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Excellent' data-value='4' data-ratingname='{{$ratingKey}}'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='WOW!!!' data-value='5' data-ratingname='{{$ratingKey}}'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <h5 class="rating-text hide">Out of 5</h5>
+                                                    </div>
+                                                </div>
+                                                @endforeach 
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-12 form-group">
+                                                <label for="comment">Comment:</label>
+                                                <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+                                            </div>
+        
+                                            <input type="hidden" id="ratings" name="ratings" value="">
+                                            <input type="hidden" id="partno" name="partno" value="{{@$tire->partno}}">
+                                            <input type="hidden" id="category" name="category" value="tire">
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-info" value="Submit"  >
+                                    <button type="button" class="btn btn-info btn-close" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal End -->
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <h4 class="star-head">Rating breakdown</h4>
+                @for($i=5;$i>0;$i--)
+                <div class="pull-left">
+                    <div class="pull-left" style="width: 35px; line-height: 1;">
+                        <div class="rate-star">{{$i}} <span class="glyphicon glyphicon-star"></span></div>
+                    </div>
+                    <div class="pull-left slider">
+                        <div class="progress" style="height: 9px; margin: 8px 0;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="{{getReviewRatings($tire->partno,$i,'tire')}}" style="max-width: {{getReviewRatings($tire->partno,$i,'tire')}}%">
+                                <!-- <span class="sr-only">80% Complete (danger)</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right star-right" style="margin-left: 10px;">{{getReviewRatings($tire->partno,$i,'tire')}}</div>
+                </div>
+                @endfor
+ 
+            </div> 
+
+            <div class="col-sm-4 second-star ">
+                <h4 class="star-head">Product Ratings</h4>
+                @foreach(getRatingList() as $ratingkey => $ratingname)
+                <div class="row product-rating">
+                    <div class="col-sm-4">
+                        <h5>{{$ratingname}}</h5>
+                    </div>
+                    <div class="col-sm-4 text-warning">
+                        <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                                <li class='star {{(getFeatureRatings($tire->partno,$ratingkey,"tire") >= 1 )?"selected":""}}' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star {{(getFeatureRatings($tire->partno,$ratingkey,"tire") >= 2 )?"selected":""}}' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star {{(getFeatureRatings($tire->partno,$ratingkey,"tire") >= 3 )?"selected":""}}' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star {{(getFeatureRatings($tire->partno,$ratingkey,"tire") >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star {{(getFeatureRatings($tire->partno,$ratingkey,"tire") >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="rating-text hide">Out of 5</h5>
+                    </div>
+                </div>
+                @endforeach 
+            </div>
+        </div>
+        @if(@$tire->Reviews->count() > 0)
+        <div class="row review-heading">
+            <div class="col-sm-12">
+                <h4>Most Helpful Favorable Review</h4>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($tire->Reviews as $key =>  $review)
+            <div class="col-sm-6">
+                <hr />
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">{{$review->name?:'User Review'}}</a></div>
+                            <div class="review-block-date">
+                                {{@$review->created_at}}<br />
+                                {{@$review->created_at->diffForHumans()}}
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                     <ul id='stars'>
+                                        <li class='star {{($review->avgrating >= 1 )?"selected":""}}' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star {{($review->avgrating >= 2 )?"selected":""}}' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star {{($review->avgrating >= 3 )?"selected":""}}' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star {{($review->avgrating >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star {{($review->avgrating >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-block-title">{{getLimitedWords($review->comment,5)}}</div>
+                            <div class="review-block-description">
+                                {{@$review->comment}}
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+             <!--        <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">
+                                June 26, 2020<br />
+                                1 day ago
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">
+                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
+                            </div>
+                        </div>
+                    </div>
+                    <hr /> -->
+                </div>
+            </div>
+            @endforeach
+
+         <!--    <div class="col-sm-6">
+                <hr />
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">
+                                June 26, 2020<br />
+                                1 day ago
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">
+                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3 user-image">
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded" />
+                            <div class="review-block-name"><a href="#">nktailor</a></div>
+                            <div class="review-block-date">
+                                June 26, 2020<br />
+                                1 day ago
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <div class='rating-stars text-left'>
+                                    <ul id='stars'>
+                                        <li class='star' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">
+                                this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div> -->
+        </div>
+        @endif
+    </div>
+</section>
 {{--
 <section id="table-section">
     <div class="container">
@@ -1232,6 +1550,86 @@ $('.spinner .btn:last-of-type').on('click', function() {
     })
 
 
+    // Start Rating
+    $(document).ready(function() {
+
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('#stars li').on('mouseover', function() {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function(e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                } else {
+                    $(this).removeClass('hover');
+                }
+            });
+
+        }).on('mouseout', function() {
+            $(this).parent().children('li.star').each(function(e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+        var elems = {};
+
+        /* 2. Action to perform on click */
+        $('#stars li').on('click', function() {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            // JUST RESPONSE (Not needed)
+            var ratingValue = parseInt($(this).data('value'), 10);
+            var ratingName = $(this).data('ratingname');
+            // console.log(ratingName,ratingValue)
+
+            // if ($('.product-details').find('tr:visible')) {
+                // var partno = $('.product-details').find('tr:visible').find('.partno-data').data('partno');
+                // elems.push(ratingValue); 
+                elems[ratingName] = ratingValue;
+
+                $('#ratings').val(JSON.stringify(elems)); //store array
+
+                // $('#partno').val(partno);
+
+                // var value = $('#ratings').val(); //retrieve array
+                // value = JSON.parse(value);
+                // console.log(value)
+                // var prodtype = 'wheel'; 
+
+                
+            // }
+
+
+            // alert(ratingValue)
+            // var msg = "";
+            // if (ratingValue > 1) {
+            //     msg = "Thanks! You rated this " + ratingValue + " stars.";
+            // } else {
+            //     msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+            // }
+            // responseMessage(msg);
+
+        });
+
+
+    });
+
+
+    function responseMessage(msg) {
+        $('.success-box').fadeIn(200);
+        $('.success-box div.text-message').html("<span>" + msg + "</span>");
+    }
+    // Star Rating End
 </script>
 
 @endsection

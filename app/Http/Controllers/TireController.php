@@ -32,7 +32,7 @@ class TireController extends Controller
 
         $tires = new Tire;
 
-        $tires = $tires->select('prodimage','id','prodtitle','tiresize','loadindex','speedrating',
+        $tires = $tires->select('prodimage','id','prodtitle','detailtitle','tiresize','loadindex','speedrating',
                     'price','prodmodel','tirewidth','tireprofile','tirediameter');
         // dd(base64_decode($chassis_model_id));
         $chassis_model = ChassisModel::find(base64_decode($chassis_model_id)) ?? null;

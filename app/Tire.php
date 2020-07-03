@@ -112,4 +112,10 @@ class Tire extends Model
 	// public function CarColors(){
 	// 	return $this->hasMany('App\CarColor','vif','vif');
 	// }
+
+
+	public function Reviews() {
+	    return $this->hasMany('App\Review','partno','partno')->where('category','tire')->where('approval','1');
+	}
+
 }

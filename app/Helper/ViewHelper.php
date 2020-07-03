@@ -778,8 +778,8 @@ function getRatingList($key=''){
 }
 
 
-function getFeatureRatings($partno,$ratingfeature){
-	$reviews = Review::with('Ratings')->where('approval','1')->where('partno',$partno)->where('category','wheel')->get();
+function getFeatureRatings($partno,$ratingfeature,$category){
+	$reviews = Review::with('Ratings')->where('approval','1')->where('partno',$partno)->where('category',$category)->get();
 	$featureRatings = array(); 
 	foreach ($reviews as $key1 => $review) {
 		foreach ($review->Ratings as $key2 => $rating) {
@@ -798,11 +798,11 @@ function getFeatureRatings($partno,$ratingfeature){
 	}
 }
 
-function getReviewRatings($partno,$ratingValue){
+function getReviewRatings($partno,$ratingValue,$category){
 	$reviews = Review::with('Ratings')->
 		where('approval','1')->
 		where('partno',$partno)->
-		where('category','wheel')->
+		where('category',$category)->
 		where('avgrating','>=',$ratingValue)->
 		where('avgrating','<',$ratingValue+1)->
 		get();
