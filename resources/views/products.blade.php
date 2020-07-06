@@ -310,7 +310,8 @@
                                             </div> -->
 
                                         @if($car_images)
-                                        <button class="btn btn-primary {{(!file_exists(front_back_path(@$product->wheel['image'])))?'disabled':''}}" {{(!file_exists(front_back_path(@$product->wheel['image'])))?' ':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
+                                        <button class="btn btn-primary {{
+(!file_exists(front_back_path(@$product->wheel['image'])) && !file_exists(front_back_path(@$product->prodimage)) )?'disabled':''}}" {{(!file_exists(front_back_path(@$product->wheel['image'])) && !file_exists(front_back_path(@$product->prodimage)) )?' ':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
                                         @endif
                                         </div>
                                         <div class="button-group">
@@ -372,10 +373,22 @@
                                         @if(file_exists(front_back_path(@$product->wheel['image'])))
                                         <div class="car-wheel">
                                             <div class="front" >
-                                                <img class="frontimg" src="{{front_back_path(@$product->wheel['image'])}}" id="image-diameter-front-{{$key}}" >
+                                                <img class="frontimg" src="{{front_back_path(@$product->wheel['image'])}}" id="image-diameter-front-{{$key}}" data-name="{{front_back_path(@$product->wheel['image'])}}" >
                                             </div>
                                             <div class="back">
                                                 <img src="{{front_back_path(@$product->wheel['image'])}}" id="image-diameter-back-{{$key}}">
+                                            </div>
+                                        </div>
+                                        @endif
+                                        @else
+
+                                        @if(file_exists(front_back_path(@$product->prodimage)))
+                                        <div class="car-wheel">
+                                            <div class="front" >
+                                                <img class="frontimg" src="{{front_back_path(@$product->prodimage)}}" id="image-diameter-front-{{$key}}" data-name="{{front_back_path(@$product->prodimage)}}" >
+                                            </div>
+                                            <div class="back">
+                                                <img src="{{front_back_path(@$product->prodimage)}}" id="image-diameter-back-{{$key}}">
                                             </div>
                                         </div>
                                         @endif

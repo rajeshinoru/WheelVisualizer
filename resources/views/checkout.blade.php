@@ -232,7 +232,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6" id="heading2">
-                <h1> Order Items</h1>
+                <h1>Order Items</h1>
             </div> 
             <div class="col-sm-6" id="heading2">
                 <h1>Your Cart</h1>
