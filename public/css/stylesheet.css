@@ -5310,7 +5310,7 @@ h2.price {
  {
      text-align: right;
  }
- .search-bar form.form 
+ .search-bar form.form
  {
     margin-bottom: 0px;
  }
@@ -7467,9 +7467,9 @@ button {
     z-index: 1;
 }
 
-@media (max-width: 767px) 
+@media (max-width: 767px)
 {
-    .active > div 
+    .active > div
     {
         display: unset !important;
    }
@@ -7504,14 +7504,14 @@ button {
         height:auto;
         float:left;
    } */
-   #logo img 
+   #logo img
    {
         width: 40%;
         height:auto;
         /* float:left; */
         display: inline;
     }
-    .search-bar form.form 
+    .search-bar form.form
     {
         margin-bottom: 0px;
     }
@@ -7800,17 +7800,17 @@ button {
         margin: 5px 0px !important;
         width: 100%;
    }
-   .form-group.product-quantity 
+   .form-group.product-quantity
    {
        width: auto !important;
        display: block ruby;
    }
-   .form-control.quantity 
+   .form-control.quantity
    {
         width: auto !important;
         display: block ruby;
     }
-    .form-group.has-success.has-feedback.text-right 
+    .form-group.has-success.has-feedback.text-right
     {
         text-align: center;
     }
@@ -8945,7 +8945,7 @@ ol.carousel-indicators {
    {
         display: inline-flex !important;
    }
-   input.form-control.quantity 
+   input.form-control.quantity
    {
         width: auto !important;
    }
@@ -8954,7 +8954,7 @@ ol.carousel-indicators {
         font-size: 10px !important;
         line-height: 20px !important;
    }
-   .btn.btn-inverse.btn-block.btn-lg 
+   .btn.btn-inverse.btn-block.btn-lg
    {
         display: unset !important;
    }
