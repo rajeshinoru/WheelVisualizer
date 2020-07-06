@@ -159,7 +159,13 @@ function front_back_path($imgPath){
 	$imageArray = explode('/', $imgPath);
 	$imageArrayname = explode('.', end($imageArray));  
 	if($imageArray != null){
-		return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+		if(file_exists(public_path('storage/wheels/front_back/'.current($imageArrayname).'.png'))){
+
+			return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+		}else{
+
+			return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+		}
 	}else{
 		return $imgPath;
 	}
