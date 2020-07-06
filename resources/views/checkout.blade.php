@@ -401,8 +401,8 @@
                                 <input type="text" class="form-control" id="companyname" name="companyname" placeholder="Company Name" value="" >
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                                <label for="email">Email </label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required="">
                             </div>
                         </div>
                         <div class="row">
@@ -427,6 +427,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 mb-3">
+                                <label for="zip">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="" required value="{{\Session::get('user.city')?:''}}">
+                            </div>
+                            <div class="col-md-4 mb-3">
                                 <label for="state">State</label>
                                 <select class="form-control" id="state" name="state" required>
                                     <option value="">Choose...</option>
@@ -434,10 +438,6 @@
                                         <option value="{{$state->name}}">{{$state->name}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="zip">City</label>
-                                <input type="text" class="form-control" id="city" name="city" placeholder="" required value="{{\Session::get('user.city')?:''}}">
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="zip">Zip</label>
@@ -448,8 +448,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6" id="heading2">
-                    <h1>Shipping Address <label class="checkbox-inline"><input type="checkbox" name="same_shipping" id="same_shipping" value="yes"> Same as billing address</label> </h1>
-                    <div class="shop-cart bill-page shipping-section" style="display: block;">
+                    <h1>Shipping Address <label class="checkbox-inline"><input type="checkbox" name="same_shipping" id="same_shipping" value="yes" checked=""> Same as billing address</label> </h1>
+                    <div class="shop-cart bill-page shipping-section" style="display: none;">
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -467,8 +467,8 @@
                                 <input type="text" class="form-control " id="shipping_companyname" name="shipping_companyname" placeholder="Company Name" value="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                                <input type="email" class="form-control" id="shipping_email" name="shipping_email" placeholder="you@example.com">
+                                <label for="email">Email </label>
+                                <input type="email" class="form-control required" id="shipping_email" name="shipping_email" placeholder="you@example.com" required="">
                             </div>
                         </div>
                         <div class="row">
@@ -493,6 +493,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 mb-3">
+                                <label for="zip">City</label>
+                                <input type="text" class="form-control required" id="shipping_city" name="shipping_city" placeholder="" value="{{\Session::get('user.city')?:''}}" >
+                            </div>
+                            <div class="col-md-4 mb-3">
                                 <label for="state">State</label>
                                 <select class="form-control required" id="shipping_state" name="shipping_state">
 
@@ -503,10 +507,6 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-4 mb-3">
-                                <label for="zip">City</label>
-                                <input type="text" class="form-control required" id="shipping_city" name="shipping_city" placeholder="" value="{{\Session::get('user.city')?:''}}" >
-                            </div>
                             <div class="col-md-4 mb-3">
                                 <label for="zip">Zip</label>
                                 <input type="text" class="form-control required" id="shipping_zip" name="shipping_zip" placeholder="" value="{{\Session::get('user.zipcode')?:''}}" >
@@ -762,6 +762,29 @@
             </div>
         </div>
     </form>
+
+    <!-- model Start -->
+    <div class="modal fade " id="shipping_alert" role="dialog">
+        <div class="modal-dialog wheel-view">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-left">Shipping Address Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
+                    <h2 class="modal-title">To Protect Our Customers, we verify all Addresses with the issuing Credit Card Companies.</h2>
+                    <h2 class="modal-title">Your order <b>WILL BE DELAYED</b> and your Credit Card <b>WILL NOT</b> be charged if your <b>SHIPPING ADDRESS</b> is not registered with your Credit Card issuer.</h2> 
+
+                    <div class="form-group has-success has-feedback text-right">
+                        <button class="btn btn-info btn-close" type="button" data-dismiss="modal" style="background: #ecb23d">Continue ></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Model End  -->
 </section>
 @endsection
 @section('custom_scripts')
@@ -773,6 +796,7 @@
             $(".shipping-section").find('.required').attr('required',false);
          }
          else if($(this).prop("checked") == false){
+            $("#shipping_alert").modal('show');
             $(".shipping-section").show();
             $(".shipping-section").find('.required').attr('required',true);
          }

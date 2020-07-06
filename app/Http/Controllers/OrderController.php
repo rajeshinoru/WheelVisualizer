@@ -47,7 +47,7 @@ class OrderController extends Controller
             'firstname'=>'required|max:255',
             'lastname'=>'required|max:255',
             // 'companyname'=>'required|max:255',
-            // 'email'=>'required|max:255',
+            'email'=>'required|email|max:255',
             'dayphone'=>'required|max:255',
             'cellphone'=>'required|max:255',
             'address'=>'required|max:255',
