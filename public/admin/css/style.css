@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------------- ----------------------------------------------------------------------------------- CSS INDEX =================== 1. Common 2. Helper Class 3. All Nested Class 4. left sidebar 4.1 left Sidebar switcher 5. Header Top 6. Breadcrumb 7. Star Rating css 8. Analytics 9. widgets CSS 10. Event 11. Professors 12. Student 13. Courses 13.1 Courses Info 13.2. Course Payment 14. Library 15. Inbox 16. Google Map 17. Images Cropper 18. Form Element 19. Mini Sidebar 20. Custom Scroll 21. Wizard CSS 22. Notification 23. footer -----------------------------------------------------------------------------------*/
 /*----------------------------------------*/
-/* 1. Common 
+/* 1. Common
 /*----------------------------------------*/
 html, body {
     height: 100%;
@@ -63,7 +63,7 @@ html, body {
  ul{
      list-style: outside none none;
      margin: 0;
-     padding: 0 
+     padding: 0
 }
  .clear{
     clear:both
@@ -85,7 +85,7 @@ html, body {
      src: url('/admin/fonts/Montserrat.ttf');
 }
 /*----------------------------------------*/
-/* 2. Helper Class 
+/* 2. Helper Class
 /*----------------------------------------*/
  .mg-tb-30{
      margin:30px 0px;
@@ -130,14 +130,14 @@ html, body {
      background: #D80027;
 }
 /*----------------------------------------*/
-/* 3. All Nested Class 
+/* 3. All Nested Class
 /*----------------------------------------*/
  .product-sales-chart, .analytics-info-cs, .tranffic-als-inner, .analytics-rounded, .single-new-trend, .personal-info-wrap, .author-widgets-single, .calender-inner, .product-status-wrap, .review-tab-pro-inner, .income-dashone-total, .analytics-edu-wrap, .analytics-sparkle-line, .analysis-progrebar, .sparkline8-list, .sparkline9-list, .sparkline7-list, .sparkline10-list, .sparkline12-list, .sparkline13-list, .sparkline14-list, .sparkline13-list, .sparkline11-list, .x-editable-list, .code-editor-single, .blog-details-inner, .charts-single-pro, .about-sparkline, .sparkline-list, .button-ad-wrap, .tab-content-details, .sparkline16-list, .sparkline15-list, .tinymce-single, .single-product-item, .courses-inner, .single-latest-item, .product-payment-inner-st, .profile-info-inner, .contact-panel, .widget-int-shape, .social-media-edu{
      padding:20px;
      background:#fff;
 }
 /*----------------------------------------*/
-/* 4. left sidebar 
+/* 4. left sidebar
 /*----------------------------------------*/
  .all-content-wrapper {
      margin-left: 250px;
@@ -284,7 +284,7 @@ html, body {
      padding: 20px 20px;
 }
 /*----------------------------------------*/
-/* 4.1 Left Sidebar switcher 
+/* 4.1 Left Sidebar switcher
 /*----------------------------------------*/
  .menu-switcher-pro {
      transition:all .4s ease 0s;
@@ -301,7 +301,7 @@ html, body {
      border:none;
 }
 /*----------------------------------------*/
-/* 5. Header Top 
+/* 5. Header Top
 /*----------------------------------------*/
  .header-top-menu .navbar-nav>li>a{
      padding: 20px 20px;
@@ -851,7 +851,7 @@ html, body {
      color: #006DF0;
 }
 /*----------------------------------------*/
-/* 6. breadcrumb 
+/* 6. breadcrumb
 /*----------------------------------------*/
  .breadcome-heading .form-control, .sr-input-func .form-control:focus {
      border: 1px solid #ececec;
@@ -941,7 +941,7 @@ html, body {
      border-color: #ccc;
 }
 /*----------------------------------------*/
-/* 8. Analytics 
+/* 8. Analytics
 /*----------------------------------------*/
  .payment-inner-pro i{
      color:#006DF0;
@@ -1029,7 +1029,7 @@ html, body {
      background:#D80027;
 }
  .skill-content-3 {
-     overflow: hidden 
+     overflow: hidden
 }
  .skill .progress .lead-content {
      left: 0;
@@ -1202,7 +1202,7 @@ html, body {
      color:#fff;
 }
 /*----------------------------------------*/
-/* 10. Event 
+/* 10. Event
 /*----------------------------------------*/
  .calender-inner .fc-state-default{
      background:#006DF0;
@@ -1212,7 +1212,7 @@ html, body {
      outline:none;
 }
 /*----------------------------------------*/
-/* 11. Professors 
+/* 11. Professors
 /*----------------------------------------*/
  .hpanel .panel-body {
      background: #fff;
@@ -1407,7 +1407,7 @@ html, body {
      margin-right:5px;
 }
 /*----------------------------------------*/
-/* 12. Student 
+/* 12. Student
 /*----------------------------------------*/
  .student-dtl h2{
      font-size:18px;
@@ -1429,7 +1429,7 @@ html, body {
      width:100%;
 }
 /*----------------------------------------*/
-/* 13. Courses 
+/* 13. Courses
 /*----------------------------------------*/
  .courses-title h2{
      font-size:18px;
@@ -2064,7 +2064,7 @@ html, body {
      border-color: #e12503;
 }
 /*----------------------------------------*/
-/* 13.1 Courses Info 
+/* 13.1 Courses Info
 /*----------------------------------------*/
  .blog-box{
      background:#fff;
@@ -2272,7 +2272,7 @@ html, body {
      padding-top: 10px;
 }
 /*----------------------------------------*/
-/* 13.2. course Payment 
+/* 13.2. course Payment
 /*----------------------------------------*/
  #myTab4.tab-review-design li a {
      padding-right: 40px;
@@ -2325,7 +2325,7 @@ html, body {
      margin-top:0px;
 }
 /*----------------------------------------*/
-/* 14. Library 
+/* 14. Library
 /*----------------------------------------*/
  .add-product a {
      float: right;
@@ -2434,7 +2434,7 @@ html, body {
      border-top: 1px solid #e9ecef;
 }
 /*----------------------------------------*/
-/* 15. Inbox 
+/* 15. Inbox
 /*----------------------------------------*/
  .inbox-bt-mg{
      margin-bottom:15px;
@@ -2680,7 +2680,7 @@ html, body {
      padding:0px;
 }
 /*----------------------------------------*/
-/* 16. Google Map 
+/* 16. Google Map
 /*----------------------------------------*/
  #map, #map1, #map2, #googleMap, #maplan, #map6, #map7, #map8 {
      height: 100%;
@@ -2690,7 +2690,7 @@ html, body {
      height: 300px;
 }
 /*----------------------------------------*/
-/* 17. Images Cropper 
+/* 17. Images Cropper
 /*----------------------------------------*/
  .img-preview-custom{
      height: 130px;
@@ -2735,7 +2735,7 @@ html, body {
      margin:5px 0px;
 }
 /*----------------------------------------*/
-/* 18. Form Element 
+/* 18. Form Element
 /*----------------------------------------*/
  .sparkline8-graph .basic-login-inner, .sparkline8-graph .login-social-inner, .sparkline9-graph .basic-login-form-ad, .sparkline11-graph .basic-login-form-ad{
      text-align:left;
@@ -3217,7 +3217,7 @@ html, body {
      margin-bottom:0px;
 }
  .menu-list-mg-b.menu-list-wrap{
-     margin-bottom:40px 
+     margin-bottom:40px
 }
  .main-sparkline8-hd h1, .main-sparkline9-hd h1, .main-spark7-hd h1, .main-sparkline10-hd h1, .main-sparkline11-hd h1, .main-sparkline12-hd h1, .main-sparkline13-hd h1, .main-sparkline14-hd h1{
      font-size:20px;
@@ -4336,7 +4336,7 @@ html, body {
      height:35px;
 }
  .datatable-dashv1-list .btn-default{
-     outline:none 
+     outline:none
 }
  .datatable-dashv1-list .editable-submit{
      background:#006DF0;
@@ -4375,7 +4375,7 @@ html, body {
      margin-bottom:0px;
 }
 /*----------------------------------------*/
-/* 19. Mini Sidebar 
+/* 19. Mini Sidebar
 /*----------------------------------------*/
  #sidebar.active .sidebar-nav .metismenu {
      margin-top: 12px;
@@ -4421,7 +4421,7 @@ html, body {
      border-bottom: 0px solid #ddd;
 }
 /*----------------------------------------*/
-/* 20. Custom Scroll 
+/* 20. Custom Scroll
 /*----------------------------------------*/
  .comment-scrollbar, .timeline-scrollbar, .messages-scrollbar, .project-list-scrollbar {
      height: 580px;
@@ -4699,7 +4699,7 @@ html, body {
      display:none;
 }
 /*----------------------------------------*/
-/* 22. Notification 
+/* 22. Notification
 /*----------------------------------------*/
  .notification-bt .btn{
      border-radius:3px;
@@ -4756,7 +4756,7 @@ html, body {
      display:none;
 }
 /*----------------------------------------*/
-/* 23. footer 
+/* 23. footer
 /*----------------------------------------*/
  .footer-copy-right p {
      margin: 0px;
@@ -4852,20 +4852,20 @@ html, body {
  .mini-navbar .sidebar-nav .metismenu li a i {
      font-size: 15px;
 }
-.main-logo 
+.main-logo
 {
     width: 138px !important;
     height: auto !important;
 }
 
 
- @media (min-width: 360px) and (max-width: 767px) 
+ @media (min-width: 360px) and (max-width: 767px)
  {
-    .main-logo 
+    .main-logo
     {
          padding: 5px 0px !important;
     }
-    .mobile-menu-area 
+    .mobile-menu-area
     {
         background: #ecb23d !important;
     }
