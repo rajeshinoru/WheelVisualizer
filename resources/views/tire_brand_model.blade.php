@@ -791,11 +791,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title text-left">Items Added to Cart</h4>
+                        <h4 class="modal-title text-left">Add To Cart</h4>
                     </div>
                     <div class="modal-body" style="text-align: center;">
                         <!-- <h2 class="modal-title"><b>Your Vehicle</b> : 2020 Acura RDX Base</h2> -->
-                        <h2 class="modal-title">The following items have been added to your cart:</h2>
+                        <h2 class="modal-title modal-sub-title">The following items have been added to your cart:</h2>
                         <p class="modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                         <form class="form-horizontal">
                             <div class="form-group has-success has-feedback text-center">
@@ -877,6 +877,13 @@
                     $(modelid).find('.modal-msg').text(modalMsg);
                     $(modelid).modal("show");
                 }
+
+                if (result['status'] == 'failed') {
+                    $(modelid).find('.modal-sub-title').html('');
+                    $(modelid).find('.modal-msg').html(result['message']+'<br>'+modalMsg);
+                    $(modelid).modal("show");
+                }
+
                 getCartCount();
                 // $(".se-pre-con").hide(); 
             }

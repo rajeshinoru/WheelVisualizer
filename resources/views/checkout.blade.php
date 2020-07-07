@@ -468,7 +468,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email </label>
-                                <input type="email" class="form-control required" id="shipping_email" name="shipping_email" placeholder="you@example.com" required="">
+                                <input type="email" class="form-control required" id="shipping_email" name="shipping_email" placeholder="you@example.com" >
                             </div>
                         </div>
                         <div class="row">

@@ -67,10 +67,9 @@ class OrderController extends Controller
         ]);
         try{  
 
+
+
             $data = $request->except(['_token']);
-
-
-
 
             $cart = Session::get('cart')?:[];
 
@@ -116,8 +115,12 @@ class OrderController extends Controller
 
                 $updateOrder['status'] = 'ORDERED';
 
+                $updateOrder['ordernumber'] = getOrderNumber($order->id); 
+
                 $order->update($updateOrder);
+
                 Session::put('cart',null);
+                
                 return redirect('/CartItems')->with('success','Order saved successfully');
             }else{
 

@@ -656,6 +656,12 @@ function OrderStatus($status='',$condition=''){
 }
 
 
+function getOrderNumber($id=''){     
+	 
+	return "DWW".date("y").date("m").date("d").str_pad($id, 4, '0', STR_PAD_LEFT);
+}
+
+
 function cmspagecategories($key=''){     
 	$list  = array(
 				'TopNavbar',

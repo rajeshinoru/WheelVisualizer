@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Session;
 use App\WheelProduct;
 use App\Tire;
+use App\Dropshipper;
+use App\Inventory;
 
 use Ixudra\Curl\Facades\Curl;
 
@@ -51,11 +53,18 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+
+        $msg = '';
+
         $cart = Session::get('cart')??[];
         $flag=0;
         foreach ($cart as $key => $item) {
+
             if($item['id'] == $request->productid && $item['type'] == $request->prodtype){
                 $flag=1;
+
+
+
                 $cart[$key]= array(
                     "id" => $request->productid,
                     "type" => $request->prodtype,
@@ -66,18 +75,41 @@ class CartController extends Controller
             }
         }
         if($flag==0){
-            array_push($cart, array(
-                "id" => $request->productid,
-                "type" => $request->prodtype,
-                "qty" => $request->qty,
-                "price" => $request->price,
-            ));
+            if($request->productid != null ){ 
+
+
+                if($request->prodtype=='wheel'){
+                    $product =WheelProduct::find($request->productid);
+                }
+                if($request->prodtype=='tire'){
+                    $product =Tire::find($request->productid);
+                } 
+ 
+                $zipcode = \Session::get('user.zipcode');
+
+                $dropshipper_codes = Dropshipper::where('zip',$zipcode)->pluck('code');
+
+                $inventories = Inventory::whereIn('location_name',$dropshipper_codes)->where('partno',$product->partno)->get();
+                // dd(count($inventories) > 0 );
+                if(count($inventories) > 0 ){
+                    array_push($cart, array(
+                        "id" => $request->productid,
+                        "type" => $request->prodtype,
+                        "qty" => $request->qty,
+                        "price" => $request->price,
+                    ));
+                }else{
+                    $msg = '<br><b>This Product does not available near your location based on your zipcode. <br> Choose another product or Change the zipcode </b><br>'; 
+                    return ['status'=>'failed','message'=>$msg];
+                }
+
+
+            }
         }
         Session::put('cart', $cart);
 
-        $msg = '';
         if(Session::get('user.packagetype') == 'wheeltirepackage' && $request->prodtype == 'tire'){
-                $msg = '<br><b>This completes your Wheel and Tire Package, which will come mounted and balanced, ready to be installed on your vehicle</b><br>'; 
+                $msg .= '<br><b>This completes your Wheel and Tire Package, which will come mounted and balanced, ready to be installed on your vehicle</b><br>'; 
         }
         // Session::put('user.packagetype') == null;
         // Session::flash('alert-class', 'alert-danger'); 
@@ -236,7 +268,7 @@ class CartController extends Controller
 
             Session::put('user.state', null); 
             Session::put('user.city', null); 
-            Session::put('user.zipcode', null);  
+            Session::put('user.zipcode', $request->zipcode);  
         }
 
 
