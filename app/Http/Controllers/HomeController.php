@@ -1770,12 +1770,12 @@ public function vftp_to_sql_test($filename){
             // dd($product->wheel,$product->wheel != null);
             if($product->wheel != null){
                 if(!front_back_filecheck($product->wheel->image)){
-                    $arr[]=$product->prodimage;
+                    $arr[$product->prodimage]=$product->wheel->image;
                 } 
             }else{
                 if(!front_back_filecheck($product->prodimage)){
                     // dd($product->prodimage);
-                    $arr[]=$product->prodimage;
+                    $arr[$product->prodimage]=$product->prodimage;
                 }
             }
             
