@@ -178,7 +178,7 @@ function front_back_filecheck($imgPath){
 	$filename = str_replace(".png","",$filename); //explode('.', end($imageArray));  
 	$filename = str_replace(".jpeg","",$filename); //explode('.', end($imageArray));  
 	if($imageArray != null){
-		if(file_exists(public_path('storage/wheels/front_back/'.$filename.'.png'))){
+		if(file_exists(base_path('storage/app/public/wheels/front_back/'.$filename.'.png'))){
 
 			return 'storage/wheels/front_back/'.$filename.'.png';
 		}else{

@@ -1767,6 +1767,7 @@ public function vftp_to_sql_test($filename){
         $products = WheelProduct::with('wheel')->get();
         $arr=[];
         foreach ($products as $key => $product) {
+            // dd($product->wheel,$product->wheel != null);
             if($product->wheel != null){
                 if(!front_back_filecheck($product->wheel->image)){
                     $arr[]=$product->prodimage;
@@ -1774,12 +1775,12 @@ public function vftp_to_sql_test($filename){
             }else{
                 if(!front_back_filecheck($product->prodimage)){
                     // dd($product->prodimage);
-                    $arr['new'][]=$product->prodimage;
+                    $arr[]=front_back_filecheck($product->prodimage);
                 }
             }
             
-        }
         dd($arr);
+        }
     }
 }
 
