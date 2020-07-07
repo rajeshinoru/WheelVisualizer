@@ -1620,12 +1620,12 @@ public function vftp_to_sql_test($filename){
 
     public function upodateWheelsPartNo()
     { 
-        $excelFile = public_path('/storage/wheel_products_match-with-partno_old-in-wheels.xlsx');
+        $excelFile = public_path('/storage/Missing Wheel Viz Images Mappings.xlsx');
        
         // $excelData = \Excel::load($excelFile)->get()->toArray();
 
-        $test=Excel::selectSheets('wheel_products')->load($excelFile, function($reader) {
-            $reader->ignoreEmpty();
+        $test=Excel::selectSheets('Sheet1')->load($excelFile, function($reader) {
+            // $reader->ignoreEmpty();
             $results = $reader->get()->toArray();
      
             foreach($results as $key => $row){
@@ -1775,12 +1775,12 @@ public function vftp_to_sql_test($filename){
             }else{
                 if(!front_back_filecheck($product->prodimage)){
                     // dd($product->prodimage);
-                    $arr[]=front_back_filecheck($product->prodimage);
+                    $arr[]=$product->prodimage;
                 }
             }
             
-        dd($arr);
         }
+        dd($arr);
     }
 }
 
