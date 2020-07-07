@@ -157,14 +157,16 @@ function wheelbrands($splitarray = '') {
 ///// Wheel front and back image path 
 function front_back_path($imgPath){ 
 	$imageArray = explode('/', $imgPath);
-	$imageArrayname = explode('.', end($imageArray));  
+	$filename = str_replace(".jpg","",end($imageArray)); 
+	$filename = str_replace(".png","",$filename); //explode('.', end($imageArray));  
+	$filename = str_replace(".jpeg","",$filename); //explode('.', end($imageArray));  
 	if($imageArray != null){
-		if(file_exists(public_path('storage/wheels/front_back/'.current($imageArrayname).'.png'))){
+		if(file_exists(public_path('storage/wheels/front_back/'.$filename.'.png'))){
 
-			return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+			return 'storage/wheels/front_back/'.$filename.'.png';
 		}else{
 
-			return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+			return 'storage/wheels/front_back/'.$filename.'.png';
 		}
 	}else{
 		return $imgPath;
@@ -172,11 +174,13 @@ function front_back_path($imgPath){
 }
 function front_back_filecheck($imgPath){ 
 	$imageArray = explode('/', $imgPath);
-	$imageArrayname = explode('.', end($imageArray));  
+	$filename = str_replace(".jpg","",end($imageArray)); 
+	$filename = str_replace(".png","",$filename); //explode('.', end($imageArray));  
+	$filename = str_replace(".jpeg","",$filename); //explode('.', end($imageArray));  
 	if($imageArray != null){
-		if(file_exists(base_path('storage/app/public/wheels/front_back/'.current($imageArrayname).'.png'))){
+		if(file_exists(public_path('storage/wheels/front_back/'.$filename.'.png'))){
 
-			return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+			return 'storage/wheels/front_back/'.$filename.'.png';
 		}else{
 
 			return false;

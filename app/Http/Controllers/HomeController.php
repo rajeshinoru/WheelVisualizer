@@ -1768,12 +1768,13 @@ public function vftp_to_sql_test($filename){
         $arr=[];
         foreach ($products as $key => $product) {
             if($product->wheel != null){
-                if(!front_back_filecheck($product->wheel['image'])){
+                if(!front_back_filecheck($product->wheel->image)){
                     $arr[]=$product->prodimage;
-                }
+                } 
             }else{
                 if(!front_back_filecheck($product->prodimage)){
-                    $arr[]=$product->prodimage;
+                    // dd($product->prodimage);
+                    $arr['new'][]=$product->prodimage;
                 }
             }
             
