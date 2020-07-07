@@ -1764,12 +1764,19 @@ public function vftp_to_sql_test($filename){
 
     public function VerifyWheelProductImages(Request $request)
     { 
-        $products = WheelProduct::get();
+        $products = WheelProduct::with('wheel')->get();
         $arr=[];
         foreach ($products as $key => $product) {
-            if(!getWheelProductImage($product->prodimage)){
-                $arr[]=$product->prodimage;
+            if($product->wheel != null){
+                if(!front_back_filecheck($product->wheel['image'])){
+                    $arr[]=$product->prodimage;
+                }
+            }else{
+                if(!front_back_filecheck($product->prodimage)){
+                    $arr[]=$product->prodimage;
+                }
             }
+            
         }
         dd($arr);
     }

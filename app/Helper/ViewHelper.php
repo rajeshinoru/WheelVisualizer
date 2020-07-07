@@ -170,7 +170,21 @@ function front_back_path($imgPath){
 		return $imgPath;
 	}
 }
+function front_back_filecheck($imgPath){ 
+	$imageArray = explode('/', $imgPath);
+	$imageArrayname = explode('.', end($imageArray));  
+	if($imageArray != null){
+		if(file_exists(base_path('storage/app/public/wheels/front_back/'.current($imageArrayname).'.png'))){
 
+			return 'storage/wheels/front_back/'.current($imageArrayname).'.png';
+		}else{
+
+			return false;
+		}
+	}else{
+		return $imgPath;
+	}
+}
 
 function ViewImage($url=''){
 	if($url != ''){
