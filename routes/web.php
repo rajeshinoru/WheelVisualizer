@@ -75,6 +75,8 @@ Route::get('/carImagesMovingToFolder', 'HomeController@carImagesMovingToFolder')
 Route::get('/carImagesMovingToFolderLive', 'HomeController@carImagesMovingToFolderLive');
 Route::get('/renameFrontBackImages', 'HomeController@renameFrontBackImages');
 Route::get('/carimagestosqlLive', 'HomeController@carimagestosqlLive');
+Route::get('/VerifyWheelProductImages', 'HomeController@VerifyWheelProductImages');
+
 
 Route::get('/DropshipperImport', 'DropshipperController@DropshipperImport');
 

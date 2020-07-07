@@ -1759,6 +1759,22 @@ public function vftp_to_sql_test($filename){
         }
         return 'success';
     }
+
+
+
+    public function VerifyWheelProductImages(Request $request)
+    { 
+        $products = WheelProduct::get();
+        $arr=[];
+        foreach ($products as $key => $product) {
+            if(!getWheelProductImage($product->prodimage)){
+                $arr[]=$product->prodimage;
+            }
+        }
+        dd($arr);
+    }
 }
+
+
 
 
