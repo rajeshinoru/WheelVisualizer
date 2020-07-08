@@ -215,6 +215,16 @@ class TireController extends Controller
 
 
 
+        $zipcode =Session::get('user.zipcode');
+
+        if($zipcode != null){
+            $tires->whereHas('Inventories',function($q){
+                $q->where('available_qty','>',0);
+                $q->orderBy('available_qty', 'DESC');
+            });
+        }   
+
+                    
         $tires = $tires
             ->orderBy('qtyavail', 'DESC')
             ->orderBy('price', 'ASC')
@@ -251,8 +261,7 @@ class TireController extends Controller
             }
 
 
- 
-                $zipcode =Session::get('user.zipcode'); 
+  
 
         // dd($tires);
         // dd($speedratings,json_decode(base64_decode($request->tirespeedrating)));

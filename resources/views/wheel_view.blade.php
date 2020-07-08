@@ -662,7 +662,7 @@
                                                 </div>
                                             </div>
 
-                                            <h1 class="instock-head">Availability:<b>{{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
+                                            <h1 class="instock-head">Availability: <b>{{@$product->qtyavail ? 'In Stock' : 'Low Stock - Call to Confirm' }}</b></h1>
                                         </div>
                                         @endif
                                         <!--  -->

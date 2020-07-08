@@ -87,21 +87,21 @@ class CartController extends Controller
  
                 $zipcode = \Session::get('user.zipcode');
 
-                $dropshipper_codes = Dropshipper::where('zip',$zipcode)->pluck('code');
+                // $dropshipper_codes = Dropshipper::where('zip',$zipcode)->pluck('code');
 
-                $inventories = Inventory::whereIn('location_name',$dropshipper_codes)->where('partno',$product->partno)->get();
+                // $inventories = Inventory::whereIn('location_name',$dropshipper_codes)->where('partno',$product->partno)->get();
                 // dd(count($inventories) > 0 );
-                if(count($inventories) > 0 ){
+                // if(count($inventories) > 0 ){
                     array_push($cart, array(
                         "id" => $request->productid,
                         "type" => $request->prodtype,
                         "qty" => $request->qty,
                         "price" => $request->price,
                     ));
-                }else{
-                    $msg = '<br><b>This Product does not available near your location based on your zipcode. <br> Choose another product or Change the zipcode </b><br>'; 
-                    return ['status'=>'failed','message'=>$msg];
-                }
+                // }else{
+                //     $msg = '<br><b>This Product does not available near your location based on your zipcode. <br> Choose another product or Change the zipcode </b><br>'; 
+                //     return ['status'=>'failed','message'=>$msg];
+                // }
 
 
             }
@@ -272,47 +272,6 @@ class CartController extends Controller
         }
 
 
-        //         $url ='http://production.shippingapis.com/ShippingApi.dll';
-        //         $xml = '<CityStateLookupRequest USERID="502THEWH6849"><ZipCode ID="0"><Zip5>20024</Zip5></ZipCode></CityStateLookupRequest>';
-        //         $api = 'CityStateLookup';
-                 
-                 
-        //         //The URL that you want to send your XML to.
-        //         $url = $url."?API=".$api."&XML=".$xml;
-         
-        // $headers = array(
-        //     "Content-type: text/xml",
-        //     "Content-length: " . strlen($xml),
-        //     "Connection: close",
-        // );
-
-        // $response = Curl::to($url)->get();
-        // // $cURLConnection = curl_init();
-        // // curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
-        // //     'Header-Key: Header-Value',
-        // //     'Header-Key-2: Header-Value-2'
-        // // ));
-        // // curl_setopt($cURLConnection, CURLOPT_URL, $url);
-        // // curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
-
-        // // $result = curl_exec($cURLConnection);
-        // // curl_close($cURLConnection);
- 
-        // dd($response);
-        // //Print out the response output.
-        // // echo $result;
-
-
-        // $ch = curl_init(); 
-        // curl_setopt($ch, CURLOPT_URL,$url);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        // curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        // curl_setopt($ch, CURLOPT_POST, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        // $data = curl_exec($ch); 
-        // dd($data);
 
         return 'success';
     }

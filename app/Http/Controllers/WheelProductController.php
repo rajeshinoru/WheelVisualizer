@@ -339,9 +339,21 @@ class WheelProductController extends Controller
 
             }
 
+            // if zipcode is available....
 
+
+            $zipcode =Session::get('user.zipcode');
+
+            if($zipcode != null){
+                $products->whereHas('Inventories',function($q){
+                    $q->where('available_qty','>',0);
+                    $q->orderBy('available_qty', 'DESC');
+                });
+            }                       
+            
+            
             $products = $products
-                ->orderBy('qtyavail', 'DESC')
+                // ->orderBy('qtyavail', 'DESC')
                 ->orderBy('price', 'ASC')
                 ->get()
                 ->unique('prodtitle');
@@ -366,8 +378,6 @@ class WheelProductController extends Controller
                 Session::put('user.vehicle',null);
             }
 
-
-            $zipcode =Session::get('user.zipcode');
             // dd($zipcode);
 
             return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode'));

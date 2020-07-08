@@ -25,5 +25,8 @@ class WheelProduct extends Model
 	}
 	
 
+	public function Inventories() {
+	    return $this->hasMany('App\Inventory','partno','partno');
+	}
 	
 }

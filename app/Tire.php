@@ -118,4 +118,7 @@ class Tire extends Model
 	    return $this->hasMany('App\Review','partno','partno')->where('category','tire')->where('approval','1');
 	}
 
+    public function Inventories(){
+    	return $this->hasMany('App\Inventory','partno','partno');
+    }
 }
