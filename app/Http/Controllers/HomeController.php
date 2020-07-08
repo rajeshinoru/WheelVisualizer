@@ -1667,34 +1667,11 @@ public function vftp_to_sql_test($filename){
     //     }
     // }
     public function exportTable(Request $request){
+        
+        if($request->module != ''){
 
-        if($request->module == 'MetaKeyword'){
-
-            $data = MetaKeyword::all();
-        }elseif($request->module == 'Tire'){
-
-            $data = Tire::all();
-        }elseif($request->module == 'WheelProduct'){
-
-            $data = WheelProduct::all();
-        }elseif($request->module == 'Wheel'){
-
-            $data = Wheel::all();
-        }elseif($request->module == 'CarImage'){
-
-            $data = CarImage::all();
-        }elseif($request->module == 'CarColour'){
-
-            $data = CarColour::all();
-        }elseif($request->module == 'Order'){
-
-            $data = Order::all();
-        }elseif($request->module == 'Post'){
-
-            $data = Post::all();
-        }elseif($request->module == 'Vehicle'){
-
-            $data = Vehicle::all();
+            $appModel = "\\App\\" . $request->module; 
+            $data = $appModel::all();
         }
 
 

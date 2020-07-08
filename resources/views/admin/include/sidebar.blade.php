@@ -118,6 +118,9 @@
                         <li>
                             <a  href="{{url('admin/slider')}}" aria-expanded="false"><i class="fa fa-list "></i> Sliders  </a>
                         </li>
+                        <li>
+                            <a  href="{{url('admin/dropshipper')}}" aria-expanded="false"><i class="fa fa-list "></i> Dropshippers  </a>
+                        </li>
 <!--                         <li>
                             <a  href="{{url('admin/setting')}}" aria-expanded="false"><i class="fa fa-cog "></i> Settings  </a>
                         </li> -->

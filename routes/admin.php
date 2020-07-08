@@ -72,3 +72,4 @@ Route::get('/exportTable/{category?}', 'HomeController@exportTable');
 
 
 Route::resource('slider','SliderController'); 
+Route::resource('dropshipper','DropshipperController'); 

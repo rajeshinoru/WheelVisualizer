@@ -15,7 +15,9 @@ class DropshipperController extends Controller
      */
     public function index()
     {
-        //
+        
+        $dropshippers = Dropshipper::paginate(10);
+        return view('admin.dropshipper.index',compact('dropshippers'));
     }
 
     /**
@@ -33,10 +35,32 @@ class DropshipperController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'dropshipper'=>'required',
+            'code'=>'required',
+            'address1'=>'required' ,
+            'city'=>'required',
+            'state'=>'required',
+            'zip'=>'required' ,
+            'emailaddress'=>'required|email',
+            // 'ccemailaddress'=>'email',
+            'contactname'=>'required' ,
+        ]);
+        try{  
+
+                $data = $request->except(['_token']);
+
+                $dropshipper = Dropshipper::create($data);  
+                
+
+                return back()->with('success','Dropshipper Created Successfully!!');
+
+            }catch(Exception $e){
+                return back()->withInput(Input::all())->with('error',$e->getMessage());
+            }
     }
 
     /**
@@ -70,7 +94,27 @@ class DropshipperController extends Controller
      */
     public function update(Request $request, Dropshipper $dropshipper)
     {
-        //
+        // dd($post,$request->all());
+
+        $this->validate($request, [
+            'dropshipper'=>'required',
+            'code'=>'required',
+            'address1'=>'required' ,
+            'city'=>'required',
+            'state'=>'required',
+            'zip'=>'required' ,
+            'emailaddress'=>'required|email',
+            // 'ccemailaddress'=>'email',
+            'contactname'=>'required' ,
+        ]);
+        try{   
+                $dropshipper->update($request->all());
+
+                return back()->with('success','Dropshipper Updated Successfully!!');
+
+            }catch(Exception $e){
+                return back()->withInput(Input::all())->with('error',$e->getMessage());
+            }
     }
 
     /**
@@ -81,7 +125,15 @@ class DropshipperController extends Controller
      */
     public function destroy(Dropshipper $dropshipper)
     {
-        //
+        try{  
+            
+            $dropshipper->delete();
+
+            return back()->with('success','Dropshipper Deleted Successfully!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
     }
 
     public function verify_string($str){
