@@ -26,6 +26,7 @@
                             <thead>
                                 <tr>
                                     <th>S.No</th>
+                                    <th>Order # </th>
                                     <th>Name</th>
                                     <th>No.Of Items</th>
                                     <th>Billing Address</th>
@@ -45,6 +46,7 @@
                             @forelse(@$orders as $key => $order) 
                             <tr>
                                 <td>{{@$key+1}}</td>
+                                <td><a href="{{url('/user/invoice/')}}/{{base64_encode($order->id)}}">{{@$order->ordernumber?:'Download'}}</a></td>
                                 <td>{{@$order->firstname}}</td>
                                 <td class="td-center">
 

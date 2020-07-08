@@ -218,6 +218,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/orders', 'UserController@orders')->name('user.orders');
   Route::resource('ticket', 'TicketController');
   Route::post('/ticket/message/store', 'TicketController@message_store')->name('ticket.message.store');
+  Route::get('/user/invoice/{id}', 'OrderController@invoice_pdf');
 });
 
 

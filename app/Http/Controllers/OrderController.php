@@ -9,6 +9,7 @@ use App\WheelProduct;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
+use PDF;
 class OrderController extends Controller
 {
     /**
@@ -183,4 +184,33 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function invoice_pdf(Request $request,$id){
+        $id = base64_decode($id);
+        if($id != ''){
+
+            $order = Order::with('OrderItems')->find($id); 
+
+            $pdf = PDF::loadView('user.orders.invoice',compact('order'));
+  
+            
+            return $pdf->download($order->ordernumber?:'Invoice'.'.pdf');
+        }
+
+
+        // $data = $this->usersGenerator();
+        return (new FastExcel($data))->download($request->module.'.csv');
+
+
+        // Excel::create($request->module, function($excel) use($data,$request) {
+
+        //     $excel->sheet($request->module, function($sheet) use($data) {
+
+        //         $sheet->fromArray($data);
+
+        //     });
+
+        // })->export('csv');
+    }
+
 }
