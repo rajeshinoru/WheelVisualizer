@@ -56,7 +56,12 @@ class UpdateFolderWise extends Command
 
                 $filename = strtoupper($file);
     
-                   if ( (strpos($filename, '.XLSX') !== false) || (strpos($filename, '.XLS') !== false) || (strpos($filename, '.CSV') || (strpos($filename, '.csv')  ) ){ 
+                   if ( (strpos($filename, '.XLSX') !== false) ||
+                        (strpos($filename, '.XLS') !== false) ||
+                        (strpos($filename, '.CSV') !== false) || 
+                        (strpos($filename, '.csv') !== false) 
+                      )
+                   { 
                         $this->storeArr[] = $file;
                    }
                     // array_push($this->storeArr[],$file);
