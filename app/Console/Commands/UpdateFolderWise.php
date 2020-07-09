@@ -80,7 +80,7 @@ class UpdateFolderWise extends Command
             $newData['created_at']=\Carbon\Carbon::now();
             $newData['updated_at']=\Carbon\Carbon::now();
 
-            $newData['available_qty'] = $this->clean($newData['available_qty']);
+            $newData['available_qty'] = (string)$this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
             // dd($newData);
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
@@ -97,7 +97,7 @@ class UpdateFolderWise extends Command
  
                 foreach ($newData as $key => $data) {
 
-                    $data['available_qty'] = $this->clean($data['available_qty']);
+                    $data['available_qty'] =  (string)$this->clean($data['available_qty']);
                     $data['price'] = $this->clean($data['price']);
 
 
