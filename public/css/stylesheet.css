@@ -8695,7 +8695,11 @@ ol.carousel-indicators {
     width:25% !important;
 }
 .col-sm-6.shop-details .row.product-quantity .col-sm-4.view-two, .view-one, .view-three {
-    /*width:15% !important;*/
+    width:15%;
+}
+.col-sm-4.view-one
+{
+width:25% !important;
 }
 /* Wheel Product Start */
 .modal-dialog.wheel-view h2 {
