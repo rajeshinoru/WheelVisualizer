@@ -19,7 +19,18 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>All Tickets</h4>
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                        <div class="row"> 
+                                <div class="col-md-10 form-group "> </div>
+                                <div class="col-md-2 form-group ">  
+                                    <select name="status" class="form-group form-control status_filtered">
+                                        <option value="">Select Status for Filter</option>
+                                        <option value="ALL">All</option>
+                                        @foreach(TicketStatus() as $tkey => $status)
+                                        <option value="{{$status}}" {{($status == json_decode(base64_decode(@Request::get('status'))))?'selected':''}}>{{ViewTicketStatus(@$status)}}</option>
+                                        @endforeach
+                                    </select>
+                                </div> 
+                        </div>
                     <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Ticket</button>  -->
                     
                     <!-- <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=T">Export CSV </a> -->
@@ -46,7 +57,7 @@
                                 <td>{{@$ticket->email}}</td>
                                 <td>{{@$ticket->phone?:'-'}}</td>
                                 <td>{{@$ticket->ticketno}}</td>
-                                <td>{{@$ticket->status}}</td>
+                                <td>{{ViewTicketStatus(@$ticket->status)}}</td>
                                 <td>{{@$ticket->updated_at}}</td>
                                 <td>
                                                     <a class="btn btn-info" href="{{route('admin.ticket.show',$ticket->id)}}">View</a> 
@@ -116,7 +127,7 @@
                             @endforelse
                         </table>
 
-                        {{$tickets->links()}}
+                        {{$tickets->appends([ 'status' => @Request::get('status')])->links()}}
                     </div>
                 </div>
             </div>
@@ -133,7 +144,7 @@
 <script type="text/javascript"> 
     $('.status').change(function() { 
         var selectedOption = $(this).find('option:selected').val(); 
-        if(selectedOption == 'CLOSED' || selectedOption == 'HOLD')
+        if(selectedOption == 'CLOSED')
         {
             $('.reason').show();
             $('.reason').find('textarea').attr('required',true);
@@ -145,7 +156,19 @@
         }
 
     });
+    $('.status_filtered').change(function() { 
+        var selectedOption = $(this).find('option:selected').val(); 
+        if(selectedOption != 'ALL' && selectedOption != ''  ){
+            updateParamsToUrl('status',selectedOption);
+        }else{
+            removeParamsFromUrl('status');
+        }
+
+    });
+
+
 </script>
+
 @endsection
 
 

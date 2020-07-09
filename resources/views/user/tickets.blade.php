@@ -44,7 +44,7 @@
                                 <td>{{@$ticket->firstname}}</td>
                                 <td>{{@$ticket->email}}</td>
                                 <td>{{@$ticket->ticketno}}</td>
-                                <td>{{@$ticket->status}}</td>
+                                <td>{{ViewTicketStatus(@$ticket->status)}}</td>
                                 <td>{{@$ticket->updated_at}}</td>
                                 <td>
                                                     <a class="btn btn-info" href="{{route('ticket.show',$ticket->id)}}">View</button> 

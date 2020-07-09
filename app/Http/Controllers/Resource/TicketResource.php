@@ -16,11 +16,14 @@ class TicketResource extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
- 
-        $tickets = Ticket::orderBy('updated_at','DESC')->paginate(10); 
+        $tickets =Ticket::orderBy('updated_at','DESC'); 
+        if($request->has('status')){
+            $tickets->where('status',json_decode(base64_decode($request->status)));
+        }  
+        $tickets = $tickets->paginate(10); 
         
         return view('admin.ticket.index',compact('tickets'));
     }
@@ -54,8 +57,8 @@ class TicketResource extends Controller
                 $data = $request->except(['_token']);
                 $ticket = Ticket::where('id',$request->ticket_id)->first();
                 $ticket_messages = TicketMessage::where('ticket_id',$ticket->id)->where('postby','admin')->count();
-                if($ticket_messages == 0 || $ticket->status == 'RAISED'){
-                    $ticket->status = 'ACCEPTED';
+                if($ticket_messages == 0 || $ticket->status == 'OPEN'){
+                    $ticket->status = 'RESPONDING';
                     $ticket->save();
                 }
                 if($request->postby == 'admin'){
@@ -110,7 +113,7 @@ class TicketResource extends Controller
     { 
 
         $this->validate($request, [  
-            'reason'=>'required|min:10', 
+            'reason'=>"required_if:status,==,CLOSED", 
             'status'=>'required'  
         ]);
         try{   

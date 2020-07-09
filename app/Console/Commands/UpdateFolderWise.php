@@ -56,7 +56,7 @@ class UpdateFolderWise extends Command
 
                 $filename = strtoupper($file);
     
-                   if ( (strpos($filename, '.XLSX') !== false) || (strpos($filename, '.XLS') !== false) || (strpos($filename, '.CSV')  ) ){ 
+                   if ( (strpos($filename, '.XLSX') !== false) || (strpos($filename, '.XLS') !== false) || (strpos($filename, '.CSV') || (strpos($filename, '.csv')  ) ){ 
                         $this->storeArr[] = $file;
                    }
                     // array_push($this->storeArr[],$file);
@@ -1286,7 +1286,7 @@ class UpdateFolderWise extends Command
         // dd($allFiles,$folderKey);
 
         if(in_array($folderKey, ["vftp0013","vftp0017","vftp0027","vftp0028","vftp0030","vftp0032","vftp0046","vftp0049","vftp0050","vftp0054","vftp0055"])){
-
+            \Log::info('File NAME =>'.end($allFiles));
             $allFiles = array(end($allFiles));
         }
 

@@ -1,9 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>A simple, clean, and responsive HTML invoice template</title>
-    
+    <title>{{@$order->ordernumber}}</title>
     <style>
     .invoice-box {
         max-width: 800px;
@@ -102,28 +101,18 @@
 <body>
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
-<!--             <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                <img src="" style="width:100%; max-width:300px;">
-                            </td>
-                            
-                            <td style="float: right !important;">
-                                Invoice #: {{$order->ordernumber}}<br>
-                                Created: {{$order->created_at}}<br>
-                                Printed: {{date('Y-m-d  h:i:s ')}}
-                            </td>
-                        </tr>
-                    </table>
+            <tr class="top">
+                <td colspan="4" style="text-align: center;"> 
+                    <p>Discounted Wheel Warehouse - Order Invoice</p> 
                 </td>
-            </tr> -->
-            <tr class="total"><td colspan="3">
-                                Invoice #: {{$order->ordernumber}}<br>
-                                Created: {{$order->created_at}}<br>
-                                Printed: {{date('Y-m-d  h:i:s ')}}
-                            </td><td> </td></tr>
+            </tr>
+            <tr class="top">
+                <td colspan="4">
+                    Invoice #: {{$order->ordernumber}}<br>
+                    Created: {{$order->created_at}}<br>
+                    Printed: {{date('Y-m-d  h:i:s ')}}
+                </td>
+            </tr>
             <tr class="information">
                 <td colspan="2">
                     <table>

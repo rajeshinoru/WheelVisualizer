@@ -736,13 +736,15 @@ function getSliders($page){
 }
 
 
-function TicketStatus($status='',$condition=''){     
+function TicketStatus($status='',$condition=''){    
+	// Open, Responding, Waiting on Customer, Refund Request, RMA, Closed 
 	$list  = array(
-				'1'=>'RAISED',
-				'2'=>'ACCEPTED',
-				'3'=>'RESOLVED',
-				'4'=>'HOLD', 
-				'5'=>'CLOSED',
+				'1'=>'OPEN',
+				'2'=>'RESPONDING',
+				'3'=>'WAITING',
+				'4'=>'REFUNDREQUEST', 
+				'5'=>'RMA',
+				'6'=>'CLOSED',
 			);
 
 	if($status !=''){
@@ -759,6 +761,24 @@ function TicketStatus($status='',$condition=''){
 		}
 	}
 
+	return $list;
+}
+
+function ViewTicketStatus($key=''){    
+	// Open, Responding, Waiting on Customer, Refund Request, RMA, Closed 
+ 
+	$list  = array(
+		'OPEN'=>'Open',
+		'RESPONDING'=>'Responding',
+		'WAITING'=>'Waiting on Customer',
+		'REFUNDREQUEST'=>'Refund Request',
+		'RMA'=>'RMA',
+		'CLOSED'=>'Closed',
+	);
+
+	if($key!=''){
+		return $list[$key];
+	}
 	return $list;
 }
 

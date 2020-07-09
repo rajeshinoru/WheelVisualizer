@@ -28,8 +28,8 @@
                             <td><h4>Subject : {{getTicketSubjects($ticket->subject)}}</h4>  </td>
                             <td><h4>Invoice Number : {{$ticket->invoice}}</h4></td>
                             <td>
-                                <h4>Status : {{$ticket->status}}<br><br>
-                                @if($ticket->status == 'HOLD' || $ticket->status == 'CLOSED' )
+                                <h4>Status : {{ViewTicketStatus($ticket->status)}}<br><br>
+                                @if($ticket->status == 'CLOSED' )
                                     Reason : {{$ticket->closed_reason}}</h4>
                                 @endif
                             </td> 

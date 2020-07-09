@@ -326,7 +326,7 @@
                 </span>
                 @endif
                 <div class="forgetSec">
-                    <a href="#" class="float-left">@lang('user.login.forget_password')</a>
+                    <a href="{{url('/password/reset')}}" class="float-left">@lang('user.login.forget_password')</a>
                 </div>
                 <br>
                 <div class="form-group text-center">

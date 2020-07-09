@@ -61,7 +61,7 @@ class TicketController extends Controller
         try{  
 
                 $data = $request->except(['_token']);
-                $data['status']='RAISED';
+                $data['status']='OPEN';
                 if(Auth::user()){
                     $data['firstname']=Auth::user()->fname;
                     $data['lastname']=Auth::user()->lname;
@@ -77,7 +77,7 @@ class TicketController extends Controller
                     'postby'=>'user'
                 ]);
 
-                return back()->with('success','Your Ticket ( '.$ticket->ticketno.' )Raised Successfully!!');
+                return back()->with('success','Your Ticket ( '.$ticket->ticketno.' ) Opened Successfully!!');
 
         }catch(Exception $e){
             return back()->withInput(Input::all())->with('error',$e->getMessage());
@@ -145,15 +145,18 @@ class TicketController extends Controller
 
                 $data = $request->except(['_token']);
                 $ticket = Ticket::where('id',$request->ticket_id)->first();
+
+                if($ticket->status == 'CLOSED'){
+                    $ticket->status='OPEN';
+                    $ticket->save();
+                }
                 if($request->postby == 'user'){
                     TicketMessage::create([
                         'ticket_id'=>$ticket->id,
                         'description'=>$request->description,
                         'postby'=>'user'
                     ]);
-                } else{
-
-                }
+                } 
 
                 return back()->with('success','Your Reply was sent successfully!!');
 
