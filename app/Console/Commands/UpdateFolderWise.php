@@ -78,14 +78,14 @@ class UpdateFolderWise extends Command
         
 
         if(array_keys($newData) !== range(0, count($newData) - 1)) {
-
+ 
 
             // $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
             $newData['created_at']=\Carbon\Carbon::now();
             $newData['updated_at']=\Carbon\Carbon::now();
 
-            $newData['available_qty'] = (string)$this->clean($newData['available_qty']);
+            $newData['available_qty'] = (integer)$this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
             // dd($newData);
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
