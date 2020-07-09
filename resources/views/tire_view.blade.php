@@ -1202,7 +1202,7 @@
                                 {{@$review->created_at->diffForHumans()}}
                             </div>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-4">
                             <div class="review-block-rate">
                                 <div class='rating-stars text-left'>
                                      <ul id='stars'>
@@ -1225,11 +1225,47 @@
                                 </div>
                             </div>
                             <div class="review-block-title">{{getLimitedWords($review->comment,5)}}</div>
+                        </div>
+
+                        <div class="col-sm-5 ">
+                            @foreach(getRatingList() as $ratingKey =>$rating)
+                                <div class="row product-rating">
+                                    <div class="col-sm-2 ">
+                                        <h5>{{$rating}}</h5>
+                                    </div>
+                                    <div class="col-sm-10 text-warning">
+                                        <div class='rating-stars text-center'> 
+                                            <ul id='stars'>
+
+                                        <li class='star {($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 1 )?"selected":""}}' title='Poor' data-value='1'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        <li class='star {{($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 2 )?"selected":""}}' title='Fair' data-value='2'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star {{($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 3 )?"selected":""}}' title='Good' data-value='3'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star {{($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 4 )?"selected":""}}' title='Excellent' data-value='4'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                        <li class='star {{($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 5 )?"selected":""}}' title='WOW!!!' data-value='5'>
+                                            <i class='fa fa-star fa-fw'></i>
+                                        </li>
+                                            </ul>
+                                        </div>
+                                    </div> 
+                                </div>
+                            @endforeach 
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-sm-12">
                             <div class="review-block-description">
-                                {{@$review->comment}}
+                                <p class="read_more_text" data-length="300">{{@$review->comment}}</p>
                             </div>
                         </div>
                     </div>
+
                     <hr />
              <!--        <div class="row">
                         <div class="col-sm-3 user-image">
