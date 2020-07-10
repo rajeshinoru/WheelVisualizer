@@ -34,6 +34,7 @@
                                     <th>Email</th>
                                     <th>Ticket Number</th>  
                                     <th>Status</th> 
+                                    <th># of Replies</th> 
                                     <th>Updated At</th>
                                     <th>Actions</th>
                                 </tr>
@@ -45,6 +46,7 @@
                                 <td>{{@$ticket->email}}</td>
                                 <td>{{@$ticket->ticketno}}</td>
                                 <td>{{ViewTicketStatus(@$ticket->status)}}</td>
+                                <td class="td-center">{{@$ticket->Messages->count()}}</td>
                                 <td>{{@$ticket->updated_at}}</td>
                                 <td>
                                                     <a class="btn btn-info" href="{{route('ticket.show',$ticket->id)}}">View</button> 

@@ -117,7 +117,7 @@ class InventoryAutoUpdate extends Command
         $foldersArray = array(
             "vftp0010",
             "vftp0011",
-            "vftp0012",
+            // "vftp0012",//Client Asked to Stop
             "vftp0013",
             "vftp0014",
             "vftp0015",
@@ -131,7 +131,7 @@ class InventoryAutoUpdate extends Command
             "vftp0028",
             "vftp0029",
             "vftp0030",
-            "vftp0031",
+            // "vftp0031", //Client Asked to Stop
             "vftp0032",
             "vftp0033",
             "vftp0036",
