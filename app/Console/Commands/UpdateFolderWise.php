@@ -90,8 +90,8 @@ class UpdateFolderWise extends Command
             // dd($newData);
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
-                Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
-                RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
                  
  
                 \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
