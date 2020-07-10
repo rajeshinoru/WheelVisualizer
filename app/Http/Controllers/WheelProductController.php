@@ -11,7 +11,7 @@ use App\ChassisModel;
 use App\PlusSize;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
-
+use App\Http\Controllers\ZipcodeController;
 use Session;
 
 class WheelProductController extends Controller
@@ -345,6 +345,8 @@ class WheelProductController extends Controller
             $zipcode =Session::get('user.zipcode');
 
             if($zipcode != null){
+                $zipcodes = ZipcodeController::getZipcodesByRadius($zipcode);
+                // dd($zipcodes);
                 $products->whereHas('Inventories',function($q){
                     $q->where('available_qty','>',0);
                     $q->orderBy('available_qty', 'DESC');
