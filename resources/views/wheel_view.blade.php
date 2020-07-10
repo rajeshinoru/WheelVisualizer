@@ -969,7 +969,7 @@
                                         <div class='rating-stars text-center'> 
                                             <ul id='stars'>
 
-                                        <li class='star {($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 1 )?"selected":""}}' title='Poor' data-value='1'>
+                                        <li class='star {{($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 1 )?"selected":""}}' title='Poor' data-value='1'>
                                             <i class='fa fa-star fa-fw'></i>
                                         <li class='star {{($review->Ratings()->where("feature",$ratingKey)->first()->rating >= 2 )?"selected":""}}' title='Fair' data-value='2'>
                                             <i class='fa fa-star fa-fw'></i>
