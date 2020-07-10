@@ -90,8 +90,9 @@ class UpdateFolderWise extends Command
             // dd($newData);
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
-                Inventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
-                RemoteInventory::updateOrCreate(['partno' =>$newData['partno'], 'location_code' =>$newData['location_code']] , $newData );
+                Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                 
  
                 \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
             }
@@ -113,8 +114,8 @@ class UpdateFolderWise extends Command
                         $data['created_at']=\Carbon\Carbon::now();
                         $data['updated_at']=\Carbon\Carbon::now();
 
-                        Inventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
-                        RemoteInventory::updateOrCreate(['partno' =>$data['partno'], 'location_code' =>$data['location_code']] , $data ); 
+                        Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
+                        RemoteInventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data );  
                         
                         \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
@@ -132,51 +133,7 @@ class UpdateFolderWise extends Command
 
         }
 
-
-
-
-        // \Log::info("Log : ".$newData['partno']);
-
-        // $columns = array_keys($newData);
-
-        // $columnsString = implode(",", $columns);
-
-        // $values = array_values($newData);
-        // $valuesString = implode("','", $values);
-
-        // dd($valuesString,$columnsString);
-
-        // $existQuery ="select partno,location_code from {$table} where partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
-
-        // $exists = \DB::select($existQuery);
-
-        // if($exists){
-        //     $query = "UPDATE  {$table}  SET price = '".$newData['price']."',available_qty = '".$newData['available_qty']."',updated_at = '".$newData['updated_at']."' WHERE partno='".$newData['partno']."' and location_code='".$newData['location_code']."'";
-        // }else{
-        //     $query = "INSERT INTO {$table} ({$columnsString}) VALUES ('{$valuesString}')";
-        
-        // }
-
-        // \DB::statement($query);
-        
-        // $db_ext->statement($query);
-
-
-
-
-        // \DB::table($tablename)->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update(['backupflag'=>'yes']);
-
-
-
-        // $sap_exists = $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->first(); 
-
-
-        // if($sap_exists){
-        //     $db_ext->table('inventories')->where('partno',$newData['partno'])->where('location_code',$newData['location_code'])->update($newData); 
-        // }else{
-
-        //     $db_ext->table('inventories')->insert($newData);   
-        // }
+ 
     }
 
     function clean($string) {
@@ -834,6 +791,7 @@ class UpdateFolderWise extends Command
                     '7' =>   array("Reliable","RTGAD","RT-Inv_DoravilleGA"),
                     '9' =>   array("Reliable","RTCT","RT-Inv_HartfordCT"),
                     '41' =>  array("Reliable","RTMD","RT-Inv_JessupMD"),
+                    '61' =>  array("Reliable","",""),
                 ),
                 "vftp0016"=>array(
                     "DenverCO"    => array("WheelPros","WP1001","WP-Inv_DenverCO"),
