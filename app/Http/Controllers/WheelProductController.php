@@ -11,7 +11,7 @@ use App\ChassisModel;
 use App\PlusSize;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
-use App\Http\Controllers\ZipcodeController;
+use App\Http\Controllers\ZipcodeController as Zipcode;
 use Session;
 
 class WheelProductController extends Controller
@@ -345,15 +345,26 @@ class WheelProductController extends Controller
             $zipcode =Session::get('user.zipcode');
 
             if($zipcode != null){
-                $zipcodes = ZipcodeController::getZipcodesByRadius($zipcode);
-                // dd($zipcodes);
-                $products->whereHas('Inventories',function($q){
-                    $q->where('available_qty','>',0);
-                    $q->orderBy('available_qty', 'DESC');
-                });
+                $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
+            
+    
+                    $products = $products->withCount(['Inventories as available' => function($query) {
+                        $query->select(\DB::raw('max(available_qty)'));
+                    }])
+                    // ->get();
+
+                    // dd($products);
+                // $products->with([
+                //     'Inventories'=>function($q){ 
+                //         $q->where('available_qty','>',0);
+                //         $q->orderBy('available_qty', 'DESC');
+                //     }
+                // ]);
             }                       
             
-            
+            // ,'Inventories.Dropshippers'=>function($q1) use($zipcodes){
+            //             $q1->whereIn('zip',$zipcodes); 
+            //         },
             $products = $products
                 // ->orderBy('qtyavail', 'DESC')
                 ->orderBy('price', 'ASC')
@@ -367,7 +378,7 @@ class WheelProductController extends Controller
 
             //     dd($w);
             $products = MakeCustomPaginator($products, $request, 9);
-            
+            // dd($products);
             $flag=@$request->flag?:null;
 
 

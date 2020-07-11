@@ -31,23 +31,26 @@ class UpdateFolderWise extends Command
      */
     protected $description = 'Update the VFTP Folders Sheet Data ';
 
+
+
+    public $storeArr=array();
+
+
     /**
      * Create a new command instance.
      *
      * @return void
      */
+    
     public function __construct()
     {
         parent::__construct();
     }
 
-    public $storeArr=array();
  
 
     public function recursiveScan($dir,$storeArr) {
         $tree = glob(rtrim($dir, '/') . '/*');
-  
-
         if (is_array($tree)) {
             foreach($tree as $file) {
                 if(is_dir($file)) {
