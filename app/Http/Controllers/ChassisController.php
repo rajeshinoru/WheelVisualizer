@@ -14,7 +14,8 @@ class ChassisController extends Controller
      */
     public function index()
     {
-        //
+        $chassises = Chassis::orderby('chassis_id')->paginate(10); 
+        return view('admin.chassis.index',compact('chassises'));
     }
 
     /**
@@ -35,7 +36,21 @@ class ChassisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $this->validate($request, [
+
+            'chassis_id'=>'required',
+            'pcd'=>'required', 
+        ]);
+        try{  
+
+            $vehicle = Chassis::create($request->all());
+            
+            return back()->with('flash_success','Chassis Added successfully');
+
+        }catch(Exception $e){ 
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
@@ -67,9 +82,26 @@ class ChassisController extends Controller
      * @param  \App\Chassis  $chassis
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Chassis $chassis)
+    public function update(Request $request, $id)
     {
-        //
+       
+        $this->validate($request, [
+
+            'chassis_id'=>'required',
+            'pcd'=>'required', 
+        ]);
+        try{  
+            
+            $chassis = Chassis::find($id);
+ 
+            $chassis->update($request->all()); 
+ 
+            
+            return back()->with('flash_success','Chassis Updated successfully');
+
+        }catch(Exception $e){ 
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
@@ -78,9 +110,17 @@ class ChassisController extends Controller
      * @param  \App\Chassis  $chassis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Chassis $chassis)
+    public function destroy($id)
     {
-        //
+        try {
+            $chassis = Chassis::find($id);
+            $chassis->ChassisModels()->delete();
+            $chassis->delete();
+            return back()->with('flash_success', 'Chassis deleted successfully');
+        } 
+        catch (Exception $e) {
+            return back()->with('flash_error', 'Chassis Not Found');
+        }
     }
 
 

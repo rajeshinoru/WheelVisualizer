@@ -27,6 +27,8 @@ Route::post('wheelproduct/uploadcsv', 'Resource\WheelProductResource@uploadcsv')
 Route::resource('tire', 'Resource\TireResource'); 
 Route::post('tire/uploadcsv', 'Resource\TireResource@uploadcsv');
 Route::resource('vehicle', 'VehicleController'); 
+Route::resource('chassis', 'ChassisController'); 
+Route::resource('chassismodel', 'ChassisModelController'); 
 Route::post('vehicle/uploadcsv', 'VehicleController@uploadcsv');
 Route::resource('user', 'Resource\UserResource');
 

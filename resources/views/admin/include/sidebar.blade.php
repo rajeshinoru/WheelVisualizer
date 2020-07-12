@@ -105,6 +105,10 @@
                         </li>
 
                         <li>
+                            <a  href="{{url('admin/chassis')}}" aria-expanded="false"><i class="fa fa-list "></i> Chassis List  </a>
+                        </li>
+
+                        <li>
                             <a  href="{{url('admin/ticket')}}" aria-expanded="false"><i class="fa fa-list "></i> Tickets  </a>
                         </li>
 

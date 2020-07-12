@@ -366,7 +366,7 @@ class WheelProductController extends Controller
             //             $q1->whereIn('zip',$zipcodes); 
             //         },
             $products = $products
-                // ->orderBy('qtyavail', 'DESC')
+                ->orderBy('available', 'DESC')
                 ->orderBy('price', 'ASC')
                 ->get()
                 ->unique('prodtitle');

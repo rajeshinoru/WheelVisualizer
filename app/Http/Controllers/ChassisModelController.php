@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Chassis;
 use App\ChassisModel;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,24 @@ class ChassisModelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+
+            'chassis_id'=>'required', 
+            'model_id'=>'required', 
+            'tire_size'=>'required', 
+            'load_index'=>'required', 
+            'speed_index'=>'required', 
+        ]);
+        try{  
+            $chassismodel = ChassisModel::create($request->all());
+            
+            return back()->with('flash_success','ChassisModel Added successfully');
+
+        }catch(Exception $e){ 
+            return back()->with('flash_error',$e->getMessage());
+        }
+
     }
 
     /**
@@ -44,9 +62,19 @@ class ChassisModelController extends Controller
      * @param  \App\ChassisModel  $chassisModel
      * @return \Illuminate\Http\Response
      */
-    public function show(ChassisModel $chassisModel)
+    public function show($id)
     {
-        //
+        
+        try {
+            $chassis = Chassis::find($id);
+            $chassismodels = ChassisModel::where('chassis_id',$chassis->chassis_id)->paginate(10);
+            // dd($tires);
+            return view('admin.chassis.chassismodel',compact('chassismodels','chassis'));
+        } 
+        catch (Exception $e) {
+            // dd($e);
+            return back()->with('flash_error', 'ChassisModel Not Found');
+        }
     }
 
     /**
@@ -67,9 +95,29 @@ class ChassisModelController extends Controller
      * @param  \App\ChassisModel  $chassisModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ChassisModel $chassisModel)
+    public function update(Request $request, $id)
     {
-        //
+       
+        $this->validate($request, [
+
+            'chassis_id'=>'required', 
+            'model_id'=>'required', 
+            'tire_size'=>'required', 
+            'load_index'=>'required', 
+            'speed_index'=>'required', 
+        ]);
+        try{  
+            
+            $chassismodel = ChassisModel::find($id);
+ 
+            $chassismodel->update($request->all()); 
+ 
+            
+            return back()->with('flash_success','Chassis Model Updated successfully');
+
+        }catch(Exception $e){ 
+            return back()->with('flash_error',$e->getMessage());
+        }
     }
 
     /**
@@ -78,9 +126,15 @@ class ChassisModelController extends Controller
      * @param  \App\ChassisModel  $chassisModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ChassisModel $chassisModel)
+    public function destroy($id)
     {
-        //
+        try {
+            ChassisModel::find($id)->delete();
+            return back()->with('flash_success', 'ChassisModel deleted successfully');
+        } 
+        catch (Exception $e) {
+            return back()->with('flash_error', 'ChassisModel Not Found');
+        }
     }
 
 
