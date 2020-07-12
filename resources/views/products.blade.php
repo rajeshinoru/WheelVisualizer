@@ -303,9 +303,7 @@
                                                      -->
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
                                     
-                                                    @if($product->available)
-                                                    <br> {{'Avail : '.$product->available}} 
-                                                    @endif
+                                                  
                                                 </a>
                                               </h4>
 
