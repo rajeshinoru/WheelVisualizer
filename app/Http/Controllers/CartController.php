@@ -9,6 +9,7 @@ use App\Tire;
 use App\Dropshipper;
 use App\Inventory;
 
+use App\Http\Controllers\ZipcodeController as Zipcode;
 use Ixudra\Curl\Facades\Curl;
 
 class CartController extends Controller
@@ -229,30 +230,10 @@ class CartController extends Controller
     
     public function zipcodeUpdate(Request $request)
     { 
+        $response = false;
 
+        // $response = ZipCode::getCityState($request->all());
 
-        $url = "http://production.shippingapis.com/ShippingApi.dll?API=CityStateLookup&XML=%3CCityStateLookupRequest%20USERID=%22502THEWH6849%22%3E%3CZipCode%20ID=%220%22%3E%3CZip5%3E".$request->zipcode."%3C/Zip5%3E%3C/ZipCode%3E%3C/CityStateLookupRequest%3E";
-
-        /**** Sample Reponse
-
-
-        """
-        <?xml version="1.0" encoding="UTF-8"?>
-        <CityStateLookupResponse>
-            <ZipCode ID="0">
-                <Zip5>20024</Zip5>
-                <City>WASHINGTON</City>
-                <State>DC</State>
-            </ZipCode>
-        </CityStateLookupResponse>
-        """
-
-        ***/
-
-
-
-
-        $response = Curl::to($url)->get();
         if($response != false){
 
             $xml = simplexml_load_string($response);

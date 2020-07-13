@@ -100,7 +100,8 @@
             <div class="col-sm-12 wheel-des">
                 @forelse(@$branddesc as $desc)
                 <p>{!! @$desc->proddesc !!}</p>
-                @empty @endforelse
+                @empty 
+                @endforelse
             </div>
         </div>
         <div class="row main-pro">
@@ -151,7 +152,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>key words
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h4 class="panel-title">
@@ -303,7 +304,12 @@
                                                      -->
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
                                     
-                                                  
+                                                    @if($product->available)
+                                                    <br> {{'Avail : '.$product->available}} 
+                                                    @endif
+                                                     @if(@$product->distance)
+                                                    <br> {{'Min.Distance : '.@$product->distance}} 
+                                                    @endif
                                                 </a>
                                               </h4>
 

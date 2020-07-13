@@ -346,23 +346,24 @@ class WheelProductController extends Controller
 
             if($zipcode != null){
                 $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
-            
-    
-                    // ->get();
-
-                    // dd($products);
-                // $products->with([
-                //     'Inventories'=>function($q){ 
-                //         $q->where('available_qty','>',0);
-                //         $q->orderBy('available_qty', 'DESC');
-                //     }
-                // ]);
+                // dd($zipcodes,$zipcode);
             }                       
-            
-                    $products = $products->withCount(['Inventories as available' => function($query) {
-                        $query->select(\DB::raw('max(available_qty)'));
-                    }])->orderBy('available', 'DESC');
-                    
+
+            // $products = new WheelProduct;
+
+            // $products = $products->limit(50);
+
+            $products = $products->with('Inventories.Dropshippers');
+            // ,function($query)   { 
+            //     $query->orderBy('zip','DESC');
+            // });//->orderBy('available', 'DESC');
+
+
+            $products = $products->withCount(['Inventories as available' => function($query)   {
+                 $query->select(\DB::raw('max(available_qty)'));
+            }])->orderBy('available', 'DESC');
+
+            // dd($products->first());
             // ,'Inventories.Dropshippers'=>function($q1) use($zipcodes){
             //             $q1->whereIn('zip',$zipcodes); 
             //         },

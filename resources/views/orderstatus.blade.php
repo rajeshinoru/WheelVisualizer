@@ -117,6 +117,16 @@
                         </div>
                     </div>
                 </div>
+                    
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="form_email">Sales Order Number *</label>
+                            <input id="form_email" type="text" name="ordernumber" class="form-control" placeholder="Please enter your ordernumber *" required="required" data-error="Valid ordernumber is required."  value="{{old('ordernumber')}}">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row text-center">
                 <input type="submit" class="btn btn-success checkout-btn btn-send" value="Check">
                 </div>

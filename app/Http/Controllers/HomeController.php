@@ -213,18 +213,31 @@ class HomeController extends Controller
     } 
     public function checkorderstatus(Request $request)
     { 
-        $order = Order::with('OrderItems')->where('email',$request->email)->orderBy('id','desc')->first();
 
-        if($order != null){
 
-            if($request->ajax()){
-                return ['order'=>$order];
+        try{  
+
+        $this->validate($request, [ 
+            'email'=>'required',
+            'ordernumber'=>'required', 
+        ]);
+             $order = Order::with('OrderItems')->where('email',$request->email)->where('ordernumber',$request->ordernumber)->orderBy('id','desc')->first();
+
+            if($order != null){
+
+                if($request->ajax()){
+                    return ['order'=>$order];
+                }else{
+                    return redirect('/vieworderstatus/'.base64_encode($order->id));
+                } 
             }else{
-                return redirect('/vieworderstatus/'.base64_encode($order->id));
-            } 
-        }else{
-            return back()->with('error','No Orders Found!!');
+                return back()->with('flash_error','No Orders Found!!');
+            }
+        }catch(Exception $e){
+            return back()->with('flash_error',$e->getMessage());
         }
+
+        
     }
 
     public function checkout()
