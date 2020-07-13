@@ -60,6 +60,8 @@ class SettingsController extends Controller
             Setting::set('site_email', $request->site_email);
             Setting::set('header_content', $request->header_content);
             Setting::set('footer_content', $request->footer_content);
+            Setting::set('shipping_rule', $request->shipping_rule);
+            Setting::set('wheelpackage', $request->wheelpackage);
             if($request->has('site_logo'))
                 Setting::set('site_logo', upload_file('storage/admin/site/',$request->site_logo,10)); 
 

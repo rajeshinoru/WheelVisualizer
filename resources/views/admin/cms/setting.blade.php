@@ -52,6 +52,7 @@
                                                                         </div>
                                                                     </div>
                                                             </div>
+                                                            <br>
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                     <div class="col-md-4">Header </div>
                                                                     <div class="col-md-8">
@@ -60,11 +61,31 @@
                                                                         </textarea>
                                                                     </div>
                                                             </div>
+                                                            <br>
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                     <div class="col-md-4">Footer </div>
                                                                     <div class="col-md-8">
                                                                         <textarea class="form-control summernote" name="footer_content" rows="5">
                                                                             {{Setting::get('footer_content','')}}
+                                                                        </textarea>
+                                                                    </div>
+                                                            </div>
+
+                                                            <br>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="col-md-4">Shipping Rules </div>
+                                                                    <div class="col-md-8">
+                                                                        <textarea class="form-control summernote" name="shipping_rule" rows="5">
+                                                                            {{Setting::get('shipping_rule','')}}
+                                                                        </textarea>
+                                                                    </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="col-md-4">Wheel Tire Package </div>
+                                                                    <div class="col-md-8">
+                                                                        <textarea class="form-control summernote" name="wheelpackage" rows="5">
+                                                                            {{Setting::get('wheelpackage','')}}
                                                                         </textarea>
                                                                     </div>
                                                             </div>
