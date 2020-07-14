@@ -159,6 +159,7 @@ html, body {
      transition: all 0.3s;
      z-index:999;
      height:100%;
+     overflow: scroll;
 }
  .mini-navbar .all-content-wrapper {
      margin-left: 80px;

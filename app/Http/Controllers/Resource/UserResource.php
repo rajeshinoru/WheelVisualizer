@@ -15,7 +15,7 @@ class UserResource extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        $users = User::orderBy('id','DESC')->paginate(10);
         return view('admin.user.index',compact('users'));
     }
 
