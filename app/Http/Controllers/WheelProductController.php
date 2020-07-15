@@ -368,7 +368,7 @@ class WheelProductController extends Controller
                     
                     foreach ($dropshipper->InventoryProducts as $key => $product) {
                         // dd($product);
-                        array_push($ids, $product);
+                        array_push($ids, $product->WheelProducts->id);
                     }
                 } 
                 dd($ids);
