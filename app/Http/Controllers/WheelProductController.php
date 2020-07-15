@@ -362,20 +362,20 @@ class WheelProductController extends Controller
                     })->get();
 
 
-                // $inv = Inventory::where('location_name',$dropshippers[0]->code)->get();
+                // // $inv = Inventory::where('location_name',$dropshippers[0]->code)->get();
                 
-                foreach ($dropshippers as $key => $dropshipper) {
+                // foreach ($dropshippers as $key => $dropshipper) {
                     
-                    foreach ($dropshipper->InventoryProducts as $key => $product) {
-                        // dd($product);
-                        array_push($ids, $product->WheelProducts?$product->WheelProducts->id:null);
-                    }
-                } 
-                dd($ids);
-                // \DB::enableQueryLog();
-                $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
-                // dd(DB::getQueryLog());
-                dd($products->pluck('id'),$newproducts->pluck('id'),$ids);
+                //     foreach ($dropshipper->InventoryProducts as $key => $product) {
+                //         // dd($product);
+                //         array_push($ids, $product->WheelProducts?$product->WheelProducts->id:null);
+                //     }
+                // } 
+                // dd($ids);
+                // // \DB::enableQueryLog();
+                // $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
+                // // dd(DB::getQueryLog());
+                // dd($products->pluck('id'),$newproducts->pluck('id'),$ids);
                 // dd($partnos);
                 // dd($zipcodes,$zipcode);
             }                       
