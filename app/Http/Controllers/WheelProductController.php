@@ -367,14 +367,14 @@ class WheelProductController extends Controller
                 foreach ($dropshippers as $key => $dropshipper) {
                     
                     foreach ($dropshipper->InventoryProducts as $key => $product) {
-                        // dd($product->WheelProducts()->get());
-                        array_push($ids, $product);
+                        dd($product->WheelProducts()->get());
+                        array_push($ids, $product->id);
                     }
                 } 
-                dd($ids);
-                \DB::enableQueryLog();
+                // dd($ids);
+                // \DB::enableQueryLog();
                 $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
-                dd(DB::getQueryLog());
+                // dd(DB::getQueryLog());
                 dd($products->pluck('id'),$newproducts->pluck('id'),$ids);
                 // dd($partnos);
                 // dd($zipcodes,$zipcode);
