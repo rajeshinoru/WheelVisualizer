@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Http\Controllers\ZipcodeController as Zipcode;
 use Session;
+use DB;
 
 class WheelProductController extends Controller
 {
@@ -366,11 +367,15 @@ class WheelProductController extends Controller
                 foreach ($dropshippers as $key => $dropshipper) {
                     
                     foreach ($dropshipper->InventoryProducts as $key => $product) {
-                        array_push($ids, $product->id);
+                        // dd($product->WheelProducts()->get());
+                        array_push($ids, $product);
                     }
                 } 
-                $newproducts = $products->whereIn('id',$ids)->orderBy(\DB::raw('FIELD(`id`, '.implode(',', $ids).')'));
-                dd($products->pluck('id'),$newproducts->pluck('id'),$partnos);
+                dd($ids);
+                \DB::enableQueryLog();
+                $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
+                dd(DB::getQueryLog());
+                dd($products->pluck('id'),$newproducts->pluck('id'),$ids);
                 // dd($partnos);
                 // dd($zipcodes,$zipcode);
             }                       

@@ -19,4 +19,8 @@ class Inventory extends Model
     }
 
 
+
+    public function WheelProducts(){
+    	return $this->belongsTo('App\WheelProduct','partno','partno');
+    }
 }
