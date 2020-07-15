@@ -356,7 +356,7 @@ class WheelProductController extends Controller
                 ];
             // dd($zipcodes);
                 $ids = array();
-                $dropshippers = Dropshipper::with('InventoryProducts','InventoryProducts.WheelProducts')->whereIn('zip',$zipcodes)->whereHas('InventoryProducts', 
+                $dropshippers = Dropshipper::with('InventoryProducts','InventoryProducts.WheelProducts')->whereHas('InventoryProducts', 
                     function($q){
                         $q->where('available_qty','>',0);
                     })->get();
