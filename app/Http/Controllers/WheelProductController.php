@@ -358,7 +358,7 @@ class WheelProductController extends Controller
                 $ids = array();
                 $dropshippers = Dropshipper::with('InventoryProducts')->whereIn('zip',$zipcodes)->whereHas('InventoryProducts', 
                     function($q){
-
+                        $q->whereHas('WheelProducts');
                     })->get();
 
 
@@ -367,11 +367,11 @@ class WheelProductController extends Controller
                 foreach ($dropshippers as $key => $dropshipper) {
                     
                     foreach ($dropshipper->InventoryProducts as $key => $product) {
-                        dd($product->WheelProducts()->get());
+                        // dd($product);
                         array_push($ids, $product->id);
                     }
                 } 
-                // dd($ids);
+                dd($ids);
                 // \DB::enableQueryLog();
                 $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
                 // dd(DB::getQueryLog());
