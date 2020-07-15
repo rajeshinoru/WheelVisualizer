@@ -15,7 +15,7 @@ class Inventory extends Model
 
 
     public function Dropshippers(){
-    	return $this->hasMany('App\Dropshipper','code','ds_vendor_code');
+    	return $this->hasMany('App\Dropshipper','code','location_name');
     }
 
 

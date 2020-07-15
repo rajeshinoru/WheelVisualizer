@@ -25,7 +25,11 @@ class Dropshipper extends Model
 
 
 	public function InventoryProducts() {
-	    return $this->hasMany('App\Inventory','ds_vendor_code','code');
+	    return $this->hasMany('App\Inventory','location_name','code');
 	}
-
+	
+	public function scopeWithAndWhereHas($query, $relation, $constraint){
+	    return $query->whereHas($relation, $constraint)
+	                 ->with([$relation => $constraint]);
+	}
 }

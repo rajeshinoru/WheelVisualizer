@@ -232,7 +232,7 @@ class CartController extends Controller
     { 
         $response = false;
 
-        $response = ZipCode::getCityState($request->all());
+        // $response = ZipCode::getCityState($request->all());
 
         if($response != false){
 

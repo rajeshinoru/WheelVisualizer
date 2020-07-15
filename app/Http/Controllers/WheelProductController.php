@@ -345,15 +345,33 @@ class WheelProductController extends Controller
 
 
             $zipcode =Session::get('user.zipcode');
-
             if($zipcode != null){
-                $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
-                $dropshippers = Dropshipper::with('InventoryProducts')->whereIn('zip',$zipcodes)->get();
-                // $inv = Inventory::where('ds_vendor_code',$dropshippers[0]->code)->get();
-                // dd($zipcodes,$dropshippers,$inv);
-                // foreach ($zipcodes as $distance => $zip) {
+                // $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
+                $zipcodes = [
+                    "2"=>"11801",
+                    "8"=>"15126",
+                    "3"=>"12205",
+                    "9"=>"14225",
+                ];
+            // dd($zipcodes);
+                $ids = array();
+                $dropshippers = Dropshipper::with('InventoryProducts')->whereIn('zip',$zipcodes)->whereHas('InventoryProducts', 
+                    function($q){
+
+                    })->get();
+
+
+                // $inv = Inventory::where('location_name',$dropshippers[0]->code)->get();
+                
+                foreach ($dropshippers as $key => $dropshipper) {
                     
-                // }
+                    foreach ($dropshipper->InventoryProducts as $key => $product) {
+                        array_push($ids, $product->id);
+                    }
+                } 
+                $newproducts = $products->whereIn('id',$ids)->orderBy(\DB::raw('FIELD(`id`, '.implode(',', $ids).')'));
+                dd($products->pluck('id'),$newproducts->pluck('id'),$partnos);
+                // dd($partnos);
                 // dd($zipcodes,$zipcode);
             }                       
 
@@ -361,7 +379,7 @@ class WheelProductController extends Controller
 
             // $products = $products->limit(50);
 
-            $products = $products->with('Inventories.Dropshippers');
+            // $products = $products->with('Inventories.Dropshippers');
             // ,function($query)   { 
             //     $query->orderBy('zip','DESC');
             // });//->orderBy('available', 'DESC');
