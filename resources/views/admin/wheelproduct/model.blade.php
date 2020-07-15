@@ -107,10 +107,10 @@
                                                                     {{@csrf_field()}}
                                                                     <input type="hidden" name="_method" value="PATCH">
                                                                         <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
                                                                                 <div class="form-group">
                                                                                     <label for="brand">Brand <span class="req">*</span></label>
-                                                                                    <select class="form-control select2 Brand" name="prodbrand" required="">
+                                                                                    <select class="form-control select2 Brand" name="prodbrand" required="" style="width: 100%">
                                                                                         <option value="">Select Brand</option>
                                                                                      @foreach(getWheelBrandList() as $brand)
                                                                                     <option value="{{$brand}}" {{(@$wheel->prodbrand ==$brand)?'selected':''}}>{{$brand}}</option>
@@ -400,6 +400,33 @@
                                                                                 <div class="form-group">
                                                                                     <label for="vendorpartno2">Vendor Partnumber2  </label>
                                                                                     <input type="text" name="vendorpartno2" class="form-control" placeholder="vendorpartno2" value="{{@$wheel->vendorpartno2}}">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>   
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpsep">SHP SEP  </label>
+                                                                                    <input type="text" name="shpsep" class="form-control" placeholder="shpsep" value="{{@$wheel->shpsep}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpfree">SHP FREE  </label>
+                                                                                    <input type="text" name="shpfree" class="form-control" placeholder="shpfree" value="{{@$wheel->shpfree}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpcode">SHP CODE  </label>
+                                                                                    <input type="text" name="shpcode" class="form-control" placeholder="shpcode" value="{{@$wheel->shpcode}}">
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpflatrate">SHP Flat Rate </label>
+                                                                                    <input type="text" name="shpflatrate" class="form-control" placeholder="shpflatrate" value="{{@$wheel->shpflatrate}}">
                                                                                 </div>
                                                                             </div>  
                                                                         </div>   
@@ -741,6 +768,34 @@
                                                                                 <div class="form-group">
                                                                                     <label for="vendorpartno2">Vendor Partnumber2  </label>
                                                                                     <input type="text" name="vendorpartno2" class="form-control" placeholder="vendorpartno2" value="{{old('vendorpartno2')}}">
+                                                                                </div>
+                                                                            </div>  
+                                                                        </div>   
+                                                                        <br>
+
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpsep">SHP SEP  </label>
+                                                                                    <input type="text" name="shpsep" class="form-control" placeholder="shpsep" value="{{old('shpsep')}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpfree">SHP FREE  </label>
+                                                                                    <input type="text" name="shpfree" class="form-control" placeholder="shpfree" value="{{old('shpfree')}}">
+                                                                                </div>
+                                                                            </div>    
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpcode">SHP CODE  </label>
+                                                                                    <input type="text" name="shpcode" class="form-control" placeholder="shpcode" value="{{old('shpcode')}}">
+                                                                                </div>
+                                                                            </div>   
+                                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="shpflatrate">SHP Flat Rate </label>
+                                                                                    <input type="text" name="shpflatrate" class="form-control" placeholder="shpflatrate" value="{{old('shpflatrate')}}">
                                                                                 </div>
                                                                             </div>  
                                                                         </div>   

@@ -9,6 +9,8 @@ use App\CarImage;
 use App\Chassis;
 use App\ChassisModel;
 use App\PlusSize;
+use App\Dropshipper;
+use App\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Http\Controllers\ZipcodeController as Zipcode;
@@ -346,6 +348,12 @@ class WheelProductController extends Controller
 
             if($zipcode != null){
                 $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
+                $dropshippers = Dropshipper::with('InventoryProducts')->whereIn('zip',$zipcodes)->get();
+                // $inv = Inventory::where('ds_vendor_code',$dropshippers[0]->code)->get();
+                // dd($zipcodes,$dropshippers,$inv);
+                // foreach ($zipcodes as $distance => $zip) {
+                    
+                // }
                 // dd($zipcodes,$zipcode);
             }                       
 

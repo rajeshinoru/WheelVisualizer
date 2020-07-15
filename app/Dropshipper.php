@@ -21,4 +21,11 @@ class Dropshipper extends Model
 		'bandable',
 		'password'
     ];
+
+
+
+	public function InventoryProducts() {
+	    return $this->hasMany('App\Inventory','ds_vendor_code','code');
+	}
+
 }

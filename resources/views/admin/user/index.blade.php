@@ -36,7 +36,7 @@
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
 
-                                    <a type="button" class="btn btn-danger delete-post" data-key="{{$key}}"><i class="fa fa-trash"></i></a>
+                                    <a type="button" class="btn btn-danger delete-user" data-key="{{$key}}"><i class="fa fa-trash"></i></a>
                                     <form id="delete-form-{{$key}}" action="{{route('admin.user.destroy',$user->id)}}" method="POST" novalidate="">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -230,19 +230,17 @@
             </div>
         </div>
     </div>
-</div>
-{{-- <script type="text/javascript">
-    $('dropify').dropify({
-    tpl: {
-        wrap:            '<div class="dropify-wrapper"></div>',
-        loader:          '<div class="dropify-loader"></div>',
-        message:         '<div class="dropify-message"><span class="file-icon" /> <p>{{ default }}</p></div>',
-        preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">{{ replace }}</p></div></div></div>',
-        filename:        '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
-        clearButton:     '<button type="button" class="dropify-clear">{{ remove }}</button>',
-        errorLine:       '<p class="dropify-error">{{ error }}</p>',
-        errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
-    },
-});
-</script> --}}
+</div> 
+@endsection
+
+@section('custom_scripts')
+<script type="text/javascript">
+ 
+    $('.delete-user').click(function(){
+            if (confirm("Are you sure want to remove user?")) {
+                $('#delete-form-'+$(this).data('key')).submit();
+            }
+            return false;
+    })
+</script>
 @endsection

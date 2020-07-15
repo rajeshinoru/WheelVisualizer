@@ -38,9 +38,10 @@ class UserResource extends Controller
     public function store(Request $request)
     { 
         $user  = User::create([
-            'name' => $request->fname." ".$request->lname,
+            'fname' => $request->fname,
+            'lname' => $request->lname,
             'email' => $request->email,
-            'mobile' => $request->mobile,
+            'phone' => @$request->phone, 
             'password' => Hash::make('123456'),
         ]);
         return back()->with('flash_success','Successfully Created');
@@ -77,7 +78,23 @@ class UserResource extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $user = User::find($id);
+            if($user){
+
+                $user  = $user->update([
+                    'fname' => $request->fname,
+                    'lname' => $request->lname,
+                    'email' => $request->email,
+                    'phone' => @$request->phone, 
+                ]);
+                return back()->with('flash_success','User Details Updated');
+            }else{
+                return back()->with('flash_error','User Details not found!!');
+            }
+        } catch (Exception $e) {
+            return back()->with('flash_error','User Updation failed!!');
+        }
     }
 
     /**
@@ -86,8 +103,16 @@ class UserResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        try{  
+            
+            $user->delete();
+
+            return back()->with('success','User  Deleted Successfully!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
     }
 }
