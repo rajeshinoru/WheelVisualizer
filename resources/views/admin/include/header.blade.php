@@ -1,3 +1,13 @@
+
+
+<?php
+$paths = explode('/', Route::getCurrentRoute()->uri);
+$routename = $paths[1]; 
+$is_read_access = VerifyAccess($routename,'read');
+$is_write_access = VerifyAccess($routename,'write');
+
+?> 
+
 <div class="header-advance-area">
     <div class="header-top-area">
         <div class="container-fluid">

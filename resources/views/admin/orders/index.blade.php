@@ -1,6 +1,16 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+<?php
+$is_read_access = VerifyAccess('orders','read');
+$is_write_access = VerifyAccess('orders','write');
+?>
+
+
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -287,6 +297,8 @@ Modified Please Explain :
                                 <td>{{roundCurrency(@$order->total)}}</td>
                                 <td>{{@$order->payment_status?'Paid':'Not Paid'}}</td>
                                 <td>
+                                  @if($is_write_access)
+
                                                         <!-- <div class="dropdown"> -->
                                                             <select  name="order_status[]" class="form-group form-control order_status" data-order_id="{{@$order->id}}"> 
                                                                 @foreach(OrderStatus() as $orderKey => $status)
@@ -294,6 +306,9 @@ Modified Please Explain :
                                                                 @endforeach
                                                             </select>
                                                         <!-- </div> -->
+                                  @else
+                                  {{$order->status}}
+                                  @endif
                                 </td>
                                 <td>{{@$order->created_at}}</td>
                             </tr>

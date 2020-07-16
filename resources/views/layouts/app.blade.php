@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     @yield('metakeywords')
-    
+
     <title>{{Setting::get('site_title','Wheel')}}</title>
     <link rel="stylesheet" href="{{ asset('css/ontheme/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ontheme/animate.css') }}">
@@ -35,7 +35,6 @@
 
 <body>
     <main>
-
         <div class="se-pre-con"></div>
         <section>
             <div class="container-fluid home-page">

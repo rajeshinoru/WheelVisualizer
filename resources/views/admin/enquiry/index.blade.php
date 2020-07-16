@@ -1,6 +1,16 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('enquiry','read');
+$is_write_access = VerifyAccess('enquiry','write');
+?>
+
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -42,7 +52,9 @@
                                     <th>Requested For</th>
                                     <th>Message</th>
                                     <th>Requested At</th>
+                                    @if($is_write_access)
                                     <th>Actions</th>
+                                    @endif
                                 </tr>
                             </thead> 
                             @forelse(@$enquiries as $key => $enquiry) 
@@ -79,6 +91,7 @@
 
                                 </td>
                                 <td>{{@$enquiry->created_at}}</td>
+                                @if($is_write_access)
                                 <td>
                                     <form action="{{ route('admin.enquiry.destroy', $enquiry->id) }}" method="POST">
                                         {{ csrf_field() }}
@@ -87,6 +100,7 @@
                                     </form>
 
                                 </td>
+                                @endif
                             </tr>
                             @empty
                             <tr>

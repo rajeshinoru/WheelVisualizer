@@ -2,6 +2,12 @@
 
 @section('content')
 
+<?php
+$is_read_access = VerifyAccess('user','read');
+$is_write_access = VerifyAccess('user','write');
+?>
+
+
 <div class="product-status mg-b-15">
     <div class="container-fluid">
         <div class="row">
@@ -21,7 +27,9 @@
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Created At</th>
+                                    @if($is_write_access)
                                     <th>Actions</th>
+                                    @endif
                                 </tr>
                             </thead>
                             @forelse(@$users as $key => $user)
@@ -32,6 +40,7 @@
                                 <td>{{@$user->lname}}</td>
                                 <td>{{@$user->email}}</td>
                                 <td>{{@$user->created_at}}</td>
+                                    @if($is_write_access)
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
@@ -42,6 +51,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
+                                    @endif
                             </tr>
                             <div class="modal fade" id="editModal{{$key}}" role="dialog">
                                 <div class="modal-dialog admin-form">

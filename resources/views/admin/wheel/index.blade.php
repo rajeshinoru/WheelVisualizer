@@ -1,6 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('wheel','read');
+$is_write_access = VerifyAccess('wheel','write');
+?>
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -20,7 +29,9 @@
                     <h4>Wheels List</h4> 
                     <div style="text-align:right;padding-bottom: 20px">
                         
+                    @if($is_write_access)
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Wheel</button>
+                    @endif
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Wheel">Export CSV </a>
                     </div>
                     <div class="asset-inner">
@@ -35,7 +46,9 @@
                                     <th> Type</th>
                                     <th> Diameter</th>
                                     <th> Width</th>
+                                    @if($is_write_access)
                                     <th> Actions</th>
+                                    @endif
                                 </tr>
                             </thead>
                             @forelse(@$wheels as $key => $wheel)
@@ -48,6 +61,7 @@
                                 <td>{{@$wheel->wheeltype}}</td>
                                 <td>{{@$wheel->wheeldiameter}}</td>
                                 <td>{{@$wheel->wheelwidth}}</td>
+                                @if($is_write_access)
                                 <td>
                                     <form action="{{ route('admin.wheel.destroy', $wheel->id) }}" method="POST">
                                         {{ csrf_field() }}
@@ -57,6 +71,7 @@
                                         <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                             <!--  Edit Model Start-->
                             <div class="modal fade" id="myModal{{@$key}}" role="dialog">

@@ -1,6 +1,17 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('wheelproduct','read');
+$is_write_access = VerifyAccess('wheelproduct','write');
+?>
+
+
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -39,9 +50,9 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Wheel Products</h4> 
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                    @if($is_write_access)
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Product</button>
-                        
+                    @endif
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#csvModal">Upload CSV </button>
                     
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=WheelProduct">Export CSV </a>

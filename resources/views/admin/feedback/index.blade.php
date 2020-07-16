@@ -1,6 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('feedback','read');
+$is_write_access = VerifyAccess('feedback','write');
+?>
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -44,6 +53,9 @@
                                     <th>Invoice</th>
                                     <th>Comments</th>
                                     <th>Received At</th>
+                                    @if($is_write_access)
+                                    <th>Actions</th>
+                                    @endif
                                 </tr>
                             </thead> 
                             @forelse(@$feedbacks as $key => $feedback) 
@@ -56,6 +68,16 @@
                                 <td>{{@$feedback->invoice}}</td>
                                 <td>{{@$feedback->comments}}</td> 
                                 <td>{{@$feedback->created_at}}</td>
+                                @if($is_write_access)
+                                <td>
+                                    <form action="{{ route('admin.feedback.destroy', $feedback->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </form>
+
+                                </td>
+                                @endif
                             </tr> 
                             @empty
                             <tr>

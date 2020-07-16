@@ -906,24 +906,27 @@ function getAdminModules($key='',$flag=null){
 }
 
 
-function VerifyAccess($routename=''){   
+function VerifyAccess($routename='',$accessType=''){   
 
 	$admin = Auth::guard('admin')->user();
-	if($admin->is_super == '1'){
+	if(@$admin->is_super == '1'){
 		return true;
 	}else{
 		if($routename){
 
-			$readAccess = json_decode($admin->Roles->read?:[]); 
-			$writeAccess = json_decode($admin->Roles->write?:[]);
-			$wholeAccess = array_merge($readAccess,$writeAccess);
-			if(in_array($routename, $wholeAccess)){
-				return true;
-			}else{
-				return false;
+			$readAccess = in_array($routename, json_decode($admin->Roles->read?:[])??array()); 
+			$writeAccess = in_array($routename, json_decode($admin->Roles->write?:[])??array());
+			$wholeAccess = in_array($routename, array_merge(json_decode($admin->Roles->read?:[]),json_decode($admin->Roles->write?:[])));
+
+			if($accessType == 'read'){
+				return $readAccess;
+			}elseif($accessType == 'write'){
+				return $writeAccess;
+			}elseif($accessType == ''){
+				return $wholeAccess;
 			}
 		}
-				return false;
+		return false;
 	}
 }
 

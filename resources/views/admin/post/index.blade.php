@@ -1,6 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+<?php
+$is_read_access = VerifyAccess('post','read');
+$is_write_access = VerifyAccess('post','write');
+?>
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -55,9 +62,9 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Posts</h4>
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                    @if($is_write_access)
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Post</button> 
-                    
+                    @endif
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Post">Export CSV </a>
                     
                     </div>
@@ -72,7 +79,9 @@
                                     <th>Image</th>
                                     <th>Visibility</th>
                                     <th>Created At</th>
+                                    @if($is_write_access)
                                     <th>Actions</th>
+                                    @endif
                                 </tr>
                             </thead>
                             @forelse(@$posts as $key => $post)
@@ -110,6 +119,7 @@
                                     {{($post->is_visible ==  0)?'NO':'YES'}}
                                 </td>
                                 <td>{{@$post->created_at}}</td>
+                                @if($is_write_access)
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
@@ -120,6 +130,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                             @empty
                             <tr>

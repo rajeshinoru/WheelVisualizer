@@ -94,7 +94,7 @@ class UpdateFolderWise extends Command
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
                 Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
-                // RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
                  
  
                 \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
@@ -118,7 +118,7 @@ class UpdateFolderWise extends Command
                         $data['updated_at']=\Carbon\Carbon::now();
 
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
-                        // RemoteInventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data );  
+                        RemoteInventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data );  
                         
                         \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 

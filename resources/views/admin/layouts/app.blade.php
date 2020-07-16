@@ -263,8 +263,8 @@
         });
     </script>
 
-
-
+    
+    
     @yield('custom_scripts')
 
     <script type="text/javascript">
