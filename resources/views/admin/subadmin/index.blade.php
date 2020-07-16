@@ -112,8 +112,8 @@
                                                                         @foreach(getAdminModules() as $mkey => $module)
                                                                         <tr>
                                                                             <td>{{$module}}</td>
-                                                                            <td><input type="checkbox" name="read[{{$mkey}}]" value="1" {{(in_array($mkey,json_decode($subadmin->Roles->read??[])))?'checked':''}} ></td>
-                                                                            <td><input type="checkbox" name="write[{{$mkey}}]" value="1" {{(in_array($mkey,json_decode($subadmin->Roles->write??[])))?'checked':''}}  ></td>
+                                                                            <td><input type="checkbox" name="read[{{$mkey}}]" value="1" {{(in_array($mkey,json_decode($subadmin->Roles->read??'')))?'checked':''}} ></td>
+                                                                            <td><input type="checkbox" name="write[{{$mkey}}]" value="1" {{(in_array($mkey,json_decode($subadmin->Roles->write??'')))?'checked':''}}  ></td>
                                                                         </tr>
                                                                         @endforeach
                                                                     </tbody>
