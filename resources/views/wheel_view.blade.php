@@ -2,6 +2,15 @@
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}">
 <link rel="stylesheet" href="{{ asset('css/rating.css') }}">
 @endsection
+
+
+@section('metakeywords')
+        <meta name="description" content="{{@$products[0]->metadesc}}">
+        <meta name="description" content="{{@$products[0]->prodmetadesc}}">
+@endsection 
+
+
+
 @section('content')
 <style>
     .modal-img.btn-info:hover {
@@ -444,8 +453,6 @@
                             <div class="tab-content">
 
                                 @foreach(@$products as $productKey => $product)
-                                <meta name="description" content="{{$product->metadesc}}">
-                                <meta name="description" content="{{$product->prodmetadesc}}">
                                 <div id="diameter_tab_{{@$product->id}}" class="wheel-diameter-tabs tab-pane fade {{($productKey ==0 )?'active in ':''}}">
 
                                     <div class="col-sm-6">

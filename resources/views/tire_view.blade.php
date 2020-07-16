@@ -2,7 +2,16 @@
 <link rel="stylesheet" href="{{ asset('css/wheels.css') }}"> 
 
 <link rel="stylesheet" href="{{ asset('css/rating.css') }}">
-@endsection @section('content')
+@endsection 
+
+
+@section('metakeywords')
+<meta name="description" content="{{@$tire->metadesc}}">
+<meta name="description" content="{{@$tire->prodmetadesc}}">
+@endsection 
+
+
+@section('content')
 
 <style>
     .hometabled {
@@ -595,8 +604,6 @@
 </section>
 <section id="tires-des">
 
-                                <meta name="description" content="{{@$tire->metadesc}}">
-                                <meta name="description" content="{{@$tire->prodmetadesc}}">
 
     <!-- Cart Start -->
     <div class="container">
