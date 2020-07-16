@@ -110,11 +110,21 @@ class SubadminResource extends Controller
 
 
             if($admin){
-                $role = $admin->Roles->update([
-                    'adminid'=>$admin->id,
-                    'read'=>json_encode($readData),
-                    'write'=>json_encode($writeData),
-                ]);
+                if($admin->Roles){
+
+                    $role = $admin->Roles->update([
+                        'adminid'=>$admin->id,
+                        'read'=>json_encode($readData),
+                        'write'=>json_encode($writeData),
+                    ]);
+                }else{
+
+                    $role = SubAdminRole::create([
+                        'adminid'=>$admin->id,
+                        'read'=>json_encode($readData),
+                        'write'=>json_encode($writeData),
+                    ]);
+                }
             }
 
             if($admin){
