@@ -1,6 +1,14 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+<?php
+$is_read_access = VerifyAccess('metakeywords','read');
+$is_write_access = VerifyAccess('metakeywords','write');
+?>
+
+
 <style type="text/css">
   
     .Add-modal{
@@ -21,11 +29,11 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>Meta Keywords By Pages</h4>
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                    @if($is_write_access)
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addPageModal">Add New Page</button>
                         
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#csvModal">Upload CSV </button>
-                    
+                    @endif 
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=MetaKeyword">Export CSV </a>
                     
                     </div>
@@ -35,13 +43,17 @@
                         <div class="Add-modal modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
+                                    @if($is_write_access)
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <h4 class="modal-title text-left">Add New Meta Keywords</h4>
+                                    @endif 
                                 </div>
                                 <div class="modal-body">
                                     <h4 class="modal-title">
                                           <div class="clearfix">
+                                            @if($is_write_access)
                                             <a class="btn btn-primary pull-right add-record" data-added="0"><i class="glyphicon glyphicon-plus"></i> Add Key</a>
+                                            @endif 
                                           </div>
                                         <form action="{{url('admin/metakeywords')}}" class=" needsclick addcourse" method="POST" id="demo1-upload" enctype="multipart/form-data"> 
                                             {{csrf_field()}}
@@ -52,7 +64,9 @@
                                                         <th>Page Name</th>
                                                         <th>Meta Key</th>
                                                         <th>Content</th>
+                                                        @if($is_write_access)
                                                         <th>Action</th>
+                                                        @endif 
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbl_posts_body">
@@ -79,7 +93,9 @@
                                                         </div>
                                                         </td>
                                                         <td><input type="text" class="form-control browser-default" name="contents[]" placeholder="Enter Content"></td>
+                                                        @if($is_write_access)
                                                         <td><a class="btn btn-xs delete-record" data-id="1"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                                        @endif 
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -115,7 +131,9 @@
                                                         </div>
                                                         </td>
                                                         <td><input type="text" class="form-control browser-default" name="contents[]" placeholder="Enter Content"></td>
+                                                        @if($is_write_access)
                                                         <td><a class="btn btn-xs delete-record" data-id="0"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                                        @endif 
                                                     </tr>
                                                 </table>
                                               </div>
@@ -132,7 +150,9 @@
                                     <th>Page Name</th>
                                     <th>Meta Key</th>
                                     <th>Content</th>
+                                    @if($is_write_access)
                                     <th>Action</th>
+                                    @endif 
                                 </tr>
                             </thead> 
                             @foreach(@$metakeywords as $key => $metakey) 
@@ -141,6 +161,7 @@
                                 <td>{{@$metakey->page}}</td>
                                 <td>{{@$metakey->key}}</td>
                                 <td>{{@$metakey->value}}</td>
+                                    @if($is_write_access)
                                 <td>
                                     <form action="{{ route('admin.metakeywords.destroy', $metakey->id) }}" method="POST">
                                         {{ csrf_field() }}
@@ -150,6 +171,7 @@
                                         <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
+                                    @endif 
                             </tr>
 
 

@@ -1,6 +1,17 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('brands','read');
+$is_write_access = VerifyAccess('brands','write');
+?>
+
+
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -18,7 +29,9 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>@lang('admin.brands.brand_list')</h4>
                     <div class="add-product">
+                        @if($is_write_access)
                         <a data-toggle="modal" data-target="#myModal">@lang('admin.brands.add_brand')</a>
+                        @endif
                     </div>
                     <div class="asset-inner">
                         <table>
@@ -28,8 +41,10 @@
                                     <th>@lang('admin.brands.manufacturer') </th>
                                     <th>@lang('admin.brands.description') </th>
                                     <th>@lang('admin.brands.logo') </th>
-                                    <th>@lang('admin.brands.brand') </th>                                    
+                                    <th>@lang('admin.brands.brand') </th> 
+                                    @if($is_write_access)
                                     <th>@lang('admin.common.actions')</th>
+                                    @endif
                                 </tr>
                             </thead>                            
                             @forelse(@$brands as $key => $brand)
@@ -38,7 +53,8 @@
                                 <td>{{@$brand->manufacturer}} </td>
                                 <td>{{@$brand->manudesc}} </td>
                                 <td><img src="{{ @img($brand->manulogo) }}" alt="logo" srcset=""></td>
-                                <td><img src="{{ @img($brand->manubanner) }}" alt="banner" srcset=""></td>                                
+                                <td><img src="{{ @img($brand->manubanner) }}" alt="banner" srcset=""></td>    
+                                @if($is_write_access)
                                 <td>
                                     <form action="{{ route('admin.brands.destroy', $brand->id) }}" method="POST">
                                         {{ csrf_field() }}
@@ -47,6 +63,7 @@
                                         <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
+                                @endif
                             </tr> 
                             <div class="modal fade" id="myModal{{ $key }}" role="dialog">
                                 <div class="modal-dialog admin-form">

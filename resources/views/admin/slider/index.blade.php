@@ -1,6 +1,17 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+<?php
+$is_read_access = VerifyAccess('slider','read');
+$is_write_access = VerifyAccess('slider','write');
+?>
+
+
+
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -55,9 +66,9 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Sliders</h4>
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                    @if($is_write_access)                        
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Image</button> 
-                    
+                    @endif                    
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Slider">Export CSV </a>
                     
                     </div>
@@ -85,6 +96,7 @@
                                 <td>{{@$slider->description}}</td>
                                 <td><a href="{{url('/'.@$slider->redirectlink)}}" target="_blank"> Redirect To </a></td>
                                 <td>{{@$slider->order}}</td> 
+                                @if($is_write_access)
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
@@ -95,10 +107,12 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
+                                @endif
                             </tr>
 
 
-                                                <!--  New Model Start-->
+                             
+                    @if($is_write_access)                   <!--  New Model Start-->
                     <div class="modal fade" id="editModal{{$key}}" role="dialog">
                         <div class="modal-dialog admin-form">
                             <div class="modal-content">
@@ -191,6 +205,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
 
                             @empty
                             <tr>

@@ -1,4 +1,12 @@
 @extends('admin.layouts.app') @section('content')
+
+<?php
+$is_read_access = VerifyAccess('ticket','read');
+$is_write_access = VerifyAccess('ticket','write');
+?>
+
+
+
 <style type="text/css">
    
     .items-modal{
@@ -52,6 +60,7 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @if($is_write_access)
                             <tr>
                                 <td>
                                         <form action="{{route('admin.ticket.store')}}"   method="POST"  enctype="multipart/form-data">
@@ -80,6 +89,7 @@
                                         </form>
                                 </td>
                             </tr>
+                            @endif
                             </tbody>
                         </table> 
                     </div>

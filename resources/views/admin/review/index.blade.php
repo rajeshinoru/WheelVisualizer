@@ -1,6 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+<?php
+$is_read_access = VerifyAccess('review','read');
+$is_write_access = VerifyAccess('review','write');
+?>
+
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -73,7 +82,9 @@
                                     <th>Feature Ratings</th>
                                     <th>Visibility</th>
                                     <th>Created At</th>
+                                    @if($is_write_access)                                    
                                     <th>Actions</th>
+                                    @endif                                    
                                 </tr>
                             </thead>
                             @forelse(@$reviews as $key => $review)
@@ -131,6 +142,7 @@
                                     {{($review->approval ==  0)?'NO':'YES'}}
                                 </td>
                                 <td>{{@$review->created_at}}</td>
+                                @if($is_write_access)
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
@@ -141,6 +153,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                             @empty
                             <tr>

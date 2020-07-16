@@ -1,6 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+<?php
+$is_read_access = VerifyAccess('cms','read');
+$is_write_access = VerifyAccess('cms','write');
+?>
+
         <div class="single-pro-review-area mt-t-30 mg-b-15">
             <div class="container-fluid">
                 <div class="row">
@@ -43,6 +49,7 @@
                                                             </div>
                                                         </div>
                                                         <br>
+                                                        @if($is_write_access)
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <div class="payment-adress">
@@ -55,6 +62,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                         </div>
                                                     </form>
                                                 </div>

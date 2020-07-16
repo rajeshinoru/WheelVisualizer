@@ -1,4 +1,11 @@
 @extends('admin.layouts.app') @section('content')
+
+<?php
+$is_read_access = VerifyAccess('ticket','read');
+$is_write_access = VerifyAccess('ticket','write');
+?>
+
+
 <style type="text/css">
    
     .items-modal{
@@ -63,7 +70,9 @@
                                 <td>{{@$ticket->updated_at}}</td>
                                 <td>
                                                     <a class="btn btn-info" href="{{route('admin.ticket.show',$ticket->id)}}">View</a> 
+                                            @if($is_write_access)
                                             <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i> Edit</a>
+                                            @endif
                                 </td>
                             </tr>
                             <div class="modal fade" id="editModal{{$key}}" role="dialog">

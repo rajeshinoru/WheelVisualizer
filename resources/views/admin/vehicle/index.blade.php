@@ -1,6 +1,14 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('vehicle','read');
+$is_write_access = VerifyAccess('vehicle','write');
+?>
+
 <style type="text/css">
     .req {
         color: red;
@@ -48,10 +56,10 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Vehicles</h4>
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                    @if($is_write_access)
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Vehicle</button>
-                        
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#csvModal">Upload CSV </button>
+                    @endif
                     
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Vehicle">Export CSV </a>
                     
@@ -85,7 +93,9 @@
                                     <th>Option</th>
                                     <th>Chassis ID</th> 
                                     <th>Model ID </th>
+                                    @if($is_write_access)
                                     <th> Actions</th>
+                                    @endif
                                 </tr>
                             </thead> 
                             @forelse(@$vehicles as $key => $vehicle) 
@@ -118,6 +128,7 @@
                                 <td>{{$vehicle->option}}</td>
                                 <td>{{$vehicle->dr_chassis_id}}</td>
                                 <td>{{$vehicle->dr_model_id}}</td>
+                                @if($is_write_access)
                                 <td>
 
                                     <form action="{{ route('admin.vehicle.destroy', $vehicle->id) }}" method="POST">
@@ -128,6 +139,7 @@
                                         <button class="btn btn-default look-a-like" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
 
                             <div class="modal fade" id="myModal{{@$key}}" role="dialog">

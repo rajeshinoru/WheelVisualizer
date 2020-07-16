@@ -1,6 +1,16 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('dropshipper','read');
+$is_write_access = VerifyAccess('dropshipper','write');
+?>
+
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -55,9 +65,9 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Dropshippers</h4>
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                    @if($is_write_access)                                                
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add New</button> 
-                    
+                    @endif                                        
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Dropshipper">Export CSV </a>
                     
                     </div>
@@ -79,7 +89,9 @@
                                     <th>Contactname</th>
                                     <th>Bandable</th>
                                     <th>Password</th>
+                                    @if($is_write_access)                        
                                     <th>Actions</th>
+                                    @endif                    
                                 </tr>
                             </thead>
                             @forelse(@$dropshippers as $key => $dropshipper)
@@ -98,6 +110,7 @@
                                 <td>{{@$dropshipper->contactname}}</td>
                                 <td>{{@$dropshipper->bandable}}</td>
                                 <td>{{@$dropshipper->password}}</td>
+                                @if($is_write_access)                        
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
@@ -108,6 +121,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
+                                @endif                    
                             </tr>
 
 

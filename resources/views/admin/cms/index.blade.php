@@ -1,6 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+
+
+<?php
+$is_read_access = VerifyAccess('cmspage','read');
+$is_write_access = VerifyAccess('cmspage','write');
+?>
+
+
 <style type="text/css">
     .req {
         color: red;
@@ -59,7 +68,9 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>List of pages</h4>
                     <div class="add-product">
+                    @if($is_write_access)                                                
                         <a data-toggle="modal" data-target="#myModal">Add Page</a>
+                    @endif                                        
                     </div>
                     <div class="asset-inner">
                         <table>
@@ -72,7 +83,9 @@
                                     <th>Description</th>
                                     <th>Content</th> 
                                     <th>Created At</th>
+                                    @if($is_write_access)                                                
                                     <th>Actions</th>
+                                    @endif                                        
                                 </tr>
                             </thead>
                             @forelse(@$pages as $key => $page)
@@ -108,6 +121,7 @@
 
                                 </td>
                                 <td>{{@$page->created_at}}</td>
+                                @if($is_write_access)                                                
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
@@ -118,6 +132,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
+                                @endif                                        
                             </tr>
                     <div class="modal fade" id="editModal{{$key}}" role="dialog">
                         <div class="modal-dialog admin-form">

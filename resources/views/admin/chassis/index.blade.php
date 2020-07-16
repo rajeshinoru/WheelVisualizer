@@ -1,6 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
+<?php
+$is_read_access = VerifyAccess('chassis','read');
+$is_write_access = VerifyAccess('chassis','write');
+?>
+
 <style type="text/css">
     .req {
         color: red;
@@ -55,9 +61,9 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>List of Chassis</h4>
                     <div style="text-align:right;padding-bottom: 20px">
-                        
+                    @if($is_write_access)
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Chassis</button> 
-                    
+                    @endif
                     <a  class="btn btn-info"  href="{{url('admin/exportTable')}}?module=Chassis">Export CSV </a>
                     
                     </div>
@@ -97,7 +103,9 @@
                                     <th>OE Tire Description</th>
                                     <th>TPMS</th>
                                     <th>XFactor</th>
+                                    @if($is_write_access)
                                     <th>Actions</th>
+                                    @endif
                                 </tr>
                             </thead>
                             @forelse(@$chassises as $key => $chassis)
@@ -161,6 +169,7 @@
                                 </td>
                                 <td>{{@$chassis->tpms?:'-'}}</td>
                                 <td>{{@$chassis->xfactor?:'-'}}</td>
+                                @if($is_write_access)
                                 <td>
 
                                     <a class="btn btn-info" href="{{route('admin.chassismodel.show',$chassis->id)}}">View Models</a> 
@@ -173,6 +182,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                     <div class="modal fade" id="editModal{{$key}}" role="dialog">
                         <div class="modal-dialog admin-form">
