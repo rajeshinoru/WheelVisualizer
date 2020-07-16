@@ -400,6 +400,17 @@ class UpdateFolderWise extends Command
                 "available_qty" =>"5",
                 "price" =>null, 
             ),
+            "vftp0024"=>array(
+                "partno" =>"1",
+                "vendor_partno" =>null,
+                "mpn" =>null,
+                "description" =>"2",
+                "brand" =>"0",
+                "model" =>null,
+                "location_code" =>"6",
+                "available_qty" =>"5",
+                "price" =>null, 
+            ),
             "vftp0027"=>array(
                 "partno" =>"1",
                 "vendor_partno" =>null,
@@ -993,6 +1004,16 @@ class UpdateFolderWise extends Command
                     "SEA" =>array("MHT","MHTSEA","MHT-Inv_FIFEWA"),
                     "SLC" =>array("MHT","MHTSLC","MHT-Inv_SALTLAKECITYUT"),
                     "TMP" =>array("MHT","MHTTMP","MHT-Inv_TAMPAFL"),
+                ),                
+                "vftp0024"=>array( 
+                    "3"=>array("TiresWarehouse","TW3","TiresWare-Inv_FresnoCA"),
+                    "4"=>array("TiresWarehouse","TW4","TiresWare-Inv_UnionCityCA"),
+                    "5"=>array("TiresWarehouse","TW5","TiresWare-Inv_RedlandsCA"),
+                    "7"=>array("TiresWarehouse","TW7","TiresWare-Inv_SantaFeSpringsCA"),
+                    "8"=>array("TiresWarehouse","TW8","TiresWare-Inv_SylmarCA"),
+                    "11"=>array("TiresWarehouse","TW11","TiresWare-Inv_SanDiegoCA"),
+                    "12"=>array("TiresWarehouse","TW12","TiresWare-Inv_PhoenixAZ"),
+                    "21"=>array("TiresWarehouse","TW21","TiresWare-Inv_LasVegasNV")
                 ),
                 "vftp0027"=>array("KWTire","KWT1","KWT-Inv_LancasterPA"),
                 "vftp0028"=>array( 
@@ -1552,6 +1573,17 @@ class UpdateFolderWise extends Command
                                         // dd($insertData);
                                         $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
+                                }elseif($folderKey == "vftp0024"){
+
+                                        $insertData['price'] = ($this->clean($dataValue[3])+$this->clean($dataValue[4]))??0; 
+
+                                        $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
+                                        $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
+                                        $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2]; 
+                                        // dd($insertData);
+                                        dd($insertData);
+                                        $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
+
                                 } 
                             }
                             $flag=1;
@@ -1738,7 +1770,18 @@ class UpdateFolderWise extends Command
 
                                         $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
 
-                                }
+                                }elseif($folderKey == "vftp0024"){
+
+                                        $insertData['price'] = ($this->clean($dataValue[3])+$this->clean($dataValue[4]))??0; 
+
+                                        $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
+                                        $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
+                                        $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2]; 
+                                        // dd($insertData);
+                                        dd($insertData);
+                                        $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);                                    
+
+                                } 
                             }
                             $flag=1;
                         }
