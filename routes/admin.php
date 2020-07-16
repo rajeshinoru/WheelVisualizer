@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 Route::resource('ticket', 'Resource\TicketResource');
 Route::resource('user', 'Resource\UserResource');
+Route::resource('subadmin', 'Resource\SubadminResource');
 Route::resource('wheel', 'Resource\WheelResource');
 Route::resource('brands', 'Resource\TireBrandsResource');
 

@@ -871,3 +871,60 @@ function getStates($code='US'){
 	 
 	return $states;
 }
+
+function getAdminModules($key='',$flag=null){     
+	$list  = array(
+		"brands"=>"Brands",
+		"car"=>"Car",
+		"chassis"=>"Chassis",
+		"cms"=>"CMS",
+		"dropshipper"=>"DropShippers",
+		"enquiry"=>"Enquiries",
+		"feedback"=>"Feedbacks" ,
+		"metakeywords"=>"Meta Keywords",
+		"orders"=>"Orders",
+		"post"=>"Post",
+		"review"=>"Review" ,
+		"slider"=>"Slider Images",
+		"ticket"=>"Tickets",
+		"tire"=>"Tires",
+		"user"=>"Users",
+		"vehicle"=>"Vehicles",
+		"wheel"=>"Wheels",
+		"wheelproduct"=>"Wheelproducts",
+	);
+ 
+	if($flag){
+		// dd(array_key_exists($key, $list));
+		return array_key_exists($key, $list);
+	}
+
+	if($key!=''){
+		return $list[$key];
+	}
+	return $list;
+}
+
+
+function VerifyAccess($routename=''){   
+
+	$admin = Auth::guard('admin')->user();
+	if($admin->is_super == '1'){
+		return true;
+	}else{
+		if($routename){
+
+			$readAccess = json_decode($admin->Roles->read?:[]); 
+			$writeAccess = json_decode($admin->Roles->write?:[]);
+			$wholeAccess = array_merge($readAccess,$writeAccess);
+			if(in_array($routename, $wholeAccess)){
+				return true;
+			}else{
+				return false;
+			}
+		}
+				return false;
+	}
+}
+
+

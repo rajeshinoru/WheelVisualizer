@@ -9,115 +9,42 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>Subadmin List</h4>
                     <div class="add-product">
-                        <!-- <a data-toggle="modal" data-target="#myModal">Add User</a> -->
+                        <a data-toggle="modal" data-target="#myModal">Add Subadmin</a>
                     </div>
                     <div class="asset-inner">
                         <table>
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>User ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th>Subadmin ID</th>
+                                    <th>Name</th> 
                                     <th>Email</th>
-                                    <th>Created At</th>
+                                    <th>Phone</th>
+                                    <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            @forelse(@$users as $key => $user)
+                            @forelse(@$subadmins as $key => $subadmin)
                             <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{@$user->userid}}</td>
-                                <td>{{@$user->fname}}</td>
-                                <td>{{@$user->lname}}</td>
-                                <td>{{@$user->email}}</td>
-                                <td>{{@$user->created_at}}</td>
+                                <td>{{$key+1}}</td> 
+                                <td>{{@$subadmin->name}}</td> 
+                                <td>{{@$subadmin->email}}</td>
+                                <td>{{@$subadmin->phone}}</td>
+                                <td>{{@$subadmin->created_at}}</td>
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>
 
 
-                                    <a type="button" class="btn btn-danger delete-user" data-key="{{$key}}"><i class="fa fa-trash"></i></a>
-                                    <form id="delete-form-{{$key}}" action="{{route('admin.user.destroy',$user->id)}}" method="POST" novalidate="">
+                                    <a type="button" class="btn btn-danger delete-subadmin" data-key="{{$key}}"><i class="fa fa-trash"></i></a>
+                                    <form id="delete-form-{{$key}}" action="{{route('admin.subadmin.destroy',$subadmin->id)}}" method="POST" novalidate="">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </td>
                             </tr>
-                            <div class="modal fade" id="editModal{{$key}}" role="dialog">
-                                <div class="modal-dialog admin-form">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Edit User</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div id="dropzone1" class="pro-ad addcoursepro">
-                                                <form action="{{ route('admin.user.update', $user->id)}}" class=" needsclick addcourse" method="POST" id="update-post" enctype="multipart/form-data">
-                                                    {{csrf_field()}}
-                                                    {{method_field('PATCH')}}
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="col-md-2">
-                                                                <label>First Name</label>
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <input type="text" name="fname" class="form-control" placeholder="Give the First Name" required="" value="{{$user->fname}}">
-                                                            </div>
-                                                        </div> 
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="col-md-2">
-                                                                <label>Last Name</label>
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <input type="text" name="lname" class="form-control" placeholder="Give the Last Name" required="" value="{{$user->lname}}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="col-md-2">
-                                                                <label>Email</label>
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <input type="email" name="email" class="form-control" placeholder="Give the email id" required="" value="{{$user->email}}">
-                                                            </div>
-                                                        </div> 
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="col-md-2">
-                                                                <label>Phone</label>
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <input type="text" name="phone" class="form-control" placeholder="Give the phone number" value="{{$user->phone}}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="payment-adress">
-                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="payment-adress">
-                                                                <a class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cancel</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                                    </div>
-                                </div>
-                            </div>
                             @empty
                             <tr>
-                                <td colspan="5">No Users found</td>
+                                <td colspan="5">No Subadmins found</td>
                             </tr>
                             @endforelse
 
@@ -132,19 +59,88 @@
                             </tfoot> -->
                         </table>
                     </div>
-                    {{@$users->links()}}
-                    <!-- <div class="custom-pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
-                    </div> -->
+                    {{@$subadmins->links()}}
+ 
+                            @forelse(@$subadmins as $key => $subadmin)
+                            <div class="modal fade" id="editModal{{$key}}" role="dialog">
+                                <div class="modal-dialog admin-form">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Edit Subadmin</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="dropzone1" class="pro-ad addcoursepro">
+                                                <form action="{{ route('admin.subadmin.update', $subadmin->id)}}" class=" needsclick addcourse" method="POST" id="update-post" enctype="multipart/form-data">
+                                                    {{csrf_field()}}
+                                                    {{method_field('PATCH')}}
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label for="name">Name</label>
+                                                                <input name="name" type="text" class="form-control" placeholder="Name"   required="" value="{{@$subadmin->name}}">
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label for="fname">Email</label>
+                                                                <input name="email" type="email" class="form-control" placeholder="Email "   required="" value="{{@$subadmin->email}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label for="phone">phone</label>
+                                                                <input name="phone" type="text" class="form-control" placeholder="Phone "   value="{{@$subadmin->phone}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> 
+                                                            <label>Access Modules</label>
+                                                                <table>
+                                                                    <thead>  
+                                                                    <th>Modules</th>
+                                                                    <th>Read</th>
+                                                                    <th>Write</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach(getAdminModules() as $mkey => $module)
+                                                                        <tr>
+                                                                            <td>{{$module}}</td>
+                                                                            <td><input type="checkbox" name="read[{{$mkey}}]" value="1" {{(in_array($mkey,json_decode($subadmin->Roles->read??[])))?'checked':''}} ></td>
+                                                                            <td><input type="checkbox" name="write[{{$mkey}}]" value="1" {{(in_array($mkey,json_decode($subadmin->Roles->write??[])))?'checked':''}}  ></td>
+                                                                        </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+
+                                                                </table> 
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="payment-adress">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="payment-adress">
+                                                                <a class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @empty
+                            @endforelse
 
                     <!--  New Model Start-->
                     <div class="modal fade" id="myModal" role="dialog">
@@ -152,7 +148,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">User Information</h4>
+                                    <h4 class="modal-title">Subadmin Information</h4>
                                 </div>
                                 <div class="modal-body">
                                     <!-- New Model Content Start -->
@@ -167,35 +163,53 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="review-content-section">
                                                                 <div id="dropzone1" class="pro-ad">
-                                                                    <form action="{{url('/admin/user/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST">
+                                                                    <form action="{{url('/admin/subadmin/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST">
                                                                         {{@csrf_field()}}
                                                                         <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="fname">First Name</label>
-                                                                                    <input name="fname" type="text" class="form-control" placeholder="First Name" value="" required="">
+                                                                                    <label for="name">Name</label>
+                                                                                    <input name="name" type="text" class="form-control" placeholder="Name" value="" required="">
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="lname">Last Name</label>
-                                                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" value="" required="">
-                                                                                </div>
-                                                                            </div>
+                                                                            </div> 
                                                                         </div>
                                                                         <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="lname">Mobile</label>
-                                                                                    <input type="text" name="mobile" class="form-control" placeholder="(+91) Mobile Number " value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <label for="fname">Email</label>
                                                                                     <input name="email" type="email" class="form-control" placeholder="Email " value="" required="">
                                                                                 </div>
                                                                             </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="phone">Phone</label>
+                                                                                    <input type="text" name="phone" class="form-control" placeholder="(+91) Phone Number " value="">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> 
+                                                                            <label>Access Modules</label>
+                                                                                    <table nocellpadding>
+                                                                                        <thead>  
+                                                                                        <th>Modules</th>
+                                                                                        <th>Read</th>
+                                                                                        <th>Write</th>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            @foreach(getAdminModules() as $mkey => $module)
+                                                                                            <tr>
+                                                                                                <td>{{$module}}</td>
+                                                                                                <td><input type="checkbox" name="read[{{$mkey}}]" value="1"></td>
+                                                                                                <td><input type="checkbox" name="write[{{$mkey}}]" value="1"></td>
+                                                                                            </tr>
+                                                                                            @endforeach
+                                                                                        </tbody>
+
+                                                                                    </table> 
+                                                                            </div> 
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-12">
@@ -236,8 +250,8 @@
 @section('custom_scripts')
 <script type="text/javascript">
  
-    $('.delete-user').click(function(){
-            if (confirm("Are you sure want to remove user?")) {
+    $('.delete-subadmin').click(function(){
+            if (confirm("Are you sure want to remove subadmin?")) {
                 $('#delete-form-'+$(this).data('key')).submit();
             }
             return false;
