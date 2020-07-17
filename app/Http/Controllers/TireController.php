@@ -7,8 +7,9 @@ use App\ChassisModel;
 use App\Vehicle;
 use App\WheelProduct;
 use Illuminate\Http\Request;
-use DB;
+use App\Http\Controllers\ZipcodeController as Zipcode;
 use Session;
+use DB;
 
 class TireController extends Controller
 {
@@ -33,7 +34,7 @@ class TireController extends Controller
         $tires = new Tire;
 
         $tires = $tires->select('prodimage','id','prodtitle','detailtitle','tiresize','loadindex','speedrating',
-                    'price','prodmodel','tirewidth','tireprofile','tirediameter');
+                    'price','prodmodel','tirewidth','tireprofile','tirediameter','partno');
         // dd(base64_decode($chassis_model_id));
         $chassis_model = ChassisModel::find(base64_decode($chassis_model_id)) ?? null;
         // dd($chassis_model);
@@ -213,23 +214,89 @@ class TireController extends Controller
             // dd($tires->get());
 
 
+ 
 
+     // if zipcode is available....
 
-        $zipcode =Session::get('user.zipcode');
+            $zipcode =Session::get('user.zipcode');
+            if($zipcode != null){
+                $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
+                // dd($zipcodes);
+                // $zipcodes = array(
+                //     0 => "32218",
+                //     4 => "32226",
+                //     6 => "32208",
+                //     7 => "32206",
+                //     8 => "32209",
+                //     9 => "32204",
+                //     10 => "32225",
+                //     11 => "32231",
+                //     12 => "32216",
+                //     13 => "32227",
+                //     14 => "32220",
+                //     15 => "32210",
+                //     16 => "32266",
+                //     17 => "32240",
+                //     18 => "32257",
+                //     19 => "32009",
+                //     20 => "32004",
+                //     21 => "32006",
+                //     22 => "32258",
+                //     23 => "31548",
+                //     24 => "31562",
+                //     25 => "32259",
+                //     26 => "32260",
+                //     27 => "32234",
+                //     29 => "32068",
+                //     30 => "31569",
+                //     31 => "32067",
+                //     32 => "32063",
+                //     33 => "32040",
+                //     34 => "31537",
+                //     35 => "32092",
+                //     38 => "32058",
+                //     40 => "31565",
+                //     41 => "32095",
+                //     42 => "32083",
+                //     43 => "32085",
+                //     44 => "31568",
+                //     45 => "32091",
+                //     47 => "32007",
+                //     48 => "31521",
+                //     49 => "31523",
+                // ); 
 
-        if($zipcode != null){
-            $tires->whereHas('Inventories',function($q){
-                $q->where('available_qty','>',0);
-                $q->orderBy('available_qty', 'DESC');
-            });
-        }   
+                $radius_tires = clone $tires;
+                $radius_tires = $radius_tires->whereHas('Inventories')->whereHas('Inventories.Dropshippers')->with([
+                                    'Inventories'=>function ($query){ 
+                                                        $query->orderBy('available_qty','DESC'); 
+                                    },
+                                    'Inventories.Dropshippers'=>function ($query) use($zipcodes){ 
+                                                        $query->whereIn('zip',$zipcodes); 
+                                    }
+                                ]); 
+                // dd($radius_tires->get()[0]);
 
-                    
-        $tires = $tires
-            ->orderBy('qtyavail', 'DESC')
+                $radius_tires = $radius_tires           
+                ->orderBy('price', 'ASC')
+                ->get()
+                ->unique('prodtitle'); 
+            }                       
+ 
+            $tires = $tires->with([
+                                    'Inventories'=>function ($query){ 
+                                                        $query->orderBy('available_qty','DESC'); 
+                                    }
+                                ])         
             ->orderBy('price', 'ASC')
             ->get()
             ->unique('prodtitle');
+
+            if($zipcode != null){
+                $tires =collect($radius_tires->merge($tires));
+            }
+
+                   
 
         if(count($tires) == 0){
 
