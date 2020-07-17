@@ -393,7 +393,7 @@ class WheelProductController extends Controller
                 // );
             // dd($zipcodes);
 
-
+                $radius_products = clone $products;
                 $radius_products = $radius_products->with([
                                     'Inventories'=>function ($query){ 
                                                         $query->orderBy('available_qty','DESC'); 
