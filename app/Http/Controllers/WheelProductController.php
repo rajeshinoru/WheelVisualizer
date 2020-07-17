@@ -344,7 +344,7 @@ class WheelProductController extends Controller
 
             // if zipcode is available....
 
-            $radius_products = array();
+            $radius_products = [];
 
             $zipcode =Session::get('user.zipcode');
             if($zipcode != null){
