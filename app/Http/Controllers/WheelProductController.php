@@ -398,10 +398,15 @@ class WheelProductController extends Controller
                 // $clone_products = $clone_products->get();
                 $ids = array();
                 
-                $clone_products = $clone_products->with('Inventories','Inventories.Dropshippers')->whereHas('Inventories.Dropshippers', 
+                $clone_products = $clone_products->with('Inventories','Inventories.Dropshippers')->whereHas('Inventories', 
                     function($q){
                         // $q->where('zip','>','00001');
-                    })->get();
+                    })
+                    // ->whereHas('Inventories.Dropshippers', 
+                    // function($q1){
+                    //     // $q->where('zip','>','00001');
+                    // })
+                    ->get();
 
 
                 // $dropshippers = Dropshipper::with('InventoryProducts','InventoryProducts.WheelProducts')->whereIn('zip',$zipcodes)->whereHas('InventoryProducts', 
