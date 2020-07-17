@@ -213,6 +213,11 @@
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-12">
+                                                                                <label>**Default Password is : 123456</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
                                                                                 <div class="payment-adress">
                                                                                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="Submit">
 

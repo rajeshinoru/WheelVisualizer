@@ -348,36 +348,91 @@ class WheelProductController extends Controller
             $zipcode =Session::get('user.zipcode');
             if($zipcode != null){
                 // $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
+                // dd($zipcodes);
                 $zipcodes = [
-                    "2"=>"11801",
-                    "8"=>"15126",
-                    "3"=>"12205",
-                    "9"=>"14225",
+                    0 => "32218",
+                    4 => "32226",
+                    6 => "32208",
+                    7 => "32206",
+                    8 => "32209",
+                    9 => "32204",
+                    10 => "32225",
+                    11 => "32231",
+                    12 => "32216",
+                    13 => "32227",
+                    14 => "32220",
+                    15 => "32210",
+                    16 => "32266",
+                    17 => "32240",
+                    18 => "32257",
+                    19 => "32009",
+                    20 => "32004",
+                    21 => "32006",
+                    22 => "32258",
+                    23 => "31548",
+                    24 => "31562",
+                    25 => "32259",
+                    26 => "32260",
+                    27 => "32234",
+                    29 => "32068",
+                    30 => "31569",
+                    31 => "32067",
+                    32 => "32063",
+                    33 => "32040",
+                    34 => "31537",
+                    35 => "32092",
+                    38 => "32058",
+                    40 => "31565",
+                    41 => "32095",
+                    42 => "32083",
+                    43 => "32085",
+                    44 => "31568",
+                    45 => "32091",
+                    47 => "32007",
+                    48 => "31521",
+                    49 => "31523",
                 ];
             // dd($zipcodes);
+
+                $clone_products = clone $products;
+                // $clone_products = $clone_products->get();
                 $ids = array();
-                $dropshippers = Dropshipper::with('InventoryProducts','InventoryProducts.WheelProducts')->whereHas('InventoryProducts', 
+                
+                $clone_products = $clone_products->with('Inventories','Inventories.Dropshippers')->whereHas('Inventories.Dropshippers', 
                     function($q){
-                        $q->where('available_qty','>',0);
+                        // $q->where('zip','>','00001');
                     })->get();
 
 
-                // // $inv = Inventory::where('location_name',$dropshippers[0]->code)->get();
+                // $dropshippers = Dropshipper::with('InventoryProducts','InventoryProducts.WheelProducts')->whereIn('zip',$zipcodes)->whereHas('InventoryProducts', 
+                //     function($q){
+                //         $q->where('available_qty','>',0);
+                //     })->get();
+
+                dd($clone_products);
+
+                // $inv = Inventory::where('location_name',$dropshippers[0]->code)->get();
                 
-                // foreach ($dropshippers as $key => $dropshipper) {
+                foreach ($dropshippers as $key => $dropshipper) {
+                    $clone_products = $clone_products->with('Inventories')->whereHas('Inventories', 
+                    function($q) use($dropshipper) {
+                        $q->where('location_name',$dropshipper->code);
+                    });
+
+
+                    // foreach ($dropshipper->InventoryProducts as $key => $product) {
+                    //     // dd($product);
+                    //     array_push($ids, $product->WheelProducts?$product->WheelProducts->id:null);
+                    // }
+                } 
                     
-                //     foreach ($dropshipper->InventoryProducts as $key => $product) {
-                //         // dd($product);
-                //         array_push($ids, $product->WheelProducts?$product->WheelProducts->id:null);
-                //     }
-                // } 
-                // dd($ids);
-                // // \DB::enableQueryLog();
-                // $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
-                // // dd(DB::getQueryLog());
-                // dd($products->pluck('id'),$newproducts->pluck('id'),$ids);
-                // dd($partnos);
-                // dd($zipcodes,$zipcode);
+                dd($ids);
+                // \DB::enableQueryLog();
+                $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
+                // dd(DB::getQueryLog());
+                dd($products->pluck('id'),$newproducts->pluck('id'),$ids);
+                dd($partnos);
+                dd($zipcodes,$zipcode);
             }                       
 
             // $products = new WheelProduct;
