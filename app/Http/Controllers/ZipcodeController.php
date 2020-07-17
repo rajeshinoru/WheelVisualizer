@@ -9,7 +9,7 @@ class ZipcodeController extends Controller
 {
     
     public static function getZipcodesByRadius($zipcode){
-    	$miles = 50;
+    	$miles = 150;
     	$url = "https://zipcodedownload.com/Radius?firstzipcode=".$zipcode."&radiuscoverage=".$miles."&format=json&key=DEMOAPIKEY";
         $response = Curl::to($url)->get();
         // dd($response);

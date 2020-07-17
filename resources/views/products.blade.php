@@ -304,7 +304,7 @@
                                                      -->
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
                                     
-                                                    @if($product->available)
+                                                    @if(@$product->available)
                                                     <br> {{'Avail : '.$product->available}} 
                                                     @endif
                                                      @if(@$product->distance)
