@@ -344,8 +344,6 @@ class WheelProductController extends Controller
 
             // if zipcode is available....
 
-            $radius_products = [];
-
             $zipcode =Session::get('user.zipcode');
             if($zipcode != null){
                 $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
@@ -484,8 +482,9 @@ class WheelProductController extends Controller
             ->get()
             ->unique('prodtitle');
 
-
-            $products =collect($radius_products->merge($products));
+            if($zipcode != null){
+                $products =collect($radius_products->merge($products));
+            }
 
             // dd($products);
             // ,'Inventories.Dropshippers'=>function($q1) use($zipcodes){
