@@ -344,7 +344,8 @@ class WheelProductController extends Controller
 
             // if zipcode is available....
 
-
+            $radius_products = clone $products;
+             
             $zipcode =Session::get('user.zipcode');
             if($zipcode != null){
                 $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
@@ -394,7 +395,6 @@ class WheelProductController extends Controller
                 // );
             // dd($zipcodes);
 
-                $radius_products = clone $products; 
 
                 $radius_products = $radius_products->with([
                                     'Inventories'=>function ($query){ 
