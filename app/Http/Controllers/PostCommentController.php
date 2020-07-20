@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PostComment;
 use Illuminate\Http\Request;
-
+use Auth;
 class PostCommentController extends Controller
 {
     /**
@@ -43,20 +43,28 @@ class PostCommentController extends Controller
 
         ]);
 
-        if(!$request->comment_id){
+        if($request->has('usertype'))
+        {
+            if($request->usertype == 'admin'){
 
-            $request->validate([
-                'g-recaptcha-response' => 'required|captcha'
+                $input = $request->all();
 
-            ]);
+                $input['user_id'] = Auth::guard('admin')->user()->id??null;
+                $input['comment_by'] = 'Admin@DWW';
+            }
+        }else{
+            if(!$request->comment_id){
+
+                $request->validate([
+                    'g-recaptcha-response' => 'required|captcha'
+                ]);
+            }
+
+            $input = $request->all();
+
+            $input['user_id'] = @auth()->user()->id??null;
+            $input['comment_by'] = $request->name??'';
         }
-
-        $input = $request->all();
-
-        $input['user_id'] = @auth()->user()->id??null;
-        $input['comment_by'] = $request->name??'';
-
-    
 
         PostComment::create($input);
 

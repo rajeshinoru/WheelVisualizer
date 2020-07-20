@@ -68,7 +68,19 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        // dd($post);
+        try{  
+            if($post){
+                return view('admin.post.view',compact('post'));
+            }else{
+                return back()->with('success','Post Not Found!!');
+            } 
+                
+
+            }catch(Exception $e){
+                return back()->with('error','Post Not Found!!');
+            }
+
     }
 
     /**

@@ -6,7 +6,7 @@
 
 </style>
 @foreach($comments as $key => $comment)
-    <div class="display-comment" @if($comment->comment_id != null) style="margin-left:40px;" @endif>
+    <div class="display-comment well" @if($comment->comment_id != null) style="margin-left:40px;" @endif>
         <strong>{{ $comment->comment_by?:'Viewer' }} <span class="diff-time"> {{$comment->created_at->diffForHumans()}}</span></strong>
         <p>{{ $comment->content }}</p> 
         @include('blogcomments', ['comments' => $comment->replies,'type'=>'reply'])
@@ -34,7 +34,9 @@
                 </div>
             </div>
         </form>
-        @endif
+        <br>
+        <br>
+        @endif 
     </div>
 @endforeach
 

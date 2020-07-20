@@ -89,7 +89,8 @@ $is_write_access = VerifyAccess('post','write');
                                 <td>{{@$key+1}}</td>
                                 <td>{{@$post->title}}</td>
                                 <td>{{@$post->postby}}</td>
-                                <td class="td-center">
+                                <td><a href="{{url('/admin/post/'.$post->id)}}" class="btn btn-info">View</a></td>
+<!--                                 <td class="td-center">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#content{{$key}}">View</button>
 
                                     <div class="modal fade " id="content{{$key}}" role="dialog">
@@ -113,7 +114,7 @@ $is_write_access = VerifyAccess('post','write');
                                         </div>
                                     </div>
 
-                                </td>
+                                </td> -->
                                 <td><img class="wheelImage" id="featured-img-list-{{$key}}"  src="{{asset('storage/'.@$post->image)}}" width="100px" height="100px"></td>
                                 <td>
                                     {{($post->is_visible ==  0)?'NO':'YES'}}
