@@ -14,7 +14,7 @@ class PostCommentController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -35,7 +35,7 @@ class PostCommentController extends Controller
      */
     public function store(Request $request)
 
-    {  
+    {
 
         $request->validate([
 
@@ -68,7 +68,7 @@ class PostCommentController extends Controller
 
         PostComment::create($input);
 
-   
+
 
         return back();
 
