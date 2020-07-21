@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('admin.home');
 })->name('home');
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::resource('ticket', 'Resource\TicketResource');
 Route::resource('user', 'Resource\UserResource');
