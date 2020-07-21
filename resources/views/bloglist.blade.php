@@ -16,15 +16,14 @@
     .caption{
         overflow: hidden;
         white-space: normal;
-        height: 10.5em; 
+        height: 10.5em;
         /* exactly 2 lines */
         text-overflow: -o-ellipsis-lastline;
     }
-    .thumbnail{
-
+    /* .thumbnail{
         min-height: 10.5em;
         max-height: 27.5em;
-    }
+    } */
 </style>
 <br>
 
@@ -45,7 +44,7 @@
                     <div class="thumbnail">
                         <h1><a href="{{url('/blogview')}}/{{base64_encode($post->id)}}">{{@$post->title}}</a></h1>
                         <p>Posted <a>{{$post->created_at}} By <a>Dww</a></p>
-                        <img src="{{asset('storage/'.@$post->image)}}" alt="Blog" style="width:40%">
+                        <img src="{{asset('storage/'.@$post->image)}}" alt="Blog" style="width:40%;height:140px;">
                         <div class="caption">
                             <p class="para"><?=@$post->content?></p>
                         </div>

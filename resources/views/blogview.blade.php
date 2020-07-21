@@ -12,7 +12,29 @@
     .container-fluid.home-page {
         padding: 0px 0px !important;
         background: #f1f1f1 !important;
-    } 
+    }
+    .blog-view-left
+    {
+      text-align: left;
+    }
+    .blog-view-right
+    {
+      text-align: right;
+    }
+    .blog-view-right p
+    {
+      margin:0px;
+    }
+    .post .btn.btn-success.post-button
+    {
+      margin: 23px 0px !important;
+    }
+    .post .btn.btn-success.post-button:hover
+    {
+      background: transparent !important;
+      color: #0e1661 !important;
+      border: 1px solid #000 !important;
+    }
 </style>
 <br>
 
@@ -32,8 +54,10 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 wheel-blog">
                     <div class="thumbnail">
-                        <h1><a href="">{{$post->title}}</a></h1>
-                        <p>Posted <a href="">{{$post->created_at}} By <a href="">Dww</a></p>
+                      <div class="row">
+                       <div class="col-sm-6 blog-view-left"><h1><a href="">{{$post->title}}</a></h1></div>
+                       <div class="col-sm-6 blog-view-right"><p>Posted <a href="">{{$post->created_at}} By <a href="">Dww</a></p></div>
+                      </div>
                         <div class="caption">
                             <?=$post->content?>
                         </div>
@@ -70,7 +94,7 @@
                                                     <textarea id="form_message" name="content" class="form-control" placeholder="Your Comments" rows="4" required="required" data-error="Please, leave us a message."></textarea>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label for="form_name">Name</label>
@@ -78,21 +102,37 @@
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
+                                                </div> -->
 
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="form_name"> Recaptcha:</label>
-                                                            {!! NoCaptcha::renderJs() !!}
-                                                            {!! NoCaptcha::display() !!}
-                                                            <div class="help-block with-errors alert alert-danger" id="human-verify"> Please verify you are human!! </div>
-                                                        </div>
+                                                <div class="row">
+                                                  <div class="col-lg-5">
+                                                      <div class="form-group">
+                                                          <label for="form_name"> Recaptcha:</label>
+                                                          {!! NoCaptcha::renderJs() !!}
+                                                          {!! NoCaptcha::display() !!}
+                                                          <div class="help-block with-errors alert alert-danger" id="human-verify"> Please verify you are human!! </div>
+                                                      </div>
+                                                  </div>
+
+                                                    <div class="col-lg-7 post">
+                                                      <div class="col-lg-6">
+                                                          <div class="form-group">
+                                                              <label for="form_name">Name</label>
+                                                              <input id="form_name" type="text" name="name" class="form-control" placeholder="Enter your fullname" required="required" data-error="Name is required.">
+                                                              <div class="help-block with-errors"></div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="col-lg-6">
+                                                          <input type="submit" class="btn btn-success post-button" value="Post Comment">
+                                                      </div>
                                                     </div>
                                                 </div>
+
                                                 <!--                          <div class="captcha form-group">
                               <img src="image/captcha.png" alt="captcha code">
                               <div class="help-block with-errors"><a href="">Can't read the code? Click on the image to get a new one.</a></div>
                           </div> -->
-                                                <input type="submit" class="btn btn-success post-button" value="Post Comment">
+                                                <!-- <input type="submit" class="btn btn-success post-button" value="Post Comment"> -->
                                             </div>
                                         </form>
                                     </div>
@@ -119,7 +159,7 @@
         var response = grecaptcha.getResponse();
         if (response.length == 0) {
             //reCaptcha not verified
-            // alert("please verify you are humann!"); 
+            // alert("please verify you are humann!");
 
             $('#human-verify').show();
 

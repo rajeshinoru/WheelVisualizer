@@ -9204,7 +9204,7 @@ width:25% !important;
 .post-button {
     background: #0e1661 !important;
     color: #fff !important;
-    border: none !important;
+    border: 1px solid #0e1661 !important;
 }
 
 .wheel-blog-comment img {
@@ -9230,6 +9230,7 @@ width:25% !important;
   line-height: 30px !important;
   font-family: poppins !important;
   font-size: 12px !important;
+  margin: 0px;
 }
 .thumbnail {
     padding: 20px 20px !important;
@@ -9239,8 +9240,11 @@ width:25% !important;
     width: 25% !important;
 }
 .wheel-blog-comment span {
-    color: #ccc !important;
-    font-size: 15px !important;
+  color: #ccc !important;
+  font-size: 13px !important;
+  display: block;
+  line-height: 25px !important;
+  font-weight: 400;
 }
 /* Blog End */
 
