@@ -273,7 +273,7 @@
 
             $('.select2').select2();
 
-            var table = $('table').DataTable({
+            var table = $('table').not('#table-log').DataTable({
                 dom: 't' // This shows just the table
             });
 
