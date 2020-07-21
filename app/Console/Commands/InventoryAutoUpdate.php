@@ -127,6 +127,7 @@ class InventoryAutoUpdate extends Command
             "vftp0019",
             "vftp0022",
             "vftp0023",
+            "vftp0024",
             "vftp0027",
             "vftp0028",
             "vftp0029",

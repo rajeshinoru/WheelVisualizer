@@ -195,7 +195,7 @@ $is_write_access = VerifyAccess('logs','write');
                                         <a href="?dl={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
                                             <span class="fa fa-download"></span> Download file
                                         </a>
-                                        <!-- -
+                                        -
                                         <a id="clean-log" href="?clean={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
                                             <span class="fa fa-sync"></span> Clean file
                                         </a>
@@ -205,7 +205,7 @@ $is_write_access = VerifyAccess('logs','write');
                                         </a>
                                         @if(count($files) > 1)
                                         -
-                                        <a id="delete-all-log" href="?delall=true{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                                      <!--   <a id="delete-all-log" href="?delall=true{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
                                             <span class="fa fa-trash-alt"></span> Delete all files
                                         </a> -->
                                         @endif

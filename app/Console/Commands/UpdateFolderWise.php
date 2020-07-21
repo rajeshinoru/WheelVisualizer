@@ -78,8 +78,7 @@ class UpdateFolderWise extends Command
 
 
         $table = "inventories"; 
-        
-
+ 
         if(array_keys($newData) !== range(0, count($newData) - 1)) {
  
 
@@ -96,8 +95,7 @@ class UpdateFolderWise extends Command
                 Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
                 RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
                  
- 
-                \Log::info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
+                \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$newData['partno']." --- "."LOC:".$newData['location_code']); 
             }
 
         }else{
@@ -120,7 +118,7 @@ class UpdateFolderWise extends Command
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
                         RemoteInventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data );  
                         
-                        \Log::info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
+                        \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$data['partno']." --- "."LOC:".$data['location_code']);
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 
 

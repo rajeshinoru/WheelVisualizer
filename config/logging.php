@@ -89,6 +89,11 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+        'ftplog' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/ftp/ftplog.log'),
+            'level' => 'info',
+        ],
     ],
 
 ];
