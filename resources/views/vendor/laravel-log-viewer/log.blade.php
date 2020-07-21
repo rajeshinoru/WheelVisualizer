@@ -161,6 +161,7 @@ $is_write_access = VerifyAccess('logs','write');
                                         <tbody>
 
                                             @foreach($logs as $key => $log)
+                                            @if($log['level'] == 'info')
                                             <tr data-display="stack{{{$key}}}">
                                                 @if ($standardFormat)
                                                 <td class="nowrap text-{{{$log['level_class']}}}">
@@ -185,6 +186,7 @@ $is_write_access = VerifyAccess('logs','write');
                                                     @endif
                                                 </td>
                                             </tr>
+                                            @endif
                                             @endforeach
 
                                         </tbody>

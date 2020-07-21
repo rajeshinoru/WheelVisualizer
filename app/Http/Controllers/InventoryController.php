@@ -97,7 +97,7 @@ class InventoryController extends Controller
         // $db_ext = \DB::connection('sqlsrv');
         // $inv = $db_ext->table('inventories')->count();
 
-        $count = RemoteInventory::count();
+        $count = Inventory::count();
         // $last = RemoteInventory::get()->count();
         return ['status'=>true,'data'=>$count];
         // dd($inv);
