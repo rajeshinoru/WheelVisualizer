@@ -33,6 +33,7 @@ Route::resource('feedback', 'FeedbackController');
 Route::resource('enquiry', 'EnquiryController');
 Route::resource('review', 'ReviewController');
 Route::resource('post', 'PostController');
+Route::resource('postcomment', 'PostCommentController');
 
 
 // Routes for Meta Keywords
