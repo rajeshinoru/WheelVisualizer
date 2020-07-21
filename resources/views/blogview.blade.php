@@ -73,7 +73,7 @@
                 <div class="col-sm-8 col-sm-offset-2 wheel-blog-comment">
                     <div class="thumbnail">
                         <div id="blog-heading text-left" class="title">
-                            <h1>Post Your comment</h1>
+                            <h1>Post Comments</h1>
                         </div>
                         <div class="row">
                             <!--       <div class="col-sm-2 post-img">
@@ -83,8 +83,12 @@
                                 <!-- <h1>Discounted Wheel Warehouse <span>2 Weeks ago</span></h1> -->
                                 <!-- <p>Niche Road Wheels designs high-quality custom wheels to upgrade your ride. Robust and well-built, Niche Elan custom wheels provide today's SUVs with stylish, impassive looks for the street.</p> -->
                                 @include('blogcomments', ['comments' => $post->comments, 'post' => $post])
+
+
                                 <div class="row">
                                     <div class="col-sm-12">
+
+                                      @if(@Auth::user() || @Auth::guard('admin')->user())
                                         <form id="comment-form" action="{{route('comment.store')}}" method="post" novalidate="true">
                                             {{@csrf_field()}}
                                             <input type="hidden" name="post_id" value="{{$post->id}}">
@@ -116,11 +120,11 @@
 
                                                     <div class="col-lg-7 post">
                                                       <div class="col-lg-6">
-                                                          <div class="form-group">
+                                                          <!-- <div class="form-group">
                                                               <label for="form_name">Name</label>
                                                               <input id="form_name" type="text" name="name" class="form-control" placeholder="Enter your fullname" required="required" data-error="Name is required.">
                                                               <div class="help-block with-errors"></div>
-                                                          </div>
+                                                          </div> -->
                                                       </div>
                                                       <div class="col-lg-6">
                                                           <input type="submit" class="btn btn-success post-button" value="Post Comment">
@@ -135,6 +139,10 @@
                                                 <!-- <input type="submit" class="btn btn-success post-button" value="Post Comment"> -->
                                             </div>
                                         </form>
+                                      @else
+
+                                    <div class="col-sm-6 blog-view-left"><h1>To post your comments , <a href="{{url('/login')}}" >login here</a></h1></div> 
+                                      @endif
                                     </div>
                                 </div>
                             </div>

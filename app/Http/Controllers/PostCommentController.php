@@ -45,12 +45,11 @@ class PostCommentController extends Controller
 
         if($request->has('usertype'))
         {
-            if($request->usertype == 'admin'){
-
+            if($request->usertype == 'admin'){ 
                 $input = $request->all();
-
                 $input['user_id'] = Auth::guard('admin')->user()->id??null;
-                $input['comment_by'] = 'Admin@DWW';
+                $input['comment_by'] =  Auth::guard('admin')->user()->name.'@DWW';
+                $input['usertype'] = 'admin';
             }
         }else{
             if(!$request->comment_id){
@@ -61,9 +60,9 @@ class PostCommentController extends Controller
             }
 
             $input = $request->all();
-
-            $input['user_id'] = @auth()->user()->id??null;
-            $input['comment_by'] = $request->name??'';
+            $input['user_id'] = @Auth::user()->id??null;
+            $input['comment_by'] =(@Auth::user()->fname.' '.@Auth::user()->lname)??'';
+            $input['usertype'] = 'user';
         }
 
         PostComment::create($input);
@@ -114,11 +113,14 @@ class PostCommentController extends Controller
      * @param  \App\PostComment  $postComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostComment $postComment)
+    public function destroy($id)
     {
+        // dd($postComment);
         try{  
-            
-            $postComment->delete();
+            $comment = PostComment::find($id);
+            // dd($comment);
+            $comment->delete();
+            // $postComment->delete();
 
             return back()->with('success','Comment Deleted Successfully!!');
 

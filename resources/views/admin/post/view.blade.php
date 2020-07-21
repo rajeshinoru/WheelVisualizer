@@ -31,8 +31,8 @@ $is_write_access = VerifyAccess('post','write');
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="min-height: 680px;">
                 <div class="product-status-wrap drp-lst well"> 
                         <h3>Post Title  : {{$post->title}} </h3> 
-                        <div class="controls col-md-10">
-                            <div class="form-group"> 
+                        <div class="controls col-md-12">
+                            <div class="form-group well"> 
                                 <?=$post->content?>
                             </div>  
                         </div>
@@ -113,9 +113,9 @@ $is_write_access = VerifyAccess('post','write');
       // console.log($(this).next().find('form'));
 
             if (confirm("Are you sure want to remove?")) {
-                $(this).next().find('form').submit();
+                $(this).next().closest('form').submit();
             }
-            return false;
+            // return false;
     })
 </script>
 @endsection
