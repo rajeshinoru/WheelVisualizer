@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('admin.home');
 })->name('home');
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::resource('ticket', 'Resource\TicketResource');
 Route::resource('user', 'Resource\UserResource');
@@ -33,6 +34,7 @@ Route::resource('feedback', 'FeedbackController');
 Route::resource('enquiry', 'EnquiryController');
 Route::resource('review', 'ReviewController');
 Route::resource('post', 'PostController');
+Route::resource('postcomment', 'PostCommentController');
 
 
 // Routes for Meta Keywords

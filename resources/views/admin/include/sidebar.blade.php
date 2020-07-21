@@ -155,6 +155,12 @@
                         </li>
                         @endif
 
+                        @if(VerifyAccess('logs'))
+                        <li>
+                            <a  href="{{url('admin/logs')}}" aria-expanded="false"><i class="fa fa-list "></i> Server Logs  </a>
+                        </li>
+                        @endif
+
                         @if(VerifyAccess('cmspage'))
                         <li>
                             <a  href="{{url('admin/cmspage')}}" aria-expanded="false"><i class="fa fa-list "></i> CMS Pages  </a>

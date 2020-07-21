@@ -30,7 +30,7 @@ $is_write_access = VerifyAccess('post','write');
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="min-height: 680px;">
                 <div class="product-status-wrap drp-lst well"> 
-                            <h3>Post Title  : {{$post->title}} </h3> 
+                        <h3>Post Title  : {{$post->title}} </h3> 
                         <div class="controls col-md-10">
                             <div class="form-group"> 
                                 <?=$post->content?>
@@ -39,7 +39,7 @@ $is_write_access = VerifyAccess('post','write');
                     <div class="asset-inner" >
                             <h3>Post Comments</h3>
                             <div class="col-md-12">
-                                @include('blogcomments', ['comments' => $post->comments, 'post' => $post])
+                                @include('blogcomments', ['comments' => $post->comments, 'post' => $post,'usertype'=>'admin'])
                             </div> 
                             @if($is_write_access) 
                                 <div class="row">
@@ -80,3 +80,43 @@ $is_write_access = VerifyAccess('post','write');
 </div>
 
 @endsection
+
+@section('custom_scripts')
+<script type="text/javascript">
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = (function (input) {   
+                
+                var key = $(input).data('key');
+                return function(e){
+                    $('#featured-img-'+key).attr('src', e.target.result);
+                };
+
+            })(input); 
+            reader.readAsDataURL(input.files[0]);
+        }
+    } 
+
+    $('.featured-img').change(function(){ 
+        readURL(this); 
+    });
+
+    $('.featured-img-delete').click(function(){
+        var key = $(this).data('key');
+        $('#featured-img-input-'+key).val('');
+        $('#featured-img-'+key).attr('src',$('#featured-img-list-'+key).attr('src'));
+    })
+
+    $('.delete-post').click(function(){
+      // console.log($(this).next().find('form'));
+
+            if (confirm("Are you sure want to remove?")) {
+                $(this).next().find('form').submit();
+            }
+            return false;
+    })
+</script>
+@endsection
+

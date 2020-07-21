@@ -893,6 +893,7 @@ function getAdminModules($key='',$flag=null){
 		"vehicle"=>"Vehicles",
 		"wheel"=>"Wheels",
 		"wheelproduct"=>"Wheelproducts",
+		"logs"=>"Server Logs",
 	);
  
 	if($flag){

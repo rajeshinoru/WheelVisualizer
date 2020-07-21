@@ -3,6 +3,7 @@
     .diff-time{
         font-style:italic;
     }
+<<<<<<< HEAD
 .list-inline-item.cursor.like-comment-1 a span
 {
   color: #0e1661 !important;
@@ -18,7 +19,6 @@
             <a href=""><span class="PostComment"> <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span></a>
           </li>
         </ul> -->
-
         @include('blogcomments', ['comments' => $comment->replies,'type'=>'reply'])
         @if(($key == 0 && $comment->comment_id == null ) || $comment->comment_id == null)
                 <form method="post" action="{{ route('comment.store') }}" style="margin-left:40px;">

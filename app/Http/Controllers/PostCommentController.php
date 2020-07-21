@@ -116,6 +116,14 @@ class PostCommentController extends Controller
      */
     public function destroy(PostComment $postComment)
     {
-        //
+        try{  
+            
+            $postComment->delete();
+
+            return back()->with('success','Comment Deleted Successfully!!');
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
     }
 }
