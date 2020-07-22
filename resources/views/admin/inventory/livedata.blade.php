@@ -28,6 +28,7 @@
     <tr> 
         <td colspan="3">Total</td> 
         <td>{{@$liveData['total']}}</td>  
+        <td colspan="2">-</td> 
     </tr> 
 
 </tbody>

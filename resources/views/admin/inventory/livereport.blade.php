@@ -82,7 +82,7 @@ $is_write_access = VerifyAccess('logs','write');
         });
 
 
-setInterval(function(){getLiveData();}, 3000);
+setInterval(function(){getLiveData();}, 6000);
 
 
 

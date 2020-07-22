@@ -42,8 +42,8 @@ class SubadminResource extends Controller
         try {
             $data = $request->all(); 
 
-            $readData = array_keys($data['read'])??array();
-            $writeData = array_keys($data['write'])??array();
+            $readData = array_keys($data['read']??[])??array();
+            $writeData = array_keys($data['write']??[])??array();
 
             $admin  = Admin::create([ 
                 'name' => $request->name,
@@ -55,8 +55,8 @@ class SubadminResource extends Controller
             if($admin){
                 $role = SubAdminRole::create([
                     'adminid'=>$admin->id,
-                    'read'=>json_encode($readData),
-                    'write'=>json_encode($writeData),
+                    'read'=>json_encode($readData??array()),
+                    'write'=>json_encode($writeData??array()),
                 ]);
             }
 
