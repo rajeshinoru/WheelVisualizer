@@ -112,14 +112,17 @@ class InventoryController extends Controller
                  ->pluck('total','drop_shipper'); 
 
         $today_dropshippers = Inventory::whereDate('updated_at', \Carbon\Carbon::today());
+        $time_dropshippers = clone $today_dropshippers;
         $today_dropshippers = $today_dropshippers->select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
-
+        $time_dropshippers = $time_dropshippers->orderBy('updated_at','ASC')->pluck('updated_at','drop_shipper');
+        // dd($time_dropshippers);
         return [
-            'total'=>$total,
-            'dropshippers'=>$dropshippers,
-            'today_dropshippers'=>$today_dropshippers,
+            'total'=>$total??0,
+            'dropshippers'=>$dropshippers??[],
+            'today_dropshippers'=>$today_dropshippers??[],
+            'time_dropshippers'=>$time_dropshippers??[]
         ];
     }
 

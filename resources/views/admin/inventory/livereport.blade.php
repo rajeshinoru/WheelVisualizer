@@ -48,20 +48,9 @@ $is_write_access = VerifyAccess('logs','write');
                     
                     </div>
                     <div class="asset-inner">
-                        <table id="livereportTable">
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Dropshipper</th>
-                                    <th>FTP Folder</th>
-                                    <th>Today Updated</th>
-                                    <th>Total</th> 
-                                </tr>
-                            </thead>  
-                            <tbody id="livereportTableBody">
+                        <table id="livereportTable"> 
                               @include('admin.inventory.livedata')
-                            
-                            </tbody>
+                             
                         </table>
  
                     </div>
@@ -104,7 +93,7 @@ function getLiveData(){
           data:{}, 
           success: function(result){  
               // console.log(typeof result)
-               $('#livereportTableBody').html(result); 
+               $('#livereportTable').html(result); 
                $(".se-pre-con").fadeOut("slow");
 
           },
