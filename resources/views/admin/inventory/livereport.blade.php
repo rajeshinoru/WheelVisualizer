@@ -36,6 +36,7 @@ $is_write_access = VerifyAccess('logs','write');
 /*1131px*/
 </style>
 
+<div class="se-pre-con"></div>
 <div class="product-status mg-b-15">
     <div class="container-fluid">
         <div class="row">
@@ -52,13 +53,13 @@ $is_write_access = VerifyAccess('logs','write');
                                 <tr>
                                     <th>S.No</th>
                                     <th>Dropshipper</th>
-                                    <th>FTP Fodler</th>
+                                    <th>FTP Folder</th>
                                     <th>Today Updated</th>
                                     <th>Total</th> 
                                 </tr>
                             </thead>  
                             <tbody id="livereportTableBody">
-                              
+                              @include('admin.inventory.livedata')
                             
                             </tbody>
                         </table>
@@ -91,19 +92,29 @@ $is_write_access = VerifyAccess('logs','write');
 
         });
 
-        $.ajax({
-            url: "/admin/logs/vftp/",
-            data:{}, 
-            success: function(result){  
-                // console.log(typeof result)
-                 $('#livereportTableBody').html(result);
 
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-            
-                    // $loading.fadeOut("slow");
-            }
-        });  
+setInterval(function(){getLiveData();}, 3000);
+
+
+
+function getLiveData(){
+      console.log('getLiveData');
+      $.ajax({
+          url: "/admin/logs/vftp/",
+          data:{}, 
+          success: function(result){  
+              // console.log(typeof result)
+               $('#livereportTableBody').html(result); 
+               $(".se-pre-con").fadeOut("slow");
+
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+                $(".se-pre-con").fadeOut("slow");
+                  // $loading.fadeOut("slow");
+          }
+      });  
+}
+
 
     
 </script>

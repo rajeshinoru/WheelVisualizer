@@ -22,7 +22,7 @@ class UpdateFolderWise extends Command
      *
      * @var string
      */
-    protected $signature = 'folderupdate:inventories {folder?}';
+    protected $signature = 'folderupdate:inventories {folder?} {env?}';
 
     /**
      * The console command description.
@@ -32,6 +32,7 @@ class UpdateFolderWise extends Command
     protected $description = 'Update the VFTP Folders Sheet Data ';
 
 
+    public $env='';
 
     public $storeArr=array();
 
@@ -74,8 +75,7 @@ class UpdateFolderWise extends Command
         return $this->storeArr;
     }
 
-    public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){
-
+    public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){ 
 
         $table = "inventories"; 
  
@@ -93,8 +93,11 @@ class UpdateFolderWise extends Command
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
                 Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                if($this->env != 'local'){
+
                 RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
                  
+                }
                 \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$newData['partno']." --- "."LOC:".$newData['location_code']); 
             }
 
@@ -116,7 +119,9 @@ class UpdateFolderWise extends Command
                         $data['updated_at']=\Carbon\Carbon::now();
 
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
+                        if($this->env != 'local'){
                         RemoteInventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data );  
+                        }
                         
                         \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$data['partno']." --- "."LOC:".$data['location_code']);
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
@@ -157,6 +162,8 @@ class UpdateFolderWise extends Command
   
 
         $folderKey = $this->argument('folder'); 
+
+        $this->env = $this->argument('env'); 
 
         $currentFolder = $folderKey;
 
