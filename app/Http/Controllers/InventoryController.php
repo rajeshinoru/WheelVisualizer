@@ -106,12 +106,12 @@ class InventoryController extends Controller
 
 
     static public function  liveCount(){ 
-        $total = RemoteInventory::count(); 
-        $dropshippers = RemoteInventory::select('drop_shipper', \DB::raw('count(*) as total'))
+        $total = Inventory::count(); 
+        $dropshippers = Inventory::select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
 
-        $today_dropshippers = RemoteInventory::whereDate('updated_at', \Carbon\Carbon::today());
+        $today_dropshippers = Inventory::whereDate('updated_at', \Carbon\Carbon::today());
         $today_dropshippers = $today_dropshippers->select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
