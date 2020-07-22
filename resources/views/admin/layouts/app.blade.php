@@ -273,9 +273,9 @@
 
             $('.select2').select2();
 
-            var table = $('table').not('#table-log').DataTable({
-                dom: 't' // This shows just the table
-            });
+            var table = $('table').not('#table-log').not('#livereportTable').DataTable({
+                dom: 't' // This shows just the table 
+            });  
 
             $('#data-table-search').on('keyup change', function() {
                 table.search($('#data-table-search').val()).draw();

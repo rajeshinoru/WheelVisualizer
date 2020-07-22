@@ -11,6 +11,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 
 use Storage;
+use View;
 
 class InventoryController extends Controller
 {
@@ -105,12 +106,12 @@ class InventoryController extends Controller
 
 
     static public function  liveCount(){ 
-        $total = Inventory::count(); 
-        $dropshippers = Inventory::select('drop_shipper', \DB::raw('count(*) as total'))
+        $total = RemoteInventory::count(); 
+        $dropshippers = RemoteInventory::select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
 
-        $today_dropshippers = Inventory::whereDate('updated_at', \Carbon\Carbon::today());
+        $today_dropshippers = RemoteInventory::whereDate('updated_at', \Carbon\Carbon::today());
         $today_dropshippers = $today_dropshippers->select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
@@ -125,7 +126,7 @@ class InventoryController extends Controller
     public function  liveReport(Request $request){  
         $liveData = $this->liveCount();
         if($request->ajax()){
-            $view = (string)View::make('admin.inventory.livereport',$liveData);
+            $view =View::make('admin.inventory.livedata')->with('liveData', $liveData);
             return $view;
         }
         return view('admin.inventory.livereport',compact('liveData'));

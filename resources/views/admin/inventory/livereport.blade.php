@@ -47,30 +47,19 @@ $is_write_access = VerifyAccess('logs','write');
                     
                     </div>
                     <div class="asset-inner">
-                        <table>
+                        <table id="livereportTable">
                             <thead>
                                 <tr>
                                     <th>S.No</th>
                                     <th>Dropshipper</th>
+                                    <th>FTP Fodler</th>
                                     <th>Today Updated</th>
                                     <th>Total</th> 
                                 </tr>
-                            </thead> 
-                            <?php $i=1; ?>
-                            <tbody >
+                            </thead>  
+                            <tbody id="livereportTableBody">
                               
-                            @forelse(@$liveData['dropshippers'] as $dropshipper => $count) 
-                            <tr> 
-                                <td>{{@$i++}}</td>
-                                <td>{{@$dropshipper}}</td>
-                                <td>{{@$liveData['today_dropshippers'][$dropshipper]??0}}</td>
-                                <td>{{@$count}}</td>  
-                            </tr> 
-                            @empty
-                            <tr>
-                                <td colspan="5">No Dropshippers found</td>
-                            </tr>
-                            @endforelse
+                            
                             </tbody>
                         </table>
  
@@ -80,32 +69,41 @@ $is_write_access = VerifyAccess('logs','write');
         </div>
     </div>
 </div>
+ <script type="text/javascript"> 
+
+</script>
 @endsection
 @section('custom_scripts')
-<script type="text/javascript">
+<script type="text/javascript">  
 
-// $(".order_status").change(function(){
-//   var status = $(this).val();  
+        $(document).ready(function() {
 
-//   var order_id = $(this).data('order_id');
-//         $.ajax({
-//             url: "/admin/order/update/"+order_id,
-//             data:{"status":status  }, 
-//             success: function(result){  
-//                 // console.log(typeof result)
-//                  $('#custom-msg').html(`
-//                   <div class="alert alert-success">
-//                           <button type="button" class="close" data-dismiss="alert">×</button>
-//                           `+result.msg+`
-//                   </div>`);
+            var table = $('#livereportTable').DataTable({
+                dom: 't', // This shows just the table 
+                paging: false
+            });
 
-//             },
-//             error: function (jqXHR, textStatus, errorThrown) {
+
+            $('#data-table-search').on('keyup change', function() {
+                table.search($('#data-table-search').val()).draw();
+            });
+
+
+        });
+
+        $.ajax({
+            url: "/admin/logs/vftp/",
+            data:{}, 
+            success: function(result){  
+                // console.log(typeof result)
+                 $('#livereportTableBody').html(result);
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
             
-//                     // $loading.fadeOut("slow");
-//             }
-//         });  
-// });
+                    // $loading.fadeOut("slow");
+            }
+        });  
 
     
 </script>

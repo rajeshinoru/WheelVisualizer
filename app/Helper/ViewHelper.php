@@ -933,3 +933,56 @@ function VerifyAccess($routename='',$accessType=''){
 }
 
 
+
+function getFTPfolders($key='',$flag=null){     
+	$list  = array(
+		"Omni"=>"vftp0010",
+		"Barons"=>"vftp0011",
+		"Future"=>"vftp0012",
+		"Economy"=>"vftp0013",
+		"TWI"=>"vftp0014",
+		"Reliable"=>"vftp0015",
+		"WheelPros"=>"vftp0016",
+		"TSW"=>"vftp0017",
+		"TheWheelGroup"=>"vftp0018",
+		"Turbo"=>"vftp0019",
+		"KMTires"=>"vftp0022",
+		"MHT"=>"vftp0023",
+		"TiresWarehouse"=>"vftp0024",
+		"KWTire"=>"vftp0027",
+		"TreadMaxx"=>"vftp0028",
+		"SSTire"=>"vftp0029",
+		"ATD"=>"vftp0030",
+		"TireHub"=>"vftp0031",
+		"TBC"=>"vftp0032",
+		"VisionWheels"=>"vftp0033",
+		"Asanti"=>"vftp0036",
+		"DWG"=>"vftp0037",
+		"Giovanna"=>"vftp0038",
+		"Lexani"=>"vftp0040",
+		"BSI"=>"vftp0042",
+		"MKW"=>"vftp0043",
+		"NS-Tuner"=>"vftp0044",
+		"Pinnacle"=>"vftp0045",
+		"Prestige"=>"vftp0046",
+		"Raceline"=>"vftp0047",
+		"Rohana"=>"vftp0048",
+		"Strada"=>"vftp0049",
+		"TradeUnion"=>"vftp0050",
+		"Ultra"=>"vftp0051",
+		"VMR"=>"vftp0052",
+		"XIX"=>"vftp0053",
+		"Varro"=>"vftp0054",
+		"Azad"=>"vftp0055",
+	);
+ 
+	if($flag){
+		// dd(array_key_exists($key, $list));
+		return array_key_exists($key, $list);
+	}
+
+	if($key!=''){
+		return $list[$key]??'-';
+	}
+	return $list;
+}
