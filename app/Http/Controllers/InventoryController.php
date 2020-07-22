@@ -103,6 +103,34 @@ class InventoryController extends Controller
         // dd($inv);
     }
 
+
+    static public function  liveCount(){ 
+        $total = Inventory::count(); 
+        $dropshippers = Inventory::select('drop_shipper', \DB::raw('count(*) as total'))
+                 ->groupBy('drop_shipper')
+                 ->pluck('total','drop_shipper'); 
+
+        $today_dropshippers = Inventory::whereDate('updated_at', \Carbon\Carbon::today());
+        $today_dropshippers = $today_dropshippers->select('drop_shipper', \DB::raw('count(*) as total'))
+                 ->groupBy('drop_shipper')
+                 ->pluck('total','drop_shipper'); 
+
+        return [
+            'total'=>$total,
+            'dropshippers'=>$dropshippers,
+            'today_dropshippers'=>$today_dropshippers,
+        ];
+    }
+
+    public function  liveReport(Request $request){  
+        $liveData = $this->liveCount();
+        if($request->ajax()){
+            $view = (string)View::make('admin.inventory.livereport',$liveData);
+            return $view;
+        }
+        return view('admin.inventory.livereport',compact('liveData'));
+    }
+
     public function  CopyTableToServer(Request $request){
         // dd(Inventory::get()->count());
         $db_ext = \DB::connection('sqlsrv');

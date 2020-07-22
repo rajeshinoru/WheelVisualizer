@@ -161,6 +161,11 @@
                         </li> -->
                         @endif
 
+                        @if(VerifyAccess('logs'))
+                        <li>
+                            <a  href="{{url('admin/logs/vftp')}}" aria-expanded="false"><i class="fa fa-list "></i> FTP Live Details  </a>
+                        </li>
+                        @endif
                         @if(VerifyAccess('cmspage'))
                         <li>
                             <a  href="{{url('admin/cmspage')}}" aria-expanded="false"><i class="fa fa-list "></i> CMS Pages  </a>
