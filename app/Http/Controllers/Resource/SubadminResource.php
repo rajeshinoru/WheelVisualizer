@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Admin;
 use App\SubAdminRole;
 use Hash;
+use Auth;
 class SubadminResource extends Controller
 {
     /**
@@ -77,8 +78,20 @@ class SubadminResource extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    { 
+        try{  
+            // dd($id);
+            $admin = Admin::where('is_super',0)->find($id); 
+            if($admin){
+                return view('admin.subadmin.profile',compact('admin'));
+
+            }else{
+                return back()->with('flash_error','Admin  Not Found !!');
+            }
+
+        }catch(Exception $e){
+            return back()->withInput(Input::all())->with('error',$e->getMessage());
+        }
     }
 
     /**
@@ -102,38 +115,46 @@ class SubadminResource extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+            $authadmin = Auth::guard('admin')->user();
+
             $admin = Admin::with('Roles')->where('is_super',0)->find($id);
-            $data = $request->all(); 
+            
+            if(@$authadmin->is_super){
 
-            $readData = array_keys($data['read'])??array();
-            $writeData = array_keys($data['write'])??array();
+                $data = $request->all(); 
+
+                $readData = array_keys($data['read'])??array();
+                $writeData = array_keys($data['write'])??array();
 
 
-            if($admin){
-                if($admin->Roles){
+                if($admin){
+                    if($admin->Roles){
 
-                    $role = $admin->Roles->update([
-                        'adminid'=>$admin->id,
-                        'read'=>json_encode($readData),
-                        'write'=>json_encode($writeData),
-                    ]);
-                }else{
+                        $role = $admin->Roles->update([
+                            'adminid'=>$admin->id,
+                            'read'=>json_encode($readData),
+                            'write'=>json_encode($writeData),
+                        ]);
+                    }else{
 
-                    $role = SubAdminRole::create([
-                        'adminid'=>$admin->id,
-                        'read'=>json_encode($readData),
-                        'write'=>json_encode($writeData),
-                    ]);
+                        $role = SubAdminRole::create([
+                            'adminid'=>$admin->id,
+                            'read'=>json_encode($readData),
+                            'write'=>json_encode($writeData),
+                        ]);
+                    }
                 }
             }
 
-            if($admin){
+            if($admin){ 
+                $data = $request->except(['read','write']);  
+                if($request->profileimage){
+                    $data['profileimage'] = $request->profileimage->store('adminprofile'); 
+                }
+                
+                $admin  = $admin->update($data);
 
-                $admin  = $admin->update([
-                    'name' => $request->name, 
-                    'email' => $request->email,
-                    'phone' => @$request->phone, 
-                ]);
                 return back()->with('flash_success','Subadmin Details Updated');
             }else{
                 return back()->with('flash_error','Subadmin Details not found!!');

@@ -1,4 +1,4 @@
-@extends('user.layouts.app') @section('content')
+@extends('admin.layouts.app') @section('content')
 <style type="text/css">
     .profile-img-section {
         text-align: center;
@@ -25,31 +25,26 @@
                             </div>
                             <div class="profile-info-inner">
                                 <div class="profile-img-section">
-                                    <img class="static-profile-img" src="{{ViewUserProfileImage($user->profileimage)}}" alt="" />
+                                    <img class="static-profile-img" src="{{ViewUserProfileImage($admin->profileimage)}}" alt="" />
                                 </div>
                                 <div class="profile-details-hr">
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="address-hr">
-                                                <p><b>First Name</b><br /> {{@$user->fname}} </p>
+                                                <p><b>Name</b><br /> {{@$admin->name}} </p>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                            <div class="address-hr">
-                                                <p><b>Last Name</b><br /> {{@$user->lname}}</p>
-                                            </div>
-                                        </div>
+                                        </div> 
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                             <div class="address-hr">
-                                                <p><b>Email ID</b><br /> {{@$user->email?:'-'}}</p>
+                                                <p><b>Email ID</b><br /> {{@$admin->email?:'-'}}</p>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                             <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                                <p><b>Mobile</b><br /> {{@$user->mobile?:'-'}}</p>
+                                                <p><b>Mobile</b><br /> {{@$admin->mobile?:'-'}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -57,12 +52,12 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                             <div class="address-hr">
-                                                <p><b>Address</b><br /> {{@$user->address?:'-'}}</p>
+                                                <p><b>Address</b><br /> {{@$admin->address?:'-'}}</p>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                             <div class="address-hr">
-                                                <p><b>Zipcode</b><br /> {{@$user->zipcode?:'-'}}</p>
+                                                <p><b>Zipcode</b><br /> {{@$admin->zipcode?:'-'}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -161,30 +156,22 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit Your Details</h4>
+                            <h4 class="modal-title">Edit Your Profile</h4>
                         </div>
                         <div class="modal-body">
                             <div id="dropzone1" class="pro-ad addcoursepro">
-                                <form action="{{ route('user.update', $user->id)}}" class=" needsclick addcourse" method="POST" id="update-post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.subadmin.update', $admin->id)}}" class=" needsclick addcourse" method="POST" id="update-post" enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     {{method_field('PATCH')}}
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="col-md-2">
-                                                <label>First Name</label>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-md-1">
+                                                <label>Full Name</label>
                                             </div>
-                                            <div class="col-md-10">
-                                                <input type="text" name="fname" class="form-control" placeholder="Give the First Name" required="" value="{{$user->fname}}">
+                                            <div class="col-md-11">
+                                                <input type="text" name="name" class="form-control" placeholder="Give the Full Name" required="" value="{{$admin->name}}">
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="col-md-2">
-                                                <label>Last Name</label>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <input type="text" name="lname" class="form-control" placeholder="Give the Last Name" required="" value="{{$user->lname}}">
-                                            </div>
-                                        </div>
+                                        </div> 
                                     </div>
                                     <br>
 
@@ -194,7 +181,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-10">
-                                                <input type="email" name="email" class="form-control" placeholder="Give the email id" required="" value="{{$user->email}}">
+                                                <input type="email" name="email" class="form-control" placeholder="Give the email id" required="" value="{{$admin->email}}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -202,7 +189,7 @@
                                                 <label>Mobile</label>
                                             </div>
                                             <div class="col-md-10">
-                                                <input type="text" name="mobile" class="form-control" placeholder="Give the mobile number" value="{{$user->mobile}}">
+                                                <input type="text" name="mobile" class="form-control" placeholder="Give the mobile number" value="{{$admin->mobile}}">
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +200,7 @@
                                                 <label>Address</label>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea name="address" class="form-control" placeholder="Give your address">{{$user->address}}</textarea>
+                                                <textarea name="address" class="form-control" placeholder="Give your address">{{$admin->address}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -221,7 +208,7 @@
                                                 <label>Zipcode</label>
                                             </div>
                                             <div class="col-md-10">
-                                                <input type="text" name="zipcode" class="form-control" placeholder="Give the zipcode" value="{{$user->zipcode}}">
+                                                <input type="text" name="zipcode" class="form-control" placeholder="Give the zipcode" value="{{$admin->zipcode}}">
                                             </div>
                                         </div>
                                     </div>
@@ -237,15 +224,15 @@
                                             <div class="col-md-10">
                                                 <div class="col-md-6 show-image">
                                                     <div class="col-md-6">
-                                                        <img id="profile-img" src="{{ViewUserProfileImage($user->profileimage)}}" style="width:100px !important;height:auto !important">
+                                                        <img id="profile-img" src="{{ViewUserProfileImage($admin->profileimage)}}" style="width:100px !important;height:auto !important">
                                                     </div>
 
                                                     <div class="col-md-6">
-                                                        <input class="delete profile-img-delete btn btn-danger" type="button" value="Remove Image" style="display: {{(@$user->profileimage)?'block':'none'}};" />
+                                                        <input class="delete profile-img-delete btn btn-danger" type="button" value="Remove Image" style="display: {{(@$admin->profileimage)?'block':'none'}};" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="file" class="form-control profile-img" id="profile-img-input" name="profileimage" style="display: {{(@$user->profileimage)?'none':'block'}};">
+                                                    <input type="file" class="form-control profile-img" id="profile-img-input" name="profileimage" style="display: {{(@$admin->profileimage)?'none':'block'}};">
                                                 </div>
                                             </div>
                                         </div>

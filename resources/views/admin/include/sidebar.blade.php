@@ -59,16 +59,22 @@
                         <li>
                             <a  href="{{url('admin/home')}}" aria-expanded="false"><i class="fa fa-home "></i> Home   </a>
                         </li>
+                        @if(@Auth::guard('admin')->user()->is_super == '1')
+                        <li>
+                            <a  href="{{url('admin/subadmin')}}" aria-expanded="false"><i class="fa fa-user "></i> Sub Admins  </a>
+                        </li>
+                        @else
+                        <li>
+                            <a  href="{{url('admin/subadmin')}}/{{@Auth::guard('admin')->user()->id}}" aria-expanded="false"><i class="fa fa-user "></i> My Profile  </a>
+                        </li>
+                        @endif
+
                         @if(VerifyAccess('user'))
                         <li>
                             <a  href="{{url('admin/user')}}" aria-expanded="false"><i class="fa fa-user "></i> Users  </a>
                         </li>
                         @endif
-                        @if(@Auth::guard('admin')->user()->is_super == '1')
-                        <li>
-                            <a  href="{{url('admin/subadmin')}}" aria-expanded="false"><i class="fa fa-user "></i> Sub Admins  </a>
-                        </li>
-                        @endif
+
                         @if(VerifyAccess('orders'))
                         <li>
                             <a  href="{{url('admin/orders')}}" aria-expanded="false"><i class="fa fa-shopping-cart "></i> Orders  </a>
@@ -154,12 +160,7 @@
                             <a  href="{{url('admin/dropshipper')}}" aria-expanded="false"><i class="fa fa-list "></i> Dropshippers  </a>
                         </li>
                         @endif
-
-                        @if(VerifyAccess('logs'))
-                  <!--       <li>
-                            <a  href="{{url('admin/logs')}}" aria-expanded="false"><i class="fa fa-list "></i> Server Logs  </a>
-                        </li> -->
-                        @endif
+ 
 
                         @if(VerifyAccess('logs'))
                         <li>
