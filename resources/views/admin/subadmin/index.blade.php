@@ -19,7 +19,9 @@
                                     <!-- <th>Subadmin ID</th> -->
                                     <th>Name</th> 
                                     <th>Email</th>
-                                    <th>Phone</th>
+                                    <th>Mobile</th>
+                                    <!-- <th>Read Accessible</th> -->
+                                    <!-- <th>Write Accessible</th> -->
                                     <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
@@ -29,7 +31,10 @@
                                 <td>{{$key+1}}</td> 
                                 <td>{{@$subadmin->name}}</td> 
                                 <td>{{@$subadmin->email}}</td>
-                                <td>{{@$subadmin->phone}}</td>
+                                <td>{{@$subadmin->mobile}}</td>
+                           <!--      <td>  
+
+                                </td> -->
                                 <td>{{@$subadmin->created_at}}</td>
                                 <td>
                                     <a type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal{{$key}}"><i class="fa fa-edit"></i></a>

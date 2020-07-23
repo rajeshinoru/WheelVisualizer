@@ -17,7 +17,7 @@ class SubadminResource extends Controller
      */
     public function index()
     {
-        $subadmins = Admin::where('is_super',0)->orderBy('id','DESC')->paginate(10);
+        $subadmins = Admin::with('Roles')->where('is_super',0)->orderBy('id','DESC')->paginate(10);
         return view('admin.subadmin.index',compact('subadmins'));
     }
 
