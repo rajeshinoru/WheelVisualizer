@@ -107,7 +107,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> 
                                                             <label>Access Modules</label>
-                                                                <table>
+                                                                <table class="AccessModuleTable">
                                                                     <thead>  
                                                                     <th>Modules</th>
                                                                     <th>Read</th>
@@ -197,7 +197,7 @@
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> 
                                                                             <label>Access Modules</label>
-                                                                                    <table nocellpadding>
+                                                                                    <table class="AccessModuleTable" nocellpadding>
                                                                                         <thead>  
                                                                                         <th>Modules</th>
                                                                                         <th>Read</th>

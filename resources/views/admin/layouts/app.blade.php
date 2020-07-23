@@ -273,7 +273,7 @@
 
             $('.select2').select2();
 
-            var table = $('table').not('#table-log').not('#livereportTable').DataTable({
+            var table = $('table').not('#table-log').not('#livereportTable').not('.AccessModuleTable').DataTable({
                 dom: 't' // This shows just the table 
             });  
 
