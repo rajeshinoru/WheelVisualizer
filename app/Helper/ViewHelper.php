@@ -190,6 +190,19 @@ function front_back_filecheck($imgPath){
 	}
 }
 
+function ViewUserProfileImage($url=''){
+	if($url != ''){
+		if(file_exists(public_path('/storage/'.$url))){
+			return asset('/storage/'.$url);
+		}else{
+			return url('/user/img/no-user.png'); 
+		}
+	}else{
+			return url('/user/img/no-user.png'); 
+	}
+
+}
+
 function ViewImage($url=''){
 	if($url != ''){
 		if(file_exists(public_path('/storage/'.$url))){
@@ -852,13 +865,13 @@ function getFeatureRatings($partno,$ratingfeature,$category){
 }
 
 function getReviewRatings($partno,$ratingValue,$category){
-	$reviews = Review::with('Ratings')->
-		where('approval','1')->
-		where('partno',$partno)->
-		where('category',$category)->
-		where('avgrating','>=',$ratingValue)->
-		where('avgrating','<',$ratingValue+1)->
-		get();
+	$reviews = Review::with('Ratings')
+		->where('approval','1')
+		->where('partno',$partno)
+		->where('category',$category)
+		->where('avgrating','>=',$ratingValue)
+		->where('avgrating','<',$ratingValue+1)
+		->get();
 	 
 	return count($reviews);
 }

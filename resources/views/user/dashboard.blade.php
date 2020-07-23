@@ -214,7 +214,7 @@
                 <div class="product-status-wrap drp-lst">
                     <h4>Users List</h4>
                     <div class="add-product">
-                        <a data-toggle="modal" data-target="#myModal">Add User</a>
+                        <a data-toggle="modal" data-target="#myModal-disabled">Add User</a>
                     </div>
                     <div class="asset-inner">
                         <table>
@@ -229,7 +229,7 @@
                                 <tr>
                                     <td>1</td>
                                     <td></td>
-                                    <td>dinesh@appoets.com</td>
+                                    <td>dinesh@inoru.com</td>
                                     <td>2019-12-11 18:08:11</td>
                                     <td>
                                         <button data-toggle="tooltip" title="" class="pd-setting-ed user_edit" data-value="1" data-original-title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -239,7 +239,7 @@
                                 <tr>
                                     <td>2</td>
                                     <td></td>
-                                    <td>david@appoets.com</td>
+                                    <td>david@inoru.com</td>
                                     <td>2019-12-11 20:27:20</td>
                                     <td>
                                         <button data-toggle="tooltip" title="" class="pd-setting-ed user_edit" data-value="2" data-original-title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -259,7 +259,7 @@
                                 <tr>
                                     <td>4</td>
                                     <td></td>
-                                    <td>bala@inoru.com</td>
+                                    <td>krish@inoru.com</td>
                                     <td>2019-12-19 16:44:00</td>
                                     <td>
                                         <button data-toggle="tooltip" title="" class="pd-setting-ed user_edit" data-value="4" data-original-title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

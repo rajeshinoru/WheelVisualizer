@@ -203,6 +203,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', 'UserController@index')->name('user.dashboard');
   Route::get('/profile', 'UserController@profile')->name('user.profile');
   Route::get('/orders', 'UserController@orders')->name('user.orders');
+  Route::patch('/user/update/{id}', 'Resource\UserResource@update')->name('user.update');
   Route::resource('ticket', 'TicketController');
   Route::post('/ticket/message/store', 'TicketController@message_store')->name('ticket.message.store');
   Route::get('/user/invoice/{id}', 'OrderController@invoice_pdf');

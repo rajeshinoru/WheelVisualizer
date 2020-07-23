@@ -15,17 +15,20 @@ $is_write_access = VerifyAccess('user','write');
                 <div class="product-status-wrap drp-lst">
                     <h4>Users List</h4>
                     <div class="add-product">
-                        <!-- <a data-toggle="modal" data-target="#myModal">Add User</a> -->
+                        <a data-toggle="modal" data-target="#myModal">Add User</a>
                     </div>
                     <div class="asset-inner">
                         <table>
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>User ID</th>
+                                    <th>Profile</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Address</th>
+                                    <th>Zipcode</th>
                                     <th>Created At</th>
                                     @if($is_write_access)
                                     <th>Actions</th>
@@ -35,10 +38,13 @@ $is_write_access = VerifyAccess('user','write');
                             @forelse(@$users as $key => $user)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{@$user->userid}}</td>
+                                <td><img class="wheelImage" id="profile-img-list-{{$key}}"  src="{{ViewUserProfileImage($user->profileimage)}}" width="100px" height="100px"></td>
                                 <td>{{@$user->fname}}</td>
                                 <td>{{@$user->lname}}</td>
                                 <td>{{@$user->email}}</td>
+                                <td>{{@$user->mobile?:'-'}}</td>
+                                <td>{{@$user->address?:'-'}}</td>
+                                <td>{{@$user->zipcode?:'-'}}</td>
                                 <td>{{@$user->created_at}}</td>
                                     @if($is_write_access)
                                 <td>
@@ -84,7 +90,6 @@ $is_write_access = VerifyAccess('user','write');
                                                         </div>
                                                     </div>
                                                     <br>
-
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="col-md-2">
@@ -96,13 +101,57 @@ $is_write_access = VerifyAccess('user','write');
                                                         </div> 
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="col-md-2">
-                                                                <label>Phone</label>
+                                                                <label>Mobile</label>
                                                             </div>
                                                             <div class="col-md-10">
-                                                                <input type="text" name="phone" class="form-control" placeholder="Give the phone number" value="{{$user->phone}}">
+                                                                <input type="text" name="mobile" class="form-control" placeholder="Give the mobile number" value="{{$user->mobile}}">
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>Address</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <textarea name="address" class="form-control" placeholder="Give your address" >{{$user->address}}</textarea> 
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>Zipcode</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <input type="text" name="zipcode" class="form-control" placeholder="Give the zipcode" value="{{$user->zipcode}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+                                                            <div class="col-md-2">
+                                                                <label>Profile Image</label>
+                                                            </div>
+
+                                                            <div class="col-md-10">
+                                                                <div class="col-md-6 show-image">
+                                                                    <div class="col-md-6">
+                                                                        <img id="profile-img-{{$key}}" src="{{ViewUserProfileImage($user->profileimage)}}" style="width:100px !important;height:auto !important">
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <input class="delete profile-img-delete   btn btn-danger" type="button"  data-key="{{$key}}" value="Remove Image"  style="display: {{(@$user->profileimage)?'block':'none'}};" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="file" class="form-control profile-img"  id="profile-img-input-{{$key}}" data-key="{{$key}}"  name="profileimage" style="display: {{(@$user->profileimage)?'none':'block'}};" >
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                    <br>
                                                     <br>
                                                     <div class="row">
                                                         <div class="col-lg-6">
@@ -177,36 +226,89 @@ $is_write_access = VerifyAccess('user','write');
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="review-content-section">
                                                                 <div id="dropzone1" class="pro-ad">
-                                                                    <form action="{{url('/admin/user/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST">
+                                                                    <form action="{{url('/admin/user/')}}" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" method="POST" enctype="multipart/form-data">
                                                                         {{@csrf_field()}}
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="fname">First Name</label>
-                                                                                    <input name="fname" type="text" class="form-control" placeholder="First Name" value="" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="lname">Last Name</label>
-                                                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" value="" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="lname">Mobile</label>
-                                                                                    <input type="text" name="mobile" class="form-control" placeholder="(+91) Mobile Number " value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="fname">Email</label>
-                                                                                    <input name="email" type="email" class="form-control" placeholder="Email " value="" required="">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>First Name</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <input type="text" name="fname" class="form-control" placeholder="Give the First Name" required="" value="">
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>Last Name</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <input type="text" name="lname" class="form-control" placeholder="Give the Last Name" required="" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>Email</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <input type="email" name="email" class="form-control" placeholder="Give the email id" required="" value="">
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>Mobile</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <input type="text" name="mobile" class="form-control" placeholder="Give the mobile number" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>Address</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <textarea name="address" class="form-control" placeholder="Give your address" ></textarea> 
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-md-2">
+                                                                <label>Zipcode</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <input type="text" name="zipcode" class="form-control" placeholder="Give the zipcode" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+                                                            <div class="col-md-2">
+                                                                <label>Profile Image</label>
+                                                            </div>
+
+                                                            <div class="col-md-10">
+                                                                <div class="col-md-6 show-image">
+                                                                    <div class="col-md-6">
+                                                                        <img id="profile-img-new" src="{{ViewUserProfileImage('')}}" style="width:100px !important;height:auto !important">
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <input class="delete profile-img-delete   btn btn-danger" type="button"  data-key="new" value="Remove Image"  style="display:none" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="file" class="form-control profile-img"  id="profile-img-input-new" data-key="new"  name="profileimage" style="display:block" >
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                    <br>
                                                                         <div class="row">
                                                                             <div class="col-lg-12">
                                                                                 <div class="payment-adress">
@@ -245,7 +347,37 @@ $is_write_access = VerifyAccess('user','write');
 
 @section('custom_scripts')
 <script type="text/javascript">
- 
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = (function (input) {   
+                
+                var key = $(input).data('key');
+                return function(e){
+                    $('#profile-img-'+key).attr('src', e.target.result);
+                };
+
+            })(input); 
+            reader.readAsDataURL(input.files[0]);
+        }
+    } 
+
+    $('.profile-img').change(function(){ 
+        readURL(this); 
+        var key = $(this).data('key');
+        $('#profile-img-input-'+key).hide();
+        $('.profile-img-delete').show();
+    });
+
+    $('.profile-img-delete').click(function(){
+        var key = $(this).data('key');
+        $('#profile-img-input-'+key).show();
+        $('.profile-img-delete').hide();
+        $('#profile-img-input-'+key).val('');
+        $('#profile-img-'+key).attr('src',$('#profile-img-list-'+key).attr('src'));
+    })
+
     $('.delete-user').click(function(){
             if (confirm("Are you sure want to remove user?")) {
                 $('#delete-form-'+$(this).data('key')).submit();

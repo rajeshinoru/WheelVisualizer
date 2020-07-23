@@ -10,6 +10,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Inventory;
 use App\RemoteInventory;
 use App\InventoryMigration;
+
 use Illuminate\Http\Request; 
 use Storage;
 
@@ -121,7 +122,7 @@ class UpdateFolderWise extends Command
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
                         if($this->env != 'local'){
                             RemoteInventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data );  
-                            
+
                             \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$data['partno']." --- "."LOC:".$data['location_code']);
                         }
                         

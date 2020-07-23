@@ -37,14 +37,35 @@ class UserResource extends Controller
      */
     public function store(Request $request)
     { 
-        $user  = User::create([
-            'fname' => $request->fname,
-            'lname' => $request->lname,
-            'email' => $request->email,
-            'phone' => @$request->phone, 
-            'password' => Hash::make('123456'),
+
+
+        $this->validate($request, [
+            'fname'=>'required|max:255',
+            'lname'=>'required|min:1', 
+            'email'=>'required|email', 
         ]);
-        return back()->with('flash_success','Successfully Created');
+
+        try {  
+
+            $data = $request->all(); 
+            // dd($data,$request->profileimage);
+            $data['password'] = Hash::make('123456');
+
+            if($request->profileimage){
+                $data['profileimage'] = $request->profileimage->store('userprofile'); 
+            }
+                
+            $user  = User::create($data);
+            if($user){
+                return back()->with('flash_success','User Added Successfully');
+            }else{
+                return back()->with('flash_error','User cannot be added!!');
+            }
+        } catch (Exception $e) {
+            return back()->with('flash_error','User add failed!!');
+        }
+
+ 
     }
 
     /**
@@ -78,16 +99,23 @@ class UserResource extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            'fname'=>'required|max:255',
+            'lname'=>'required|min:1', 
+            'email'=>'required|email', 
+        ]);
+
         try {
             $user = User::find($id);
             if($user){
-
-                $user  = $user->update([
-                    'fname' => $request->fname,
-                    'lname' => $request->lname,
-                    'email' => $request->email,
-                    'phone' => @$request->phone, 
-                ]);
+                $data = $request->all(); 
+                if($request->profileimage){
+                    $data['profileimage'] = $request->profileimage->store('userprofile'); 
+                }
+                
+                $user  = $user->update($data);
+                
                 return back()->with('flash_success','User Details Updated');
             }else{
                 return back()->with('flash_error','User Details not found!!');
