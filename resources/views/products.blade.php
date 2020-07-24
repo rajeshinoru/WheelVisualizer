@@ -505,6 +505,48 @@
                     </div>
                 </div>
 
+                <div class="modal" id="offsetsModal" role="dialog">
+                    <div class="modal-dialog tire-view">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                                <h4 class="modal-title">Choose one</h4>
+                            </div>
+                            <div class="modal-body">
+                                    <div style="text-align:center;">
+                                        <a class="btn btn-info" onclick="updateParamsToUrl('offroad','level')">Leveling Kit</a>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <br>
+                                        <a class="btn btn-info" onclick="updateParamsToUrl('offroad','lift')">Lift Kit</a>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <br>
+                                        <a class="btn btn-info" onclick="updateParamsToUrl('offroad','stock')">Stock</a>
+                                    </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" id="liftsizeModal" role="dialog">
+                    <div class="modal-dialog tire-view">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                                <h4 class="modal-title">Choose Lift Size</h4>
+                            </div>
+                            <div class="modal-body">
+                                @foreach(@$liftsizes as $lsKey => $liftsize)
+                                    <div style="text-align:center;">
+                                        <a class="btn btn-info" onclick="updateParamsToUrl('liftsize','{{$liftsize}}')">{{$liftsize}}</a>
+                                    </div> 
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -562,11 +604,24 @@ $(document).ready(function () {
                 $loading.fadeOut("slow");
         } 
 
-        if("{{$zipcode}}"){ 
-            $("#zipcodeModal").modal('hide');
-        }else{
-            $("#zipcodeModal").modal('show');
+        if("{{@$vehicle->Offroads()->count()}}" && "{{$offroad==''}}"){ 
+
+            $("#offsetsModal").modal('show');
+
         }
+        if(!"{{Request::get('liftsize')}}"  && "{{Request::get('offroad')}}" ){ 
+            $("#liftsizeModal").modal('show');
+        }else{
+            $("#liftsizeModal").modal('hide');
+        }
+
+        if("{{Request::get('liftsize') && Request::get('offroad') }}" && "{{$zipcode==''}}"){ 
+            $("#zipcodeModal").modal('show');
+        }else{
+            $("#zipcodeModal").modal('hide');
+        }
+        
+
     });
     function getWheelPosition(key){  
         // $(".se-pre-con").show();

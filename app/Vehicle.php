@@ -8,6 +8,7 @@ class Vehicle extends Model
 {
     //
 	protected $fillable=[
+		'dummy',
 		'vehicle_id',
 		'base_vehicle_id',
 		'vif',
@@ -44,5 +45,8 @@ class Vehicle extends Model
 
     public function Plussizes(){
     	return $this->hasMany('App\PlusSize','chassis_id','dr_chassis_id');
+    }
+    public function Offroads(){
+    	return $this->hasMany('App\Offroad','offroadid','offroad');
     }
 }

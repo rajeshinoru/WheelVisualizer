@@ -11,6 +11,7 @@ use App\ChassisModel;
 use App\PlusSize;
 use App\Dropshipper;
 use App\Inventory;
+use App\Offroad;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Http\Controllers\ZipcodeController as Zipcode;
@@ -26,7 +27,7 @@ class WheelProductController extends Controller
      */
 
     public function findVehicle($data){
-                $vehicle = Vehicle::with('Plussizes','ChassisModels')->select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $data->year)
+                $vehicle = Vehicle::with('Plussizes','ChassisModels','Offroads')->select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc','offroad')->where('year', $data->year)
                     ->where('make', $data->make)
                     ->where('model', $data->model);
 
@@ -43,6 +44,7 @@ class WheelProductController extends Controller
                     }
                 }
                 $vehicle = $vehicle->first(); 
+
                 return $vehicle;
     }
 
@@ -115,24 +117,29 @@ class WheelProductController extends Controller
             {
 
                 $vehicle = $this->findVehicle($request);
-                //Vehicle::select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc')->where('year', $request->year)
-                    // ->where('make', $request->make)
-                    // ->where('model', $request->model);
 
-                // if($request->has('submodel')){
+                $liftsizes=[];
+                $offroadSizes=[];
+                if(@$request->offroad){
 
-                //     $submodelBody = explode('-',$request->submodel);
-                //     // dd($submodelBody);
-                //     if(count($submodelBody) == 2 ){
+                    $offroad = json_decode(base64_decode($request->offroad)); 
 
-                //         $vehicle = $vehicle->where('submodel',$submodelBody[0])->where('body',$submodelBody[1]);
-                //     }elseif(count($submodelBody) == 3 ){
+                    if($offroad != 'stock'){
+                        $liftsizes = Offroad::where('offroadid',$vehicle->offroad)->select('plussizetype')->distinct('plussizetype')->pluck('plussizetype'); 
+                    }
 
-                //         $vehicle = $vehicle->where('submodel',$submodelBody[0].'-'.$submodelBody[1])->where('body',$submodelBody[2]);
-                //     }
-                // }
-                // $vehicle = $vehicle->first(); 
-                // dd($vehicle);
+                    if(@$request->liftsize){
+
+                        $selecedLiftSize = json_decode(base64_decode($request->liftsize)); 
+                        // dd($selecedLiftSize);
+                        $offroadSizes = Offroad::where('offroadid',$vehicle->offroad)->where('plussizetype',$selecedLiftSize)->get(); 
+                    }
+                }else{
+                    $offroad = '';
+                }
+
+
+
                 if(@$vehicle->vif != null){
                     $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($vehicle->vif)->where('image', 'LIKE', '%.png%')
                     ->with(['CarViflist' => function($query) {
@@ -147,38 +154,88 @@ class WheelProductController extends Controller
 
                 $chassis = Chassis::where('chassis_id', $vehicle->dr_chassis_id)->first(); 
 
-                $plusSizes = PlusSize::where('chassis_id',$vehicle->dr_chassis_id)->get(); 
                  
+                if($offroad == 'lift' || $offroad == 'level'){
+                    
+                    // dd($offroadSizes);
 
-                //*********************** Offset checking **************************
-                
-                if($chassis_models->rim_size_r == null || $chassis_models->rim_size_r == 'NULL'){
-                    $products = $products->whereBetween('offset1', [$chassis->min_et_front, $chassis->max_et_front]);
+                        // $widthPart2 = $widthPart1 = $offroadSizes[0]->wheelwidth;//(" ", "", $rimsizearray[0])?:$rimsizearray[0];
+                        // $diameterPart2 = $diameterPart1 = $offroadSizes[0]->wheeldiameter;//(" ", "", $rimsizearray[1])?:$rimsizearray[1];
+
+                            
+                            // $wheelsizearray = explode('x', $plusSize->wheel_size);
+                            // $width = $offroadSize->wheelwidth;//str_replace(" ", "", $wheelsizearray[0])?:$wheelsizearray[0];
+                            // $diameter = $offroadSize->wheeldiameter;//str_replace(" ", "", $wheelsizearray[1])?:$wheelsizearray[1];
+                            // if($width > $widthPart2 ){
+                                // $widthPart2 = $width;
+                            // }
+                            // if($diameter > $diameterPart2 ){
+                                // $diameterPart2 = $diameter;
+                            // } 
+                        $products = $products->where(function ($query) use($offroadSizes) {
+                             
+                            foreach ($offroadSizes as $key => $offroadSize) {  
+                                $query->orwhere('detailtitle', 'like',  '%' . $offroadSize->wheeldiameter.'x'.$offroadSize->wheelwidth .'%')->whereBetween('offset1', [$offroadSize->offsetmin, $offroadSize->offsetmax]);
+                             }      
+                        }); 
+                        // dd($products->first());
+                        // $products = $products->whereBetween('offset1', [$offroadSize->offsetmin, $offroadSize->offsetmax]);
+ 
+
+                     // dd($diameterPart1." - ".$widthPart1,$diameterPart2." - ".$widthPart2);
+
                 }else{
 
-                    $products = $products->whereBetween('offset1', [$chassis->min_et_front, $chassis->max_et_front]);
-                    $products = $products->whereBetween('offset1', [$chassis->min_et_rear, $chassis->max_et_rear]);
+
+
+                        //*********************** Offset checking **************************
+                        
+                        if($chassis_models->rim_size_r == null || $chassis_models->rim_size_r == 'NULL'){
+                            $products = $products->whereBetween('offset1', [$chassis->min_et_front, $chassis->max_et_front]);
+                        }else{
+
+                            $products = $products->whereBetween('offset1', [$chassis->min_et_front, $chassis->max_et_front]);
+                            $products = $products->whereBetween('offset1', [$chassis->min_et_rear, $chassis->max_et_rear]);
+                        }
+
+                        //*********************** Plus Size checking **************************
+
+
+                        $plusSizes = PlusSize::where('chassis_id',$vehicle->dr_chassis_id)->get(); 
+
+
+                        $plusSizesArray=array(); $diameterSizesArray=array();
+
+                        $rimsizearray = explode('x', $chassis_models->rim_size);
+                        $widthPart2 = $widthPart1 = str_replace(" ", "", $rimsizearray[0])?:$rimsizearray[0];
+                        $diameterPart2 = $diameterPart1 = str_replace(" ", "", $rimsizearray[1])?:$rimsizearray[1];
+
+                        foreach ($plusSizes as $key => $plusSize) {
+                            
+                            $wheelsizearray = explode('x', $plusSize->wheel_size);
+                            $width = str_replace(" ", "", $wheelsizearray[0])?:$wheelsizearray[0];
+                            $diameter = str_replace(" ", "", $wheelsizearray[1])?:$wheelsizearray[1];
+                            if($width > $widthPart2 ){
+                                $widthPart2 = $width;
+                            }
+                            if($diameter > $diameterPart2 ){
+                                $diameterPart2 = $diameter;
+                            }
+                        }
+
+                        // dd([$diameterPart1,$diameterPart2],[$widthPart1,$widthPart2]);
+                        $products = $products->whereBetween('wheeldiameter',[$diameterPart1,$diameterPart2]);
+                        $products = $products->whereBetween('wheelwidth',[$widthPart1,$widthPart2]);
+
                 }
 
-                //*********************** Plus Size checking **************************
-                $plusSizesArray=array(); $diameterSizesArray=array();
 
-                $rimsizearray = explode('x', $chassis_models->rim_size);
-                $widthPart2 = $widthPart1 = str_replace(" ", "", $rimsizearray[0])?:$rimsizearray[0];
-                $diameterPart2 = $diameterPart1 = str_replace(" ", "", $rimsizearray[1])?:$rimsizearray[1];
 
-                foreach ($plusSizes as $key => $plusSize) {
-                    
-                    $wheelsizearray = explode('x', $plusSize->wheel_size);
-                    $width = str_replace(" ", "", $wheelsizearray[0])?:$wheelsizearray[0];
-                    $diameter = str_replace(" ", "", $wheelsizearray[1])?:$wheelsizearray[1];
-                    if($width > $widthPart2 ){
-                        $widthPart2 = $width;
-                    }
-                    if($diameter > $diameterPart2 ){
-                        $diameterPart2 = $diameter;
-                    }
-                }
+
+
+
+
+
 
                 //*********************** BCD Bolt Pattern checking **************************
                 if (strpos($chassis->pcd, '.') !== false)
@@ -194,9 +251,6 @@ class WheelProductController extends Controller
                 if($boltpattern != ''){
                     $products = $products->whereIn('boltpattern1', [$boltpattern,'Blank5']);
                 }
-                // dd([$diameterPart1,$diameterPart2],[$widthPart1,$widthPart2]);
-                $products = $products->whereBetween('wheeldiameter',[$diameterPart1,$diameterPart2]);
-                $products = $products->whereBetween('wheelwidth',[$widthPart1,$widthPart2]);
 
                 // $request->flag = 'searchByWheelSize';
                 // dd($plusSizesArray,$boltpattern,$diameterPart);
@@ -506,7 +560,7 @@ class WheelProductController extends Controller
             $flag=@$request->flag?:null;
 
 
-            // dd($zipcode);
+            // dd($vehicle);
 
             if($vehicle){
                 Session::put('user.vehicle',$vehicle);
@@ -517,7 +571,7 @@ class WheelProductController extends Controller
 
             // dd($zipcode);
 
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode'));
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode','offroad','liftsizes'));
 
         }
         catch(ModelNotFoundException $notfound)
