@@ -537,12 +537,14 @@
                                 <h4 class="modal-title">Choose Lift Size</h4>
                             </div>
                             <div class="modal-body">
+                                @if($flag == 'searchByVehicle')
                                 @foreach(@$liftsizes as $lsKey => $liftsize)
                                     <div style="text-align:center;">
                                         <a class="btn btn-info" onclick="updateParamsToUrl('liftsize','{{$liftsize}}')">{{$liftsize}}</a>
                                     </div> 
                                     <br>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -596,33 +598,65 @@ $(document).ready(function () {
     // }).bind('ajaxStop', function(){
     //     $(this).hide();
     // });
+
+</script>
+
+@if($request->flag=='searchByVehicle')
+<script type="text/javascript">
     $(document).ready(function(){
-        if("{{@$car_images}}"){
-            getWheelPosition('0');
+ 
+            if("{{$vehicle->Offroads}}" && "{{$offroad==''}}"  ){ 
 
-        }else{
-                $loading.fadeOut("slow");
-        } 
+                $("#offsetsModal").modal('show');
 
-        if("{{@$vehicle->Offroads()->count()}}" && "{{$offroad==''}}"){ 
+            }
+            if(!"{{Request::get('liftsize')}}"  && "{{$offroad!='stock' && $offroad!=''}}"   ){ 
+                $("#liftsizeModal").modal('show');
+            }else{
+                $("#liftsizeModal").modal('hide');
+            }
 
-            $("#offsetsModal").modal('show');
+            if("{{Request::get('liftsize') || $offroad=='stock'}}"){ 
+                $("#zipcodeModal").modal('show');
+            }else{
+                $("#zipcodeModal").modal('hide');
+            }
+            
+            if("{{@$zipcode}}" && "{{@$car_images}}"){
+                getWheelPosition('0');
 
-        }
-        if(!"{{Request::get('liftsize')}}"  && "{{Request::get('offroad')}}" ){ 
-            $("#liftsizeModal").modal('show');
-        }else{
-            $("#liftsizeModal").modal('hide');
-        }
+            }else{
+                    $loading.fadeOut("slow");
+            }  
+ 
 
-        if("{{Request::get('liftsize') && Request::get('offroad') }}" && "{{$zipcode==''}}"){ 
-            $("#zipcodeModal").modal('show');
-        }else{
-            $("#zipcodeModal").modal('hide');
-        }
-        
 
     });
+</script>
+@endif
+
+@if($request->flag!='searchByVehicle')
+<script type="text/javascript">
+    $(document).ready(function(){
+            if("{{$zipcode==''}}"){ 
+                $("#zipcodeModal").modal('show');
+            }else{
+                $("#zipcodeModal").modal('hide');
+            }
+            
+            if("{{@$car_images}}"){
+                getWheelPosition('0');
+
+            }else{
+                    $loading.fadeOut("slow");
+            }
+    }); 
+
+</script>
+@endif
+
+<script type="text/javascript">
+
     function getWheelPosition(key){  
         // $(".se-pre-con").show();
         imagePath = "{{public_path()}}/"+$('#car_image_name').val();

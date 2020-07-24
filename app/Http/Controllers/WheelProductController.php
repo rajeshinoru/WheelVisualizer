@@ -120,6 +120,7 @@ class WheelProductController extends Controller
 
                 $liftsizes=[];
                 $offroadSizes=[];
+                $selecedLiftSize='';
                 if(@$request->offroad){
 
                     $offroad = json_decode(base64_decode($request->offroad)); 
@@ -156,34 +157,13 @@ class WheelProductController extends Controller
 
                  
                 if($offroad == 'lift' || $offroad == 'level'){
-                    
-                    // dd($offroadSizes);
-
-                        // $widthPart2 = $widthPart1 = $offroadSizes[0]->wheelwidth;//(" ", "", $rimsizearray[0])?:$rimsizearray[0];
-                        // $diameterPart2 = $diameterPart1 = $offroadSizes[0]->wheeldiameter;//(" ", "", $rimsizearray[1])?:$rimsizearray[1];
-
-                            
-                            // $wheelsizearray = explode('x', $plusSize->wheel_size);
-                            // $width = $offroadSize->wheelwidth;//str_replace(" ", "", $wheelsizearray[0])?:$wheelsizearray[0];
-                            // $diameter = $offroadSize->wheeldiameter;//str_replace(" ", "", $wheelsizearray[1])?:$wheelsizearray[1];
-                            // if($width > $widthPart2 ){
-                                // $widthPart2 = $width;
-                            // }
-                            // if($diameter > $diameterPart2 ){
-                                // $diameterPart2 = $diameter;
-                            // } 
+                     
                         $products = $products->where(function ($query) use($offroadSizes) {
                              
                             foreach ($offroadSizes as $key => $offroadSize) {  
                                 $query->orwhere('detailtitle', 'like',  '%' . $offroadSize->wheeldiameter.'x'.$offroadSize->wheelwidth .'%')->whereBetween('offset1', [$offroadSize->offsetmin, $offroadSize->offsetmax]);
                              }      
-                        }); 
-                        // dd($products->first());
-                        // $products = $products->whereBetween('offset1', [$offroadSize->offsetmin, $offroadSize->offsetmax]);
- 
-
-                     // dd($diameterPart1." - ".$widthPart1,$diameterPart2." - ".$widthPart2);
-
+                        });  
                 }else{
 
 
