@@ -243,20 +243,20 @@ class VehicleController extends Controller
                     if($i != 1){ 
                         if((isset($data[0])&&$data[0]!='')){
                             $vehicle = new Vehicle;
-                            $vehicle->dummy = $data[0];
-                            $vehicle->vehicle_id = $data[1];
-                            $vehicle->base_vehicle_id = $data[2];
-                            $vehicle->year = $data[3];
-                            $vehicle->make = $data[4];
-                            $vehicle->model = $data[5];
-                            $vehicle->submodel = $data[6];
-                            $vehicle->dr_chassis_id = $data[7];
-                            $vehicle->sort_by_vehicle_type = $data[8];
-                            $vehicle->year_make_model_submodel = $data[9];
-                            $vehicle->make_model_submodel = $data[10];
-                            $vehicle->wheel_type = $data[11];
-                            $vehicle->rf_lc = $data[12];
-                            $vehicle->offroad = $data[13];
+                            $vehicle->vehicle_id = $data[0];
+                            $vehicle->base_vehicle_id = $data[1];
+                            $vehicle->year = $data[2];
+                            $vehicle->make = $data[3];
+                            $vehicle->model = $data[4];
+                            $vehicle->submodel = $data[5];
+                            $vehicle->dr_chassis_id = $data[6];
+                            $vehicle->sort_by_vehicle_type = $data[7];
+                            $vehicle->year_make_model_submodel = $data[8];
+                            $vehicle->make_model_submodel = $data[9];
+                            $vehicle->wheel_type = $data[10];
+                            $vehicle->rf_lc = $data[11];
+                            $vehicle->offroad = $data[12];
+                            $vehicle->dually = $data[13];
                             $vehicle->drive_type = $data[14];
                             $vehicle->body_type = $data[15];
                             $vehicle->body_number_doors = $data[16];
@@ -283,6 +283,58 @@ class VehicleController extends Controller
             return back()->with('flash_error',$e->getMessage());
         } 
 
+    }
+
+
+    public function Vehicle_Dually_update(){
+         $in_file = public_path('/storage/Vehicles.csv'); 
+
+        if( !$fr = @fopen($in_file, "r") ) die("Failed to open file");
+        // $fw = fopen($out_file, "w");
+        $i=0;
+        while( ($data = fgetcsv($fr, 1000, ",")) !== FALSE ) {
+            if($i!=0){
+
+                $vec_id = (integer)$data[0];
+                // dd($vec_id);
+                $vehicle = Vehicle::where('vehicle_id',$vec_id)->where('sort_by_vehicle_type',$data[7])->first();
+                if($vehicle == null ){
+                    $vehicle = new Vehicle;
+                }
+                $vehicle->vehicle_id = $data[0];
+                $vehicle->base_vehicle_id = $data[1];
+                $vehicle->year = $data[2];
+                $vehicle->make = $data[3];
+                $vehicle->model = $data[4];
+                $vehicle->submodel = $data[5];
+                $vehicle->dr_chassis_id = $data[6];
+                $vehicle->sort_by_vehicle_type = $data[7];
+                $vehicle->year_make_model_submodel = $data[8];
+                $vehicle->make_model_submodel = $data[9];
+                $vehicle->wheel_type = $data[10];
+                $vehicle->rf_lc = $data[11];
+                $vehicle->offroad = $data[12];
+                $vehicle->dually = $data[13];
+                $vehicle->drive_type = $data[14];
+                $vehicle->body_type = $data[15];
+                $vehicle->body_number_doors = $data[16];
+                $vehicle->bed_length = $data[17];
+                $vehicle->vehicle_type = $data[18];
+                $vehicle->liter = $data[19];
+                $vehicle->region_id = $data[20];
+                $vehicle->region = $data[21];
+                $vehicle->custom_note = $data[22];
+                $vehicle->body = $data[23];
+                $vehicle->option = $data[24];
+                $vehicle->dr_chassis_id_1 = $data[25];
+                $vehicle->dr_model_id = $data[26];
+                $vehicle->save();                 
+            }
+            $i++;
+            }
+        fclose($fr);
+        // fclose($fw);
+        return 'hiii';
     }
 
 

@@ -80,6 +80,7 @@ Route::get('/VerifyWheelProductImages', 'HomeController@VerifyWheelProductImages
 
 Route::get('/DropshipperImport', 'DropshipperController@DropshipperImport');
 
+Route::get('/Vehicle_Dually_update', 'VehicleController@Vehicle_Dually_update');
 // Route::get('/New_Vehicle_Import', 'VehicleController@New_Vehicle_Import');
 // Route::get('/vif_update', 'VehicleController@vif_update');
 

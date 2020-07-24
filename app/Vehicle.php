@@ -22,6 +22,7 @@ class Vehicle extends Model
 		'wheel_type',
 		'rf_lc',
 		'offroad',
+		'dually',
 		'drive_type',
 		'body_type',
 		'body_number_doors',
