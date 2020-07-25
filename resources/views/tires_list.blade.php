@@ -251,7 +251,7 @@
                                 Showing Plus Sized Tires: 
                                     <b>
                                         @foreach($plussizes as $k => $size)
-                                            {{@$size}}
+                                            {{@$size}} ,
                                         @endforeach
                                     </b> 
                                 @endif

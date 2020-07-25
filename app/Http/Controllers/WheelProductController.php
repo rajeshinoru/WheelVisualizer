@@ -48,6 +48,38 @@ class WheelProductController extends Controller
                 return $vehicle;
     }
 
+
+
+    public function getLiftSizes(Request $request){
+        
+
+        if(@$request->offroadtype){
+            Session::put('user.offroadtype',$request->offroadtype);
+        }
+        $vehicle = Session::get('user.vehicle'); 
+        $liftsizes = Offroad::where('offroadid',$vehicle->offroad)->select('plussizetype')->distinct('plussizetype')->pluck('plussizetype'); 
+
+        return $liftsizes?:null;
+
+    
+
+    }
+
+
+    public function checkDropshippble(Request $request){
+        
+        $dropshippable = 0;
+        if(@$request->productid){ 
+
+            $wheelproduct = WheelProduct::find($request->productid);
+            $dropshippable = $wheelproduct->dropshippable;
+        }
+
+        return ['dropshippable'=>$dropshippable];
+
+    
+
+    }
     public function index(Request $request)
     {
 
@@ -117,26 +149,17 @@ class WheelProductController extends Controller
             {
 
                 $vehicle = $this->findVehicle($request);
+ 
+                $offroadSizes = [];
+                if(@$request->liftsize){
 
-                $liftsizes=[];
-                $offroadSizes=[];
-                $selecedLiftSize='';
-                if(@$request->offroad){
+                    $liftsize = json_decode(base64_decode($request->liftsize)); 
+                    
+                    Session::put('user.liftsize',$liftsize);
 
-                    $offroad = json_decode(base64_decode($request->offroad)); 
-
-                    if($offroad != 'stock'){
-                        $liftsizes = Offroad::where('offroadid',$vehicle->offroad)->select('plussizetype')->distinct('plussizetype')->pluck('plussizetype'); 
-                    }
-
-                    if(@$request->liftsize){
-
-                        $selecedLiftSize = json_decode(base64_decode($request->liftsize)); 
-                        // dd($selecedLiftSize);
-                        $offroadSizes = Offroad::where('offroadid',$vehicle->offroad)->where('plussizetype',$selecedLiftSize)->get(); 
-                    }
+                    $offroadSizes = Offroad::where('offroadid',$vehicle->offroad)->where('plussizetype',$liftsize)->get(); 
                 }else{
-                    $offroad = '';
+                    $liftsize = '';
                 }
 
 
@@ -156,7 +179,7 @@ class WheelProductController extends Controller
                 $chassis = Chassis::where('chassis_id', $vehicle->dr_chassis_id)->first(); 
 
                  
-                if($offroad == 'lift' || $offroad == 'level'){
+                if(@$request->liftsize){
                      
                         $products = $products->where(function ($query) use($offroadSizes) {
                              
@@ -551,7 +574,7 @@ class WheelProductController extends Controller
 
             // dd($zipcode);
 
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode','offroad','liftsizes'));
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode','liftsize'));
 
         }
         catch(ModelNotFoundException $notfound)
@@ -687,8 +710,7 @@ class WheelProductController extends Controller
     }
 
     public function wheeltirepackage(Request $request, $product_id = '',$flag='')
-    {
-
+    { 
         $selectFields=['id','prodbrand', 'prodmodel', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle','detailtitle', 'prodfinish', 'boltpattern1', 'boltpattern2', 'boltpattern3', 'offset1', 'offset2', 'hubbore', 'width', 'height', 'partno', 'price', 'price2', 'saleprice', 'qtyavail', 'salestart', 'proddesc'];
 
         $wheel = WheelProduct::where('id', $product_id)->first();
@@ -712,10 +734,7 @@ class WheelProductController extends Controller
         }
 
         // dd($vehicle);
-
-        foreach ($plussizes as $key => $value) {
-            # code...
-        }
+ 
         $vehicle = (object)Session::get('user.searchByVehicle')??[];
         $wheelsize = (object)Session::get('user.searchByWheelSize')??[];
         $similar_products = WheelProduct::select('prodimage','prodbrand','id','prodtitle','price')

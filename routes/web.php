@@ -167,6 +167,8 @@ Route::get('/wheeltirepackage/{product_id?}/{flag?}', 'WheelProductController@wh
 Route::get('/getFiltersByProductWheelSize', 'WheelProductController@getFiltersByProductWheelSize')->name('getFiltersByProductWheelSize');
 Route::get('/setFiltersByProductWheelSize', 'WheelProductController@index')->name('setFiltersByProductWheelSize');
 Route::get('/setFiltersByProductVehicle', 'WheelProductController@index')->name('setFiltersByProductVehicle');
+Route::get('/getLiftSizes', 'WheelProductController@getLiftSizes')->name('getLiftSizes');
+Route::get('/checkDropshippble', 'WheelProductController@checkDropshippble')->name('checkDropshippble');
 
 
 

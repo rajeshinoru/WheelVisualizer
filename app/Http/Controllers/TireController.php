@@ -40,6 +40,8 @@ class TireController extends Controller
         // dd($chassis_model);
         $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
 
+        // dd($chassis_model,$vehicle,$wheelpackage);
+
         if($request->has('tirebrand')){
             if($request->tirebrand !=''){
                 $tires = $tires->whereIn('prodbrand',json_decode(base64_decode($request->tirebrand)));
@@ -92,26 +94,44 @@ class TireController extends Controller
             }
         }
         
+        $plussizes=[];
+
         if($wheelpackage){ 
 
             $wheel = WheelProduct::find(base64_decode($wheelpackage));
-            $rimsize = getWheelDiameterToRim($wheel->wheeldiameter,$wheel->wheelwidth);
-            $plussizes = $vehicle->Plussizes->where('wheel_size',$rimsize)->pluck('tire1');
-            // dd($wheel);
+            if($wheel->dropshippable == 1){
+                $offroadtype=Session::get('user.offroadtype')??null;
+                $liftsize=Session::get('user.liftsize')??null;
 
-            // $plussizes = $vehicle->Plussizes->where('wheel_size',$vehicle->ChassisModels->rim_size)->pluck('tire1'); 
-            // dd($plussizes);
-            $tires = $tires->whereIn('tiresize',$plussizes);
+                $plussizes = $offroadTireSizes = $vehicle->Offroads()->where('plussizetype',$liftsize)->select('tire1')->distinct('tire1')->pluck('tire1'); 
 
-            if($tires->count() > 0){
-                Session::put('user.packagetype','wheeltirepackage');
+                        $tires = $tires->where(function ($query) use($offroadTireSizes) {
+                             
+                            foreach ($offroadTireSizes as $key => $offroadSize) {  
+                                $query->orwhere('tiresize', 'like',  '%' . $offroadSize .'%');
+                             }      
+                        });  
+
+ 
             }else{
-                return back()->with('error','Matching Tires Not Found');
+                // dd('no');
+
+                $rimsize = getWheelDiameterToRim($wheel->wheeldiameter,$wheel->wheelwidth);
+                $plussizes = $vehicle->Plussizes->where('wheel_size',$rimsize)->pluck('tire1');
+                // dd($wheel);
+
+                // $plussizes = $vehicle->Plussizes->where('wheel_size',$vehicle->ChassisModels->rim_size)->pluck('tire1'); 
+                // dd($plussizes);
+                $tires = $tires->whereIn('tiresize',$plussizes);
+
+                if($tires->count() > 0){
+                    Session::put('user.packagetype','wheeltirepackage');
+                }else{
+                    return back()->with('error','Matching Tires Not Found');
+                }
             }
             // dd($tires->get());
-        }else{
-            $plussizes=[];
-        }
+        } 
 
         // Load index search in the Sidebar
 

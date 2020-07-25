@@ -609,7 +609,7 @@
                                                                             <button class="btn btn-info btn-close" type="button" data-dismiss="modal">Continue Shopping</button>
 
                                                                             @if($flag == 'searchByVehicle')
-                                                                            <a class="btn btn-info matching-tire">Add Matching Tires</a>
+                                                                            <a class="btn btn-info matching-tire" data-productid="{{@$diffproduct->id}}">Add Matching Tires</a>
                                                                             @endif
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
@@ -656,7 +656,7 @@
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info" type="button" data-dismiss="modal">Continue Shopping</button>
                                                                             @if($flag == 'searchByVehicle')
-                                                                            <a class="btn btn-info matching-tire">Add Matching Tires</a>
+                                                                            <a class="btn btn-info matching-tire" data-productid="{{@$product->id}}" >Add Matching Tires</a>
                                                                             @endif
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
@@ -1194,6 +1194,7 @@
 @endsection
 @section('custom_scripts')
 <script>
+    var $loading = $('.se-pre-con');
     $(function() {
 
         $('.spinner .btn:first-of-type').on('click', function() {
@@ -1304,10 +1305,29 @@
             }
         });
     })
-
+ 
     $('.matching-tire').click(function() {
-        $('.modal').modal("hide");
-        $('#matching-tire-modal').modal();
+
+
+        var productid = $(this).data('productid');
+  
+            $loading.show();
+            $.ajax({url: "/checkDropshippble",data:{'productid':productid}, 
+                success: function(result){    
+                    if(result['dropshippable'] == 1){   
+                        $('.modal').modal("hide"); 
+                        window.location = "{{url('/wheeltirepackage')}}/"+productid+"{{'/'.$flag}}/";
+                    } else{
+                        $('#matching-tire-modal').modal();
+                    }
+                    $loading.fadeOut("slow"); 
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                
+                    $loading.fadeOut("slow");
+                }
+            });  
+
 
     });
 

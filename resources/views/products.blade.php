@@ -219,7 +219,9 @@
                             <p> 
                                 @if(@$vehicle)
                                 Your Selected Vehicle: 
-                                    <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
+                                    <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}} </b>
+                                    @if(@$liftsize) &  Liftsize :  <b> {{@$liftsize}} </b> @endif
+                                    
                                 <br>
                                 @endif
                                 @if(@$flag == 'searchByWheelSize' && @$request->wheeldiameter)
@@ -476,7 +478,7 @@
                         <p>{{(@$products->total())?@$products->total().' Wheels Found':''}} </p>
                     </div>
                     <div class="col-sm-6 pagi-right">
-                        {{$products->appends([ 'diameter' => @Request::get('diameter'), 'width' => @Request::get('width'), 'brand' => @Request::get('brand'), 'car_id' => @Request::get('car_id'), 'page' => @Request::get('page'), 'flag' => @Request::get('flag'), 'make' => @Request::get('make'), 'year' => @Request::get('year'), 'model' => @Request::get('model'), 'submodel' => @Request::get('submodel'), 'zip' => @Request::get('zip'), 'wheeldiameter'=> @Request::get('wheeldiameter'), 'wheelwidth'=> @Request::get('wheelwidth'), 'boltpattern'=> @Request::get('boltpattern'), 'minoffset'=> @Request::get('minoffset'), 'maxoffset'=> @Request::get('maxoffset') ])->links()}}
+                        {{$products->appends([ 'diameter' => @Request::get('diameter'), 'width' => @Request::get('width'), 'brand' => @Request::get('brand'), 'car_id' => @Request::get('car_id'), 'page' => @Request::get('page'), 'flag' => @Request::get('flag'), 'make' => @Request::get('make'), 'year' => @Request::get('year'), 'model' => @Request::get('model'), 'submodel' => @Request::get('submodel'), 'zip' => @Request::get('zip'), 'wheeldiameter'=> @Request::get('wheeldiameter'), 'wheelwidth'=> @Request::get('wheelwidth'), 'boltpattern'=> @Request::get('boltpattern'), 'minoffset'=> @Request::get('minoffset'), 'maxoffset'=> @Request::get('maxoffset'),'liftsize' => @Request::get('liftsize'), ])->links()}}
 
                     </div>
                 </div>
@@ -505,7 +507,7 @@
                     </div>
                 </div>
 
-                <div class="modal" id="offsetsModal" role="dialog">
+                <div class="modal" id="offroadTypeModal" role="dialog">
                     <div class="modal-dialog tire-view">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -514,15 +516,15 @@
                             </div>
                             <div class="modal-body">
                                     <div style="text-align:center;">
-                                        <a class="btn btn-info" onclick="updateParamsToUrl('offroad','level')">Leveling Kit</a>
+                                        <button class="btn btn-info offroad-select" data-offroad="level">Leveling Kit</button>
                                     </div>
                                     <div style="text-align:center;">
                                         <br>
-                                        <a class="btn btn-info" onclick="updateParamsToUrl('offroad','lift')">Lift Kit</a>
+                                        <button class="btn btn-info offroad-select" data-offroad="lift">Lift Kit</button>
                                     </div>
                                     <div style="text-align:center;">
                                         <br>
-                                        <a class="btn btn-info" onclick="updateParamsToUrl('offroad','stock')">Stock</a>
+                                        <button class="btn btn-info offroad-select" data-offroad="stock">Stock</button>
                                     </div> 
                             </div>
                         </div>
@@ -536,15 +538,7 @@
                                 <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
                                 <h4 class="modal-title">Choose Lift Size</h4>
                             </div>
-                            <div class="modal-body">
-                                @if($flag == 'searchByVehicle')
-                                @foreach(@$liftsizes as $lsKey => $liftsize)
-                                    <div style="text-align:center;">
-                                        <a class="btn btn-info" onclick="updateParamsToUrl('liftsize','{{$liftsize}}')">{{$liftsize}}</a>
-                                    </div> 
-                                    <br>
-                                @endforeach
-                                @endif
+                            <div class="modal-body"> 
                             </div>
                         </div>
                     </div>
@@ -601,27 +595,24 @@ $(document).ready(function () {
 
 </script>
 
-@if($request->flag=='searchByVehicle')
 <script type="text/javascript">
     $(document).ready(function(){
  
-            if("{{$vehicle->Offroads}}" && "{{$offroad==''}}"  ){ 
+            if("{{$vehicle!=''}}"){
 
-                $("#offsetsModal").modal('show');
+                if("{{@$vehicle->offroad !=''}}" && "{{@$liftsize==''}}"){ 
 
-            }
-            if(!"{{Request::get('liftsize')}}"  && "{{$offroad!='stock' && $offroad!=''}}"   ){ 
-                $("#liftsizeModal").modal('show');
+                    $("#offroadTypeModal").modal('show');
+
+                }else{
+
+                    getZipcode();
+                }
             }else{
-                $("#liftsizeModal").modal('hide');
-            }
 
-            if("{{Request::get('liftsize') || $offroad=='stock'}}"){ 
-                $("#zipcodeModal").modal('show');
-            }else{
-                $("#zipcodeModal").modal('hide');
-            }
-            
+                getZipcode();
+            } 
+
             if("{{@$zipcode}}" && "{{@$car_images}}"){
                 getWheelPosition('0');
 
@@ -632,28 +623,64 @@ $(document).ready(function () {
 
 
     });
-</script>
-@endif
 
-@if($request->flag!='searchByVehicle')
-<script type="text/javascript">
-    $(document).ready(function(){
+    $('.offroad-select').click(function(){
+        $("#offroadTypeModal").modal('hide');
+        var offroad = $(this).data('offroad');
+        if(offroad != 'stock'){ 
+            getLiftSizes(offroad);
+        }else{
+            getZipcode();
+        }
+    });
+
+ 
+
+    function getLiftSizes(offroad){   
+
+
+        var vehicle_offroad = "{{@$vehicle->offroad}}";
+        if(vehicle_offroad != ''){
+            $loading.show();
+            $.ajax({url: "/getLiftSizes",data:{'offroad':vehicle_offroad,'offroadtype':offroad}, 
+                success: function(result){ 
+                console.log(result.length)  
+                    var str= '';
+                    if(result != null){
+
+                        for (var i = result.length - 1; i >= 0; i--) { 
+                            str+=`       
+                                    <div style="text-align:center;">
+                                        <a class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','`+result[i]+`')">`+result[i]+`</a>
+                                    </div>
+                                    <br>
+                                `;
+                        }
+                        $('#liftsizeModal').find('.modal-body').html(str);
+                        $("#liftsizeModal").modal('show'); 
+                        $loading.fadeOut("slow");
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                
+                    $loading.fadeOut("slow");
+                }
+            }); 
+        }else{
+                    $loading.fadeOut("slow");
+            getZipcode();
+        } 
+    }
+
+    function getZipcode(){  
             if("{{$zipcode==''}}"){ 
                 $("#zipcodeModal").modal('show');
             }else{
                 $("#zipcodeModal").modal('hide');
             }
-            
-            if("{{@$car_images}}"){
-                getWheelPosition('0');
+    }  
 
-            }else{
-                    $loading.fadeOut("slow");
-            }
-    }); 
-
-</script>
-@endif
+</script> 
 
 <script type="text/javascript">
 
