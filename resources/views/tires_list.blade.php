@@ -236,16 +236,17 @@
                                     <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}}</b>
                                 OEM Tire Size:
                                     <b>{{@$chassis_model->tire_size}}</b> ,
-                                @if(@$vehicle && empty($wheelpackage))
+                                @if(@$vehicle && empty($wheelproduct_id))
                                 <br>
                                 Speed Rating:
                                     <b>{{@$chassis_model->speed_index}}</b> ,
-
+                                @if($chassis_model->load_index !='NULL')
                                 Load Index:
                                     <b>{{@$chassis_model->load_index}}</b> 
                                 @endif
+                                @endif
 
-                                @if(@$wheelpackage)
+                                @if(@$wheelproduct_id)
                                 <br>
 
                                 Showing Plus Sized Tires: 
@@ -324,7 +325,7 @@
                                 <div class="thumb-description">
                                     <div class="caption">
                                         <h4 class="tire-type"><a href="
-    {{url('/tireview')}}/{{base64_encode(@$tire->id)}}/{{base64_encode(@$vehicle->id)}}/{{base64_encode(@$wheelpackage)}}?title={{str_replace(' ','+',@$tire->detailtitle) }}">
+    {{url('/tireview')}}/{{base64_encode(@$tire->id)}}/{{base64_encode(@$vehicle->id)}}/{{base64_encode(@$wheelproduct_id)}}?title={{str_replace(' ','+',@$tire->detailtitle) }}">
                                                 {{@$tire->prodtitle}}<br>
                                                 <br>
                                                 Size : {{@$tire->tiresize}}<br>

@@ -695,7 +695,7 @@
                                                 </a>
                                             </h2>
                                             <h2 class="modal-img">
-                                                <a href="" class="btn btn-info">
+                                                <a href="{{url('/wheeltirepackage/'.$wheel->id.'/'.$flag)}}/shipped" class="btn btn-info">
                                                     <img class="" src="{{url(Setting::get('wheeltirepackage','/image/WheelTireCombo.jpg'))}}">
                                                 </a>
                                             </h2>

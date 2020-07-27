@@ -1568,7 +1568,7 @@ $('.spinner .btn:last-of-type').on('click', function() {
     
     $('.addToCart').click(function(){ 
  
-        if("{{@base64_decode($wheelpackage)}}")
+        if("{{@base64_decode($wheelproduct_id)}}")
         {
             var qty = 4;
         }else{

@@ -28,7 +28,7 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list(Request $request,$chassis_model_id='',$vehicle_id='',$wheelpackage='')
+    public function list(Request $request,$chassis_model_id='',$vehicle_id='',$wheelproduct_id='',$is_shipped='')
     {
 
         $tires = new Tire;
@@ -40,7 +40,7 @@ class TireController extends Controller
         // dd($chassis_model);
         $vehicle = Vehicle::where('vehicle_id',base64_decode($vehicle_id))->first() ?? null;
 
-        // dd($chassis_model,$vehicle,$wheelpackage);
+        // dd($chassis_model,$vehicle,$wheelproduct_id);
 
         if($request->has('tirebrand')){
             if($request->tirebrand !=''){
@@ -69,7 +69,7 @@ class TireController extends Controller
             }
         }
  
-        if( $chassis_model_id!='' && $vehicle_id!='' && $wheelpackage==''){
+        if( $chassis_model_id!='' && $vehicle_id!='' && $wheelproduct_id==''){
             $higherRating = getHigherSpeedRating($chassis_model->speed_index)['list'];
             $tires = $tires->where('tiresize',$chassis_model->tire_size)
                     ->where('loadindex','>=', $chassis_model->load_index)
@@ -94,11 +94,10 @@ class TireController extends Controller
             }
         }
         
-        $plussizes=[];
+        $plussizes=[]; 
+        if($wheelproduct_id){ 
 
-        if($wheelpackage){ 
-
-            $wheel = WheelProduct::find(base64_decode($wheelpackage));
+            $wheel = WheelProduct::find(base64_decode($wheelproduct_id));
             if($wheel->dropshippable == 1){
                 $offroadtype=Session::get('user.offroadtype')??null;
                 $liftsize=Session::get('user.liftsize')??null;
@@ -114,7 +113,7 @@ class TireController extends Controller
 
  
             }else{
-                // dd('no');
+                // dd($wheel->dropshippable,$wheelproduct_id,);
 
                 $rimsize = getWheelDiameterToRim($wheel->wheeldiameter,$wheel->wheelwidth);
                 $plussizes = $vehicle->Plussizes->where('wheel_size',$rimsize)->pluck('tire1');
@@ -128,6 +127,8 @@ class TireController extends Controller
                     return back()->with('error','Matching Tires Not Found');
                 }
             } 
+        }else{
+
         } 
 
         // Load index search in the Sidebar
@@ -231,13 +232,17 @@ class TireController extends Controller
             // dd($tires->get());
 
 
- 
-
-     // if zipcode is available....
-
+            // dd($wheelpackage);
+            // if zipcode is available....
+            // dd($vehicle);
             $zipcode =Session::get('user.zipcode');
-            if($zipcode != null){
-                $zipcodes = Zipcode::getZipcodesByRadius($zipcode);
+            if($zipcode != null){ 
+                if($is_shipped != ''){
+                        $zipcodes = Zipcode::getZipcodesByRadius('92831',50);
+                }else{
+                        $zipcodes = Zipcode::getZipcodesByRadius($zipcode,150);
+
+                }
                 // dd($zipcodes);
                 // $zipcodes = array(
                 //     0 => "32218",
@@ -286,20 +291,21 @@ class TireController extends Controller
                 $radius_tires = clone $tires;
                 $radius_tires = $radius_tires->whereHas('Inventories')->whereHas('Inventories.Dropshippers')->with([
                                     'Inventories'=>function ($query){ 
+                                                        $query->where('available_qty','>=',4); 
                                                         $query->orderBy('available_qty','DESC'); 
                                     },
-                                    'Inventories.Dropshippers'=>function ($query) use($zipcodes){ 
-                                                        $query->whereIn('zip',$zipcodes); 
+                                    'Inventories.Dropshippers'=>function ($query1) use($zipcodes){ 
+                                                        $query1->whereIn('zip',$zipcodes); 
                                     }
                                 ]); 
-                // dd($radius_tires->get()[0]);
+                // dd($radius_tires->get());
 
                 $radius_tires = $radius_tires           
                 ->orderBy('price', 'ASC')
                 ->get()
                 ->unique('prodtitle'); 
-            }                       
- 
+            }        
+
             $tires = $tires->with([
                                     'Inventories'=>function ($query){ 
                                                         $query->orderBy('available_qty','DESC'); 
@@ -310,10 +316,15 @@ class TireController extends Controller
             ->unique('prodtitle');
 
             if($zipcode != null){
-                $tires =collect($radius_tires->merge($tires));
-            }
 
-                   
+                if($is_shipped != ''){
+                    $tires =$radius_tires;
+                }else{
+                    $tires =collect($radius_tires->merge($tires));
+
+                }
+            }
+            
 
         if(count($tires) == 0){
 
@@ -349,7 +360,7 @@ class TireController extends Controller
 
         // dd($tires);
         // dd($speedratings,json_decode(base64_decode($request->tirespeedrating)));
-        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices','request','zipcode','wheelpackage','plussizes'));
+        return view('tires_list',compact('tires','vehicle','chassis_model','load_indexs','speedratings','brands','countsByBrand','prices','request','zipcode','wheelproduct_id','plussizes'));
     }
 
     /**
@@ -357,7 +368,7 @@ class TireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tireview(Request $request,$tire_id='',$vehicle_id='',$wheelpackage='')
+    public function tireview(Request $request,$tire_id='',$vehicle_id='',$wheelproduct_id='')
     {
         if($vehicle_id!=''){
             $vehicle = Vehicle::with('ChassisModels')->where('id',base64_decode($vehicle_id))->first();
@@ -387,7 +398,7 @@ class TireController extends Controller
                 // ->orWhere('tirediameter',$tire->tirediameter)
                 ->get()
                 ->unique('prodmodel');
-        return view('tire_view',compact('tire','diff_tires','similar_tires','vehicle','wheelpackage'));
+        return view('tire_view',compact('tire','diff_tires','similar_tires','vehicle','wheelproduct_id'));
     }
 
     /**

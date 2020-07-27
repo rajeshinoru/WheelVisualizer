@@ -139,7 +139,7 @@ Route::get('/setFiltersByVehicle', 'VehicleController@setFiltersByVehicle')->nam
 
 // Tires Module Routes
 Route::get('/tires', 'TireController@index')->name('tires');
-Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}/{is_tirepackage?}', 'TireController@list')->name('tirelist');
+Route::get('/tirelist/{chassis_model_id?}/{vehicle_id?}/{wheelproduct_id?}/{is_shipped?}', 'TireController@list')->name('tirelist');
 Route::get('/tireview/{tire_id}/{vehicle_id?}/{is_tirepackage?}', 'TireController@tireview')->name('tireview');
 Route::get('/tirebrand/{brand_name?}', 'TireController@brand')->name('tirebrand');
 Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
@@ -160,7 +160,7 @@ Route::get('/wheelproductview/{product_id?}/{flag?}/{prodtitle?}', 'WheelProduct
 // Route::get('/tirebrand/{brand_name}', 'TireController@brand')->name('tirebrand');
 // Route::get('/tirebrandmodel/{tire_id}', 'TireController@tirebrandmodel')->name('tirebrandmodel');
 
-Route::get('/wheeltirepackage/{product_id?}/{flag?}', 'WheelProductController@wheeltirepackage')->name('wheeltirepackage');
+Route::get('/wheeltirepackage/{product_id?}/{flag?}/{is_shipped?}', 'WheelProductController@wheeltirepackage')->name('wheeltirepackage');
 
 
 // Filters By Wheel sizes
