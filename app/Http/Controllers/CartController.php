@@ -112,6 +112,11 @@ class CartController extends Controller
         if(Session::get('user.packagetype') == 'wheeltirepackage' && $request->prodtype == 'tire'){
                 $msg .= '<br><b>This completes your Wheel and Tire Package, which will come mounted and balanced, ready to be installed on your vehicle</b><br>'; 
         }
+
+        if(Session::get('user.packagetype') == 'shippedpackage' && $request->prodtype == 'tire'){
+                $msg .= '<br><b>This completes your Wheel and Tire Combo. Your wheels and tires will not come mounted together. Please make arrangements to have them properly mounted and balanced</b><br>'; 
+        }
+
         // Session::put('user.packagetype') == null;
         // Session::flash('alert-class', 'alert-danger'); 
 

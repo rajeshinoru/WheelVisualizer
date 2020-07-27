@@ -127,8 +127,9 @@ class TireController extends Controller
                     return back()->with('error','Matching Tires Not Found');
                 }
             } 
-        }else{
-
+        }
+        if($is_shipped !=''){
+            Session::put('user.packagetype','shippedpackage');
         } 
 
         // Load index search in the Sidebar
