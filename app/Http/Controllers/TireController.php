@@ -119,9 +119,7 @@ class TireController extends Controller
                 $rimsize = getWheelDiameterToRim($wheel->wheeldiameter,$wheel->wheelwidth);
                 $plussizes = $vehicle->Plussizes->where('wheel_size',$rimsize)->pluck('tire1');
                 // dd($wheel);
-
-                // $plussizes = $vehicle->Plussizes->where('wheel_size',$vehicle->ChassisModels->rim_size)->pluck('tire1'); 
-                // dd($plussizes);
+ 
                 $tires = $tires->whereIn('tiresize',$plussizes);
 
                 if($tires->count() > 0){
@@ -129,8 +127,7 @@ class TireController extends Controller
                 }else{
                     return back()->with('error','Matching Tires Not Found');
                 }
-            }
-            // dd($tires->get());
+            } 
         } 
 
         // Load index search in the Sidebar

@@ -27,7 +27,7 @@ class WheelProductController extends Controller
      */
 
     public function findVehicle($data){
-                $vehicle = Vehicle::with('Plussizes','ChassisModels','Offroads')->select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc','offroad')->where('year', $data->year)
+                $vehicle = Vehicle::with('Plussizes','ChassisModels','Offroads')->select('vehicle_id','vif', 'year', 'make', 'model', 'submodel', 'dr_chassis_id', 'dr_model_id', 'year_make_model_submodel', 'sort_by_vehicle_type','wheel_type','rf_lc','offroad','dually')->where('year', $data->year)
                     ->where('make', $data->make)
                     ->where('model', $data->model);
 
@@ -43,8 +43,7 @@ class WheelProductController extends Controller
                         $vehicle = $vehicle->where('submodel',$submodelBody[0].'-'.$submodelBody[1])->where('body',$submodelBody[2]);
                     }
                 }
-                $vehicle = $vehicle->first(); 
-
+                $vehicle = $vehicle->orderBy('offroad','desc')->orderBy('dually','desc')->first();  
                 return $vehicle;
     }
 
@@ -99,29 +98,11 @@ class WheelProductController extends Controller
             $branddesc = [];
             $vehicle = '';
             $car_images='';
+            $offroadtype=null;
+            $liftsize=null;
+
             
-            // //Color based cars 
-            // if(isset($request->flag) && $request->flag == 'searchByVehicle'){
-            //     $viflist = Viflist::select('vif', 'yr','make','model','body','drs','whls')->where('yr', $request->year)
-            //         ->where('make', $request->make)
-            //         ->where('model', $request->model)->first();
-            //         // dd($viflist);
-            //         if($viflist != null){
-            //             $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($viflist->vif)->where('image', 'LIKE', '%.png%')
-            //             ->with(['CarViflist' => function($query) {
-            //                 $query->select('vif', 'yr','make','model','body','drs','whls');
-
-            //             },'CarColor'])->first();
-            //         }
-                
-
-
-            // }
-
-
-
-
-
+             
 
             // Search By Wheels Size in products
             if (isset($request->flag) && $request->flag == 'searchByWheelSize')
@@ -149,8 +130,19 @@ class WheelProductController extends Controller
             {
 
                 $vehicle = $this->findVehicle($request);
+                // dd($vehicle);
+                $offroadtype = Session::get('user.offroadtype')??null;
+                // dd($offroadtype);
+                if($vehicle->dually =='1' && ($offroadtype == 'stock' || $offroadtype == null)){
+                    $products->where('wheeltype','LIKE','%D%');
+                    // dd($vehicle);
+                }
  
+            
+                //Offroad Checking Flow for Shop by Vehicle
+
                 $offroadSizes = [];
+
                 if(@$request->liftsize){
 
                     $liftsize = json_decode(base64_decode($request->liftsize)); 
@@ -158,12 +150,11 @@ class WheelProductController extends Controller
                     Session::put('user.liftsize',$liftsize);
 
                     $offroadSizes = Offroad::where('offroadid',$vehicle->offroad)->where('plussizetype',$liftsize)->get(); 
-                }else{
-                    $liftsize = '';
                 }
 
 
 
+                // Wheel Visualiser Flow for Shop by Vehicle
                 if(@$vehicle->vif != null){
                     $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($vehicle->vif)->where('image', 'LIKE', '%.png%')
                     ->with(['CarViflist' => function($query) {
@@ -233,13 +224,6 @@ class WheelProductController extends Controller
                 }
 
 
-
-
-
-
-
-
-
                 //*********************** BCD Bolt Pattern checking **************************
                 if (strpos($chassis->pcd, '.') !== false)
                 {
@@ -260,7 +244,6 @@ class WheelProductController extends Controller
             }
 
             // Wheel Width size search in the Sidebar
-
             $wheelwidth = clone $products;
 
             if (isset($request->brand) && $request->brand) {
@@ -471,60 +454,9 @@ class WheelProductController extends Controller
                 ->unique('prodtitle');
                 // $products = WheelProduct::limit(10);
                 // dd($products);
-
-
-                // dd($radius_products);
-                // $radius_products = $radius_products->with('Inventories','Inventories.Dropshippers')->whereHas('Inventories', 
-                //     function($q){
-                //         // $q->where('zip','>','00001');
-                //     })
-                //     ->whereHas('Inventories.Dropshippers', 
-                //     function($q1){
-                //         // $q->where('zip','>','00001');
-                //     })->get();
-
-
-                // $dropshippers = Dropshipper::with('InventoryProducts','InventoryProducts.WheelProducts')->whereIn('zip',$zipcodes)->whereHas('InventoryProducts', 
-                //     function($q){
-                //         $q->where('available_qty','>',0);
-                //     })->get();
  
-
-                // $inv = Inventory::where('location_name',$dropshippers[0]->code)->get();
-                
-                // foreach ($dropshippers as $key => $dropshipper) {
-                //     $radius_products = $radius_products->with('Inventories')->whereHas('Inventories', 
-                //     function($q) use($dropshipper) {
-                //         $q->where('location_name',$dropshipper->code);
-                //     });
-
-
-                //     // foreach ($dropshipper->InventoryProducts as $key => $product) {
-                //     //     // dd($product);
-                //     //     array_push($ids, $product->WheelProducts?$product->WheelProducts->id:null);
-                //     // }
-                // } 
-                    
-                // dd($ids);
-                // // \DB::enableQueryLog();
-                // $newproducts = $products->orderBy(\DB::raw('FIELD(`partno`, '.implode(',', $ids).')'))->get();
-                // // dd(DB::getQueryLog());
-                // dd($products->pluck('id'),$newproducts->pluck('id'),$ids);
-                // dd($partnos);
-                // dd($zipcodes,$zipcode);
             }                       
-
-            // $products = new WheelProduct;
-
-            // $products = $products->limit(50);
-
-            // $products = $products->with('Inventories.Dropshippers');
-            // ,function($query)   { 
-            //     $query->orderBy('zip','DESC');
-            // });//->orderBy('available', 'DESC');
-
-
-
+ 
 
             $products = $products->with([
                                     'Inventories'=>function ($query){ 
@@ -542,21 +474,7 @@ class WheelProductController extends Controller
             if($zipcode != null){
                 $products =collect($radius_products->merge($products));
             }
-
-            // dd($products);
-            // ,'Inventories.Dropshippers'=>function($q1) use($zipcodes){
-            //             $q1->whereIn('zip',$zipcodes); 
-            //         },
-            // $products = $products
-            //     ->orderBy('price', 'ASC')
-            //     ->get()
-            //     ->unique('prodtitle');
-            // dd($products);
-
-            // foreach ($products as $key => $p) {
-            //     $w[] = Wheel::where('part_no',$p->partno_old)->first();
-            // }
-
+ 
             //     dd($w);
             $products = MakeCustomPaginator($products, $request, 9);
             // dd($products);
@@ -574,7 +492,7 @@ class WheelProductController extends Controller
 
             // dd($zipcode);
 
-            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode','liftsize'));
+            return view('products', compact('products', 'brands', 'wheeldiameter', 'wheelwidth','wheelfinish', 'branddesc','flag','countsByBrand','vehicle','request','car_images','zipcode','liftsize','offroadtype'));
 
         }
         catch(ModelNotFoundException $notfound)

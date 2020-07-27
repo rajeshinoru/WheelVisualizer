@@ -221,6 +221,7 @@
                                 Your Selected Vehicle: 
                                     <b>{{@$vehicle->year}} {{@$vehicle->make}} {{@$vehicle->model}} {{@$vehicle->submodel}} </b>
                                     @if(@$liftsize) &  Liftsize :  <b> {{@$liftsize}} </b> @endif
+                                    @if(@$vehicle->dually=='1' && (@$offroadtype == 'stock' || @$offroadtype == null)) &  <b> Dually Wheels </b> @endif
                                     
                                 <br>
                                 @endif
@@ -516,7 +517,7 @@
                             </div>
                             <div class="modal-body">
                                     <div style="text-align:center;">
-                                        <button class="btn btn-info offroad-select" data-offroad="level">Leveling Kit</button>
+                                        <a class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','Levelkit')">Leveling Kit</a> 
                                     </div>
                                     <div style="text-align:center;">
                                         <br>
