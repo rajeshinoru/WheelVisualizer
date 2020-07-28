@@ -327,43 +327,7 @@
                         <div class="homecelld" style="margin-top: 4px;"><b>{{@$tire->tiresize}}   ${{@$tire->price}}</b></div>
                     </li>
 
-                    @empty
-                    <li class="gridItem homeapge1">
-                        <div class="homecelld">
-                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                        </div>
-                        <div class="homecelld" style="margin-top: 4px;"><b>205/50R17 $45</b></div>
-                    </li>
-                    <li class="gridItem homeapge1">
-                        <div class="homecelld">
-                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                        </div>
-                        <div class="homecelld" style="margin-top: 4px;"><b>225/40R18 $50</b></div>
-                    </li>
-                    <li class="gridItem homeapge1">
-                        <div class="homecelld">
-                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                        </div>
-                        <div class="homecelld" style="margin-top: 4px;"><b>245/35R20 $60</b></div>
-                    </li>
-                    <li class="gridItem homeapge1">
-                        <div class="homecelld">
-                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                        </div>
-                        <div class="homecelld" style="margin-top: 4px;"><b>265/35R22 $100</b></div>
-                    </li>
-                    <li class="gridItem homeapge1">
-                        <div class="homecelld">
-                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                        </div>
-                        <div class="homecelld" style="margin-top: 4px;"><b>305/35R24 $125</b></div>
-                    </li>
-                    <li class="gridItem homeapge1">
-                        <div class="homecelld">
-                            <a href=""><img data-original="image/product.png" class="lazy ri" lazyload="1" alt="17 inch Car Rims" src="image/product.png" style="display: inline;" width="150" height="150"></a>
-                        </div>
-                        <div class="homecelld" style="margin-top: 4px;"><b>305/35R26 $125</b></div>
-                    </li>
+                    @empty 
                     @endforelse
                 </ul>
             </div>
