@@ -42,6 +42,11 @@ class TireController extends Controller
 
         // dd($chassis_model,$vehicle,$wheelproduct_id);
 
+        if (isset($request->tiresize) && $request->tiresize) {
+                $tires = $tires->where('tiresize',base64_decode($request->tiresize));
+        }
+
+
         if($request->has('tirebrand')){
             if($request->tirebrand !=''){
                 $tires = $tires->whereIn('prodbrand',json_decode(base64_decode($request->tirebrand)));

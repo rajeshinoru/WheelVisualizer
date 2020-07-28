@@ -256,6 +256,20 @@
                       </div>
                   </div>
                   @endif
+                  @if(@$request->wheeltype)
+                  <div class="wheel-list-change-tab "> 
+                        <div class="row">
+                          <div class="col-md-8 left-head">
+                            <p> 
+                                {{(base64_decode(@$request->wheeltype) == 'D')?'Dually Wheels':''}}
+                                {{(base64_decode(@$request->wheeltype) == 'O')?'Offroad Wheels':''}}
+                                {{(base64_decode(@$request->wheeltype) == 'C')?'Classic Wheels':''}} 
+                                </p>
+                            </div>
+                        </div>
+
+                  </div>
+                  @endif
                   @if(@$zipcode)
                   <div class="wheel-list-change-tab ">
                       <div class="row">
@@ -513,7 +527,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                                <h4 class="modal-title">Choose one</h4>
+                                <h4 class="modal-title">Choose One</h4>
                             </div>
                             <div class="modal-body">
                                     <div style="text-align:center;">

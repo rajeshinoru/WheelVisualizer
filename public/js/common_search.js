@@ -468,7 +468,19 @@ $('.sizelinks').click(function(){
         paramValue.push(value)
         var paramValue = window.btoa(JSON.stringify(paramValue)); 
         window.location.href = '/wheelproducts?finish='+paramValue;
+    }
+ 
+    if(category == 'wheeltype'){
+        paramValue.push(value)
+        var paramValue = window.btoa(paramValue); 
+        window.location.href = '/wheelproducts?wheeltype='+paramValue;
     } 
+
+    if(category == 'tiresize'){
+        paramValue.push(value)
+        var paramValue = window.btoa(paramValue); 
+        window.location.href = '/tirelist?tiresize='+paramValue;
+    }  
 })
 
 

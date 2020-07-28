@@ -101,7 +101,13 @@ class WheelProductController extends Controller
             $offroadtype=null;
             $liftsize=null;
 
-            
+            if(@$request->wheeltype){
+                $wheeltype = base64_decode($request->wheeltype);
+                // dd($wheeltype);
+                if($request->wheeltype){
+                    $products = $products->where('wheeltype','LIKE','%'.$wheeltype.'%');  
+                }
+            }
              
 
             // Search By Wheels Size in products

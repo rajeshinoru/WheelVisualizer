@@ -42,10 +42,12 @@ class HomeController extends Controller
      */
     public function index()
     {  
-        $Wheels = Wheel::select('brand', 'image', 'wheeldiameter', 'wheelwidth', 'style')->inRandomOrder()->paginate(12); ;
+        $Wheels = Wheel::select('brand', 'image', 'wheeldiameter', 'wheelwidth', 'style')->inRandomOrder()->take(6)->get();
+        $Tires = Tire::select('prodbrand', 'prodimage', 'tiresize','price')->inRandomOrder()->take(6)->get(); 
+        // dd($Tires);
         $years = Viflist::select('yr')->distinct('yr')->orderBy('yr','Desc')->limit(10)->get(); 
 
-        return view('home',compact('Wheels','years'));
+        return view('home',compact('Wheels','years','Tires'));
     }
     public function search(Request $request)
     {  

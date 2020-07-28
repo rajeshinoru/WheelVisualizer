@@ -53,12 +53,12 @@
                 <li><a class="sizelinks" data-category="inch" data-value="24" >24 inch Specials</a></li>
                 <li><a class="sizelinks" data-category="inch" data-value="26" >26 inch Specials</a></li>
                 <li><a class="sizelinks" data-category="finish" data-value="Black" >Black Wheels</a></li>
-                <li><a class="sizelinks" >Tuner Wheels</a></li>
+                <li><a class="sizelinks" data-category="wheeltype" data-value="T" >Tuner Wheels</a></li>
                 <li><a class="sizelinks" >3-Piece Wheels</a></li>
-                <li><a class="sizelinks" >Off Road Wheels</a></li>
+                <li><a class="sizelinks" data-category="wheeltype" data-value="O"  >Off Road Wheels</a></li>
                 <li><a class="sizelinks" >8-Lug Wheels</a></li>
-                <li><a class="sizelinks" >Dually Wheels</a></li>
-                <li><a class="sizelinks" >Classic Wheels</a></li>
+                <li><a class="sizelinks" data-category="wheeltype" data-value="D">Dually Wheels</a></li>
+                <li><a class="sizelinks" data-category="wheeltype" data-value="C">Classic Wheels</a></li>
                 <li><a class="sizelinks" href="{{url('/wheels')}}" >Vehicle Gallery</a></li>
                 <li><a class="sizelinks" href="{{url('/videos')}}" >Videos</a></li>
                 <li><a class="sizelinks" href="{{url('/informations/reviews')}}" >Reviews</a></li>
