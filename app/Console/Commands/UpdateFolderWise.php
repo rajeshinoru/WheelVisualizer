@@ -81,6 +81,7 @@ class UpdateFolderWise extends Command
          $pid = getmypid();
          $invprocess = InventoryProcess::where('foldername',$fname)->whereDate('created_at', \Carbon\Carbon::today())->first();
          if($invprocess){
+            $invprocess->processid = $pid;
             $invprocess->loopcount = $invprocess->loopcount +1;
             $invprocess->save(); 
          }else{
@@ -145,6 +146,7 @@ class UpdateFolderWise extends Command
                             \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$data['partno']." --- "."LOC:".$data['location_code']);
                         }
                         
+                        $this->process_update($currentFolder,$data['drop_shipper']);
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 
 

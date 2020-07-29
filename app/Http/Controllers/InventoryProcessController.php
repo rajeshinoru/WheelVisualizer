@@ -14,7 +14,8 @@ class InventoryProcessController extends Controller
      */
     public function index()
     {
-        //
+        $processes = InventoryProcess::whereDate('started_at',\Carbon\Carbon::today())->orderBy('foldername','asc')->paginate(20);
+        return view('admin.inventory.processlist',compact('processes'));
     }
 
     /**

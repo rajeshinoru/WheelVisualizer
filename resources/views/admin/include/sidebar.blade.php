@@ -166,6 +166,9 @@
                         <li>
                             <a  href="{{url('admin/logs/vftp')}}" aria-expanded="false"><i class="fa fa-list "></i> FTP Live Details  </a>
                         </li>
+                        <li>
+                            <a  href="{{url('admin/logs/process')}}" aria-expanded="false"><i class="fa fa-list "></i> FTP Current Process  </a>
+                        </li>
                         @endif
                         @if(VerifyAccess('cmspage'))
                         <li>

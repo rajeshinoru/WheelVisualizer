@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('inventories/count', 'InventoryController@getUploadInventories');
 Route::get('logs/vftp', 'InventoryController@liveReport');
+Route::get('logs/process', 'InventoryProcessController@index');
 
 Route::resource('ticket', 'Resource\TicketResource');
 Route::resource('user', 'Resource\UserResource');

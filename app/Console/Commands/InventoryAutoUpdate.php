@@ -8,6 +8,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 use App\Inventory;
 use App\InventoryMigration;
+use App\InventoryProcess;
 use Illuminate\Http\Request;
 use Illuminate\Console\Command;
 use Storage;
@@ -182,14 +183,23 @@ class InventoryAutoUpdate extends Command
 
         \Log::info('Sub Process Started!...........');
 
+        $existingProcessIds = InventoryProcess::where('started_at','<', \Carbon\Carbon::now())->pluck('processid')->toArray();
+        // dd($existingProcessIds) ;
+        if(count($existingProcessIds) > 0){
+                $pidStr = implode(" ",$existingProcessIds);
+                $process = new Process("kill -HUP ".$pidStr);
+                $process->disableOutput();
+                $process->start();
+        }
+        // dd('hgkg');
         foreach($foldersArray as $key => $folder) {
 
-
-                // dd($folder);
                  $process = new Process('php ' . base_path('artisan') . " folderupdate:inventories ".$folder);
                  // $process->setTimeout(0);
                  $process->disableOutput();
                  $process->start();
+                // dd($folder);
+                \Log::info('Sub Process Started!...........'.$folder);
                  // $processes[] = $process;
 
  
