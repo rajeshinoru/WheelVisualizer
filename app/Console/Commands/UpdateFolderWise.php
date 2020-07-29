@@ -10,6 +10,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Inventory;
 use App\RemoteInventory;
 use App\InventoryMigration;
+use App\InventoryProcess;
 
 use Illuminate\Http\Request; 
 use Storage;
@@ -76,12 +77,27 @@ class UpdateFolderWise extends Command
         return $this->storeArr;
     }
 
+    public function process_update($fname,$dropshipper) {
+         $pid = getmypid();
+         $invprocess = InventoryProcess::where('foldername',$fname)->whereDate('created_at', \Carbon\Carbon::today())->first();
+         if($invprocess){
+            $invprocess->loopcount = $invprocess->loopcount +1;
+            $invprocess->save(); 
+         }else{
+            $invprocess = InventoryProcess::create([
+                'foldername' => $fname,
+                'dropshipper' => $dropshipper,
+                'processid' => $pid,
+                'loopcount' => 1,
+                'started_at' => \Carbon\Carbon::now(),
+            ]);
+         }
+    }
     public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){ 
-
+        // $this->info(getmypid());
         $table = "inventories"; 
  
         if(array_keys($newData) !== range(0, count($newData) - 1)) {
- 
 
             // $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
@@ -93,13 +109,16 @@ class UpdateFolderWise extends Command
             // dd($newData);
             if(is_numeric($newData['available_qty'])&&is_numeric($newData['price'])){
                 // dd($newData);
-                Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                $test = Inventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
+                // dd($test);
                 if($this->env != 'local'){
 
                 RemoteInventory::updateOrCreate(['partno' =>$newData['partno'],'drop_shipper' =>$newData['drop_shipper'], 'location_code' =>$newData['location_code']] , $newData );
                  
                 \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$newData['partno']." --- "."LOC:".$newData['location_code']); 
                 }
+
+                $this->process_update($currentFolder,$newData['drop_shipper']);
             }
 
         }else{
@@ -1429,8 +1448,7 @@ class UpdateFolderWise extends Command
                                     $dataValue = explode('|', $data[0]);
                                 }else{
                                     $dataValue =  $data;
-                                } 
-
+                                }  
                                 $insertData = array(
 
                                     // 'filename'=>$folderKey,
@@ -1472,6 +1490,7 @@ class UpdateFolderWise extends Command
                                     $insertData['drop_shipper']=$vendor_info[$folderKey][$insertData['location_code']][0];
                                     $insertData['ds_vendor_code']=$vendor_info[$folderKey][$insertData['location_code']][1];
                                     $insertData['location_name']=$vendor_info[$folderKey][$insertData['location_code']][2];
+                                    // dd($insertData);
                                     $this->inventoryFeedUpdate($currentFolder,$insertData,$db_ext);
 
                                 }elseif($folderKey == "vftp0011" || $folderKey == "vftp0016" || $folderKey == "vftp0017" ||  $folderKey == "vftp0018" ||   $folderKey == "vftp0031" || $folderKey == "vftp0033" ||   $folderKey == "vftp0043" ||   $folderKey == "vftp0049" || $folderKey == "vftp0054"  ){ 

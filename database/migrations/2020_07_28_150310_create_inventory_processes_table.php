@@ -15,7 +15,13 @@ class CreateInventoryProcessesTable extends Migration
     {
         Schema::create('inventory_processes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('foldername')->nullable();
+            $table->string('dropshipper')->nullable();
+            $table->string('processid')->nullable();
+            $table->string('loopcount')->nullable(); 
+            $table->timestamp('started_at')->nullable();
             $table->timestamps();
+
         });
     }
 
