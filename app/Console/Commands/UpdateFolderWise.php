@@ -1396,6 +1396,7 @@ class UpdateFolderWise extends Command
 
         foreach ($allFiles as $index => $selectedFile) { 
 
+            \Log::info("File NAME ".$selectedFile);
             // dd($selectedFile);
 
             $filepathArray = explode('/', $selectedFile);
