@@ -106,20 +106,21 @@ class InventoryController extends Controller
 
 
     static public function  liveCount(){ 
-        $total = Inventory::count(); 
-        $dropshippers = Inventory::select('drop_shipper', \DB::raw('count(*) as total'))
+        $inventories = new Inventory;
+        $total = $inventories->count(); 
+        $dropshippers = $inventories->select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
 
-        $today_dropshippers = Inventory::whereDate('updated_at', \Carbon\Carbon::today());
-        $starttime_dropshippers = clone $today_dropshippers;
-        $lasttime_dropshippers = clone $today_dropshippers;
-        $today_dropshippers = $today_dropshippers->select('drop_shipper', \DB::raw('count(*) as total'))
+        $updated_inventories = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
+        $updated_inventories_today = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
+        
+        $today_dropshippers = $updated_inventories_today->select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
-        $starttime_dropshippers = $starttime_dropshippers->orderBy('updated_at','DESC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');//->pluck('updated_at','drop_shipper');
-        $lasttime_dropshippers = $lasttime_dropshippers->orderBy('updated_at','ASC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');//->pluck('updated_at','drop_shipper');
-        // dd($time_dropshippers);
+                 // dd($updated_inventories,$today_dropshippers);
+        $starttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','DESC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');
+        $lasttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','ASC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper'); 
         // dd($starttime_dropshippers,$lasttime_dropshippers);
 
         return [
