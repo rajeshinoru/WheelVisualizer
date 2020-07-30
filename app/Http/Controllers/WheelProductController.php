@@ -97,9 +97,9 @@ class WheelProductController extends Controller
  
             $products = WheelProduct::with('wheel')->select('id', 'prodbrand','detailtitle', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
-            // if($zipcode==null){
-            //     $products= $products->where('id','<=',10);
-            // }
+            if($zipcode==null){
+                $products= $products->where('id','<=',10);
+            }
 
 
             $branddesc = [];
@@ -146,7 +146,7 @@ class WheelProductController extends Controller
                 // dd($vehicle);
                 $offroadtype = Session::get('user.offroadtype')??null;
                 // dd($offroadtype);
-                if($vehicle->dually =='1' && ($offroadtype == 'stock' || $offroadtype == null)){
+                if(@$vehicle->dually =='1' && ($offroadtype == 'stock' || $offroadtype == null)){
                     $products->where('wheeltype','LIKE','%D%');
                     // dd($vehicle);
                 }
