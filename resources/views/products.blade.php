@@ -334,7 +334,7 @@
                                                 <span class="price-new">Starting at : {{roundCurrency(@$product->price)}}</span>
                                             </div> -->
 
-                                        @if($car_images)
+                                        @if($car_images && @$zipcode)
                                         <button class="btn btn-primary {{
 (!file_exists(front_back_path(@$product->wheel['image'])) && !file_exists(front_back_path(@$product->prodimage)) )?'disabled':''}}" {{(!file_exists(front_back_path(@$product->wheel['image'])) && !file_exists(front_back_path(@$product->prodimage)) )?' ':'data-toggle=modal'}} data-target="#myModal{{$key}}" onclick="WheelMapping('{{$key}}')" >See On Your Car</button>
                                         @endif
@@ -363,7 +363,7 @@
                                 </div>
                             </div>
                         </div>
-                    @if($car_images)
+                    @if($car_images && @$zipcode)
 
                     <input type="hidden" id="car_image_name" value="{{@$car_images->image}}">
                     <input type="hidden" id="car_image_id" value="{{@$car_images->car_id}}">
@@ -526,21 +526,38 @@
                     <div class="modal-dialog tire-view">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                                <h4 class="modal-title">Choose One</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Select any one for your vehicle</h4>
                             </div>
-                            <div class="modal-body">
-                                    <div style="text-align:center;">
-                                        <a class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','Levelkit')">Leveling Kit</a> 
+                            <div class="modal-body"  >
+                                <!-- <div class="col-md-12"> -->
+                                    
+                                    <div style="text-align: center;">
+                                        <a class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','Levelkit')">
+                                            <img src="{{asset('/image/lifttype.jpg')}}" >
+                                            <br>
+                                            <h3 style="color: white !important">Leveling Kit</h3>
+                                        </a> 
                                     </div>
-                                    <div style="text-align:center;">
-                                        <br>
-                                        <button class="btn btn-info offroad-select" data-offroad="lift">Lift Kit</button>
+
+                                                       <br>                                 
+                                    <div style="text-align: center;">    
+                                        <button class="btn btn-info offroad-select" data-offroad="lift">
+                                            <img src="{{asset('/image/lifttype.jpg')}}" >
+                                            <br>
+                                            <h3 style="color: white !important">Lift Kit</h3>
+                                        </button>
                                     </div>
-                                    <div style="text-align:center;">
-                                        <br>
-                                        <button class="btn btn-info offroad-select" data-offroad="stock">Stock</button>
+                                    <br>
+                                    <div style="text-align: center;"> 
+                                        <button class="btn btn-info offroad-select" data-offroad="stock">
+
+                                            <img src="{{asset('/image/lifttype.jpg')}}" >
+                                            <br>
+                                            <h3 style="color: white !important">Stock</h3>
+                                        </button>
                                     </div> 
+                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
@@ -550,8 +567,8 @@
                     <div class="modal-dialog tire-view">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                                <h4 class="modal-title">Choose Lift Size</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Please select your vehicle's lift:</h4>
                             </div>
                             <div class="modal-body"> 
                             </div>
@@ -617,7 +634,7 @@ $(document).ready(function () {
 
                 if("{{@$vehicle->offroad !=''}}" && "{{@$liftsize==''}}"){ 
 
-                    $("#offroadTypeModal").modal('show');
+                    $("#offroadTypeModal").modal({backdrop: 'static', keyboard: false}) ;
 
                 }else{
 
@@ -664,15 +681,26 @@ $(document).ready(function () {
                     if(result != null){
 
                         for (var i = result.length - 1; i >= 0; i--) { 
-                            str+=`       
-                                    <div style="text-align:center;">
-                                        <a class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','`+result[i]+`')">`+result[i]+`</a>
-                                    </div>
+
+                            sizename = result[i].replace("lift", '" Lift');
+
+                            str+=` 
+
                                     <br>
+                                    <div style="text-align: center;"> 
+                                        <button class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','`+result[i]+`')">
+
+                                            <img src="{{asset('/image/lifttype.jpg')}}" >
+                                            <br>
+                                            <h3 style="color: white !important">`+sizename+`</h3>
+                                        </button>
+                                    </div> 
+
+
                                 `;
                         }
                         $('#liftsizeModal').find('.modal-body').html(str);
-                        $("#liftsizeModal").modal('show'); 
+                        $("#liftsizeModal").modal({backdrop: 'static', keyboard: false}) ;
                         $loading.fadeOut("slow");
                     }
                 },
@@ -689,7 +717,7 @@ $(document).ready(function () {
 
     function getZipcode(){  
             if("{{$zipcode==''}}"){ 
-                $("#zipcodeModal").modal('show');
+                $("#zipcodeModal").modal({backdrop: 'static', keyboard: false}) ;
             }else{
                 $("#zipcodeModal").modal('hide');
             }

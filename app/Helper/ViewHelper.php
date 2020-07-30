@@ -1000,3 +1000,22 @@ function getFTPfolders($key='',$flag=null){
 	return $list;
 }
  
+
+function getVehicleLiftSize($key='',$flag=null){ 
+	$list  = array(
+		'3lift'=>'3" Lift',
+		'6lift'=>'6" Lift',
+		'8lift'=>'8" Lift',
+		'4lift'=>'4" Lift',
+	); 
+	if($flag){
+		// dd(array_key_exists($key, $list));
+		return array_key_exists($key, $list);
+	}
+
+	if($key!=''){
+		return $list[$key]??'-';
+	}
+	return $list;
+}
+ 
