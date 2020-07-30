@@ -608,13 +608,16 @@
                                                                         <div class="form-group has-success has-feedback text-center">
                                                                             <button class="btn btn-info btn-close" type="button" data-dismiss="modal">Continue Shopping</button>
 
-                                                                            @if($flag == 'searchByVehicle')
-                                                                            <a class="btn btn-info matching-tire" data-productid="{{@$diffproduct->id}}">Add Matching Tires</a>
-                                                                            @endif
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
                                                                     </form>
+
+                                                                        @if($flag == 'searchByVehicle')
+                                                                        <div class="form-group has-success has-feedback text-center" >  
+                                                                            <a class="btn btn-success matching-tire" data-productid="{{@$diffproduct->id}}">Add Matching Tires</a>
+                                                                        </div>
+                                                                        @endif 
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -653,15 +656,21 @@
                                                                     <h2 class="modal-title">The following items have been added to your cart:</h2>
                                                                     <p class=" modal-msg">Qty: 4 2 Crave Wheels No.1 22x8.5 Gloss Black with Machined Face +38mm Offset $160.00/ea</p>
                                                                     <form class="form-horizontal">
-                                                                        <div class="form-group has-success has-feedback text-center">
+                                                                        <div class="form-group has-success has-feedback text-center"> 
+
                                                                             <button class="btn btn-info" type="button" data-dismiss="modal">Continue Shopping</button>
-                                                                            @if($flag == 'searchByVehicle')
-                                                                            <a class="btn btn-info matching-tire" data-productid="{{@$product->id}}" >Add Matching Tires</a>
-                                                                            @endif
                                                                             <a class="btn btn-info cart-btn" href="{{url
                                                                             ('/CartItems')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
                                                                         </div>
-                                                                    </form>
+                                                                    </form> 
+                                                                    <br>
+
+                                                                        @if($flag == 'searchByVehicle')
+                                                                        <div class="form-group has-success has-feedback text-center" >  
+                                                                            <a class="btn btn-success matching-tire" data-productid="{{@$product->id}}">Add Matching Tires</a>
+                                                                        </div>
+                                                                        @endif 
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1265,6 +1274,7 @@
         roundedCorners: true,
         delay: 5
     });
+
     // })
 </script>
 
@@ -1299,7 +1309,7 @@
                     $(modelid).modal("show");
                 }
 
-
+                blink();
                 getCartCount();
                 // $(".se-pre-con").hide();
             }
@@ -1412,5 +1422,29 @@
         $('.success-box div.text-message').html("<span>" + msg + "</span>");
     }
     // Star Rating End
+</script>
+
+<script type="text/javascript">
+var col = new String();
+var x=1;var y;
+
+function blink()
+{
+    if(x%2) 
+    {
+        col = "rgb(255,0,0)";
+        size ="16";
+    }else{
+        col = "#070b31";
+        size ="14";
+    }
+
+    x++;
+    if(x>2){
+        x=1
+    };
+    setTimeout("blink()",500);
+    $('.matching-tire').attr('style','color:'+col+';background-color: yellow !important;font-size:'+size+'px');
+}
 </script>
 @endsection

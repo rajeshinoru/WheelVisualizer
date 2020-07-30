@@ -86,6 +86,8 @@ class WheelProductController extends Controller
         {
 
 
+            $zipcode =Session::get('user.zipcode');
+
              if($request->flag == 'searchByWheelSize'){ 
                 Session::put('user.searchByWheelSize',$request->all());
              }
@@ -94,6 +96,11 @@ class WheelProductController extends Controller
              }
  
             $products = WheelProduct::with('wheel')->select('id', 'prodbrand','detailtitle', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
+
+            if($zipcode==null){
+                $products= $products->where('id','<=',10);
+            }
+
 
             $branddesc = [];
             $vehicle = '';
@@ -390,7 +397,6 @@ class WheelProductController extends Controller
 
             // if zipcode is available....
 
-            $zipcode =Session::get('user.zipcode');
             if($zipcode != null){
                 $zipcodes = Zipcode::getZipcodesByRadius($zipcode,'150');
                 // dd($zipcodes);
