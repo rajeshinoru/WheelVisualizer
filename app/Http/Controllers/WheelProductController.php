@@ -56,7 +56,7 @@ class WheelProductController extends Controller
             Session::put('user.offroadtype',$request->offroadtype);
         }
         $vehicle = Session::get('user.vehicle'); 
-        $liftsizes = Offroad::where('offroadid',$vehicle->offroad)->whereNotIn('plussizetype',['Levelkit'])->select('plussizetype')->distinct('plussizetype')->pluck('plussizetype'); 
+        $liftsizes = Offroad::where('offroadid',@$vehicle->offroad)->whereNotIn('plussizetype',['Levelkit'])->select('plussizetype')->distinct('plussizetype')->pluck('plussizetype'); 
 
         return $liftsizes?:null;
 
@@ -162,14 +162,14 @@ class WheelProductController extends Controller
                     
                     Session::put('user.liftsize',$liftsize);
 
-                    $offroadSizes = Offroad::where('offroadid',$vehicle->offroad)->where('plussizetype',$liftsize)->get(); 
+                    $offroadSizes = Offroad::where('offroadid',@$vehicle->offroad)->where('plussizetype',$liftsize)->get(); 
                 }
 
 
 
                 // Wheel Visualiser Flow for Shop by Vehicle
                 if(@$vehicle->vif != null){
-                    $car_images = CarImage::select('car_id','image','color_code')->wherecar_id($vehicle->vif)->where('image', 'LIKE', '%.png%')
+                    $car_images = CarImage::select('car_id','image','color_code')->wherecar_id(@$vehicle->vif)->where('image', 'LIKE', '%.png%')
                     ->with(['CarViflist' => function($query) {
                         $query->select('vif', 'yr','make','model','body','drs','whls');
 
@@ -177,10 +177,10 @@ class WheelProductController extends Controller
                 }
 
                 // dd($vehicle,$car_images);
-                $chassis_models = ChassisModel::where('model_id', $vehicle->dr_model_id)->first();
+                $chassis_models = ChassisModel::where('model_id', @$vehicle->dr_model_id)->first();
                 // dd($chassis_models);
 
-                $chassis = Chassis::where('chassis_id', $vehicle->dr_chassis_id)->first(); 
+                $chassis = Chassis::where('chassis_id', @$vehicle->dr_chassis_id)->first(); 
 
                  
                 if(@$request->liftsize){
@@ -208,7 +208,7 @@ class WheelProductController extends Controller
                         //*********************** Plus Size checking **************************
 
 
-                        $plusSizes = PlusSize::where('chassis_id',$vehicle->dr_chassis_id)->get(); 
+                        $plusSizes = PlusSize::where('chassis_id',@$vehicle->dr_chassis_id)->get(); 
 
 
                         $plusSizesArray=array(); $diameterSizesArray=array();
