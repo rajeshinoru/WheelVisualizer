@@ -1328,6 +1328,7 @@
                         $('.modal').modal("hide"); 
                         window.location = "{{url('/wheeltirepackage')}}/"+productid+"{{'/'.$flag}}/";
                     } else{
+                        $('.modal').modal("hide"); 
                         $('#matching-tire-modal').modal();
                     }
                     $loading.fadeOut("slow"); 
