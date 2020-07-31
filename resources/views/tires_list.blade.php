@@ -327,8 +327,7 @@
                                         <h4 class="tire-type"><a href="
     {{url('/tireview')}}/{{base64_encode(@$tire->id)}}/{{base64_encode(@$vehicle->id)}}/{{base64_encode(@$wheelproduct_id)}}?title={{str_replace(' ','+',@$tire->detailtitle) }}">
                                                 {{@$tire->prodtitle}}<br>
-                                                <br> 
-                                                Availability : {{@$tire->inventories[0]['available_qty']}}<br>
+                                                <br>  
                                                 Size : {{@$tire->tiresize}}<br>
                                                 Load : {{@$tire->loadindex}} Speed:{{@$tire->speedrating}}<br>
                                                 <b>{{roundCurrency(@$tire->price)}}</b>

@@ -244,9 +244,7 @@
                                                      -->
                                                     <!-- <br> {{'PN : '.$product->partno}}  -->
                                     
-                                                    @if(@$product->available)
-                                                    <br> {{'Avail : '.$product->available}} 
-                                                    @endif
+                                                    
                                                      @if(@$product->distance)
                                                     <br> {{'Min.Distance : '.@$product->distance}} 
                                                     @endif
@@ -534,7 +532,7 @@
     } else {
         $loading.fadeOut("slow");
     }
-    
+
     function WheelMapping(key){
         if(boxes == 'undefined'){
             getWheelPosition(key)
