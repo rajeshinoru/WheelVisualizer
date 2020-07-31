@@ -97,9 +97,9 @@ class WheelProductController extends Controller
  
             $products = WheelProduct::with('wheel')->select('id', 'prodbrand','detailtitle', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
-            // if($zipcode==null){
-            //     $products= $products->where('id','<=',10);
-            // }
+            if($zipcode==null){
+                $products= $products->where('id','<',0);
+            }
 
 
             $branddesc = [];
@@ -443,28 +443,27 @@ class WheelProductController extends Controller
                 //     49 => "31523",
                 // );
             // dd($zipcodes);
-
-                $radius_products = clone $products;
  
-                $radius_products = $radius_products->whereHas('Inventories')->whereHas('Inventories.Dropshippers')->with([
+ 
+                $products = $products->with([
                                     'Inventories'=>function ($query){ 
                                                         $query->where('available_qty','>=',4); 
-                                                        $query->orderBy('available_qty','ASC'); 
+                                                        $query->orderBy('available_qty','DESC'); 
                                     },
                                     'Inventories.Dropshippers'=>function ($query) use($zipcodes){ 
                                                         $query->whereIn('zip',$zipcodes); 
                                     }
                                 ])     
-                ->orderBy('price', 'DESC'); 
+                ->orderBy('price', 'ASC'); 
                 // $radius_products = collect([9,7,8,2,4,6]);
                 // rsort($radius_products);
                 // $products = collect([1,2,3,4,5,6]);
-                if($radius_products->count() > 0){
-                        
-                    foreach ($radius_products as $key => $rproduct) {
-                        $products->prepend($rproduct);
-                    }
-                }
+                // if($radius_products->count() > 0){
+
+                //     foreach ($radius_products as $key => $rproduct) {
+                //         $products->prepend($rproduct);
+                //     }
+                // }
                 // dd($products->get());
                 // $radius_products = $radius_products         
                 // ->orderBy('price', 'ASC')
@@ -478,6 +477,7 @@ class WheelProductController extends Controller
 
             $products = $products->with([
                                     'Inventories'=>function ($query){ 
+                                                        $query->where('available_qty','>=',4); 
                                                         $query->orderBy('available_qty','DESC'); 
                                     }
                                 ])
