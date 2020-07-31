@@ -151,7 +151,7 @@
                                                             <select required="" class="form-control browser-default custom-select WheelNavMake" name="make">
                                                                 <option value="">Select Make</option>
                                                                 @foreach(getVehicleList('make') as $key => $make)
-                                                                <option value="{{$make}}" {{(\Session::get('user.searchByVehicle')['make']??'' == $make)?'selected':''}}>{{$make}}</option>
+                                                                <option value="{{$make}}" {{(\Session::get('user.searchByVehicle')['make'] == $make)?'selected':''}}>{{$make}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -160,7 +160,7 @@
                                                             <select required="" class="form-control browser-default custom-select WheelNavYear" name="year">
                                                                 <option value="">Select Year</option>
                                                                 @foreach(getVehicleList('year','desc') as $key => $year)
-                                                                <option value="{{$year}}" {{(\Session::get('user.searchByVehicle')['year']??'' == $year)?'selected':''}}>{{$year}}</option>
+                                                                <option value="{{$year}}" {{(\Session::get('user.searchByVehicle')['year'] == $year)?'selected':''}}>{{$year}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -169,7 +169,7 @@
                                                             <select required="" class="form-control browser-default custom-select WheelNavModel" name="model">
                                                                 <option value="">Select Model</option>
                                                                 @foreach(getVehicleList('model') as $key => $model)
-                                                                <option value="{{$model}}" {{(\Session::get('user.searchByVehicle')['model']??'' == $model)?'selected':''}}>{{$model}}</option>
+                                                                <option value="{{$model}}" {{(\Session::get('user.searchByVehicle')['model'] == $model)?'selected':''}}>{{$model}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -178,7 +178,7 @@
                                                             <select required="" class="form-control browser-default custom-select WheelNavSubmodel" name="submodel">
                                                                 <option value="">Select Trim</option>
                                                                 @foreach(getVehicleList('submodel') as $key => $submodel) 
-                                                                <option value="{{$submodel."-".$key}}" {{(\Session::get('user.searchByVehicle')['submodel']??'' == $submodel."-".$key)?'selected':''}}>{{$submodel."-".$key}}</option>
+                                                                <option value="{{$submodel."-".$key}}" {{(\Session::get('user.searchByVehicle')['submodel'] == $submodel."-".$key)?'selected':''}}>{{$submodel."-".$key}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -315,7 +315,7 @@
                                                             <select required="" class="form-control browser-default custom-select NavMake" name="make">
                                                                 <option value="">Select Make</option>
                                                                 @foreach(getVehicleList('make') as $key => $make)
-                                                                <option value="{{$make}}" {{(\Session::get('user.searchByVehicle')['make']??'' == $make)?'selected':''}}>{{$make}}</option>
+                                                                <option value="{{$make}}" {{(\Session::get('user.searchByVehicle')['make'] == $make)?'selected':''}}>{{$make}}</option>
                                                                 @endforeach
                                                             </select>
 
@@ -325,7 +325,7 @@
                                                             <select required="" class="form-control browser-default custom-select NavYear" name="year">
                                                                 <option value="">Select Year</option>
                                                                 @foreach(getVehicleList('year','desc') as $key => $year)
-                                                                <option value="{{$year}}" {{(\Session::get('user.searchByVehicle')['year']??'' == $year)?'selected':''}}>{{$year}}</option>
+                                                                <option value="{{$year}}" {{(\Session::get('user.searchByVehicle')['year'] == $year)?'selected':''}}>{{$year}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -335,7 +335,7 @@
                                                                 <option value="">Select Model</option>
 
                                                                 @foreach(getVehicleList('model') as $key => $model)
-                                                                <option value="{{$model}}" {{(\Session::get('user.searchByVehicle')['model']??'' == $model)?'selected':''}}>{{$model}}</option>
+                                                                <option value="{{$model}}" {{(\Session::get('user.searchByVehicle')['model'] == $model)?'selected':''}}>{{$model}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -345,7 +345,7 @@
                                                                 <option value="">Select Trim</option>
 
                                                                 @foreach(getVehicleList('submodel') as $key => $submodel) 
-                                                                <option value="{{$submodel."-".$key}}" {{(\Session::get('user.searchByVehicle')['submodel']??'' == $submodel."-".$key)?'selected':''}}>{{$submodel."-".$key}}</option>
+                                                                <option value="{{$submodel."-".$key}}" {{(\Session::get('user.searchByVehicle')['submodel'] == $submodel."-".$key)?'selected':''}}>{{$submodel."-".$key}}</option>
                                                                 @endforeach
 
                                                             </select>

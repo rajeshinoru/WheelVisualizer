@@ -474,6 +474,14 @@
             }); 
     }
 
+    if("{{@$zipcode==''}}" && "{{@Request::get('flag') == 'searchByVehicle'}}"){
+
+            $("#zipcodeModal").modal({
+                backdrop: 'static',
+                keyboard: false
+            }); 
+    }
+
 
     $("#wheelZipcodeSubmit").click(function() {
         $.ajax({
