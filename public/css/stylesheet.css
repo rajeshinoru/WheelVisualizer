@@ -4089,7 +4089,7 @@ footer .footer-column h5 {
     border: 1px solid #eaeaea;
     padding: 15px;
     margin:10px 0px !important;
-    min-height:370px;
+    min-height:400px;
 }
 .owl-item:last-child .product-layout, .owl-item:last-child .product-layouts {
     border-right: none;
