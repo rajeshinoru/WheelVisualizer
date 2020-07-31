@@ -92,8 +92,7 @@ $(document).ready(function() {
             success: function(result) {
                 console.log(result);
                 if (result == 'success') {
-                    $("#zipcodeModal").modal('hide');
-                    // window.location.reload();
+                    $("#zipcodeModal").modal('hide'); 
                     window.location.href ='/setFiltersByProductVehicle?flag=searchByVehicle';
                 }
             },
