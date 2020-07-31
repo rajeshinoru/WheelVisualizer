@@ -478,10 +478,12 @@ class WheelProductController extends Controller
  
                 $products = $products->with([
                                     'Inventories'=>function ($query){ 
+                                                        $query->select('available_qty','partno');
                                                         $query->where('available_qty','>=',4); 
                                                         $query->orderBy('available_qty','DESC'); 
                                     },
-                                    'Inventories.Dropshippers'=>function ($query) use($zipcodes){ 
+                                    'Inventories.Dropshippers'=>function ($query) use($zipcodes){
+                                                        $query->select('zip','code'); 
                                                         $query->whereIn('zip',$zipcodes); 
                                     }
                                 ])    
@@ -508,6 +510,7 @@ class WheelProductController extends Controller
 
                 $products = $products->with([
                                         'Inventories'=>function ($query){ 
+                                                            $query->select('available_qty','partno');
                                                             $query->where('available_qty','>=',4); 
                                                             $query->orderBy('available_qty','DESC'); 
                                         }
