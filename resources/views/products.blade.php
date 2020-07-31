@@ -9,83 +9,6 @@
 @endsection 
 @section('content')
 
-<style>
-.modal_canvas{
-    min-height: 427px !important;
-}
-.col-sm-12.wheel-des p
-{
-    font-family: poppins !important;
-    font-size: 12px !important;
-    line-height: 30px !important;
-    color: #000 !important;
-    margin: 0px 0px !important;
-    text-align:justify;
-}
-.col-sm-12.wheel-des b a
-{
-  font-size: 12px !important;
-  font-family: Montserrat !important;
-  color: #0e1661 !important;
-}
-.wheel-des
-{
-    padding: 20px 20px !important;
-}
-
- 
-    .modal-header {
-        background: #0e1661 !important;
-        color: #fff !important;
-    }
-
-    .btn.btn-info
-    {
-        background: #ecb23d !important;
-        font-family:Montserrat !important;
-        font-size:12px !important;
-    }
-
-    .btn.btn-info:hover {
-        background: #0e1661 !important;
-    }
- 
-    .reward-block .btn
-    {
-        width:100% !important;
-    }
-    .modal-dialog.tire-view {
-        width: 300px !important;
-    }
-
-    .form-group.has-success.has-feedback {
-        margin: 0px 0px !important;
-    }
-
-    .modal-dialog.tire-view.btn.btn-info {
-        margin: 10px 0px !important;
-    }
-
-    .form-group.has-success.has-feedback {
-        margin: 10px 0px !important;
-    }
-    .col-sm-5.control-label
-    {
-        color: #000 !important;
-        font-family: Montserrat !important;
-        font-size: 12px !important;
-    }
-    .modal-dialog.tire-view .modal-header
-    {
-        padding: 10px !important;
-        border-bottom:none;
-    }
-
-
-
-
-
-</style>
 
 @include('include.sizelinks')
 <!-- BAnner Down Sestion Start -->
@@ -497,84 +420,7 @@
 
                     </div>
                 </div>
-                <div class="modal fade" id="zipcodeModal" role="dialog">
-                    <div class="modal-dialog tire-view">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Zipcode</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" id="zipcodeForm">
-                                    <div class="form-group has-success has-feedback">
-                                        <label class="col-sm-5 control-label" for="inputSuccess">Your Zipcode</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control"  name="zipcode" required="">
-                                            {{@csrf_field()}}
-                                        </div>
-                                    </div>
-                                    <div style="text-align:center;">
-                                        <button class="btn btn-info" id="zipcodeSubmit" type="button">Continue</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="modal" id="offroadTypeModal" role="dialog">
-                    <div class="modal-dialog tire-view">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Select any one for your vehicle</h4>
-                            </div>
-                            <div class="modal-body"  >
-                                <!-- <div class="col-md-12"> -->
-                                    
-                                    <div style="text-align: center;">
-                                        <a class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','Levelkit')">
-                                            <img src="{{asset('/image/lifttype.jpg')}}" >
-                                            <br>
-                                            <h3 style="color: white !important">Leveling Kit</h3>
-                                        </a> 
-                                    </div>
-
-                                                       <br>                                 
-                                    <div style="text-align: center;">    
-                                        <button class="btn btn-info offroad-select" data-offroad="lift">
-                                            <img src="{{asset('/image/lifttype.jpg')}}" >
-                                            <br>
-                                            <h3 style="color: white !important">Lift Kit</h3>
-                                        </button>
-                                    </div>
-                                    <br>
-                                    <div style="text-align: center;"> 
-                                        <button class="btn btn-info offroad-select" data-offroad="stock">
-
-                                            <img src="{{asset('/image/lifttype.jpg')}}" >
-                                            <br>
-                                            <h3 style="color: white !important">Stock</h3>
-                                        </button>
-                                    </div> 
-                                <!-- </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal" id="liftsizeModal" role="dialog">
-                    <div class="modal-dialog tire-view">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Please select your vehicle's lift:</h4>
-                            </div>
-                            <div class="modal-body"> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -587,32 +433,6 @@
     <script src="{{ asset('js/slick.js') }}"></script>
     <script  src="{{ asset('js/opencv/opencv-3.3.1.js') }}" async></script>
 
-<script type="text/javascript">
-    
-
-$(document).ready(function () {
-
-    $("#zipcodeSubmit").click(function () {
-        $.ajax({
-            url: "/zipcodeUpdate",
-            method:'POST',
-            data:$('#zipcodeForm').serialize(), 
-            success: function(result){  
-                console.log(result);
-                if(result == 'success'){
-                    $("#zipcodeModal").modal('hide');
-                    window.location.reload();
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-            
-                    
-            }
-        }); 
-    }); 
-});
-
-</script>
 
 
 <script type="text/javascript">
@@ -625,105 +445,24 @@ $(document).ready(function () {
     //     $(this).hide();
     // });
 
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function(){
- 
-            if("{{$vehicle!=''}}"){
-
-                if("{{@$vehicle->offroad !=''}}" && "{{@$liftsize==''}}"){ 
-
-                    $("#offroadTypeModal").modal({backdrop: 'static', keyboard: false}) ;
-
-                }else{
-
-                    getZipcode();
-                }
-            }else{
-
-                getZipcode();
-            } 
-
-            if("{{@$zipcode}}" && "{{@$car_images}}"){
-                getWheelPosition('0');
-
-            }else{
-                    $loading.fadeOut("slow");
-            }  
- 
-
-
-    });
-
-    $('.offroad-select').click(function(){
-        $("#offroadTypeModal").modal('hide');
-        var offroad = $(this).data('offroad');
-        if(offroad != 'stock'){ 
-            getLiftSizes(offroad);
-        }else{
-            getZipcode();
-        }
-    });
-
- 
-
-    function getLiftSizes(offroad){   
-
-
-        var vehicle_offroad = "{{@$vehicle->offroad}}";
-        if(vehicle_offroad != ''){
-            $loading.show();
-            $.ajax({url: "/getLiftSizes",data:{'offroad':vehicle_offroad,'offroadtype':offroad}, 
-                success: function(result){ 
-                console.log(result.length)  
-                    var str= '';
-                    if(result != null){
-
-                        for (var i = result.length - 1; i >= 0; i--) { 
-
-                            sizename = result[i].replace("lift", '" Lift');
-
-                            str+=` 
-
-                                    <br>
-                                    <div style="text-align: center;"> 
-                                        <button class="btn btn-info liftsize-select" onclick="updateParamsToUrl('liftsize','`+result[i]+`')">
-
-                                            <img src="{{asset('/image/lifttype.jpg')}}" >
-                                            <br>
-                                            <h3 style="color: white !important">`+sizename+`</h3>
-                                        </button>
-                                    </div> 
-
-
-                                `;
-                        }
-                        $('#liftsizeModal').find('.modal-body').html(str);
-                        $("#liftsizeModal").modal({backdrop: 'static', keyboard: false}) ;
-                        $loading.fadeOut("slow");
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                
-                    $loading.fadeOut("slow");
-                }
+    if("{{@$zipcode==''}}" && "{{@Request::get('flag') != 'searchByVehicle'}}"){
+        
+            $("#zipcodeModal").modal({
+                backdrop: 'static',
+                keyboard: false
             }); 
-        }else{
-                    $loading.fadeOut("slow");
-            getZipcode();
-        } 
     }
 
-    function getZipcode(){  
-            if("{{$zipcode==''}}"){ 
-                $("#zipcodeModal").modal({backdrop: 'static', keyboard: false}) ;
-            }else{
-                $("#zipcodeModal").modal('hide');
-            }
-    }  
 
-</script> 
+    if ("{{@$zipcode}}" && "{{@$car_images}}") {
+        getWheelPosition('0');
+
+    } else {
+        $loading.fadeOut("slow");
+    }
+
+</script>
+
 
 <script type="text/javascript">
 

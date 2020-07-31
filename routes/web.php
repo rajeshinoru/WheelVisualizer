@@ -169,6 +169,7 @@ Route::get('/setFiltersByProductWheelSize', 'WheelProductController@index')->nam
 Route::get('/setFiltersByProductVehicle', 'WheelProductController@index')->name('setFiltersByProductVehicle');
 Route::get('/getLiftSizes', 'WheelProductController@getLiftSizes')->name('getLiftSizes');
 Route::get('/checkDropshippble', 'WheelProductController@checkDropshippble')->name('checkDropshippble');
+Route::get('/setWheelVehicleFlow', 'WheelProductController@setWheelVehicleFlow')->name('setWheelVehicleFlow');
 
 
 

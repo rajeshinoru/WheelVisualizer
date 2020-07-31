@@ -311,7 +311,7 @@
                 </div>
                   @endif
                 <div class="row">
-                    @forelse($tires as $key =>$tire)
+                    @forelse($tires as $key =>$tire) 
                     <?php $tire=(object)$tire; ?>
 
                     <div class="col-sm-3">
@@ -327,7 +327,8 @@
                                         <h4 class="tire-type"><a href="
     {{url('/tireview')}}/{{base64_encode(@$tire->id)}}/{{base64_encode(@$vehicle->id)}}/{{base64_encode(@$wheelproduct_id)}}?title={{str_replace(' ','+',@$tire->detailtitle) }}">
                                                 {{@$tire->prodtitle}}<br>
-                                                <br>
+                                                <br> 
+                                                Availability : {{@$tire->inventories[0]['available_qty']}}<br>
                                                 Size : {{@$tire->tiresize}}<br>
                                                 Load : {{@$tire->loadindex}} Speed:{{@$tire->speedrating}}<br>
                                                 <b>{{roundCurrency(@$tire->price)}}</b>

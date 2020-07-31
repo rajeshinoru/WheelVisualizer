@@ -294,42 +294,68 @@ class TireController extends Controller
                 //     49 => "31523",
                 // ); 
 
-                $radius_tires = clone $tires;
-                $radius_tires = $radius_tires->whereHas('Inventories')->whereHas('Inventories.Dropshippers')->with([
+                // $radius_tires = clone $tires;
+                // $radius_tires = $radius_tires->whereHas('Inventories')->whereHas('Inventories.Dropshippers')->with([
+                //                     'Inventories'=>function ($query){ 
+                //                                         $query->where('available_qty','>=',4); 
+                //                                         $query->orderBy('available_qty','DESC'); 
+                //                     },
+                //                     'Inventories.Dropshippers'=>function ($query1) use($zipcodes){ 
+                //                                         $query1->whereIn('zip',$zipcodes); 
+                //                     }
+                //                 ]); 
+                // // dd($radius_tires->get());
+
+                // $radius_tires = $radius_tires           
+                // ->orderBy('price', 'ASC')
+                // ->get()
+                // ->unique('prodtitle');
+
+
+                // $tires = $tires->join('inventories', 'tires.partno', '=', 'inventories.partno')
+                //         ->where('inventories.available_qty','>=',1)
+                //         ->orderBy('inventories.available_qty', 'DESC')
+                //         ->select('tires.*')->with('Inventories'); 
+
+
+                $tires = $tires->with([
                                     'Inventories'=>function ($query){ 
                                                         $query->where('available_qty','>=',4); 
                                                         $query->orderBy('available_qty','DESC'); 
                                     },
-                                    'Inventories.Dropshippers'=>function ($query1) use($zipcodes){ 
-                                                        $query1->whereIn('zip',$zipcodes); 
+                                    'Inventories.Dropshippers'=>function ($query) use($zipcodes){ 
+                                                        $query->whereIn('zip',$zipcodes); 
                                     }
-                                ]); 
-                // dd($radius_tires->get());
+                                ])
+   
+                ->orderBy('price', 'ASC');
+                 
+                if($is_shipped != ''){
+                    $tires =$tires->whereHas('Inventories')->whereHas('Inventories.Dropshippers');
+                }
 
-                $radius_tires = $radius_tires           
-                ->orderBy('price', 'ASC')
-                ->get()
-                ->unique('prodtitle'); 
-            }        
+            }else{
 
             $tires = $tires->with([
                                     'Inventories'=>function ($query){ 
                                                         $query->orderBy('available_qty','DESC'); 
                                     }
                                 ])         
-            ->orderBy('price', 'ASC')
-            ->get()
-            ->unique('prodtitle');
+            ->orderBy('price', 'ASC');
+            }        
 
-            if($zipcode != null){
+            $tires=$tires->get()->unique('prodtitle');
 
-                if($is_shipped != ''){
-                    $tires =$radius_tires;
-                }else{
-                    $tires =collect($radius_tires->merge($tires));
+                // dd($tires);
+            // if($zipcode != null){
 
-                }
-            }
+            //     if($is_shipped != ''){
+            //         $tires =$radius_tires;
+            //     }else{
+            //         $tires =collect($radius_tires->merge($tires));
+
+            //     }
+            // }
             
 
         if(count($tires) == 0){
@@ -350,10 +376,8 @@ class TireController extends Controller
 
 
 
-
             $tires = MakeCustomPaginator($tires, $request, 8);
-
-
+ 
             if($vehicle){
                 Session::put('user.vehicle',$vehicle);
             }else{

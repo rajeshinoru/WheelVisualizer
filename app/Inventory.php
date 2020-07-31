@@ -20,7 +20,13 @@ class Inventory extends Model
 
 
 
-    public function WheelProducts(){
-    	return $this->hasOne('App\WheelProduct','partno','partno');
+    public function WheelProduct(){
+    	return $this->belongsTo('App\WheelProduct','partno','partno');
     }
+
+
+    public function Tire(){
+    	return $this->belongsTo('App\WheelProduct','partno','partno');
+    }
+
 }

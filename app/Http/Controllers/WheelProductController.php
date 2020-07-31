@@ -51,11 +51,8 @@ class WheelProductController extends Controller
 
     public function getLiftSizes(Request $request){
         
-
-        if(@$request->offroadtype){
-            Session::put('user.offroadtype',$request->offroadtype);
-        }
         $vehicle = Session::get('user.vehicle'); 
+
         $liftsizes = Offroad::where('offroadid',@$vehicle->offroad)->whereNotIn('plussizetype',['Levelkit'])->select('plussizetype')->distinct('plussizetype')->pluck('plussizetype'); 
 
         return $liftsizes?:null;
@@ -63,7 +60,6 @@ class WheelProductController extends Controller
     
 
     }
-
 
     public function checkDropshippble(Request $request){
         
@@ -79,31 +75,68 @@ class WheelProductController extends Controller
     
 
     }
+
+
+    public function setWheelVehicleFlow(Request $request){
+
+        try {
+            
+            if($request->flag == 'searchByVehicle'){ 
+                $vehicle = $this->findVehicle($request);
+                Session::put('user.searchByVehicle',$request->all());  
+                Session::put('user.offroadtype',null);
+                Session::put('user.liftsize',null); 
+            }
+
+            if($request->offroad){    
+                if($request->offroad == 'levelkit'){
+                    Session::put('user.liftsize','Levelkit'); 
+                }
+                Session::put('user.offroadtype',$request->offroad); 
+            }
+      
+            if($request->liftsize){     
+                Session::put('user.liftsize',$request->liftsize); 
+            }
+
+            $zipcode = Session::get('user.zipcode');
+            $offroadtype = Session::get('user.offroadtype');
+            $liftsize = Session::get('user.liftsize'); 
+
+            return ['status'=>true,'zipcode'=>$zipcode,'offroadtype'=>$offroadtype,'liftsize'=>$liftsize];
+
+
+        } catch (Exception $e) {
+             return ['status'=>false];
+        } 
+    }
+
     public function index(Request $request)
     {
 
         try
         {
+            $vehicle = '';
 
 
             $zipcode =Session::get('user.zipcode');
 
              if($request->flag == 'searchByWheelSize'){ 
                 Session::put('user.searchByWheelSize',$request->all());
-             }
-             if($request->flag == 'searchByVehicle'){ 
-                Session::put('user.searchByVehicle',$request->all());
-             }
+             } 
  
             $products = WheelProduct::with('wheel')->select('id', 'prodbrand','detailtitle', 'prodmodel', 'prodfinish', 'prodimage', 'wheeldiameter', 'wheelwidth', 'prodtitle', 'price', 'partno','partno_old','wheeltype','rf_lc','boltpattern1','offset1','offset2','boltpattern1','wheeltype');
 
-            if($zipcode==null){
-                $products= $products->where('id','<',0);
-            }
+            // if($zipcode==null){
+            //     $products= $products->where('id','<',0);
+            // }
+
+            // if($request->flag == 'searchByVehicle' && !($request->has('liftsize'))){
+            //     $products= $products->where('id','<',0);
+            // }
 
 
             $branddesc = [];
-            $vehicle = '';
             $car_images='';
             $offroadtype=null;
             $liftsize=null;
@@ -142,13 +175,13 @@ class WheelProductController extends Controller
             elseif (isset($request->flag) && $request->flag == 'searchByVehicle')
             {
 
-                $vehicle = $this->findVehicle($request);
-                // dd($vehicle);
-                $offroadtype = Session::get('user.offroadtype')??null;
-                // dd($offroadtype);
+                $vehicle = Session::get('user.vehicle');
+                $liftsize = Session::get('user.liftsize');
+                $offroadtype = Session::get('user.offroadtype');
+  
+
                 if(@$vehicle->dually =='1' && ($offroadtype == 'stock' || $offroadtype == null)){
-                    $products->where('wheeltype','LIKE','%D%');
-                    // dd($vehicle);
+                    $products->where('wheeltype','LIKE','%D%'); 
                 }
  
             
@@ -156,11 +189,7 @@ class WheelProductController extends Controller
 
                 $offroadSizes = [];
 
-                if(@$request->liftsize){
-
-                    $liftsize = json_decode(base64_decode($request->liftsize)); 
-                    
-                    Session::put('user.liftsize',$liftsize);
+                if(@$liftsize){
 
                     $offroadSizes = Offroad::where('offroadid',@$vehicle->offroad)->where('plussizetype',$liftsize)->get(); 
                 }
@@ -183,7 +212,7 @@ class WheelProductController extends Controller
                 $chassis = Chassis::where('chassis_id', @$vehicle->dr_chassis_id)->first(); 
 
                  
-                if(@$request->liftsize){
+                if(@$liftsize){
                      
                         $products = $products->where(function ($query) use($offroadSizes) {
                              
@@ -397,51 +426,51 @@ class WheelProductController extends Controller
 
             // if zipcode is available....
             if($zipcode != null){
-                $zipcodes = Zipcode::getZipcodesByRadius($zipcode,'150');
+                // $zipcodes = Zipcode::getZipcodesByRadius($zipcode,'150');
                 // dd($zipcodes);
-                // $zipcodes = array(
-                //     0 => "32218",
-                //     4 => "32226",
-                //     6 => "32208",
-                //     7 => "32206",
-                //     8 => "32209",
-                //     9 => "32204",
-                //     10 => "32225",
-                //     11 => "32231",
-                //     12 => "32216",
-                //     13 => "32227",
-                //     14 => "32220",
-                //     15 => "32210",
-                //     16 => "32266",
-                //     17 => "32240",
-                //     18 => "32257",
-                //     19 => "32009",
-                //     20 => "32004",
-                //     21 => "32006",
-                //     22 => "32258",
-                //     23 => "31548",
-                //     24 => "31562",
-                //     25 => "32259",
-                //     26 => "32260",
-                //     27 => "32234",
-                //     29 => "32068",
-                //     30 => "31569",
-                //     31 => "32067",
-                //     32 => "32063",
-                //     33 => "32040",
-                //     34 => "31537",
-                //     35 => "32092",
-                //     38 => "32058",
-                //     40 => "31565",
-                //     41 => "32095",
-                //     42 => "32083",
-                //     43 => "32085",
-                //     44 => "31568",
-                //     45 => "32091",
-                //     47 => "32007",
-                //     48 => "31521",
-                //     49 => "31523",
-                // );
+                $zipcodes = array(
+                    0 => "32218",
+                    4 => "32226",
+                    6 => "32208",
+                    7 => "32206",
+                    8 => "32209",
+                    9 => "32204",
+                    10 => "32225",
+                    11 => "32231",
+                    12 => "32216",
+                    13 => "32227",
+                    14 => "32220",
+                    15 => "32210",
+                    16 => "32266",
+                    17 => "32240",
+                    18 => "32257",
+                    19 => "32009",
+                    20 => "32004",
+                    21 => "32006",
+                    22 => "32258",
+                    23 => "31548",
+                    24 => "31562",
+                    25 => "32259",
+                    26 => "32260",
+                    27 => "32234",
+                    29 => "32068",
+                    30 => "31569",
+                    31 => "32067",
+                    32 => "32063",
+                    33 => "32040",
+                    34 => "31537",
+                    35 => "32092",
+                    38 => "32058",
+                    40 => "31565",
+                    41 => "32095",
+                    42 => "32083",
+                    43 => "32085",
+                    44 => "31568",
+                    45 => "32091",
+                    47 => "32007",
+                    48 => "31521",
+                    49 => "31523",
+                );
             // dd($zipcodes);
  
  
@@ -453,8 +482,8 @@ class WheelProductController extends Controller
                                     'Inventories.Dropshippers'=>function ($query) use($zipcodes){ 
                                                         $query->whereIn('zip',$zipcodes); 
                                     }
-                                ])     
-                ->orderBy('price', 'ASC'); 
+                                ])    
+                ->orderBy('price', 'ASC');  
                 // $radius_products = collect([9,7,8,2,4,6]);
                 // rsort($radius_products);
                 // $products = collect([1,2,3,4,5,6]);
@@ -472,20 +501,20 @@ class WheelProductController extends Controller
                 // $products = WheelProduct::limit(10);
                 // dd('dkjskdj');
  
+            }else{
+
+
+                $products = $products->with([
+                                        'Inventories'=>function ($query){ 
+                                                            $query->where('available_qty','>=',4); 
+                                                            $query->orderBy('available_qty','DESC'); 
+                                        }
+                                    ])      
+                ->orderBy('price', 'ASC');
             }                       
  
-
-            $products = $products->with([
-                                    'Inventories'=>function ($query){ 
-                                                        $query->where('available_qty','>=',4); 
-                                                        $query->orderBy('available_qty','DESC'); 
-                                    }
-                                ])
-            // ->withCount(['Inventories as available' => function($query1)   {
-            //      $query1->select(\DB::raw('max(available_qty)'));
-            // }])
-            // ->orderBy('available', 'DESC')                
-            ->orderBy('price', 'ASC')->get()->unique('prodtitle');
+            // $products= collect([]);//
+            $products = $products->get()->unique('prodtitle'); 
             // if($zipcode != null){
             //     // $products =collect($radius_products->merge($products)); 
             //     $products =$products->merge($radius_products);

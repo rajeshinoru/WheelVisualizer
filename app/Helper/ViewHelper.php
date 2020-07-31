@@ -514,9 +514,9 @@ function getVehicleList($columnname='',$sortorder='asc'){
 		if($columnname){
 	        // $make = Vehicle::select($columnname)->distinct($columnname)->orderBy($columnname,'Asc')->pluck($columnname);
 	        // return $make;
-			$selectedMake = Session::get('user.searchByVehicle')['make'];
-			$selectedYear = Session::get('user.searchByVehicle')['year'];
-			$selectedModel = Session::get('user.searchByVehicle')['model'];
+			$selectedMake = Session::get('user.searchByVehicle')['make']??'';
+			$selectedYear = Session::get('user.searchByVehicle')['year']??'';
+			$selectedModel = Session::get('user.searchByVehicle')['model']??'';
 
             $vehicle = new Vehicle; 
             // dd($request->all(),$vehicle);
