@@ -426,7 +426,7 @@
                                 <h4 class="modal-title">Zipcode</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" id="zipcodeForm">
+                                <form class="form-horizontal" id="wheelZipcodeForm">
                                     <div class="form-group has-success has-feedback">
                                         <label class="col-sm-5 control-label" for="inputSuccess">Your Zipcode</label>
                                         <div class="col-sm-7">
@@ -479,11 +479,11 @@
         $.ajax({
             url: "/zipcodeUpdate",
             method: 'POST',
-            data: $('#zipcodeForm').serialize(),
+            data: $('#wheelZipcodeForm').serialize(),
             success: function(result) {
                 console.log(result);
                 if (result == 'success') {
-                    $("#zipcodeModal").modal('hide');
+                    $("#wheelZipcodeModal").modal('hide');
                     window.location.reload();
                 }
             },
