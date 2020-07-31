@@ -475,8 +475,8 @@ class WheelProductController extends Controller
                 // );
             // dd($zipcodes);
  
-                $radius_products = clone $products;
-                $radius_products = $radius_products->whereHas('Inventories')->whereHas('Inventories.Dropshippers')->with([
+ 
+                $products = $products->with([
                                     'Inventories'=>function ($query){ 
                                                         $query->where('available_qty','>=',4); 
                                                         $query->orderBy('available_qty','DESC'); 
@@ -496,31 +496,32 @@ class WheelProductController extends Controller
                 //     }
                 // }
                 // dd($products->get());
-                $radius_products = $radius_products         
+                // $radius_products = $radius_products         
                 // ->orderBy('price', 'ASC')
-                ->get()
-                ->unique('prodtitle');
+                // ->get()
+                // ->unique('prodtitle');
                 // $products = WheelProduct::limit(10);
                 // dd('dkjskdj');
  
-            }
+            }else{
 
-            $products = $products->with([
-                                    'Inventories'=>function ($query){ 
-                                                        $query->where('available_qty','>=',4); 
-                                                        $query->orderBy('available_qty','DESC'); 
-                                    }
-                                ])      
-            ->orderBy('price', 'ASC')->get()->unique('prodtitle');
 
+                $products = $products->with([
+                                        'Inventories'=>function ($query){ 
+                                                            $query->where('available_qty','>=',4); 
+                                                            $query->orderBy('available_qty','DESC'); 
+                                        }
+                                    ])      
+                ->orderBy('price', 'ASC');
+            }                       
  
             // $products= collect([]);//
-            // $products = $products-> 
-            if($zipcode != null){
-                // $products =collect($radius_products->merge($products)); 
-                $products =$products->merge($radius_products);
+            $products = $products->get()->unique('prodtitle'); 
+            // if($zipcode != null){
+            //     // $products =collect($radius_products->merge($products)); 
+            //     $products =$products->merge($radius_products);
 
-            }  
+            // }  
             // $products = $products->unique('prodtitle');
  
             $products = MakeCustomPaginator($products, $request, 9);
