@@ -10,6 +10,84 @@
 @section('content')
 
 
+<style>
+.modal_canvas{
+    min-height: 427px !important;
+}
+.col-sm-12.wheel-des p
+{
+    font-family: poppins !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #000 !important;
+    margin: 0px 0px !important;
+    text-align:justify;
+}
+.col-sm-12.wheel-des b a
+{
+  font-size: 12px !important;
+  font-family: Montserrat !important;
+  color: #0e1661 !important;
+}
+.wheel-des
+{
+    padding: 20px 20px !important;
+}
+
+ 
+    .modal-header {
+        background: #0e1661 !important;
+        color: #fff !important;
+    }
+
+    .btn.btn-info
+    {
+        background: #ecb23d !important;
+        font-family:Montserrat !important;
+        font-size:12px !important;
+    }
+
+    .btn.btn-info:hover {
+        background: #0e1661 !important;
+    }
+ 
+    .reward-block .btn
+    {
+        width:100% !important;
+    }
+    .modal-dialog.tire-view {
+        width: 300px !important;
+    }
+
+    .form-group.has-success.has-feedback {
+        margin: 0px 0px !important;
+    }
+
+    .modal-dialog.tire-view.btn.btn-info {
+        margin: 10px 0px !important;
+    }
+
+    .form-group.has-success.has-feedback {
+        margin: 10px 0px !important;
+    }
+    .col-sm-5.control-label
+    {
+        color: #000 !important;
+        font-family: Montserrat !important;
+        font-size: 12px !important;
+    }
+    .modal-dialog.tire-view .modal-header
+    {
+        padding: 10px !important;
+        border-bottom:none;
+    }
+
+
+
+
+
+</style>
+
 @include('include.sizelinks')
 <!-- BAnner Down Sestion Start -->
 <section id="produst">
