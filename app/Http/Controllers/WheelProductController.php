@@ -86,6 +86,7 @@ class WheelProductController extends Controller
                 Session::put('user.searchByVehicle',$request->all());  
                 Session::put('user.offroadtype',null);
                 Session::put('user.liftsize',null); 
+                Session::put('user.vehicle',$vehicle); 
             }
 
             if($request->offroad){    
@@ -102,8 +103,9 @@ class WheelProductController extends Controller
             $zipcode = Session::get('user.zipcode');
             $offroadtype = Session::get('user.offroadtype');
             $liftsize = Session::get('user.liftsize'); 
+            $vehicle =  Session::get('user.vehicle'); 
 
-            return ['status'=>true,'zipcode'=>$zipcode,'offroadtype'=>$offroadtype,'liftsize'=>$liftsize];
+            return ['status'=>true,'zipcode'=>$zipcode,'offroadtype'=>$offroadtype,'liftsize'=>$liftsize,'vehicle'=>$vehicle];
 
 
         } catch (Exception $e) {

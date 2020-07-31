@@ -233,6 +233,12 @@ class CartController extends Controller
         return view('checkout',compact('cart','cartData','payment')); 
     }
     
+    public function getZipcode(Request $request)
+    { 
+        $zip = Session::get('user.zipcode');
+
+        return $zip?:'';
+    }
     public function zipcodeUpdate(Request $request)
     { 
         $response = false;

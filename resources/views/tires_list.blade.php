@@ -381,7 +381,7 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="zipcodeModal" role="dialog">
+                <div class="modal fade" id="tireZipcodeModal" role="dialog">
                     <div class="modal-dialog tire-view">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -398,7 +398,7 @@
                                         </div>
                                     </div>
                                     <div style="text-align:center;">
-                                        <button class="btn btn-info" id="zipcodeSubmit" type="button">Continue</button>
+                                        <button class="btn btn-info" id="tireZipcodeSubmit" type="button">Continue</button>
                                     </div>
                                 </form>
                             </div>
@@ -418,14 +418,14 @@
     
  $(document).ready(function(){
         if("{{$zipcode}}"){ 
-            $("#zipcodeModal").modal('hide');
+            $("#tireZipcodeModal").modal('hide');
         }else{
-            $("#zipcodeModal").modal('show');
+            $("#tireZipcodeModal").modal('show');
         }
     });
 $(document).ready(function () {
 
-    $("#zipcodeSubmit").click(function () {
+    $("#tireZipcodeSubmit").click(function () {
         $.ajax({
             url: "/zipcodeUpdate",
             method:'POST',
@@ -433,7 +433,7 @@ $(document).ready(function () {
             success: function(result){  
                 console.log(result);
                 if(result == 'success'){
-                    $("#zipcodeModal").modal('hide');
+                    $("#tireZipcodeModal").modal('hide');
                     window.location.reload();
                 }
             },

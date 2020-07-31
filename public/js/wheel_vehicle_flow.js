@@ -11,13 +11,15 @@ $(document).ready(function() {
                 console.log(result);
 
                 if (result['status'] == true) {
-
-                    if(result['offroadtype']==null){
+                    console.log(result['vehicle']['offroad'])
+                    if(result['vehicle']['offroad']!=''){
 
                         $("#offroadTypeModal").modal({
                             backdrop: 'static',
                             keyboard: false
                         });
+                    }else{
+                        getZipcode(result);
                     }
                     // window.location.reload();
                 }
@@ -28,7 +30,35 @@ $(document).ready(function() {
             }
         });
     });
+
+    // if ("{{$vehicle!=''}}") {
+
+    //     if ("{{@$vehicle->offroad !=''}}" && "{{@$liftsize==''}}") {
+
+    //         // $("#offroadTypeModal").modal({
+    //         //     backdrop: 'static',
+    //         //     keyboard: false
+    //         // });
+
+    //     } else {
+
+    //         getZipcode();
+    //     }
+    // } else {
+
+    //     getZipcode();
+    // }
+
+    // if ("{{@$zipcode}}" && "{{@$car_images}}") {
+    //     // getWheelPosition('0');
+
+    // } else {
+    //     $loading.fadeOut("slow");
+    // }
+
+
  
+
     $('.offroad-select').click(function() {
         $("#offroadTypeModal").modal('hide');
         var offroad = $(this).data('offroad');
@@ -63,7 +93,8 @@ $(document).ready(function() {
                 console.log(result);
                 if (result == 'success') {
                     $("#zipcodeModal").modal('hide');
-                    window.location.reload();
+                    // window.location.reload();
+                    window.location.href ='/setFiltersByProductVehicle?flag=searchByVehicle';
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {

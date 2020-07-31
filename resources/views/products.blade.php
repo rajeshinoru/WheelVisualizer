@@ -420,7 +420,30 @@
 
                     </div>
                 </div>
-
+                <div class="modal fade" id="wheelZipcodeModal" role="dialog">
+                    <div class="modal-dialog tire-view">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Zipcode</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" id="zipcodeForm">
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="col-sm-5 control-label" for="inputSuccess">Your Zipcode</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control"  name="zipcode" required="">
+                                            {{@csrf_field()}}
+                                        </div>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <button class="btn btn-info" id="wheelZipcodeSubmit" type="button">Continue</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -446,25 +469,34 @@
     // });
 
     if("{{@$zipcode==''}}" && "{{@Request::get('flag') != 'searchByVehicle'}}"){
-        
-            $("#zipcodeModal").modal({
+
+            $("#wheelZipcodeModal").modal({
                 backdrop: 'static',
                 keyboard: false
             }); 
     }
 
 
-    if ("{{@$zipcode}}" && "{{@$car_images}}") {
-        getWheelPosition('0');
+    $("#wheelZipcodeSubmit").click(function() {
+        $.ajax({
+            url: "/zipcodeUpdate",
+            method: 'POST',
+            data: $('#zipcodeForm').serialize(),
+            success: function(result) {
+                console.log(result);
+                if (result == 'success') {
+                    $("#zipcodeModal").modal('hide');
+                    window.location.reload();
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
 
-    } else {
-        $loading.fadeOut("slow");
-    }
 
-</script>
+            }
+        });
+    }); 
 
-
-<script type="text/javascript">
+ 
 
     function getWheelPosition(key){  
         // $(".se-pre-con").show();
@@ -496,6 +528,13 @@
         });  
     }
 
+    if ("{{@$zipcode}}" && "{{@!empty($car_images)}}") {
+        getWheelPosition('0');
+
+    } else {
+        $loading.fadeOut("slow");
+    }
+    
     function WheelMapping(key){
         if(boxes == 'undefined'){
             getWheelPosition(key)

@@ -185,6 +185,7 @@ Route::get('/removeItem/{type}/{id}', 'CartController@destroy')->name('removeIte
 Route::get('/checkout', 'CartController@checkout')->name('checkout');
 Route::post('/zipcodeUpdate', 'CartController@zipcodeUpdate')->name('zipcodeUpdate');
 Route::get('/zipcodeClear', 'CartController@zipcodeClear')->name('zipcodeClear');
+Route::get('/getZipcode', 'CartController@getZipcode')->name('getZipcode');
 
 
 Route::resource('order', 'OrderController');
