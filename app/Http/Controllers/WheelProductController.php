@@ -475,7 +475,7 @@ class WheelProductController extends Controller
                 // );
             // dd($zipcodes);
  
- 
+                $radius_products = clone $products;
                 $radius_products = $radius_products->whereHas('Inventories')->whereHas('Inventories.Dropshippers')->with([
                                     'Inventories'=>function ($query){ 
                                                         $query->where('available_qty','>=',4); 
@@ -512,7 +512,7 @@ class WheelProductController extends Controller
                                     }
                                 ])      
             ->orderBy('price', 'ASC')->get()->unique('prodtitle');
-                                    
+
  
             // $products= collect([]);//
             // $products = $products-> 
