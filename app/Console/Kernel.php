@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
        // $schedule->command('feed:inventories')
        //      ->everyTenMinutes();
-       $schedule->command('autoupdate:inventories')->dailyAt('11:38');
+       $schedule->command('autoupdate:inventories')->dailyAt('11:51');
     }
 
     /**
