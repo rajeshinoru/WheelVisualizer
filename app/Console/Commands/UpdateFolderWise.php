@@ -14,6 +14,7 @@ use App\InventoryProcess;
 
 use Illuminate\Http\Request; 
 use Storage;
+use Carbon\Carbon;
 
 use Rap2hpoutre\FastExcel\FastExcel;
 
@@ -78,21 +79,21 @@ class UpdateFolderWise extends Command
     }
 
     public function process_update($fname,$dropshipper) {
-         // $pid = getmypid();
-         // $invprocess = InventoryProcess::where('foldername',$fname)->whereDate('created_at', \Carbon\Carbon::today())->first();
-         // if($invprocess){
-         //    $invprocess->processid = $pid;
-         //    $invprocess->loopcount = $invprocess->loopcount +1;
-         //    $invprocess->save(); 
-         // }else{
-         //    $invprocess = InventoryProcess::create([
-         //        'foldername' => $fname,
-         //        'dropshipper' => $dropshipper,
-         //        'processid' => $pid,
-         //        'loopcount' => 1,
-         //        'started_at' => \Carbon\Carbon::now(),
-         //    ]);
-         // }
+         $pid = getmypid();
+         $invprocess = InventoryProcess::where('foldername',$fname)->whereDate('created_at', \Carbon\Carbon::today())->first();
+         if($invprocess){
+            $invprocess->processid = $pid;
+            $invprocess->loopcount = $invprocess->loopcount +1;
+            $invprocess->save(); 
+         }else{
+            $invprocess = InventoryProcess::create([
+                'foldername' => $fname,
+                'dropshipper' => $dropshipper,
+                'processid' => $pid,
+                'loopcount' => 1,
+                'started_at' => Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i'),
+            ]);
+         }
     }
     public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){ 
         // $this->info(getmypid());
@@ -102,8 +103,8 @@ class UpdateFolderWise extends Command
 
             // $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
-            $newData['created_at']=null;//\Carbon\Carbon::now();
-            $newData['updated_at']=null;//\Carbon\Carbon::now();
+            $newData['created_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
+            $newData['updated_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
 
             $newData['available_qty'] = (integer)$this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
@@ -136,8 +137,8 @@ class UpdateFolderWise extends Command
                         
                         // $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
 
-                        $data['created_at']=null;//\Carbon\Carbon::now();
-                        $data['updated_at']=null;//\Carbon\Carbon::now();
+                        $data['created_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
+                        $data['updated_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
 
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
                         if($this->env != 'local'){
