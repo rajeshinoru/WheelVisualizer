@@ -117,7 +117,7 @@ class UpdateFolderWise extends Command
                 \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$newData['partno']." --- "."LOC:".$newData['location_code']); 
                 }
 
-                $this->process_update($currentFolder,$newData['drop_shipper']);
+                // $this->process_update($currentFolder,$newData['drop_shipper']);
             }
 
         }else{
@@ -143,7 +143,7 @@ class UpdateFolderWise extends Command
                             \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$data['partno']." --- "."LOC:".$data['location_code']);
                         }
                         
-                        $this->process_update($currentFolder,$data['drop_shipper']);
+                        // $this->process_update($currentFolder,$data['drop_shipper']);
                         // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
 
 
