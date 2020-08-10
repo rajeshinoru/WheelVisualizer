@@ -101,9 +101,7 @@ class UpdateFolderWise extends Command
         if(array_keys($newData) !== range(0, count($newData) - 1)) {
 
             // $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
-
-            $newData['created_at']=\Carbon\Carbon::now();
-            $newData['updated_at']=\Carbon\Carbon::now();
+ 
 
             $newData['available_qty'] = (integer)$this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
@@ -136,8 +134,7 @@ class UpdateFolderWise extends Command
                         
                         // $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
 
-                        $data['created_at']=\Carbon\Carbon::now();
-                        $data['updated_at']=\Carbon\Carbon::now();
+                       
 
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
                         if($this->env != 'local'){

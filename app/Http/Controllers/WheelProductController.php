@@ -113,6 +113,13 @@ class WheelProductController extends Controller
         } 
     }
 
+
+
+    public function getVehicle(Request $request)
+        
+    }
+
+
     public function index(Request $request)
     {
 
