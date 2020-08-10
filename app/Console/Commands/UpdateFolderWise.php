@@ -85,13 +85,13 @@ class UpdateFolderWise extends Command
             $invprocess->loopcount = $invprocess->loopcount +1;
             $invprocess->save(); 
          }else{
-            // $invprocess = InventoryProcess::create([
-            //     'foldername' => $fname,
-            //     'dropshipper' => $dropshipper,
-            //     'processid' => $pid,
-            //     'loopcount' => 1,
-            //     'started_at' => \Carbon\Carbon::now(),
-            // ]);
+            $invprocess = InventoryProcess::create([
+                'foldername' => $fname,
+                'dropshipper' => $dropshipper,
+                'processid' => $pid,
+                'loopcount' => 1,
+                // 'started_at' => \Carbon\Carbon::now(),
+            ]);
          }
     }
     public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){ 
