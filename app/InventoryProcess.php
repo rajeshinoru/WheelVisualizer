@@ -13,5 +13,4 @@ class InventoryProcess extends Model
 		'loopcount',
 		'started_at',
     ];
- 
 }
