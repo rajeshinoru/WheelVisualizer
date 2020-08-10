@@ -13,11 +13,5 @@ class InventoryProcess extends Model
 		'loopcount',
 		'started_at',
     ];
-
-    protected $dates = [ 
-        'created_at',
-        'updated_at', 
-		'started_at',
-    ];
-
+ 
 }
