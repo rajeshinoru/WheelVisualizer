@@ -14,7 +14,6 @@ use App\InventoryProcess;
 
 use Illuminate\Http\Request; 
 use Storage;
-use Carbon\Carbon;
 
 use Rap2hpoutre\FastExcel\FastExcel;
 
@@ -91,7 +90,7 @@ class UpdateFolderWise extends Command
                 'dropshipper' => $dropshipper,
                 'processid' => $pid,
                 'loopcount' => 1,
-                'started_at' => Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i'),
+                'started_at' => \Carbon\Carbon::now(),
             ]);
          }
     }
@@ -103,8 +102,8 @@ class UpdateFolderWise extends Command
 
             // $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
-            $newData['created_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
-            $newData['updated_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
+            $newData['created_at']=\Carbon\Carbon::now();
+            $newData['updated_at']=\Carbon\Carbon::now();
 
             $newData['available_qty'] = (integer)$this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
@@ -137,8 +136,8 @@ class UpdateFolderWise extends Command
                         
                         // $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
 
-                        $data['created_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
-                        $data['updated_at']=Carbon::createFromFormat('d/m/Y H:i', Carbon::now())->format('Y-m-d H:i');
+                        $data['created_at']=\Carbon\Carbon::now();
+                        $data['updated_at']=\Carbon\Carbon::now();
 
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
                         if($this->env != 'local'){
