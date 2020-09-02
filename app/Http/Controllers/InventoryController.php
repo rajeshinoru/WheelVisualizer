@@ -169,6 +169,29 @@ class InventoryController extends Controller
 
 
 
+    static public function  Checkavailable(){ 
+        $inventories = new Inventory;   
+        $updated_inventories = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
+        $updated_inventories_today = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
+        
+        $today_dropshippers = $updated_inventories_today->select('drop_shipper', \DB::raw('count(*) as total'))
+                 ->groupBy('drop_shipper')
+                 ->pluck('total','drop_shipper'); 
+                 // dd($updated_inventories,$today_dropshippers);
+        $starttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','DESC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');
+        $lasttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','ASC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper'); 
+        // dd($starttime_dropshippers,$lasttime_dropshippers);
+
+        return [
+            'total'=>$total??0,
+            'dropshippers'=>$dropshippers??[],
+            'today_dropshippers'=>$today_dropshippers??[],
+            'starttime_dropshippers'=>$starttime_dropshippers??[],
+            'lasttime_dropshippers'=>$lasttime_dropshippers??[]
+        ];
+    }
+
+
 
     public function  UploadInventories(Request $request){
 
@@ -1469,54 +1492,27 @@ class InventoryController extends Controller
         return "success";
     }
 
+     static public function  CheckAvailableLocations(){ 
+        $inventories = new Inventory;   
+        $updated_inventories = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
+        $updated_inventories_today = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
+        
+        $today_dropshippers = $updated_inventories_today->select('drop_shipper', \DB::raw('count(*) as total'))
+                 ->groupBy('drop_shipper')
+                 ->pluck('total','drop_shipper'); 
+                 // dd($updated_inventories,$today_dropshippers);
+        $starttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','DESC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');
+        $lasttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','ASC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper'); 
+        // dd($starttime_dropshippers,$lasttime_dropshippers);
 
-    public function insertOrUpdate($table, $rows, array $exclude = [])
-    {
-        // We assume all rows have the same keys so we arbitrarily pick one of them.
-        $columns = array_keys($rows[0]);
-
-        $columnsString = implode('`,`', $columns);
-        $values = $this->buildSQLValuesFrom($rows);
-        $updates = $this->buildSQLUpdatesFrom($columns, $exclude);
-        $params = array_flatten($rows);
-
-        $query = "insert into {$table} (`{$columnsString}`) values {$values} on duplicate key update {$updates}";
-        // dd($query);
-        $res = \DB::statement($query, $params);
-
+        return [
+            'total'=>$total??0,
+            'dropshippers'=>$dropshippers??[],
+            'today_dropshippers'=>$today_dropshippers??[],
+            'starttime_dropshippers'=>$starttime_dropshippers??[],
+            'lasttime_dropshippers'=>$lasttime_dropshippers??[]
+        ];
     }
 
-    /**
-     * Build proper SQL string for the values.
-     *
-     * @param array $rows
-     * @return string
-     */
-    protected function buildSQLValuesFrom(array $rows)
-    {
-        $values = collect($rows)->reduce(function ($valuesString, $row) {
-            return $valuesString .= '(' . rtrim(str_repeat("?,", count($row)), ',') . '),';
-        }, '');
-
-        return rtrim($values, ',');
-    }
-
-    /**
-     * Build proper SQL string for the on duplicate update scenario.
-     *
-     * @param       $columns
-     * @param array $exclude
-     * @return string
-     */
-    protected function buildSQLUpdatesFrom($columns, array $exclude)
-    {
-        $updateString = collect($columns)->reject(function ($column) use ($exclude) {
-            return in_array($column, $exclude);
-        })->reduce(function ($updates, $column) {
-            return $updates .= "`{$column}`=VALUES(`{$column}`),";
-        }, '');
-
-        return trim($updateString, ',');
-    }
 
 }
