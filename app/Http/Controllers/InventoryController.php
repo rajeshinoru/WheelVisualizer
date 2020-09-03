@@ -8,6 +8,8 @@ use App\InventoryMigration;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use App\Http\Controllers\ZipcodeController as Zipcode;
 
 
 use Storage;
@@ -165,30 +167,6 @@ class InventoryController extends Controller
              // Save data to staging database - default db connection
              $db_ext->table('inventories')->insert((array) $data);
         }
-    }
-
-
-
-    static public function  Checkavailable(){ 
-        $inventories = new Inventory;   
-        $updated_inventories = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
-        $updated_inventories_today = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
-        
-        $today_dropshippers = $updated_inventories_today->select('drop_shipper', \DB::raw('count(*) as total'))
-                 ->groupBy('drop_shipper')
-                 ->pluck('total','drop_shipper'); 
-                 // dd($updated_inventories,$today_dropshippers);
-        $starttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','DESC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');
-        $lasttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','ASC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper'); 
-        // dd($starttime_dropshippers,$lasttime_dropshippers);
-
-        return [
-            'total'=>$total??0,
-            'dropshippers'=>$dropshippers??[],
-            'today_dropshippers'=>$today_dropshippers??[],
-            'starttime_dropshippers'=>$starttime_dropshippers??[],
-            'lasttime_dropshippers'=>$lasttime_dropshippers??[]
-        ];
     }
 
 
@@ -1492,26 +1470,50 @@ class InventoryController extends Controller
         return "success";
     }
 
-     static public function  CheckAvailableLocations(){ 
-        $inventories = new Inventory;   
-        $updated_inventories = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
-        $updated_inventories_today = $inventories->whereDate('updated_at', \Carbon\Carbon::today());
-        
-        $today_dropshippers = $updated_inventories_today->select('drop_shipper', \DB::raw('count(*) as total'))
-                 ->groupBy('drop_shipper')
-                 ->pluck('total','drop_shipper'); 
-                 // dd($updated_inventories,$today_dropshippers);
-        $starttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','DESC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');
-        $lasttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','ASC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper'); 
-        // dd($starttime_dropshippers,$lasttime_dropshippers);
 
-        return [
-            'total'=>$total??0,
-            'dropshippers'=>$dropshippers??[],
-            'today_dropshippers'=>$today_dropshippers??[],
-            'starttime_dropshippers'=>$starttime_dropshippers??[],
-            'lasttime_dropshippers'=>$lasttime_dropshippers??[]
-        ];
+    public function  getProductAvailability(Request $request){  
+        $this->validate($request, [ 
+            'partno'=>'required',
+            'zipcode'=>'required', 
+        ]);
+
+        try {
+
+            $zipcodes = Zipcode::getZipcodesByRadius($request->zipcode,'150');
+            $inventories = Inventory::where('available_qty','>=',4)->with([ 
+                                    'Dropshippers'=>function ($query) use($zipcodes){
+                                                        $query->select('zip','code'); 
+                                    }
+                                ])->get();
+
+            return response()->json(['status'=>true,'data' => $inventories]);
+
+        } catch (Exception $e) {
+            
+            return response()->json(['status'=>false,'message' =>'Something Went Wrong!']);
+        }
+
+    }
+
+
+
+    public function  CheckNearByDropshippers(){ 
+        $this->validate($request, [  
+            'zipcode'=>'required', 
+            'radius'=>'required', 
+        ]);
+
+        try {
+
+            $zipcodes = Zipcode::getZipcodesByRadius($request->zipcode,$request->radius);
+            $dropshippers = Dropshipper::whereIn('zip',$zipcodes)->get();
+
+            return response()->json(['status'=>true,'data' => $dropshippers]);
+
+        } catch (Exception $e) {
+            
+            return response()->json(['status'=>false,'message' =>'Something Went Wrong!']);
+        }
     }
 
 
