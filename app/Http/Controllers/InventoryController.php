@@ -10,8 +10,6 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Http\Controllers\ZipcodeController as Zipcode;
-
-
 use Storage;
 use View;
 
@@ -120,10 +118,10 @@ class InventoryController extends Controller
         $today_dropshippers = $updated_inventories_today->select('drop_shipper', \DB::raw('count(*) as total'))
                  ->groupBy('drop_shipper')
                  ->pluck('total','drop_shipper'); 
-                 // dd($updated_inventories,$today_dropshippers);
+
         $starttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','DESC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper');
         $lasttime_dropshippers = $inventories->whereDate('updated_at', \Carbon\Carbon::today())->orderBy('updated_at','ASC')->distinct('drop_shipper')->pluck('updated_at','drop_shipper'); 
-        // dd($starttime_dropshippers,$lasttime_dropshippers);
+
 
         return [
             'total'=>$total??0,
@@ -1480,7 +1478,7 @@ class InventoryController extends Controller
         try {
 
             $zipcodes = Zipcode::getZipcodesByRadius($request->zipcode,'150');
-            $inventories = Inventory::where('available_qty','>=',4)->with([ 
+            $inventories = Inventory::where('partno',$request->partno)->where('available_qty','>=',4)->with([ 
                                     'Dropshippers'=>function ($query) use($zipcodes){
                                                         $query->select('zip','code'); 
                                     }

@@ -90,20 +90,20 @@ class UpdateFolderWise extends Command
                 'dropshipper' => $dropshipper,
                 'processid' => $pid,
                 'loopcount' => 1,
-                'started_at' => \Carbon\Carbon::now(),
+                // 'started_at' => \Carbon\Carbon::now(),
             ]);
          }
     }
     public function inventoryFeedUpdate($currentFolder,$newData,$db_ext=''){ 
-        // $this->info(getmypid());
+        $this->info(getmypid());
         $table = "inventories"; 
  
         if(array_keys($newData) !== range(0, count($newData) - 1)) {
 
-            // $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
+            $this->info($currentFolder." --- ".$newData['partno']." --- ".$newData['location_code']);
 
-            $newData['created_at']=\Carbon\Carbon::now();
-            $newData['updated_at']=\Carbon\Carbon::now();
+            // $newData['created_at']=\Carbon\Carbon::now();
+            // $newData['updated_at']=\Carbon\Carbon::now();
 
             $newData['available_qty'] = (integer)$this->clean($newData['available_qty']);
             $newData['price'] = $this->clean($newData['price']);
@@ -134,10 +134,10 @@ class UpdateFolderWise extends Command
 
                     if(is_numeric($data['available_qty'])&&is_numeric($data['price'])){
                         
-                        // $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
+                        $this->info($currentFolder." --- ".$data['partno']." --- ".$data['location_code']);
 
-                        $data['created_at']=\Carbon\Carbon::now();
-                        $data['updated_at']=\Carbon\Carbon::now();
+                        // $data['created_at']=\Carbon\Carbon::now();
+                        // $data['updated_at']=\Carbon\Carbon::now();
 
                         Inventory::updateOrCreate(['partno' =>$data['partno'],'drop_shipper' =>$data['drop_shipper'], 'location_code' =>$data['location_code']] , $data ); 
                         if($this->env != 'local'){
@@ -146,16 +146,7 @@ class UpdateFolderWise extends Command
                             \Log::channel('ftplog')->info("FOLDER:".$currentFolder." --- "."PN:".$data['partno']." --- "."LOC:".$data['location_code']);
                         }
                         
-                        $this->process_update($currentFolder,$data['drop_shipper']);
-                        // $sap_exists_loop = $db_ext->table('inventories')->select('partno','location_code')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->first(); 
-
-
-                        // if($sap_exists_loop){
-                        //     $db_ext->table('inventories')->where('partno',$data['partno'])->where('location_code',$data['location_code'])->update($data); 
-                        // }else{
-
-                        //     $db_ext->table('inventories')->insert($data);   
-                        // }
+                        $this->process_update($currentFolder,$data['drop_shipper']); 
                     }
                 } 
 
@@ -189,7 +180,6 @@ class UpdateFolderWise extends Command
         $this->env = $this->argument('env'); 
 
         $currentFolder = $folderKey;
-
 
         \Log::info("FOLDER NAME ".$folderKey);
 
